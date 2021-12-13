@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
     <head>
         <meta charset="utf-8">
@@ -10,11 +10,11 @@
 		<link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-	<header>
+	<header id="top">
 		<h1 class="page title">$Nome</h1>
 		<nav>
 			<ul>
-				<li><a href="/home.html">Home</a></li>
+				<li lang="en"><a href="/home.html">Home</a></li>
 				<li>Contatti<li>
 				<li><a href="/programmazioni.html">programmazioni</a></li>
 				<li><a href="/info.html">info e costi</a></li>
@@ -22,12 +22,36 @@
 			</ul>
 		</nav>
 	</header>
-	<p class="breadcrumbs"><a href="/Home.html">Home</a>/contatti</p>
-	<div class="content">
-	
+	<p class="breadcrumbs"><a lang="en" href="/Home.html">Home</a>/contatti</p>
+	<div id="content">
+		<div id="posizione">
+			<p>Dove siamo</p>
+			<p>$indirizzo</p>
+            <p>$indicazioni</p>
+			placeholder for map
+			<iframe width="700" height="440" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=London%2C%20United%20Kingdom+(Cinema)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+		</div>
+		<div id="contatti" >
+			<p>contatti</p>
+			<dl>
+				<dt>telefono</dt>
+					<dd>$telefono</dd>
+				<dt lang="en">mail</dt>
+					<dd>$mail</dd>
+			</dl>
+		</div>
+		<div id="social">
+			<p>segui i nostri <span lang="en">social</span>  per rimanere aggiornato su eventi e promozioni</p>
+			<dl>
+				<dt lang="en">telegram</dt>
+					<dd>$telegram</dd>
+				<dt lang="en">twitter</dt>
+					<dd>$twitter</dd>
+			</dl>
+		</div>
 	</div>
 	<footer>
-		<p> <a href="/Contatti.html"> contatti</a> |  copyright </p>
+		<p> <a href="#contatti"> contatti</a> | <span lang="en"> copyright 2022 </span> </p>
 	</footer>
     </body>
 </html>

@@ -1,0 +1,8 @@
+﻿################################################################################
+# Il file gitignore è stato creato automaticamente da Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+/.vs/repo/v16/.suo
+/.vs/repo/config/applicationhost.config

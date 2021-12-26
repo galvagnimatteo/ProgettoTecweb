@@ -8,48 +8,46 @@
 		<meta name="description" content="$description">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/style.css">
+
+        <script type="text/javascript" src="js/carousel.js"> </script>
     </head>
     <body>
 	<header>
-		<h1 id="page title">$Nome</h1>
-		<nav id="main nav">
+		<nav id="menu">
 			<ul>
-				<li lang="en" >Home</li>
-				<li><a href="/contatti.html">contatti</a></li>
-				<li><a href="/programmazioni.html">programmazioni</a></li>
-				<li><a href="/info.html">info e costi</a></li>
-				<li><a href="/area_utenti.html">area utenti</a></li>
+				<li><a href="./" lang="en" >Home</a></li>
+				<li><a href="/contatti.html">Contatti</a></li>
+				<li><a href="/programmazioni.html">Programmazioni</a></li>
+				<li><a href="/info.html">Info e Costi</a></li>
+				<li id="login"><a href="/area_utenti.html">Login</a></li>
 			</ul>
 		</nav>
 	</header>
-      
-	<p lang="en" id="breadcrumbs">Home</p>
-	<div id="content">
-
-	</div>
 
     <!-- INIZIO CAROSELLO -->
 
-    <div class="carousel"> <!--https://css-tricks.com/css-only-carousel/-->
+    <div class="carousel">
 
-        <ul class="slides">
-            <li id="film-1">
-            1
-            </li>
-            <li id="film-2">
-            2
-            </li>
-            <li id="film-3">
-            3
-            </li>
+        <div class="slide not-hidden">
+            <img src="https://via.placeholder.com/1024x400/0000FF/808080" alt="nomefilm">
         </div>
 
-        <a href="#film-1">1</a>
-        <a href="#film-2">2</a>
-        <a href="#film-3">3</a>
-        <a href="#film-4">4</a>
-        <a href="#film-5">5</a>
+        <div class="slide">
+            <img src="https://via.placeholder.com/1024x400/FF0000/FFFFFF" alt="nomefilm">
+        </div>
 
+        <div class="slide">
+            <img src="https://via.placeholder.com/1024x400/FFFF00/000000" alt="nomefilm">
+        </div>
+
+        <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
+        <a class="next" onclick="moveSlides(1)">&#10095;</a>
+    </div>
+
+    <div class="circles">
+        <span class="circle active" onclick="showSlideByIndex(1)"></span>
+        <span class="circle" onclick="showSlideByIndex(2)"></span>
+        <span class="circle" onclick="showSlideByIndex(3)"></span>
     </div>
 
     <!-- INIZIO ACQUISTO RAPIDO -->

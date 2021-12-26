@@ -1,0 +1,108 @@
+:root{
+    --primary-color: #111111;
+    --secondary-color: #f52020;
+    --header-color: #222222;
+}
+
+*{
+	padding: 0;
+	margin: 0;
+    color: white;
+}
+
+html{
+	font-size: 100%;
+	margin: auto;
+	max-width: 1024px;
+}
+
+body{
+	margin:0;
+	padding:0;
+	font-size:1.5em;
+	background-color: var(--primary-color);
+	margin:auto;
+}
+
+nav{
+    background-color: var(--header-color);
+}
+
+nav ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+#login{
+    float:right;
+}
+
+nav li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 1rem;
+}
+
+nav li a:hover {
+    color: var(--secondary-color);
+}
+
+.carousel {
+    position: relative;
+}
+
+.slide {
+    display: none;
+}
+
+.carousel .slide img{
+    width:100%;
+    height:auto;
+}
+
+.not-hidden{
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 42%;
+    padding: 1rem;
+    font-weight: bold;
+    border-radius: 0 1rem 1rem 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 1rem 0 0 1rem;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
+}
+
+.circles{
+    text-align: center;
+}
+
+.circle {
+  cursor: pointer;
+  height: 1rem;
+  width: 1rem;
+  background-color: #ababab;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.active, .circle:hover {
+  background-color: var(--secondary-color);
+}
+
+

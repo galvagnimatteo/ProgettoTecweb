@@ -26,18 +26,28 @@ body{
 header h1 {
     padding: 1rem;
     font-size: 1.5rem;
-    float: left;
+    /*float: left;*/
 }
 
 nav{
     background-image: linear-gradient(#282828, #111111);
+    float:right;
 }
 
 nav ul {
     list-style-type: none;
-    overflow: hidden;
+    
+    /*overflow: hidden;*/
 }
-
+header,ul{
+    display:flex;
+    flex-direction:row;
+}
+@media (max-width: 770px) {
+    header,ul{
+        flex-direction: column;
+    }
+}
 nav li {
     float: left;
 }
@@ -165,4 +175,3 @@ nav li a:hover {
 .quickPurchaseItem.btn:hover{
     background-color: var(--secondary-color);
 }
-

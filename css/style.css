@@ -54,11 +54,12 @@ nav li {
     float:right;
 }
 
-nav a {
+nav a,nav p {
     /*display: block;*/
     text-align: center;
     text-decoration: none;
     padding: 1rem;
+    vertical-align:central;
 }
 
 nav a:hover {
@@ -118,7 +119,8 @@ nav a:hover {
   background-color: var(--secondary-color);
 }
 
-@media (max-width: 770px) {
+
+@media (max-width: 100rem) {
     header,nav /*,nav ul li*/{
         flex-direction: column;
     }

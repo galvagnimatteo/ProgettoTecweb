@@ -10,47 +10,51 @@
 		<link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-	<header>
-		<h1 id="page title">$Nome</h1>
-		<nav id="menu">
-			<!--<ul>-->
-				<!--<li>--><a lang="en" href="./index.html">Home</a><!--</li>-->
-				<!--<li>--><a href="./contatti.html">contatti</a><!--<li>-->
-				<!--<li>--><a href="./programmazioni.html">programmazioni</a><!--</li>-->
-				<!--<li>--><a href="./info.html">info e costi</a><!--</li>-->
-				<!--<li>--><p>area utenti</p><!--</li>-->
-			<!--</ul>-->
-		</nav>
-	</header>
-	<p id="breadcrumbs"><a lang="en" href="/index.html">Home</a>/area utenti</p>
+        <header>
+            <h1> CINEMA </h1>
+    		<nav id="menu">
+    			<ul>
+    				<li><a href="./index.html" lang="en">Home</a></li>
+    				<li><a href="./contatti.html">Contatti</a></li>
+    				<li><a href="./programmazione.html">Programmazione</a></li>
+    				<li><a href="./info.html">Info e Costi</a></li>
+    				<li id="login"><a href="#">Login</a></li>
+    			</ul>
+    		</nav>
+    	</header>
+
+        <div class="breadcrumbs">
+            <p> Ti trovi in: <a href="./index.html">Home</a> / <a href="#">Area utenti</a> / </p>
+        </div>
+
 	<div id="content">
-	
+
 	<form action="area_utenti.php" method="post">
-	
+
 	<div class="container">
 	<ul>
 		<li><label for="email_login"><span xml:lang="en">Email</span></label>
 		<input type="email" placeholder="Email" name="email_login" required></li>
-	
+
 	 <li><label for="password_login"><span xml:lang="en">Password</span></label>
 	<input type="password" placeholder="Password" name="pass_login" required> </li>
-	
+
 	<input type="button" value="Login">
 	</ul>
 	</div>
-	
+
 	</form>
-	
+
 	<hr>
 	<h1 class="breadcrumbs">Registrazione</h1>
-	
+
 	<form action="area_utenti.php" method="post">
 	<div class="container">
 		<ul>
 		<li>
 		<label for="name_register"><span xml:lang="it">Nome: </span></label>
 		<input type="text" placeholder="Nome" name="name_register" required>
-		
+
 		<label for="surname_register"><span xml:lang="it">Cognome:</span></label>
 		<input type="text" placeholder="Cognome" name="surname_register" required></li>
 	<li>
@@ -60,18 +64,18 @@
 		<input type="text" placeholder="Telefono" name="phone_register" required> </li>
 	</li>
 	<li>
-	
+
 		<label for="password_register"><span xml:lang="en"> Password</span></label>
 		<input type="password" placeholder="Password" name="password_register" required></li>
-	
+
 	</li>
 	<input type="button" value="Register">
 	</ul>
 		<p><span xml:lang="en">By creating an account you agree to our <a href="#">Terms & Privacy</a>.</span></p>
 	</div>
 	</form>
-	
-	
+
+
 	</div>
 
 	<footer>

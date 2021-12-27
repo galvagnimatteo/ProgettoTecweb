@@ -57,6 +57,11 @@ nav li a:hover {
     color: var(--secondary-color);
 }
 
+.breadcrumbs{
+    margin: 1rem;
+    font-size: 1.2rem;
+}
+
 .carousel {
     position: relative;
 }

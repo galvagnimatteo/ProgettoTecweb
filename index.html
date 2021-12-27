@@ -30,7 +30,7 @@
     <div class="carousel">
 
         <div class="slide not-hidden">
-            <img src="https://via.placeholder.com/1024x400/FF9999/FFFFFF" alt="nomefilm">
+            <img src="https://via.placeholder.com/1024x400/FF2222/FFFFFF" alt="nomefilm">
         </div>
 
         <div class="slide">
@@ -38,58 +38,65 @@
         </div>
 
         <div class="slide">
-            <img src="https://via.placeholder.com/1024x400/FF2222/FFFFFF" alt="nomefilm">
+            <img src="https://via.placeholder.com/1024x400/FF9999/FFFFFF" alt="nomefilm">
         </div>
 
         <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
         <a class="next" onclick="moveSlides(1)">&#10095;</a>
-    </div>
 
-    <div class="circles">
-        <span class="circle active" onclick="showSlideByIndex(1)"></span>
-        <span class="circle" onclick="showSlideByIndex(2)"></span>
-        <span class="circle" onclick="showSlideByIndex(3)"></span>
+        <div class="circles">
+            <span class="circle active" onclick="showSlideByIndex(1)"></span>
+            <span class="circle" onclick="showSlideByIndex(2)"></span>
+            <span class="circle" onclick="showSlideByIndex(3)"></span>
+        </div>
+
     </div>
 
     <!-- INIZIO ACQUISTO RAPIDO -->
 
-    <h2> Acquisto Rapido </h2>
+    <div class="quickPurchaseContainer">
 
-    <form action="" method="post">
+        <h2 class="quickPurchaseTitle"> Acquisto Rapido </h2>
 
-        <select name="scelta cinema" id="scelta_cinema" data-text-required="Per favore, scegli un cinema.">
-            <option value="scelta">Scegli un cinema</option>
-            <option value="cin1">cin1</option>
-            <option value="cin2">cin2</option>
-            <option value="cin3">cin3</option>
-            <option value="cin4">cin4</option>
-        </select>
+        <form class="quickPurchaseForm" action="" method="post">
 
-        <select name="scelta film" id="scelta_film" data-text-required="Per favore, scegli un film.">
-            <option value="scelta">Scegli un film</option>
-            <option value="film1">film1</option>
-            <option value="film2">film2</option>
-            <option value="film3">film3</option>
-            <option value="film4">film4</option>
-        </select>
+            <select class="quickPurchaseItem slct" name="scelta cinema" id="scelta_cinema" data-text-required="Per favore, scegli un cinema.">
+                <option value="scelta">Scegli un cinema</option>
+                <option value="cin1">cin1</option>
+                <option value="cin2">cin2</option>
+                <option value="cin3">cin3</option>
+                <option value="cin4">cin4</option>
+            </select>
 
-        <select name="scelta data" id="scelta_data" data-text-required="Per favore, scegli una data.">
-            <option value="scelta">Scegli una data</option>
-            <option value="data1">data1</option>
-            <option value="data2">data2</option>
-            <option value="data3">data3</option>
-            <option value="data4">data4</option>
-        </select>
+            <select class="quickPurchaseItem slct" name="scelta film" id="scelta_film" data-text-required="Per favore, scegli un film.">
+                <option value="scelta">Scegli un film</option>
+                <option value="film1">film1</option>
+                <option value="film2">film2</option>
+                <option value="film3">film3</option>
+                <option value="film4">film4</option>
+            </select>
 
-        <select name="scelta ora" id="scelta_ora" data-text-required="Per favore, scegli un orario.">
-            <option value="scelta">Scegli un orario</option>
-            <option value="orario1">orario1</option>
-            <option value="orario2">orario2</option>
-            <option value="orario3">orario3</option>
-            <option value="orario4">orario4</option>
-        </select>
+            <select class="quickPurchaseItem slct" name="scelta data" id="scelta_data" data-text-required="Per favore, scegli una data.">
+                <option value="scelta">Scegli una data</option>
+                <option value="data1">data1</option>
+                <option value="data2">data2</option>
+                <option value="data3">data3</option>
+                <option value="data4">data4</option>
+            </select>
 
-    </form>
+            <select class="quickPurchaseItem slct" name="scelta ora" id="scelta_ora" data-text-required="Per favore, scegli un orario.">
+                <option value="scelta">Scegli un orario</option>
+                <option value="orario1">orario1</option>
+                <option value="orario2">orario2</option>
+                <option value="orario3">orario3</option>
+                <option value="orario4">orario4</option>
+            </select>
+
+            <button class="quickPurchaseItem btn"> Acquista </button>
+
+        </form>
+
+    </div>
 
     <!-- INIZIO FILM IN EVIDENZA -->
 

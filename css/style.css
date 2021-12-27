@@ -1,0 +1,168 @@
+:root{
+    --primary-color: #121212;
+    --secondary-color: #f52020;
+}
+
+*{
+	padding: 0;
+	margin: 0;
+    color: white;
+}
+
+html{
+	font-size: 100%;
+	margin: auto;
+	max-width: 1024px;
+    background-color: var(--primary-color);
+}
+
+body{
+	margin:0;
+	padding:0;
+	font-size:1.5rem;
+	margin:auto;
+}
+
+header h1 {
+    padding: 1rem;
+    font-size: 1.5rem;
+    float: left;
+}
+
+nav{
+    background-image: linear-gradient(#282828, #111111);
+}
+
+nav ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+#login{
+    float:right;
+}
+
+nav li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 1rem;
+}
+
+nav li a:hover {
+    color: var(--secondary-color);
+}
+
+.breadcrumbs{
+    margin: 1rem;
+    font-size: 1.2rem;
+}
+
+.carousel {
+    position: relative;
+}
+
+.slide {
+    display: none;
+}
+
+.carousel .slide img{
+    width: 100%;
+    height: auto;
+}
+
+.not-hidden{
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 42%;
+    padding: 1rem;
+    font-weight: bold;
+    border-radius: 0 1rem 1rem 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 1rem 0 0 1rem;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
+}
+
+.circles{
+    text-align: center;
+}
+
+.circle {
+  cursor: pointer;
+  height: 1rem;
+  width: 1rem;
+  background-color: #ababab;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.circle:hover {
+    background-color: #777777;
+}
+
+.active{
+    background-color: var(--secondary-color);
+}
+
+.active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
+    background-color: var(--secondary-color);
+}
+
+.quickPurchaseContainer{
+    background-image: linear-gradient(#282828, #121212);
+    margin-top: 0.8rem;
+}
+
+.quickPurchaseTitle{
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.quickPurchaseForm{
+    display: flex;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+}
+
+.quickPurchaseItem{
+    background: none;
+    font-size: 1.1rem;
+    width: 20%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border: none;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    outline: 0;
+    border-radius: 8px;
+}
+
+.quickPurchaseItem.slct option{
+    background: var(--primary-color);
+}
+
+.quickPurchaseItem.btn{
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+}
+
+.quickPurchaseItem.btn:hover{
+    background-color: var(--secondary-color);
+}
+

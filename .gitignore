@@ -6,3 +6,5 @@
 /.vs/ProjectSettings.json
 /.vs/repo/v16/.suo
 /.vs/repo/config/applicationhost.config
+/.vs
+/repo.sln

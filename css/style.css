@@ -23,14 +23,14 @@ body{
 	margin:auto;
 }
 
-header h1{
+header h1 {
     padding: 1rem;
     font-size: 1.5rem;
-    float:left;
+    float: left;
 }
 
 nav{
-    background-image: linear-gradient(#282828, #121212);
+    background-image: linear-gradient(#282828, #111111);
 }
 
 nav ul {

@@ -1,6 +1,8 @@
 :root{
     --primary-color: #121212;
     --secondary-color: #f52020;
+    --gradient-first-color: #303030;
+    --gradient-last-color: #121212;
 }
 
 *{
@@ -23,6 +25,11 @@ body{
 	margin:auto;
 }
 
+.subtitle{
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
 header h1 {
     padding: 1rem;
     font-size: 1.5rem;
@@ -30,7 +37,7 @@ header h1 {
 }
 
 nav{
-    background-image: linear-gradient(#282828, #111111);
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 }
 
 nav ul {
@@ -124,13 +131,8 @@ nav li a:hover {
 }
 
 .quickPurchaseContainer{
-    background-image: linear-gradient(#282828, #121212);
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     margin-top: 0.8rem;
-}
-
-.quickPurchaseTitle{
-    padding-top: 1rem;
-    padding-left: 1rem;
 }
 
 .quickPurchaseForm{
@@ -166,3 +168,31 @@ nav li a:hover {
     background-color: var(--secondary-color);
 }
 
+.cardsContainer{
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+}
+
+.cards {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.cards li {
+    border: 1px solid red;
+    padding: 1rem;
+    margin: 1rem;
+    flex: 1 1 0; /*inizialmente distribuite seguendo flex-grow*/
+}
+
+@media screen and (max-width: 1024px) {
+    .cards li {
+        flex: 1 1 40%; /*rimpicciolite oltre il 50% per metterle già a righe di due senza passare per la "fase" a righe di tre*/
+    }
+}
+
+@media screen and (max-width: 612px) {
+    .cards li {
+        flex-basis: 100%; /*rimpicciolite a righe di 1*/
+    }
+}

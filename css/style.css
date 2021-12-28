@@ -179,21 +179,28 @@ nav li a:hover {
     flex-direction: row;
 }
 .cards li {
+    box-sizing: border-box;
     border: 1px solid red;
     padding: 1rem;
     margin: 1rem;
-    flex: 1 1 0; /*inizialmente distribuite seguendo flex-grow*/
+    flex: 0 1 calc(25% - 2rem); /*inizialmente distribuite seguendo flex-grow*/
     font-size: 1rem;
 }
 
-@media screen and (max-width: 1024px) {
-    .cards li {
-        flex: 1 1 40%; /*rimpicciolite oltre il 50% per metterle già a righe di due senza passare per la "fase" a righe di tre*/
+@media screen and (max-width: 800px) {
+    .cards li{
+        flex: 0 1 calc(33.3% - 2rem); /*inizialmente distribuite seguendo flex-grow*/
     }
 }
 
-@media screen and (max-width: 612px) {
-    .cards li {
-        flex-basis: 100%; /*rimpicciolite a righe di 1*/
+@media screen and (max-width: 600px) {
+    .cards li{
+        flex: 0 1 calc(50% - 2rem);
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .cards li{
+        flex: 0 1 calc(100% - 2rem);
     }
 }

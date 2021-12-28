@@ -2,12 +2,7 @@
     width:100%;
     align-self:end;
 }
-#content{
-    display:grid;
-    grid-template-columns:5% 45% 45% 5%;
-    grid-row-gap:2em;
-    margin-bottom:2em;
-}
+
 @keyframes materialize {
     0% {
         opacity: 0;
@@ -63,62 +58,69 @@ footer {
     animation-delay: 6s;
     animation-fill-mode: both;
 }
+@supports (display: grid) {
+    #content {
+        display: grid;
+        grid-template-columns: 5% 45% 45% 5%;
+        grid-row-gap: 2em;
+        margin-bottom: 2em;
+    }
+    @media (min-width: 49rem) {
+        #posizione {
+            grid-column-start: 1;
+            grid-column-end:5;
+            grid-row: 1;
+        }
+        #contatti {
+            grid-column: 3;
+            grid-row: 2;
+        }
+        #social {
+            grid-column: 2;
+            grid-row: 3;
+        }
+    }
+    @media (max-width: 49rem) {
+        #posizione {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row: 1;
+        }
 
-@media (min-width: 49rem) {
-    #posizione {
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row: 1;
+        #contatti {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row: 2;
+        }
+
+        #social {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row: 3;
+        }
     }
-    #contatti {
-        grid-column: 3;
-        grid-row: 2;
-        
+    dl {
+        display: grid;
+        margin: 1rem;
     }
-    #social {
+    dt {
+        font-weight: bold;
+        grid-column: 1;
+    }
+    dd {
         grid-column: 2;
-        grid-row: 3;
-        
-    }    
-}
-
-
-@media (max-width: 49rem) {
-    #posizione {
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row: 1;
-    }
-
-    #contatti {
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row: 2;
-    }
-
-    #social {
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row: 3;
     }
 }
-h2{
-    font-size:1.5rem;
-    font-weight:bold;
+@supports not (display: grid)
+{
+
 }
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 h3 {
     font-size: 1.2rem;
 }
-dl{
-    display:grid;
-    margin:1rem;
-}
 
-dt {
-    font-weight: bold;
-    grid-column: 1;
-}
-
-dd {
-    grid-column: 2;
-}

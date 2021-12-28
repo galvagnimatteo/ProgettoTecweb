@@ -44,15 +44,18 @@ nav ul {
     /*overflow: hidden;*/
 }
 @media (min-width: 50rem) {
-    header {
-        display: grid;
-        grid-template-columns: 15% 85%;
+
+    header, ul {
+        display: flex;
+        width:100%;
+        flex-direction: row;
+        align-self:flex-end;
     }
     header h1 {
-        grid-column: 1;
+        width: 15%;
     }
     nav {
-        grid-column: 2;
+        width: 85%;
     }
 }
 @media (max-width: 50rem) {

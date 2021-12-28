@@ -26,18 +26,45 @@ body{
 header h1 {
     padding: 1rem;
     font-size: 1.5rem;
-    float: left;
+    /*float: left;*/
 }
 
 nav{
     background-image: linear-gradient(#282828, #111111);
+    align-self:end;
 }
 
 nav ul {
     list-style-type: none;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
-
+@media (min-width: 50rem) {
+    header {
+        display: grid;
+        grid-template-columns: 15% 85%;
+    }
+    header h1 {
+        grid-column: 1;
+    }
+    nav {
+        grid-column: 2;
+    }
+}
+@media (max-width: 50rem) {
+    header,ul{
+        display:flex;
+        flex-direction: column;
+    }
+    header h1 {
+        width:100%;
+    }
+    nav {
+        width: 100%;
+    }
+}
+footer{
+    margin:4em;
+}
 nav li {
     float: left;
 }
@@ -165,4 +192,3 @@ nav li a:hover {
 .quickPurchaseItem.btn:hover{
     background-color: var(--secondary-color);
 }
-

@@ -12,214 +12,216 @@
         <script type="text/javascript" src="js/carousel.js"> </script>
     </head>
     <body>
+        <a href="#ca" class="SRskip">salta al contenuto</a>
         <div class="headerWrapper">
-        	<header>
+            <header>
                 <h1> CINEMA </h1>
-        		<nav id="menu">
-        			<ul>
-        				<li><a href="#" lang="en">Home</a></li>
-        				<li><a href="./contatti.html">Contatti</a></li>
-        				<li><a href="./programmazione.html">Programmazione</a></li>
-        				<li><a href="./info.html">Info e Costi</a></li>
-        				<li id="login"><a href="./area_utenti.html">Login</a></li>
-        			</ul>
-        		</nav>
-        	</header>
+                <nav id="menu">
+                    <ul>
+                        <li><a href="#" lang="en">Home</a></li>
+                        <li><a href="./contatti.html">Contatti</a></li>
+                        <li><a href="./programmazione.html">Programmazione</a></li>
+                        <li><a href="./info.html">Info e Costi</a></li>
+                        <li id="login"><a href="./area_utenti.html">Login</a></li>
+                    </ul>
+                </nav>
+            </header>
 
-        <div class="breadcrumbs">
-            <p> Ti trovi in: <a href="#">Home</a> /</p>
-        </div>
-
-        </div>
-
-    <div class="carousel">
-
-        <div class="slide not-hidden">
-            <img src="https://via.placeholder.com/1024x400/FF2222/FFFFFF" alt="nomefilm">
-        </div>
-
-        <div class="slide">
-            <img src="https://via.placeholder.com/1024x400/FF5555/FFFFFF" alt="nomefilm">
-        </div>
-
-        <div class="slide">
-            <img src="https://via.placeholder.com/1024x400/FF9999/FFFFFF" alt="nomefilm">
-        </div>
-
-        <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
-        <a class="next" onclick="moveSlides(1)">&#10095;</a>
-
-        <div class="circles">
-            <span class="circle active" onclick="showSlideByIndex(1)"></span>
-            <span class="circle" onclick="showSlideByIndex(2)"></span>
-            <span class="circle" onclick="showSlideByIndex(3)"></span>
-        </div>
-
-    </div>
-
-    <div class="quickPurchaseContainer">
-
-        <h2 class="subtitle"> Acquisto Rapido </h2>
-
-        <form class="quickPurchaseForm" action="" method="post">
-
-            <select class="quickPurchaseItem slct" name="scelta cinema" id="scelta_cinema" data-text-required="Per favore, scegli un cinema.">
-                <option value="scelta">Scegli un cinema</option>
-                <option value="cin1">cin1</option>
-                <option value="cin2">cin2</option>
-                <option value="cin3">cin3</option>
-                <option value="cin4">cin4</option>
-            </select>
-
-            <select class="quickPurchaseItem slct" name="scelta film" id="scelta_film" data-text-required="Per favore, scegli un film.">
-                <option value="scelta">Scegli un film</option>
-                <option value="film1">film1</option>
-                <option value="film2">film2</option>
-                <option value="film3">film3</option>
-                <option value="film4">film4</option>
-            </select>
-
-            <select class="quickPurchaseItem slct" name="scelta data" id="scelta_data" data-text-required="Per favore, scegli una data.">
-                <option value="scelta">Scegli una data</option>
-                <option value="data1">data1</option>
-                <option value="data2">data2</option>
-                <option value="data3">data3</option>
-                <option value="data4">data4</option>
-            </select>
-
-            <select class="quickPurchaseItem slct" name="scelta ora" id="scelta_ora" data-text-required="Per favore, scegli un orario.">
-                <option value="scelta">Scegli un orario</option>
-                <option value="orario1">orario1</option>
-                <option value="orario2">orario2</option>
-                <option value="orario3">orario3</option>
-                <option value="orario4">orario4</option>
-            </select>
-
-            <button class="quickPurchaseItem btn"> Acquista </button>
-
-        </form>
-
-    </div>
-
-    <div class="cardsContainer">
-
-        <h2 class="subtitle"> Film in evidenza </h2>
-
-        <ul class="cards">
-
-            <li class="card">
-                <div class="card_content">
-                    <div>
-                        <p>card1</p>
-                        <p>Lorem ipsum dolor sit amet consecletur adipisicing elit.</p>
-                    </div>
-                    <figure>
-                        <img src="" alt="Film in evidenza">
-                    </figure>
-                    <p><a href="">Guarda</a></p>
-                </div>
-            </li>
-
-            <li class="card">
-                <div class="card_content">
-                    <div>
-                        <p>card1</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                    <figure>
-                        <img src="" alt="Film in evidenza">
-                    </figure>
-                    <p><a href="">Guarda</a></p>
-                </div>
-            </li>
-
-            <li class="card">
-                <div class="card_content">
-                    <div>
-                        <p>card1</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                    <figure>
-                        <img src="" alt="Film in evidenza">
-                    </figure>
-                    <p><a href="">Guarda</a></p>
-                </div>
-            </li>
-
-            <li class="card">
-                <div class="card_content">
-                    <div>
-                        <p>card1</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                    <figure>
-                        <img src="" alt="Film in evidenza">
-                    </figure>
-                    <p><a href="">Guarda</a></p>
-                </div>
-            </li>
-
-        </ul>
-
-    </div>
-
-
-
-    <ul class="cards">
-        <li>
-            <div class="card_content">
-                <div>
-                    <p>card1</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                <figure>
-                    <img src="" alt="Film in evidenza">
-                </figure>
-                <p><a href="">Guarda</a></p>
+            <div class="breadcrumbs">
+                <p> Ti trovi in: <a href="#">Home</a> /</p>
             </div>
-        </li>
-        <li class="card">
-            <div class="card_content">
-                <div>
-                    <p>card1</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                <figure>
-                    <img src="" alt="Film in evidenza">
-                </figure>
-                <p><a href="">Guarda</a></p>
-            </div>
-        </li>
-        <li class="card">
-            <div class="card_content">
-                <div>
-                    <p>card1</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                <figure>
-                    <img src="" alt="Film in evidenza">
-                </figure>
-                <p><a href="">Guarda</a></p>
-            </div>
-        </li>
-        <li class="card">
-            <div class="card_content">
-                <div>
-                    <p>card1</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
-                </div>
-                <figure>
-                    <img src="" alt="Film in evidenza">
-                </figure>
-                <p><a href="">Guarda</a></p>
-            </div>
-        </li>
+        </div>
+        <div id="content">
+            <div class="carousel">
 
-    </ul>
-	<footer>
-  <p> <a href="./Contatti.html#contatti"> contatti</a> | <span lang="en"> copyright 2022 </span> </p>
-	</footer>
+                <div class="slide not-hidden">
+                    <img src="https://via.placeholder.com/1024x400/FF2222/FFFFFF" alt="nomefilm">
+                </div>
+
+                <div class="slide">
+                    <img src="https://via.placeholder.com/1024x400/FF5555/FFFFFF" alt="nomefilm">
+                </div>
+
+                <div class="slide">
+                    <img src="https://via.placeholder.com/1024x400/FF9999/FFFFFF" alt="nomefilm">
+                </div>
+
+                <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
+                <a class="next" onclick="moveSlides(1)">&#10095;</a>
+
+                <div class="circles">
+                    <span class="circle active" onclick="showSlideByIndex(1)"></span>
+                    <span class="circle" onclick="showSlideByIndex(2)"></span>
+                    <span class="circle" onclick="showSlideByIndex(3)"></span>
+                </div>
+
+            </div>
+
+            <div class="quickPurchaseContainer">
+
+                <h2 class="subtitle"> Acquisto Rapido </h2>
+
+                <form class="quickPurchaseForm" action="" method="post">
+
+                    <select class="quickPurchaseItem slct" name="scelta cinema" id="scelta_cinema" data-text-required="Per favore, scegli un cinema.">
+                        <option value="scelta">Scegli un cinema</option>
+                        <option value="cin1">cin1</option>
+                        <option value="cin2">cin2</option>
+                        <option value="cin3">cin3</option>
+                        <option value="cin4">cin4</option>
+                    </select>
+
+                    <select class="quickPurchaseItem slct" name="scelta film" id="scelta_film" data-text-required="Per favore, scegli un film.">
+                        <option value="scelta">Scegli un film</option>
+                        <option value="film1">film1</option>
+                        <option value="film2">film2</option>
+                        <option value="film3">film3</option>
+                        <option value="film4">film4</option>
+                    </select>
+
+                    <select class="quickPurchaseItem slct" name="scelta data" id="scelta_data" data-text-required="Per favore, scegli una data.">
+                        <option value="scelta">Scegli una data</option>
+                        <option value="data1">data1</option>
+                        <option value="data2">data2</option>
+                        <option value="data3">data3</option>
+                        <option value="data4">data4</option>
+                    </select>
+
+                    <select class="quickPurchaseItem slct" name="scelta ora" id="scelta_ora" data-text-required="Per favore, scegli un orario.">
+                        <option value="scelta">Scegli un orario</option>
+                        <option value="orario1">orario1</option>
+                        <option value="orario2">orario2</option>
+                        <option value="orario3">orario3</option>
+                        <option value="orario4">orario4</option>
+                    </select>
+
+                    <button class="quickPurchaseItem btn"> Acquista </button>
+
+                </form>
+
+            </div>
+
+            <div class="cardsContainer">
+
+                <h2 class="subtitle"> Film in evidenza </h2>
+
+                <ul class="cards">
+
+                    <li class="card">
+                        <div class="card_content">
+                            <div>
+                                <p>card1</p>
+                                <p>Lorem ipsum dolor sit amet consecletur adipisicing elit.</p>
+                            </div>
+                            <figure>
+                                <img src="" alt="Film in evidenza">
+                            </figure>
+                            <p><a href="">Guarda</a></p>
+                        </div>
+                    </li>
+
+                    <li class="card">
+                        <div class="card_content">
+                            <div>
+                                <p>card1</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                            <figure>
+                                <img src="" alt="Film in evidenza">
+                            </figure>
+                            <p><a href="">Guarda</a></p>
+                        </div>
+                    </li>
+
+                    <li class="card">
+                        <div class="card_content">
+                            <div>
+                                <p>card1</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                            <figure>
+                                <img src="" alt="Film in evidenza">
+                            </figure>
+                            <p><a href="">Guarda</a></p>
+                        </div>
+                    </li>
+
+                    <li class="card">
+                        <div class="card_content">
+                            <div>
+                                <p>card1</p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                            <figure>
+                                <img src="" alt="Film in evidenza">
+                            </figure>
+                            <p><a href="">Guarda</a></p>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <ul class="cards">
+                <li>
+                    <div class="card_content">
+                        <div>
+                            <p>card1</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                        <figure>
+                            <img src="" alt="Film in evidenza">
+                        </figure>
+                        <p><a href="">Guarda</a></p>
+                    </div>
+                </li>
+                <li class="card">
+                    <div class="card_content">
+                        <div>
+                            <p>card1</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                        <figure>
+                            <img src="" alt="Film in evidenza">
+                        </figure>
+                        <p><a href="">Guarda</a></p>
+                    </div>
+                </li>
+                <li class="card">
+                    <div class="card_content">
+                        <div>
+                            <p>card1</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                        <figure>
+                            <img src="" alt="Film in evidenza">
+                        </figure>
+                        <p><a href="">Guarda</a></p>
+                    </div>
+                </li>
+                <li class="card">
+                    <div class="card_content">
+                        <div>
+                            <p>card1</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+                        </div>
+                        <figure>
+                            <img src="" alt="Film in evidenza">
+                        </figure>
+                        <p><a href="">Guarda</a></p>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <footer>
+            <p> <a href="./Contatti.html#contatti"> contatti</a> | <span lang="en"> copyright 2022 </span> </p>
+        </footer>
     </body>
 </html>

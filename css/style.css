@@ -224,3 +224,18 @@ nav li a:hover {
         flex-basis: 100%; /*rimpicciolite a righe di 1*/
     }
 }
+
+.SRskip {/*per screen reader*/
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.SRskip:focus {
+    position: static;
+    width: auto;
+    height: auto;
+}
+ 

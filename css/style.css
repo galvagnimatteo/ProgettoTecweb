@@ -36,7 +36,7 @@ header h1 {
     float: left;
 }
 
-nav{
+.headerWrapper{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 }
 
@@ -183,6 +183,7 @@ nav li a:hover {
     padding: 1rem;
     margin: 1rem;
     flex: 1 1 0; /*inizialmente distribuite seguendo flex-grow*/
+    font-size: 1rem;
 }
 
 @media screen and (max-width: 1024px) {

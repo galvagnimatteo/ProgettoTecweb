@@ -33,16 +33,16 @@ body{
 header h1 {
     padding: 1rem;
     font-size: 1.5rem;
-    /*float: left;*/
 }
+
 .headerWrapper{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 }
 
 nav ul {
     list-style-type: none;
-    /*overflow: hidden;*/
 }
+
 @media (min-width: 50rem) {
     header {
         display: grid;
@@ -202,29 +202,47 @@ nav li a:hover {
     flex-wrap: wrap;
     flex-direction: row;
 }
+
 .cards li {
     box-sizing: border-box;
-    border: 1px solid red;
-    padding: 1rem;
+    border: 3px solid;
+    border-color: var(--secondary-color);
+    border-radius: 1rem;
     margin: 1rem;
-    flex: 0 1 calc(25% - 2rem); /*inizialmente distribuite seguendo flex-grow*/
+    flex: 0 1 calc(50% - 2rem);
     font-size: 1rem;
+    overflow: hidden;
 }
 
-@media screen and (max-width: 800px) {
-    .cards li{
-        flex: 0 1 calc(33.3% - 2rem); /*inizialmente distribuite seguendo flex-grow*/
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .cards li{
-        flex: 0 1 calc(50% - 2rem);
-    }
-}
-
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 875px) {
     .cards li{
         flex: 0 1 calc(100% - 2rem);
     }
+
+    .cards li img{
+        max-width: 120px;
+    }
 }
+
+.cards li img{
+    overflow: hidden;
+    float: right;
+    width: 30%;
+    vertical-align: middle;
+}
+
+.cardContentText{
+    float: left;
+    padding: 1rem;
+}
+
+.cardContentSubtitle{
+    font-style: italic;
+    padding-top: 0.5rem;
+}
+
+.showMovieLink{
+    padding-top: 1rem;
+    display: inline-block;
+}
+

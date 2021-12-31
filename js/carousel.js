@@ -24,7 +24,7 @@ function showSlides(n) {
 
     for (var i = 0; i < slides.length; i++) {
 
-        slides[i].className = "slide";
+        slides[i].className = "js slide";
 
     }
 
@@ -34,7 +34,7 @@ function showSlides(n) {
 
     }
 
-    slides[index-1].className = "slide not-hidden";
+    slides[index-1].className += " not-hidden";
     circles[index-1].className += " active";
 
 }

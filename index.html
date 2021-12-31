@@ -9,9 +9,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/style.css">
 
-        <script type="text/javascript" src="js/carousel.js"> </script>
+        <script type="text/javascript" src="js/carousel.js"> </script> <!-- Caricato prima del main.js perchè modifica la grafica della page -->
+
     </head>
-    <body>
+    <body class="no-js">
         <div class="headerWrapper">
         	<header>
                 <h1> CINEMA </h1>
@@ -32,19 +33,23 @@
 
         </div>
 
-        <div class="carousel">
+        <div class="carouselContainer">
 
-            <div class="slide not-hidden">
-                <img src="https://via.placeholder.com/1024x400/FF2222/FFFFFF" alt="nomefilm">
-            </div>
+            <ul>
 
-            <div class="slide">
-                <img src="https://via.placeholder.com/1024x400/FF5555/FFFFFF" alt="nomefilm">
-            </div>
+                <li class="slide not-hidden">
+                    <img src="https://via.placeholder.com/1024x400/FF2222/FFFFFF" alt="nomefilm">
+                </li>
 
-            <div class="slide">
-                <img src="https://via.placeholder.com/1024x400/FF9999/FFFFFF" alt="nomefilm">
-            </div>
+                <li class="slide">
+                    <img src="https://via.placeholder.com/1024x400/FF5555/FFFFFF" alt="nomefilm">
+                </li>
+
+                <li class="slide">
+                    <img src="https://via.placeholder.com/1024x400/FF9999/FFFFFF" alt="nomefilm">
+                </li>
+
+            </ul>
 
             <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
             <a class="next" onclick="moveSlides(1)">&#10095;</a>
@@ -157,7 +162,7 @@
 
                     </div>
                 </li>
-                
+
                 <li>
                     <div>
 
@@ -184,4 +189,7 @@
         </footer>
 
     </body>
+
+    <script type="text/javascript" src="js/main.js"> </script>
+
 </html>

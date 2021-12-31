@@ -94,47 +94,57 @@ nav li a:hover {
     font-size: 1.2rem;
 }
 
-.carousel {
+.slide{
+    list-style-type: none;
+}
+
+/*codice per css con javascript abilitato*/
+
+.js .carouselContainer {
     position: relative;
 }
 
-.slide {
+.js .slide {
     display: none;
 }
 
-.carousel .slide img{
+.js .slide img{
     width: 100%;
     height: auto;
 }
 
-.not-hidden{
+.js .not-hidden{
     display: block;
 }
 
-.prev, .next {
+.js .prev, .js .next {
     cursor: pointer;
     position: absolute;
     top: 42%;
     padding: 1rem;
     font-weight: bold;
-    border-radius: 0 1rem 1rem 0;
     user-select: none;
 }
 
-.next {
+.js .prev{
+    border-radius: 0 1rem 1rem 0;
+    left: 0;
+}
+
+.js .next {
     right: 0;
     border-radius: 1rem 0 0 1rem;
 }
 
-.prev:hover, .next:hover {
+.js .prev:hover, .js .next:hover {
     background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
 }
 
-.circles{
+.js .circles{
     text-align: center;
 }
 
-.circle {
+.js .circle {
   cursor: pointer;
   height: 1rem;
   width: 1rem;
@@ -143,17 +153,48 @@ nav li a:hover {
   display: inline-block;
 }
 
-.circle:hover {
+.js .circle:hover {
     background-color: #777777;
 }
 
-.active{
+.js .active{
     background-color: var(--secondary-color);
 }
 
-.active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
+.js .active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
     background-color: var(--secondary-color);
 }
+
+/*codice per css con javascript disabilitato*/
+.no-js ul{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.no-js .slide{
+    width: calc(50% - 1rem);
+    margin: 0.5rem;
+}
+
+.no-js .slide img{
+    width: 100%;
+    height: auto;
+    display: block; /*se no viene trattata come inline e lascia un leggero spazio sul bottom*/
+}
+
+.no-js .not-hidden{
+    display: block;
+}
+
+.no-js .prev, .no-js .next {
+    display: none;
+}
+
+.no-js .circles{
+    display: none;
+}
+
 
 .quickPurchaseContainer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
@@ -214,7 +255,7 @@ nav li a:hover {
     overflow: hidden;
 }
 
-@media screen and (max-width: 875px) {
+@media screen and (max-width: 880px) {
     .cards li{
         flex: 0 1 calc(100% - 2rem);
     }

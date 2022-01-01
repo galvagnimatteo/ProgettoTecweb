@@ -1,6 +1,8 @@
 :root{
     --primary-color: #121212;
     --secondary-color: #f52020;
+    --gradient-first-color: #303030;
+    --gradient-last-color: #121212;
 }
 
 *{
@@ -23,21 +25,24 @@ body{
 	margin:auto;
 }
 
+.subtitle{
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
 header h1 {
     padding: 1rem;
     font-size: 1.5rem;
-    /*float: left;*/
 }
 
-nav{
-    background-image: linear-gradient(#282828, #111111);
-    align-self:end;
+.headerWrapper{
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 }
 
 nav ul {
     list-style-type: none;
-    /*overflow: hidden;*/
 }
+
 @media (min-width: 50rem) {
     header {
         display: grid;
@@ -55,9 +60,7 @@ nav ul {
         display:flex;
         flex-direction: column;
     }
-    header h1 {
-        width:100%;
-    }
+
     nav {
         width: 100%;
     }
@@ -89,47 +92,57 @@ nav li a:hover {
     font-size: 1.2rem;
 }
 
-.carousel {
+.slide{
+    list-style-type: none;
+}
+
+/*codice per css con javascript abilitato*/
+
+.js .carouselContainer {
     position: relative;
 }
 
-.slide {
+.js .slide {
     display: none;
 }
 
-.carousel .slide img{
+.js .slide img{
     width: 100%;
     height: auto;
 }
 
-.not-hidden{
+.js .not-hidden{
     display: block;
 }
 
-.prev, .next {
+.js .prev, .js .next {
     cursor: pointer;
     position: absolute;
-    top: 42%;
+    top: calc(50% - 2rem - 0.9rem);
     padding: 1rem;
     font-weight: bold;
-    border-radius: 0 1rem 1rem 0;
     user-select: none;
 }
 
-.next {
+.js .prev{
+    border-radius: 0 1rem 1rem 0;
+    left: 0;
+}
+
+.js .next {
     right: 0;
     border-radius: 1rem 0 0 1rem;
 }
 
-.prev:hover, .next:hover {
+.js .prev:hover, .js .next:hover {
     background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
 }
 
-.circles{
+.js .circles{
     text-align: center;
 }
 
-.circle {
+.js .circle {
   cursor: pointer;
   height: 1rem;
   width: 1rem;
@@ -138,26 +151,52 @@ nav li a:hover {
   display: inline-block;
 }
 
-.circle:hover {
+.js .circle:hover {
     background-color: #777777;
 }
 
-.active{
+.js .active{
     background-color: var(--secondary-color);
 }
 
-.active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
+.js .active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
     background-color: var(--secondary-color);
 }
+
+/*codice per css con javascript disabilitato*/
+.no-js ul{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.no-js .slide{
+    width: calc(50% - 1rem);
+    margin: 0.5rem;
+}
+
+.no-js .slide img{
+    width: 100%;
+    height: auto;
+    display: block; /*se no viene trattata come inline e lascia un leggero spazio sul bottom*/
+}
+
+.no-js .not-hidden{
+    display: block;
+}
+
+.no-js .prev, .no-js .next {
+    display: none;
+}
+
+.no-js .circles{
+    display: none;
+}
+
 
 .quickPurchaseContainer{
-    background-image: linear-gradient(#282828, #121212);
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     margin-top: 0.8rem;
-}
-
-.quickPurchaseTitle{
-    padding-top: 1rem;
-    padding-left: 1rem;
 }
 
 .quickPurchaseForm{
@@ -166,18 +205,37 @@ nav li a:hover {
     margin-bottom: 0.7rem;
 }
 
+
 .quickPurchaseItem{
     background: none;
     font-size: 1.1rem;
     width: 20%;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
     border: none;
-    padding: 0.5rem;
+    padding: 0.3rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     outline: 0;
     border-radius: 8px;
+}
+
+.quickPurchaseItem.slct{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 880px) {
+    .quickPurchaseForm{
+        flex-direction: column;
+    }
+
+    .quickPurchaseItem.slct{
+        width: calc(100% - 1.5rem);
+        margin-right: 1rem; /*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
+    }
+
+    .quickPurchaseItem.btn{
+        width: calc(100% - 2rem);
+    }
 }
 
 .quickPurchaseItem.slct option{
@@ -187,8 +245,64 @@ nav li a:hover {
 .quickPurchaseItem.btn{
     border: 1px solid var(--secondary-color);
     cursor: pointer;
+    margin-right: 1rem; /*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
+    margin-left: 1rem;
 }
 
 .quickPurchaseItem.btn:hover{
     background-color: var(--secondary-color);
 }
+
+.cardsContainer{
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+}
+
+.cards {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.cards li {
+    box-sizing: border-box; /*se no non conta il border e va a capo*/
+    border: 4px solid;
+    border-color: var(--secondary-color);
+    border-radius: 1rem;
+    margin: 1rem;
+    flex: 1 1 calc(50% - 2rem);
+    font-size: 1rem;
+    overflow: hidden;
+}
+
+.cards li img{
+    float: right;
+    width: 30%;
+    vertical-align: middle;
+}
+
+@media screen and (max-width: 880px) {
+    .cards li{
+        flex: 0 1 calc(100% - 2rem);
+    }
+
+    .cards li img{
+        width: 8rem;
+    }
+}
+
+.cardContentText{
+    float: left;
+    padding: 1rem;
+}
+
+.cardContentSubtitle{
+    font-style: italic;
+    padding-top: 0.5rem;
+}
+
+.showMovieLink{
+    padding-top: 1rem;
+    display: inline-block;
+}
+

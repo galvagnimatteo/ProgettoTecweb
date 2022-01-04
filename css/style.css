@@ -270,29 +270,35 @@ nav li a:hover {
     border-color: var(--secondary-color);
     border-radius: 1rem;
     margin: 1rem;
-    flex: 1 1 calc(50% - 2rem);
+    flex: 0 1 calc(25% - 2rem);
     font-size: 1rem;
     overflow: hidden;
 }
 
 .cards li img{
-    float: right;
-    width: 30%;
-    vertical-align: middle;
+    width: 100%;
+    height: auto;
 }
 
 @media screen and (max-width: 880px) {
     .cards li{
-        flex: 0 1 calc(100% - 2rem);
+        flex: 0 1 calc(33.3% - 2rem);
     }
+}
 
-    .cards li img{
-        width: 8rem;
+@media screen and (max-width: 700px) {
+    .cards li{
+        flex: 0 1 calc(50% - 2rem);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cards li{
+        flex: 0 1 calc(100% - 2rem);
     }
 }
 
 .cardContentText{
-    float: left;
     padding: 1rem;
 }
 

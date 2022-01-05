@@ -45,15 +45,18 @@ nav ul {
 }
 
 @media (min-width: 50rem) {
-    header {
-        display: grid;
-        grid-template-columns: 15% 85%;
+
+    header, ul {
+        display: flex;
+        width:100%;
+        flex-direction: row;
+        align-self:flex-end;
     }
     header h1 {
-        grid-column: 1;
+        width: 15%;
     }
     nav {
-        grid-column: 2;
+        width: 85%;
     }
 }
 
@@ -307,6 +310,22 @@ nav li a {
         flex: 0 1 calc(100% - 2rem);
     }
 }
+
+
+.SRskip {/*per screen reader*/
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.SRskip:focus {
+    position: static;
+    width: auto;
+    height: auto;
+}
+ 
 
 .cardContentText{
     padding: 1rem;

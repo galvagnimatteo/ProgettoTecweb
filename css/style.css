@@ -13,6 +13,7 @@
 
 html{
 	font-size: 100%;
+    font-family: "Arial", sans-serif;
 	margin: auto;
 	max-width: 1024px;
     background-color: var(--primary-color);
@@ -33,16 +34,16 @@ body{
 header h1 {
     padding: 1rem;
     font-size: 1.5rem;
-    /*float: left;*/
 }
+
 .headerWrapper{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 }
 
 nav ul {
     list-style-type: none;
-    /*overflow: hidden;*/
 }
+
 @media (min-width: 50rem) {
 
     header, ul {
@@ -58,21 +59,18 @@ nav ul {
         width: 85%;
     }
 }
+
 @media (max-width: 50rem) {
     header,ul{
         display:flex;
         flex-direction: column;
     }
-    header h1 {
-        width:100%;
-    }
+
     nav {
         width: 100%;
     }
 }
-footer{
-    margin:4em;
-}
+
 nav li {
     float: left;
 }
@@ -88,8 +86,10 @@ nav li a {
     padding: 1rem;
 }
 
-nav li a:hover {
-    color: var(--secondary-color);
+@media (hover: hover) {
+    nav li a:hover {
+        color: var(--secondary-color);
+    }
 }
 
 .breadcrumbs{
@@ -97,47 +97,59 @@ nav li a:hover {
     font-size: 1.2rem;
 }
 
-.carousel {
+.slide{
+    list-style-type: none;
+}
+
+/*codice per css con javascript abilitato*/
+
+.js .carouselContainer {
     position: relative;
 }
 
-.slide {
+.js .slide {
     display: none;
 }
 
-.carousel .slide img{
+.js .slide img{
     width: 100%;
     height: auto;
 }
 
-.not-hidden{
+.js .not-hidden{
     display: block;
 }
 
-.prev, .next {
+.js .prev, .js .next {
     cursor: pointer;
     position: absolute;
-    top: 42%;
+    top: calc(50% - 2rem - 0.9rem);
     padding: 1rem;
     font-weight: bold;
-    border-radius: 0 1rem 1rem 0;
     user-select: none;
 }
 
-.next {
+.js .prev{
+    border-radius: 0 1rem 1rem 0;
+    left: 0;
+}
+
+.js .next {
     right: 0;
     border-radius: 1rem 0 0 1rem;
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
+@media (hover: hover) {
+    .js .prev:hover, .js .next:hover{
+        background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
+    }
 }
 
-.circles{
+.js .circles{
     text-align: center;
 }
 
-.circle {
+.js .circle {
   cursor: pointer;
   height: 1rem;
   width: 1rem;
@@ -146,16 +158,52 @@ nav li a:hover {
   display: inline-block;
 }
 
-.circle:hover {
+.js .circle:hover {
     background-color: #777777;
 }
 
-.active{
+@media (hover: hover) {
+    .js .circle:hover {
+        background-color: #777777;
+    }
+}
+
+.js .active{
     background-color: var(--secondary-color);
 }
 
-.active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
+.js .active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
     background-color: var(--secondary-color);
+}
+
+/*codice per css con javascript disabilitato*/
+.no-js ul{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.no-js .slide{
+    width: calc(50% - 1rem);
+    margin: 0.5rem;
+}
+
+.no-js .slide img{
+    width: 100%;
+    height: auto;
+    display: block; /*se no viene trattata come inline e lascia un leggero spazio sul bottom*/
+}
+
+.no-js .not-hidden{
+    display: block;
+}
+
+.no-js .prev, .no-js .next {
+    display: none;
+}
+
+.no-js .circles{
+    display: none;
 }
 
 .quickPurchaseContainer{
@@ -165,22 +213,38 @@ nav li a:hover {
 
 .quickPurchaseForm{
     display: flex;
-    margin-top: 0.7rem;
-    margin-bottom: 0.7rem;
+    margin-bottom: 1rem;
 }
 
 .quickPurchaseItem{
-    background: none;
+    background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
     font-size: 1.1rem;
     width: 20%;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
     border: none;
-    padding: 0.5rem;
+    padding: 0.3rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     outline: 0;
-    border-radius: 8px;
+}
+
+.quickPurchaseItem.slct{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 880px) {
+    .quickPurchaseForm{
+        flex-direction: column;
+    }
+
+    .quickPurchaseItem.slct{
+        width: calc(100% - 1.5rem);
+        margin-right: 1rem; /*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
+    }
+
+    .quickPurchaseItem.btn{
+        width: calc(100% - 2rem);
+    }
 }
 
 .quickPurchaseItem.slct option{
@@ -190,13 +254,20 @@ nav li a:hover {
 .quickPurchaseItem.btn{
     border: 1px solid var(--secondary-color);
     cursor: pointer;
+    margin-right: 1rem; /*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
+    margin-left: 1rem;
+    border-radius: 8px;
 }
 
-.quickPurchaseItem.btn:hover{
-    background-color: var(--secondary-color);
+@media (hover: hover) {
+    .quickPurchaseItem.btn:hover{
+        background-color: var(--secondary-color);
+    }
 }
+
 .cardsContainer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    margin-bottom: 1rem;
 }
 
 .cards {
@@ -205,25 +276,41 @@ nav li a:hover {
     flex-wrap: wrap;
     flex-direction: row;
 }
+
 .cards li {
-    border: 1px solid red;
-    padding: 1rem;
+    box-sizing: border-box; /*se no non conta il border e va a capo*/
+    border: 2px solid;
+    border-color: var(--secondary-color);
+    border-radius: 1rem;
     margin: 1rem;
-    flex: 1 1 0; /*inizialmente distribuite seguendo flex-grow*/
+    flex: 0 1 calc(25% - 2rem);
     font-size: 1rem;
+    overflow: hidden;
 }
 
-@media screen and (max-width: 1024px) {
-    .cards li {
-        flex: 1 1 40%; /*rimpicciolite oltre il 50% per metterle già a righe di due senza passare per la "fase" a righe di tre*/
+.cards li img{
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 880px) {
+    .cards li{
+        flex: 0 1 calc(33.3% - 2rem);
     }
 }
 
-@media screen and (max-width: 612px) {
-    .cards li {
-        flex-basis: 100%; /*rimpicciolite a righe di 1*/
+@media screen and (max-width: 700px) {
+    .cards li{
+        flex: 0 1 calc(50% - 2rem);
     }
 }
+
+@media screen and (max-width: 480px) {
+    .cards li{
+        flex: 0 1 calc(100% - 2rem);
+    }
+}
+
 
 .SRskip {/*per screen reader*/
     position: absolute;
@@ -239,3 +326,24 @@ nav li a:hover {
     height: auto;
 }
  
+
+.cardContentText{
+    padding: 1rem;
+}
+
+.cardContentSubtitle{
+    font-style: italic;
+    padding-top: 0.5rem;
+}
+
+.showMovieLink{
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+footer{
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    width: calc(100% - 2rem);
+    padding: 1rem;
+}
+

@@ -406,7 +406,7 @@ test con article e dl list programmazione.html
   font-weight: 800;
 }
 
-@media (hover: hover) {
+@media (hover: hover) {  /*poi andranno riunite tutte le media query*/
 	.card form input[type=submit]:hover {
 		text-decoration: underline;
 		background-color: var(--secondary-color);

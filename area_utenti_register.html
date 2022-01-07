@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Cinema $Nome</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="$Nome,Cinema,Film">
+		<meta name="description" content="$description">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/style.css">
+    </head>
+	
+	<script>
+function myFunction() {
+  var x = document.getElementById("pass_login");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+    <body>
+        <header>
+            <h1> CINEMA </h1>
+    		<nav id="menu">
+    			<ul>
+    				<li><a href="./index.html" lang="en">Home</a></li>
+    				<li><a href="./contatti.html">Contatti</a></li>
+    				<li><a href="./programmazione.html">Programmazione</a></li>
+    				<li><a href="./info.html">Info e Costi</a></li>
+    				<li id="login"><a href="#">Login</a></li>
+    			</ul>
+    		</nav>
+    	</header>
+
+        <div class="breadcrumbs">
+            <p> Ti trovi in: <a href="./index.html">Home</a> / <a href="#">Area utenti</a> / </p>
+        </div>
+
+	
+
+	<form action="area_utenti.php" method="post" class="form_user">
+     <div class="div_user register">
+	 Create your account
+	 </div>
+	 
+	<div class="content register">
+	
+	<ul class="no-bullets">
+	<!--<li>
+	<label for="name_register"><span xml:lang="en">Name</span></label>
+		<input type="text" placeholder="Name" name="name_register"  class="" required> 
+	<label for="surname_register"><span xml:lang="en">Surname</span></label>
+		<input type="text" placeholder="Surname" name="surname_register"  class="" required>
+	</li>-->
+	<li>
+	<label for="name_register"><span xml:lang="en">Name</span></label>
+		<input type="text" placeholder=" Name" name="name_register"  class="input_two" required> 
+		<label for="surname_register"><span xml:lang="en">Surname</span></label>
+		<input type="text" placeholder=" Surname" name="surname_register"  class="input_two" required>
+		</li>
+		
+		
+		<li><label for="email_login"><span xml:lang="en"><h5>Email</h5></span></label>
+		<input type="email" placeholder=" Email" name="email_login"  class="input_one register" required>
+		</li>
+		
+	 <li><label for="password_login"><span xml:lang="en"><h5>Password</h5></span></label>
+	
+	<input type="password" placeholder=" Password" id="pass_login"  class="input_one register"  required>
+	
+	</li>
+	
+	<li>
+	<label for="password_login"><span xml:lang="en"><h5> Password Confirmation</h5></span></label>
+		<input type="password" placeholder=" Repeat Password" id="pass_login"  class="input_one register"  required>
+	
+	</li>
+	
+	
+	
+		<li>
+		<label for="start">Birth date:</label>
+		
+		
+<select class="select_date" name="date_year" >
+
+		  <option value="scelta">Year</option>
+                    <option value="cin1">2022</option>
+                    <option value="cin2">2021</option>
+                    <option value="cin3">2020</option>
+                    <option value="cin4">2019</option>
+					 <option value="cin4">2018</option>
+					 <option value="cin4">2017</option>
+					  <option value="cin4">2016</option>
+					   <option value="cin4">2015</option>
+					    <option value="cin4">2014</option>
+						 <option value="cin4">2013</option>
+						  <option value="cin4">2012</option>
+						   <option value="cin4">2011</option>
+						    <option value="cin4">2009</option>
+							 <option value="cin4">2008</option>
+							  <option value="cin4">2007</option>
+							   <option value="cin4">2006</option>
+							    <option value="cin4">2005</option>
+								 <option value="cin4">2004</option>
+								  <option value="cin4">2003</option>
+								   <option value="cin4">2002</option>
+								    <option value="cin4">2001</option>
+									 <option value="cin4">2000</option>
+		 </select>
+		<select class="select_date" name="scelta_month">
+
+		  <option value="scelta">Month</option>
+                    <option value="Gennaio">Gennaio</option>
+                    <option value="Febbraio">Febbraio</option>
+                    <option value="Marzo">Marzo</option>
+                    <option value="Aprile">Aprile</option>
+					<option value="Maggio">Maggio</option>
+					<option value="Giugno">Giugno</option>
+					<option value="Luglio">Luglio</option>
+					<option value="Agosto">Agosto</option>
+					<option value="Settembre">Settembre</option>
+					<option value="Ottobre">Ottobre</option>
+					<option value="Novembre">Novembre</option>
+					<option value="Dicembre">Dicembre</option>
+					
+		 </select>
+		 
+		 <select class="select_date" name="date_day" >
+
+		  <option value="scelta">Day</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+					<option value="5">05</option>
+					<option value="6">06</option>
+					<option value="7">07</option>
+					<option value="8">08</option>
+					<option value="9">09</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					
+		 </select>
+		
+		</li>
+	<li>
+	<input type="button" value="Complete Registration" class="button_one register">
+	
+	
+	</li>
+	</ul>
+	</div>
+  <div class="div_user register">
+	<a href="./area_utenti.html"> I already have an account </a>
+	
+	 </div>
+
+	
+	</form>
+
+
+
+	<footer>
+	
+		<p> <a href="./Contatti.html#contatti"> contatti</a> |   <span lang="en"> copyright 2022 </span> </p>
+	</footer>
+    </body>
+</html>

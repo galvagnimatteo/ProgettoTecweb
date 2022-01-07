@@ -13,7 +13,6 @@
 
 html{
 	font-size: 100%;
-    font-family: "Arial", sans-serif;
 	margin: auto;
 	max-width: 1024px;
     background-color: var(--primary-color);
@@ -45,21 +44,17 @@ nav ul {
 }
 
 @media (min-width: 50rem) {
-
-    header, ul {
-        display: flex;
-        width:100%;
-        flex-direction: row;
-        align-self:flex-end;
+    header {
+        display: grid;
+        grid-template-columns: 15% 85%;
     }
     header h1 {
-        width: 15%;
+        grid-column: 1;
     }
     nav {
-        width: 85%;
+        grid-column: 2;
     }
 }
-
 @media (max-width: 50rem) {
     header,ul{
         display:flex;
@@ -70,7 +65,9 @@ nav ul {
         width: 100%;
     }
 }
-
+footer{
+    margin:4em;
+}
 nav li {
     float: left;
 }
@@ -86,10 +83,8 @@ nav li a {
     padding: 1rem;
 }
 
-@media (hover: hover) {
-    nav li a:hover {
-        color: var(--secondary-color);
-    }
+nav li a:hover {
+    color: var(--secondary-color);
 }
 
 .breadcrumbs{
@@ -139,10 +134,8 @@ nav li a {
     border-radius: 1rem 0 0 1rem;
 }
 
-@media (hover: hover) {
-    .js .prev:hover, .js .next:hover{
-        background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
-    }
+.js .prev:hover, .js .next:hover {
+    background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
 }
 
 .js .circles{
@@ -160,12 +153,6 @@ nav li a {
 
 .js .circle:hover {
     background-color: #777777;
-}
-
-@media (hover: hover) {
-    .js .circle:hover {
-        background-color: #777777;
-    }
 }
 
 .js .active{
@@ -206,6 +193,7 @@ nav li a {
     display: none;
 }
 
+
 .quickPurchaseContainer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     margin-top: 0.8rem;
@@ -213,11 +201,13 @@ nav li a {
 
 .quickPurchaseForm{
     display: flex;
-    margin-bottom: 1rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
 }
 
+
 .quickPurchaseItem{
-    background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
+    background: none;
     font-size: 1.1rem;
     width: 20%;
     border: none;
@@ -225,6 +215,7 @@ nav li a {
     margin-top: 1rem;
     margin-bottom: 1rem;
     outline: 0;
+    border-radius: 8px;
 }
 
 .quickPurchaseItem.slct{
@@ -256,18 +247,14 @@ nav li a {
     cursor: pointer;
     margin-right: 1rem; /*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
     margin-left: 1rem;
-    border-radius: 8px;
 }
 
-@media (hover: hover) {
-    .quickPurchaseItem.btn:hover{
-        background-color: var(--secondary-color);
-    }
+.quickPurchaseItem.btn:hover{
+    background-color: var(--secondary-color);
 }
 
 .cardsContainer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-    margin-bottom: 1rem;
 }
 
 .cards {
@@ -279,55 +266,33 @@ nav li a {
 
 .cards li {
     box-sizing: border-box; /*se no non conta il border e va a capo*/
-    border: 2px solid;
+    border: 4px solid;
     border-color: var(--secondary-color);
     border-radius: 1rem;
     margin: 1rem;
-    flex: 0 1 calc(25% - 2rem);
+    flex: 1 1 calc(50% - 2rem);
     font-size: 1rem;
     overflow: hidden;
 }
 
 .cards li img{
-    width: 100%;
-    height: auto;
+    float: right;
+    width: 30%;
+    vertical-align: middle;
 }
 
 @media screen and (max-width: 880px) {
     .cards li{
-        flex: 0 1 calc(33.3% - 2rem);
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .cards li{
-        flex: 0 1 calc(50% - 2rem);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .cards li{
         flex: 0 1 calc(100% - 2rem);
     }
-}
 
-
-.SRskip {/*per screen reader*/
-    position: absolute;
-    left: -10000px;
-    top: auto;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
+    .cards li img{
+        width: 8rem;
+    }
 }
-.SRskip:focus {
-    position: static;
-    width: auto;
-    height: auto;
-}
- 
 
 .cardContentText{
+    float: left;
     padding: 1rem;
 }
 
@@ -337,15 +302,28 @@ nav li a {
 }
 
 .showMovieLink{
-    margin-top: 1rem;
+    padding-top: 1rem;
     display: inline-block;
 }
 
-footer{
-    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-    width: calc(100% - 2rem);
-    padding: 1rem;
+
+
+.button_one{
+	width:100%;
+	height:3rem;
+	margin: 1px,auto;
+	/*display: block;*/
+	color: #fff;
+	background: #660000;
+	background-image: linear-gradient(#660000, var(--gradient-last-color));
+	font-size: 1em;
+	font-weight: bold;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
+
 
 
 /*
@@ -353,9 +331,8 @@ footer{
 test con article e dl list programmazione.html
 */
 
-/*.cardsContainer {
-	
-}*/
+/*------------------------------
+*/
 .cardsContainer {
 	padding-top: 1rem;
 	font-size: 1.3rem;
@@ -412,3 +389,114 @@ test con article e dl list programmazione.html
 		background-color: var(--secondary-color);
 	}
 }
+/*------------------------*/
+
+.button_one.register{
+	width:60%;
+	height: 5vh;
+	 position: relative;
+}
+
+.content{
+	margin:auto;
+	width: 40%;
+	display:flex;
+	justify-content: center;
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    padding-top:2.8rem;
+	padding-bottom:2rem;
+	
+}
+
+.content.register{
+	
+	width: 55%;
+	 height: 45vh;
+	 padding-top:4rem;
+	 padding-bottom:2.5rem;
+	
+}
+.input_one{
+	width: 90%;
+	height: 4vh;
+	background: #e0dede;
+	color:#000000;
+	margin: 1rem auto;
+	padding: 0.5rem;
+	border: none;
+	border-radius: 5px;
+	font-size:0.9rem;
+	
+}
+.input_one.register{
+	width: 90%;
+	
+	padding: 0px;
+	margin: 1.0rem auto;
+	
+}
+
+.input_two{
+	width: 29%;
+	border-radius: 5px;
+	height: 4vh;
+	color:#000000;
+	background: #e0dede;
+	border: none;
+	
+}
+
+
+.select_date {
+    background: none;
+    padding: 0.4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+	margin-left: 0.5rem;
+    border-radius: 8px;
+	font-size: 1.0rem;
+    
+}
+
+.select_date option{
+    background: var(--primary-color);
+}
+.button_password_view{
+	background: url('lol.png') no-repeat;
+}
+.button_one:hover{
+	background: #b30000;
+}
+
+.div_user{
+	margin:auto;
+	width: 40%;
+	display:flex;
+	border: none;
+/*	background-color: #660000;*/
+	background-image: linear-gradient(#660000,var(--gradient-last-color));
+	justify-content: center;
+	 padding-top:1.5rem;
+    padding-bottom:1.5rem;
+	/*padding:2.0 rem;*/
+	border-radius: 5px;
+	
+}
+.div_user.register{
+	width: 55%;
+	position:relative;
+	/* margin:1rem;*/
+	 
+}
+
+ul.no-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.form_user{
+/*background: rgb(102,0,0);
+/*background: radial-gradient(circle, rgba(102,0,0,1) 29%, rgba(18,18,18,1) 83%);*/
+}
+

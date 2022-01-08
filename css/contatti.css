@@ -1,0 +1,124 @@
+﻿#content iframe{
+    width:100%;
+    align-self:end;
+}
+#content{
+    display:grid;
+    grid-template-columns:5% 45% 45% 5%;
+    grid-row-gap:2em;
+    margin-bottom:2em;
+}
+@keyframes materialize {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes slide_from_left {
+    0% {
+        left: -25rem;
+        opacity: 0;
+    }
+    100% {
+        left: 0rem;
+        opacity: 1;
+    }
+}
+@keyframes slide_from_right {
+    0% {
+        right: -25rem;
+        opacity: 0;
+    }
+
+    100% {
+        right: 0rem;
+        opacity: 1;
+    }
+}
+#posizione {
+    animation-name: materialize;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+#contatti {
+    position: relative;
+    animation-name: slide_from_left;
+    animation-duration: 2s;
+    animation-delay:2s;
+    animation-fill-mode: both;
+}
+#social {
+    position: relative;
+    animation-name: slide_from_right;
+    animation-duration: 2s;
+    animation-delay:4s;
+    animation-fill-mode: both;
+}
+footer {
+    animation-name: materialize;
+    animation-duration: 2s;
+    animation-delay: 6s;
+    animation-fill-mode: both;
+}
+
+@media (min-width: 49rem) {
+    #posizione {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row: 1;
+    }
+    #contatti {
+        grid-column: 3;
+        grid-row: 2;
+        
+    }
+    #social {
+        grid-column: 2;
+        grid-row: 3;
+        
+    }    
+}
+
+
+@media (max-width: 49rem) {
+    #posizione {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row: 1;
+    }
+
+    #contatti {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row: 2;
+    }
+
+    #social {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row: 3;
+    }
+}
+h2{
+    font-size:1.5rem;
+    font-weight:bold;
+}
+h3 {
+    font-size: 1.2rem;
+}
+dl{
+    display:grid;
+    margin:1rem;
+}
+
+dt {
+    font-weight: bold;
+    grid-column: 1;
+}
+
+dd {
+    grid-column: 2;
+}

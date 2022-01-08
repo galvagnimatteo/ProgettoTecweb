@@ -1,0 +1,331 @@
+:root{
+    --primary-color: #121212;
+    --secondary-color: #f52020;
+    --gradient-first-color: #303030;
+    --gradient-last-color: #121212;
+}
+
+*{
+	padding: 0;
+	margin: 0;
+    color: white;
+}
+
+html{
+	font-size: 100%;
+    font-family: "Arial", sans-serif;
+	margin: auto;
+	max-width: 1024px;
+    background-color: var(--primary-color);
+}
+
+body{
+	margin:0;
+	padding:0;
+	font-size:1.5rem;
+	margin:auto;
+}
+
+.subtitle{
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+header h1 {
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.headerWrapper{
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+@media (min-width: 50rem) {
+    header {
+        display: grid;
+        grid-template-columns: 15% 85%;
+    }
+    header h1 {
+        grid-column: 1;
+    }
+    nav {
+        grid-column: 2;
+    }
+    
+}
+
+@media (max-width: 50rem) {
+    header,ul{
+        display:flex;
+        flex-direction: column;
+    }
+
+    nav {
+        width: 100%;
+    }
+}
+
+nav li {
+    float: left;
+}
+
+#login{
+    float:right;
+}
+
+nav li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 1rem;
+}
+
+@media (hover: hover) {
+    nav li a:hover {
+        color: var(--secondary-color);
+    }
+}
+
+.breadcrumbs{
+    margin: 1rem;
+    font-size: 1.2rem;
+}
+
+.slide{
+    list-style-type: none;
+}
+
+/*codice per css con javascript abilitato*/
+
+.js .carouselContainer {
+    position: relative;
+}
+
+.js .slide {
+    display: none;
+}
+
+.js .slide img{
+    width: 100%;
+    height: auto;
+}
+
+.js .not-hidden{
+    display: block;
+}
+
+.js .prev, .js .next {
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% - 2rem - 0.9rem);
+    padding: 1rem;
+    font-weight: bold;
+    user-select: none;
+}
+
+.js .prev{
+    border-radius: 0 1rem 1rem 0;
+    left: 0;
+}
+
+.js .next {
+    right: 0;
+    border-radius: 1rem 0 0 1rem;
+}
+
+@media (hover: hover) {
+    .js .prev:hover, .js .next:hover{
+        background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
+    }
+}
+
+.js .circles{
+    text-align: center;
+}
+
+.js .circle {
+  cursor: pointer;
+  height: 1rem;
+  width: 1rem;
+  background-color: #ababab;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.js .circle:hover {
+    background-color: #777777;
+}
+
+@media (hover: hover) {
+    .js .circle:hover {
+        background-color: #777777;
+    }
+}
+
+.js .active{
+    background-color: var(--secondary-color);
+}
+
+.js .active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
+    background-color: var(--secondary-color);
+}
+
+/*codice per css con javascript disabilitato*/
+.no-js ul{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.no-js .slide{
+    width: calc(50% - 1rem);
+    margin: 0.5rem;
+}
+
+.no-js .slide img{
+    width: 100%;
+    height: auto;
+    display: block; /*se no viene trattata come inline e lascia un leggero spazio sul bottom*/
+}
+
+.no-js .not-hidden{
+    display: block;
+}
+
+.no-js .prev, .no-js .next {
+    display: none;
+}
+
+.no-js .circles{
+    display: none;
+}
+
+.quickPurchaseContainer{
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    margin-top: 0.8rem;
+}
+
+.quickPurchaseForm{
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.quickPurchaseItem{
+    background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
+    font-size: 1.1rem;
+    width: 20%;
+    border: none;
+    padding: 0.3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    outline: 0;
+}
+
+.quickPurchaseItem.slct{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 880px) {
+    .quickPurchaseForm{
+        flex-direction: column;
+    }
+
+    .quickPurchaseItem.slct{
+        width: calc(100% - 1.5rem);
+        margin-right: 1rem; /*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
+    }
+
+    .quickPurchaseItem.btn{
+        width: calc(100% - 2rem);
+    }
+}
+
+.quickPurchaseItem.slct option{
+    background: var(--primary-color);
+}
+
+.quickPurchaseItem.btn{
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    margin-right: 1rem; /*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
+    margin-left: 1rem;
+    border-radius: 8px;
+}
+
+@media (hover: hover) {
+    .quickPurchaseItem.btn:hover{
+        background-color: var(--secondary-color);
+    }
+}
+
+.cardsContainer{
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    margin-bottom: 1rem;
+}
+
+.cards {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.cards li {
+    box-sizing: border-box; /*se no non conta il border e va a capo*/
+    border: 2px solid;
+    border-color: var(--secondary-color);
+    border-radius: 1rem;
+    margin: 1rem;
+    flex: 0 1 calc(25% - 2rem);
+    font-size: 1rem;
+    overflow: hidden;
+}
+
+.cards li img{
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 880px) {
+    .cards li{
+        flex: 0 1 calc(33.3% - 2rem);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .cards li{
+        flex: 0 1 calc(50% - 2rem);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cards li{
+        flex: 0 1 calc(100% - 2rem);
+    }
+}
+
+.cardContentText{
+    padding: 1rem;
+}
+
+.cardContentSubtitle{
+    font-style: italic;
+    padding-top: 0.5rem;
+}
+
+.showMovieLink{
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+footer{
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    width: calc(100% - 2rem);
+    padding: 1rem;
+}
+

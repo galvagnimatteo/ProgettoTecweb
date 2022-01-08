@@ -55,6 +55,7 @@ nav ul {
     nav {
         grid-column: 2;
     }
+    
 }
 
 @media (max-width: 50rem) {

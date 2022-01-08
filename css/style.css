@@ -324,73 +324,6 @@ nav li a:hover {
 	cursor: pointer;
 }
 
-
-
-/*
-
-test con article e dl list programmazione.html
-*/
-
-/*------------------------------
-*/
-.cardsContainer {
-	padding-top: 1rem;
-	font-size: 1.3rem;
-}
-.card {
-	display:flex;
-	align-items: flex-start;
-	border: 2px solid;
-    border-color: var(--secondary-color);
-    border-radius: 1rem;
-    margin: 1rem;
-	overflow: hidden;
-}
-
-.card dt {
-	float: left;
-	clear: left;
-	font-style: italic;
-}
-
-.card dd:before {
-	content: "\00a0";
-}
-
-.card img {
-	margin: 1rem;
-	width: 23%;
-	height: 23%;
-}
-
-.card p {
-	margin: 1rem 0rem;
-}
-
-
-
-.card form input[type=submit] {
-  background-color: var(--primary-color);
-  border: 2px solid var(--secondary-color);
-  color: #fff;
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  margin-right: 0.5rem;
-  margin-top: 1rem;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 800;
-}
-
-@media (hover: hover) {  /*poi andranno riunite tutte le media query*/
-	.card form input[type=submit]:hover {
-		text-decoration: underline;
-		background-color: var(--secondary-color);
-	}
-}
-/*------------------------*/
-
 .button_one.register{
 	width:60%;
 	height: 5vh;
@@ -499,4 +432,3 @@ ul.no-bullets {
 /*background: rgb(102,0,0);
 /*background: radial-gradient(circle, rgba(102,0,0,1) 29%, rgba(18,18,18,1) 83%);*/
 }
-

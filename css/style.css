@@ -44,7 +44,7 @@ nav ul {
     list-style-type: none;
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 50rem) {
 
     header, ul {
         
@@ -57,11 +57,11 @@ nav ul {
         width: 15%;
     }
     nav {
-        width: calc(85% - 6rem);
+        width: calc(85% - 2rem);
         position: relative;
     }
 }
-@media (min-width: 24rem) and (max-width: 60rem){
+@media (min-width: 24rem) and (max-width: 50rem){
     header, ul {
         display: flex;
         flex-direction: column;

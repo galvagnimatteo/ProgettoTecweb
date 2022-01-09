@@ -45,27 +45,45 @@ nav ul {
 }
 
 @media (min-width: 50rem) {
-    header {
-        display: grid;
-        grid-template-columns: 15% 85%;
+
+    header, ul {
+        
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-self: flex-end;
     }
     header h1 {
-        grid-column: 1;
+        width: 15%;
     }
     nav {
-        grid-column: 2;
+        width: calc(85% - 2rem);
+        position: relative;
     }
 
 }
-
-@media (max-width: 50rem) {
-    header,ul{
-        display:flex;
+@media (min-width: 24rem) and (max-width: 50rem){
+    header, ul {
+        display: flex;
         flex-direction: column;
     }
-
+    nav 
+    {
+        position: absolute;
+        left: calc(15% + 6rem);
+        background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+        z-index: 99;
+        width: 16rem;
+    }
+}
+@media (max-width: 24rem) {
+    header, ul {
+        display: flex;
+        flex-direction: column;
+    }
     nav {
         width: 100%;
+        position: relative;
     }
 }
 
@@ -309,6 +327,22 @@ nav li a {
         flex: 0 1 calc(100% - 2rem);
     }
 }
+
+
+.SRskip {/*per screen reader*/
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.SRskip:focus {
+    position: static;
+    width: auto;
+    height: auto;
+}
+ 
 
 .cardContentText{
     padding: 1rem;

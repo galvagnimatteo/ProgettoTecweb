@@ -427,3 +427,157 @@ programmazione.html
 		background-color: var(--secondary-color);
 	}
 }
+content.register{
+	margin:auto;
+	width: 70%;
+	display:flex;
+	justify-content:center;
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    padding-top:2.8rem;
+	padding-bottom:2rem;
+}
+
+.div_user{
+	margin:auto;
+	width: 70%;
+	display:flex;
+	border: none;
+	background-image: linear-gradient(#660000,var(--gradient-last-color));
+	justify-content: center;
+	 padding-top:1.5rem;
+    padding-bottom:1.5rem;
+	border-radius: 5px;
+	
+}
+
+input[type=text],[type=password],[type=email]{
+	width: 100%;
+	height: 4vh;
+	background: #e0dede;
+	color:#000000;
+	margin: 1rem auto;
+	padding: 1rem;
+	border: none;
+	border-radius: 5px;
+	font-size:0.9rem;
+	
+	    box-sizing: border-box; 
+}
+
+
+
+
+input[type=button].user{
+	width:70%;
+	height:3rem;
+	
+	/*display: block;*/
+	color: #fff;
+	background: #660000;
+	background-image: linear-gradient(#660000, var(--gradient-last-color));
+	
+	font-weight: bold;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	float:right;
+}
+
+
+
+
+
+
+
+.select_date {
+    background: none;
+    padding: 0.4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+	margin-left: 0.5rem;
+    border-radius: 8px;
+	font-size: 1.0rem;
+    
+}
+
+.select_date option{
+    background: var(--primary-color);
+}
+.button_password_view{
+	background: url('lol.png') no-repeat;
+}
+.button_one:hover{
+	background: #b30000;
+}
+
+
+.col-25 {
+  float:left;
+  width: 25%;
+  
+ 
+}
+
+.col-75 {
+  float:left;
+  width: 75%;
+ 
+}
+.row:after{
+	
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 700px) {
+  input[type=button].user {
+    width: 100%;
+	
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 500px) {
+	
+	
+	  .content.register,.div_user.register{
+ width: 100%;
+	
+	  }
+}
+
+
+
+
+
+
+
+
+
+
+.content.login_user
+{
+	
+margin:auto;
+	width: 50%;
+	display:flex;
+	justify-content:center;
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    padding-top:2.8rem;
+	padding-bottom:2rem;
+	
+}
+
+.div_user.login{
+	margin:auto;
+	width:50%;
+	display:flex;
+	
+	background-image: linear-gradient(#660000,var(--gradient-last-color));
+	justify-content: center;
+	 padding-top:1.5rem;
+    padding-bottom:1.5srem;
+	border-radius: 5px;
+	
+}

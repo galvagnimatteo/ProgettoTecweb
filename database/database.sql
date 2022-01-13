@@ -61,7 +61,7 @@ CREATE TABLE Partecipazione (
 	NumeroPosto SMALLINT NOT NULL,
 	FilaPosto CHAR(1) NOT NULL,
 	NumeroSala SMALLINT NOT NULL,
-	IDPrenotazione INT NOT NULL AUTO_INCREMENT,
+	IDPrenotazione INT NOT NULL,
 	PRIMARY KEY (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione),
 	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala) 
 	REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE

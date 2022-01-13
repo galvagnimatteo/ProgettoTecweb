@@ -371,7 +371,7 @@ VALUES
 
 INSERT INTO Prenotazione(ID, NumeroPersone, IDUtente, IDProiezione)
 VALUES
-(1, 4, 2, 1),
+(1, 4, 2, 2),
 (2, 2, 3, 1),
 (3, 3, 4, 3),
 (4, 4, 2, 3),
@@ -387,10 +387,63 @@ VALUES
 ('B', 15, 3, 1),
 ('C', 15, 3, 1),
 
-('G', 11, 3, 1),
-('A', 12, 3, 1),
+('G', 11, 1, 2),
+('A', 12, 1, 2),
 
-()
+('D', 5, 1, 3),
+('E', 5, 1, 3),
+('F', 5, 1, 3),
+
+('E', 1, 1, 4),
+('F', 1, 1, 4),
+('G', 1, 1, 4),
+('A', 2, 1, 4),
+
+('B', 11, 2, 5),
+('C', 11, 2, 5),
+('D', 11, 2, 5),
+
+('A', 2, 2, 6),
+('A', 3, 2, 6),
+
+('E', 3, 2, 7),
+('F', 3, 2, 7),
+
+('A', 13, 2, 8),
+('B', 13, 2, 8),
+('C', 13, 2, 8),
+('D', 13, 2, 8);
+
+INSERT INTO CastFilm (Nome, Cognome, Ruolo, IDFilm)
+VALUES
+('Ramona', 'Jones', 'R', 1),
+('Allen', 'Hart', 'A', 1),
+('Terri', 'Turner', 'A', 1),
+('Kevin', 'Gutierrez', 'R', 1),
+('Jose', 'Roy', 'A', 2),
+('Oliver', 'Carroll', 'A', 2),
+('Kelley', 'Hunter', 'A', 2),
+('Charles', 'Campbell', 'A', 2),
+('Erma', 'Rowe', 'A', 2),
+('Sherry', 'Malone', 'A', 2),
+('Greg', 'Brady', 'A', 3),
+('Constance', 'Fuller', 'A', 3),
+('Lila', 'Lawson', 'A', 3),
+('Orville', 'Ballard', 'A', 3),
+('Carolyn', 'Wallace', 'A', 3),
+('Sammy', 'Patrick', 'A', 3),
+('Stephanie', 'Hanson', 'R', 3),
+('Lyle', 'Bates', 'A', 4),
+('Rosalie', 'Benson', 'A', 4),
+('Cody', 'Bowers', 'A', 4),
+('Josefina', 'Fitzgerald', 'A', 4),
+('Bessie', 'Adams', 'A', 4),
+('Camille', 'Jackson', 'A', 4),
+('Myron', 'Santos', 'A', 4),
+('Amanda', 'Ingram', 'R', 4),
+
+
+
 
 
 

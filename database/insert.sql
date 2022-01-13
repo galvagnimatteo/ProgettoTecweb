@@ -24,7 +24,7 @@ Aliquam et mattis est.Interdum et malesuada fames ac ante ipsum primis in faucib
 'https://via.placeholder.com/316x470/FF2222/FFFFFF', 130);
 
 
-INSERT INTO Sala (Numero) VALUES (1, 2, 3);
+INSERT INTO Sala (Numero) VALUES (1), (2), (3);
 
 INSERT INTO Posto (Fila, Numero, NumeroSala) 
 VALUES 
@@ -362,7 +362,7 @@ VALUES
 (14,'2022-03-15', '21.30', 4, 2),
 (15,'2022-02-01', '21.30', 4, 1);
 
-INSERT INTO UTENTE (ID, DataNascita, Nome, Cognome, Username, Password, Email)
+INSERT INTO Utente (ID, DataNascita, Nome, Cognome, Username, Password, Email)
 VALUES
 (1, '1999-05-06', 'Gino', 'Ginetto', 'asdfg1', 'ngjaoag', 'asdfg@grim.com'),
 (2, '1994-09-01', 'piero', 'Ginetto', 'asdfg2', 'n22r', 'derfdfg@grim.com'),
@@ -380,7 +380,7 @@ VALUES
 (7, 2, 2, 11),
 (8, 4, 3, 13);
 
-INSERT INTO Partecipazione (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione)
+INSERT INTO Partecipazione (FilaPosto, NumeroPosto, NumeroSala, IDPrenotazione)
 VALUES
 ('G', 14, 3, 1),
 ('A', 15, 3, 1),
@@ -440,7 +440,7 @@ VALUES
 ('Bessie', 'Adams', 'A', 4),
 ('Camille', 'Jackson', 'A', 4),
 ('Myron', 'Santos', 'A', 4),
-('Amanda', 'Ingram', 'R', 4),
+('Amanda', 'Ingram', 'R', 4);
 
 
 

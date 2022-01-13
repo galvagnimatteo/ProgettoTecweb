@@ -361,3 +361,37 @@ VALUES
 (13,'2022-06-13', '21.30', 4, 2),
 (14,'2022-03-15', '21.30', 4, 2),
 (15,'2022-02-01', '21.30', 4, 1);
+
+INSERT INTO UTENTE (ID, DataNascita, Nome, Cognome, Username, Password, Email)
+VALUES
+(1, '1999-05-06', 'Gino', 'Ginetto', 'asdfg1', 'ngjaoag', 'asdfg@grim.com'),
+(2, '1994-09-01', 'piero', 'Ginetto', 'asdfg2', 'n22r', 'derfdfg@grim.com'),
+(3, '1995-07-04', 'Gino', 'fsdao', 'asdfg3', 'njaoag123', 'aasra@grim.com'),
+(4, '1980-02-08', 'Gino', 'Ginfetto', 'asdfg4', 'nuu5ag', 'atrtre@grim.com');
+
+INSERT INTO Prenotazione(ID, NumeroPersone, IDUtente, IDProiezione)
+VALUES
+(1, 4, 2, 1),
+(2, 2, 3, 1),
+(3, 3, 4, 3),
+(4, 4, 2, 3),
+(5, 3, 4, 10),
+(6, 2, 1, 10),
+(7, 2, 2, 11),
+(8, 4, 3, 13);
+
+INSERT INTO Partecipazione (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione)
+VALUES
+('G', 14, 3, 1),
+('A', 15, 3, 1),
+('B', 15, 3, 1),
+('C', 15, 3, 1),
+
+('G', 11, 3, 1),
+('A', 12, 3, 1),
+
+()
+
+
+
+

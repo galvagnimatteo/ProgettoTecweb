@@ -2,17 +2,23 @@
 
     class SingletonDB{
 
-        private const HOST = 'localhost';
-        private const USERNAME = 'root';
-        private const PASSWORD = '';
-        private const NAMEDB = 'cinemadb';
+        private $HOST = 'localhost';
+        private $USERNAME = 'root';
+        private $PASSWORD = '';
+        private $NAMEDB = 'cinemadb';
 
         private static $instance = null;
         private $connection;
 
         private function __construct(){
 
-            $connection = new mysqli($HOST_DB, $USERNAME, $PASSWORD, $NAMEDB);
+            global $HOST;
+            global $USERNAME;
+            global $PASSWORD;
+            global $NAMEDB;
+            global $connection;
+
+            $connection = new mysqli($this->HOST, $this->USERNAME, $this->PASSWORD, $this->NAMEDB);
 
             if($connection->connect_error) {
 
@@ -20,6 +26,8 @@
                 die("Connessione fallita: " . $connection->connect_error);
 
             }
+
+            $connection->set_charset("utf-8");
 
         }
 
@@ -43,12 +51,16 @@
 
         public function executeQuery($query){
 
+            global $connection;
+
             return $connection->query($query);
 
         }
 
 
         public function disconnect(){
+
+            global $connection;
 
             $connection->close();
 

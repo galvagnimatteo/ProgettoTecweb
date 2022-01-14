@@ -433,7 +433,9 @@ programmazione.html
 	}
 }
 
-content.register{
+
+.div_register{
+
 	margin:auto;
 	width: 70%;
 	display:flex;
@@ -545,15 +547,6 @@ input[type=button].user{
 	
 	  }
 }
-
-
-
-
-
-
-
-
-
 
 .content.login_user
 {

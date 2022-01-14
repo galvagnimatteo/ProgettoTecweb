@@ -1,22 +1,33 @@
+﻿
+        
+    
 
 	
-     <div class="div_user register">
+	
+     <div class="div_user">
 	 Create your account
 	 </div>
 	 
-	<div class="content register ">
+	<div class="div_register">
 	
 	
 	
-		<form action="area_utenti.php" method="post" >
-	
+		<form action="../php/area_utenti.php?action=insert" method="post" >
+	<div class="row">
+		<div class="col_25">
+		<label for="username_register"><span xml:lang="en">Username</span></label>
+		</div>
+		<div class="col_75">
+		<input type="text" placeholder=" Username" name="username_register"   required> 
+		</div>
+		</div>
 	
 		<div class="row">
 		<div class="col_25">
 		<label for="name_register"><span xml:lang="en">Name</span></label>
 		</div>
 		<div class="col_75">
-		<input type="text" placeholder=" Name" name="name_register"   required> 
+		<input type="text" placeholder=" Name" name="name_register"   > 
 		</div>
 		</div>
 		
@@ -25,35 +36,35 @@
 		<label for="surname_register"><span xml:lang="en">Surname</span></label>
 		</div>
 		<div class="col_75">
-		<input type="text" placeholder=" Surname" name="surname_register"   required>
+		<input type="text" placeholder=" Surname" name="surname_register"   >
 		</div>
 		</div>
 		
 		
 		<div class="row">
 		<div class="col_25">
-		<label for="email_login"><span xml:lang="en">Email</span></label>
+		<label for="email_register"><span xml:lang="en">Email</span></label>
 		</div>
 			<div class="col_75">
-		<input type="email" placeholder=" Email" name="email_register"   required>
+		<input type="email" placeholder=" Email" name="email_register"   >
 		</div>
 		</div>
 		
 		<div class="row">
 		<div class="col_25">
-		<label for="password_login"><span xml:lang="en">Password</span></label>
+		<label for="password_register"><span xml:lang="en">Password</span></label>
 		</div>
 		<div class="col_75">
-		<input type="password" placeholder=" Password" id="pass_login"    required>
+		<input type="password" placeholder=" Password" name="password_register"    >
 		</div>
 		</div>
 	
 		<div class="row">
 		<div class="col_25">
-		<label for="password_login"><span xml:lang="en">Password Confirmation</span></label>
+		<label for="password_login_confirm"><span xml:lang="en">Password Confirmation</span></label>
 		</div>
 			<div class="col_75">
-		<input type="password" placeholder=" Repeat Password" id="pass_login_confirm"  required>
+		<input type="password" placeholder=" Repeat Password" name="pass_register_confirm"  required>
 	</div>
 		</div>
 	
@@ -125,7 +136,7 @@
 		</div>
 	
 	<div class="row">
-	<input type="button" value="Complete Registration" class="user" >
+	<input type="submit" value="Dio Registration" >
 	
 	 </div>
 	 
@@ -136,7 +147,7 @@
  
 
 	
-	<div class="div_user register">
+	<div class="div_user">
 	<a href="./area_utenti_login.php"> I already have an account </a>
 	</div>
 	

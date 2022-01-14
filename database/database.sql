@@ -68,17 +68,20 @@ CREATE TABLE Partecipa (
 );
 
 CREATE TABLE CastFilm (
-	Nominativo VARCHAR(120) NOT NULL,
+	Nome VARCHAR(50) NOT NULL,
+	Cognome VARCHAR(50) NOT NULL,
+	ID INT NOT NULL AUTO_INCREMENT,
+	Lingua CHAR(2) NULL,
 	Ruolo CHAR(1) NOT NULL,
 	CHECK (UPPER(Ruolo)='A' OR UPPER(Ruolo)='R'),
-	PRIMARY KEY (Nominativo, Ruolo)
+	PRIMARY KEY (ID),
+	UNIQUE(Nome, Cognome, Ruolo)
 );
 
 CREATE TABLE Afferisce (
 	IDFilm INT NOT NULL,
-	NominativoCast VARCHAR(120) NOT NULL,
-	RuoloCast CHAR(1) NOT NULL,
-	PRIMARY KEY (IDFilm, NominativoCast, RuoloCast),
+	IDCast INT NOT NULL,
+	PRIMARY KEY (IDFilm, IDCast),
 	FOREIGN KEY (IDFilm) REFERENCES Film(ID) ON DELETE CASCADE,
-	FOREIGN KEY (NominativoCast, RuoloCast) REFERENCES CastFilm(Nominativo, Ruolo) ON DELETE CASCADE
+	FOREIGN KEY (IDCast) REFERENCES CastFilm(ID) ON DELETE CASCADE
 );

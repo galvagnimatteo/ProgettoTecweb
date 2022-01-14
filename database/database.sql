@@ -29,7 +29,7 @@ CREATE TABLE Proiezione (
 	UNIQUE(Data, Orario, IDFilm, NumeroSala),
 	FOREIGN KEY (IDFilm) REFERENCES Film(ID) ON DELETE CASCADE,
 	FOREIGN KEY (NumeroSala) REFERENCES Sala(Numero) ON DELETE CASCADE
-	
+
 );
 
 CREATE TABLE Utente (
@@ -59,7 +59,7 @@ CREATE TABLE Partecipazione (
 	NumeroSala SMALLINT NOT NULL,
 	IDPrenotazione SERIAL NOT NULL,
 	PRIMARY KEY (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione),
-	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala) 
+	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala)
 	REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE
 );
 

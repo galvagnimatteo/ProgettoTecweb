@@ -434,9 +434,13 @@ VALUES
 (20,'Cody', 'Bowers', 'A'),
 (21,'Josefina', 'Fitzgerald', 'A'),
 (22,'Bessie', 'Adams', 'A'),
-(23,'Camille', 'Jackson', 'A'),
-(24,'Myron', 'Santos', 'A'),
-(25,'Amanda', 'Ingram', 'R');
+(23,'Camille', 'Jackson', 'A');
+
+INSERT INTO CastFilm (ID, Nome, Cognome, Ruolo, Lingua)
+VALUES
+(24,'Myron', 'Santos', 'A', 'en'),
+(25,'Amanda', 'Ingram', 'R', 'en');
+
 
 INSERT INTO Afferisce(IDCast, IDFilm) 
 VALUES

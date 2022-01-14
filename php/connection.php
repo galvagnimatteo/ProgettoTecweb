@@ -11,7 +11,7 @@ class connection{
 
     public function __construct(){
 
-        if(!($this->connection = new mysqli(static::HOST_DB, static::USERNAME, static::PASSWORD, static::NAMEDB))){
+        if(!($this->connection = new mysqli(static::HOST, static::USERNAME, static::PASSWORD, static::NAMEDB))){
 
             if ($conn->connect_error) {
 

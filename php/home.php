@@ -8,6 +8,7 @@
 
     $db = SingletonDB::getInstance();
     $result = $db->executeQuery("SELECT * FROM Film"); //TODO fare la query completa
+    $db->disconnect();
 
     $cards = "";
 

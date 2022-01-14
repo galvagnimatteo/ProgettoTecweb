@@ -376,7 +376,7 @@ VALUES
 (7, 2, 2, 11),
 (8, 4, 3, 13);
 
-INSERT INTO Partecipazione (FilaPosto, NumeroPosto, NumeroSala, IDPrenotazione)
+INSERT INTO Partecipa (FilaPosto, NumeroPosto, NumeroSala, IDPrenotazione)
 VALUES
 ('G', 14, 3, 1),
 ('A', 15, 3, 1),
@@ -410,37 +410,61 @@ VALUES
 ('C', 13, 2, 8),
 ('D', 13, 2, 8);
 
-INSERT INTO CastFilm (Nome, Cognome, Ruolo, IDFilm)
+INSERT INTO CastFilm (ID, Nome, Cognome, Ruolo)
 VALUES
-('Ramona', 'Jones', 'R', 1),
-('Allen', 'Hart', 'A', 1),
-('Terri', 'Turner', 'A', 1),
-('Kevin', 'Gutierrez', 'R', 1),
-('Jose', 'Roy', 'A', 2),
-('Oliver', 'Carroll', 'A', 2),
-('Kelley', 'Hunter', 'A', 2),
-('Charles', 'Campbell', 'A', 2),
-('Erma', 'Rowe', 'A', 2),
-('Sherry', 'Malone', 'A', 2),
-('Greg', 'Brady', 'A', 3),
-('Constance', 'Fuller', 'A', 3),
-('Lila', 'Lawson', 'A', 3),
-('Orville', 'Ballard', 'A', 3),
-('Carolyn', 'Wallace', 'A', 3),
-('Sammy', 'Patrick', 'A', 3),
-('Stephanie', 'Hanson', 'R', 3),
-('Lyle', 'Bates', 'A', 4),
-('Rosalie', 'Benson', 'A', 4),
-('Cody', 'Bowers', 'A', 4),
-('Josefina', 'Fitzgerald', 'A', 4),
-('Bessie', 'Adams', 'A', 4),
-('Camille', 'Jackson', 'A', 4),
-('Myron', 'Santos', 'A', 4),
-('Amanda', 'Ingram', 'R', 4);
+(1, 'Ramona', 'Jones', 'R'),
+(2, 'Allen', 'Hart', 'A'),
+(3, 'Terri', 'Turner', 'A'),
+(4, 'Kevin', 'Gutierrez', 'R'),
+(5, 'Jose', 'Roy', 'A'),
+(6, 'Oliver', 'Carroll', 'A'),
+(7, 'Kelley', 'Hunter', 'A'),
+(8, 'Charles', 'Campbell', 'A'),
+(9, 'Erma', 'Rowe', 'A'),
+(10, 'Sherry', 'Malone', 'A'),
+(11, 'Greg', 'Brady', 'R'),
+(12, 'Constance', 'Fuller', 'A'),
+(13,'Lila', 'Lawson', 'A'),
+(14,'Orville', 'Ballard', 'A'),
+(15,'Carolyn', 'Wallace', 'A'),
+(16,'Sammy', 'Patrick', 'A'),
+(17,'Stephanie', 'Hanson', 'R'),
+(18,'Lyle', 'Bates', 'A'),
+(19,'Rosalie', 'Benson', 'A'),
+(20,'Cody', 'Bowers', 'A'),
+(21,'Josefina', 'Fitzgerald', 'A'),
+(22,'Bessie', 'Adams', 'A'),
+(23,'Camille', 'Jackson', 'A'),
+(24,'Myron', 'Santos', 'A'),
+(25,'Amanda', 'Ingram', 'R');
 
-
-
-
+INSERT INTO Afferisce(IDCast, IDFilm) 
+VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 4),
+(7, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(15, 2),
+(16, 3),
+(17, 3),
+(18, 3),
+(19, 3),
+(20, 3),
+(21, 3),
+(22, 4),
+(23, 4),
+(24, 4),
+(25, 4);
 
 
 

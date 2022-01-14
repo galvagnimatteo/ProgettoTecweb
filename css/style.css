@@ -44,31 +44,34 @@ nav ul {
     list-style-type: none;
 }
 
-@media (min-width: 50rem) {
+
+@media (min-width: 52rem) {
 
     header, ul {
-        
         display: flex;
         width: 100%;
         flex-direction: row;
         align-self: flex-end;
     }
-    header h1 {
-        width: 15%;
-    }
+
+        header h1 {
+            width: 15%;
+        }
+
     nav {
         width: calc(85% - 2rem);
         position: relative;
-    }
 
+    }
 }
-@media (min-width: 24rem) and (max-width: 50rem){
+
+@media (min-width: 24rem) and (max-width: 52rem) {
     header, ul {
         display: flex;
         flex-direction: column;
     }
-    nav 
-    {
+
+    nav {
         position: absolute;
         left: calc(15% + 6rem);
         background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
@@ -76,6 +79,7 @@ nav ul {
         width: 16rem;
     }
 }
+
 @media (max-width: 24rem) {
     header, ul {
         display: flex;
@@ -364,6 +368,7 @@ footer{
     padding: 1rem;
 }
 
+
 /*
 
 programmazione.html
@@ -427,6 +432,7 @@ programmazione.html
 		background-color: var(--secondary-color);
 	}
 }
+
 content.register{
 	margin:auto;
 	width: 70%;
@@ -466,7 +472,6 @@ input[type=text],[type=password],[type=email]{
 
 
 
-
 input[type=button].user{
 	width:70%;
 	height:3rem;
@@ -483,12 +488,6 @@ input[type=button].user{
 	cursor: pointer;
 	float:right;
 }
-
-
-
-
-
-
 
 .select_date {
     background: none;
@@ -580,4 +579,204 @@ margin:auto;
     padding-bottom:1.5srem;
 	border-radius: 5px;
 	
+}
+
+#contactpage iframe {
+    width: 100%;
+    align-self: end;
+}
+
+@media text {
+}
+
+@keyframes materialize {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slide_from_left {
+    0% {
+        left: -25rem;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0rem;
+        opacity: 1;
+    }
+}
+
+@keyframes slide_from_right {
+    0% {
+        right: -25rem;
+        opacity: 0;
+    }
+
+    100% {
+        right: 0rem;
+        opacity: 1;
+    }
+}
+
+#posizione {
+    animation-name: materialize;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+#contatti {
+    position: relative;
+    animation-name: slide_from_left;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-fill-mode: both;
+}
+
+#social {
+    position: relative;
+    animation-name: slide_from_right;
+    animation-duration: 2s;
+    animation-delay: 4s;
+    animation-fill-mode: both;
+}
+
+/*footer {
+    animation-name: materialize;
+    animation-duration: 2s;
+    animation-delay: 6s;
+    animation-fill-mode: both;
+}*/
+
+@supports (display: grid) {
+    #contactpage {
+        display: grid;
+        grid-template-columns: 5% 45% 45% 5%;
+        grid-row-gap: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    @media (min-width: 49rem) {
+        #posizione {
+            grid-column-start: 1;
+            grid-column-end: 5;
+            grid-row: 1;
+        }
+
+        #contatti {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        #social {
+            grid-column: 2;
+            grid-row: 3;
+        }
+    }
+
+    @media (max-width: 49rem) {
+        #contactpage {
+            display: grid;
+            grid-template-columns: 3% 47% 47% 3%;
+            grid-row-gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        #posizione {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            grid-row: 1;
+        }
+
+        #contatti {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            grid-row: 2;
+        }
+
+        #social {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            grid-row: 3;
+        }
+    }
+
+    #posizione dl, #contatti dl, #social dl {
+        display: grid;
+        grid-column-gap: 1rem;
+        grid-row-gap: 1rem;
+    }
+
+    #posizione dt, #contatti dt, #social dt {
+        font-weight: bold;
+        grid-column: 1;
+    }
+
+    #posizione dd, #contatti dd, #social dd {
+        grid-column: 2;
+    }
+}
+
+@supports not (display: grid) {
+    body {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    #contactpage {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #posizione dl, #contatti dl, #social dl {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    #posizione dt, #contatti dt, #social dt {
+        flex-basis: 20%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #posizione dd, #contatti dd, #social dd {
+        flex-basis: 70%;
+        flex-grow: 1;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 49rem) {
+        @keyframes slide_from_left {
+            0% {
+                left: -25rem;
+                opacity: 0;
+            }
+
+            100% {
+                left: 50%;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+#posizione h2, #contatti h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#social h3 {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }

@@ -540,7 +540,7 @@ input[type=submit]{
 }
 
 @media screen and (max-width: 700px) {
-  input[type=button].user {
+  input[type=submit]{
     width: 100%;
 	
     margin-top: 0;

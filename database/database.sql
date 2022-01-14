@@ -3,6 +3,10 @@ CREATE TABLE Film (
 	Titolo VARCHAR(255) NOT NULL,
 	Genere VARCHAR(20) NOT NULL,
 	DataUscita DATE NULL,
+	Descrizione VARCHAR(3000) NOT NULL,
+	SrcImg VARCHAR(100) NOT NULL,
+	AltImg VARCHAR(150) NOT NULL,
+	Durata INT NOT NULL, 
 	PRIMARY KEY (ID)
 );
 
@@ -57,7 +61,7 @@ CREATE TABLE Partecipazione (
 	NumeroPosto SMALLINT NOT NULL,
 	FilaPosto CHAR(1) NOT NULL,
 	NumeroSala SMALLINT NOT NULL,
-	IDPrenotazione SERIAL NOT NULL,
+	IDPrenotazione INT NOT NULL,
 	PRIMARY KEY (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione),
 	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala)
 	REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE

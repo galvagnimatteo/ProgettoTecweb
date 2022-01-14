@@ -57,7 +57,7 @@ CREATE TABLE Prenotazione (
 	FOREIGN KEY(IDProiezione) REFERENCES Proiezione(ID) ON DELETE CASCADE
 );
 
-CREATE TABLE Partecipazione (
+CREATE TABLE Partecipa (
 	NumeroPosto SMALLINT NOT NULL,
 	FilaPosto CHAR(1) NOT NULL,
 	NumeroSala SMALLINT NOT NULL,
@@ -68,11 +68,17 @@ CREATE TABLE Partecipazione (
 );
 
 CREATE TABLE CastFilm (
-	Nome VARCHAR(50) NOT NULL,
-	Cognome VARCHAR(50) NOT NULL,
+	Nominativo VARCHAR(120) NOT NULL,
 	Ruolo CHAR(1) NOT NULL,
-	IDFilm INT NOT NULL,
 	CHECK (UPPER(Ruolo)='A' OR UPPER(Ruolo)='R'),
-	PRIMARY KEY (Nome, Cognome, IDFilm),
-	FOREIGN KEY (IDFilm) REFERENCES Film(ID) ON DELETE CASCADE
+	PRIMARY KEY (Nominativo, Ruolo)
+);
+
+CREATE TABLE Afferisce (
+	IDFilm INT NOT NULL,
+	NominativoCast VARCHAR(120) NOT NULL,
+	RuoloCast CHAR(1) NOT NULL,
+	PRIMARY KEY (IDFilm, NominativoCast, RuoloCast),
+	FOREIGN KEY (IDFilm) REFERENCES Film(ID) ON DELETE CASCADE,
+	FOREIGN KEY (NominativoCast, RuoloCast) REFERENCES CastFilm(Nominativo, Ruolo) ON DELETE CASCADE
 );

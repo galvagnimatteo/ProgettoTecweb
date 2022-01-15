@@ -61,6 +61,9 @@ nav ul {
         width: calc(85% - 2rem);
         position: relative;
     }
+    #menubutton {
+        display: none;
+    }
 }
 
 @media (min-width: 24rem) and (max-width: 52rem) {
@@ -76,6 +79,15 @@ nav ul {
         z-index: 99;
         width: 16rem;
     }
+    .openMenu {
+        display:normal;
+    }
+    .closedMenu{
+        display:none;
+    }
+    #menubutton {
+        text-decoration: none;
+    }
 }
 
 @media (max-width: 24rem) {
@@ -87,6 +99,17 @@ nav ul {
     nav {
         width: 100%;
         position: relative;
+    }
+    .openMenu {
+        display: normal;
+    }
+
+    .closedMenu {
+        display: none;
+    }
+    #menubutton {
+        display: block;
+        text-decoration:none;
     }
 }
 

@@ -5,28 +5,68 @@
 
     $document = file_get_contents('../html/template.html');
     $home_content = file_get_contents('../html/home_content.html');
-
-    $db = SingletonDB::getInstance();
-    $result = $db->executeQuery("SELECT * FROM Film"); //TODO fare la query completa
-    $db->disconnect();
-
     $cards = "";
 
-    if(!empty($result) && $result->num_rows > 0){
+    $db = SingletonDB::getInstance();
+    $resultFilms = $db->getConnection()->query("SELECT * FROM Film ORDER BY DataUscita LIMIT 12");
+
+    if(!empty($resultFilms) && $resultFilms->num_rows > 0){
 
         $card_home_template = file_get_contents('../html/items/card-home.html');
 
-        while($row = $result->fetch_assoc()) {
+        while($row = $resultFilms->fetch_assoc()) {
+
+            $preparedQuery = $db->getConnection()->prepare("SELECT * FROM CastFilm INNER JOIN Afferisce on (CastFilm.ID = Afferisce.IDCast) INNER JOIN Film on (Afferisce.IDFilm = Film.ID) WHERE Film.ID = ?");
+            $preparedQuery->bind_param('i', $row["ID"]);
+            $preparedQuery->execute();
+            $resultCast = $preparedQuery->get_result();
+
+            $preparedQuery->close();
 
             $card_home_item = $card_home_template;
 
             $card_home_item = str_replace('<FILMTITLE>', $row["Titolo"], $card_home_item);
-            $card_home_item = str_replace('<FILMDIRECTOR>', "test", $card_home_item);
-            $card_home_item = str_replace('<FILMCAST>', "test", $card_home_item);
+
+            $director = "";
+            $cast = "";
+
+            while($rowCast = $resultCast->fetch_assoc()) {
+
+                if($rowCast["Ruolo"] == "R"){
+
+                    if($director == ""){
+
+                        $director = $rowCast["Nome"] . " " . $rowCast["Cognome"];
+
+                    }else{
+
+                        $director = $director . ", " . $rowCast["Nome"] . " " . $rowCast["Cognome"];
+
+                    }
+
+                }else{
+
+                    if($cast == ""){
+
+                        $cast = $rowCast["Nome"] . " " . $rowCast["Cognome"];
+
+                    }else{
+
+                        $cast = $cast . ", " . $rowCast["Nome"] . " " . $rowCast["Cognome"];
+
+                    }
+                }
+
+            }
+
+            $card_home_item = str_replace('<FILMDIRECTOR>', $director, $card_home_item);
+            $card_home_item = str_replace('<FILMCAST>', $cast, $card_home_item);
 
             $cards = $cards . $card_home_item;
 
         }
+
+        $db->disconnect();
 
     }else{
 

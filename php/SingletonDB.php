@@ -49,11 +49,11 @@
 
         }
 
-        public function executeQuery($query){
+        public function getConnection(){
 
             global $connection;
 
-            return $connection->query($query);
+            return $connection;
 
         }
 

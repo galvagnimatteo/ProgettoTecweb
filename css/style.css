@@ -44,6 +44,7 @@ nav ul {
     list-style-type: none;
 }
 
+
 @media (min-width: 52rem) {
 
     header, ul {
@@ -60,6 +61,7 @@ nav ul {
     nav {
         width: calc(85% - 2rem);
         position: relative;
+
     }
     #menubutton {
         display: none;
@@ -95,7 +97,6 @@ nav ul {
         display: flex;
         flex-direction: column;
     }
-
     nav {
         width: 100%;
         position: relative;
@@ -354,6 +355,22 @@ nav li a {
     }
 }
 
+
+.SRskip {/*per screen reader*/
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.SRskip:focus {
+    position: static;
+    width: auto;
+    height: auto;
+}
+ 
+
 .cardContentText{
     padding: 1rem;
 }
@@ -375,17 +392,192 @@ footer{
 }
 
 
+/*
+
+programmazione.html
+*/
+
+
+.cardsContainer-prog {
+	padding-top: 0.5rem;
+	font-size: 1.3rem;
+	margin-top: 0.5rem;
+}
+.card {
+	display:flex;
+	align-items: flex-start;
+	border: 2px solid;
+    border-color: var(--secondary-color);
+    border-radius: 1rem;
+    margin: 1rem;
+	overflow: hidden;
+}
+
+.card dt {
+	float: left;
+	clear: left;
+	font-style: italic;
+}
+
+.card dd:before {
+	content: "\00a0";
+}
+
+.card img {
+	margin: 1rem;
+	width: 23%;
+	height: 23%;
+}
+
+.card p {
+	margin: 1rem 0rem;
+}
+
+
+
+.card form input[type=submit] {
+  background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+@media (hover: hover) { /*da riunire tutte insieme le media query*/
+	.card form input[type=submit]:hover {
+		text-decoration: underline;
+		background-color: var(--secondary-color);
+	}
+}
+
+
+/*log/reg*/
+.div_register{
+
+	margin:auto;
+	width: 70%;
+	display:flex;
+	justify-content:center;
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    padding-top:2.8rem;
+	padding-bottom:2rem;
+}
+
+.div_user{
+	margin:auto;
+	width: 70%;
+	display:flex;
+	border: none;
+	background-image: linear-gradient(#660000,var(--gradient-last-color));
+	justify-content: center;
+	 padding-top:1.5rem;
+    padding-bottom:1.5rem;
+	border-radius: 5px;
+	
+}
+
+input[type=text],[type=password],[type=email]{
+	width: 100%;
+	height: 4vh;
+	background: #e0dede;
+	color:#000000;
+	margin: 1rem auto;
+	padding: 1rem;
+	border: none;
+	border-radius: 5px;
+	font-size:0.9rem;
+	
+	    box-sizing: border-box; 
+}
+
+
+
+
+input[type=submit]{
+	width:70%;
+	height:3rem;
+	
+	/*display: block;*/
+	color: #fff;
+	background: #660000;
+	background-image: linear-gradient(#660000, var(--gradient-last-color));
+	
+	font-weight: bold;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	float:right;
+}
 
 
 
 
 
-/*sezione specifica per pagina contatti*/
+
+.select_date {
+    background: none;
+    padding: 0.4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+	margin-left: 0.5rem;
+    border-radius: 8px;
+	font-size: 1.0rem;
+    
+}
+
+.select_date option{
+    background: var(--primary-color);
+}
+.button_password_view{
+	background: url('lol.png') no-repeat;
+}
+.button_one:hover{
+	background: #b30000;
+}
 
 
+.col-25 {
+  float:left;
+  width: 25%;
+  
+ 
+}
 
+.col-75 {
+  float:left;
+  width: 75%;
+ 
+}
+.row:after{
+	
+  content: "";
+  display: table;
+  clear: both;
+}
 
-
+@media screen and (max-width: 700px) {
+  input[type=submit]{
+    width: 100%;
+	
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 500px) {
+	
+	
+	  .content.register,.div_user.register{
+ width: 100%;
+	
+	  }
+}
+/*end*/
 
 #contactpage iframe {
     width: 100%;

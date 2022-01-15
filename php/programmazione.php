@@ -7,7 +7,7 @@
     $programmazione_content = file_get_contents('../html/programmazione_content.html');
 
     $db = SingletonDB::getInstance();
-    $result = $db->executeQuery("SELECT * FROM Film"); //TODO fare la query completa
+    $result = $db->getConnection()->query("SELECT * FROM Film"); //TODO fare la query completa
     $db->disconnect();
 
     $cards = "";

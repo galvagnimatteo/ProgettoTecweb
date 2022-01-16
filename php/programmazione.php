@@ -36,6 +36,7 @@
 
     $programmazione_content = str_replace('<CARDS-PROG>', $cards, $programmazione_content);
 
+    $document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / <a href="#">Programmazione</a>', $document);
     $document = str_replace('<CONTENT>', $programmazione_content, $document);
 
     echo($document);

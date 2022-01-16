@@ -32,41 +32,22 @@
 
     <h2 class="subtitle"> Acquisto Rapido </h2>
 
-    <form class="quickPurchaseForm" action="" method="post">
+    <form action="" method="post">
 
-        <select class="quickPurchaseItem slct" name="scelta cinema" id="scelta_cinema" data-text-required="Per favore, scegli un cinema.">
-            <option value="scelta">Scegli una sede</option>
-            <option value="cin1">cin1</option>
-            <option value="cin2">cin2</option>
-            <option value="cin3">cin3</option>
-            <option value="cin4">cin4</option>
-        </select>
-
-        <select class="quickPurchaseItem slct" name="scelta film" id="scelta_film" data-text-required="Per favore, scegli un film.">
+        <select id="selectFilm" onchange="populateQuickpurchaseDate(this)" name="scelta film" id="scelta_film" data-text-required="Per favore, scegli un film.">
             <option value="scelta">Scegli un film</option>
-            <option value="film1">film1</option>
-            <option value="film2">film2</option>
-            <option value="film3">film3</option>
-            <option value="film4">film4</option>
+            <FILM-OPTIONS>
         </select>
 
-        <select class="quickPurchaseItem slct" name="scelta data" id="scelta_data" data-text-required="Per favore, scegli una data.">
+        <select id="selectDate" onchange="populateQuickpurchaseHour(this)" name="scelta data" id="scelta_data" data-text-required="Per favore, scegli una data.">
             <option value="scelta">Scegli una data</option>
-            <option value="data1">data1</option>
-            <option value="data2">data2</option>
-            <option value="data3">data3</option>
-            <option value="data4">data4</option>
         </select>
 
-        <select class="quickPurchaseItem slct" name="scelta ora" id="scelta_ora" data-text-required="Per favore, scegli un orario.">
+        <select id="selectHour" name="scelta ora" id="scelta_ora" data-text-required="Per favore, scegli un orario.">
             <option value="scelta">Scegli un orario</option>
-            <option value="orario1">orario1</option>
-            <option value="orario2">orario2</option>
-            <option value="orario3">orario3</option>
-            <option value="orario4">orario4</option>
         </select>
 
-        <button class="quickPurchaseItem btn"> Acquista </button>
+        <button> Acquista </button>
 
     </form>
 
@@ -76,7 +57,7 @@
 
     <h2 class="subtitle"> Film in evidenza </h2>
 
-    <ul class="cards">
+    <ul>
 
         <CARDS-HOME>
 

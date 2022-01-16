@@ -5,12 +5,13 @@
 
     $document = file_get_contents('../html/template.html');
     $home_content = file_get_contents('../html/home_content.html');
+    $quickpurchase_films = "";
     $cards = "";
 
-    //Query per inserimento film -----------------------------------------------
+    //Query per inserimento film (anche acquisto rapido)------------------------
 
     $db = SingletonDB::getInstance();
-    $resultFilms = $db->getConnection()->query("SELECT * FROM Film ORDER BY DataUscita LIMIT 12");
+    $resultFilms = $db->getConnection()->query("SELECT * FROM Film ORDER BY DataUscita");
     $db->disconnect();
 
     //--------------------------------------------------------------------------
@@ -20,6 +21,8 @@
         $card_home_template = file_get_contents('../html/items/card-home.html');
 
         while($row = $resultFilms->fetch_assoc()) {
+
+            $quickpurchase_films = $quickpurchase_films . '<option value="' . $row["ID"] . '">' . $row["Titolo"] . '</option>';
 
             //Query per dati film ----------------------------------------------
 
@@ -86,6 +89,9 @@
     }
 
     $document = str_replace('<BREADCRUMB>', '<a href="#">Home</a> / ', $document);
+    //$document = str_replace('<JAVASCRIPT-FILES', '') TODO aggiungere link ai js dinamicamente
+
+    $home_content = str_replace('<FILM-OPTIONS>', $quickpurchase_films, $home_content);
     $home_content = str_replace('<CARDS-HOME>', $cards, $home_content);
 
     $document = str_replace('<CONTENT>', $home_content, $document);

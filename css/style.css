@@ -231,12 +231,12 @@ nav li a {
     margin-top: 0.8rem;
 }
 
-.quickPurchaseForm{
+.quickPurchaseContainer form{
     display: flex;
     margin-bottom: 1rem;
 }
 
-.quickPurchaseItem{
+.quickPurchaseContainer form select, .quickPurchaseContainer form button{
     background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
     font-size: 1.1rem;
     width: 25%;
@@ -247,31 +247,31 @@ nav li a {
     outline: 0;
 }
 
-.quickPurchaseItem.slct{
+.quickPurchaseContainer form select{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
 @media screen and (max-width: 880px) {
-    .quickPurchaseForm{
+    .quickPurchaseContainer form{
         flex-direction: column;
     }
 
-    .quickPurchaseItem.slct{
+    .quickPurchaseContainer form select{
         width: calc(100% - 1.5rem);
         margin-right: 1rem; /*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
     }
 
-    .quickPurchaseItem.btn{
+    .quickPurchaseContainer form button{
         width: calc(100% - 2rem);
     }
 }
 
-.quickPurchaseItem.slct option{
+.quickPurchaseContainer form select option{
     background: var(--primary-color);
 }
 
-.quickPurchaseItem.btn{
+.quickPurchaseContainer form button{
     border: 1px solid var(--secondary-color);
     cursor: pointer;
     margin-right: 1rem; /*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
@@ -280,7 +280,7 @@ nav li a {
 }
 
 @media (hover: hover) {
-    .quickPurchaseItem.btn:hover{
+    .quickPurchaseContainer form button:hover{
         background-color: var(--secondary-color);
     }
 }
@@ -290,14 +290,14 @@ nav li a {
     margin-bottom: 1rem;
 }
 
-.cards {
+.cardsContainer ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
 
-.cards li {
+.cardsContainer ul li {
     box-sizing: border-box; /*se no non conta il border e va a capo*/
     border: 2px solid;
     border-color: var(--secondary-color);
@@ -308,26 +308,26 @@ nav li a {
     overflow: hidden;
 }
 
-.cards li img{
+.cardsContainer ul li img{
     width: 100%;
     height: auto;
 }
 
 @media screen and (max-width: 880px) {
-    .cards li{
+    .cardsContainer ul li{
         flex: 0 1 calc(33.3% - 2rem);
     }
 }
 
 
 @media screen and (max-width: 700px) {
-    .cards li{
+    .cardsContainer ul li{
         flex: 0 1 calc(50% - 2rem);
     }
 }
 
 @media screen and (max-width: 480px) {
-    .cards li{
+    .cardsContainer ul li{
         flex: 0 1 calc(100% - 2rem);
     }
 }

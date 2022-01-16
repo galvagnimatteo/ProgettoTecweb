@@ -9,25 +9,11 @@
 
         private static $instance = null;
         private $connection;
+        private $isConnected = false;
 
         private function __construct(){
 
-            global $HOST;
-            global $USERNAME;
-            global $PASSWORD;
-            global $NAMEDB;
-            global $connection;
-
-            $connection = new mysqli($this->HOST, $this->USERNAME, $this->PASSWORD, $this->NAMEDB);
-
-            if($connection->connect_error) {
-
-                echo("Errore");
-                die("Connessione fallita: " . $connection->connect_error);
-
-            }
-
-            $connection->set_charset("utf-8");
+            self::connect();
 
         }
 
@@ -57,12 +43,54 @@
 
         }
 
+        public function isConnected(){
+
+            global $isConnected;
+
+            return $isConnected;
+
+        }
 
         public function disconnect(){
 
             global $connection;
+            global $isConnected;
 
-            $connection->close();
+            if($isConnected){
+
+                $connection->close();
+                $isConnected = false;
+
+            }
+
+        }
+
+        public function connect(){
+
+            global $HOST;
+            global $USERNAME;
+            global $PASSWORD;
+            global $NAMEDB;
+            global $connection;
+            global $isConnected;
+
+            if(!$isConnected){
+
+                $connection = new mysqli($this->HOST, $this->USERNAME, $this->PASSWORD, $this->NAMEDB);
+
+                if($connection->connect_error) {
+
+                    echo("Errore");
+                    die("Connessione fallita: " . $connection->connect_error);
+
+                }else{
+
+                    $connection->set_charset("utf-8");
+                    $isConnected = true;
+
+                }
+
+            }
 
         }
 

@@ -7,8 +7,13 @@
     $home_content = file_get_contents('../html/home_content.html');
     $cards = "";
 
+    //Query per inserimento film -----------------------------------------------
+
     $db = SingletonDB::getInstance();
     $resultFilms = $db->getConnection()->query("SELECT * FROM Film ORDER BY DataUscita LIMIT 12");
+    $db->disconnect();
+
+    //--------------------------------------------------------------------------
 
     if(!empty($resultFilms) && $resultFilms->num_rows > 0){
 
@@ -16,12 +21,20 @@
 
         while($row = $resultFilms->fetch_assoc()) {
 
+            //Query per dati film ----------------------------------------------
+
+            $db->connect();
+
             $preparedQuery = $db->getConnection()->prepare("SELECT * FROM CastFilm INNER JOIN Afferisce on (CastFilm.ID = Afferisce.IDCast) INNER JOIN Film on (Afferisce.IDFilm = Film.ID) WHERE Film.ID = ?");
             $preparedQuery->bind_param('i', $row["ID"]);
             $preparedQuery->execute();
             $resultCast = $preparedQuery->get_result();
 
+            $db->disconnect();
+
             $preparedQuery->close();
+
+            //------------------------------------------------------------------
 
             $card_home_item = $card_home_template;
 
@@ -66,14 +79,13 @@
 
         }
 
-        $db->disconnect();
-
     }else{
 
         $cards = "Nessun film trovato."; //TODO display errore
 
     }
 
+    $document = str_replace('<BREADCRUMB>', '<a href="#">Home</a> / ', $document);
     $home_content = str_replace('<CARDS-HOME>', $cards, $home_content);
 
     $document = str_replace('<CONTENT>', $home_content, $document);

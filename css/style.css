@@ -239,7 +239,7 @@ nav li a {
 .quickPurchaseItem{
     background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
     font-size: 1.1rem;
-    width: 20%;
+    width: 25%;
     border: none;
     padding: 0.3rem;
     margin-top: 1rem;
@@ -346,7 +346,7 @@ nav li a {
     width: auto;
     height: auto;
 }
- 
+
 
 .cardContentText{
     padding: 1rem;
@@ -456,7 +456,7 @@ programmazione.html
 	 padding-top:1.5rem;
     padding-bottom:1.5rem;
 	border-radius: 5px;
-	
+
 }
 
 input[type=text],[type=password],[type=email]{
@@ -469,8 +469,8 @@ input[type=text],[type=password],[type=email]{
 	border: none;
 	border-radius: 5px;
 	font-size:0.9rem;
-	
-	    box-sizing: border-box; 
+
+	    box-sizing: border-box;
 }
 
 
@@ -479,12 +479,12 @@ input[type=text],[type=password],[type=email]{
 input[type=submit]{
 	width:70%;
 	height:3rem;
-	
+
 	/*display: block;*/
 	color: #fff;
 	background: #660000;
 	background-image: linear-gradient(#660000, var(--gradient-last-color));
-	
+
 	font-weight: bold;
 	margin-bottom: 20px;
 	border: none;
@@ -506,7 +506,7 @@ input[type=submit]{
 	margin-left: 0.5rem;
     border-radius: 8px;
 	font-size: 1.0rem;
-    
+
 }
 
 .select_date option{
@@ -523,17 +523,17 @@ input[type=submit]{
 .col-25 {
   float:left;
   width: 25%;
-  
- 
+
+
 }
 
 .col-75 {
   float:left;
   width: 75%;
- 
+
 }
 .row:after{
-	
+
   content: "";
   display: table;
   clear: both;
@@ -542,16 +542,16 @@ input[type=submit]{
 @media screen and (max-width: 700px) {
   input[type=submit]{
     width: 100%;
-	
+
     margin-top: 0;
   }
 }
 @media screen and (max-width: 500px) {
-	
-	
+
+
 	  .content.register,.div_user.register{
  width: 100%;
-	
+
 	  }
 }
 /*end*/

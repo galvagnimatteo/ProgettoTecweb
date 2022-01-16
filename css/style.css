@@ -63,6 +63,9 @@ nav ul {
         position: relative;
 
     }
+    #menubutton {
+        display: none;
+    }
 }
 
 @media (min-width: 24rem) and (max-width: 52rem) {
@@ -78,6 +81,15 @@ nav ul {
         z-index: 99;
         width: 16rem;
     }
+    .openMenu {
+        display:normal;
+    }
+    .closedMenu{
+        display:none;
+    }
+    #menubutton {
+        text-decoration: none;
+    }
 }
 
 @media (max-width: 24rem) {
@@ -88,6 +100,17 @@ nav ul {
     nav {
         width: 100%;
         position: relative;
+    }
+    .openMenu {
+        display: normal;
+    }
+
+    .closedMenu {
+        display: none;
+    }
+    #menubutton {
+        display: block;
+        text-decoration:none;
     }
 }
 
@@ -755,3 +778,108 @@ input[type=submit]{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
+
+
+/* scheda-film.html */
+
+#filmPageTitle { text-align:center;}
+
+#filmDataContainer {
+	display:flex;
+	align-items: flex-start;
+	margin: 1rem;
+	/*border: 2px solid var(--secondary-color);*/
+	border-radius: 1rem;
+	overflow:hidden;
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));/**/
+
+	
+}
+#filmData {
+	margin-left: 1rem;
+	
+	
+	padding: 0.5rem;
+	font-size: 1.2rem;
+	
+	
+	
+}
+
+#filmData dt {
+	float: left;
+	clear: left;
+	font-style: italic;
+}
+
+#filmData dl {
+	margin-bottom:1rem;
+	
+	border-radius: 1rem;
+}
+
+#filmData dt:after {
+	content: "\00a0";
+	
+}
+
+
+#filmDataContainer img {
+	max-width: 50%;
+	
+}
+
+
+#filmData form {
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+}
+
+#filmData form input[type=submit] {
+  background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+  
+}
+
+@media (hover: hover) { /*da riunire tutte insieme le media query*/
+	#filmData form input[type=submit]:hover {
+		text-decoration: underline;
+		background-color: var(--secondary-color);
+	}
+}
+
+
+@media screen and (max-width: 850px) {
+	#filmDataContainer {
+		flex-direction: column;
+	}
+	
+	#filmDataContainer img {
+		margin: auto;
+		margin-bottom: 1rem;
+	}
+}
+
+
+#filmData form fieldset {
+	margin-top: 1.5rem;
+	border: 0;
+	border-top: 2px solid var(--secondary-color);
+	/*border-left: 2px solid var(--secondary-color);*/
+}
+
+#filmData form legend {
+	padding: 0.3rem;
+	margin-left: 1rem;
+}
+
+

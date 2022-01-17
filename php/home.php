@@ -88,7 +88,7 @@
 
     }
 
-    $document = str_replace('<BREADCRUMB>', '<a href="#">Home</a> / ', $document);
+    $document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / ', $document);
     //$document = str_replace('<JAVASCRIPT-FILES', '') TODO aggiungere link ai js dinamicamente
 
     $home_content = str_replace('<FILM-OPTIONS>', $quickpurchase_films, $home_content);

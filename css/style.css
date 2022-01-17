@@ -3,12 +3,14 @@
     --secondary-color: #f52020;
     --gradient-first-color: #303030;
     --gradient-last-color: #121212;
+    --visited-links: #BBBBBB;
+    --text-color: white;
 }
 
 *{
 	padding: 0;
 	margin: 0;
-    color: white;
+    color: var(--text-color);
 }
 
 html{
@@ -129,8 +131,12 @@ nav li a {
     padding: 1rem;
 }
 
+a:visited:not(.carouselContainer a:visited){
+    color: var(--visited-links);
+}
+
 @media (hover: hover) {
-    nav li a:hover {
+    a:hover:not(.carouselContainer a:hover){
         color: var(--secondary-color);
     }
 }
@@ -793,17 +799,17 @@ input[type=submit]{
 	overflow:hidden;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));/**/
 
-	
+
 }
 #filmData {
 	margin-left: 1rem;
-	
-	
+
+
 	padding: 0.5rem;
 	font-size: 1.2rem;
-	
-	
-	
+
+
+
 }
 
 #filmData dt {
@@ -814,19 +820,19 @@ input[type=submit]{
 
 #filmData dl {
 	margin-bottom:1rem;
-	
+
 	border-radius: 1rem;
 }
 
 #filmData dt:after {
 	content: "\00a0";
-	
+
 }
 
 
 #filmDataContainer img {
 	max-width: 50%;
-	
+
 }
 
 
@@ -847,7 +853,7 @@ input[type=submit]{
   cursor: pointer;
   font-size: 1rem;
   font-weight: 800;
-  
+
 }
 
 @media (hover: hover) { /*da riunire tutte insieme le media query*/
@@ -862,7 +868,7 @@ input[type=submit]{
 	#filmDataContainer {
 		flex-direction: column;
 	}
-	
+
 	#filmDataContainer img {
 		margin: auto;
 		margin-bottom: 1rem;

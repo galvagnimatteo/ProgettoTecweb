@@ -1,11 +1,11 @@
 :root{
     --primary-color: #121212;
     --secondary-color: #b80000;
-    --gradient-first-color: #303030;
+    --gradient-first-color: #282828;
     --gradient-last-color: #121212;
     --visited-links: #BBBBBB;
     --text-color: white;
-    --error-color: #f92020;
+    --error-color: #C2B800;
     --links-hover-color: #ffdd36;
 }
 

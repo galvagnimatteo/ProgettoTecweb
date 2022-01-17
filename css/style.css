@@ -650,7 +650,7 @@ input[type=submit]{
     animation-fill-mode: both;
 }*/
 
-@supports (display: grid) {
+/*@supports (display: grid) {
     .contactpage {
         display: grid;
         grid-template-columns: 5% 45% 45% 5%;
@@ -717,9 +717,9 @@ input[type=submit]{
     #posizione dd, #contatti dd, #social dd {
         grid-column: 2;
     }
-}
+}*/
 
-@supports not (display: grid) {
+/*@supports not (display: grid) {*/
     body {
         margin-left: 1rem;
         margin-right: 1rem;
@@ -764,7 +764,7 @@ input[type=submit]{
             }
         }
     }
-}
+/*}*/
 
 #posizione h2, #contatti h2 {
     font-size: 1.5rem;

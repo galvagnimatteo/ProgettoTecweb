@@ -7,7 +7,7 @@
     $programmazione_content = file_get_contents('../html/programmazione_content.html');
 
     $db = SingletonDB::getInstance();
-    $result = $db->getConnection()->query("SELECT * FROM Film"); //TODO fare la query completa
+    $result = $db->getConnection()->query("SELECT * FROM Film");
     $db->disconnect();
 
     $cards = "";
@@ -38,7 +38,8 @@
 
     $document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a>', $document);
     $document = str_replace('<CONTENT>', $programmazione_content, $document);
-
+    $document = str_replace('<JAVASCRIPT-HEAD>', '', $document);
+    $document = str_replace('<JAVASCRIPT-BODY>', '', $document);
     echo($document);
 
 ?>

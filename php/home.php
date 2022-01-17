@@ -89,10 +89,14 @@
     }
 
     $document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / ', $document);
-    //$document = str_replace('<JAVASCRIPT-FILES', '') TODO aggiungere link ai js dinamicamente
-
+    
     $home_content = str_replace('<FILM-OPTIONS>', $quickpurchase_films, $home_content);
     $home_content = str_replace('<CARDS-HOME>', $cards, $home_content);
+
+    $document = str_replace('<JAVASCRIPT-HEAD>', '<script type="text/javascript" src="../js/carousel.js"> </script>', $document);
+    $document = str_replace('<JAVASCRIPT-BODY>', '<script type="text/javascript" src="../js/checkIfJs.js"> </script>
+                            <script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
+                            <script type="text/javascript" src="../js/quickpurchase.js"> </script>', $document);
 
     $document = str_replace('<CONTENT>', $home_content, $document);
 

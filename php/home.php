@@ -84,12 +84,12 @@
 
     }else{
 
-        $cards = "Nessun film trovato."; //TODO display errore
+        $cards = '<p class="error">Nessun film trovato, ci scusiamo del disagio.</p>';
 
     }
 
     $document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / ', $document);
-    
+
     $home_content = str_replace('<FILM-OPTIONS>', $quickpurchase_films, $home_content);
     $home_content = str_replace('<CARDS-HOME>', $cards, $home_content);
 

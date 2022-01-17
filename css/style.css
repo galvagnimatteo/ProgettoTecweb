@@ -66,7 +66,7 @@ nav ul {
     }
 }
 
-@media (min-width: 24rem) and (max-width: 52rem) {
+@media (min-width: 36rem) and (max-width: 52rem) {
     header, ul {
         display: flex;
         flex-direction: column;
@@ -90,7 +90,7 @@ nav ul {
     }
 }
 
-@media (max-width: 24rem) {
+@media (max-width: 36rem) {
     header, ul {
         display: flex;
         flex-direction: column;

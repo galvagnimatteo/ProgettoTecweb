@@ -579,7 +579,7 @@ input[type=submit]{
 }
 /*end*/
 
-#contactpage iframe {
+.contactpage iframe {
     width: 100%;
     align-self: end;
 }
@@ -651,7 +651,7 @@ input[type=submit]{
 }*/
 
 @supports (display: grid) {
-    #contactpage {
+    .contactpage {
         display: grid;
         grid-template-columns: 5% 45% 45% 5%;
         grid-row-gap: 4rem;
@@ -677,7 +677,7 @@ input[type=submit]{
     }
 
     @media (max-width: 49rem) {
-        #contactpage {
+        .contactpage {
             display: grid;
             grid-template-columns: 3% 47% 47% 3%;
             grid-row-gap: 4rem;
@@ -725,7 +725,7 @@ input[type=submit]{
         margin-right: 1rem;
     }
 
-    #contactpage {
+    .contactpage {
         display: flex;
         flex-direction: column;
     }

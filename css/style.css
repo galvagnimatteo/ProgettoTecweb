@@ -781,6 +781,9 @@ input[type=submit]{
                 opacity: 1;
             }
         }
+        #social{
+            width:50%;
+        }
     }
 /*}*/
 

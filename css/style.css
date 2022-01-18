@@ -117,6 +117,14 @@ nav ul {
         text-decoration:none;
     }
 }
+/*ovverides per assenza di js visualizzani il menù come sempre aperto*/
+.no-js nav {
+    width: 100%;
+    position: relative;
+}
+.no-js .closedMenu {
+    display: normal;
+}
 
 nav li {
     float: left;

@@ -88,14 +88,17 @@
 
     }
 
+    $document = str_replace('<PAGETITLE>', 'Home - PNG Cinema', $document);
+    $document = str_replace('<KEYWORDS>', 'ultime uscite, acquisto, acquisto rapido', $document);
+    $document = str_replace('<DESCRIPTION>', 'Pagina principale: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.', $document);
     $document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / ', $document);
-
-    $home_content = str_replace('<FILM-OPTIONS>', $quickpurchase_films, $home_content);
-    $home_content = str_replace('<CARDS-HOME>', $cards, $home_content);
 
     $document = str_replace('<JAVASCRIPT-HEAD>', '<script type="text/javascript" src="../js/carousel.js"> </script>', $document);
     $document = str_replace('<JAVASCRIPT-BODY>', '<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
                             <script type="text/javascript" src="../js/quickpurchase.js"> </script>', $document);
+
+    $home_content = str_replace('<FILM-OPTIONS>', $quickpurchase_films, $home_content);
+    $home_content = str_replace('<CARDS-HOME>', $cards, $home_content);
 
     $document = str_replace('<CONTENT>', $home_content, $document);
 

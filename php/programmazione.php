@@ -36,10 +36,16 @@
 
     $programmazione_content = str_replace('<CARDS-PROG>', $cards, $programmazione_content);
 
+    $document = str_replace('<PAGETITLE>', 'Programmazione - PNG Cinema', $document);
+    $document = str_replace('<KEYWORDS>', 'programmazione, ultime uscite, ultimi film, film programmati, film in programma', $document);
+    $document = str_replace('<DESCRIPTION>', 'Pagina sulla programmazione: è possibile consultare i film e le opere in programma nelle prossime settimane.', $document);
     $document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a>', $document);
-    $document = str_replace('<CONTENT>', $programmazione_content, $document);
+
     $document = str_replace('<JAVASCRIPT-HEAD>', '', $document);
     $document = str_replace('<JAVASCRIPT-BODY>', '', $document);
+
+    $document = str_replace('<CONTENT>', $programmazione_content, $document);
+
     echo($document);
 
 ?>

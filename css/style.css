@@ -434,21 +434,59 @@ programmazione.html
 }
 
 
-/*log/reg*/
-.div_register{
+/*login /register */
 
+
+.div_login
+{
 	margin:auto;
-	width: 70%;
-	display:flex;
+	width:50%;
 	justify-content:center;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     padding-top:2.8rem;
 	padding-bottom:2rem;
 }
+	
+.div_login  input[type=password], .div_login input[type=email]{
+  width:70%;
+ display:flex;
+ height: 4vh;
+	background: #e0dede;
+	color:#000000;
+	margin: 1rem auto;
+	padding:0.8rem;
+	border: none;
+	border-radius: 5px;
+	font-size:0.9rem;
+	display:block;
+	box-sizing: border-box; 
+
+
+}
+.div_login  label{
+margin:auto;
+display:flex;
+justify-content:left;
+padding-left:4.5rem;
+}
+
+.div_login input[type=submit]{
+	width:60%;
+	height:3rem;
+	background-image: linear-gradient(#660000, var(--gradient-last-color));
+	
+	margin-bottom: 1rem;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	display: block;
+	margin: 1em auto;
+}
+
 
 .div_user{
 	margin:auto;
-	width: 70%;
+	width: 50%;
 	display:flex;
 	border: none;
 	background-image: linear-gradient(#660000,var(--gradient-last-color));
@@ -459,45 +497,61 @@ programmazione.html
 	
 }
 
-input[type=text],[type=password],[type=email]{
-	width: 100%;
+.div_register{
+
+	margin:auto;
+	width: 50%;
+	display:flex;
+	justify-content:center;
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    padding-top:2.8rem;
+	padding-bottom:2rem;
+}
+.div_register input[type=text],.div_register input[type=password], .div_register input[type=email]{
+	width: 80%;
 	height: 4vh;
 	background: #e0dede;
+
 	color:#000000;
 	margin: 1rem auto;
-	padding: 1rem;
+	padding:0.8rem;
 	border: none;
 	border-radius: 5px;
 	font-size:0.9rem;
+	display:flex;
+	box-sizing: border-box; 
 	
-	    box-sizing: border-box; 
+	   
 }
 
 
 
 
-input[type=submit]{
+.div_register input[type=submit]{
 	width:70%;
 	height:3rem;
-	
-	/*display: block;*/
 	color: #fff;
 	background: #660000;
 	background-image: linear-gradient(#660000, var(--gradient-last-color));
-	
 	font-weight: bold;
-	margin-bottom: 20px;
+	margin-bottom: 1rem;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	float:right;
 }
+.div_register form{
+	width:90%;
+	
+}
+.div_register label{
+padding-left:2.5rem;
+	
+	    display: block;
+    font-size:0.8em;
+  
 
-
-
-
-
-
+}
 .select_date {
     background: none;
     padding: 0.4rem;
@@ -512,26 +566,6 @@ input[type=submit]{
 .select_date option{
     background: var(--primary-color);
 }
-.button_password_view{
-	background: url('lol.png') no-repeat;
-}
-.button_one:hover{
-	background: #b30000;
-}
-
-
-.col-25 {
-  float:left;
-  width: 25%;
-  
- 
-}
-
-.col-75 {
-  float:left;
-  width: 75%;
- 
-}
 .row:after{
 	
   content: "";
@@ -540,19 +574,55 @@ input[type=submit]{
 }
 
 @media screen and (max-width: 700px) {
-  input[type=submit]{
-    width: 100%;
+ .div_register input[type=submit] {
+    width:100%;
 	
     margin-top: 0;
   }
+  
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 320px) {
 	
+.div_register label,.div_login label{
+padding:0rem;
+font-size:6.5vw;
+}
 	
-	  .content.register,.div_user.register{
- width: 100%;
+}
+
+
+
+@media screen and (max-width: 800px) {
 	
+	 .div_register,.div_user,.div_login{
+ width:80%;
 	  }
+	  
+	  
+	  
+}
+
+@media screen and (max-width: 450px) {
+	
+	 .div_register,.div_user,.div_login{
+ width:100%;
+	  }
+	  
+	  
+	  
+}
+
+
+
+
+.link_button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-size:1.5rem;
+  text-decoration: underline;
+  cursor: pointer;
 }
 /*end*/
 

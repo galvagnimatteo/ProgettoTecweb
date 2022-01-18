@@ -224,7 +224,7 @@ a:visited:not(.carouselContainer a:visited){
 }
 
 /*codice per css con javascript disabilitato*/
-.no-js ul{
+.no-js.carouselContainer{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -253,17 +253,17 @@ a:visited:not(.carouselContainer a:visited){
     display: none;
 }
 
-.quickPurchaseContainer{
+.js .quickPurchaseContainer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     margin-top: 0.8rem;
 }
 
-.quickPurchaseContainer form{
+.js .quickPurchaseContainer form{
     display: flex;
     margin-bottom: 1rem;
 }
 
-.quickPurchaseContainer form select, .quickPurchaseContainer form button{
+.js .quickPurchaseContainer form select, .js .quickPurchaseContainer form button{
     background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
     font-size: 1.1rem;
     width: 25%;
@@ -274,31 +274,31 @@ a:visited:not(.carouselContainer a:visited){
     outline: 0;
 }
 
-.quickPurchaseContainer form select{
+.js .quickPurchaseContainer form select{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
 @media screen and (max-width: 880px) {
-    .quickPurchaseContainer form{
+    .js .quickPurchaseContainer form{
         flex-direction: column;
     }
 
-    .quickPurchaseContainer form select{
+    .js .quickPurchaseContainer form select{
         width: calc(100% - 1.5rem);
         margin-right: 1rem; /*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
     }
 
-    .quickPurchaseContainer form button{
+    .js .quickPurchaseContainer form button{
         width: calc(100% - 2rem);
     }
 }
 
-.quickPurchaseContainer form select option{
+.js .quickPurchaseContainer form select option{
     background: var(--primary-color);
 }
 
-.quickPurchaseContainer form button{
+.js .quickPurchaseContainer form button{
     border: 1px solid var(--secondary-color);
     cursor: pointer;
     margin-right: 1rem; /*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
@@ -307,9 +307,13 @@ a:visited:not(.carouselContainer a:visited){
 }
 
 @media (hover: hover) {
-    .quickPurchaseContainer form button:hover{
+    .js .quickPurchaseContainer form button:hover{
         background-color: var(--secondary-color);
     }
+}
+
+.no-js .quickPurchaseContainer{
+    display: none;
 }
 
 .cardsContainer{

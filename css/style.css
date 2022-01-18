@@ -684,6 +684,9 @@ input[type=submit]{
             left: 50%;
             opacity: 1;
         }
+        #social{
+            width:50%;
+        }
     }
 }
 

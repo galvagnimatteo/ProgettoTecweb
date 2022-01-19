@@ -354,11 +354,15 @@ a:visited:not(.carouselContainer a:visited){
 }
 
 .error{
-    padding-top: 1rem;
-    padding-left: 1rem;
+    padding: 1rem;
     color: var(--error-color);
+    font-size: 2rem;
 }
 
+.errorDescription{
+    padding-left: 1rem;
+    padding-bottom: 2rem;
+}
 
 .SRskip {/*per screen reader*/
     position: absolute;

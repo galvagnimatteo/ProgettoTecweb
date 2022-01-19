@@ -84,7 +84,8 @@
 
     }else{
 
-        $cards = '<p class="error">Nessun film trovato, ci scusiamo del disagio.</p>';
+        $cards = '<p class="error">Nessun film trovato.</p>
+                  <p class="errorDescription"> Non abbiamo trovato alcun film in programmazione, ci scusiamo per il disagio. </p>';
 
     }
 

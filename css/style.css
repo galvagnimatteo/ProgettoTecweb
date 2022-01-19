@@ -615,7 +615,11 @@ input[type=submit]{
 
 @keyframes slide_from_right {
     0% {
-        right: -25rem;
+        right: 0rem;
+        opacity: 0;
+    }
+	1% {
+        right: -15rem;
         opacity: 0;
     }
 
@@ -624,6 +628,7 @@ input[type=submit]{
         opacity: 1;
     }
 }
+
 
 #posizione {
     animation-name: materialize;
@@ -684,9 +689,9 @@ input[type=submit]{
             left: 50%;
             opacity: 1;
         }
-        #social{
-            width:50%;
-        }
+	#contatti{
+		width:50%;
+	}
     }
 }
 

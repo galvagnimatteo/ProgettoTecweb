@@ -33,7 +33,7 @@
             $description = $description . "...";
             $card_home_item = str_replace('<FILMDESCRIPTION>', $description, $card_home_item);
 
-            $card_home_item = str_replace('<LINK>', 'programmazione.php?' . $row["ID"], $card_home_item);
+            $card_home_item = str_replace('<LINK>', 'schedafilm.php?idfilm=' . $row["ID"], $card_home_item);
 
             $cards = $cards . $card_home_item;
 
@@ -62,70 +62,5 @@
 
     echo($document);
 
-
-/*
-
-//Query per dati film ----------------------------------------------
-
-
-            //Query per dati film ----------------------------------------------
-
-            $db->connect();
-
-            $preparedQuery = $db->getConnection()->prepare("SELECT * FROM CastFilm INNER JOIN Afferisce on (CastFilm.ID = Afferisce.IDCast) INNER JOIN Film on (Afferisce.IDFilm = Film.ID) WHERE Film.ID = ?");
-            $preparedQuery->bind_param('i', $row["ID"]);
-            $preparedQuery->execute();
-            $resultCast = $preparedQuery->get_result();
-
-            $db->disconnect();
-
-            $preparedQuery->close();
-
-            //------------------------------------------------------------------
-
-            $card_home_item = $card_home_template;
-
-            $card_home_item = str_replace('<FILMTITLE>', $row["Titolo"], $card_home_item);
-
-            $director = "";
-            $cast = "";
-
-            while($rowCast = $resultCast->fetch_assoc()) {
-
-                if($rowCast["Ruolo"] == "R"){
-
-                    if($director == ""){
-
-                        $director = $rowCast["Nome"] . " " . $rowCast["Cognome"];
-
-                    }else{
-
-                        $director = $director . ", " . $rowCast["Nome"] . " " . $rowCast["Cognome"];
-
-                    }
-
-                }else{
-
-                    if($cast == ""){
-
-                        $cast = $rowCast["Nome"] . " " . $rowCast["Cognome"];
-
-                    }else{
-
-                        $cast = $cast . ", " . $rowCast["Nome"] . " " . $rowCast["Cognome"];
-
-                    }
-                }
-
-            }
-
-            $card_home_item = str_replace('<FILMDIRECTOR>', $director, $card_home_item);
-            $card_home_item = str_replace('<FILMCAST>', $cast, $card_home_item);
-
-            $cards = $cards . $card_home_item;
-
-
-
-*/
 ?>
 

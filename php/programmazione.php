@@ -23,6 +23,7 @@
             $card_prog_item = str_replace('<FILMTITLE>', $row["Titolo"], $card_prog_item);
             $card_prog_item = str_replace('<FILMDIRECTOR>', "test", $card_prog_item);
             $card_prog_item = str_replace('<FILMCAST>', "test", $card_prog_item);
+			$card_prog_item = str_replace('<FILM-PAGE>', "schedafilm.php?idfilm=" . $row['ID'], $card_prog_item);
 
             $cards = $cards . $card_prog_item;
 

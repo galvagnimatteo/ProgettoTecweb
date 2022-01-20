@@ -43,6 +43,7 @@ $_SESSION['discard_after'] = $now + 30;
 	   
  if(isset($_GET['action']))
   {
+
 	  $action = $_GET['action'];
 	  
 	  if($action == 'login_page')
@@ -66,6 +67,7 @@ $_SESSION['discard_after'] = $now + 30;
 	{
 	  
 	include_once 'Users.php';
+
 	$Users=new Users();
 	$Users->insert();
 
@@ -104,11 +106,11 @@ $_SESSION['discard_after'] = $now + 30;
   {
 $home_content = file_get_contents('../html/area_utenti_register_content.html');  
 $document=str_replace('<LOGIN>', "Login" , $document);	
-  }
-	  
+  }	  
 	  
 	  
 	
 	$document = str_replace('<CONTENT>', $home_content, $document);
 	echo($document);
+
 ?>

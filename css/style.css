@@ -354,11 +354,15 @@ a:visited:not(.carouselContainer a:visited){
 }
 
 .error{
-    padding-top: 1rem;
-    padding-left: 1rem;
+    padding: 1rem;
     color: var(--error-color);
+    font-size: 2rem;
 }
 
+.errorDescription{
+    padding-left: 1rem;
+    padding-bottom: 2rem;
+}
 
 .SRskip {/*per screen reader*/
     position: absolute;
@@ -520,7 +524,7 @@ padding-left:4.5rem;
 	 padding-top:1.5rem;
     padding-bottom:1.5rem;
 	border-radius: 5px;
-	
+
 }
 
 .div_register{
@@ -547,7 +551,6 @@ padding-left:4.5rem;
 	display:flex;
 	box-sizing: border-box; 
 	
-	   
 }
 
 
@@ -556,9 +559,12 @@ padding-left:4.5rem;
 .div_register input[type=submit]{
 	width:70%;
 	height:3rem;
+
+	/*display: block;*/
 	color: #fff;
 	background: #660000;
 	background-image: linear-gradient(#660000, var(--gradient-last-color));
+
 	font-weight: bold;
 	margin-bottom: 1rem;
 	border: none;
@@ -586,23 +592,46 @@ padding-left:2.5rem;
 	margin-left: 0.5rem;
     border-radius: 8px;
 	font-size: 1.0rem;
-    
+
 }
 
 .select_date option{
     background: var(--primary-color);
 }
+
+.button_password_view{
+	background: url('lol.png') no-repeat;
+}
+.button_one:hover{
+	background: #b30000;
+}
+
+
+.col-25 {
+  float:left;
+  width: 25%;
+
+
+}
+
+.col-75 {
+  float:left;
+  width: 75%;
+
+}
+
 .row:after{
-	
+
   content: "";
   display: table;
   clear: both;
 }
 
 @media screen and (max-width: 700px) {
- .div_register input[type=submit] {
-    width:100%;
-	
+
+  input[type=submit]{
+    width: 100%;
+
     margin-top: 0;
   }
   
@@ -623,6 +652,7 @@ font-size:6.5vw;
 	
 	 .div_register,.div_user,.div_login{
  width:80%;
+
 	  }
 	  
 	  
@@ -685,7 +715,11 @@ font-size:6.5vw;
 
 @keyframes slide_from_right {
     0% {
-        right: -25rem;
+        right: 0rem;
+        opacity: 0;
+    }
+	1% {
+        right: -15rem;
         opacity: 0;
     }
 
@@ -694,6 +728,7 @@ font-size:6.5vw;
         opacity: 1;
     }
 }
+
 
 #posizione {
     animation-name: materialize;
@@ -736,6 +771,7 @@ font-size:6.5vw;
     margin-bottom: 0.5rem;
 }
 
+
 #posizione dd, #contatti dd, #social dd {
     flex-basis: 70%;
     flex-grow: 1;
@@ -754,6 +790,9 @@ font-size:6.5vw;
             left: 50%;
             opacity: 1;
         }
+	#contatti{
+		width:50%;
+	}
     }
 }
 
@@ -840,6 +879,7 @@ font-size:6.5vw;
   font-weight: 800;
 
 }
+
 
 @media (hover: hover) { /*da riunire tutte insieme le media query*/
 	#filmData form input[type=submit]:hover {

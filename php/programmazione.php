@@ -1,5 +1,6 @@
 <?php
-session_start();
+	session_start(); 
+
     include 'SingletonDB.php';
     include 'mostra_errori.php';
 
@@ -7,7 +8,7 @@ session_start();
     $programmazione_content = file_get_contents('../html/programmazione_content.html');
 
     $db = SingletonDB::getInstance();
-    $result = $db->executeQuery("SELECT * FROM Film"); //TODO fare la query completa
+    $result = $db->getConnection()->query("SELECT * FROM Film");
     $db->disconnect();
 
     $cards = "";
@@ -36,21 +37,25 @@ session_start();
 
     $programmazione_content = str_replace('<CARDS-PROG>', $cards, $programmazione_content);
 
+    $document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a>', $document);
     $document = str_replace('<CONTENT>', $programmazione_content, $document);
-	
+    $document = str_replace('<JAVASCRIPT-HEAD>', '', $document);
+    $document = str_replace('<JAVASCRIPT-BODY>', '', $document);
 	
 		if(isset(	$_SESSION['a'] ))
 	{
 		
 		$document=str_replace('<LOGIN>', $_SESSION['a'] , $document);
-		
+		$document=str_replace('<LINK>', './area_utenti.php?action=getProfile' , $document);
 		
 	}else{
 		
 		$document=str_replace('<LOGIN>', "Login" , $document);
+		$document=str_replace('<LINK>', './area_utenti.php?action=login_page' , $document);
 		 
 	}
 	
+    echo($document);
     echo($document);
 
 ?>

@@ -1,46 +1,49 @@
 ﻿<!DOCTYPE html>
 <html lang="it">
-    <head>
-        <meta charset="utf-8">
-        <title>Cinema $Nome</title>
-		<meta charset="utf-8">
-		<meta name="keywords" content="$Nome,Cinema,Film">
-		<meta name="description" content="$description">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/style.css">
+<head>
+    <meta charset="utf-8">
+    <title>PNG Cinema</title><!--da adattare alla pagina-->
+    <meta charset="utf-8">
+    <meta name="keywords" content="PNG Cinema, $keywords"><!--da adattare alla pagina-->
+    <meta name="description" content="$description"><!--da adattare alla pagina-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/style.css">
 
-        <script type="text/javascript" src="../js/carousel.js"> </script> <!-- Caricato prima del main.js perchè modifica la grafica della page -->
+    <JAVASCRIPT-HEAD>
 
-    </head>
+</head>
     <body class="no-js">
+        <a href="#ca" class="SRskip">salta al contenuto</a>
         <div class="headerWrapper">
-        	<header>
-                <h1> CINEMA </h1>
-        		<nav id="menu">
-        			<ul>
-        				<li><a href="./home.php" lang="en">Home</a></li>
-        				<li><a href="./contatti.php">Contatti</a></li>
-        				<li><a href="./programmazione.php">Programmazione</a></li>
-        				<li><a href="./info.php">Info e Costi</a></li>
-        				<li id="login"><a href="./area_utenti.php"><LOGIN></a></li>
-        			</ul>
-        		</nav>
-        	</header>
-
+            <header>
+                <div id="test">
+                    <h1> CINEMA </h1>
+                    <a href="#" id="menubutton" onclick="togglemenu()">&#9636;</a>
+                </div>
+                <nav>
+                    <ul id="menu" class="closedMenu">
+                        <li><a href="./home.php" lang="en">Home</a></li><!--da adattare alla pagina disattivando il link alla pagina corrente-->
+                        <li><a href="./contatti.php">Contatti</a></li>
+                        <li><a href="./programmazione.php">Programmazione</a></li>
+                        <li><a href="./info.php">Info e Costi</a></li>
+                        <li id="loginLink"><a href="<LINK>" > <LOGIN></a></li>
+                    </ul>
+                </nav>
+            </header>
             <div class="breadcrumbs">
-                <p> Ti trovi in: <a href="#">Home</a> /</p>
+                <p> Ti trovi in: <BREADCRUMB> </p>
             </div>
-
         </div>
-
         <CONTENT>
 
         <footer>
-            <p> <a href="./Contatti.html#contatti"> contatti</a> | <span lang="en"> copyright 2022 </span> </p>
+            <p> <a href="./contatti.php">Contattaci</a> | <span lang="en"> Copyright 2022 </span> </p>
         </footer>
 
+        <script type="text/javascript" src="../js/checkIfJs.js"> </script>
+        <script type="text/javascript" src="../js/menu.js"> </script>
+        <JAVASCRIPT-BODY>
+
+
     </body>
-
-    <script type="text/javascript" src="../js/main.js"> </script>
-
 </html>

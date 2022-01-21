@@ -32,6 +32,8 @@
 			'Scheda informativa del film: ' . $dataFilm['Titolo'], $document);
 			$document = str_replace('<BREADCRUMB>', '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' . $dataFilm['ID'] . '">Scheda Film: ' . $dataFilm['Titolo'] . '</a>', $document);
 
+			$document = str_replace('<JAVASCRIPT-HEAD>', '', $document);
+			$document = str_replace('<JAVASCRIPT-BODY>', '', $document);
 
 			$schedafilm_content = str_replace('<FILM-TITLE>', $dataFilm['Titolo'], $schedafilm_content);
 			$schedafilm_content = str_replace('<FILM-IMG>', '<img src=\''. $dataFilm['SrcImg'] .' \' alt=\'' . $dataFilm['AltImg'] . '\'/>', $schedafilm_content);
@@ -39,10 +41,10 @@
 			$schedafilm_content = str_replace('<RUNNING-TIME>', $dataFilm['Durata'] . ' min' , $schedafilm_content);
 			$schedafilm_content = str_replace('<FILM-DIRECTOR>', $cast['R'], $schedafilm_content);
 			$schedafilm_content = str_replace('<FILM-CAST>',  $cast['A'], $schedafilm_content);
+			$schedafilm_content = str_replace('<FILM-DESC>',  $dataFilm["Descrizione"], $schedafilm_content);
 
 			$document = str_replace('<CONTENT>', $schedafilm_content, $document);
-			$document = str_replace('<JAVASCRIPT-HEAD>', '', $document);
-			$document = str_replace('<JAVASCRIPT-BODY>', '', $document);
+
 
 			echo $document;
 

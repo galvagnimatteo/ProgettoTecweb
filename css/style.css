@@ -803,6 +803,15 @@ font-size:6.5vw;
     animation-duration: 2s;
     animation-delay: 2s;
     animation-fill-mode: both;
+    text-align: right;
+}
+
+.contactsParagraph{
+    margin: 1rem;
+}
+
+#contatti h2{
+    text-align: right;
 }
 
 #social {

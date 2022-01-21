@@ -80,7 +80,7 @@ nav ul {
 }
 
 @media (max-width: 865px) {
-    #test{
+    #titleWrapper{
         display: flex;
         flex-direction: row;
     }
@@ -860,7 +860,7 @@ font-size:6.5vw;
 
 #filmPageTitle { text-align:center;}
 
-#test{
+#filmPageCard{
     margin: 2rem;
     border-radius: 1rem;
     overflow:hidden;
@@ -897,16 +897,11 @@ font-size:6.5vw;
 
 }
 
-
-#filmDataContainer img {
-	max-width: 50%;
-}
-
-#test form{
+#filmPageCard form{
     margin: 1rem;
 }
 
-#test form input[type=submit] {
+#filmPageCard form input[type=submit] {
   background-color: var(--primary-color);
   border: 2px solid var(--secondary-color);
   color: #fff;
@@ -923,7 +918,7 @@ font-size:6.5vw;
 
 
 @media (hover: hover) { /*da riunire tutte insieme le media query*/
-	#test form input[type=submit]:hover {
+	#filmPageCard form input[type=submit]:hover {
 		text-decoration: underline;
 		background-color: var(--secondary-color);
 	}
@@ -932,7 +927,7 @@ font-size:6.5vw;
 
 @media screen and (max-width: 900px) {
 
-    #test{
+    #filmPageCard{
         display: flex;
         flex-direction: column;
         margin:1rem;
@@ -945,20 +940,31 @@ font-size:6.5vw;
 	#filmDataContainer img {
 		margin: auto;
 		margin-bottom: 1rem;
-        max-width: 100%;
+        width: 50%;
 	}
 
 }
 
 
-#test form fieldset {
+@media screen and (max-width: 450px) {
+
+	#filmDataContainer img {
+		margin: auto;
+        width: 100%;
+	}
+
+}
+
+
+
+#filmPageCard form fieldset {
 	margin-top: 1.5rem;
 	border: 0;
 	border-top: 2px solid var(--secondary-color);
 	/*border-left: 2px solid var(--secondary-color);*/
 }
 
-#test form legend {
+#filmPageCard form legend {
 	padding: 0.3rem;
 	margin-left: 1rem;
 }

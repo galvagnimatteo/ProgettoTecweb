@@ -406,7 +406,6 @@ footer{
 programmazione.html
 */
 
-
 .cardsContainer-prog {
 	padding-top: 0.5rem;
 	font-size: 1.3rem;
@@ -415,11 +414,15 @@ programmazione.html
 .card {
 	display:flex;
 	align-items: flex-start;
-	border: 2px solid;
-    border-color: var(--secondary-color);
-    border-radius: 1rem;
-    margin: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 	overflow: hidden;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.cardContentText dd{
+    margin:0.5rem;
 }
 
 .card dt {
@@ -433,16 +436,16 @@ programmazione.html
 }
 
 .card img {
-	margin: 1rem;
-	width: 23%;
-	height: 23%;
+	width: 30%;
 }
 
 .card p {
 	margin: 1rem 0rem;
 }
 
-
+.filmTitle{
+    margin-bottom: 1rem;
+}
 
 .card form input[type=submit] {
   background-color: var(--primary-color);
@@ -458,12 +461,69 @@ programmazione.html
   font-weight: 800;
 }
 
+.card button{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    background-color: transparent;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+@media (hover: hover) {
+    .card button:hover{
+        background-color: var(--secondary-color);
+    }
+
+}
+
 @media (hover: hover) { /*da riunire tutte insieme le media query*/
 	.card form input[type=submit]:hover {
 		text-decoration: underline;
 		background-color: var(--secondary-color);
 	}
+
 }
+
+@media screen and (max-width: 700px) {
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        border-color: var(--secondary-color);
+        border-radius: 10px;
+    }
+
+    .card img{
+        width: 50%;
+        margin: auto;
+    }
+
+}
+
+@media screen and (max-width: 475px) {
+
+    .card img{
+        width: 100%;
+    }
+
+    .card button{
+        margin-left: 0;
+    }
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        border-color: var(--secondary-color);
+        border-radius: 10px;
+    }
+
+}
+
 
 
 /*log/reg*/

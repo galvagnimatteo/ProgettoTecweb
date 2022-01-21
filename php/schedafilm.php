@@ -16,6 +16,11 @@
 		$preparedQuery2->execute();
 		$result2 = $preparedQuery2->get_result();
 
+		$preparedQuery3 = $db->getConnection()->prepare('SELECT * FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=?');
+		$preparedQuery3->bind_param("i", $_GET['idfilm']);
+		$preparedQuery3->execute();
+		$result3 = $preparedQuery3->get_result();
+
 		$db->disconnect();
 
 		if (!empty($result1) && $result1->num_rows > 0 && !empty($result2) && $result2->num_rows > 0) { //si assume che se c'è un film ha un cast e un direttore, per questo il controllo unico
@@ -43,11 +48,36 @@
 			$schedafilm_content = str_replace('<FILM-CAST>',  $cast['A'], $schedafilm_content);
 			$schedafilm_content = str_replace('<FILM-DESC>',  $dataFilm["Descrizione"], $schedafilm_content);
 
+			if(!empty($result3) && $result3->num_rows){
+
+				$hour_field_template = file_get_contents('../html/items/hour-field.html');
+				$hour_fields = "";
+
+				while($row = $result3->fetch_assoc()){
+
+					$hour_field = $hour_field_template;
+					$hour_field = str_replace('<DATA>',  $row["Data"], $hour_field);
+
+					$hour_field = str_replace('<HOUR>',  $row["Orario"], $hour_field); //TODO ci sono più orari per data, va modificato il db non essendo in forma normale
+					$hour_fields .= $hour_field;
+
+
+				}
+
+				$schedafilm_content = str_replace('<HOUR-FIELDS>',  $hour_fields, $schedafilm_content);
+
+			} //else nessun problema, il film non ha programmazioni in corso
+
+
+
 			$document = str_replace('<CONTENT>', $schedafilm_content, $document);
 
 
 			echo $document;
 
+		}else{
+			header("Location: 404.php");
+			die();
 		}
 
 	}else{

@@ -3,27 +3,50 @@
 
     include 'SingletonDB.php';
     include 'mostra_errori.php';
+	include 'utils/createCastStr.php';
 
     $document = file_get_contents('../html/template.html');
     $programmazione_content = file_get_contents('../html/programmazione_content.html');
 
     $db = SingletonDB::getInstance();
-    $result = $db->getConnection()->query("SELECT * FROM Film");
+    $filmsResult = $db->getConnection()->query("SELECT * FROM Film ORDER BY DataUscita DESC");
     $db->disconnect();
 
     $cards = "";
 
-    if(!empty($result) && $result->num_rows > 0){
+    if(!empty($filmsResult) && $filmsResult->num_rows > 0){
 
         $card_prog_template = file_get_contents('../html/items/card-prog.html');
 
-        while($row = $result->fetch_assoc()) {
+        while($row = $filmsResult->fetch_assoc()) {
 
-            $card_prog_item = $card_prog_template;
+			$card_prog_item = $card_prog_template;
+
+			$db->connect();
+			$preparedQuery = $db->getConnection()->prepare('SELECT * FROM CastFilm JOIN Afferisce ON CastFilm.ID = Afferisce.IDCast WHERE Afferisce.IDFilm =?');
+			$preparedQuery->bind_param("i", $row["ID"]);
+			$preparedQuery->execute();
+			$castResult = $preparedQuery->get_result();
+			$db->disconnect();
+
+			if(!empty($castResult) && $castResult->num_rows > 0){
+
+				$cast = createCastStr($castResult);
+
+				$card_prog_item = str_replace('<FILMDIRECTOR>', $cast['R'], $card_prog_item);
+	            $card_prog_item = str_replace('<FILMCAST>', $cast['A'], $card_prog_item);
+
+			}
+
+			$description = $row["Descrizione"];
+            $description = substr($description, 0, 200);
+            $description = $description . "...";
 
             $card_prog_item = str_replace('<FILMTITLE>', $row["Titolo"], $card_prog_item);
-            $card_prog_item = str_replace('<FILMDIRECTOR>', "test", $card_prog_item);
-            $card_prog_item = str_replace('<FILMCAST>', "test", $card_prog_item);
+			$card_prog_item = str_replace('<FILMGENRE>', $row["Genere"], $card_prog_item);
+			$card_prog_item = str_replace('<FILMLENGTH>', $row["Durata"] . "'", $card_prog_item);
+			$card_prog_item = str_replace('<FILMDESCRIPTION>', $description, $card_prog_item);
+
 			$card_prog_item = str_replace('<FILM-PAGE>', "schedafilm.php?idfilm=" . $row['ID'], $card_prog_item);
 
             $cards = $cards . $card_prog_item;

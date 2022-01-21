@@ -21,7 +21,7 @@
     //Query per inserimento film (anche acquisto rapido)------------------------
 
     $db = SingletonDB::getInstance();
-    $resultFilms = $db->getConnection()->query("SELECT * FROM Film ORDER BY DataUscita");
+    $resultFilms = $db->getConnection()->query("SELECT * FROM Film ORDER BY DataUscita DESC");
     $db->disconnect();
 
     //--------------------------------------------------------------------------
@@ -70,7 +70,7 @@
 
     $document = str_replace('<CONTENT>', $home_content, $document);
 
-    	
+
 		if(isset(	$_SESSION['a'] ))
 	{
 

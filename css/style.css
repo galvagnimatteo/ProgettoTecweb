@@ -652,7 +652,7 @@ input[type=submit]{
 
 #contatti {
     position: relative;
-    animation-name: slide_from_left;
+    animation-name: materialize;
     animation-duration: 2s;
     animation-delay: 2s;
     animation-fill-mode: both;
@@ -660,7 +660,7 @@ input[type=submit]{
 
 #social {
     position: relative;
-    animation-name: slide_from_right;
+    animation-name: materialize;
     animation-duration: 2s;
     animation-delay: 4s;
     animation-fill-mode: both;
@@ -775,20 +775,14 @@ input[type=submit]{
     }
 
     @media (min-width: 49rem) {
-        @keyframes slide_from_left {
-            0% {
-                left: -25rem;
-                opacity: 0;
-            }
-
-            100% {
-                left: 50%;
-                opacity: 1;
-            }
+        #contatti {
+            width: 50%;
+            left: 50%;
+            margin-left:0;
+            margin-right:0;
+            padding-left:0;
+            padding-right:0;
         }
-	#contatti{
-		width:50%;
-	}
     }
 /*}*/
 

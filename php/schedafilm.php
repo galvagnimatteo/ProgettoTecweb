@@ -16,7 +16,7 @@
 		$preparedQuery2->execute();
 		$result2 = $preparedQuery2->get_result();
 
-		$preparedQuery3 = $db->getConnection()->prepare('SELECT * FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=?');
+		$preparedQuery3 = $db->getConnection()->prepare('SELECT * FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? ORDER BY Data');
 		$preparedQuery3->bind_param("i", $_GET['idfilm']);
 		$preparedQuery3->execute();
 		$result3 = $preparedQuery3->get_result();
@@ -50,28 +50,41 @@
 
 			if(!empty($result3) && $result3->num_rows){
 
-				$hour_field_template = file_get_contents('../html/items/hour-field.html');
-				$hour_fields = "";
+				$filmscreeningfield_template = file_get_contents('../html/items/filmscreeningfield.html');
+				$filmscreeningfields = "";
 
 				while($row = $result3->fetch_assoc()){
 
-					$hour_field = $hour_field_template;
-					$hour_field = str_replace('<DATA>',  $row["Data"], $hour_field);
+					$filmscreeningfield = $filmscreeningfield_template;
+					$filmscreeningfield = str_replace('<DATA>',  $row["Data"], $filmscreeningfield);
 
-					$hour_field = str_replace('<HOUR>',  $row["Orario"], $hour_field); //TODO ci sono più orari per data, va modificato il db non essendo in forma normale
-					$hour_fields .= $hour_field;
+					$db->connect();
+					$preparedQuery4 = $db->getConnection()->prepare('SELECT * FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) INNER JOIN Orario ON (Proiezione.ID = Orario.IDProiezione) WHERE Film.ID = ? AND Proiezione.Data = ?');
+					$preparedQuery4->bind_param("is", $_GET['idfilm'], $row["Data"]);
+					$preparedQuery4->execute();
+					$result4 = $preparedQuery4->get_result();
+					$db->disconnect();
 
+					$hour_fields = "";
+
+					while($orarioRow = $result4->fetch_assoc()){ //si assume che se c'è una data di proiezione ci siano anche degli orari quindi nessun controllo necessario
+
+						$hour_field = '<input type="submit" name="' . $orarioRow["Ora"] . '" value="' . $orarioRow["Ora"] . '">';
+						$hour_fields .= $hour_field;
+
+					}
+
+					$filmscreeningfield = str_replace('<HOURS-INPUTS>',  $hour_fields, $filmscreeningfield);
+
+					$filmscreeningfields .= $filmscreeningfield;
 
 				}
 
-				$schedafilm_content = str_replace('<HOUR-FIELDS>',  $hour_fields, $schedafilm_content);
+				$schedafilm_content = str_replace('<SCREENING-FIELDS>',  $filmscreeningfields, $schedafilm_content);
 
 			} //else nessun problema, il film non ha programmazioni in corso
 
-
-
 			$document = str_replace('<CONTENT>', $schedafilm_content, $document);
-
 
 			echo $document;
 

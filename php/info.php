@@ -24,6 +24,8 @@
 
 	}
 
+	$document = str_replace('<CONTENT>', $home_content, $document);
+
     echo($document);
 
 ?>

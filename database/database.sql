@@ -35,6 +35,13 @@ CREATE TABLE Proiezione (
 
 );
 
+CREATE TABLE Orario (
+	Ora TIME NOT NULL,
+	IDProiezione INT NOT NULL,
+	PRIMARY KEY (Ora, IDProiezione),
+	FOREIGN KEY(IDProiezione) REFERENCES Proiezione(ID) ON DELETE CASCADE
+);
+
 CREATE TABLE Utente (
 	ID INT NOT NULL AUTO_INCREMENT,
 	DataNascita DATE NOT NULL,
@@ -51,9 +58,10 @@ CREATE TABLE Prenotazione (
 	NumeroPersone SMALLINT NOT NULL,
 	IDUtente INT NOT NULL,
 	IDProiezione INT NOT NULL,
+	OraProiezione TIME NOT NULL,
 	PRIMARY KEY (ID),
 	FOREIGN KEY(IDUtente) REFERENCES Utente(ID) ON DELETE CASCADE,
-	FOREIGN KEY(IDProiezione) REFERENCES Proiezione(ID) ON DELETE CASCADE
+	FOREIGN KEY(IDProiezione, OraProiezione) REFERENCES Orario(IDProiezione, Ora) ON DELETE CASCADE
 );
 
 CREATE TABLE Partecipa (
@@ -61,9 +69,11 @@ CREATE TABLE Partecipa (
 	FilaPosto CHAR(1) NOT NULL,
 	NumeroSala SMALLINT NOT NULL,
 	IDPrenotazione INT NOT NULL,
-	PRIMARY KEY (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione),
+	OraProiezione TIME NOT NULL,
+	PRIMARY KEY (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione, OraProiezione),
 	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala)
 	REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE
+	FOREIGN KEY(IDProiezione, OraProiezione) REFERENCES Prenotazione(IDProiezione, OraProiezione) ON DELETE CASCADE
 );
 
 CREATE TABLE CastFilm (
@@ -85,9 +95,4 @@ CREATE TABLE Afferisce (
 	FOREIGN KEY (IDCast) REFERENCES CastFilm(ID) ON DELETE CASCADE
 );
 
-CREATE TABLE Orario (
-	Ora TIME NOT NULL,
-	IDProiezione INT NOT NULL,
-	PRIMARY KEY (Ora, IDProiezione),
-	FOREIGN KEY(IDProiezione) REFERENCES Proiezione(ID) ON DELETE CASCADE
-);
+

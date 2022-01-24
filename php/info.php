@@ -16,7 +16,7 @@ $document = str_replace(
 );
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / <a href="info.php">Info e Costi</a>',
+    '<a href="home.php">Home</a> / Info e Costi',
     $document
 );
 

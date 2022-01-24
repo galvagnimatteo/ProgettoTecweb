@@ -69,11 +69,10 @@ CREATE TABLE Partecipa (
 	FilaPosto CHAR(1) NOT NULL,
 	NumeroSala SMALLINT NOT NULL,
 	IDPrenotazione INT NOT NULL,
-	OraProiezione TIME NOT NULL,
 	PRIMARY KEY (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione, OraProiezione),
 	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala)
 	REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE
-	FOREIGN KEY(IDProiezione, OraProiezione) REFERENCES Prenotazione(IDProiezione, OraProiezione) ON DELETE CASCADE
+	FOREIGN KEY(IDPrenotazione) REFERENCES Prenotazione(ID) ON DELETE CASCADE
 );
 
 CREATE TABLE CastFilm (

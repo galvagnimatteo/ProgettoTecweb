@@ -404,16 +404,16 @@ VALUES
 (3, '1995-07-04', 'Gino', 'fsdao', 'asdfg3', 'njaoag123', 'aasra@grim.com'),
 (4, '1980-02-08', 'Gino', 'Ginfetto', 'asdfg4', 'nuu5ag', 'atrtre@grim.com');
 
-INSERT INTO Prenotazione(ID, NumeroPersone, IDUtente, IDProiezione)
+INSERT INTO Prenotazione(ID, NumeroPersone, IDUtente, IDProiezione, OraProiezione)
 VALUES
-(1, 4, 2, 2),
-(2, 2, 3, 1),
-(3, 3, 4, 3),
-(4, 4, 2, 3),
-(5, 3, 4, 10),
-(6, 2, 1, 10),
-(7, 2, 2, 11),
-(8, 4, 3, 13);
+(1, 4, 2, 2, '21:30:00'),
+(2, 2, 3, 1, '17:30:00'),
+(3, 3, 4, 3, '21:30:00'),
+(4, 4, 2, 3, '21:30:00'),
+(5, 3, 4, 10, '21:30:00'),
+(6, 2, 1, 10, '21:30:00'),
+(7, 2, 2, 11, '17:30:00'),
+(8, 4, 3, 13, '16:00:00');
 
 INSERT INTO Partecipa (FilaPosto, NumeroPosto, NumeroSala, IDPrenotazione)
 VALUES

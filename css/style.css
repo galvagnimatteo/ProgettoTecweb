@@ -80,7 +80,7 @@ nav ul {
 }
 
 @media (max-width: 865px) {
-    #test{
+    #titleWrapper{
         display: flex;
         flex-direction: row;
     }
@@ -397,6 +397,7 @@ footer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));/**/
     width: calc(100% - 2rem);
     padding: 1rem;
+
 }
 
 
@@ -404,7 +405,6 @@ footer{
 
 programmazione.html
 */
-
 
 .cardsContainer-prog {
 	padding-top: 0.5rem;
@@ -414,11 +414,15 @@ programmazione.html
 .card {
 	display:flex;
 	align-items: flex-start;
-	border: 2px solid;
-    border-color: var(--secondary-color);
-    border-radius: 1rem;
-    margin: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 	overflow: hidden;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.cardContentText dd{
+    margin:0.5rem;
 }
 
 .card dt {
@@ -432,16 +436,16 @@ programmazione.html
 }
 
 .card img {
-	margin: 1rem;
-	width: 23%;
-	height: 23%;
+	width: 30%;
 }
 
 .card p {
 	margin: 1rem 0rem;
 }
 
-
+.filmTitle{
+    margin-bottom: 1rem;
+}
 
 .card form input[type=submit] {
   background-color: var(--primary-color);
@@ -457,12 +461,69 @@ programmazione.html
   font-weight: 800;
 }
 
+.card button{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    background-color: transparent;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+@media (hover: hover) {
+    .card button:hover{
+        background-color: var(--secondary-color);
+    }
+
+}
+
 @media (hover: hover) { /*da riunire tutte insieme le media query*/
 	.card form input[type=submit]:hover {
 		text-decoration: underline;
 		background-color: var(--secondary-color);
 	}
+
 }
+
+@media screen and (max-width: 700px) {
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        border-color: var(--secondary-color);
+        border-radius: 10px;
+    }
+
+    .card img{
+        width: 50%;
+        margin: auto;
+    }
+
+}
+
+@media screen and (max-width: 475px) {
+
+    .card img{
+        width: 100%;
+    }
+
+    .card button{
+        margin-left: 0;
+    }
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        border-color: var(--secondary-color);
+        border-radius: 10px;
+    }
+
+}
+
 
 
 /*log/reg*/
@@ -476,7 +537,7 @@ programmazione.html
     padding-top:2.8rem;
 	padding-bottom:2rem;
 }
-	
+
 .div_login  input[type=password], .div_login input[type=email]{
   width:70%;
  display:flex;
@@ -489,7 +550,7 @@ programmazione.html
 	border-radius: 5px;
 	font-size:0.9rem;
 	display:block;
-	box-sizing: border-box; 
+	box-sizing: border-box;
 
 
 }
@@ -504,7 +565,7 @@ padding-left:4.5rem;
 	width:60%;
 	height:3rem;
 	background-image: linear-gradient(#660000, var(--gradient-last-color));
-	
+
 	margin-bottom: 1rem;
 	border: none;
 	border-radius: 5px;
@@ -549,8 +610,8 @@ padding-left:4.5rem;
 	border-radius: 5px;
 	font-size:0.9rem;
 	display:flex;
-	box-sizing: border-box; 
-	
+	box-sizing: border-box;
+
 }
 
 
@@ -574,14 +635,14 @@ padding-left:4.5rem;
 }
 .div_register form{
 	width:90%;
-	
+
 }
 .div_register label{
 padding-left:2.5rem;
-	
+
 	    display: block;
     font-size:0.8em;
-  
+
 
 }
 .select_date {
@@ -634,39 +695,39 @@ padding-left:2.5rem;
 
     margin-top: 0;
   }
-  
+
 }
 
 @media screen and (max-width: 320px) {
-	
+
 .div_register label,.div_login label{
 padding:0rem;
 font-size:6.5vw;
 }
-	
+
 }
 
 
 
 @media screen and (max-width: 800px) {
-	
+
 	 .div_register,.div_user,.div_login{
  width:80%;
 
 	  }
-	  
-	  
-	  
+
+
+
 }
 
 @media screen and (max-width: 450px) {
-	
+
 	 .div_register,.div_user,.div_login{
  width:100%;
 	  }
-	  
-	  
-	  
+
+
+
 }
 
 
@@ -738,15 +799,24 @@ font-size:6.5vw;
 
 #contatti {
     position: relative;
-    animation-name: slide_from_left;
+    animation-name: materialize;
     animation-duration: 2s;
     animation-delay: 2s;
     animation-fill-mode: both;
+    text-align: right;
+}
+
+.contactsParagraph{
+    margin: 1rem;
+}
+
+#contatti h2{
+    text-align: right;
 }
 
 #social {
     position: relative;
-    animation-name: slide_from_right;
+    animation-name: materialize;
     animation-duration: 2s;
     animation-delay: 4s;
     animation-fill-mode: both;
@@ -786,13 +856,58 @@ font-size:6.5vw;
             opacity: 0;
         }
 
-        100% {
+
+    #posizione dt, #contatti dt, #social dt {
+        font-weight: bold;
+        grid-column: 1;
+    }
+
+    #posizione dd, #contatti dd, #social dd {
+        grid-column: 2;
+    }
+}*/
+
+/*@supports not (display: grid) {*/
+    body {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .contactpage {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #posizione dl, #contatti dl, #social dl {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    #posizione dt, #contatti dt, #social dt {
+        flex-basis: 20%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #posizione dd, #contatti dd, #social dd {
+        flex-basis: 70%;
+        flex-grow: 1;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 49rem) {
+        #contatti {
+            width: 50%;
             left: 50%;
-            opacity: 1;
+            margin-left:0;
+            margin-right:0;
+            padding-left:0;
+            padding-right:0;
         }
-	#contatti{
-		width:50%;
-	}
     }
 }
 
@@ -814,26 +929,24 @@ font-size:6.5vw;
 
 #filmPageTitle { text-align:center;}
 
+#filmPageCard{
+    margin: 2rem;
+    border-radius: 1rem;
+    overflow:hidden;
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));/**/
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
 #filmDataContainer {
 	display:flex;
 	align-items: flex-start;
-	margin: 1rem;
-	/*border: 2px solid var(--secondary-color);*/
-	border-radius: 1rem;
-	overflow:hidden;
-	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));/**/
-
-
 }
+
 #filmData {
-	margin-left: 1rem;
-
-
+	margin: 0.5rem;
 	padding: 0.5rem;
 	font-size: 1.2rem;
-
-
-
 }
 
 #filmData dt {
@@ -853,19 +966,11 @@ font-size:6.5vw;
 
 }
 
-
-#filmDataContainer img {
-	max-width: 50%;
-
+#filmPageCard form{
+    margin: 1rem;
 }
 
-
-#filmData form {
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
-}
-
-#filmData form input[type=submit] {
+#filmPageCard form input[type=submit] {
   background-color: var(--primary-color);
   border: 2px solid var(--secondary-color);
   color: #fff;
@@ -882,14 +987,21 @@ font-size:6.5vw;
 
 
 @media (hover: hover) { /*da riunire tutte insieme le media query*/
-	#filmData form input[type=submit]:hover {
+	#filmPageCard form input[type=submit]:hover {
 		text-decoration: underline;
 		background-color: var(--secondary-color);
 	}
 }
 
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 900px) {
+
+    #filmPageCard{
+        display: flex;
+        flex-direction: column;
+        margin:1rem;
+    }
+
 	#filmDataContainer {
 		flex-direction: column;
 	}
@@ -897,18 +1009,31 @@ font-size:6.5vw;
 	#filmDataContainer img {
 		margin: auto;
 		margin-bottom: 1rem;
+        width: 50%;
 	}
+
 }
 
 
-#filmData form fieldset {
+@media screen and (max-width: 450px) {
+
+	#filmDataContainer img {
+		margin: auto;
+        width: 100%;
+	}
+
+}
+
+
+
+#filmPageCard form fieldset {
 	margin-top: 1.5rem;
 	border: 0;
 	border-top: 2px solid var(--secondary-color);
 	/*border-left: 2px solid var(--secondary-color);*/
 }
 
-#filmData form legend {
+#filmPageCard form legend {
 	padding: 0.3rem;
 	margin-left: 1rem;
 }

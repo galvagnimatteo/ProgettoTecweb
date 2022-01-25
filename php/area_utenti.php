@@ -17,7 +17,7 @@ $document = str_replace(
     '<a href="home.php">Home</a> / <a href="area_utenti.php">Area Utenti</a>',
     $document
 );
-$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
+$document = str_replace("<JAVASCRIPT-HEAD>", '<script type="text/javascript" src="../js/controls.js"> </script>', $document);
 $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 
 if (isset($_SESSION["a"])) {

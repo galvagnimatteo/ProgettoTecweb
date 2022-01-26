@@ -3,7 +3,7 @@
 	Create your account
 </div>
 <div class="div_register">
-	<form action="../php/area_utenti.php?action=register_user" method="post" onsubmit="return registerControls()">
+	<form action="../php/area_utenti.php?action=register_user" method="post" onsubmit="">
 		<div class="row">
 			<div class="col_25">
 				<label for="username_register"><span xml:lang="en">Username</span></label>
@@ -46,7 +46,7 @@
 		</div>
 		<div class="row">
 			<div class="col_25">
-				<label for="password_login_confirm"><span xml:lang="en">Password Confirmation</span></label>
+				<label for="pass_register_confirm"><span xml:lang="en">Password Confirmation</span></label>
 			</div>
 			<div class="col_75">
 				<input id="password_confirm" type="password" placeholder=" Repeat Password" name="pass_register_confirm"  required>
@@ -111,7 +111,7 @@
 			</select>
 		</div>
 		<div class="row">
-			<p id="errorMessage"></p>
+			<p id="errorMessage"> <ERRORMESSAGE> </p>
 		</div>
 		<div class="row">
 			<input type="submit" value="Confirm Registration" >

@@ -1,5 +1,6 @@
 <?php
 require_once "SingletonDB.php";
+require_once "utils/controls.php";
 
 class Users
 {
@@ -10,35 +11,45 @@ class Users
             isset($_POST["username_register"]) &&
             isset($_POST["password_register"]) &&
             isset($_POST["email_register"]) &&
-            isset($_POST["surname_register"])
+            isset($_POST["surname_register"]) &&
+            isset($_POST["pass_register_confirm"])
         ) {
-            $db = SingletonDB::getInstance();
-
-            $query =
-                "INSERT INTO utente ( username,email,nome, cognome,password) VALUES (?,?,?,?,?)";
-            $preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param(
-                "sssss",
-                $username,
-                $email,
-                $name,
-                $surname,
-                $password
-            );
 
             $username = $_POST["username_register"];
             $password = $_POST["password_register"];
             $name = $_POST["name_register"];
             $surname = $_POST["surname_register"];
             $email = $_POST["email_register"];
+            $confirm_password = $_POST["pass_register_confirm"];
 
-            $_SESSION["a"] = $username;
+            $result = registerControls($username, $name, $surname, $email, $password, $confirm_password);
 
-            $preparedQuery->execute();
-            $db->disconnect();
-            $preparedQuery->close();
+            if($result == "OK"){
 
-            header("location:home.php");
+                $db = SingletonDB::getInstance();
+
+                $query =
+                    "INSERT INTO utente ( username,email,nome, cognome,password) VALUES (?,?,?,?,?)";
+                $preparedQuery = $db->getConnection()->prepare($query);
+                $preparedQuery->bind_param(
+                    "sssss",
+                    $username,
+                    $email,
+                    $name,
+                    $surname,
+                    $password
+                );
+
+                $_SESSION["a"] = $username;
+
+                $preparedQuery->execute();
+                $db->disconnect();
+                $preparedQuery->close();
+
+            }
+
+            return $result;
+
         }
     }
 

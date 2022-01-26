@@ -12,6 +12,7 @@ $_SESSION["discard_after"] = $now + 30;
 
 $document = file_get_contents("../html/template.html"); //load template
 $home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
+
 $document = str_replace(
     "<BREADCRUMB>",
     '<a href="home.php">Home</a> / <a href="area_utenti.php">Area Utenti</a>',
@@ -57,7 +58,18 @@ if (isset($_GET["action"])) {
         include_once "Users.php";
 
         $Users = new Users();
-        $Users->insert();
+        $result = $Users->insert();
+
+        if($result == "OK"){
+
+            header("location:home.php");
+
+        }else{
+
+            //display error in result
+            $home_content = str_replace("<ERRORMESSAGE>", $result, $home_content);
+
+        }
     }
 
     if ($action == "search") {
@@ -84,6 +96,7 @@ if (isset($_GET["action"])) {
     $document = str_replace("<LOGIN>", "Login", $document);
 }
 
+$home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancora presente <errormessage> viene tolto, non funziona se non presente (già sostituito con errore)
 $document = str_replace("<CONTENT>", $home_content, $document);
 echo $document;
 

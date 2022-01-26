@@ -614,7 +614,11 @@ padding-left:4.5rem;
 
 }
 
-
+#errorMessage{
+    color: var(--error-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
 
 
 .div_register input[type=submit]{

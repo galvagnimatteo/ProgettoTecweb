@@ -1,0 +1,40 @@
+﻿
+        
+    
+
+	
+	
+	<STATUS>
+     	 
+	<div class="insert_movie">
+	
+	
+	
+		<form action="../php/inserimento_film.php?action=insert" method="post">
+
+			<label for="Titolo"><span xml:lang="en">Titolo</span></label>
+			<input type="text" placeholder="Titolo" name="Titolo" required>
+
+
+			<label for="Genere">Genere</label>
+			<input type="text" placeholder="Genere" name="Genere" required>
+
+			<label for="DataUscita">Data Uscita</label>
+			<input type="date" name="DataUscita" required>
+
+			<label for="Descrizione">Descrizione</label>
+			<input type="text" name="Descrizione" placeholder="descrizione" required>
+
+			<label for="SrcImg">Sorgente Immagine</label>
+			<input type="url" name="SrcImg" required>
+
+			<label for="AltImg">Descrizione immagine</label>
+			<input type="text" name="AltImg" required>
+
+			<label for="Durata">Durata</label>
+			<input type="number" name="Durata" inputmode="numeric" placeholder="120" required>
+
+			<input type="submit" value="inserisci">
+
+		</form>
+	</div>

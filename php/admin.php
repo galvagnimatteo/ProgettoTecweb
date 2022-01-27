@@ -17,7 +17,7 @@ if($_SESSION["admin"]=true){
     $content = file_get_contents("../html/admin.html"); //load content
 }
 else{
-    $content = file_get_contents("../html/unautorized.html"); //load content
+    $content = file_get_contents("../html/unautorized.html"); //messaggio di tentato acesso senza autorizzazioni e di effettuare il login
 }
 $document = str_replace(
     "<BREADCRUMB>",

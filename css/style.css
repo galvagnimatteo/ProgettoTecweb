@@ -761,36 +761,6 @@ font-size:6.5vw;
         opacity: 1;
     }
 }
-
-@keyframes slide_from_left {
-    0% {
-        left: -25rem;
-        opacity: 0;
-    }
-
-    100% {
-        left: 0rem;
-        opacity: 1;
-    }
-}
-
-@keyframes slide_from_right {
-    0% {
-        right: 0rem;
-        opacity: 0;
-    }
-	1% {
-        right: -15rem;
-        opacity: 0;
-    }
-
-    100% {
-        right: 0rem;
-        opacity: 1;
-    }
-}
-
-
 #posizione {
     animation-name: materialize;
     animation-duration: 2s;
@@ -815,7 +785,6 @@ font-size:6.5vw;
 }
 
 #social {
-    position: relative;
     animation-name: materialize;
     animation-duration: 2s;
     animation-delay: 4s;
@@ -848,25 +817,6 @@ font-size:6.5vw;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-
-@media (min-width: 49rem) {
-    @keyframes slide_from_left {
-        0% {
-            left: -25rem;
-            opacity: 0;
-        }
-
-
-    #posizione dt, #contatti dt, #social dt {
-        font-weight: bold;
-        grid-column: 1;
-    }
-
-    #posizione dd, #contatti dd, #social dd {
-        grid-column: 2;
-    }
-}*/
-
 /*@supports not (display: grid) {*/
     body {
         margin-left: 1rem;
@@ -909,6 +859,18 @@ font-size:6.5vw;
             padding-right:0;
         }
     }
+/*}*/
+.success{
+    width:100%;
+    background-color:darkgreen;
+}
+.falure {
+    width: 100%;
+    background-color: darkgreen;
+}
+.insert_movie{
+    display:flex;
+    flex-direction:column;
 }
 
 #posizione h2, #contatti h2 {

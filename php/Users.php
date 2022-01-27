@@ -56,30 +56,39 @@ class Users
     function search()
     {
         if (isset($_POST["email_login"]) && isset($_POST["password_login"])) {
-            $db = SingletonDB::getInstance();
-            $query =
-                "SELECT username FROM utente WHERE  email=? AND password=?";
-            $preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param("ss", $email, $password);
 
             $email = $_POST["email_login"];
             $password = $_POST["password_login"];
 
-            $preparedQuery->execute();
-            $resultCast = $preparedQuery->get_result();
+            $result = loginControls($email, $password);
 
-            $db->disconnect();
-            $preparedQuery->close();
+            if($result == "OK"){
 
-            if ($resultCast->num_rows > 0) {
-                $row = $resultCast->fetch_assoc();
-                $_SESSION["a"] = $row["username"];
+                $db = SingletonDB::getInstance();
+                $query =
+                    "SELECT username FROM utente WHERE  email=? AND password=?";
+                $preparedQuery = $db->getConnection()->prepare($query);
+                $preparedQuery->bind_param("ss", $email, $password);
 
-                header("location:home.php");
-            } else {
-                unset($_SESSION["a"]);
-                header("location:area_utenti.php?action=login_page");
+                $preparedQuery->execute();
+                $resultCast = $preparedQuery->get_result();
+
+                $db->disconnect();
+                $preparedQuery->close();
+
+                if ($resultCast->num_rows > 0) {
+                    $row = $resultCast->fetch_assoc();
+                    $_SESSION["a"] = $row["username"];
+
+                    header("location:home.php");
+                } else {
+                    unset($_SESSION["a"]);
+                    header("location:area_utenti.php?action=login_page");
+                }
+
             }
+
+            return $result;
         }
     }
 

@@ -39,7 +39,25 @@ function registerControls($username, $name, $surname, $email, $password, $confir
     if($password != $confirm_password){
 
         return "La conferma password è diversa dalla password inserita.";
-        
+
+    }
+
+    return "OK";
+
+}
+
+function loginControls($email, $password){
+
+    if(!str_contains($email, "@")){
+
+        return "Chiocciola (@) mancante nell'email.";
+
+    }
+
+    if(strlen($password) < 8 || str_contains($password, " ")){
+
+        return "La password deve essere di almeno 8 caratteri e non può contenere spazi.";
+
     }
 
     return "OK";

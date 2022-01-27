@@ -3,7 +3,7 @@
 	Create your account
 </div>
 <div class="div_register">
-	<form action="../php/area_utenti.php?action=register_user" method="post" onsubmit="">
+	<form action="../php/area_utenti.php?action=register_user" method="post" onsubmit="return registerControls()">
 		<div class="row">
 			<div class="col_25">
 				<label for="username_register"><span xml:lang="en">Username</span></label>
@@ -110,6 +110,7 @@
 				<option value="12">12</option>
 			</select>
 		</div>
+
 		<div class="row">
 			<p id="errorMessage"> <ERRORMESSAGE> </p>
 		</div>

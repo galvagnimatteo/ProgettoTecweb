@@ -63,6 +63,7 @@ class Users
 
     function search()
     {
+		  $db = SingletonDB::getInstance();
         if (isset($_POST["email_login"]) && isset($_POST["password_login"])) {
 
             $email = $_POST["email_login"];

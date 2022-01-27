@@ -15,7 +15,7 @@ $home_content = file_get_contents("../html/area_utenti_register_content.html"); 
 
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / <a href="area_utenti.php">Area Utenti</a>',
+    '<a href="home.php">Home</a> / <a href="area_utenti.php?action=login_page">Area Utenti</a>',
     $document
 );
 $document = str_replace("<JAVASCRIPT-HEAD>", '<script type="text/javascript" src="../js/controls.js"> </script>', $document);
@@ -73,9 +73,21 @@ if (isset($_GET["action"])) {
     }
 
     if ($action == "search") {
+
         include_once "Users.php";
         $Users = new Users();
-        $Users->search();
+        $result = $Users->search();
+
+        $home_content = file_get_contents(
+            "../html/items/area_utenti_login.html"
+        );
+
+        if(!($result == "OK")){
+
+            //display error in result
+            $home_content = str_replace("<ERRORMESSAGE>", $result, $home_content);
+
+        }
     }
 
     if ($action == "getProfile") {

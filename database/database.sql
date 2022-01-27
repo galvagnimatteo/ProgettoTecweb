@@ -70,7 +70,7 @@ CREATE TABLE Partecipa (
 	NumeroSala SMALLINT NOT NULL,
 	IDPrenotazione INT NOT NULL,
 	PRIMARY KEY (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione),
-	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala) REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE
+	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala) REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE,
 	FOREIGN KEY(IDPrenotazione) REFERENCES Prenotazione(ID) ON DELETE CASCADE
 );
 

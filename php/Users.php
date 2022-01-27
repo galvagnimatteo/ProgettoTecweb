@@ -63,6 +63,7 @@ class Users
 
     function search()
     {
+		  $db = SingletonDB::getInstance();
         if (isset($_POST["email_login"]) && isset($_POST["password_login"])) {
 
             $email = $_POST["email_login"];
@@ -112,21 +113,23 @@ class Users
 				"SELECT * FROM utente WHERE  email=? AND username=?";
 				
 			$preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param("ss", $email, $password);
+            $preparedQuery->bind_param("ss", $email, $username);
 				
 			$email = $_POST["email_register"];
-            $password = $_POST["username_register"];	
+            $username = $_POST["username_register"];	
 			
 			$preparedQuery->execute();
             $resultCast = $preparedQuery->get_result();
+			
+			$db->disconnect();
+            $preparedQuery->close();
 			
 			 if ($resultCast->num_rows > 0){
 			return true;	 
 		}else{
 			return false;		 
 				 }		 
-			$db->disconnect();
-            $preparedQuery->close();	
+				
 			}
 		
 			

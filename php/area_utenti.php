@@ -3,7 +3,9 @@
 session_start();
 $now = time();
 if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
+
 	unset($_SESSION["a"]);
+
     session_unset();
     session_destroy();
     session_start();
@@ -14,12 +16,15 @@ $_SESSION["discard_after"] = $now + 30;
 
 $document = file_get_contents("../html/template.html"); //load template
 $home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
+
+
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / <a href="area_utenti.php">Area Utenti</a>',
+    '<a href="home.php">Home</a> / <a href="area_utenti.php?action=login_page">Area Utenti</a>',
     $document
 );
-$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
+$document = str_replace("<JAVASCRIPT-HEAD>", '<script type="text/javascript" src="../js/controls.js"> </script>', $document);
+
 $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 
 if (isset($_SESSION["a"])) {
@@ -57,27 +62,40 @@ if (isset($_GET["action"])) {
 
     if ($action == "register_user") {
         include_once "Users.php";
-		$Users = new Users();
-	//controlla se l'utente non è già registrato	
-		if(!($Users->search()))	
-		{	
-		 $Users->insert();
-		}else{
-		$_SESSION["register_error"]=true;	
-		header("location:area_utenti.php?action=register_page");	
-		}	
+
+
+        $Users = new Users();
+        $result = $Users->insert();
+
+        if($result == "OK"){
+
+            header("location:home.php");
+
+        }else{
+
+            //display error in result
+            $home_content = str_replace("<ERRORMESSAGE>", $result, $home_content);
+
+        }
     }
 
     if ($action == "search") {
+
         include_once "Users.php";
         $Users = new Users();
-		 if($Users->search())
-		{
-		header("location:home.php");
-		}else{
-		header("location:area_utenti.php?action=login_page");
-		}	
-		
+        $result = $Users->search();
+
+        $home_content = file_get_contents(
+            "../html/items/area_utenti_login.html"
+        );
+
+        if(!($result == "OK")){
+
+            //display error in result
+            $home_content = str_replace("<ERRORMESSAGE>", $result, $home_content);
+
+        }
+
     }
 
     if ($action == "getProfile") {
@@ -91,7 +109,7 @@ if (isset($_GET["action"])) {
         $Users = new Users();
         $Users->changeProfile();
     }
-	
+
 	if($action == "deleteProfile")
 	{
 	 include_once "Users.php";
@@ -103,12 +121,16 @@ if (isset($_GET["action"])) {
 		    header("location:area_utenti.php?action=login_page");
 		 } 
 	}	
+
 } else {
     $home_content = file_get_contents(
         "../html/area_utenti_register_content.html"
     );
     $document = str_replace("<LOGIN>", "Login", $document);
 }
+
+
+$home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancora presente <errormessage> viene tolto, non funziona se non presente (già sostituito con errore)
 
 $document = str_replace("<CONTENT>", $home_content, $document);
 echo $document;

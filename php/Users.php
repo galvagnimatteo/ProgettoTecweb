@@ -151,8 +151,8 @@ class Users
             $query =
                 "SELECT Username, Nome,Cognome,Password,Email FROM Utente WHERE Username=? ";
             $preparedQuery = $db->getConnection()->prepare($query);
+			$username = $_SESSION["a"];
             $preparedQuery->bind_param("s", $username);
-            $username = $_SESSION["a"];
 
             $preparedQuery->execute();
             $resultCast = $preparedQuery->get_result();
@@ -178,7 +178,7 @@ class Users
 		</div>
 		<div class="col_75">
 		<input type="text" placeholder=" Username" name="username_profile"  value="' .
-                $row["username"] .
+                $row["Username"] .
                 '"  required>
 		</div>
 		</div>
@@ -191,7 +191,7 @@ class Users
 		<div class="col_75">
 
 		<input type="text" placeholder=" Name" name="name_profile" value="' .
-                $row["nome"] .
+                $row["Nome"] .
                 '"  required   >
 			</div>
 		</div>
@@ -204,7 +204,7 @@ class Users
 		</div>
 		<div class="col_75">
 		<input type="text" placeholder=" Surname" name="surname_profile"   value="' .
-                $row["cognome"] .
+                $row["Cognome"] .
                 '"   required>
 		</div>
 		</div>
@@ -216,7 +216,7 @@ class Users
 		</div>
 			<div class="col_75">
 		<input type="email" placeholder=" Email" name="email_profile"  value="' .
-                $row["email"] .
+                $row["Email"] .
                 '"   >
 		</div>
 		</div>
@@ -227,7 +227,7 @@ class Users
 		</div>
 		<div class="col_75">
 		<input type="password" placeholder=" Password" name="password_profile"   value="' .
-                $row["password"] .
+                $row["Password"] .
                 '"   >
 		</div>
 		</div>
@@ -238,7 +238,7 @@ class Users
 		</div>
 			<div class="col_75">
 		<input type="password" placeholder=" Repeat Password" name="pass_profile_confirm"  value="' .
-                $row["password"] .
+                $row["Password"] .
                 '"   required>
 	</div>
 		</div>

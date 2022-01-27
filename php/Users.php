@@ -7,68 +7,6 @@ class Users
 {
     
 
-    function search()
-    {
-	$db = SingletonDB::getInstance();
-	
-        if ((isset($_POST["email_login"]) && isset($_POST["password_login"])))
-		 {
-			$query =
-				"SELECT username FROM utente WHERE  email=? AND password=?";	
-		
-            $preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param("ss", $email, $password);
-
-            $email = $_POST["email_login"];
-            $password = $_POST["password_login"];
-
-            $preparedQuery->execute();
-            $resultCast = $preparedQuery->get_result();
-
-            $db->disconnect();
-            $preparedQuery->close();
-	
-           if ($resultCast->num_rows > 0) {
-                $row = $resultCast->fetch_assoc();
-                $_SESSION["a"] = $row["username"];
-				return true;
-            } else {
-                unset($_SESSION["a"]);
-				return false;            
-            }
-        }else{
-			
-		if(
-			isset($_POST["username_register"])&&
-			isset($_POST["name_register"])&&            
-			isset($_POST["password_register"])&&
-            isset($_POST["email_register"])&&
-            isset($_POST["surname_register"])
-		){
-			
-			$query =
-				"SELECT * FROM utente WHERE  email=? AND username=?";
-				
-			$preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param("ss", $email, $password);
-				
-			$email = $_POST["email_register"];
-            $password = $_POST["username_register"];	
-			
-			$preparedQuery->execute();
-            $resultCast = $preparedQuery->get_result();
-			
-			 if ($resultCast->num_rows > 0){
-			return true;	 
-		}else{
-			return false;		 
-				 }		 
-			$db->disconnect();
-            $preparedQuery->close();	
-			}
-		}
-	}
-	
 	function insert()
     {
 	
@@ -159,7 +97,40 @@ class Users
             }
 
             return $result;
-        }
+        }else{
+			
+			
+		if(
+			isset($_POST["username_register"])&&
+			isset($_POST["name_register"])&&            
+			isset($_POST["password_register"])&&
+            isset($_POST["email_register"])&&
+            isset($_POST["surname_register"])
+		){
+			
+			$query =
+				"SELECT * FROM utente WHERE  email=? AND username=?";
+				
+			$preparedQuery = $db->getConnection()->prepare($query);
+            $preparedQuery->bind_param("ss", $email, $password);
+				
+			$email = $_POST["email_register"];
+            $password = $_POST["username_register"];	
+			
+			$preparedQuery->execute();
+            $resultCast = $preparedQuery->get_result();
+			
+			 if ($resultCast->num_rows > 0){
+			return true;	 
+		}else{
+			return false;		 
+				 }		 
+			$db->disconnect();
+            $preparedQuery->close();	
+			}
+		
+			
+		}
 
     }
 

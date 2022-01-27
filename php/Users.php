@@ -98,8 +98,11 @@ class Users
             }
 
             return $result;
-        }else{
-			
+        }
+
+    }
+function searchRegistered(){
+		
 			
 		if(
 			isset($_POST["username_register"])&&
@@ -109,34 +112,35 @@ class Users
             isset($_POST["surname_register"])
 		){
 			
+			
+			$db = SingletonDB::getInstance();
 			$query =
-				"SELECT * FROM utente WHERE  email=? AND username=?";
+				"SELECT * FROM utente WHERE  email=?  OR username=?";
 				
-			$preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param("ss", $email, $username);
-				
-			$email = $_POST["email_register"];
-            $username = $_POST["username_register"];	
+		$preparedQuery = $db->getConnection()->prepare($query);
+            $preparedQuery->bind_param("ss", $email1,$username1);
+			
+			$username1 = $_POST["username_register"];	
+			$email1 = $_POST["email_register"];
 			
 			$preparedQuery->execute();
             $resultCast = $preparedQuery->get_result();
-			
-			$db->disconnect();
-            $preparedQuery->close();
-			
-			 if ($resultCast->num_rows > 0){
-			return true;	 
-		}else{
-			return false;		 
-				 }		 
 				
-			}
+			
+				 if ($resultCast->num_rows > 0){
+					  $db->disconnect();
+                $preparedQuery->close();
+			return true;	 
+				}	 
+			
+            
 		
 			
-		}
-
-    }
-
+		return false;
+		
+		
+	}
+}
     function getProfile()
     {
         if (isset($_SESSION["a"])) {

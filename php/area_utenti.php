@@ -61,11 +61,16 @@ if (isset($_GET["action"])) {
     }
 
     if ($action == "register_user") {
-        include_once "Users.php";
+       include_once "Users.php";
 
 
         $Users = new Users();
-        $result = $Users->insert();
+		$verify=false;
+		$verify=$Users->searchRegistered();
+		if(!$verify )
+		{
+		 
+       $result = $Users->insert();
 
         if($result == "OK"){
 
@@ -77,6 +82,7 @@ if (isset($_GET["action"])) {
             $home_content = str_replace("<ERRORMESSAGE>", $result, $home_content);
 
         }
+		}
     }
 
     if ($action == "search") {

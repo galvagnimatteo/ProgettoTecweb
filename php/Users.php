@@ -225,13 +225,38 @@ class Users
 	</form>
 	</div>
 
+	<div class="div_user">
+	
+	
+	<form action="../php/area_utenti.php?action=deleteProfile" method="post" >
 
+	<button type="submit" class="link_button"> Delete your account </button>
+	</form>
+	</div>
 
 
 
 	   ';
         }
     }
+	function deleteProfile()
+	{
+	$db = SingletonDB::getInstance();
+
+            $query =
+                  "DELETE FROM utente WHERE username=?";
+		 if ($preparedQuery = $db->getConnection()->prepare($query)) {
+			 $preparedQuery->bind_param("s",$username);		
+			 $username = $_SESSION["a"];
+			$preparedQuery->execute();
+			$db->disconnect();
+            $preparedQuery->close();	
+			return true;
+			 }else{
+				 return false;
+			 }
+		
+	}	
 
     function changeProfile()
     {

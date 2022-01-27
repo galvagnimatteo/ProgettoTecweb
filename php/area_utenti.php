@@ -90,6 +90,18 @@ if (isset($_GET["action"])) {
         $Users = new Users();
         $Users->changeProfile();
     }
+	
+	if($action == "deleteProfile")
+	{
+	 include_once "Users.php";
+     $Users = new Users();
+     if($Users->deleteProfile())
+	 {
+		session_destroy();
+		unset($_SESSION["a"]);
+		    header("location:area_utenti.php?action=login_page");
+		 } 
+	}	
 } else {
     $home_content = file_get_contents(
         "../html/area_utenti_register_content.html"

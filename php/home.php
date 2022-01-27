@@ -65,7 +65,9 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
     }
 } else {
     $cards = '<p class="error">Nessun film trovato.</p>
+
                   <p class="errorDescription"> Nessun film in programmazione nelle prossime settimane. </p>';
+
 }
 
 $document = str_replace("<PAGETITLE>", "Home - PNG Cinema", $document);

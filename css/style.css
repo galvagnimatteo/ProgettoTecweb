@@ -485,6 +485,7 @@ programmazione.html
 		background-color: var(--secondary-color);
 	}
 
+
 }
 
 @media screen and (max-width: 700px) {
@@ -523,6 +524,7 @@ programmazione.html
     }
 
 }
+
 
 
 
@@ -612,6 +614,7 @@ padding-left:4.5rem;
 	display:flex;
 	box-sizing: border-box;
 
+
 }
 
 #errorMessage{
@@ -625,7 +628,7 @@ padding-left:4.5rem;
 	width:70%;
 	height:3rem;
 
-	/*display: block;*/
+	
 	color: #fff;
 	background: #660000;
 	background-image: linear-gradient(#660000, var(--gradient-last-color));
@@ -694,7 +697,7 @@ padding-left:2.5rem;
 
 @media screen and (max-width: 700px) {
 
-  input[type=submit]{
+  .div_register input[type=submit]{
     width: 100%;
 
     margin-top: 0;

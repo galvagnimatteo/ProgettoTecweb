@@ -246,7 +246,7 @@ class Users
             $db = SingletonDB::getInstance();
 
             $query =
-                "UPDATE utenti SET nome=?, cognome=?, password=?,email=? WHERE username=?)";
+                  "UPDATE utente SET nome=?, cognome=?, password=?,email=? WHERE username=?";
             if ($preparedQuery = $db->getConnection()->prepare($query)) {
                 $preparedQuery->bind_param(
                     "sssss",

@@ -245,8 +245,10 @@ class Users
 
             $query =
                   "DELETE FROM utente WHERE username=?";
-		 if ($preparedQuery = $db->getConnection()->prepare($query)) {
-			 $preparedQuery->bind_param("s",$username);		
+		  if ($preparedQuery = $db->getConnection()->prepare($query)) {
+			 $preparedQuery->bind_param("s",$username);	
+			if(isset($_SESSION["a"]))
+			{
 			 $username = $_SESSION["a"];
 			$preparedQuery->execute();
 			$db->disconnect();
@@ -255,6 +257,8 @@ class Users
 			 }else{
 				 return false;
 			 }
+		 }
+		 return false;
 		
 	}	
 

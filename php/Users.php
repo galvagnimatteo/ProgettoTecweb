@@ -5,11 +5,11 @@ require_once "utils/controls.php";
 
 class Users
 {
-    
+
 
 	function insert()
     {
-	
+
 
         if (
             isset($_POST["name_register"]) &&
@@ -102,43 +102,43 @@ class Users
 
     }
 function searchRegistered(){
-		
-			
+
+
 		if(
 			isset($_POST["username_register"])&&
-			isset($_POST["name_register"])&&            
+			isset($_POST["name_register"])&&
 			isset($_POST["password_register"])&&
             isset($_POST["email_register"])&&
             isset($_POST["surname_register"])
 		){
-			
-			
+
+
 			$db = SingletonDB::getInstance();
 			$query =
 				"SELECT * FROM Utente WHERE  Email=?  OR Username=?";
-				
+
 		$preparedQuery = $db->getConnection()->prepare($query);
             $preparedQuery->bind_param("ss", $email1,$username1);
-			
-			$username1 = $_POST["username_register"];	
+
+			$username1 = $_POST["username_register"];
 			$email1 = $_POST["email_register"];
-			
+
 			$preparedQuery->execute();
             $resultCast = $preparedQuery->get_result();
-				
-			
+
+
 				 if ($resultCast->num_rows > 0){
 					  $db->disconnect();
                 $preparedQuery->close();
-			return true;	 
-				}	 
-			
-            
-		
-			
+			return true;
+				}
+
+
+
+
 		return false;
-		
-		
+
+
 	}
 }
     function getProfile()
@@ -257,8 +257,8 @@ function searchRegistered(){
 
 
 	<div class="div_user">
-	
-	
+
+
 	<form action="../php/area_utenti.php?action=deleteProfile" method="post" >
 
 	<button type="submit" class="link_button"> Delete your account </button>
@@ -277,21 +277,21 @@ function searchRegistered(){
             $query =
                   "DELETE FROM Utente WHERE Username=?";
 		  if ($preparedQuery = $db->getConnection()->prepare($query)) {
-			 $preparedQuery->bind_param("s",$username);	
+			 $preparedQuery->bind_param("s",$username);
 			if(isset($_SESSION["a"]))
 			{
 			 $username = $_SESSION["a"];
 			$preparedQuery->execute();
 			$db->disconnect();
-            $preparedQuery->close();	
+            $preparedQuery->close();
 			return true;
 			 }else{
 				 return false;
 			 }
 		 }
 		 return false;
-		
-	}	
+
+	}
 
     function changeProfile()
     {

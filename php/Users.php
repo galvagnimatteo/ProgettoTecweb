@@ -37,7 +37,7 @@ class Users
                 $db = SingletonDB::getInstance();
 
                 $query =
-                    "INSERT INTO utente(username,email,nome,cognome,password) VALUES (?,?,?,?,?)";
+                    "INSERT INTO Utente(Username,Email,Nome,Cognome,Password) VALUES (?,?,?,?,?)";
                 $preparedQuery = $db->getConnection()->prepare($query);
                 $preparedQuery->bind_param(
                     "sssss",
@@ -76,7 +76,7 @@ class Users
 
                 $db = SingletonDB::getInstance();
                 $query =
-                    "SELECT username FROM utente WHERE  email=? AND password=?";
+                    "SELECT Username FROM Utente WHERE Email=? AND Password=?";
                 $preparedQuery = $db->getConnection()->prepare($query);
                 $preparedQuery->bind_param("ss", $email, $password);
 
@@ -149,7 +149,7 @@ class Users
             $db = SingletonDB::getInstance();
 
             $query =
-                "SELECT username,nome,cognome,password,email FROM utente WHERE  username=? ";
+                "SELECT Username, Nome,Cognome,Password,Email FROM Utente WHERE Username=? ";
             $preparedQuery = $db->getConnection()->prepare($query);
             $preparedQuery->bind_param("s", $username);
             $username = $_SESSION["a"];
@@ -277,7 +277,7 @@ class Users
 	$db = SingletonDB::getInstance();
 
             $query =
-                  "DELETE FROM utente WHERE username=?";
+                  "DELETE FROM Utente WHERE Username=?";
 		  if ($preparedQuery = $db->getConnection()->prepare($query)) {
 			 $preparedQuery->bind_param("s",$username);
 			if(isset($_SESSION["a"]))
@@ -309,7 +309,7 @@ class Users
 
 
             $query =
-                  "UPDATE utente SET nome=?, cognome=?, password=?,email=? WHERE username=?";
+                  "UPDATE Utente SET Nome=?, Cognome=?, Password=?,Email=? WHERE Username=?";
             if ($preparedQuery = $db->getConnection()->prepare($query)) {
                 $preparedQuery->bind_param(
                     "sssss",

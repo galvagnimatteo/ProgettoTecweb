@@ -107,7 +107,10 @@ if (isset($_GET["action"])) {
     if ($action == "changeProfile") {
         include_once "Users.php";
         $Users = new Users();
-        $Users->changeProfile();
+         if($Users->changeProfile())
+		{
+		header("location:home.php");
+		}
     }
 
 	if($action == "deleteProfile")

@@ -322,7 +322,9 @@ class Users
 
                 $db->disconnect();
                 $preparedQuery->close();
+				return true;
             } else {
+				return false;
             }
         }
     }

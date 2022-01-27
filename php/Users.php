@@ -7,6 +7,7 @@ class Users
 {
     
 
+	
 	function insert()
     {
 	
@@ -16,8 +17,7 @@ class Users
             isset($_POST["username_register"]) &&
             isset($_POST["password_register"]) &&
             isset($_POST["email_register"]) &&
-
-            isset($_POST["surname_register"]) &&
+			isset($_POST["surname_register"]) &&
             isset($_POST["pass_register_confirm"])
         ) {
 
@@ -37,7 +37,7 @@ class Users
                 $db = SingletonDB::getInstance();
 
                 $query =
-                    "INSERT INTO Utente ( Username,Email,Nome,Cognome,Password) VALUES (?,?,?,?,?)";
+                    "INSERT INTO utente(username,email,nome,cognome,password) VALUES (?,?,?,?,?)";
                 $preparedQuery = $db->getConnection()->prepare($query);
                 $preparedQuery->bind_param(
                     "sssss",
@@ -47,6 +47,7 @@ class Users
                     $surname,
                     $password
                 );
+				
 
                 $_SESSION["a"] = $username;
 
@@ -63,7 +64,7 @@ class Users
 
     function search()
     {
-		  $db = SingletonDB::getInstance();
+		
         if (isset($_POST["email_login"]) && isset($_POST["password_login"])) {
 
             $email = $_POST["email_login"];
@@ -75,7 +76,7 @@ class Users
 
                 $db = SingletonDB::getInstance();
                 $query =
-                    "SELECT Username FROM Utente WHERE  Email=? AND Password=?";
+                    "SELECT username FROM utente WHERE  email=? AND password=?";
                 $preparedQuery = $db->getConnection()->prepare($query);
                 $preparedQuery->bind_param("ss", $email, $password);
 
@@ -87,7 +88,7 @@ class Users
 
                 if ($resultCast->num_rows > 0) {
                     $row = $resultCast->fetch_assoc();
-                    $_SESSION["a"] = $row["Username"];
+                    $_SESSION["a"] = $row["username"];
 
                     header("location:home.php");
                 } else {
@@ -101,7 +102,8 @@ class Users
         }
 
     }
-function searchRegistered(){
+	
+	function searchRegistered(){
 		
 			
 		if(
@@ -115,7 +117,7 @@ function searchRegistered(){
 			
 			$db = SingletonDB::getInstance();
 			$query =
-				"SELECT * FROM Utente WHERE  Email=?  OR Username=?";
+				"SELECT * FROM utente WHERE  email=?  OR username=?";
 				
 		$preparedQuery = $db->getConnection()->prepare($query);
             $preparedQuery->bind_param("ss", $email1,$username1);
@@ -147,7 +149,7 @@ function searchRegistered(){
             $db = SingletonDB::getInstance();
 
             $query =
-                "SELECT Username,Nome,Cognome,Password,Email FROM Utente WHERE  Username=? ";
+                "SELECT username,nome,cognome,password,email FROM utente WHERE  username=? ";
             $preparedQuery = $db->getConnection()->prepare($query);
             $preparedQuery->bind_param("s", $username);
             $username = $_SESSION["a"];
@@ -176,7 +178,7 @@ function searchRegistered(){
 		</div>
 		<div class="col_75">
 		<input type="text" placeholder=" Username" name="username_profile"  value="' .
-                $row["Username"] .
+                $row["username"] .
                 '"  required>
 		</div>
 		</div>
@@ -189,7 +191,7 @@ function searchRegistered(){
 		<div class="col_75">
 
 		<input type="text" placeholder=" Name" name="name_profile" value="' .
-                $row["Nome"] .
+                $row["nome"] .
                 '"  required   >
 			</div>
 		</div>
@@ -202,7 +204,7 @@ function searchRegistered(){
 		</div>
 		<div class="col_75">
 		<input type="text" placeholder=" Surname" name="surname_profile"   value="' .
-                $row["Cognome"] .
+                $row["cognome"] .
                 '"   required>
 		</div>
 		</div>
@@ -214,7 +216,7 @@ function searchRegistered(){
 		</div>
 			<div class="col_75">
 		<input type="email" placeholder=" Email" name="email_profile"  value="' .
-                $row["Email"] .
+                $row["email"] .
                 '"   >
 		</div>
 		</div>
@@ -225,7 +227,7 @@ function searchRegistered(){
 		</div>
 		<div class="col_75">
 		<input type="password" placeholder=" Password" name="password_profile"   value="' .
-                $row["Password"] .
+                $row["password"] .
                 '"   >
 		</div>
 		</div>
@@ -236,7 +238,7 @@ function searchRegistered(){
 		</div>
 			<div class="col_75">
 		<input type="password" placeholder=" Repeat Password" name="pass_profile_confirm"  value="' .
-                $row["Password"] .
+                $row["password"] .
                 '"   required>
 	</div>
 		</div>
@@ -275,7 +277,7 @@ function searchRegistered(){
 	$db = SingletonDB::getInstance();
 
             $query =
-                  "DELETE FROM Utente WHERE Username=?";
+                  "DELETE FROM utente WHERE username=?";
 		  if ($preparedQuery = $db->getConnection()->prepare($query)) {
 			 $preparedQuery->bind_param("s",$username);	
 			if(isset($_SESSION["a"]))
@@ -307,7 +309,7 @@ function searchRegistered(){
 
 
             $query =
-                  "UPDATE Utente SET Nome=?, Cognome=?, Password=?,Email=? WHERE Username=?";
+                  "UPDATE utente SET nome=?, cognome=?, password=?,email=? WHERE username=?";
             if ($preparedQuery = $db->getConnection()->prepare($query)) {
                 $preparedQuery->bind_param(
                     "sssss",

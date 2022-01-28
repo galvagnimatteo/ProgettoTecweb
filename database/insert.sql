@@ -397,23 +397,19 @@ VALUES
 (15, '17:30:00'),
 (15, '21:30:00');
 
-INSERT INTO Utente (ID, Nome, Cognome, Username, Password, Email)
+INSERT INTO Utente (Username, Nome, Cognome, Password, Email)
 VALUES
-(1, 'Gino', 'Ginetto', 'asdfg1', 'ngjaoag', 'asdfg@grim.com'),
-(2, 'piero', 'Ginetto', 'asdfg2', 'n22r', 'derfdfg@grim.com'),
-(3, 'Gino', 'fsdao', 'asdfg3', 'njaoag123', 'aasra@grim.com'),
-(4, 'Gino', 'Ginfetto', 'asdfg4', 'nuu5ag', 'atrtre@grim.com');
+("username1", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
+("username2", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
+("username3", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
+("username4", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com');
 
-INSERT INTO Prenotazione(ID, NumeroPersone, IDUtente, IDProiezione, OraProiezione)
+INSERT INTO Prenotazione(ID, NumeroPersone, UsernameUtente, IDProiezione, OraProiezione)
 VALUES
-(1, 4, 2, 2, '21:30:00'),
-(2, 2, 3, 1, '17:30:00'),
-(3, 3, 4, 3, '21:30:00'),
-(4, 4, 2, 3, '21:30:00'),
-(5, 3, 4, 10, '21:30:00'),
-(6, 2, 1, 10, '21:30:00'),
-(7, 2, 2, 11, '17:30:00'),
-(8, 4, 3, 13, '16:00:00');
+(1, 4, "username1", 2, '21:30:00'),
+(2, 2, "username1", 1, '17:30:00'),
+(3, 3, "username2", 3, '21:30:00'),
+(4, 4, "username3", 3, '21:30:00');
 
 INSERT INTO Partecipa (FilaPosto, NumeroPosto, NumeroSala, IDPrenotazione)
 VALUES
@@ -432,22 +428,7 @@ VALUES
 ('E', 1, 1, 4),
 ('F', 1, 1, 4),
 ('G', 1, 1, 4),
-('A', 2, 1, 4),
-
-('B', 11, 2, 5),
-('C', 11, 2, 5),
-('D', 11, 2, 5),
-
-('A', 2, 2, 6),
-('A', 3, 2, 6),
-
-('E', 3, 2, 7),
-('F', 3, 2, 7),
-
-('A', 13, 2, 8),
-('B', 13, 2, 8),
-('C', 13, 2, 8),
-('D', 13, 2, 8);
+('A', 2, 1, 4);
 
 INSERT INTO CastFilm (ID, Nome, Cognome, Ruolo)
 VALUES

@@ -103,45 +103,33 @@ class Users
 
     }
 
-	function searchRegistered(){
-
-
-		if(
-			isset($_POST["username_register"])&&
-			isset($_POST["name_register"])&&
-			isset($_POST["password_register"])&&
-            isset($_POST["email_register"])&&
-            isset($_POST["surname_register"])
-		){
-
-
-			$db = SingletonDB::getInstance();
-			$query =
-				"SELECT * FROM Utente WHERE  Email=?  OR Username=?";
-
+		function searchRegistered($email,$username,$value){
+		
+	$db = SingletonDB::getInstance();
+		$query =
+				"SELECT * FROM utente WHERE  email=?  OR username=?";
+				
 		$preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param("ss", $email1,$username1);
-
-			$username1 = $_POST["username_register"];
-			$email1 = $_POST["email_register"];
-
+        $preparedQuery->bind_param("ss", $email,$username);
+			
+		
 			$preparedQuery->execute();
             $resultCast = $preparedQuery->get_result();
-
-
-				 if ($resultCast->num_rows > 0){
+				
+			
+				 if ($resultCast->num_rows > $value){
 					  $db->disconnect();
                 $preparedQuery->close();
-			return true;
-				}
-
-
-
-
+			return true;	 
+				}	 
+			
+            
+		
+			
 		return false;
-
-
-	}
+		
+		
+	
 }
     function getProfile()
     {
@@ -166,6 +154,11 @@ class Users
 		     $home_content = str_replace("<COGNOME>", $row["cognome"] ,  $home_content);
 		     $home_content = str_replace("<EMAIL>", $row["email"],  $home_content);
 		     $home_content = str_replace("<PASSWORD>", $row["password"] ,  $home_content);
+			  if(isset($_GET["error"])) 
+			{
+			$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
+			unset($_GET["error"]);
+			}
           return $home_content;    
         }
     }
@@ -192,9 +185,10 @@ class Users
 
 	}
 
-    function changeProfile()
+   function changeProfile()
     {
         if (
+			isset($_POST["username_profile"])&&
             isset($_POST["name_profile"]) &&
             isset($_POST["password_profile"]) &&
             isset($_POST["email_profile"]) &&
@@ -206,28 +200,30 @@ class Users
 
 
             $query =
-                  "UPDATE Utente SET Nome=?, Cognome=?, Password=?,Email=? WHERE Username=?";
+                  "UPDATE utente SET username=?, nome=?, cognome=?, password=?,email=? WHERE username=?";
             if ($preparedQuery = $db->getConnection()->prepare($query)) {
                 $preparedQuery->bind_param(
-                    "sssss",
+                    "ssssss",
+					$newusername,
                     $name,
                     $surname,
                     $password,
                     $email,
-                    $username
+                    $oldusername
                 );
-
-                $username = $_SESSION["a"];
+				$newusername=$_POST["username_profile"];
+                $oldusername = $_SESSION["a"];
                 $password = $_POST["password_profile"];
                 $name = $_POST["name_profile"];
                 $surname = $_POST["surname_profile"];
                 $email = $_POST["email_profile"];
-
+				
 
                 $preparedQuery->execute();
 
                 $db->disconnect();
                 $preparedQuery->close();
+				$_SESSION["a"]=$newusername;
 				return true;
             } else {
 				return false;

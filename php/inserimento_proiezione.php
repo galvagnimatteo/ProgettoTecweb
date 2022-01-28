@@ -30,48 +30,35 @@ $document = str_replace(
 $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
 $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 
+$db = SingletonDB::getInstance();
 
 if (isset($_GET["action"])) 
 {
     $action = $_GET["action"];
     if($action=="insert")
     {
-        if(isset($_POST["Titolo"]) &&
-            isset($_POST["Genere"]) &&
-            isset($_POST["DataUscita"]) &&
-            isset($_POST["Descrizione"]) &&
-            isset($_POST["SrcImg"]) &&
-            isset($_POST["AltImg"]) &&
-            isset($_POST["Durata"]) 
+        if(isset($_POST["film"]) &&
+            isset($_POST["sala"]) &&
+            isset($_POST["Giorno"]) 
             )
         {
-            $db = SingletonDB::getInstance();
-
+            
             $query =
-                "INSERT INTO utente ( Titolo,Genere,DataUscita, Descrizione,SrcImg,AltImg,Durata) VALUES (?,?,?,?,?,?,?)";
+                "INSERT INTO Proiezione ( Data,IDFilm,NumeroSala) VALUES (?,?,?)";
             $preparedQuery = $db->getConnection()->prepare($query);
             $preparedQuery->bind_param(
-                "sssssss",
-                $Titolo,
-                $Genere,
-                $DataUscita,
-                $Descrizione,
-                $SrcImg,
-                $AltImg,
-                $Durata
+                "sss",
+                $Data,
+                $IDFilm,
+                $NumeroSala
             );
 
-            $Titolo = $_POST["Titolo"];
-            $Genere = $_POST["Genere"];
-            $DataUscita = $_POST["DataUscita"];
-            $Descrizione = $_POST["Descrizione"];
-            $SrcImg = $_POST["SrcImg"];
-            $AltImg = $_POST["AltImg"];
-            $Durata = $_POST["Durata"];
-
+            $IDFilm = $_POST["film"];
+            $NumeroSala = $_POST["sala"];
+            $Data = $_POST["Giorno"];
 
             $res=$preparedQuery->execute();
-            $db->disconnect();
+            /*$db->disconnect();*/
             $preparedQuery->close();
             if($res){
                 $content=str_replace("<STATUS>", "<p class='sucess'>inserimento avvenuto correttamente</p>", $content)
@@ -85,7 +72,16 @@ if (isset($_GET["action"]))
 else{
     $content=str_replace("<STATUS>", "", $content)
 }
+$query ="select ID,Titolo from Film order by descending DataUscita";
+$preparedQuery = $db->getConnection()->prepare($query);
+$preparedQuery->execute();
+$films=$preparedQuery->get_result();
 
+$stringfilms="";
+while($row = $resultCast->fetch_assoc();){
+    $stringfilms=$stringfilms."<option value=".$row["ID"].">".$row["Titolo"]."</option>";
+}
+$content = str_replace("<FILM>", $stringfilms, $content);
 $document = str_replace("<CONTENT>", $content, $document);
 
 echo $document;

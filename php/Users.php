@@ -159,117 +159,17 @@ class Users
             $db->disconnect();
             $preparedQuery->close();
             $row = $resultCast->fetch_assoc();
-
-            return $home_content =
-                '
-
-		 <div class="div_user">
-	Modify your profile
-	 </div>
-	   <div class="div_register">
-
-
-
-		<form action="../php/area_utenti.php?action=changeProfile" method="post" >
-
-	<div class="row">
-		<div class="col_25">
-		<label for="username_profile"><span xml:lang="en">Username</span></label>
-		</div>
-		<div class="col_75">
-		<input type="text" placeholder=" Username" name="username_profile"  value="' .
-                $row["username"] .
-                '"  required>
-		</div>
-		</div>
-
-
-			<div class="row">
-		<div class="col_25">
-		<label for="name_profile"><span xml:lang="en">Name</span></label>
-		</div>
-		<div class="col_75">
-
-		<input type="text" placeholder=" Name" name="name_profile" value="' .
-                $row["nome"] .
-                '"  required   >
-			</div>
-		</div>
-
-
-
-		<div class="row">
-		<div class="col_25">
-		<label for="surname_profile"><span xml:lang="en">Surname</span></label>
-		</div>
-		<div class="col_75">
-		<input type="text" placeholder=" Surname" name="surname_profile"   value="' .
-                $row["cognome"] .
-                '"   required>
-		</div>
-		</div>
-
-
-		<div class="row">
-		<div class="col_25">
-		<label for="email_profile"><span xml:lang="en">Email</span></label>
-		</div>
-			<div class="col_75">
-		<input type="email" placeholder=" Email" name="email_profile"  value="' .
-                $row["email"] .
-                '"   >
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col_25">
-		<label for="password_profile"><span xml:lang="en">Password</span></label>
-		</div>
-		<div class="col_75">
-		<input type="password" placeholder=" Password" name="password_profile"   value="' .
-                $row["password"] .
-                '"   >
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col_25">
-		<label for="pass_profile_confirm"><span xml:lang="en">Password Confirmation</span></label>
-		</div>
-			<div class="col_75">
-		<input type="password" placeholder=" Repeat Password" name="pass_profile_confirm"  value="' .
-                $row["password"] .
-                '"   required>
-	</div>
-		</div>
-
-
-
-
-
-	<div class="row">
-	<input type="submit" value="Confirm your profile" >
-
-	 </div>
-
-
-
-	</form>
-	</div>
-
-
-	<div class="div_user">
-	
-	
-	<form action="../php/area_utenti.php?action=deleteProfile" method="post" >
-
-	<button type="submit" class="link_button"> Delete your account </button>
-	</form>
-	</div>
-
-
-
-	   ';
+			
+			 $home_content = file_get_contents("../html/items/updateProfile_content.html"); 
+		     $home_content = str_replace("<USERNAME>", $row["username"] ,  $home_content);
+		     $home_content = str_replace("<NOME>",  $row["nome"] ,  $home_content);
+		     $home_content = str_replace("<COGNOME>", $row["cognome"] ,  $home_content);
+		     $home_content = str_replace("<EMAIL>", $row["email"],  $home_content);
+		     $home_content = str_replace("<PASSWORD>", $row["password"] ,  $home_content);
+             return $home_content; 
+			
+			
+            
         }
     }
 	function deleteProfile()

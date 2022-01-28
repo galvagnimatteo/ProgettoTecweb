@@ -88,7 +88,7 @@ class Users
 
                 if ($resultCast->num_rows > 0) {
                     $row = $resultCast->fetch_assoc();
-                    $_SESSION["a"] = $row["username"];
+                    $_SESSION["a"] = $row["Username"];
 
                     header("location:home.php");
                 } else {
@@ -104,32 +104,32 @@ class Users
     }
 
 		function searchRegistered($email,$username,$value){
-		
+
 	$db = SingletonDB::getInstance();
 		$query =
-				"SELECT * FROM utente WHERE  email=?  OR username=?";
-				
+				"SELECT * FROM Utente WHERE Email=?  OR Username=?";
+
 		$preparedQuery = $db->getConnection()->prepare($query);
         $preparedQuery->bind_param("ss", $email,$username);
-			
-		
+
+
 			$preparedQuery->execute();
             $resultCast = $preparedQuery->get_result();
-				
-			
+
+
 				 if ($resultCast->num_rows > $value){
 					  $db->disconnect();
                 $preparedQuery->close();
-			return true;	 
-				}	 
-			
-            
-		
-			
+			return true;
+				}
+
+
+
+
 		return false;
-		
-		
-	
+
+
+
 }
     function getProfile()
     {
@@ -148,18 +148,18 @@ class Users
             $preparedQuery->close();
             $row = $resultCast->fetch_assoc();
 
-			 $home_content = file_get_contents("../html/items/updateProfile_content.html"); 
-		     $home_content = str_replace("<USERNAME>", $row["username"] ,  $home_content);
-		     $home_content = str_replace("<NOME>",  $row["nome"] ,  $home_content);
-		     $home_content = str_replace("<COGNOME>", $row["cognome"] ,  $home_content);
-		     $home_content = str_replace("<EMAIL>", $row["email"],  $home_content);
-		     $home_content = str_replace("<PASSWORD>", $row["password"] ,  $home_content);
-			  if(isset($_GET["error"])) 
+			 $home_content = file_get_contents("../html/items/updateProfile_content.html");
+		     $home_content = str_replace("<USERNAME>", $row["Username"] ,  $home_content);
+		     $home_content = str_replace("<NOME>",  $row["Nome"] ,  $home_content);
+		     $home_content = str_replace("<COGNOME>", $row["Cognome"] ,  $home_content);
+		     $home_content = str_replace("<EMAIL>", $row["Email"],  $home_content);
+		     $home_content = str_replace("<PASSWORD>", $row["Password"] ,  $home_content);
+			  if(isset($_GET["error"]))
 			{
 			$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
 			unset($_GET["error"]);
 			}
-          return $home_content;    
+          return $home_content;
         }
     }
 	function deleteProfile()
@@ -200,7 +200,7 @@ class Users
 
 
             $query =
-                  "UPDATE utente SET username=?, nome=?, cognome=?, password=?,email=? WHERE username=?";
+                  "UPDATE Utente SET Username=?, Nome=?, Cognome=?, Password=?,Email=? WHERE Username=?";
             if ($preparedQuery = $db->getConnection()->prepare($query)) {
                 $preparedQuery->bind_param(
                     "ssssss",
@@ -217,7 +217,7 @@ class Users
                 $name = $_POST["name_profile"];
                 $surname = $_POST["surname_profile"];
                 $email = $_POST["email_profile"];
-				
+
 
                 $preparedQuery->execute();
 

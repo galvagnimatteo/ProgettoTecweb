@@ -397,12 +397,12 @@ VALUES
 (15, '17:30:00'),
 (15, '21:30:00');
 
-INSERT INTO Utente (ID, DataNascita, Nome, Cognome, Username, Password, Email)
+INSERT INTO Utente (ID, Nome, Cognome, Username, Password, Email)
 VALUES
-(1, '1999-05-06', 'Gino', 'Ginetto', 'asdfg1', 'ngjaoag', 'asdfg@grim.com'),
-(2, '1994-09-01', 'piero', 'Ginetto', 'asdfg2', 'n22r', 'derfdfg@grim.com'),
-(3, '1995-07-04', 'Gino', 'fsdao', 'asdfg3', 'njaoag123', 'aasra@grim.com'),
-(4, '1980-02-08', 'Gino', 'Ginfetto', 'asdfg4', 'nuu5ag', 'atrtre@grim.com');
+(1, 'Gino', 'Ginetto', 'asdfg1', 'ngjaoag', 'asdfg@grim.com'),
+(2, 'piero', 'Ginetto', 'asdfg2', 'n22r', 'derfdfg@grim.com'),
+(3, 'Gino', 'fsdao', 'asdfg3', 'njaoag123', 'aasra@grim.com'),
+(4, 'Gino', 'Ginfetto', 'asdfg4', 'nuu5ag', 'atrtre@grim.com');
 
 INSERT INTO Prenotazione(ID, NumeroPersone, IDUtente, IDProiezione, OraProiezione)
 VALUES

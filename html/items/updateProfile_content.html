@@ -1,0 +1,92 @@
+ <div class="div_user">
+	Modify your profile
+	 </div>
+	   <div class="div_register">
+
+
+
+		<form action="../php/area_utenti.php?action=changeProfile" method="post" >
+
+	<div class="row">
+		<div class="col_25">
+		<label for="username_profile"><span xml:lang="en">Username</span></label>
+		</div>
+		<div class="col_75">
+		<input type="text" placeholder=" Username" name="username_profile"  value="<USERNAME>"  required>
+		</div>
+		</div>
+
+
+			<div class="row">
+		<div class="col_25">
+		<label for="name_profile"><span xml:lang="en">Name</span></label>
+		</div>
+		<div class="col_75">
+
+		<input type="text" placeholder=" Name" name="name_profile" value="<NOME>"  required   >
+			</div>
+		</div>
+
+
+
+		<div class="row">
+		<div class="col_25">
+		<label for="surname_profile"><span xml:lang="en">Surname</span></label>
+		</div>
+		<div class="col_75">
+		<input type="text" placeholder=" Surname" name="surname_profile"   value="<COGNOME>"   required>
+		</div>
+		</div>
+
+
+		<div class="row">
+		<div class="col_25">
+		<label for="email_profile"><span xml:lang="en">Email</span></label>
+		</div>
+			<div class="col_75">
+		<input type="email" placeholder=" Email" name="email_profile"  value="<EMAIL>"   >
+		</div>
+		</div>
+
+		<div class="row">
+		<div class="col_25">
+		<label for="password_profile"><span xml:lang="en">Password</span></label>
+		</div>
+		<div class="col_75">
+		<input type="password" placeholder=" Password" name="password_profile"   value="<PASSWORD>"   >
+		</div>
+		</div>
+
+		<div class="row">
+		<div class="col_25">
+		<label for="pass_profile_confirm"><span xml:lang="en">Password Confirmation</span></label>
+		</div>
+			<div class="col_75">
+		<input type="password" placeholder=" Repeat Password" name="pass_profile_confirm"  value="<PASSWORD>"   required>
+	</div>
+		</div>
+
+
+
+
+
+	<div class="row">
+	<input type="submit" value="Confirm your profile" >
+
+	 </div>
+
+
+
+	</form>
+	</div>
+
+
+	<div class="div_user">
+	
+	
+	<form action="../php/area_utenti.php?action=deleteProfile" method="post" >
+
+	<button type="submit" class="link_button"> Delete your account </button>
+	</form>
+	</div>
+

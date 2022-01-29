@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include "SingletonDB.php";
 include "utils/createCastStr.php";
 
@@ -43,10 +45,26 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $cast = createCastStr($result2);
 
         $document = file_get_contents("../html/template.html");
+		//SESSION
+			if (isset($_SESSION["a"])) {
+		$document = str_replace("<LOGIN>", $_SESSION["a"], $document);
+		$document = str_replace(
+        "<LINK>",
+        "./area_utenti.php?action=getProfile",
+        $document
+			);
+		} else {
+    $document = str_replace("<LOGIN>", "Login", $document);
+    $document = str_replace(
+        "<LINK>",
+        "./area_utenti.php?action=login_page",
+        $document
+			);
+		}
         $schedafilm_content = file_get_contents(
             "../html/schedafilm_content.html"
         );
-
+		//endS
         $document = str_replace(
             "<PAGETITLE>",
             $dataFilm["Titolo"] . " - PNG Cinema",

@@ -485,6 +485,7 @@ programmazione.html
 		background-color: var(--secondary-color);
 	}
 
+
 }
 
 @media screen and (max-width: 700px) {
@@ -523,6 +524,7 @@ programmazione.html
     }
 
 }
+
 
 
 
@@ -612,16 +614,21 @@ padding-left:4.5rem;
 	display:flex;
 	box-sizing: border-box;
 
+
 }
 
-
+#errorMessage{
+    color: var(--error-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
 
 
 .div_register input[type=submit]{
 	width:70%;
 	height:3rem;
 
-	/*display: block;*/
+	
 	color: #fff;
 	background: #660000;
 	background-image: linear-gradient(#660000, var(--gradient-last-color));
@@ -644,27 +651,6 @@ padding-left:2.5rem;
     font-size:0.8em;
 
 
-}
-.select_date {
-    background: none;
-    padding: 0.4rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-	margin-left: 0.5rem;
-    border-radius: 8px;
-	font-size: 1.0rem;
-
-}
-
-.select_date option{
-    background: var(--primary-color);
-}
-
-.button_password_view{
-	background: url('lol.png') no-repeat;
-}
-.button_one:hover{
-	background: #b30000;
 }
 
 
@@ -690,7 +676,7 @@ padding-left:2.5rem;
 
 @media screen and (max-width: 700px) {
 
-  input[type=submit]{
+  .div_register input[type=submit]{
     width: 100%;
 
     margin-top: 0;

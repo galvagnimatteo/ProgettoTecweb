@@ -1,30 +1,15 @@
 <?php
 require_once "SingletonDB.php";
+require_once "utils/controls.php";
 
 class Users
 {
+
     function insert()
     {
-        if (
-            isset($_POST["name_register"]) &&
-            isset($_POST["username_register"]) &&
-            isset($_POST["password_register"]) &&
-            isset($_POST["email_register"]) &&
-            isset($_POST["surname_register"])
-        ) {
-            $db = SingletonDB::getInstance();
 
-            $query =
-                "INSERT INTO utente ( username,email,nome, cognome,password) VALUES (?,?,?,?,?)";
-            $preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param(
-                "sssss",
-                $username,
-                $email,
-                $name,
-                $surname,
-                $password
-            );
+        if (isset($_POST["name_register"]) && isset($_POST["username_register"]) && isset($_POST["password_register"]) && isset($_POST["email_register"]) && isset($_POST["surname_register"]) && isset($_POST["pass_register_confirm"]))
+        {
 
             $username = $_POST["username_register"];
             $password = $_POST["password_register"];
@@ -32,56 +17,187 @@ class Users
             $surname = $_POST["surname_register"];
             $email = $_POST["email_register"];
 
-            $_SESSION["a"] = $username;
+            $confirm_password = $_POST["pass_register_confirm"];
 
-            $preparedQuery->execute();
-            $db->disconnect();
-            $preparedQuery->close();
+            $result = registerControls($username, $name, $surname, $email, $password, $confirm_password);
 
-            header("location:home.php");
+            if ($result == "OK")
+            {
+
+                $db = SingletonDB::getInstance();
+
+                $query = "INSERT INTO Utente(Username,Email,Nome,Cognome,Password) VALUES (?,?,?,?,?)";
+                $preparedQuery = $db->getConnection()
+                    ->prepare($query);
+                $preparedQuery->bind_param("sssss", $username, $email, $name, $surname, $password);
+
+                $_SESSION["a"] = $username;
+				$_SESSION["b"] = $email;
+                $preparedQuery->execute();
+                $db->disconnect();
+                $preparedQuery->close();
+
+            }
+
+            return $result;
+
         }
     }
 
     function search()
     {
-        if (isset($_POST["email_login"]) && isset($_POST["password_login"])) {
-            $db = SingletonDB::getInstance();
-            $query =
-                "SELECT username FROM utente WHERE  email=? AND password=?";
-            $preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param("ss", $email, $password);
+
+        if (isset($_POST["email_login"]) && isset($_POST["password_login"]))
+        {
 
             $email = $_POST["email_login"];
             $password = $_POST["password_login"];
 
-            $preparedQuery->execute();
-            $resultCast = $preparedQuery->get_result();
+            $result = loginControls($email, $password);
 
-            $db->disconnect();
-            $preparedQuery->close();
+            if ($result == "OK")
+            {
 
-            if ($resultCast->num_rows > 0) {
-                $row = $resultCast->fetch_assoc();
-                $_SESSION["a"] = $row["username"];
+                $db = SingletonDB::getInstance();
+                $query = "SELECT Username,Email FROM Utente WHERE Email=? AND Password=?";
+                $preparedQuery = $db->getConnection()
+                    ->prepare($query);
+                $preparedQuery->bind_param("ss", $email, $password);
 
-                header("location:home.php");
-            } else {
-                unset($_SESSION["a"]);
-                header("location:area_utenti.php?action=login_page");
+                $preparedQuery->execute();
+                $resultCast = $preparedQuery->get_result();
+
+                $db->disconnect();
+                $preparedQuery->close();
+
+                if ($resultCast->num_rows > 0)
+                {
+                    $row = $resultCast->fetch_assoc();
+                    $_SESSION["a"] = $row["Username"];
+					$_SESSION["b"] = $row["Email"];
+                    header("location:home.php");
+                }
+                else
+                {
+                    unset($_SESSION["a"]);
+					unset($_SESSION["b"]);
+                    header("location:area_utenti.php?action=login_page");
+                }
+
             }
+
+            return $result;
         }
+
     }
+
+
+		function searchRegistered($email,$username,$value){
+
+
+		$db = SingletonDB::getInstance();
+
+
+        $queryE = "SELECT * FROM Utente WHERE Email=?";
+		$preparedQueryE = $db->getConnection()->prepare($queryE);
+		$preparedQueryE->bind_param("s", $email);
+		$preparedQueryE->execute();
+        $resultCastE = $preparedQueryE->get_result();
+		$isDoubled=false;
+		$isEmail=false;
+		if($value==0){
+		if ($resultCastE->num_rows > $value ){
+
+	$isEmail=true;
+		$isDoubled=true;
+		}
+
+		}else{
+
+				if($resultCastE->num_rows == $value){
+					$row = $resultCastE->fetch_assoc();
+					if($row['Email']==$_SESSION["b"])
+					{
+
+					}else{
+					$isEmail=true;
+					$isDoubled=true;
+					}
+
+
+			}else
+			{
+				if($resultCastE->num_rows > $value){
+					$isEmail=true;
+					$isDoubled=true;
+
+				}
+
+			}
+
+		}
+
+		$db = SingletonDB::getInstance();
+        $queryU = "SELECT * FROM Utente WHERE Username=?";
+		$preparedQueryU = $db->getConnection()->prepare($queryU);
+        $preparedQueryU->bind_param("s",$username);
+
+        $preparedQueryU->execute();
+        $resultCastU = $preparedQueryU->get_result();
+		$isUser=false;
+		if($value==0){
+		if ($resultCastU->num_rows > $value){
+
+		$isUser=true;
+		$isDoubled=true;
+		}
+
+		}else{
+
+				if($resultCastU->num_rows == $value){
+					$row = $resultCastU->fetch_assoc();
+					if($row['Username']==$_SESSION["a"])
+					{
+
+					}else{
+					$isUser=true;
+					$isDoubled=true;
+					}
+
+
+			}else
+			{
+				if($resultCastU->num_rows > $value){
+					$isUser=true;
+					$isDoubled=true;
+
+				}
+
+			}
+		}
+
+
+            $preparedQueryU->close();
+			$preparedQueryE->close();
+		return array($isDoubled,$isUser,$isEmail);
+
+
+
+
+
+}
 
     function getProfile()
     {
-        if (isset($_SESSION["a"])) {
+        if (isset($_SESSION["a"]))
+        {
             $db = SingletonDB::getInstance();
 
-            $query =
-                "SELECT username,nome,cognome,password,email FROM utente WHERE  username=? ";
-            $preparedQuery = $db->getConnection()->prepare($query);
-            $preparedQuery->bind_param("s", $username);
+            $query = "SELECT Username, Nome,Cognome,Password,Email FROM Utente WHERE Username=? ";
+            $preparedQuery = $db->getConnection()
+                ->prepare($query);
             $username = $_SESSION["a"];
+            $preparedQuery->bind_param("s", $username);
 
             $preparedQuery->execute();
             $resultCast = $preparedQuery->get_result();
@@ -89,147 +205,104 @@ class Users
             $preparedQuery->close();
             $row = $resultCast->fetch_assoc();
 
-            return $home_content =
-                '
 
-		 <div class="div_user">
-	Modify your profile
-	 </div>
-	   <div class="div_register">
+			 $home_content = file_get_contents("../html/items/updateProfile_content.html");
+		     $home_content = str_replace("<USERNAME>", $row["Username"] ,  $home_content);
+		     $home_content = str_replace("<NOME>",  $row["Nome"] ,  $home_content);
+		     $home_content = str_replace("<COGNOME>", $row["Cognome"] ,  $home_content);
+		     $home_content = str_replace("<EMAIL>", $row["Email"],  $home_content);
+		     $home_content = str_replace("<PASSWORD>", $row["Password"] ,  $home_content);
+			 if (isset($_GET["error"]))
+            {
+				$error=$_GET["error"];
 
+				if($error==3)
+				$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
 
+				if($error==2)
+				$home_content = str_replace("<ERRORMESSAGE>", "Username già registrato", $home_content);
 
-		<form action="../php/area_utenti.php?action=changeProfile" method="post" >
-
-	<div class="row">
-		<div class="col_25">
-		<label for="username_profile"><span xml:lang="en">Username</span></label>
-		</div>
-		<div class="col_75">
-		<input type="text" placeholder=" Username" name="username_profile"  value="' .
-                $row["username"] .
-                '"  required>
-		</div>
-		</div>
+				if($error==1)
+				$home_content = str_replace("<ERRORMESSAGE>", "Email già registrato", $home_content);
 
 
-			<div class="row">
-		<div class="col_25">
-		<label for="name_profile"><span xml:lang="en">Name</span></label>
-		</div>
-		<div class="col_75">
-
-		<input type="text" placeholder=" Name" name="name_profile" value="' .
-                $row["nome"] .
-                '"  required   >
-			</div>
-		</div>
+                unset($_GET["error"]);
 
 
+            }
 
-		<div class="row">
-		<div class="col_25">
-		<label for="surname_profile"><span xml:lang="en">Surname</span></label>
-		</div>
-		<div class="col_75">
-		<input type="text" placeholder=" Surname" name="surname_profile"   value="' .
-                $row["cognome"] .
-                '"   required>
-		</div>
-		</div>
+            if(isset($_SESSION["insertError"])){
+                $home_content = str_replace("<ERRORMESSAGE>", $_SESSION["insertError"], $home_content);
+            }
+          return $home_content;
 
-
-		<div class="row">
-		<div class="col_25">
-		<label for="email_profile"><span xml:lang="en">Email</span></label>
-		</div>
-			<div class="col_75">
-		<input type="email" placeholder=" Email" name="email_profile"  value="' .
-                $row["email"] .
-                '"   >
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col_25">
-		<label for="password_profile"><span xml:lang="en">Password</span></label>
-		</div>
-		<div class="col_75">
-		<input type="password" placeholder=" Password" name="password_profile"   value="' .
-                $row["password"] .
-                '"   >
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col_25">
-		<label for="pass_profile_confirm"><span xml:lang="en">Password Confirmation</span></label>
-		</div>
-			<div class="col_75">
-		<input type="password" placeholder=" Repeat Password" name="pass_profile_confirm"  value="' .
-                $row["password"] .
-                '"   required>
-	</div>
-		</div>
-
-
-
-
-
-	<div class="row">
-	<input type="submit" value="Confirm your profile" >
-
-	 </div>
-
-
-
-	</form>
-	</div>
-
-
-
-
-
-	   ';
         }
+    }
+    function deleteProfile()
+    {
+        $db = SingletonDB::getInstance();
+
+        $query = "DELETE FROM Utente WHERE Username=?";
+        if ($preparedQuery = $db->getConnection()
+            ->prepare($query))
+        {
+            $preparedQuery->bind_param("s", $username);
+            if (isset($_SESSION["a"]))
+            {
+                $username = $_SESSION["a"];
+				unset($_SESSION["a"]);
+				unset($_SESSION["b"]);
+                $preparedQuery->execute();
+                $db->disconnect();
+                $preparedQuery->close();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
+
     }
 
     function changeProfile()
     {
-        if (
-            isset($_POST["name_profile"]) &&
-            isset($_POST["password_profile"]) &&
-            isset($_POST["email_profile"]) &&
-            isset($_POST["surname_profile"]) &&
-            isset($_POST["password_profile"]) &&
-            isset($_SESSION["a"])
-        ) {
-            $db = SingletonDB::getInstance();
+        if (isset($_POST["username_profile"]) && isset($_POST["name_profile"]) && isset($_POST["password_profile"]) && isset($_POST["email_profile"]) && isset($_POST["surname_profile"]) && isset($_POST["password_profile"]) && isset($_SESSION["a"]))
+        {
 
-            $query =
-                "UPDATE utenti SET nome=?, cognome=?, password=?,email=? WHERE username=?)";
-            if ($preparedQuery = $db->getConnection()->prepare($query)) {
-                $preparedQuery->bind_param(
-                    "sssss",
-                    $name,
-                    $surname,
-                    $password,
-                    $email,
-                    $username
-                );
+            $newusername = $_POST["username_profile"];
+            $oldusername = $_SESSION["a"];
+            $password = $_POST["password_profile"];
+            $name = $_POST["name_profile"];
+            $surname = $_POST["surname_profile"];
+            $email = $_POST["email_profile"];
+            $confirm_password = $_POST["pass_profile_confirm"];
 
-                $username = $_SESSION["a"];
-                $password = $_POST["password_profile"];
-                $name = $_POST["name_profile"];
-                $surname = $_POST["surname_profile"];
-                $email = $_POST["email_profile"];
+            $result = registerControls($newusername, $name, $surname, $email, $password, $confirm_password);
 
-                $preparedQuery->execute();
+            if($result == "OK"){
 
-                $db->disconnect();
-                $preparedQuery->close();
-            } else {
+                $db = SingletonDB::getInstance();
+
+                $query = "UPDATE Utente SET Username=?, Nome=?, Cognome=?, Password=?,Email=? WHERE Username=?";
+                if ($preparedQuery = $db->getConnection()
+                    ->prepare($query))
+                {
+                    $preparedQuery->bind_param("ssssss", $newusername, $name, $surname, $password, $email, $oldusername);
+
+                    $preparedQuery->execute();
+
+                    $db->disconnect();
+                    $preparedQuery->close();
+                    $_SESSION["a"] = $newusername;
+					$_SESSION["b"] = $email;
+                }else{
+                    header("location:500.php");
+                    die();
+                }
             }
+            return $result;
         }
     }
 }

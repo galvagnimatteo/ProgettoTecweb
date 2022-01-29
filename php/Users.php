@@ -50,7 +50,7 @@ class Users
 
 
                 $_SESSION["a"] = $username;
-
+				$_SESSION["b"] = $email;
                 $preparedQuery->execute();
                 $db->disconnect();
                 $preparedQuery->close();
@@ -93,6 +93,7 @@ class Users
                     header("location:home.php");
                 } else {
                     unset($_SESSION["a"]);
+					unset($_SESSION["b"]);
                     header("location:area_utenti.php?action=login_page");
                 }
 
@@ -105,28 +106,94 @@ class Users
 
 		function searchRegistered($email,$username,$value){
 		
-	$db = SingletonDB::getInstance();
-		$query =
-				"SELECT * FROM utente WHERE  email=?  OR username=?";
-				
-		$preparedQuery = $db->getConnection()->prepare($query);
-        $preparedQuery->bind_param("ss", $email,$username);
-			
+	
+		$db = SingletonDB::getInstance();
 		
-			$preparedQuery->execute();
-            $resultCast = $preparedQuery->get_result();
-				
-			
-				 if ($resultCast->num_rows > $value){
-					  $db->disconnect();
-                $preparedQuery->close();
-			return true;	 
-				}	 
-			
-            
+	
+        $queryE = "SELECT * FROM Utente WHERE Email=?";
+		$preparedQueryE = $db->getConnection()->prepare($queryE);
+		$preparedQueryE->bind_param("s", $email);
+		$preparedQueryE->execute();
+        $resultCastE = $preparedQueryE->get_result();
+		$isDoubled=false;
+		$isEmail=false;
+		if($value==0){
+		if ($resultCastE->num_rows > $value ){
+
+	$isEmail=true;
+		$isDoubled=true;
+		}
 		
+		}else{
 			
-		return false;
+				if($resultCastE->num_rows == $value){
+					$row = $resultCastE->fetch_assoc();
+					if($row['Email']==$_SESSION["b"])
+					{
+						
+					}else{
+					$isEmail=true;
+					$isDoubled=true;
+					}
+					
+			
+			}else
+			{
+				if($resultCastE->num_rows > $value){
+					$isEmail=true;
+					$isDoubled=true;
+				
+				}
+			
+			}
+			
+		}
+		
+		$db = SingletonDB::getInstance();
+        $queryU = "SELECT * FROM Utente WHERE Username=?";
+		$preparedQueryU = $db->getConnection()->prepare($queryU);
+        $preparedQueryU->bind_param("s",$username);
+
+        $preparedQueryU->execute();
+        $resultCastU = $preparedQueryU->get_result();
+		$isUser=false;
+		if($value==0){
+		if ($resultCastU->num_rows > $value){
+		
+		$isUser=true;
+		$isDoubled=true;
+		}
+		
+		}else{
+			
+				if($resultCastU->num_rows == $value){
+					$row = $resultCastU->fetch_assoc();
+					if($row['Username']==$_SESSION["a"])
+					{
+						
+					}else{
+					$isUser=true;
+					$isDoubled=true;
+					}
+					
+			
+			}else
+			{
+				if($resultCastU->num_rows > $value){
+					$isUser=true;
+					$isDoubled=true;
+				
+				}
+			
+			}
+		}
+        
+       
+            $preparedQueryU->close();
+			$preparedQueryE->close();
+		return array($isDoubled,$isUser,$isEmail);
+		
+
 		
 		
 	
@@ -154,11 +221,24 @@ class Users
 		     $home_content = str_replace("<COGNOME>", $row["cognome"] ,  $home_content);
 		     $home_content = str_replace("<EMAIL>", $row["email"],  $home_content);
 		     $home_content = str_replace("<PASSWORD>", $row["password"] ,  $home_content);
-			  if(isset($_GET["error"])) 
-			{
-			$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
-			unset($_GET["error"]);
-			}
+			 if (isset($_GET["error"]))
+            {
+				$error=$_GET["error"];
+				
+				if($error==3)
+				$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
+			
+				if($error==2)
+				$home_content = str_replace("<ERRORMESSAGE>", "Username già registrato", $home_content);
+			
+				if($error==1)
+				$home_content = str_replace("<ERRORMESSAGE>", "Email già registrato", $home_content);
+			
+               
+                unset($_GET["error"]);
+				
+				
+            }
           return $home_content;    
         }
     }

@@ -64,13 +64,28 @@ if (isset($_GET["action"])) {
         include_once "Users.php";
 
 
-        $Users = new Users();
-		$verify=false;
-		$verify=$Users->searchRegistered($_POST["email_register"],$_POST["username_register"],0);
-		if(!$verify )
+      $Users = new Users();
+		
+		list($isDoubled,$isUser,$isEmail)=$Users->searchRegistered($_POST["email_register"],$_POST["username_register"],$value=0);
+		
+		if($isDoubled)
 		{
-		 
-       $result = $Users->insert();
+			if($isUser && $isEmail) {
+			$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);		
+			}else{
+			if($isUser )
+			{	
+			$home_content = str_replace("<ERRORMESSAGE>", "Username già registrato", $home_content);
+			}
+			if($isEmail )
+			{	
+			$home_content = str_replace("<ERRORMESSAGE>", "Email già registrato", $home_content);
+			}
+			
+			}
+		}else
+		{
+		 $result = $Users->insert();
 
         if($result == "OK"){
 
@@ -82,10 +97,9 @@ if (isset($_GET["action"])) {
             $home_content = str_replace("<ERRORMESSAGE>", $result, $home_content);
 
         }
-		}{
-			 $home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
-			 //errore username/email già presente 
-		}
+
+
+		}	
     }
 
     if ($action == "search") {
@@ -114,16 +128,34 @@ if (isset($_GET["action"])) {
     }
 
      if ($action == "changeProfile") {
-        include_once "Users.php";
+      include_once "Users.php";
         $Users = new Users();
-		$verify=$Users->searchRegistered($_POST["email_profile"],$_POST["username_profile"],1);
-        if(!$verify )
+		
+		
+		list($isDoubled,$isUser,$isEmail)=$Users->searchRegistered($_POST["email_profile"],$_POST["username_profile"],$value=1);
+	
+		if($isDoubled)
 		{
-			$Users->changeProfile();
-		header("location:home.php");
+			if($isUser && $isEmail) {
+			
+			header("location:area_utenti.php?action=getProfile&error=3");	
+			}else{
+			if($isUser )
+			{	
+			
+			header("location:area_utenti.php?action=getProfile&error=2");
+			}
+			if($isEmail )
+			{	
+			
+			header("location:area_utenti.php?action=getProfile&error=1");
+			}
+			
+			}
 		}else{
 			
-			  header("location:area_utenti.php?action=getProfile&error=1");
+			$Users->changeProfile();
+		header("location:home.php");
 			
 			
 		}

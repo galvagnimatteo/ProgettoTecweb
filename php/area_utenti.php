@@ -65,23 +65,23 @@ if (isset($_GET["action"])) {
 
 
       $Users = new Users();
-		
+
 		list($isDoubled,$isUser,$isEmail)=$Users->searchRegistered($_POST["email_register"],$_POST["username_register"],$value=0);
-		
+
 		if($isDoubled)
 		{
 			if($isUser && $isEmail) {
-			$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);		
+			$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
 			}else{
 			if($isUser )
-			{	
+			{
 			$home_content = str_replace("<ERRORMESSAGE>", "Username già registrato", $home_content);
 			}
 			if($isEmail )
-			{	
+			{
 			$home_content = str_replace("<ERRORMESSAGE>", "Email già registrato", $home_content);
 			}
-			
+
 			}
 		}else
 		{
@@ -102,7 +102,7 @@ if (isset($_GET["action"])) {
 
 
 
-		}	
+		}
 
     }
 
@@ -134,35 +134,43 @@ if (isset($_GET["action"])) {
      if ($action == "changeProfile") {
       include_once "Users.php";
         $Users = new Users();
-		
-		
+
+
 		list($isDoubled,$isUser,$isEmail)=$Users->searchRegistered($_POST["email_profile"],$_POST["username_profile"],$value=1);
-	
+
 		if($isDoubled)
 		{
 
 			if($isUser && $isEmail) {
-			
-			header("location:area_utenti.php?action=getProfile&error=3");	
+
+			header("location:area_utenti.php?action=getProfile&error=3");
 			}else{
 			if($isUser )
-			{	
-			
+			{
+
 			header("location:area_utenti.php?action=getProfile&error=2");
 			}
 			if($isEmail )
-			{	
-			
+			{
+
 			header("location:area_utenti.php?action=getProfile&error=1");
 			}
-			
+
 			}
 		}else{
-			
-			$Users->changeProfile();
-		header("location:home.php");
-			
-			
+
+			$result = $Users->changeProfile();
+			if($result == "OK"){
+
+				header("location:home.php");
+
+			}else{
+				header("location:area_utenti.php?action=getProfile");
+				$_POST["insertError"] = $result;
+
+			}
+
+
 
 		}
 

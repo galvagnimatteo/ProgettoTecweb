@@ -19,8 +19,7 @@ $home_content = file_get_contents("../html/area_utenti_register_content.html"); 
 
 
 $document = str_replace(
-    "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / <a href="area_utenti.php?action=login_page">Area Utenti</a>',
+    "<BREADCRUMB>",    '<a href="home.php">Home</a> / Area Utenti',
     $document
 );
 $document = str_replace("<JAVASCRIPT-HEAD>", '<script type="text/javascript" src="../js/controls.js"> </script>', $document);

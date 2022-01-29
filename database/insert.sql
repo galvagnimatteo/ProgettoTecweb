@@ -404,6 +404,10 @@ VALUES
 ("username3", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
 ("username4", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com');
 
+INSERT INTO Amministratori (Username, Password)
+VALUES
+('admin','admin');
+
 INSERT INTO Prenotazione(ID, NumeroPersone, UsernameUtente, IDProiezione, OraProiezione)
 VALUES
 (1, 4, "username1", 2, '21:30:00'),

@@ -26,7 +26,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
     $preparedQuery3 = $db
         ->getConnection()
         ->prepare(
-            "SELECT * FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? ORDER BY Data"
+            "SELECT Data, Proiezione.ID as IDProiezione FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? ORDER BY Data"
         );
     $preparedQuery3->bind_param("i", $_GET["idfilm"]);
     $preparedQuery3->execute();
@@ -137,12 +137,23 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
             while ($row = $result3->fetch_assoc()) {
                 $filmscreeningfield = $filmscreeningfield_template;
-                $filmscreeningfield = str_replace(
+                
+				$filmscreeningfield = str_replace(
                     "<DATA>",
                     $row["Data"],
                     $filmscreeningfield
                 );
-
+				
+				$filmscreeningfield = str_replace(
+					"<IDPROIEZ-HIDDEN>",
+					'<input type="hidden" name="idproiez" value="' .
+					$row["IDProiezione"] .
+					'" />',
+					$filmscreeningfield
+				);
+				
+				//TODO: non so se sia meglio lascarla aperta la connessione e chiuderla alla fine
+				
                 $db->connect();
                 $preparedQuery4 = $db
                     ->getConnection()
@@ -164,10 +175,8 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                     //si assume che se c'è una data di proiezione ci siano anche degli orari quindi nessun controllo necessario
 
                     $hour_field =
-                        '<input type="submit" name="' .
-                        $orarioRow["Ora"] .
-                        '" value="' .
-                        $orarioRow["Ora"] .
+                        '<input type="submit" name="orario" value="' .
+                        $orarioRow["Ora"] . 
                         '">';
                     $hour_fields .= $hour_field;
                 }
@@ -177,15 +186,18 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                     $hour_fields,
                     $filmscreeningfield
                 );
-
+				
                 $filmscreeningfields .= $filmscreeningfield;
             }
-
+			
+			
             $schedafilm_content = str_replace(
                 "<SCREENING-FIELDS>",
                 $filmscreeningfields,
                 $schedafilm_content
             );
+			
+			
         } //else nessun problema, il film non ha programmazioni in corso
 
         $document = str_replace("<CONTENT>", $schedafilm_content, $document);

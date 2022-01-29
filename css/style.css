@@ -964,7 +964,11 @@ font-size:6.5vw;
     body, #content {
         page-break-inside: auto;
     }
-    body, #content * {
+    #content> * {
         page-break-inside: avoid;
+    }
+    div{
+        page-break-before:avoid;
+        page-break-after:auto;
     }
 }

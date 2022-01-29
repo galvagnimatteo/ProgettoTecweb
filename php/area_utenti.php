@@ -85,7 +85,9 @@ if (isset($_GET["action"])) {
 			}
 		}else
 		{
+
 		 $result = $Users->insert();
+
 
         if($result == "OK"){
 
@@ -99,7 +101,9 @@ if (isset($_GET["action"])) {
         }
 
 
+
 		}	
+
     }
 
     if ($action == "search") {
@@ -136,6 +140,7 @@ if (isset($_GET["action"])) {
 	
 		if($isDoubled)
 		{
+
 			if($isUser && $isEmail) {
 			
 			header("location:area_utenti.php?action=getProfile&error=3");	
@@ -158,8 +163,9 @@ if (isset($_GET["action"])) {
 		header("location:home.php");
 			
 			
+
 		}
-		
+
     }
 
 	if($action == "deleteProfile")
@@ -171,8 +177,8 @@ if (isset($_GET["action"])) {
 		session_destroy();
 		unset($_SESSION["a"]);
 		    header("location:area_utenti.php?action=login_page");
-		 } 
-	}	
+		 }
+	}
 
 } else {
     $home_content = file_get_contents(

@@ -61,10 +61,10 @@ if (isset($_GET["action"]))
             /*$db->disconnect();*/
             $preparedQuery->close();
             if($res){
-                $content=str_replace("<STATUS>", "<p class='sucess'>inserimento avvenuto correttamente</p>", $content)
+                $content=str_replace("<STATUS>", "<p class='sucess'>inserimento avvenuto correttamente</p>", $content);
             }
             else{
-                $content=str_replace("<STATUS>", "<p class='faliure'>errore nell'inserimento prego riprovare</p>", $content)
+                $content=str_replace("<STATUS>", "<p class='faliure'>errore nell'inserimento prego riprovare</p>", $content);
             }
         }
     }

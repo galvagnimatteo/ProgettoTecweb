@@ -21,7 +21,7 @@ else{
 }
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / amministrazione',
+    'amministrazione',
     $document
 );
 $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);

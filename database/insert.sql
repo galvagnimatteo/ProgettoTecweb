@@ -403,6 +403,9 @@ VALUES
 (2, '1994-09-01', 'piero', 'Ginetto', 'asdfg2', 'n22r', 'derfdfg@grim.com'),
 (3, '1995-07-04', 'Gino', 'fsdao', 'asdfg3', 'njaoag123', 'aasra@grim.com'),
 (4, '1980-02-08', 'Gino', 'Ginfetto', 'asdfg4', 'nuu5ag', 'atrtre@grim.com');
+INSERT INTO Amministratori (Username, Password)
+VALUES
+('admin','admin');
 
 INSERT INTO Prenotazione(ID, NumeroPersone, IDUtente, IDProiezione)
 VALUES

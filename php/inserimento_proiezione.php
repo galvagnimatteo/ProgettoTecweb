@@ -27,8 +27,6 @@ $document = str_replace(
     '<a href="home.php">Home</a> / <a href="admin.php">amministrazione</a>/inserimento film',
     $document
 );
-$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
-$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 
 $db = SingletonDB::getInstance();
 
@@ -82,6 +80,7 @@ while($row = $resultCast->fetch_assoc();){
     $stringfilms=$stringfilms."<option value=".$row["ID"].">".$row["Titolo"]."</option>";
 }
 $content = str_replace("<FILM>", $stringfilms, $content);
+$document = str_replace("/php/inserimento_proiezione.php", "#", $document);
 $document = str_replace("<CONTENT>", $content, $document);
 
 echo $document;

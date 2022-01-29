@@ -83,7 +83,6 @@ if (isset($_GET["action"])) {
     );
     $document = str_replace("<LOGIN>", "Login", $document);
 }
-
 $document = str_replace("<CONTENT>", $home_content, $document);
 echo $document;
 

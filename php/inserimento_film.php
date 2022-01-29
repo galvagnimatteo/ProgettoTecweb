@@ -27,8 +27,7 @@ $document = str_replace(
     '<a href="home.php">Home</a> / <a href="admin.php">amministrazione</a>/inserimento film',
     $document
 );
-$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
-$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
+
 
 
 if (isset($_GET["action"])) 
@@ -85,7 +84,7 @@ if (isset($_GET["action"]))
 else{
     $content=str_replace("<STATUS>", "", $content)
 }
-
+$document = str_replace("/php/inserimento_film.php", "#", $document);
 $document = str_replace("<CONTENT>", $content, $document);
 
 echo $document;

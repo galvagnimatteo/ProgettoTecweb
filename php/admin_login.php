@@ -53,10 +53,7 @@ $document = str_replace(
     '<a href="admin.php">amministrazione</a> / login',
     $document
 );
-$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
-$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-
-
+$document = str_replace("/php/admin_login.php", "#", $document);
 
 $document = str_replace("<CONTENT>", $content, $document);
 echo $document;

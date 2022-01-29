@@ -24,11 +24,7 @@ $document = str_replace(
     'amministrazione',
     $document
 );
-$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
-$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-
-
-
+$document = str_replace("/php/admin.php", "#", $document);
 $document = str_replace("<CONTENT>", $content, $document);
 echo $document;
 

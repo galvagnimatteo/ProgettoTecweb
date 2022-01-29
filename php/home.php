@@ -103,7 +103,7 @@ $home_content = str_replace(
     $home_content
 );
 $home_content = str_replace("<CARDS-HOME>", $cards, $home_content);
-
+$document = str_replace("/php/home.php", "#", $document);
 $document = str_replace("<CONTENT>", $home_content, $document);
 
 if (isset($_SESSION["a"])) {

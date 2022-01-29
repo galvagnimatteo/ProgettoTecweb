@@ -2,13 +2,13 @@
 	Modify your profile
 </div>
 <div class="div_register">
-	<form action="../php/area_utenti.php?action=changeProfile" method="post">
+	<form action="../php/area_utenti.php?action=changeProfile" method="post" onsubmit="return modifyControls()">
 		<div class="row">
 			<div class="col_25">
 				<label for="username_profile"><span xml:lang="en">Username</span></label>
 			</div>
 			<div class="col_75">
-				<input type="text" placeholder=" Username" name="username_profile"  value="<USERNAME>"  required>
+				<input id="username_profile" type="text" placeholder=" Username" name="username_profile"  value="<USERNAME>"  required>
 			</div>
 		</div>
 		<div class="row">
@@ -16,7 +16,7 @@
 				<label for="name_profile"><span xml:lang="en">Name</span></label>
 			</div>
 			<div class="col_75">
-				<input type="text" placeholder=" Name" name="name_profile" value="<NOME>"  required   >
+				<input id="name_profile" type="text" placeholder=" Name" name="name_profile" value="<NOME>"  required   >
 			</div>
 		</div>
 		<div class="row">
@@ -24,7 +24,7 @@
 				<label for="surname_profile"><span xml:lang="en">Surname</span></label>
 			</div>
 			<div class="col_75">
-				<input type="text" placeholder=" Surname" name="surname_profile"   value="<COGNOME>"   required>
+				<input id="surname_profile" type="text" placeholder=" Surname" name="surname_profile"   value="<COGNOME>"   required>
 			</div>
 		</div>
 		<div class="row">
@@ -32,7 +32,7 @@
 				<label for="email_profile"><span xml:lang="en">Email</span></label>
 			</div>
 			<div class="col_75">
-				<input type="email" placeholder=" Email" name="email_profile"  value="<EMAIL>"   >
+				<input id="email_profile" type="email" placeholder=" Email" name="email_profile"  value="<EMAIL>"   >
 			</div>
 		</div>
 		<div class="row">
@@ -40,7 +40,7 @@
 				<label for="password_profile"><span xml:lang="en">Password</span></label>
 			</div>
 			<div class="col_75">
-				<input type="password" placeholder=" Password" name="password_profile"   value="<PASSWORD>"   >
+				<input id="password_profile" type="password" placeholder=" Password" name="password_profile"   value="<PASSWORD>"   >
 			</div>
 		</div>
 		<div class="row">
@@ -48,7 +48,7 @@
 				<label for="pass_profile_confirm"><span xml:lang="en">Password Confirmation</span></label>
 			</div>
 			<div class="col_75">
-				<input type="password" placeholder=" Repeat Password" name="pass_profile_confirm"  value="<PASSWORD>"   required>
+				<input id="pass_profile_confirm" type="password" placeholder=" Repeat Password" name="pass_profile_confirm"  value="<PASSWORD>"   required>
 			</div>
 		</div>
 		<div class="row">

@@ -231,8 +231,8 @@ class Users
 
             }
 
-            if(isset($_POST["insertError"])){
-                $home_content = str_replace("<ERRORMESSAGE>", $_POST["insertError"], $home_content);
+            if(isset($_SESSION["insertError"])){
+                $home_content = str_replace("<ERRORMESSAGE>", $_SESSION["insertError"], $home_content);
             }
           return $home_content;
 

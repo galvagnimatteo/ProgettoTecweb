@@ -71,7 +71,7 @@ if (isset($_GET["action"])) {
 		if($isDoubled)
 		{
 			if($isUser && $isEmail) {
-			$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
+			$home_content = str_replace("<ERRORMESSAGE>", "Email e username già registrati", $home_content);
 			}else{
 			if($isUser )
 			{
@@ -79,7 +79,7 @@ if (isset($_GET["action"])) {
 			}
 			if($isEmail )
 			{
-			$home_content = str_replace("<ERRORMESSAGE>", "Email già registrato", $home_content);
+			$home_content = str_replace("<ERRORMESSAGE>", "Email già registrata", $home_content);
 			}
 
 			}
@@ -165,8 +165,10 @@ if (isset($_GET["action"])) {
 				header("location:home.php");
 
 			}else{
+
+				$_SESSION["insertError"] = $result;
+
 				header("location:area_utenti.php?action=getProfile");
-				$_POST["insertError"] = $result;
 
 			}
 

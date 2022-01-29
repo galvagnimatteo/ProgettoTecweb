@@ -69,7 +69,7 @@ if (isset($_GET["action"])) {
 		$verify=$Users->searchRegistered($_POST["email_register"],$_POST["username_register"],0);
 		if(!$verify )
 		{
-		 
+
        $result = $Users->insert();
 
         if($result == "OK"){
@@ -84,7 +84,7 @@ if (isset($_GET["action"])) {
         }
 		}{
 			 $home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
-			 //errore username/email già presente 
+			 //errore username/email già presente
 		}
     }
 
@@ -119,15 +119,16 @@ if (isset($_GET["action"])) {
 		$verify=$Users->searchRegistered($_POST["email_profile"],$_POST["username_profile"],1);
         if(!$verify )
 		{
-			$Users->changeProfile();
-		header("location:home.php");
+			$result = $Users->changeProfile();
+			//con result display dell'errore, TODO
+			header("location:area_utenti.php?action=getProfile");
+
 		}else{
-			
+
 			  header("location:area_utenti.php?action=getProfile&error=1");
-			
-			
+
 		}
-		
+
     }
 
 	if($action == "deleteProfile")
@@ -139,8 +140,8 @@ if (isset($_GET["action"])) {
 		session_destroy();
 		unset($_SESSION["a"]);
 		    header("location:area_utenti.php?action=login_page");
-		 } 
-	}	
+		 }
+	}
 
 } else {
     $home_content = file_get_contents(

@@ -175,31 +175,38 @@ class Users
     {
         if (isset($_POST["username_profile"]) && isset($_POST["name_profile"]) && isset($_POST["password_profile"]) && isset($_POST["email_profile"]) && isset($_POST["surname_profile"]) && isset($_POST["password_profile"]) && isset($_SESSION["a"]))
         {
-            $db = SingletonDB::getInstance();
 
-            $query = "UPDATE Utente SET Username=?, Nome=?, Cognome=?, Password=?,Email=? WHERE Username=?";
-            if ($preparedQuery = $db->getConnection()
-                ->prepare($query))
-            {
-                $preparedQuery->bind_param("ssssss", $newusername, $name, $surname, $password, $email, $oldusername);
-                $newusername = $_POST["username_profile"];
-                $oldusername = $_SESSION["a"];
-                $password = $_POST["password_profile"];
-                $name = $_POST["name_profile"];
-                $surname = $_POST["surname_profile"];
-                $email = $_POST["email_profile"];
+            $newusername = $_POST["username_profile"];
+            $oldusername = $_SESSION["a"];
+            $password = $_POST["password_profile"];
+            $name = $_POST["name_profile"];
+            $surname = $_POST["surname_profile"];
+            $email = $_POST["email_profile"];
+            $confirm_password = $_POST["pass_profile_confirm"];
 
-                $preparedQuery->execute();
+            $result = registerControls($newusername, $name, $surname, $email, $password, $confirm_password);
+    
+            if($result == "OK"){
 
-                $db->disconnect();
-                $preparedQuery->close();
-                $_SESSION["a"] = $newusername;
-                return true;
+                $db = SingletonDB::getInstance();
+
+                $query = "UPDATE Utente SET Username=?, Nome=?, Cognome=?, Password=?,Email=? WHERE Username=?";
+                if ($preparedQuery = $db->getConnection()
+                    ->prepare($query))
+                {
+                    $preparedQuery->bind_param("ssssss", $newusername, $name, $surname, $password, $email, $oldusername);
+
+                    $preparedQuery->execute();
+
+                    $db->disconnect();
+                    $preparedQuery->close();
+                    $_SESSION["a"] = $newusername;
+                }else{
+                    header("location:500.php");
+                    die();
+                }
             }
-            else
-            {
-                return false;
-            }
+            return $result;
         }
     }
 }

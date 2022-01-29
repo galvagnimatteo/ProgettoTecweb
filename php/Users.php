@@ -290,6 +290,7 @@ class Users
                     $db->disconnect();
                     $preparedQuery->close();
                     $_SESSION["a"] = $newusername;
+					$_SESSION["b"] = $email;
                 }else{
                     header("location:500.php");
                     die();

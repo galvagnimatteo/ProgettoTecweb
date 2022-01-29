@@ -59,7 +59,7 @@ class Users
             {
 
                 $db = SingletonDB::getInstance();
-                $query = "SELECT Username FROM Utente WHERE Email=? AND Password=?";
+                $query = "SELECT Username,Email FROM Utente WHERE Email=? AND Password=?";
                 $preparedQuery = $db->getConnection()
                     ->prepare($query);
                 $preparedQuery->bind_param("ss", $email, $password);
@@ -74,7 +74,7 @@ class Users
                 {
                     $row = $resultCast->fetch_assoc();
                     $_SESSION["a"] = $row["Username"];
-
+					$_SESSION["b"] = $row["Email"];
                     header("location:home.php");
                 }
                 else
@@ -250,6 +250,8 @@ class Users
             if (isset($_SESSION["a"]))
             {
                 $username = $_SESSION["a"];
+				unset($_SESSION["a"]);
+				unset($_SESSION["b"]);
                 $preparedQuery->execute();
                 $db->disconnect();
                 $preparedQuery->close();

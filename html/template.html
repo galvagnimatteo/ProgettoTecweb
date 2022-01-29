@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="it">
 <head>
+
+    <title><PAGETITLE></title>
     <meta charset="utf-8">
-    <title>$page png Cinema</title><!--da adattare alla pagina-->
-    <meta charset="utf-8">
-    <meta name="keywords" content="png Cinema, $keywords"><!--da adattare alla pagina-->
-    <meta name="description" content="$description"><!--da adattare alla pagina-->
+    <meta name="keywords" content="PNG Cinema, cinema, cinema padova, <KEYWORDS>">
+    <meta name="description" content="<DESCRIPTION>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/style.css">
 
@@ -16,15 +16,18 @@
         <a href="#ca" class="SRskip">salta al contenuto</a>
         <div class="headerWrapper">
             <header>
-                <h1> CINEMA </h1>
-                <nav>
+                <div id="test">
+                    <h1> CINEMA </h1>
                     <a href="#" id="menubutton" onclick="togglemenu()">&#9636;</a>
+                </div>
+                <nav>
                     <ul id="menu" class="closedMenu">
                         <li><a href="./home.php" lang="en">Home</a></li><!--da adattare alla pagina disattivando il link alla pagina corrente-->
                         <li><a href="./contatti.php">Contatti</a></li>
                         <li><a href="./programmazione.php">Programmazione</a></li>
                         <li><a href="./info.php">Info e Costi</a></li>
-                        <li><a href="./area_utenti.php">Login</a></li>
+                        <li id="loginLink"><a href="<LINK>" > <LOGIN></a></li>
+
                     </ul>
                 </nav>
             </header>
@@ -38,6 +41,8 @@
             <p> <a href="./contatti.php">Contattaci</a> | <span lang="en"> Copyright 2022 </span> </p>
         </footer>
 
+        <script type="text/javascript" src="../js/checkIfJs.js"> </script>
+        <script type="text/javascript" src="../js/menu.js"> </script>
         <JAVASCRIPT-BODY>
 
 

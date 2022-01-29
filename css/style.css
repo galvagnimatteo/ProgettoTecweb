@@ -48,63 +48,48 @@ nav ul {
     list-style-type: none;
 }
 
+#loginLink{
+    margin-left: auto;
+}
 
-@media (min-width: 52rem) {
+#menubutton{
+    padding: 1rem;
+    margin-left: auto;
+}
+
+@media (min-width: 865px) {
 
     header, ul {
         display: flex;
-        width: 100%;
         flex-direction: row;
-        align-self: flex-end;
+        width: 100%;
     }
-
-        header h1 {
-            width: 15%;
-        }
 
     nav {
-        width: calc(85% - 2rem);
-        position: relative;
-
+        width: 100%;
     }
+
     #menubutton {
         display: none;
     }
+
+    #loginLink{
+        margin-left: auto;
+    }
+
 }
 
-@media (min-width: 36rem) and (max-width: 52rem) {
-    header, ul {
+@media (max-width: 865px) {
+    #test{
+        display: flex;
+        flex-direction: row;
+    }
+
+    ul{
         display: flex;
         flex-direction: column;
     }
 
-    nav {
-        position: absolute;
-        left: calc(15% + 6rem);
-        background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-        z-index: 99;
-        width: 16rem;
-    }
-    .openMenu {
-        display:normal;
-    }
-    .closedMenu{
-        display:none;
-    }
-    #menubutton {
-        text-decoration: none;
-    }
-}
-
-@media (max-width: 36rem) {
-    header, ul {
-        display: flex;
-        flex-direction: column;
-    }
-    nav {
-        width: 100%;
-        position: relative;
-    }
     .openMenu {
         display: normal;
     }
@@ -112,11 +97,16 @@ nav ul {
     .closedMenu {
         display: none;
     }
+
     #menubutton {
-        display: block;
-        text-decoration:none;
+        text-decoration: none;
+    }
+
+    #loginLink{
+        margin-left: 0;
     }
 }
+
 /*ovverides per assenza di js visualizzani il menù come sempre aperto*/
 .no-js nav {
     width: 100%;
@@ -124,14 +114,6 @@ nav ul {
 }
 .no-js .closedMenu {
     display: normal;
-}
-
-nav li {
-    float: left;
-}
-
-#login{
-    float:right;
 }
 
 nav li a {
@@ -232,7 +214,7 @@ a:visited:not(.carouselContainer a:visited){
 }
 
 /*codice per css con javascript disabilitato*/
-.no-js ul{
+.no-js.carouselContainer{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -261,17 +243,17 @@ a:visited:not(.carouselContainer a:visited){
     display: none;
 }
 
-.quickPurchaseContainer{
+.js .quickPurchaseContainer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     margin-top: 0.8rem;
 }
 
-.quickPurchaseContainer form{
+.js .quickPurchaseContainer form{
     display: flex;
     margin-bottom: 1rem;
 }
 
-.quickPurchaseContainer form select, .quickPurchaseContainer form button{
+.js .quickPurchaseContainer form select, .js .quickPurchaseContainer form button{
     background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
     font-size: 1.1rem;
     width: 25%;
@@ -282,31 +264,31 @@ a:visited:not(.carouselContainer a:visited){
     outline: 0;
 }
 
-.quickPurchaseContainer form select{
+.js .quickPurchaseContainer form select{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
 @media screen and (max-width: 880px) {
-    .quickPurchaseContainer form{
+    .js .quickPurchaseContainer form{
         flex-direction: column;
     }
 
-    .quickPurchaseContainer form select{
+    .js .quickPurchaseContainer form select{
         width: calc(100% - 1.5rem);
         margin-right: 1rem; /*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
     }
 
-    .quickPurchaseContainer form button{
+    .js .quickPurchaseContainer form button{
         width: calc(100% - 2rem);
     }
 }
 
-.quickPurchaseContainer form select option{
+.js .quickPurchaseContainer form select option{
     background: var(--primary-color);
 }
 
-.quickPurchaseContainer form button{
+.js .quickPurchaseContainer form button{
     border: 1px solid var(--secondary-color);
     cursor: pointer;
     margin-right: 1rem; /*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
@@ -315,9 +297,13 @@ a:visited:not(.carouselContainer a:visited){
 }
 
 @media (hover: hover) {
-    .quickPurchaseContainer form button:hover{
+    .js .quickPurchaseContainer form button:hover{
         background-color: var(--secondary-color);
     }
+}
+
+.no-js .quickPurchaseContainer{
+    display: none;
 }
 
 .cardsContainer{
@@ -368,11 +354,15 @@ a:visited:not(.carouselContainer a:visited){
 }
 
 .error{
-    padding-top: 1rem;
-    padding-left: 1rem;
+    padding: 1rem;
     color: var(--error-color);
+    font-size: 2rem;
 }
 
+.errorDescription{
+    padding-left: 1rem;
+    padding-bottom: 2rem;
+}
 
 .SRskip {/*per screen reader*/
     position: absolute;
@@ -476,20 +466,57 @@ programmazione.html
 
 
 /*log/reg*/
-.div_register{
 
+.div_login
+{
 	margin:auto;
-	width: 70%;
-	display:flex;
+	width:50%;
 	justify-content:center;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     padding-top:2.8rem;
 	padding-bottom:2rem;
 }
+	
+.div_login  input[type=password], .div_login input[type=email]{
+  width:70%;
+ display:flex;
+ height: 4vh;
+	background: #e0dede;
+	color:#000000;
+	margin: 1rem auto;
+	padding:0.8rem;
+	border: none;
+	border-radius: 5px;
+	font-size:0.9rem;
+	display:block;
+	box-sizing: border-box; 
+
+
+}
+.div_login  label{
+margin:auto;
+display:flex;
+justify-content:left;
+padding-left:4.5rem;
+}
+
+.div_login input[type=submit]{
+	width:60%;
+	height:3rem;
+	background-image: linear-gradient(#660000, var(--gradient-last-color));
+	
+	margin-bottom: 1rem;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	display: block;
+	margin: 1em auto;
+}
+
 
 .div_user{
 	margin:auto;
-	width: 70%;
+	width: 50%;
 	display:flex;
 	border: none;
 	background-image: linear-gradient(#660000,var(--gradient-last-color));
@@ -500,24 +527,36 @@ programmazione.html
 
 }
 
-input[type=text],[type=password],[type=email]{
-	width: 100%;
+.div_register{
+
+	margin:auto;
+	width: 50%;
+	display:flex;
+	justify-content:center;
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+    padding-top:2.8rem;
+	padding-bottom:2rem;
+}
+.div_register input[type=text],.div_register input[type=password], .div_register input[type=email]{
+	width: 80%;
 	height: 4vh;
 	background: #e0dede;
+
 	color:#000000;
 	margin: 1rem auto;
-	padding: 1rem;
+	padding:0.8rem;
 	border: none;
 	border-radius: 5px;
 	font-size:0.9rem;
-
-	    box-sizing: border-box;
+	display:flex;
+	box-sizing: border-box; 
+	
 }
 
 
 
 
-input[type=submit]{
+.div_register input[type=submit]{
 	width:70%;
 	height:3rem;
 
@@ -527,18 +566,24 @@ input[type=submit]{
 	background-image: linear-gradient(#660000, var(--gradient-last-color));
 
 	font-weight: bold;
-	margin-bottom: 20px;
+	margin-bottom: 1rem;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	float:right;
 }
+.div_register form{
+	width:90%;
+	
+}
+.div_register label{
+padding-left:2.5rem;
+	
+	    display: block;
+    font-size:0.8em;
+  
 
-
-
-
-
-
+}
 .select_date {
     background: none;
     padding: 0.4rem;
@@ -553,6 +598,7 @@ input[type=submit]{
 .select_date option{
     background: var(--primary-color);
 }
+
 .button_password_view{
 	background: url('lol.png') no-repeat;
 }
@@ -573,6 +619,7 @@ input[type=submit]{
   width: 75%;
 
 }
+
 .row:after{
 
   content: "";
@@ -581,20 +628,59 @@ input[type=submit]{
 }
 
 @media screen and (max-width: 700px) {
+
   input[type=submit]{
     width: 100%;
 
     margin-top: 0;
   }
+  
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 320px) {
+	
+.div_register label,.div_login label{
+padding:0rem;
+font-size:6.5vw;
+}
+	
+}
 
 
-	  .content.register,.div_user.register{
- width: 100%;
+
+@media screen and (max-width: 800px) {
+	
+	 .div_register,.div_user,.div_login{
+ width:80%;
 
 	  }
+	  
+	  
+	  
 }
+
+@media screen and (max-width: 450px) {
+	
+	 .div_register,.div_user,.div_login{
+ width:100%;
+	  }
+	  
+	  
+	  
+}
+
+
+
+
+.link_button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-size:1.5rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+/*end*/
 /*end*/
 
 .contactpage iframe {
@@ -666,71 +752,40 @@ input[type=submit]{
     animation-fill-mode: both;
 }
 
-/*footer {
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 6s;
-    animation-fill-mode: both;
-}*/
+.contactpage {
+    display: flex;
+    flex-direction: column;
+}
 
-/*@supports (display: grid) {
-    .contactpage {
-        display: grid;
-        grid-template-columns: 5% 45% 45% 5%;
-        grid-row-gap: 4rem;
-        margin-bottom: 4rem;
-    }
+#posizione dl, #contatti dl, #social dl {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
 
-    @media (min-width: 49rem) {
-        #posizione {
-            grid-column-start: 1;
-            grid-column-end: 5;
-            grid-row: 1;
+#posizione dt, #contatti dt, #social dt {
+    flex-basis: 20%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+#posizione dd, #contatti dd, #social dd {
+    flex-basis: 70%;
+    flex-grow: 1;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 49rem) {
+    @keyframes slide_from_left {
+        0% {
+            left: -25rem;
+            opacity: 0;
         }
 
-        #contatti {
-            grid-column: 3;
-            grid-row: 2;
-        }
-
-        #social {
-            grid-column: 2;
-            grid-row: 3;
-        }
-    }
-
-    @media (max-width: 49rem) {
-        .contactpage {
-            display: grid;
-            grid-template-columns: 3% 47% 47% 3%;
-            grid-row-gap: 4rem;
-            margin-bottom: 4rem;
-        }
-
-        #posizione {
-            grid-column-start: 2;
-            grid-column-end: 4;
-            grid-row: 1;
-        }
-
-        #contatti {
-            grid-column-start: 2;
-            grid-column-end: 4;
-            grid-row: 2;
-        }
-
-        #social {
-            grid-column-start: 2;
-            grid-column-end: 4;
-            grid-row: 3;
-        }
-    }
-
-    #posizione dl, #contatti dl, #social dl {
-        display: grid;
-        grid-column-gap: 1rem;
-        grid-row-gap: 1rem;
-    }
 
     #posizione dt, #contatti dt, #social dt {
         font-weight: bold;
@@ -784,7 +839,7 @@ input[type=submit]{
             padding-right:0;
         }
     }
-/*}*/
+}
 
 #posizione h2, #contatti h2 {
     font-size: 1.5rem;
@@ -869,6 +924,7 @@ input[type=submit]{
   font-weight: 800;
 
 }
+
 
 @media (hover: hover) { /*da riunire tutte insieme le media query*/
 	#filmData form input[type=submit]:hover {

@@ -26,21 +26,33 @@ CREATE TABLE Posto (
 CREATE TABLE Proiezione (
 	ID INT NOT NULL AUTO_INCREMENT,
 	Data DATE NOT NULL,
-	Orario TIME NOT NULL,
 	IDFilm INT NOT NULL,
 	NumeroSala SMALLINT NOT NULL,
 	PRIMARY KEY (ID),
-	UNIQUE(Data, Orario, IDFilm, NumeroSala),
+	UNIQUE(Data, IDFilm, NumeroSala),
 	FOREIGN KEY (IDFilm) REFERENCES Film(ID) ON DELETE CASCADE,
 	FOREIGN KEY (NumeroSala) REFERENCES Sala(Numero) ON DELETE CASCADE
 
 );
 
+CREATE TABLE Orario (
+	Ora TIME NOT NULL,
+	IDProiezione INT NOT NULL,
+	PRIMARY KEY (Ora, IDProiezione),
+	FOREIGN KEY(IDProiezione) REFERENCES Proiezione(ID) ON DELETE CASCADE
+);
+
 CREATE TABLE Utente (
-	ID INT NOT NULL AUTO_INCREMENT,
-	DataNascita DATE NOT NULL,
+	Username VARCHAR(50) NOT NULL,
 	Nome VARCHAR(50) NOT NULL,
 	Cognome VARCHAR(50) NOT NULL,
+	Password VARCHAR(50) NOT NULL,
+	Email VARCHAR(100),
+	PRIMARY KEY(Username)
+);
+
+CREATE TABLE Amministratori (
+	ID INT NOT NULL AUTO_INCREMENT,
 	Username VARCHAR(50) NOT NULL,
 	Password VARCHAR(50) NOT NULL,
 	Email VARCHAR(100),
@@ -50,11 +62,12 @@ CREATE TABLE Utente (
 CREATE TABLE Prenotazione (
 	ID INT NOT NULL AUTO_INCREMENT,
 	NumeroPersone SMALLINT NOT NULL,
-	IDUtente INT NOT NULL,
+	UsernameUtente VARCHAR(50) NOT NULL,
 	IDProiezione INT NOT NULL,
+	OraProiezione TIME NOT NULL,
 	PRIMARY KEY (ID),
-	FOREIGN KEY(IDUtente) REFERENCES Utente(ID) ON DELETE CASCADE,
-	FOREIGN KEY(IDProiezione) REFERENCES Proiezione(ID) ON DELETE CASCADE
+	FOREIGN KEY(UsernameUtente) REFERENCES Utente(Username) ON DELETE CASCADE,
+	FOREIGN KEY(IDProiezione, OraProiezione) REFERENCES Orario(IDProiezione, Ora) ON DELETE CASCADE
 );
 
 CREATE TABLE Partecipa (
@@ -63,8 +76,8 @@ CREATE TABLE Partecipa (
 	NumeroSala SMALLINT NOT NULL,
 	IDPrenotazione INT NOT NULL,
 	PRIMARY KEY (NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione),
-	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala)
-	REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE
+	FOREIGN KEY(NumeroPosto, FilaPosto, NumeroSala) REFERENCES Posto(Numero, Fila, NumeroSala) ON DELETE CASCADE,
+	FOREIGN KEY(IDPrenotazione) REFERENCES Prenotazione(ID) ON DELETE CASCADE
 );
 
 CREATE TABLE CastFilm (

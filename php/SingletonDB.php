@@ -85,7 +85,7 @@
 
                 }else{
 
-                    $connection->set_charset("utf-8");
+                    $connection->set_charset("utf8");
                     $isConnected = true;
 
                 }

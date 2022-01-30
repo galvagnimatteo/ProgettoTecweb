@@ -1,0 +1,118 @@
+<div id="content">
+<div id="filmData-pren">
+	<h2> Acquista i biglietti per <FILM-TITLE> </h2>
+	<h3> <FILM-DATE> </h3>
+
+	
+</div>
+
+
+			<form id="purchaseTicketForm" method="post" action="../php/acquista_biglietti.php">
+			
+			<input type="hidden" name="idproiez" value="<ID-PROJ>">
+			<input type="hidden" name="orario" value="<TIME-PROJ>">
+			
+			<fieldset id="modeSelectGroup">
+				<legend> Scegli la modalità di selezione dei posti: </legend>
+				<label for="selezAuto"> 
+				<input type="radio" id="selezAuto" name="modSelezPosti"  value="auto">
+				<span>Selezione automatica posti </span>
+				</label>
+			
+			
+			<label for="selezManual"> 
+			<input type="radio" id="selezManual" name="modSelezPosti" checked  value="manual">
+			<span>Selezione manuale posti</span> </label>
+			</fieldset>
+			
+			
+		
+			
+			<fieldset id="ticketInfoGroup">
+			<legend>Scegli in numero di biglietti (max 4):</legend>
+			<div class="labelPos">
+				<label for="selectNumTicketInt">Intero, <FULL-PRICE-FORMAT> € : </label>
+			<select id="selectNumTicketInt" name="numTicket" data-prezzo-intero="<FULL-PRICE>">
+				<option value="0" selected>0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+			</select>
+			</div>
+			
+			<div class="labelPos noBorder">
+				<label for="selectNumTicketRed">
+				<span> Riduzioni disponibili per over 65, under 10 o persone con disabilità. <a href="#" title="Maggiori informazioni sulle riduzioni di prezzo"> Maggiori informazioni</a></span> <br/>
+				Ridotto, <DISC-PRICE-FORMAT> € : </label>
+			<select id="selectNumTicketRed" name="numTicket"  data-prezzo-ridotto="<DISC-PRICE>">
+				<option value="0" selected>0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+			</select>
+			</div>
+			
+			
+			
+			<div id="postiViciniCheck" class="labelPos noBorder">
+			<label for="postiViciniFlag">Posti vicini</label>
+			<input type="checkbox" id="postiViciniFlag" name="postiVicini" checked value="check">
+			</div>
+			
+			</fieldset>
+			
+			
+				<fieldset id="autoRadioGroup">
+				<legend> Scegli la categoria dei posti: </legend>
+				
+				<label for="selezDavanti"> 
+					<input type="radio" id="selezDavanti" name="catPosti" checked value="davanti" >
+				<span>File anteriori 
+				<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
+				<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>	
+				</span>
+				</label>
+				
+				<label for="selezCentro"> 
+					<input type="radio" id="selezCentro" name="catPosti"  value="centrale">
+				<span>File centrali 
+				<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
+				<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>	
+				</span>
+				</label>
+				
+				<label for="selezDietro"> 
+					<input type="radio" id="selezDietro" name="catPosti"  value="dietro">
+				<span>File posteriori 
+				<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
+				<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>	
+				
+				</span> 
+				</label> 
+				
+				</fieldset>
+			
+			
+			
+			<fieldset id="manualContainer">
+				<legend> Scegli i posti in sala: </legend>
+				<input type="hidden" name="seats" value="" id="seatsString" />
+					<SVG-SEATS-MAP>
+				
+				
+				</fieldset>
+
+			
+				<button type="submit" value="acquisto" id="acquistaBtn">
+					Acquista 0 biglietti, Totale: 0,00 €
+				</button>
+			</form>
+	
+	<script type="text/javascript" src="../js/panzoom.min.js"> </script>
+	<script type="text/javascript" src="../js/controlliAcquisto.js"> </script>		
+</div>
+
+
+

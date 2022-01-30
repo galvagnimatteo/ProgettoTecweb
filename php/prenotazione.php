@@ -79,8 +79,7 @@ session_start();
         );
 		
 		$prenotazione_content = str_replace("<FILM-TITLE>", $dataFilm["Titolo"], $prenotazione_content);
-		$prenotazione_content = str_replace("<PROJ-DATA>", 
-		generateItalianDate(date_timestamp_get(date_create($dataFilm["Data"]))), $prenotazione_content);
+		$prenotazione_content = str_replace("<PROJ-DATA>", generateItalianDate($dataFilm["Data"]), $prenotazione_content);
 		$prenotazione_content = str_replace("<ID-PROJ>", $idproiez, $prenotazione_content);
 		$prenotazione_content = str_replace("<TIME-PROJ>", $orario, $prenotazione_content);
 		

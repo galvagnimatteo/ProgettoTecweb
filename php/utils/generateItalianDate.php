@@ -1,7 +1,8 @@
 <?php
 	
-	function generateItalianDate($timestamp) {
-		
+	function generateItalianDate($data) {
+		//funziona con il formato anno-mese-giorno
+		$timestamp = date_timestamp_get(date_create($data));
 		$mesi = array(1=>'gennaio', 'febbraio', 'marzo', 'aprile',
                'maggio', 'giugno', 'luglio', 'agosto',
                'settembre', 'ottobre', 'novembre','dicembre');

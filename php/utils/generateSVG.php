@@ -82,9 +82,9 @@
 			
 			$SVG .= '<text class="letteraFila" x="' . $tx-8 . '" y="' . $ty . '">' . strtoupper($lastRow) . '</text>';
 			$SVG .= '</g></g></svg>';
-				
+			unset($statoPosti);
 		} else {
-			
+			unset($statoPosti);
 			header("Location: 500.php");
 			die();
 		}

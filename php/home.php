@@ -13,6 +13,8 @@ include "mostra_errori.php";
 
 $document = file_get_contents("../html/template.html");
 $home_content = file_get_contents("../html/home_content.html");
+$document = str_replace('<PAGETITLE>', 'PNG Cinema', $document);
+$document = str_replace('<KEYWORDS>', '', $document);
 $quickpurchase_films = "";
 $cards = "";
 
@@ -105,7 +107,7 @@ $home_content = str_replace(
     $home_content
 );
 $home_content = str_replace("<CARDS-HOME>", $cards, $home_content);
-
+$document = str_replace("/php/home.php", "#", $document);
 $document = str_replace("<CONTENT>", $home_content, $document);
 
 if (isset($_SESSION["a"])) {
@@ -123,6 +125,11 @@ if (isset($_SESSION["a"])) {
         $document
     );
 }
-
+if($_SESSION["admin"]){
+    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+}
+else{
+    $document = str_replace("<ADMIN>","",$document);
+}
 echo $document;
 ?>

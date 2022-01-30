@@ -31,7 +31,7 @@ session_start();
 	
 	if (!empty($result1) && $result1->num_rows > 0) {
 		//risultato unico
-		$datiFilm = $result1->fetch_assoc();
+		$dataFilm = $result1->fetch_assoc();
 		
 		$document = file_get_contents("../html/template.html");
 		$prenotazione_content = file_get_contents("../html/prenotazione_content.html");
@@ -56,10 +56,29 @@ session_start();
 		
 		
 		
+		$document = str_replace(
+            "<PAGETITLE>",
+            "Acquista biglietti per " . $dataFilm["Titolo"] . " - PNG Cinema",
+            $document
+        );
+        $document = str_replace("<KEYWORDS>", "Acquista, biglietti, ".$dataFilm["Titolo"], $document);
+        $document = str_replace(
+            "<DESCRIPTION>",
+            "Scheda informativa del film: " . $dataFilm["Titolo"],
+            $document
+        );
+        $document = str_replace(
+            "<BREADCRUMB>",
+            '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
+                /*$dataFilm["ID"]*/ "" .
+                '">Scheda Film: ' .
+                $dataFilm["Titolo"] .
+                "</a>",
+            $document
+        );
 		
-		
-		$prenotazione_content = str_replace("<FILM-TITLE>", $datiFilm["Titolo"], $prenotazione_content);
-		$prenotazione_content = str_replace("<FILM-DATE>", $datiFilm["Data"], $prenotazione_content);
+		$prenotazione_content = str_replace("<FILM-TITLE>", $dataFilm["Titolo"], $prenotazione_content);
+		$prenotazione_content = str_replace("<FILM-DATE>", $dataFilm["Data"], $prenotazione_content);
 		$prenotazione_content = str_replace("<ID-PROJ>", $idproiez, $prenotazione_content);
 		$prenotazione_content = str_replace("<TIME-PROJ>", $orario, $prenotazione_content);
 		
@@ -68,7 +87,7 @@ session_start();
 		$prenotazione_content = str_replace("<DISC-PRICE>", 8.00, $prenotazione_content);
 		$prenotazione_content = str_replace("<FULL-PRICE>", 10.00, $prenotazione_content);
 		
-		$prenotazione_content = str_replace("<SVG-SEATS-MAP>", generateSVG($datiFilm["NumeroSala"]), $prenotazione_content);
+		$prenotazione_content = str_replace("<SVG-SEATS-MAP>", generateSVG($dataFilm["NumeroSala"], $idproiez, $orario), $prenotazione_content);
 		
 		$document = str_replace("<CONTENT>", $prenotazione_content, $document);
 		echo $document;

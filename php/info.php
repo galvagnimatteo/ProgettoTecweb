@@ -38,6 +38,12 @@ if (isset($_SESSION["a"])) {
         $document
     );
 }
+if($_SESSION["admin"]){
+    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+}
+else{
+    $document = str_replace("<ADMIN>","",$document);
+}
 
 $document = str_replace("/php/info.php", "#", $document);
 $document = str_replace("<CONTENT>", $home_content, $document);

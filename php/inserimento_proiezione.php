@@ -22,6 +22,9 @@ if($_SESSION["admin"]==false){
 
 $document = file_get_contents("../html/template.html"); //load template
 $content = file_get_contents("../html/admin_inserimento_film_content.html"); //load content
+
+$document = str_replace('<PAGETITLE>', 'inserimento Proiezione - PNG Cinema', $document);
+$document = str_replace('<KEYWORDS>', '', $document);
 $document = str_replace(
     "<BREADCRUMB>",
     '<a href="home.php">Home</a> / <a href="admin.php">amministrazione</a>/inserimento film',

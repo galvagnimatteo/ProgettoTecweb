@@ -28,6 +28,12 @@
         $document
     );
 	}
+    if($_SESSION["admin"]){
+    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+    }
+    else{
+        $document = str_replace("<ADMIN>","",$document);
+    }
     echo($document);
 
 ?>

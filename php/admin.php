@@ -21,7 +21,7 @@ else{
 }
 $document = str_replace(
     "<BREADCRUMB>",
-    'amministrazione',
+    '<a href="./home.php" lang="en">Home</a>/amministrazione',
     $document
 );
 $document = str_replace("/php/admin.php", "#", $document);

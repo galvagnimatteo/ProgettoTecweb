@@ -59,7 +59,7 @@ CREATE TABLE Amministratori (
 CREATE TABLE Prenotazione (
 	ID INT NOT NULL AUTO_INCREMENT,
 	NumeroPersone SMALLINT NOT NULL,
-	UsernameUtente VARCHAR(50) NOT NULL,
+	UsernameUtente VARCHAR(50) NULL,
 	IDProiezione INT NOT NULL,
 	OraProiezione TIME NOT NULL,
 	PRIMARY KEY (ID),

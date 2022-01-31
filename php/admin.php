@@ -8,7 +8,7 @@ if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
     session_start();
 }
 
-$_SESSION["discard_after"] = $now + 30;
+$_SESSION["discard_after"] = $now + 400;
 
 $document = file_get_contents("../html/template.html"); //load template
 

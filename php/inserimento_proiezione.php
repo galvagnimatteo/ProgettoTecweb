@@ -9,7 +9,7 @@ if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
     session_start();
 }
 
-$_SESSION["discard_after"] = $now + 30;
+$_SESSION["discard_after"] = $now + 400;
 
 
 if(!isset($_SESSION["admin"])||!$_SESSION["admin"]){
@@ -21,13 +21,13 @@ if(!isset($_SESSION["admin"])||!$_SESSION["admin"]){
 
 
 $document = file_get_contents("../html/template.html"); //load template
-$content = file_get_contents("../html/admin_inserimento_film_content.html"); //load content
+$content = file_get_contents("../html/admin_inserimento_proiezione_content.html"); //load content
 
 $document = str_replace('<PAGETITLE>', 'inserimento Proiezione - PNG Cinema', $document);
 $document = str_replace('<KEYWORDS>', '', $document);
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / <a href="admin.php">amministrazione</a>/inserimento film',
+    '<a href="home.php">Home</a> / <a href="admin.php">amministrazione</a>/inserimento Proiezione',
     $document
 );
 
@@ -71,15 +71,15 @@ if (isset($_GET["action"]))
     }
 }
 else{
-    $content=str_replace("<STATUS>", "", $content)
+    $content=str_replace("<STATUS>", "", $content);
 }
-$query ="select ID,Titolo from Film order by descending DataUscita";
+$query ="select ID,Titolo from Film ";
 $preparedQuery = $db->getConnection()->prepare($query);
 $preparedQuery->execute();
 $films=$preparedQuery->get_result();
 
 $stringfilms="";
-while($row = $resultCast->fetch_assoc();){
+while($row = $films->fetch_assoc()){
     $stringfilms=$stringfilms."<option value=".$row["ID"].">".$row["Titolo"]."</option>";
 }
 $content = str_replace("<FILM>", $stringfilms, $content);

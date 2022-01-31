@@ -196,7 +196,7 @@ if (isset($_GET["action"])) {
     );
     $document = str_replace("<LOGIN>", "Login", $document);
 }
-if($_SESSION["admin"]){
+if(isset($_SESSION["admin"]&&$_SESSION["admin"]){
     $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
 }
 else{

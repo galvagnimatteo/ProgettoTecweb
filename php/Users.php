@@ -77,7 +77,7 @@ class Users
 					$_SESSION["b"] = $row["Email"];
 
                     $db = SingletonDB::getInstance();
-                    $query = "SELECT Username FROM amministratori WHERE Username=?";
+                    $query = "SELECT Username FROM Amministratori WHERE Username=?";
                     $preparedQuery = $db->getConnection()
                         ->prepare($query);
                     $preparedQuery->bind_param("s", $row["Username"]);
@@ -90,6 +90,9 @@ class Users
                     if ($resultCast->num_rows > 0)
                     {
                         $_SESSION[admin]=true;
+                    }
+                    else{
+                        $_SESSION[admin]=false;
                     }
                     header("location:home.php");
                 }

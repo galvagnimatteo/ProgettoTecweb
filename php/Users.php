@@ -67,8 +67,7 @@ class Users
                 $preparedQuery->execute();
                 $resultCast = $preparedQuery->get_result();
 
-                $db->disconnect();
-                $preparedQuery->close();
+                
 
                 if ($resultCast->num_rows > 0)
                 {
@@ -76,25 +75,26 @@ class Users
                     $_SESSION["a"] = $row["Username"];
 					$_SESSION["b"] = $row["Email"];
 
-                    $db = SingletonDB::getInstance();
-                    $query = "SELECT Username FROM Amministratori WHERE Username=?";
-                    $preparedQuery = $db->getConnection()
-                        ->prepare($query);
-                    $preparedQuery->bind_param("s", $row["Username"]);
+                    $db2 = SingletonDB::getInstance();
+                    $query2 = "SELECT username FROM Amministratori WHERE username=?";
+                    $preparedQuery2 = $db2->getConnection()->prepare($query2);
+                    $preparedQuery2->bind_param("s", $row["Username"]);
 
-                    $preparedQuery->execute();
-                    $resultCast = $preparedQuery->get_result();
+                    $preparedQuery2->execute();
+                    $resultCast2 = $preparedQuery2->get_result();
 
-                    $db->disconnect();
-                    $preparedQuery->close();
-                    if ($resultCast->num_rows > 0)
+                    $db2->disconnect();
+                    $preparedQuery2->close();
+                    if ($resultCast2->num_rows > 0)
                     {
-                        $_SESSION[admin]=true;
+                        $_SESSION["admin"]=true;
                     }
                     else{
-                        $_SESSION[admin]=false;
+                        $_SESSION["admin"]=false;
                     }
-                    header("location:home.php");
+                    $db->disconnect();
+                    $preparedQuery->close();
+                    header("location:home.php");                    
                 }
                 else
                 {

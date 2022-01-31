@@ -18,7 +18,5 @@
 *.fdb_latexmk
 *.log
 *.fls
-history.tex
-style.tex
 *.out
 *.synctex.gz

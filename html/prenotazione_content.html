@@ -11,6 +11,7 @@
 			
 			<input type="hidden" name="idproiez" value="<ID-PROJ>">
 			<input type="hidden" name="orario" value="<TIME-PROJ>">
+			<input type="hidden" name="numSala" value="<NUM-SALA>">
 			
 			<fieldset id="modeSelectGroup">
 				<legend> Scegli la modalità di selezione dei posti: </legend>
@@ -32,7 +33,7 @@
 			<legend>Scegli in numero di biglietti (max 4):</legend>
 			<div class="labelPos">
 				<label for="selectNumTicketInt">Intero, <FULL-PRICE-FORMAT> € : </label>
-			<select id="selectNumTicketInt" name="numTicket" data-prezzo-intero="<FULL-PRICE>">
+			<select id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>">
 				<option value="0" selected>0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -45,7 +46,7 @@
 				<label for="selectNumTicketRed">
 				<span> Riduzioni disponibili per over 65, under 10 o persone con disabilità. <a href="#" title="Maggiori informazioni sulle riduzioni di prezzo"> Maggiori informazioni</a></span> <br/>
 				Ridotto, <DISC-PRICE-FORMAT> € : </label>
-			<select id="selectNumTicketRed" name="numTicket"  data-prezzo-ridotto="<DISC-PRICE>">
+			<select id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>">
 				<option value="0" selected>0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>

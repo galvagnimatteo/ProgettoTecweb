@@ -136,7 +136,11 @@ if (isset($_SESSION["a"])) {
         $document
     );
 }
+<<<<<<< Updated upstream
 if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
+=======
+if(isset($_SESSION["admin"], $_SESSION["admin"])){
+>>>>>>> Stashed changes
     $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
 }
 else{

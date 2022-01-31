@@ -1,5 +1,5 @@
 <?php
-	
+	session_start();
 	include "SingletonDB.php";
 	include "utils/prenotaPosti.php";
 	
@@ -10,6 +10,10 @@
 		header("Location: 500.php");
 		die();
 	}
+	
+	$username = ''; //se resta '' inserisce null e l'utente era un ospite
+	if (isset($_SESSION["a"])) 
+		$username = $_SESSION["a"];
 	
 	$totNumBiglietti = intval($_POST["numTicketIntero"]) + intval($_POST["numTicketRidotto"]);
 	
@@ -64,9 +68,7 @@
 				}
 			}
 			
-			//echo "<pre>";
-			//print_r($listaPostiStruct);
-			//echo "</pre> <br>";
+
 
 			
 			// trova la sequenza di posti consecutivi piu lunga per ogni categoria di posti
@@ -96,16 +98,13 @@
 					$max_consec = max($max_consec, $curr_consec);
 					if ($numFila < 2) {
 						$seqConsecMax["davanti"] = $max_consec;
-						//echo $numFila . " test1 ";
 						$seqConsecEnd["davanti"] = $end;
 					} else if ($numFila > $numTotFile-3) {
 						$seqConsecMax["dietro"] = $max_consec;
 						$seqConsecEnd["dietro"] = $end;
-						//echo $numFila . " test3 ";
 					} else {					
 						$seqConsecMax["centrale"] = $max_consec;
 						$seqConsecEnd["centrale"] = $end;
-						//echo $numFila . " test2 ";
 					}
 					$numFila++;
 					$max_consec = 0;
@@ -128,16 +127,13 @@
 			$max_consec = max($max_consec, $curr_consec);
 			if ($numFila < 3) {
 				$seqConsecMax["davanti"] = $max_consec;
-				//echo $numFila . " test1 ";
 				$seqConsecEnd["davanti"] = $end;
 			} else if ($numFila > $numTotFile-3) {
 				$seqConsecMax["dietro"] = $max_consec;
 				$seqConsecEnd["dietro"] = $end;
-				//echo $numFila . " test3 ";
 			} else {					
 				$seqConsecMax["centrale"] = $max_consec;
 				$seqConsecEnd["centrale"] = $end;
-				//echo $numFila . " test2 ";
 			}
 			
 			echo "<pre>";
@@ -177,7 +173,7 @@
 				
 			}
 			
-			prenotaPosti($postiStr, "username4", $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
+			prenotaPosti($postiStr, $username, $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
 
 			
 			unset($listaPostiStruct);
@@ -189,7 +185,7 @@
 		
 	} else if ($_POST["modSelezPosti"] == "manual") {
 		
-		prenotaPosti($_POST["seats"], "username4", $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
+		prenotaPosti($_POST["seats"], $username, $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
 		
 		echo "ok";
 	}

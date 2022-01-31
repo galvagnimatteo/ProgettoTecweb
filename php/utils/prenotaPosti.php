@@ -13,7 +13,7 @@
 			$preparedQuery = $db
 				->getConnection()
 				->prepare("INSERT INTO Prenotazione(NumeroPersone, UsernameUtente, IDProiezione, OraProiezione)". 
-						  "VALUES (?, ?, ?, ?)");
+						  "VALUES (?, NULLIF(?, ''), ?, ?)");
 			$preparedQuery->bind_param(
 				"isis", 
 				$totNumBiglietti, 

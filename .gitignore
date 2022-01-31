@@ -14,3 +14,11 @@
 /applications.html
 /bitnami.css
 /favicon.ico
+*.aux
+*.fdb_latexmk
+*.log
+*.fls
+history.tex
+style.tex
+*.out
+*.synctex.gz

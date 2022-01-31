@@ -1,0 +1,93 @@
+\documentclass[a4paper, 12pt]{article}
+
+\newcommand{\templates}{./template}
+\input{\templates/style}
+\input{\templates/front_page}
+\input{\templates/history}
+
+%package
+\usepackage[table,xcdraw]{xcolor}
+
+\settitolo{PNG Cinema}
+\setmembri{Matteo\\Giovanni\\Michele\\Antonio}
+\setanno{2021-2022}
+\setdescrizione{Relazione PNG Cinema - Tecnologie Web}
+
+\begin{document}
+
+\makefrontpage
+
+\section{Introduzione}
+Il progetto in esame ha lo scopo di creare un sito web per il cinema/teatro fittizio "PNG Cinema" allo scopo di facilitare il processo di acquisto dei biglietti (saltando la fila nella biglietteria fisica) nonchè
+il reperimento di informazioni utili per quanto concerne la programmazione di film/opere teatrali nell'immediato futuro.
+Altre informazioni che dovranno essere presenti nel sito riguardano il costo dei biglietti (ed eventuali sconti), dove contattare il cinema in caso di domande o problemi e come raggiungere fisicamente il cinema.
+Ci sarà inoltre la possibilità di ottenere una profilazione degli utenti, eventualmente anche per questioni di marketing.
+Trattandosi di un cinema/teatro locale e non facente parte di una catena, è prevista anche una parte del sito (accessibile ai soli utenti con i privilegi di amministratore) per l'inserimento manuale delle proiezioni/opere in programma.
+
+\section{Analisi dei Requisiti}
+Uno studio preliminare sull'utenza target rileva che il sito verrà principalmente utilizzato per la prenotazione di biglietti online, con in secondo piano il reperimento di informazioni riguardanti i film.
+Questo perchè la maggior parte degli utenti del sito saprà già che spettacolo è intenzionata a seguire: per questo motivo l'acquisto dei biglietti è proposto in primo piano nella struttura del sito, oltre che
+per facilitare l'acquisto di un biglietto in modo rapido (in caso l'utente ne abbia urgente bisogno, per esempio nel caso si trovasse già al cinema e lo spettacolo iniziasse a breve ma la coda in biglietteria fosse
+significativamente lunga).
+Un'altra tipologia di query di ricerca molto comune è quella per sapere se il cinema ha in programma un film uscito da poco, pertanto si ritiene importante riportare in prima pagina alcuni degli ultimi film usciti e in generale ordinare la visualizzazione delle programmazioni per data di uscita decrescente.
+Particolare attenzione deve essere prestata alla visualizzazione su smartphone: l'utenza media sarà infatti abbastanza giovane (fascia 18-36 anni) e il cellulare sarà il metodo di prenotazione
+più utilizzato. Al secondo posto, invece, sarà l'utilizzo da parte di utenti desktop, con un'incidenza leggermente inferiore rispetto agli utenti da smartphone.
+La prenotazione da smartphone tenderà ad essere quella più "frettolosa" con un tempo di permanenza sul sito minore.
+La percentuale d'utilizzo di dispositivi mobili come tablet sarà invece all'ultimo posto, con meno del 10\% del traffico del sito proveniente da questi dispositivi.
+L'inserimento di spettacoli e proiezioni in programma riservato ai soli amministratori, invece, sarà dominato dall'utilizzo su desktop.
+Per facilitare l'acquisto dei biglietti e il reperimento delle informazioni (soprattutto nel caso in cui l'utente abbia fretta, ma non solo) il sito sarà sviluppato con un design semplice e intuitivo,
+senza una gerarchia delle pagine eccessivamente ampia o profonda, e seguendo le convenzioni esterne a cui l'utente generico è abituato.
+Si vuole assolutamente evitare che l'utente che ha fretta non trovi un'informazione rapidamente per colpa dell'organizzazione del sito, generando frustrazione verso il cinema.
+Si vuole altresì creare un sito piacevole alla vista, utilizzando colori tipici di un cinema/teatro che richiamino le emozioni desiderate e attese da un utente in un cinema.
+Il sito dovrà essere facilmente accessibile ad ogni categoria di utenti, nonchè intuitivo e sintetico.
+
+\section{Analisi delle Tecnologie}
+L'analisi dei requisiti ha riportato un prevalente utilizzo da parte di utenti con dispositivi mobili e comunque utenti molto giovani.
+Va inoltre considerato che utenti meno giovani tenderanno a preferire la biglietteria fisica che comunque rimane presente all'interno del cinema.
+Per questi motivi è stato scelto di utilizzare HTML5 per il contenuto e CSS3 per la grafica, non avendo particolari preoccupazioni di compatibilità con versioni di browser molto vecchie; in ogni caso la sintassi
+XHTML è rispettata per degradazione elegante in browser senza il supporto per HTML5.
+È stato scelto di utilizzare Javascript per i controlli negli inserimenti lato client e per il funzionamento di alcuni elementi grafici, pur non mancando una versione del sito funzionante anche senza
+Javascript abilitato.
+Ogni pagina è creata dinamicamente lato server con PHP, presentando informazioni reperite da un database SQL. Questo perchè molti elementi del sito sono dinamici e personalizzati, per esempio lo username dell'utente loggato oppure le breadcrumbs che indicano in che pagina l'utente si trovi.
+I controlli sui campi di input vengono effettuati anche a lato server, utilizzando il principio che tutto ciò che arriva dal client è potenzialmente malevolo e va controllato.
+È stato scelto di priorizzare la visualizzazione mobile del sito per l'alto numero di utenti mobile attesi, non dimenticandosi però delle altre tipologie di utenti.
+
+\section{Presentazione}
+L'idea di fondo è stata di rendere il sito quanto più facilmente usabile possibile da ogni categoria d'utenti.
+Le pagine sono relativamente piccole, con il contenuto essenziale nella zona di prima visualizzazione (per non obbligare l'utente frettoloso allo scroll).
+È stata implementata la possibilità di acquistare un biglietto rapidamente direttamente dalla pagina Home (sezione acquisto rapido), per velocizzare la procedura d'acquisto per l'utente che ha fretta.
+La posizione di quest'utima sezione è a favore di dita, considerando che l'acquisto di fretta è fatto nella quasi totalità dei casi da smartphone.
+Il menù di navigazione è in testa, per consentire una navigazione tra le pagine veloce ed efficiente.
+Ogni pagina include delle breadcrumbs create dinamicamente, in modo da evitare per quanto possibile lo smarrimento di un'utente tra le pagine del sito.
+In caso di input errati, dei messaggi di errore esplicativi sono mostrati all'utente.
+Il layout da mobile è molto simile al layout da desktop, per non confondere un utente che ha cercato una proiezione da desktop ed eventualmente volesse acquistare un biglietto successivamente da mobile.
+La pagina "contatti" è reperibile sia dal menù principale sia dal footer, in modo tale che se un utente arrivasse a fine pagina (magari cercando un film senza trovarlo) e avesse delle domande non sarebbe costretto a scrollare fino ad inizio pagina per trovare informazioni relative ai contatti.
+Da desktop la dimensione massima di larghezza dei contenuti è stata fissata a 1024px, per evitare che l'utente debba muovere la testa per cercare informazioni durante la visualizzazione del sito da un monitor molto grande.
+I punti di rottura del sito dipendono dal tipo di contenuto: alcuni contenuti richiedono di essere adattati in più modi in base alla grandezza dello schermo, altri hanno solo due "versioni" (desktop/mobile).
+In generale, i contenuti su mobile sono organizzati seguendo una struttura verticale e di facile esplorazione. Il menù, oltre una certa grandezza di schermo, non è più sempre "aperto" ma viene collassato in un menù ad
+hamburger apribile e chiudibile a piacimento (di deafult chiuso).
+È stato sviluppato anche uno stile grafico dedicato alla stampa, per le pagine con più probabilità di essere stampate (prenotazione, info, contatti).
+Altre pagine non prevedono questa possibilità perchè ritenuto che le informazioni riportate non siano interessanti o utili da stampate: per esempio, stampare la home non porterebbe alcuna informazione sufficientemente significativa da giustificarne un layout di stampa (le descrizioni degli spettaoli non sono complete, le immagini sono inutili e anche se fossero tenute sarebbero uno spreco di inchiostro
+non indifferente, l'acquisto rapido e il menù andrebbero eliminati perchè inutili e dunque non rimarrebbe nulla di utile).
+È stata rispettata la totale separazione tra contenuto, presentazione grafica e struttura.
+
+\section{Accessibilità}
+Sono stati inseriti diversi aiuti nascosti per utenti che navigano il sito con screenreader per saltare parti di contenuto non interessanti.
+Ogni immagine è accompagnata da una descrizione testuale accessibile ad utenti con screenreader.
+Sono stati scelti colori con ottimo contrasto tra di loro per facilitare la lettura, nonchè un font semplice e leggibile.
+Per l'impaginazione è stato scelto di utilizzare display di tipo "flex" per maggiore compatibilità nei browser rispetto all'alternativa grid.
+Nessun tag HTML è stato utilizzato per creare elementi grafici, ogni tag è coerente col tipo di contenuto che rappresenta per facilitare l'analisi della pagina.
+La grandezza della gerarchia delle pagine, in entrambe le dimensioni, è conforme agli standard.
+Sono presenti breadcrumbs su ogni pagina che indicano all'utente dove si trova.
+Il colore dei link visitati è stato scelto per avere un buon contrasto con lo sfondo rimanendo riconoscibile e distinguibile dal colore di link non visitati.
+Gli eventi "hover" sono definiti solo su dispositivi e browser che li supportano tramite media query.
+
+\section{Validazione}
+Sono stati effettuati test di contrasto tra i vari colori del sito per verificare che siano tutti conformi agli standard.
+Il codice HTML e CSS è stato validato, per favorire accessibilità e usabilità (nonchè per indicizzazione positiva da parte dei motori di ricerca).
+Simulazioni di ricerca nel sito da parte di utenti con diverse disabilità visive sono state necessarie per assicurarsi la piena accessibilità da parte di quest'ultimi (cecità con screenreader, daltonismo, perdita di visione periferica o centrale).
+Ogni parola in lingua diversa dall'italiano è stata dichiarata coerentemente nel codice HTML per rendere la lettura da screenreader piacevole.
+Il testo presente nel sito è stato pensato per essere di semplice comprensione e di modesta sintesi, in parte per favorire utenti "frettolosi", in parte per garantire l'accessibilità delle pagine anche
+a utenti con disabilità cognitive.
+
+\end{document}

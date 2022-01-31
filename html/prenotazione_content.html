@@ -1,7 +1,7 @@
 <div id="content">
 <div id="filmData-pren">
 	<h2> Acquista i biglietti per <FILM-TITLE> </h2>
-	<h3> <PROJ-DATA> </h3>
+	<h3> <PROJ-DATA>, Sala <NUM-SALA> </h3>
 
 	
 </div>
@@ -9,9 +9,11 @@
 
 			<form id="purchaseTicketForm" method="post" action="../php/acquista_biglietti.php">
 			
-			<input type="hidden" name="idproiez" value="<ID-PROJ>">
-			<input type="hidden" name="orario" value="<TIME-PROJ>">
-			<input type="hidden" name="numSala" value="<NUM-SALA>">
+			<input type="hidden" name="idproiez" value="<ID-PROJ>"/>
+			<input type="hidden" name="orario" value="<TIME-PROJ>"/>
+			<input type="hidden" name="numSala" value="<NUM-SALA>"/>
+			<input type="hidden" name="titoloFilm" value="<FILM-TITLE>"/>
+			<input type="hidden" name="dataOraIta" value="<PROJ-DATA>">
 			
 			<fieldset id="modeSelectGroup">
 				<legend> Scegli la modalità di selezione dei posti: </legend>

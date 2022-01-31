@@ -54,9 +54,6 @@ session_start();
 			);
 		}
 		
-		
-		
-		
 		$document = str_replace(
             "<PAGETITLE>",
             "Acquista biglietti per " . $dataFilm["Titolo"] . " - PNG Cinema",
@@ -79,9 +76,7 @@ session_start();
         );
 		
 		$prenotazione_content = str_replace("<FILM-TITLE>", $dataFilm["Titolo"], $prenotazione_content);
-		$prenotazione_content = str_replace("<PROJ-DATA>", 
-											generateItalianDate($dataFilm["Data"]) . ", Sala " . $dataFilm["NumeroSala"],
-											$prenotazione_content);
+		$prenotazione_content = str_replace("<PROJ-DATA>", generateItalianDate($dataFilm["Data"]), $prenotazione_content);
 		
 		$prenotazione_content = str_replace("<NUM-SALA>", $dataFilm["NumeroSala"], $prenotazione_content);				
 		$prenotazione_content = str_replace("<ID-PROJ>", $idproiez, $prenotazione_content);

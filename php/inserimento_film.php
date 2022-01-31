@@ -12,7 +12,7 @@ if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
 $_SESSION["discard_after"] = $now + 30;
 
 
-if(!isset($_SESSION["admin"]||!$_SESSION["admin"]){
+if(!isset($_SESSION["admin"])||!$_SESSION["admin"]){
     header("Location: ./admin.php");
     exit();
 }

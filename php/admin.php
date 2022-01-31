@@ -13,7 +13,7 @@ $_SESSION["discard_after"] = $now + 30;
 $document = file_get_contents("../html/template.html"); //load template
 
 $content = "";
-if(isset($_SESSION["admin"]&&$_SESSION["admin"]){
+if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
     $content = file_get_contents("../html/admin.html"); //load content
 }
 else{

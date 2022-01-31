@@ -177,7 +177,7 @@
 				
 			}
 			
-			//prenotaPosti($postiStr, "username4", $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
+			prenotaPosti($postiStr, "username4", $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
 
 			
 			unset($listaPostiStruct);

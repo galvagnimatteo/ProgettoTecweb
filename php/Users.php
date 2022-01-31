@@ -75,6 +75,25 @@ class Users
                     $row = $resultCast->fetch_assoc();
                     $_SESSION["a"] = $row["Username"];
 					$_SESSION["b"] = $row["Email"];
+
+                    $db = SingletonDB::getInstance();
+                    $query = "SELECT Username FROM Amministratori WHERE Username=?";
+                    $preparedQuery = $db->getConnection()
+                        ->prepare($query);
+                    $preparedQuery->bind_param("s", $row["Username"]);
+
+                    $preparedQuery->execute();
+                    $resultCast = $preparedQuery->get_result();
+
+                    $db->disconnect();
+                    $preparedQuery->close();
+                    if ($resultCast->num_rows > 0)
+                    {
+                        $_SESSION[admin]=true;
+                    }
+                    else{
+                        $_SESSION[admin]=false;
+                    }
                     header("location:home.php");
                 }
                 else

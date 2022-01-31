@@ -985,6 +985,7 @@ font-size:6.5vw;
 	margin-left: 1rem;
 }
 
+
 /*stile prenotazione.html*/
 
 #modeSelectGroup {
@@ -1139,4 +1140,18 @@ font-size:6.5vw;
 
 #scene .center {
 	transform: translate(8%, 15%);
+
+@media print{
+    
+    body, #content {
+        page-break-inside: auto;
+    }
+    #content> * {
+        page-break-inside: avoid;
+    }
+    div{
+        page-break-before:avoid;
+        page-break-after:auto;
+    }
+
 }

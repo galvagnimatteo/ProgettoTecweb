@@ -404,9 +404,9 @@ VALUES
 ("username3", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
 ("username4", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com');
 
-INSERT INTO Amministratori (Username, Password)
+INSERT INTO Amministratori (Username)
 VALUES
-('admin','admin');
+('admin');
 
 INSERT INTO Prenotazione(ID, NumeroPersone, UsernameUtente, IDProiezione, OraProiezione)
 VALUES

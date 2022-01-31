@@ -16,7 +16,8 @@ $_SESSION["discard_after"] = $now + 30;
 
 $document = file_get_contents("../html/template.html"); //load template
 $home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
-
+$document = str_replace('<PAGETITLE>', 'Login - PNG Cinema', $document);
+$document = str_replace('<KEYWORDS>', 'Login', $document);
 
 $document = str_replace(
     "<BREADCRUMB>",    '<a href="home.php">Home</a> / Area Utenti',
@@ -195,7 +196,12 @@ if (isset($_GET["action"])) {
     );
     $document = str_replace("<LOGIN>", "Login", $document);
 }
-
+if(isset($_SESSION["admin"]&&$_SESSION["admin"]){
+    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+}
+else{
+    $document = str_replace("<ADMIN>","",$document);
+}
 
 $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancora presente <errormessage> viene tolto, non funziona se non presente (già sostituito con errore)
 

@@ -788,7 +788,171 @@ padding-left:2.5rem;
     font-size:6.5vw;
     }
 }
-@media print {
+
+
+#filmPageCard form legend {
+	padding: 0.3rem;
+	margin-left: 1rem;
+}
+
+
+/*stile prenotazione.html*/
+
+#modeSelectGroup {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+#modeSelectGroup label, #autoRadioGroup label {
+	display: block;
+	background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+	
+}
+
+#modeSelectGroup input[type="radio"]:checked + span,
+#autoRadioGroup input[type="radio"]:checked + span {
+	/*background-color: #7E7715;*/
+}
+
+#autoRadioGroup label:checked {
+  color: #000;
+}
+
+#autoRadioGroup {
+	display: flex;
+	flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+#autoRadioGroup {display: flex; flex-direction: column; }
+
+#ticketInfoGroup select { 
+	color: #000; 
+	min-width: 2.5rem; 
+	min-height: 1.5rem; 
+	
+}
+#ticketInfoGroup option {
+	color: #000;
+}
+
+
+
+#purchaseTicketForm fieldset {
+	margin-top: 1.5rem;
+	border: 0;
+	border-top: 2px solid var(--secondary-color);
+	/*border-left: 2px solid var(--secondary-color);*/
+}
+
+#purchaseTicketForm legend {
+	padding: 0.3rem;
+	margin-left: 1rem;
+}
+
+
+#manualContainer {
+	/*display: flex !important;*/
+	justify-content: center;
+}
+
+
+
+#ticketInfoGroup {
+	display: flex;
+	flex-direction: column;
+}
+
+#ticketInfoGroup label{
+	flex: 1 1 70%;
+	
+}
+
+#ticketInfoGroup select, #ticketInfoGroup input{
+	flex: 1 1 30%;
+	max-width: 3rem;
+}
+
+#ticketInfoGroup .labelPos span {
+	font-size: 1rem;
+}
+
+#ticketInfoGroup div {
+	border: 2px solid var(--secondary-color);
+	max-width: 90%;
+	padding: 1rem;
+	border-radius: 10px;
+}
+#ticketInfoGroup .noBorder {
+	border: 2px solid var(--secondary-color);
+	border-top: 0;	
+}
+
+#ticketInfoGroup .labelPos {
+	display: flex;
+    flex-wrap: wrap;
+	align-items: center;
+}
+
+#autoRadioGroup .prezzo {
+	display:flex;
+	 flex-direction: column;
+    align-items: flex-end;
+}
+
+#acquistaBtn {
+  background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+  margin: 2rem auto;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+  
+}
+
+#manualContainer {
+	display: flex;
+	
+}
+
+#manualContainer svg {
+	min-height: 30rem;
+	margin-top: 2rem;
+}
+
+#scene .top-right {
+	transform: translate(400px, 0);
+} 
+
+#scene .bottom-right {
+	transform: translate(400px, 180px);
+} 
+
+#scene .bottom-left {
+	transform: translate(0, 180px);
+} 
+
+#scene .center {
+	transform: translate(8%, 15%);
+
+@media print{
+    
 
     body, #content {
         page-break-inside: auto;
@@ -802,4 +966,5 @@ padding-left:2.5rem;
         page-break-before: avoid;
         page-break-after: auto;
     }
+
 }

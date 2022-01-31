@@ -52,11 +52,8 @@ CREATE TABLE Utente (
 );
 
 CREATE TABLE Amministratori (
-	ID INT NOT NULL AUTO_INCREMENT,
 	Username VARCHAR(50) NOT NULL,
-	Password VARCHAR(50) NOT NULL,
-	Email VARCHAR(100),
-	PRIMARY KEY(ID)
+	PRIMARY KEY(Username)
 );
 
 CREATE TABLE Prenotazione (

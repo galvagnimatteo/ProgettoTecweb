@@ -11,11 +11,11 @@
 		die();
 	}
 	
-	$totBiglietti = intval($_POST["numTicketIntero"]) + intval($_POST["numTicketRidotto"]);
+	$totNumBiglietti = intval($_POST["numTicketIntero"]) + intval($_POST["numTicketRidotto"]);
 	
 	if ($_POST["modSelezPosti"]== "auto") {
 		
-		/*$postiVicini = isset($_POST["postiVicini"]);
+		$postiVicini = isset($_POST["postiVicini"]);
 		
 		$catPosti = $_POST["catPosti"];
 		
@@ -38,152 +38,158 @@
 				
 		$db->disconnect();
 		
-		$statoPostiMatrix = array();
+		
 
 
 		if (!empty($result1) && $result1->num_rows) {
 			$listaPostiQuery = $result1->fetch_all(MYSQLI_ASSOC);
 			
 			$listaPostiStruct = array(); //array associativo nella forma [xy]=stato con x = fila posto y = numero posto
-			
+			$numTotFile = 1;
+			$lastRow="a";
 			foreach ($listaPostiQuery as $row) {  
-				$listaPostiStruct[$row["Fila"] . $row["Numero"]] = 0;  //inizializzo tutti liberi
+				$fila = strtolower($row["Fila"]);
+				$listaPostiStruct[$fila . $row["Numero"]] = 0;  //inizializzo tutti liberi
+				
+				//conto le file
+				if($fila != $lastRow) 
+					$numTotFile++;
+				
+				$lastRow = $fila; 
 			}
 			
 			if(!empty($result2) && $result2->num_rows > 0){ //se ci sono posti occupati
 				while($row = $result2->fetch_assoc()) {
-					$listaPostiStruct[$row["Fila"] . $row["Numero"]] = 1;  //posti occupati
+					$listaPostiStruct[strtolower($row["Fila"]) . $row["Numero"]] = 1;  //posti occupati
 				}
 			}
 			
-			
-			$statoPostiMatrix = array();
-			$listaPostiTemp = array();
-			$lastRow="a";
-			$numeroFile = 1;
-			foreach ($listaPostiQuery as $row) {
+			//echo "<pre>";
+			//print_r($listaPostiStruct);
+			//echo "</pre> <br>";
 
-				if($row["Fila"] == $lastRow) {
-					$lastRow = strtolower($row["Fila"]);
-					$listaPostiTemp[] = array($listaPostiStruct[$row["Fila"] . $row["Numero"]],
-											  $row["Fila"], $row["Numero"]); //append
-					
-					//echo $listaPostiStruct[$row["Fila"] . $row["Numero"]] . " " .
-					//						  " " . $row["Fila"] . " " . $row["Numero"] ."\n" ;
-				} else {
-					$numeroFile++;
-					//cambio riga
-					$statoPostiMatrix[] = $listaPostiTemp;
-					$listaPostiTemp = array();
-					
-					$lastRow = strtolower($row["Fila"]);
-					$listaPostiTemp[] = array($listaPostiStruct[$row["Fila"] . $row["Numero"]],
-											  $row["Fila"], $row["Numero"]); //append
-											  
-					//echo $listaPostiStruct[$row["Fila"] . $row["Numero"]] . " " .
-					//						  " " . $row["Fila"] . " " . $row["Numero"] . "<br/>";
-				}
-				
-				
-			}
-			
-			echo $statoPostiMatrix[0][0];
 			
 			// trova la sequenza di posti consecutivi piu lunga per ogni categoria di posti
-			/*$curr_consec = 0;
-			$max_consec = 0;
-			$start = "";
 			$seqConsecMax = array(
 				"davanti" => 0,
-				"cantrale" => 0,
+				"centrale" => 0,
 				"dietro" => 0
 			);
 			
-			$seqConsecStart = array(
+			$seqConsecEnd = array(
 				"davanti" => "",
-				"cantrale" => "",
+				"centrale" => "",
 				"dietro" => ""
 			);
-			
-			foreach($statoPostiMatrix as $i) {
+
+			$lastRow="a";
+			$curr_consec = 0;
+			$max_consec = 0;
+			$end = "";
+			$numFila = 0;
+			foreach($listaPostiStruct as $cod=>$stato) {
+				$fila = substr($cod, 0, 1);
+				$num = intval(substr($cod, 1));
+				if($fila != $lastRow) {
+					//cambio fila
+					
+					$max_consec = max($max_consec, $curr_consec);
+					if ($numFila < 2) {
+						$seqConsecMax["davanti"] = $max_consec;
+						//echo $numFila . " test1 ";
+						$seqConsecEnd["davanti"] = $end;
+					} else if ($numFila > $numTotFile-3) {
+						$seqConsecMax["dietro"] = $max_consec;
+						$seqConsecEnd["dietro"] = $end;
+						//echo $numFila . " test3 ";
+					} else {					
+						$seqConsecMax["centrale"] = $max_consec;
+						$seqConsecEnd["centrale"] = $end;
+						//echo $numFila . " test2 ";
+					}
+					$numFila++;
+					$max_consec = 0;
+					$curr_consec = 0;
+				}
 				
-				if ($i < 2) {
-					$seqConsecMax["davanti"] = $max_consec;
-					$seqConsecMax["davanti"] = $start;
-					$max_consec = 0;
-				} else if ($i > $numeroFile-2) {
-					$seqConsecMax["dietro"] = $max_consec;
-					$seqConsecMax["dietro"] = $start;
-					$max_consec = 0;
+				if ($stato == 0) {
+					$curr_consec++;
+					$end = $lastRow . $num;
 				} else {
-					$seqConsecMax["centrale"] = $max_consec;
-					$seqConsecMax["centrale"] = $start;
-					$max_consec = 0;
+					$max_consec = max($max_consec, $curr_consec);
+					$curr_consec = 0;
+				}
+			
+				$lastRow = $fila;
+			}
+			
+			//testa ultima riga
+			
+			$max_consec = max($max_consec, $curr_consec);
+			if ($numFila < 3) {
+				$seqConsecMax["davanti"] = $max_consec;
+				//echo $numFila . " test1 ";
+				$seqConsecEnd["davanti"] = $end;
+			} else if ($numFila > $numTotFile-3) {
+				$seqConsecMax["dietro"] = $max_consec;
+				$seqConsecEnd["dietro"] = $end;
+				//echo $numFila . " test3 ";
+			} else {					
+				$seqConsecMax["centrale"] = $max_consec;
+				$seqConsecEnd["centrale"] = $end;
+				//echo $numFila . " test2 ";
+			}
+			
+			echo "<pre>";
+			print_r($seqConsecMax);
+			echo "</pre>";
+			
+			echo "<pre>";
+			print_r($seqConsecEnd);
+			echo "</pre>";
+			
+			$postiStr = "";
+			if($postiVicini) {
+				for($i = 0; $i < $totNumBiglietti; $i++) {
+					$fila = substr($seqConsecEnd[$catPosti], 0, 1);
+					$num = intval(substr($seqConsecEnd[$catPosti], 1));
+					$postiStr .= $fila . $num - $i . ",";
+				}
+				//rimuovo virgola finale
+				$postiStr = substr($postiStr, 0, -1);
+			} else {
+				//random
+				foreach($listaPostiStruct as $cod => $stato) {
+					if($stato)
+						unset($listaPostiStruct[$cod]);
 				}
 				
-				$start = $statoPostiMatrix[$i][0][1] . $statoPostiMatrix[$i][0][2];
-				foreach($i as  $j) {
-					
-					if($statoPostiMatrix[$i][$j][0] == 0) 
-						$curr_consec++;
-					else {
-						$max_consec = max($max_consec, $curr_consec);
-						$curr_consec = 0;
-					}
-				}
-			}	
-			
-			echo $seqConsecMax["davanti"];*/
-			/*
-			
-			 int ans = -1;
-
-			 for (int i = 0; i < row; ++i)
-
-			 {
-
-			 for (int j = 1; j < col; ++j)
-
-			 {
-
-			 if(a[i][j] == 1)
-
-			 d[i][j] = 1 + d[i - 1][j]; 
-
-			 ans = max(ans, d[i][j]);
-
-			 }
-
-			 }
-			
-			*/
-			
-			/*if ($catPosti == "davanti") {
+				uksort($listaPostiStruct, function() { return (rand() > getrandmax() / 2); });
 				
-				foreach($statoPosti as $fila) {
-					
-					foreach($fila as $numPosto => $stato) {
-							
-						
-							
-					}
-					
+				foreach(array_slice($listaPostiStruct, 0, $totNumBiglietti) as $cod=>$s) {
+					$fila = substr($cod, 0, 1);
+					$num = intval(substr($cod, 1));
+					$postiStr .= $fila . $num  . ",";
 				}
+				//rimuovo virgola finale
+				$postiStr = substr($postiStr, 0, -1);
 				
-			} */
+				
+			}
 			
-			/*unset($statoPosti);*/
+			//prenotaPosti($postiStr, "username4", $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
+
+			
+			unset($listaPostiStruct);
 		} else {
-			
-			echo $result1->num_rows;
-			/*unset($statoPosti);*/
+			unset($listaPostiStruct);
 			header("Location: 500.php");
 			die();
 		}
 		
 	} else if ($_POST["modSelezPosti"] == "manual") {
 		
-		prenotaPosti($_POST["seats"], "username4", $totBiglietti, $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
+		prenotaPosti($_POST["seats"], "username4", $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
 		
 		echo "ok";
 	}

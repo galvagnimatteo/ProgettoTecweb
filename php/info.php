@@ -38,7 +38,7 @@ if (isset($_SESSION["a"])) {
         $document
     );
 }
-if(isset($_SESSION["admin"]&&$_SESSION["admin"]){
+if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
     $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
 }
 else{

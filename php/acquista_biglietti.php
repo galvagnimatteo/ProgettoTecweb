@@ -53,9 +53,14 @@
 				}
 			}
 			
+			
+			
 			if ($catPosti == "davanti") {
 				
 			} 
+			
+			
+			
 			unset($statoPosti);
 		} else {
 			unset($statoPosti);
@@ -65,48 +70,9 @@
 		
 	} else if ($_POST["modSelezPosti"] == "manual") {
 		
-		$posti = explode(',', $_POST["seats"]);
+		prenotaPosti($_POST["seats"], "username4", $totBiglietti, $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
 		
-		$username = "username4";
-		$db = SingletonDB::getInstance();
-		$db->connect();
-		
-		$preparedQuery = $db
-			->getConnection()
-			->prepare("INSERT INTO Prenotazione(NumeroPersone, UsernameUtente, IDProiezione, OraProiezione)". 
-					  "VALUES (?, ?, ?, ?)");
-		$preparedQuery->bind_param(
-			"isis", 
-			$totBiglietti,
-			$username,
-			$_POST["idproiez"],
-			$_POST["orario"]
-		);
-		$preparedQuery->execute();
-		
-		$idprenot = mysqli_insert_id($db->getConnection());
-		$db->disconnect();
-		
-		foreach($posti as $posto) {
-			$numPosto = intval(substr($posto, 1));
-			$fila = strtoupper(substr($posto, 0, 1));
-			$db->connect();
-			$preparedQuery2 = $db
-				->getConnection()
-				->prepare("INSERT INTO Partecipa(NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione)". 
-						  "VALUES (?, ?, ?, ?)");
-			$preparedQuery2->bind_param(
-				"isii", 
-				$numPosto,
-				$fila,
-				$_POST["numSala"],
-				$idprenot
-			);
-			$preparedQuery2->execute();
-			$db->disconnect();
-		}
-		
-		echo "messa roba";
+		echo "ok";
 	}
 	
 	

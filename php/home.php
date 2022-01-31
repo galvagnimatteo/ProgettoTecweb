@@ -6,7 +6,7 @@ if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
     session_destroy();
     session_start();
 }
-$_SESSION["discard_after"] = $now + 30;
+$_SESSION["discard_after"] = $now + 400;
 
 include "SingletonDB.php";
 include "mostra_errori.php";
@@ -125,7 +125,7 @@ if (isset($_SESSION["a"])) {
         $document
     );
 }
-if(isset($_SESSION["admin"]&&$_SESSION["admin"]){
+if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
     $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
 }
 else{

@@ -9,10 +9,10 @@ if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
     session_start();
 }
 
-$_SESSION["discard_after"] = $now + 30;
+$_SESSION["discard_after"] = $now + 400;
 
 
-if(!isset($_SESSION["admin"]||!$_SESSION["admin"]){
+if(!isset($_SESSION["admin"])||!$_SESSION["admin"]){
     header("Location: ./admin.php");
     exit();
 }
@@ -75,16 +75,16 @@ if (isset($_GET["action"]))
             $db->disconnect();
             $preparedQuery->close();
             if($res){
-                $content=str_replace("<STATUS>", "<p class='sucess'>inserimento avvenuto correttamente</p>", $content)
+                $content=str_replace("<STATUS>", "<p class='sucess'>inserimento avvenuto correttamente</p>", $content);
             }
             else{
-                $content=str_replace("<STATUS>", "<p class='faliure'>errore nell'inserimento prego riprovare</p>", $content)
+                $content=str_replace("<STATUS>", "<p class='faliure'>errore nell'inserimento prego riprovare</p>", $content);
             }
         }
     }
 }
 else{
-    $content=str_replace("<STATUS>", "", $content)
+    $content=str_replace("<STATUS>", "", $content);
 }
 $document = str_replace("/php/inserimento_film.php", "#", $document);
 $document = str_replace("<CONTENT>", $content, $document);

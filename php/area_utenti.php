@@ -12,7 +12,7 @@ if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
 	header("location:area_utenti.php?action=login_page");
 }
 
-$_SESSION["discard_after"] = $now + 30;
+$_SESSION["discard_after"] = $now + 400;
 
 $document = file_get_contents("../html/template.html"); //load template
 $home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
@@ -196,7 +196,7 @@ if (isset($_GET["action"])) {
     );
     $document = str_replace("<LOGIN>", "Login", $document);
 }
-if(isset($_SESSION["admin"]&&$_SESSION["admin"]){
+if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
     $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
 }
 else{

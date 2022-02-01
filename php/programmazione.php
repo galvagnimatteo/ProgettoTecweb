@@ -10,8 +10,6 @@ $programmazione_content = file_get_contents(
     "../html/programmazione_content.html"
 );
 
-$document = str_replace('<PAGETITLE>', 'programmazione - PNG Cinema', $document);
-$document = str_replace('<KEYWORDS>', 'programmazione', $document);
 
 $db = SingletonDB::getInstance();
 $filmsResult = $db

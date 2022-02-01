@@ -124,7 +124,8 @@
 				$document
 			);
 			
-			$document = str_replace("<JAVASCRIPT-HEAD>", "<script src="../js/promptonclose.js"></script>", $document);
+			$document = str_replace("<JAVASCRIPT-HEAD>", '<meta name="robots" content="noindex" follow /> ' . //lo attacco da qua perche non ho voglia di modificare tutto
+														' <script src="../js/promptonclose.js"></script>', $document);
 			$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 		
 			$acquistoconferma_content = str_replace("<FILM-TITLE>", $_POST["titoloFilm"] ,$acquistoconferma_content);
@@ -141,6 +142,6 @@
 			
 			$document = str_replace("<CONTENT>", $acquistoconferma_content, $document);
 			echo $document;
-		/*<meta name="robots" content="noindex" follow>*/
+		
 	}
 ?>

@@ -2,6 +2,7 @@ var elem = document.getElementById("scene");
 var autoCard = document.getElementById("autoRadioGroup");
 var manualCard = document.getElementById("manualContainer");
 var postiViciniCheck = document.getElementById("postiViciniCheck");
+var postiViciniFlag = document.getElementById("postiViciniFlag");
 var autoRadioBtn = document.getElementById("selezAuto");
 var manualRadioBtn = document.getElementById("selezManual");
 var selectNumTicketInt = document.getElementById("selectNumTicketInt");
@@ -9,7 +10,14 @@ var selectNumTicketRed = document.getElementById("selectNumTicketRed");
 var submitButton = document.getElementById("acquistaBtn");
 
 var listaPosti = [];
-const MAX_POSTI = 4;
+const MAX_POSTI_SELEZIONABILI = 4;
+const MAX_POSTI = 7*15; //tutte le sale sono uguali
+
+
+const messaggi = {
+	"libero": "Ci sono ancora posti liberi",
+	"soldout": "Non ci sono più posti liberi"
+};
 
 manualRadioBtn.addEventListener("change", changeCard);
 autoRadioBtn.addEventListener("change", changeCard);
@@ -21,8 +29,29 @@ selectNumTicketRed.addEventListener("change", calcolaPrezzoTot);
 selectNumTicketInt.addEventListener("change", dynamicOption);
 selectNumTicketRed.addEventListener("change", dynamicOption);
 
-//selectNumTicketInt.addEventListener("change", pulisciPostiSelezionati);
-//selectNumTicketRed.addEventListener("change", pulisciPostiSelezionati);
+selectNumTicketInt.addEventListener("change", pulisciPostiSelezionati);
+selectNumTicketRed.addEventListener("change", pulisciPostiSelezionati);
+
+selectNumTicketInt.addEventListener("change", controllaInput);
+selectNumTicketRed.addEventListener("change", controllaInput);
+
+document.getElementById("purchaseTicketForm").addEventListener("submit", function(event) {
+	var tot = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
+	var aiuto = document.getElementsByClassName("aiutocompilaz");
+	
+	if (tot == 0) {
+		aiuto[0].setAttribute("class", "aiutocompilaz");
+		aiuto[1].setAttribute("class", "aiutocompilaz");
+		aiuto[0].focus();
+		
+		event.preventDefault(); // non fa submit
+		
+		return false; //su qualche browser senza questo non va
+	}
+	
+});
+
+
 
 var posti = document.getElementsByClassName("seat");
 var inputListaPosti = document.getElementById("seatsString");
@@ -34,6 +63,9 @@ for (var i = 0; i < posti.length; i++) {
 }
 
 changeCard(null);
+calcolaPrezzoTot(null);
+controllaInput(null);
+
 
 panzoom(elem, {
 	maxZoom: 1.8,
@@ -47,7 +79,9 @@ panzoom(elem, {
 instance.smoothZoom(Math.floor(manualCard.offsetWidth/2 * 0.08), Math.floor(manualCard.offsetHeight/2), zoomFactor * 0.80); */
 
 
-function changeCard(e) {
+
+
+function changeCard(event) {
 	if (autoRadioBtn.checked) {
 		manualCard.style.display = "none";
 		autoCard.style.display = "flex";
@@ -74,30 +108,29 @@ function maxOption(max, target) {
 	}
 	
 	else {
-		for (var i = numChildren; i > max; i--) {
-			console.log(target.options[i-1])
+		for (var i = numChildren; i > max; i--) 
 			target.removeChild(target.options[i-1]);
-		}
+		
 	}
 	
 }
 
-function dynamicOption(e) {
+function dynamicOption(event) {
 	
 	var val = parseInt(e.target.value);
 	var target2 = selectNumTicketInt.getAttribute("id") == e.target.getAttribute("id") ?
 				  selectNumTicketRed : selectNumTicketInt;
 	
 	if (val == 0 && parseInt(target2.value)==0) {
-		maxOption(MAX_POSTI, target2);
-		maxOption(MAX_POSTI, e.target);
+		maxOption(MAX_POSTI_SELEZIONABILI, target2);
+		maxOption(MAX_POSTI_SELEZIONABILI, e.target);
 	} else {
-		maxOption(MAX_POSTI - val, target2);
+		maxOption(MAX_POSTI_SELEZIONABILI - val, target2);
 		maxOption(val, e.target);
 	}
 }
 
-function calcolaPrezzoTot(e) {
+function calcolaPrezzoTot(event) {
 	var pInt = parseFloat(selectNumTicketInt.dataset.prezzoIntero);
 	var pRid = parseFloat(selectNumTicketRed.dataset.prezzoRidotto);
 	
@@ -106,47 +139,129 @@ function calcolaPrezzoTot(e) {
 	
 	var result = pInt * nInt + pRid * nRid;
 	
-	submitButton.innerHTML = "Acquista " + String(nInt + nRid) + " biglietti, " + result.toFixed(2).replace('.', ',') + "€";
+	submitButton.innerHTML = "Acquista " + String(nInt + nRid) + " biglietti, Totale: " 
+							  + result.toFixed(2).replace('.', ',') + "€";
+	
+	//tolgo anche gli aiuti se sono visibili
+	if (nInt + nRid > 0) {
+		var aiuto = document.getElementsByClassName("aiutocompilaz");
+		aiuto[0].setAttribute("class", "aiutocompilaz hide");
+		aiuto[1].setAttribute("class", "aiutocompilaz hide");
+	}
 }
 
-function selezionePosto(e) {
+function selezionePosto(event) {
 	
-	var nInt = parseInt(selectNumTicketInt.value);
-	var nRid = parseInt(selectNumTicketRed.value);
-	var g = e.target.parentElement;
+	var totB = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
+
+	var g = event.currentTarget;
 	
 	var codice = g.dataset.codice;
 	
 	var index = listaPosti.indexOf(codice);
 	
-	if (index == -1 && listaPosti.length < nInt + nRid) {
+	if (index == -1 && listaPosti.length < totB) {
 		listaPosti.push(codice);
-		g.firstChild.style.fill = "green";
+		g.setAttribute("class", "seat libero selezionato");
 		inputListaPosti.setAttribute("value", listaPosti.join());
 		calcolaPrezzoTot(null);
 	} else if (index != -1) {
 		listaPosti.splice(index, 1);
-		g.firstChild.style.fill = "black";
+		g.setAttribute("class", "seat libero");
 		inputListaPosti.setAttribute("value", listaPosti.join());
 		calcolaPrezzoTot(null);
 	}
-			
-		
+	
 }
 
 
+function controllaInput(event) {
+	var totPosti = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
 
-function pulisciPostiSelezionati() {
-	if (!autoRadioBtn.checked) 
-		return;
-	else {
+	
+	var selezDavanti = document.getElementById("selezDavanti");
+	var selezCentro = document.getElementById("selezCentro");
+	var selezDietro = document.getElementById("selezDietro");
+	
+	var warningPosti = document.getElementById("warnPosti");
+	
+	var pDv = document.getElementById("pDv");
+	var pCe = document.getElementById("pCe");
+	var pDt = document.getElementById("pDt");
+	
+	
+	if (pDv.dataset.postiLib / MAX_POSTI >= 0.5) 
+		warningPosti.setAttribute("class", "warning hide"); //nascondi
+	 else 
+		warningPosti.setAttribute("class", "warning"); //mostra
+	
+	if(postiViciniFlag.checked) {
 		
-		//cancella roba
-		return;
+		if (pDv.dataset.maxSeq >= totPosti) {
+			pDv.innerHTML = messaggi["libero"];
+			selezDavanti.disabled = false;
+		} else {
+			pDv.innerHTML = messaggi["soldout"];
+			selezDavanti.disabled = true;
+		}
+		
+		if (pCe.dataset.maxSeq >= totPosti) {
+			pCe.innerHTML = messaggi["libero"];
+			selezCentro.disabled = false;
+		} else {
+			pCe.innerHTML = messaggi["soldout"];
+			selezCentro.disabled = true;
+			
+		}
+		
+		if (pDt.dataset.maxSeq >= totPosti) {
+			pDt.innerHTML = messaggi["libero"];
+			selezDietro.disabled = false;
+		} else {
+			pDt.innerHTML = messaggi["soldout"];
+			selezDietro.disabled = true;			
+			
+		}
+	} else {
+		
+		if (pDv.dataset.postiLib >= totPosti) {
+			pDv.innerHTML = messaggi["libero"];
+			selezDavanti.disabled = false;
+		} else {
+			pDv.innerHTML = messaggi["soldout"];
+			selezDavanti.disabled = true;
+		}
+		
+		if (pCe.dataset.postiLib >= totPosti) {
+			pCe.innerHTML = messaggi["libero"];
+			selezCentro.disabled = false;
+		} else {
+			pCe.innerHTML = messaggi["soldout"];
+			selezCentro.disabled = true;
+		}
+		
+		if (pDt.dataset.postiLib >= totPosti) {
+			pDt.innerHTML = messaggi["libero"];
+			selezDietro.disabled = false;
+		} else {
+			pDt.innerHTML = messaggi["soldout"];
+			selezDietro.disabled = true;			
+		}
+	}
+	
+}
+
+function pulisciPostiSelezionati(event) {
+	if (!autoRadioBtn.checked) {
+		listaPosti = [];
+		inputListaPosti.setAttribute("value", listaPosti.join());
+		var list = document.getElementsByClassName("seat");
+	
+		for (var i = 0; i < list.length; i++) {
+			if (list[i].getAttribute("class") == "seat libero selezionato")
+			list[i].setAttribute("class", "seat libero");
+		}
+
 	}
 }
-
-
-
-
 

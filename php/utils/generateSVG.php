@@ -37,16 +37,23 @@
 			}
 			
 			
-			$SVG .= '<svg version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg" title="Mappa della sala per la scelta dei posti">' .
-					'<rect width="100%" height="100%" fill="red" />' .
-					'<g id="scene">"' .
+			$SVG .= '<svg class="mappaposti" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg" aria-label="Mappa della sala per la scelta dei posti">' .
+					'<rect class="sfondosvg" width="100%" height="100%" />' .
+					'<g id="scene">' .
 					'<g class="center">';
 			
 			$r = 20;
 			$cx = 30;
 			$cy = 30;
+			
 			$tx = 23;
 			$ty = 38;
+			
+			$lx1 = 10;
+			$lx2 = 50;
+			$ly1 = 10;
+			$ly2 = 50;
+			
 			$lastRow = "a";
 			$SVG .= '<text class="letteraFila" x="' . $tx - 40 . '" y="' . $ty . '">A</text>';
 
@@ -58,18 +65,28 @@
 					$SVG .= '<text class="letteraFila" x="' . $tx-8 . '" y="' . $ty . '">' . strtoupper($lastRow) . '</text>';
 					$cy += 60;
 					$ty += 60;
+					$ly1 += 60;
+					$ly2 += 60;
 					$cx = 30;
 					$tx = 23;
-					$SVG .= '<text x="' . $tx - 40 . '" y="' . $ty . '">' . strtoupper($fila) . '</text>';
+					$lx1 = 10;
+					$lx2 = 50;
+					$SVG .= '<text class="letteraFila" x="' . $tx - 40 . '" y="' . $ty . '">' . strtoupper($fila) . '</text>';
 				}
 				
 				$lastRow = strtolower($fila);
-				
+				$mostraLinea = "";
+				if ($stato=="libero")
+					$mostraLinea = " nascondilinea";
 				
 				$SVG .= '<g data-codice="' . strtolower($fila) . $count . '" class="seat '. $stato .'">' .
-						'<circle cx="' . $cx . '" cy="'. $cy .'" r="'. $r . '"/>' .
-						'<text fill="white" x="' . $tx . '" y="' . $ty . '">' . $count . '</text>' .
+						'<circle cx="' . $cx . '" cy="'. $cy .'" r="'. $r . '" />' .
+						'<text class="codicePosto" x="' . $tx . '" y="' . $ty . '">' . $count . '</text>' .
+						'<line class="linex' . $mostraLinea . '" x1="' . $lx1 . '" y1="' . $ly1 . '" x2="' . $lx2 . '" y2="' . $ly2 . '" />' .
 						'</g>';
+				
+				$lx1 += 50;
+				$lx2 += 50;
 				
 				if ($count != 9) { 
 					$cx += 50;

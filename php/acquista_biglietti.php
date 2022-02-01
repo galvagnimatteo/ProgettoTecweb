@@ -124,7 +124,7 @@
 				$document
 			);
 			
-			$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
+			$document = str_replace("<JAVASCRIPT-HEAD>", "<script src="../js/promptonclose.js"></script>", $document);
 			$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 		
 			$acquistoconferma_content = str_replace("<FILM-TITLE>", $_POST["titoloFilm"] ,$acquistoconferma_content);

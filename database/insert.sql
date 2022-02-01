@@ -404,6 +404,10 @@ VALUES
 ("username3", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
 ("username4", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com');
 
+INSERT INTO Amministratori (Username)
+VALUES
+('admin');
+
 INSERT INTO Prenotazione(ID, NumeroPersone, UsernameUtente, IDProiezione, OraProiezione)
 VALUES
 (1, 4, "username1", 2, '21:30:00'),
@@ -490,5 +494,13 @@ VALUES
 (24, 4),
 (25, 4);
 
+INSERT INTO Prezzi (Giorno, PrezzoIntero, PrezzoRidotto) VALUES
+('Lunedì', 7.00, 5.50),
+('Martedì', 7.00, 5.50),
+('Mercoledì', 5.00, 5.00),
+('Giovedì', 7.00, 5.50),
+('Venerdì', 10.00, 8.50),
+('Sabato', 10.00, 8.50),
+('Domenica', 10.00, 8.50);
 
 

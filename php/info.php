@@ -16,7 +16,7 @@ $document = str_replace(
 );
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / <a href="info.php">Info e Costi</a>',
+    '<a href="home.php">Home</a> / Info e Costi',
     $document
 );
 
@@ -38,7 +38,14 @@ if (isset($_SESSION["a"])) {
         $document
     );
 }
+if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
+    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+}
+else{
+    $document = str_replace("<ADMIN>","",$document);
+}
 
+$document = str_replace("/php/info.php", "#", $document);
 $document = str_replace("<CONTENT>", $home_content, $document);
 
 echo $document;

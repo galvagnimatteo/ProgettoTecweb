@@ -8,3 +8,15 @@
 /.vs/repo/config/applicationhost.config
 /.vs
 /repo.sln
+/dashboard
+/img
+/xampp
+/applications.html
+/bitnami.css
+/favicon.ico
+*.aux
+*.fdb_latexmk
+*.log
+*.fls
+*.out
+*.synctex.gz

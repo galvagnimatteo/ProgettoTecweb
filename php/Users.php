@@ -67,15 +67,34 @@ class Users
                 $preparedQuery->execute();
                 $resultCast = $preparedQuery->get_result();
 
-                $db->disconnect();
-                $preparedQuery->close();
+                
 
                 if ($resultCast->num_rows > 0)
                 {
                     $row = $resultCast->fetch_assoc();
                     $_SESSION["a"] = $row["Username"];
 					$_SESSION["b"] = $row["Email"];
-                    header("location:home.php");
+
+                    $db2 = SingletonDB::getInstance();
+                    $query2 = "SELECT username FROM Amministratori WHERE username=?";
+                    $preparedQuery2 = $db2->getConnection()->prepare($query2);
+                    $preparedQuery2->bind_param("s", $row["Username"]);
+
+                    $preparedQuery2->execute();
+                    $resultCast2 = $preparedQuery2->get_result();
+
+                    $db2->disconnect();
+                    $preparedQuery2->close();
+                    if ($resultCast2->num_rows > 0)
+                    {
+                        $_SESSION["admin"]=true;
+                    }
+                    else{
+                        $_SESSION["admin"]=false;
+                    }
+                    $db->disconnect();
+                    $preparedQuery->close();
+                    header("location:home.php");                    
                 }
                 else
                 {
@@ -93,11 +112,11 @@ class Users
 
 
 		function searchRegistered($email,$username,$value){
-		
-	
+
+
 		$db = SingletonDB::getInstance();
-		
-	
+
+
         $queryE = "SELECT * FROM Utente WHERE Email=?";
 		$preparedQueryE = $db->getConnection()->prepare($queryE);
 		$preparedQueryE->bind_param("s", $email);
@@ -111,32 +130,32 @@ class Users
 	$isEmail=true;
 		$isDoubled=true;
 		}
-		
+
 		}else{
-			
+
 				if($resultCastE->num_rows == $value){
 					$row = $resultCastE->fetch_assoc();
 					if($row['Email']==$_SESSION["b"])
 					{
-						
+
 					}else{
 					$isEmail=true;
 					$isDoubled=true;
 					}
-					
-			
+
+
 			}else
 			{
 				if($resultCastE->num_rows > $value){
 					$isEmail=true;
 					$isDoubled=true;
-				
+
 				}
-			
+
 			}
-			
+
 		}
-		
+
 		$db = SingletonDB::getInstance();
         $queryU = "SELECT * FROM Utente WHERE Username=?";
 		$preparedQueryU = $db->getConnection()->prepare($queryU);
@@ -147,44 +166,44 @@ class Users
 		$isUser=false;
 		if($value==0){
 		if ($resultCastU->num_rows > $value){
-		
+
 		$isUser=true;
 		$isDoubled=true;
 		}
-		
+
 		}else{
-			
+
 				if($resultCastU->num_rows == $value){
 					$row = $resultCastU->fetch_assoc();
 					if($row['Username']==$_SESSION["a"])
 					{
-						
+
 					}else{
 					$isUser=true;
 					$isDoubled=true;
 					}
-					
-			
+
+
 			}else
 			{
 				if($resultCastU->num_rows > $value){
 					$isUser=true;
 					$isDoubled=true;
-				
+
 				}
-			
+
 			}
 		}
-        
-       
+
+
             $preparedQueryU->close();
 			$preparedQueryE->close();
 		return array($isDoubled,$isUser,$isEmail);
-		
 
-		
-		
-	
+
+
+
+
 }
 
     function getProfile()
@@ -206,31 +225,35 @@ class Users
             $row = $resultCast->fetch_assoc();
 
 
-			 $home_content = file_get_contents("../html/items/updateProfile_content.html"); 
-		     $home_content = str_replace("<USERNAME>", $row["username"] ,  $home_content);
-		     $home_content = str_replace("<NOME>",  $row["nome"] ,  $home_content);
-		     $home_content = str_replace("<COGNOME>", $row["cognome"] ,  $home_content);
-		     $home_content = str_replace("<EMAIL>", $row["email"],  $home_content);
-		     $home_content = str_replace("<PASSWORD>", $row["password"] ,  $home_content);
+			 $home_content = file_get_contents("../html/items/updateProfile_content.html");
+		     $home_content = str_replace("<USERNAME>", $row["Username"] ,  $home_content);
+		     $home_content = str_replace("<NOME>",  $row["Nome"] ,  $home_content);
+		     $home_content = str_replace("<COGNOME>", $row["Cognome"] ,  $home_content);
+		     $home_content = str_replace("<EMAIL>", $row["Email"],  $home_content);
+		     $home_content = str_replace("<PASSWORD>", $row["Password"] ,  $home_content);
 			 if (isset($_GET["error"]))
             {
 				$error=$_GET["error"];
-				
+
 				if($error==3)
 				$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
-			
+
 				if($error==2)
 				$home_content = str_replace("<ERRORMESSAGE>", "Username già registrato", $home_content);
-			
+
 				if($error==1)
 				$home_content = str_replace("<ERRORMESSAGE>", "Email già registrato", $home_content);
-			
-               
+
+
                 unset($_GET["error"]);
-				
-				
+
+
             }
-          return $home_content;    
+
+            if(isset($_SESSION["insertError"])){
+                $home_content = str_replace("<ERRORMESSAGE>", $_SESSION["insertError"], $home_content);
+            }
+          return $home_content;
 
         }
     }
@@ -276,7 +299,7 @@ class Users
             $confirm_password = $_POST["pass_profile_confirm"];
 
             $result = registerControls($newusername, $name, $surname, $email, $password, $confirm_password);
-    
+
             if($result == "OK"){
 
                 $db = SingletonDB::getInstance();

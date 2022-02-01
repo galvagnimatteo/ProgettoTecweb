@@ -16,13 +16,14 @@ $document = str_replace(
 );
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / <a href="contatti.php">Contatti</a>',
+    '<a href="home.php">Home</a> / Contatti',
     $document
 );
 
 $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
 $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 
+$document = str_replace("/php/contatti.php", "#", $document);
 $document = str_replace("<CONTENT>", $home_content, $document); //fills template with content
 
 if (isset($_SESSION["a"])) {
@@ -39,6 +40,12 @@ if (isset($_SESSION["a"])) {
         "./area_utenti.php?action=login_page",
         $document
     );
+}
+if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
+    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+}
+else{
+    $document = str_replace("<ADMIN>","",$document);
 }
 echo $document;
 

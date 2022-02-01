@@ -51,10 +51,15 @@ CREATE TABLE Utente (
 	PRIMARY KEY(Username)
 );
 
+CREATE TABLE Amministratori (
+	Username VARCHAR(50) NOT NULL,
+	PRIMARY KEY(Username)
+);
+
 CREATE TABLE Prenotazione (
 	ID INT NOT NULL AUTO_INCREMENT,
 	NumeroPersone SMALLINT NOT NULL,
-	UsernameUtente VARCHAR(50) NOT NULL,
+	UsernameUtente VARCHAR(50) NULL,
 	IDProiezione INT NOT NULL,
 	OraProiezione TIME NOT NULL,
 	PRIMARY KEY (ID),
@@ -89,4 +94,11 @@ CREATE TABLE Afferisce (
 	PRIMARY KEY (IDFilm, IDCast),
 	FOREIGN KEY (IDFilm) REFERENCES Film(ID) ON DELETE CASCADE,
 	FOREIGN KEY (IDCast) REFERENCES CastFilm(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE Prezzi (
+	Giorno VARCHAR(10) NOT NULL,
+	PrezzoIntero DECIMAL(4, 2) NOT NULL,
+	PrezzoRidotto DECIMAL(4, 2) NOT NULL,
+	PRIMARY KEY (Giorno)
 );

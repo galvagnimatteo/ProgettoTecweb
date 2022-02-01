@@ -3,6 +3,8 @@
 	//$postistr: stringa nella forma xy, x1y1, x2y2 dove x{1,2,3} è al fila e y{1,2,3} è il numero del posto
 	
 	function prenotaPosti($postistr, $username, $idproiez, $orario, $numSala) {
+		$idprenot = -1;
+		
 		if ($postistr != "") {
 			$posti = explode(',', $postistr);
 			$totNumBiglietti = count($posti);
@@ -45,7 +47,9 @@
 				$db->disconnect();
 			}
 		}
+		return $idprenot;
 	}
-
+	
+	
 
 ?>

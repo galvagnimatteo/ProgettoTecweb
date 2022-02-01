@@ -3,6 +3,7 @@ session_start();
 
 include "SingletonDB.php";
 include "utils/createCastStr.php";
+include "utils/generateItalianDate.php";
 
 if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
     $db = SingletonDB::getInstance();
@@ -140,7 +141,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
 				$filmscreeningfield = str_replace(
                     "<DATA>",
-                    $row["Data"],
+					generateItalianDate($row["Data"]),
                     $filmscreeningfield
                 );
 
@@ -174,7 +175,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
                     $hour_field =
                         '<input type="submit" name="orario" value="' .
-                        $orarioRow["Ora"] .
+                        substr($orarioRow["Ora"], 0, -3) .
                         '">';
                     $hour_fields .= $hour_field;
                 }

@@ -4,7 +4,7 @@ function registerControls($username, $name, $surname, $email, $password, $confir
 
     $usernameRegex = "/^[a-zA-Z0-9]+$/";
 	
-	if(username=="admin" && password=="admin" OR username=="user" && password=="user"){
+	if($username=="admin" && $password=="admin" OR $username=="user" && $password=="user"){
 		
 		
 		return true;

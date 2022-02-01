@@ -854,7 +854,7 @@ padding-left:2.5rem;
 	margin-top: 1.5rem;
 	border: 0;
 	border-top: 2px solid var(--secondary-color);
-	/*border-left: 2px solid var(--secondary-color);*/
+	
 }
 
 #purchaseTicketForm legend {
@@ -864,10 +864,8 @@ padding-left:2.5rem;
 
 
 #manualContainer {
-	/*display: flex !important;*/
 	justify-content: center;
 }
-
 
 
 #ticketInfoGroup {
@@ -1035,15 +1033,20 @@ svg .libero.selezionato .codicePosto{
 	text-align: center;
 }
 
-#confermaAcq .warning {
+aside .warning {
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	border: 4px dotted var(--secondary-color);
 	padding: 0.5rem;
 }
 
-#confermaAcq .hide {
-	visibility: hidden;
+.hide {
+	display: none;
+}
+
+.aiutocompilaz {
+	margin-top: 0.5rem;
+	color: #f00;
 }
 
 @media print{

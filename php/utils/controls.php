@@ -46,13 +46,13 @@ function registerControls($username, $name, $surname, $email, $password, $confir
 
 }
 
-function loginControls($email, $password){
+function loginControls($username, $password){
 
-    if(!str_contains($email, "@")){
+    /*if(!str_contains($email, "@")){
 
         return "Chiocciola (@) mancante nell'email.";
 
-    }
+    }*/
 
     if(strlen($password) < 8 || str_contains($password, " ")){
 

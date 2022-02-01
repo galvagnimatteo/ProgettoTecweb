@@ -47,13 +47,13 @@ class Users
     function search()
     {
 
-        if (isset($_POST["email_login"]) && isset($_POST["password_login"]))
+        if (isset($_POST["username_login"]) && isset($_POST["password_login"]))
         {
 
-            $email = $_POST["email_login"];
+            $username = $_POST["username_login"];
             $password = $_POST["password_login"];
 
-            $result = loginControls($email, $password);
+            $result = loginControls($username, $password);
 
             if ($result == "OK")
             {
@@ -62,7 +62,7 @@ class Users
                 $query = "SELECT Username,Email FROM Utente WHERE Email=? AND Password=?";
                 $preparedQuery = $db->getConnection()
                     ->prepare($query);
-                $preparedQuery->bind_param("ss", $email, $password);
+                $preparedQuery->bind_param("ss", $username, $password);
 
                 $preparedQuery->execute();
                 $resultCast = $preparedQuery->get_result();
@@ -223,14 +223,15 @@ class Users
             $db->disconnect();
             $preparedQuery->close();
             $row = $resultCast->fetch_assoc();
-
-
-			 $home_content = file_get_contents("../html/items/updateProfile_content.html");
+			$home_content = file_get_contents("../html/items/updateProfile_content.html");
+			if($resultCast->num_rows > 0){
+			
 		     $home_content = str_replace("<USERNAME>", $row["Username"] ,  $home_content);
 		     $home_content = str_replace("<NOME>",  $row["Nome"] ,  $home_content);
 		     $home_content = str_replace("<COGNOME>", $row["Cognome"] ,  $home_content);
 		     $home_content = str_replace("<EMAIL>", $row["Email"],  $home_content);
 		     $home_content = str_replace("<PASSWORD>", $row["Password"] ,  $home_content);
+			}
 			 if (isset($_GET["error"]))
             {
 				$error=$_GET["error"];

@@ -99,6 +99,6 @@ CREATE TABLE Afferisce (
 CREATE TABLE Prezzi (
 	Giorno VARCHAR(10) NOT NULL,
 	PrezzoIntero DECIMAL(4, 2) NOT NULL,
-	PrezzoIntero DECIMAL(4, 2) NOT NULL
-	PRIMARY KEY Giorno;
+	PrezzoRidotto DECIMAL(4, 2) NOT NULL
+	PRIMARY KEY (Giorno);
 );

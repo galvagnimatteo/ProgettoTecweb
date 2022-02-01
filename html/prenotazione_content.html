@@ -7,7 +7,7 @@
 </div>
 
 
-			<form id="purchaseTicketForm" method="post" action="../php/acquista_biglietti.php">
+			<form autocomplete="off" id="purchaseTicketForm" method="post" action="../php/acquista_biglietti.php">
 			
 			<input type="hidden" name="idproiez" value="<ID-PROJ>"/>
 			<input type="hidden" name="orario" value="<TIME-PROJ>"/>
@@ -46,7 +46,7 @@
 			
 			<div class="labelPos noBorder">
 				<label for="selectNumTicketRed">
-				<span> Riduzioni disponibili per over 65, under 10 o persone con disabilità. <a href="#" title="Maggiori informazioni sulle riduzioni di prezzo"> Maggiori informazioni</a></span> <br/>
+				<span> Riduzioni disponibili per over 65, under 10 o persone con disabilità. <a href="info.php" title="Maggiori informazioni sulle riduzioni di prezzo"> Maggiori informazioni</a></span> <br/>
 				Ridotto, <DISC-PRICE-FORMAT> € : </label>
 			<select id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>">
 				<option value="0" selected>0</option>
@@ -73,9 +73,10 @@
 				<label for="selezDavanti"> 
 					<input type="radio" id="selezDavanti" name="catPosti" checked value="davanti" >
 				<span>File anteriori 
+				
 				<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
 				<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>	
-				</span>
+				<span class="postiLiberi" data-max-seq="<MAX-SEQ-DV>" data-posti-lib="<POSTI-LIB>"> Ci sono ancora posti liberi </span>
 				</label>
 				
 				<label for="selezCentro"> 
@@ -84,6 +85,8 @@
 				<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
 				<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>	
 				</span>
+				<span class="postiLiberi" data-max-seq="<MAX-SEQ-CE>" data-posti-lib="<POSTI-LIB>"> Ci sono ancora posti liberi </span>
+
 				</label>
 				
 				<label for="selezDietro"> 
@@ -91,7 +94,8 @@
 				<span>File posteriori 
 				<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
 				<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>	
-				
+				<span class="postiLiberi" data-max-seq="<MAX-SEQ-DT>" data-posti-lib="<POSTI-LIB>"> Ci sono ancora posti liberi </span>
+
 				</span> 
 				</label> 
 				
@@ -102,6 +106,20 @@
 			<fieldset id="manualContainer">
 				<legend> Scegli i posti in sala: </legend>
 				<input type="hidden" name="seats" value="" id="seatsString" />
+					<div id="legenda">
+					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero non selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%"></rect>
+					<g class="seat libero"><circle cx="30" cy="30" r="20"></circle><text class="codicePosto" x="23" y="38">1</text><line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50"></line></g>
+					</svg> <span class="legLabel">Posto libero non selezionato</span></span>
+					
+					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto occupato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%"></rect>
+					<g class="seat occupato"><circle cx="30" cy="30" r="20"></circle><text class="codicePosto" x="23" y="38">1</text><line class="linex" x1="10" y1="10" x2="50" y2="50"></line></g>
+					</svg> <span class="legLabel">Posto occupato</span></span>
+					
+					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg" tabindex="0"><rect class="sfondosvg" width="100%" height="100%"></rect>
+					<g class="seat libero selezionato"><circle cx="30" cy="30" r="20"></circle><text class="codicePosto" x="23" y="38">1</text><line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50"></line></g>
+					</svg> <span class="legLabel">Posto libero selezionato</span></span>
+					</div>
+					
 					<SVG-SEATS-MAP>
 				
 				

@@ -1,8 +1,9 @@
 <div id="content">
 <div id="confermaAcq">
 	<h2> Acquisto completato con successo! </h2>
-	<aside role="alert" class="warning <CLASS-WARNING>"> <strong>Attenzione</strong> non hai fatto l'accesso durante la fase di acquisto,
-	per evitare di perdere i dati di conferma puoi scaricare il biglietto[pdf] o stampare questa pagina.</aside>
+	<aside id="aside-warn" role="alert" data-show="<CLASS-WARNING>" class="warning <CLASS-WARNING>"> <strong>Attenzione</strong> non hai fatto l'accesso durante la fase di acquisto, 
+	se chiudi questa pagina non potrai più recuperare i tuoi dati di conferma,
+	per evitare di perderli puoi stampare questa pagina.</aside>
 	
 	<h3>Il riepilogo dei tuoi dati: </h3>
 	
@@ -18,5 +19,5 @@
 	<a href="../php/home.php">Torna alla Home</a>
 	
 </div>
-	
+	<script src="../js/promptonclose.js"></script>
 </div>

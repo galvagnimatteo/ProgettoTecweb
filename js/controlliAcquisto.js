@@ -34,6 +34,10 @@ for (var i = 0; i < posti.length; i++) {
 }
 
 changeCard(null);
+calcolaPrezzoTot(null);
+
+
+changeCard(null);
 
 panzoom(elem, {
 	maxZoom: 1.8,
@@ -46,6 +50,22 @@ panzoom(elem, {
 
 instance.smoothZoom(Math.floor(manualCard.offsetWidth/2 * 0.08), Math.floor(manualCard.offsetHeight/2), zoomFactor * 0.80); */
 
+
+/*function removeClass(elem, remove) {
+    var newClassName = "";
+    var i;
+    var classes = elem.className.split(" ");
+    for(i = 0; i < classes.length; i++) {
+        if(classes[i] !== remove) {
+            newClassName += classes[i] + " ";
+        }
+    }
+    elem.className = newClassName;
+}
+
+function addClass(elem, add) {
+	elem.className += " " + add;
+}*/
 
 function changeCard(e) {
 	if (autoRadioBtn.checked) {
@@ -113,20 +133,20 @@ function selezionePosto(e) {
 	
 	var nInt = parseInt(selectNumTicketInt.value);
 	var nRid = parseInt(selectNumTicketRed.value);
-	var g = e.target.parentElement;
-	
+	var g = e.currentTarget;
+	//console.log(g);
 	var codice = g.dataset.codice;
 	
 	var index = listaPosti.indexOf(codice);
 	
 	if (index == -1 && listaPosti.length < nInt + nRid) {
 		listaPosti.push(codice);
-		g.firstChild.style.fill = "green";
+		g.setAttribute("class", "seat libero selezionato");
 		inputListaPosti.setAttribute("value", listaPosti.join());
 		calcolaPrezzoTot(null);
 	} else if (index != -1) {
 		listaPosti.splice(index, 1);
-		g.firstChild.style.fill = "black";
+		g.setAttribute("class", "seat libero");
 		inputListaPosti.setAttribute("value", listaPosti.join());
 		calcolaPrezzoTot(null);
 	}
@@ -145,8 +165,4 @@ function pulisciPostiSelezionati() {
 		return;
 	}
 }
-
-
-
-
 

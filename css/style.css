@@ -263,6 +263,7 @@ programmazione.html
 }
 .cardContentText dd{
     margin:0.5rem;
+	margin-left: 0;
 }
 .card dt {
 	float: left;
@@ -911,6 +912,12 @@ padding-left:2.5rem;
     align-items: flex-end;
 }
 
+#autoRadioGroup .postiLiberi {
+	display:flex;
+	 flex-direction: column;
+    align-items: flex-start;
+}
+
 #acquistaBtn {
   background-color: var(--primary-color);
   border: 2px solid var(--secondary-color);
@@ -928,28 +935,77 @@ padding-left:2.5rem;
 
 #manualContainer {
 	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+
+#manualContainer .mappaposti {
+	min-height: 30rem;
+	margin-top: 2rem;
 	
 }
 
-#manualContainer svg {
-	min-height: 30rem;
-	margin-top: 2rem;
+#legenda {display: flex; flex-wrap: wrap;}
+#legenda svg {
+	max-width: 60px;
+	max-height: 60px;
+	padding-top: 1rem;
 }
 
-#scene .top-right {
-	transform: translate(400px, 0);
-} 
+#legenda .legLabel {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
 
-#scene .bottom-right {
-	transform: translate(400px, 180px);
-} 
+#legenda .labelContLeg {
+	display: flex;
+	align-items: center
+	
+}
 
-#scene .bottom-left {
-	transform: translate(0, 180px);
-} 
+/*roba di js*/
+svg .sfondosvg {
+	fill: #2725AD;
+}
 
-#scene .center {
-	transform: translate(8%, 15%);
+svg .letteraFila {
+	fill: #FFF;
+	font-weight: bolder;
+}
+
+svg .codicePosto {
+	fill: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+svg .seat {
+	cursor: pointer;
+}
+
+svg .linex {
+	stroke: #000;
+	stroke-width: 4;
+}
+
+svg .libero {
+	fill: #FFF;
+}
+
+svg .occupato {
+	fill: #F84444;
+	text-decoration-color: #000;
+}
+
+svg .nascondilinea {
+	display: none;
+}
+svg .libero.selezionato {
+	fill: #AC940C;
+	font-weight: bold;
+	text-decoration: underline;
+}
+svg .libero.selezionato .codicePosto{
+	text-decoration: underline;
 }
 
 /* pagina conferma*/

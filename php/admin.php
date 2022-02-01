@@ -25,6 +25,23 @@ $document = str_replace(
     $document
 );
 
+if (isset($_SESSION["a"])) {
+    $document = str_replace("<LOGIN>", $_SESSION["a"], $document);
+    $document = str_replace(
+        "<LINK>",
+        "./area_utenti.php?action=getProfile",
+        $document
+    );
+
+    $home_content = file_get_contents("../html/home_content.html");
+} else {
+    $document = str_replace("<LOGIN>", "Login", $document);
+    $document = str_replace(
+        "<LINK>",
+        "./area_utenti.php?action=login_page",
+        $document
+    );
+}
 $document = str_replace("/php/admin.php", "#", $document);
 $document = str_replace("<CONTENT>", $content, $document);
 echo $document;

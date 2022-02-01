@@ -21,8 +21,8 @@ selectNumTicketRed.addEventListener("change", calcolaPrezzoTot);
 selectNumTicketInt.addEventListener("change", dynamicOption);
 selectNumTicketRed.addEventListener("change", dynamicOption);
 
-//selectNumTicketInt.addEventListener("change", pulisciPostiSelezionati);
-//selectNumTicketRed.addEventListener("change", pulisciPostiSelezionati);
+selectNumTicketInt.addEventListener("change", pulisciPostiSelezionati);
+selectNumTicketRed.addEventListener("change", pulisciPostiSelezionati);
 
 var posti = document.getElementsByClassName("seat");
 var inputListaPosti = document.getElementById("seatsString");
@@ -127,6 +127,7 @@ function calcolaPrezzoTot(e) {
 	var result = pInt * nInt + pRid * nRid;
 	
 	submitButton.innerHTML = "Acquista " + String(nInt + nRid) + " biglietti, " + result.toFixed(2).replace('.', ',') + "€";
+
 }
 
 function selezionePosto(e) {
@@ -150,19 +151,27 @@ function selezionePosto(e) {
 		inputListaPosti.setAttribute("value", listaPosti.join());
 		calcolaPrezzoTot(null);
 	}
-			
-		
+	
 }
 
 
 
 function pulisciPostiSelezionati() {
-	if (!autoRadioBtn.checked) 
+	if (autoRadioBtn.checked) 
 		return;
 	else {
 		
-		//cancella roba
-		return;
+		listaPosti = [];
+		inputListaPosti.setAttribute("value", listaPosti.join());
+		var list = document.getElementsByClassName("seat");
+		
+		for (var i = 0; i < list.length; i++) {
+			if (list[i].getAttribute("class") == "seat libero selezionato")
+			list[i].setAttribute("class", "seat libero");
+		}
+		
+		
+		
 	}
 }
 

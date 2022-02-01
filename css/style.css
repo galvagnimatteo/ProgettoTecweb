@@ -978,7 +978,7 @@ svg .codicePosto {
 	font-weight: bold;
 	text-decoration: none;
 }
-svg .seat {
+svg .seat, svg .legSvg {
 	cursor: pointer;
 }
 
@@ -999,11 +999,13 @@ svg .occupato {
 svg .nascondilinea {
 	display: none;
 }
+
 svg .libero.selezionato {
 	fill: #AC940C;
 	font-weight: bold;
 	text-decoration: underline;
 }
+
 svg .libero.selezionato .codicePosto{
 	text-decoration: underline;
 }

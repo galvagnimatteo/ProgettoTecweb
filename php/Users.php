@@ -59,7 +59,7 @@ class Users
             {
 
                 $db = SingletonDB::getInstance();
-                $query = "SELECT Username,Email FROM Utente WHERE Email=? AND Password=?";
+                $query = "SELECT Username,Email FROM Utente WHERE Username=? AND Password=?";
                 $preparedQuery = $db->getConnection()
                     ->prepare($query);
                 $preparedQuery->bind_param("ss", $username, $password);

@@ -79,7 +79,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         );
         $document = str_replace(
             "<BREADCRUMB>",
-            '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> /'.
+            '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
             'Scheda Film: ' .
             $dataFilm["Titolo"],
             $document

@@ -100,6 +100,13 @@
 				);
 			}
 			
+			if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
+				$document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+			}
+			else {
+				$document = str_replace("<ADMIN>","",$document);
+			}
+			
 			$document = str_replace(
 				"<PAGETITLE>",
 				"Conferma acquisto biglietti per " . $_POST["titoloFilm"] . " - PNG Cinema",
@@ -116,6 +123,9 @@
 				"Conferma acquisto",
 				$document
 			);
+			
+			$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
+			$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 		
 			$acquistoconferma_content = str_replace("<FILM-TITLE>", $_POST["titoloFilm"] ,$acquistoconferma_content);
 			$acquistoconferma_content = str_replace("<NUM-BIGLIETTI>", $totNumBiglietti ,$acquistoconferma_content);

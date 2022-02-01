@@ -81,7 +81,7 @@ class Users
                 {
                     unset($_SESSION["a"]);
 					unset($_SESSION["b"]);
-                    header("location:area_utenti.php?action=login_page");
+                    header("location:area_utenti.php?action=login_page&errorLogin=true");
                 }
 
             }

@@ -686,7 +686,7 @@ padding-left:2.5rem;
 }
 @media (min-width: 865px) {
 
-    header, #menu {
+    header, ul {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -706,7 +706,7 @@ padding-left:2.5rem;
         display: flex;
         flex-direction: row;
     }
-    #menu{
+    ul{
         display: flex;
         flex-direction: column;
     }
@@ -1055,6 +1055,7 @@ aside .warning {
 	font-size: 1.2rem;
 	
 	/*default*/
+	display:block;
 	margin-top: 1rem; 
 	margin-bottom: 1rem; 
 	margin-left: 0; 
@@ -1117,12 +1118,18 @@ aside .warning {
         }
 
     div {
+		
         page-break-before: avoid;
         page-break-after: auto;
     }
+
 	
 	#confermaAcq .warning {
 		visibility: hidden;
+	}
+	
+	#menubutton {
+		display:none;
 	}
 
 }

@@ -221,9 +221,9 @@ else{
 }
 if(isset($_GET["errorLogin"]))
 {
-		$home_content = str_replace("<ERRORMESSAGE>", "Credenziali errate", $home_content);
+	$home_content = str_replace("<ERRORMESSAGE>", "Credenziali errate", $home_content);
 	unset($_GET["errorLogin"]);
-}
+} 
 
 $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancora presente <errormessage> viene tolto, non funziona se non presente (già sostituito con errore)
 

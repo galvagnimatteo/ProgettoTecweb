@@ -18,6 +18,7 @@ $document = file_get_contents("../html/template.html"); //load template
 $home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
 $document = str_replace('<PAGETITLE>', 'Login - PNG Cinema', $document);
 $document = str_replace('<KEYWORDS>', 'Login', $document);
+$document = str_replace('<DESCRIPTION>', 'Pagina di login', $document);
 
 $document = str_replace(
     "<BREADCRUMB>",    '<a href="home.php">Home</a> / Area Utenti',

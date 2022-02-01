@@ -53,6 +53,7 @@ function mappaPosti($numSala, $idproiez, $orario) {
 				"dietro" => -1
 			);
 			
+			
 			$seqConsecEnd = array(
 				"davanti" => "",
 				"centrale" => "",
@@ -77,12 +78,12 @@ function mappaPosti($numSala, $idproiez, $orario) {
 							$seqConsecEnd["davanti"] = $end;
 						}
 					} else if ($numFila > $numTotFile-3) {
-						if ($seqConsecMax["dietro"] < $max_onsec) {
+						if ($seqConsecMax["dietro"] < $max_consec) {
 							$seqConsecMax["dietro"] = $max_consec;
 							$seqConsecEnd["dietro"] = $end;
 						}
 					} else {					
-						if ($seqConsecMax["centrale"] < $max_onsec) {
+						if ($seqConsecMax["centrale"] < $max_consec) {
 							$seqConsecMax["centrale"] = $max_consec;
 							$seqConsecEnd["centrale"] = $end;
 						}
@@ -107,14 +108,20 @@ function mappaPosti($numSala, $idproiez, $orario) {
 			
 			$max_consec = max($max_consec, $curr_consec);
 			if ($numFila < 3) {
-				$seqConsecMax["davanti"] = $max_consec;
-				$seqConsecEnd["davanti"] = $end;
+				if ($seqConsecMax["davanti"] < $max_consec) {
+					$seqConsecMax["davanti"] = $max_consec;
+					$seqConsecEnd["davanti"] = $end;
+				}
 			} else if ($numFila > $numTotFile-3) {
-				$seqConsecMax["dietro"] = $max_consec;
-				$seqConsecEnd["dietro"] = $end;
+				if ($seqConsecMax["dietro"] < $max_consec) {
+					$seqConsecMax["dietro"] = $max_consec;
+					$seqConsecEnd["dietro"] = $end;
+				}
 			} else {					
-				$seqConsecMax["centrale"] = $max_consec;
-				$seqConsecEnd["centrale"] = $end;
+				if ($seqConsecMax["centrale"] < $max_consec) {
+					$seqConsecMax["centrale"] = $max_consec;
+					$seqConsecEnd["centrale"] = $end;
+				}
 			}
 			
 			

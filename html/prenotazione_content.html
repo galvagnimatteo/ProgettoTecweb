@@ -2,6 +2,9 @@
 <div id="filmData-pren">
 	<h2> Acquista i biglietti per <FILM-TITLE> </h2>
 	<h3> <PROJ-DATA>, Sala <NUM-SALA> </h3>
+	
+	<p role="alert" class="warning " id="warnPosti"> <strong>Affrettati</strong>, ci sono ancora pochi posti liberi, ma potresti non trovare posti vicini, 
+				puoi provare a deselezionare la casella "Posti vicini" e ti verranno selezionati dei posti casuali.</p>
 
 	
 </div>
@@ -71,8 +74,6 @@
 			
 				<fieldset id="autoRadioGroup">
 				<legend> Scegli la categoria dei posti: </legend>
-				<aside class="warning hide" id="warnPosti"> <strong>Affrettati</strong> ci sono ancora pochi posti liberi ma potresti non trovare posti vicini, 
-				puoi provare a deselezionare la casella "Posti vicini" e ti verranno selezionati dei posti a caso.</aside>
 				<label for="selezDavanti"> 
 					<input type="radio" id="selezDavanti" name="catPosti" checked value="davanti" />
 				<span>File anteriori 

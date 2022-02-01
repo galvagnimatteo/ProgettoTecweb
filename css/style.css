@@ -1033,7 +1033,7 @@ svg .libero.selezionato .codicePosto{
 	text-align: center;
 }
 
-aside .warning {
+p.warning {
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	border: 4px dotted var(--secondary-color);

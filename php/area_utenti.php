@@ -189,6 +189,17 @@ if (isset($_GET["action"])) {
 		    header("location:area_utenti.php?action=login_page");
 		 }
 	}
+	
+	if($action == "logout")
+	{
+	unset($_SESSION["a"]);
+	unset($_SESSION["b"]);
+	unset($_SESSION["admin"]);
+	session_unset();
+    session_destroy();
+    session_start();	
+	header("location:area_utenti.php?action=login_page");
+	}
 
 } else {
     $home_content = file_get_contents(

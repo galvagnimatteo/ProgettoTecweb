@@ -8,7 +8,7 @@ function registerControls(){
     let password_confirm = document.getElementById("password_confirm").value;
 
     let usernameRegex = /^[a-zA-Z0-9]+$/;
-	if(username=="admin" && password=="admin" OR username=="user" && password=="user"){
+	if(username=="admin" && password=="admin" || username=="user" && password=="user"){
 		
 		
 		return true;

@@ -686,7 +686,7 @@ padding-left:2.5rem;
 }
 @media (min-width: 865px) {
 
-    header, ul {
+    header, #menu {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -706,7 +706,7 @@ padding-left:2.5rem;
         display: flex;
         flex-direction: row;
     }
-    ul{
+    #menu{
         display: flex;
         flex-direction: column;
     }
@@ -1048,6 +1048,62 @@ aside .warning {
 	margin-top: 0.5rem;
 	color: #f00;
 }
+
+
+/*stile info e costi*/
+#content.infocosti ul {
+	font-size: 1.2rem;
+	
+	/*default*/
+	margin-top: 1rem; 
+	margin-bottom: 1rem; 
+	margin-left: 0; 
+	margin-right: 0; 
+	padding-left: 40px;
+	
+}
+
+#content.infocosti p {
+	font-size: 1.2rem;
+}
+
+#content.infocosti section {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+#content.infocosti h3 {
+	margin-bottom: 1rem;
+}
+
+#content.infocosti h4 {
+	margin-top: 0.5rem;
+}
+
+#content.infocosti table {
+	margin:auto;
+	border: 2px solid #f00;
+	border-collapse:collapse;
+	
+}
+ 
+#content.infocosti table th, 
+#content.infocosti table td {
+	border: 2px solid #f00;
+	padding: 0.4rem 0.8rem;
+	text-align:center;
+}
+
+#content.infocosti th {
+	max-width: 15rem;
+	background-color: #757575;
+	font-size: 1.2rem;
+}
+
+#content.infocosti thead {
+	background-color: #757575;
+}
+
 
 @media print{
     

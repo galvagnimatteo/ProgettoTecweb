@@ -1112,17 +1112,19 @@ p.warning {
     body, #content {
         page-break-inside: auto;
     }
-
-        #content > * {
-            page-break-inside: avoid;
-        }
-
     div {
-
-        page-break-before: avoid;
+        page-break-inside: auto;
+        page-break-before: auto;
         page-break-after: auto;
     }
-
+    .card, li, section, article, #psizione, #contatti, #social {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        page-break-before: auto;
+    }
+    .cardsContainer ul, li {
+        flex-grow: 1;
+    }
 
 	#confermaAcq .warning {
 		visibility: hidden;

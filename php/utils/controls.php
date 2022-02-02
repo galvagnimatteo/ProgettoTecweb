@@ -3,13 +3,7 @@
 function registerControls($username, $name, $surname, $email, $password, $confirm_password){
 
     $usernameRegex = "/^[a-zA-Z0-9]+$/";
-	
-	if($username=="admin" && $password=="admin" OR $username=="user" && $password=="user"){
-		
-		
-		return true;
-		
-	}
+
     if(!preg_match($usernameRegex, $username)){
 
         return "L'username deve contenere solo lettere e numeri.";
@@ -54,18 +48,14 @@ function registerControls($username, $name, $surname, $email, $password, $confir
 
 function loginControls($username, $password){
 
-    /*if(!str_contains($email, "@")){
 
-        return "Chiocciola (@) mancante nell'email.";
-
-    }*/
 	if($username=='admin' && $password='admin')
 	{
-	return "OK";	
-	}	
+	return "OK";
+	}
 	if($username=='user' && $password='user')
 	{
-	return "OK";	
+	return "OK";
 	}
 
     if(strlen($password) < 8 || str_contains($password, " ")){

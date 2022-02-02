@@ -22,17 +22,17 @@ if(!isset($_SESSION["admin"])||!$_SESSION["admin"]){
 
 $document = file_get_contents("../html/template.html"); //load template
 $content = file_get_contents("../html/admin_inserimento_film_content.html"); //load content
-$document = str_replace('<PAGETITLE>', 'inserimento film - PNG Cinema', $document);
+$document = str_replace('<PAGETITLE>', 'Inserimento film - PNG Cinema', $document);
 $document = str_replace('<KEYWORDS>', '', $document);
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / <a href="admin.php">amministrazione</a>/inserimento film',
+    '<a href="home.php">Home</a> / <a href="admin.php"> Amministrazione </a> / Inserimento film',
     $document
 );
 
 
 
-if (isset($_GET["action"])) 
+if (isset($_GET["action"]))
 {
     $action = $_GET["action"];
     if($action=="insert")
@@ -43,13 +43,13 @@ if (isset($_GET["action"]))
             isset($_POST["Descrizione"]) &&
             isset($_POST["SrcImg"]) &&
             isset($_POST["AltImg"]) &&
-            isset($_POST["Durata"]) 
+            isset($_POST["Durata"])
             )
         {
             $db = SingletonDB::getInstance();
 
             $query =
-                "INSERT INTO utente ( Titolo,Genere,DataUscita, Descrizione,SrcImg,AltImg,Durata) VALUES (?,?,?,?,?,?,?)";
+                "INSERT INTO Utente ( Titolo,Genere,DataUscita, Descrizione,SrcImg,AltImg,Durata) VALUES (?,?,?,?,?,?,?)";
             $preparedQuery = $db->getConnection()->prepare($query);
             $preparedQuery->bind_param(
                 "sssssss",
@@ -75,7 +75,7 @@ if (isset($_GET["action"]))
             $db->disconnect();
             $preparedQuery->close();
             if($res){
-                $content=str_replace("<STATUS>", "<p class='sucess'>inserimento avvenuto correttamente</p>", $content);
+                $content=str_replace("<STATUS>", "<p class='success'>inserimento avvenuto correttamente</p>", $content);
             }
             else{
                 $content=str_replace("<STATUS>", "<p class='faliure'>errore nell'inserimento prego riprovare</p>", $content);

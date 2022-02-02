@@ -82,6 +82,18 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
             $card_prog_item
         );
 
+        $card_prog_item = str_replace(
+            "<SRCIMG>",
+            $row["SrcImg"],
+            $card_prog_item
+        );
+
+        $card_prog_item = str_replace(
+            "<ALTIMG>",
+            "Locandina " . $row["Titolo"],
+            $card_prog_item
+        );
+
         $cards = $cards . $card_prog_item;
     }
 } else {
@@ -117,7 +129,7 @@ $document = str_replace(
 
 $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
 $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-$document = str_replace('<a href="./programmazione.php">Programmazione</a>', "Programmazione", $document);
+$document = str_replace('<a href="./programmazione.php">Programmazione</a>', "<p>Programmazione</p>", $document);
 $document = str_replace("<CONTENT>", $programmazione_content, $document);
 if (isset($_SESSION["a"])) {
     $document = str_replace("<LOGIN>", $_SESSION["a"], $document);
@@ -136,7 +148,7 @@ if (isset($_SESSION["a"])) {
 }
 
 if(isset($_SESSION["admin"], $_SESSION["admin"])){
-    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+    $document = str_replace("<ADMIN>","<ul><li><a href='admin.php'>Amministrazione</a></li></ul>",$document);
 }
 else{
     $document = str_replace("<ADMIN>","",$document);

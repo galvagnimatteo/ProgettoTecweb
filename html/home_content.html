@@ -32,10 +32,13 @@
 
     <h2 class="subtitle"> Acquisto Rapido </h2>
 
+
     <form autocomplete="off" action="../php/acquisto_rapido.php" method="get">
 		
 		<div class="labelqp">
 		<label for="selectFilm">Seleziona un film</label>
+
+   
         <select id="selectFilm" onchange="populateQuickpurchaseDate(this)" name="sceltafilm" data-text-required="Per favore, scegli un film.">
             <option value="scelta">Scegli un film</option>
             <FILM-OPTIONS>

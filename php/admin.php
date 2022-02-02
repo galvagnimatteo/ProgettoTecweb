@@ -25,6 +25,10 @@ $document = str_replace(
     $document
 );
 
+$document = str_replace('<PAGETITLE>', 'amministrazione - PNG Cinema', $document);
+$document = str_replace('<KEYWORDS>', '', $document);
+
+
 if (isset($_SESSION["a"])) {
     $document = str_replace("<LOGIN>", $_SESSION["a"], $document);
     $document = str_replace(
@@ -42,6 +46,7 @@ if (isset($_SESSION["a"])) {
         $document
     );
 }
+
 $document = str_replace("/php/admin.php", "#", $document);
 $document = str_replace("<CONTENT>", $content, $document);
 echo $document;

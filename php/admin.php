@@ -24,6 +24,8 @@ $document = str_replace(
     '<a href="./home.php" lang="en">Home</a>/amministrazione',
     $document
 );
+$document = str_replace('<PAGETITLE>', 'amministrazione - PNG Cinema', $document);
+$document = str_replace('<KEYWORDS>', '', $document);
 $document = str_replace("/php/admin.php", "#", $document);
 $document = str_replace("<CONTENT>", $content, $document);
 echo $document;

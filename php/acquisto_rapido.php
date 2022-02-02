@@ -2,7 +2,7 @@
 
 	include "SingletonDB.php";
 	
-	if(!isset($_POST["sceltafilm"],$_POST["sceltadata"], $_POST["sceltaora"] )) {
+	if(!isset($_GET["sceltafilm"],$_GET["sceltadata"], $_GET["sceltaora"] )) {
 		header("Location: 404.php");
         die();
 	}
@@ -12,7 +12,7 @@
 	$preparedQuery = $db
         ->getConnection()
         ->prepare("SELECT Proiezione.ID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Film.ID=? AND Proiezione.Data=? "); 
-	$preparedQuery->bind_param("is", $_POST["sceltafilm"], $_POST["sceltadata"] );
+	$preparedQuery->bind_param("is", $_GET["sceltafilm"], $_GET["sceltadata"] );
     $preparedQuery->execute();
     $result1 = $preparedQuery->get_result();
 	$db->disconnect();
@@ -25,7 +25,7 @@
 	{
 		$dati = $result1->fetch_assoc();
 		
-		header("Location:prenotazione.php?idproiez=" . $dati["ID"] . "&orario=" . $_POST["sceltaora"]);
+		header("Location:prenotazione.php?idproiez=" . $dati["ID"] . "&orario=" . $_GET["sceltaora"]);
 		
 		die();
 	} 

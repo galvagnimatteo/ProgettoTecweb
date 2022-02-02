@@ -316,7 +316,7 @@ programmazione.html
     padding-top:2.8rem;
 	padding-bottom:2rem;
 }
-.div_login  input[type=password], .div_login input[type=email]{
+.div_login  input[type=password], .div_login input[type=text]{
   width:70%;
  display:flex;
  height: 4vh;
@@ -1033,7 +1033,7 @@ svg .libero.selezionato .codicePosto{
 	text-align: center;
 }
 
-aside .warning {
+p.warning {
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	border: 4px dotted var(--secondary-color);

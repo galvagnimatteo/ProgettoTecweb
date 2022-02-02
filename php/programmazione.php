@@ -10,8 +10,6 @@ $programmazione_content = file_get_contents(
     "../html/programmazione_content.html"
 );
 
-$document = str_replace('<PAGETITLE>', 'programmazione - PNG Cinema', $document);
-$document = str_replace('<KEYWORDS>', 'programmazione', $document);
 
 $db = SingletonDB::getInstance();
 $filmsResult = $db
@@ -119,7 +117,7 @@ $document = str_replace(
 
 $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
 $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-$document = str_replace("/php/programmazione.php", "#", $document);
+$document = str_replace('<a href="./programmazione.php">Programmazione</a>', "Programmazione", $document);
 $document = str_replace("<CONTENT>", $programmazione_content, $document);
 if (isset($_SESSION["a"])) {
     $document = str_replace("<LOGIN>", $_SESSION["a"], $document);

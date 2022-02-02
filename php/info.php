@@ -45,7 +45,7 @@ else{
     $document = str_replace("<ADMIN>","",$document);
 }
 
-$document = str_replace("/php/info.php", "#", $document);
+$document = str_replace('<a href="./info.php">Info e Costi</a>', "Info e Costi", $document);
 $document = str_replace("<CONTENT>", $home_content, $document);
 
 echo $document;

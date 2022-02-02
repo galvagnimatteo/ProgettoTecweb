@@ -25,7 +25,7 @@ session_start();
 	
 	$preparedQuery = $db
         ->getConnection()
-        ->prepare("SELECT Film.Titolo, Proiezione.Data, Proiezione.NumeroSala FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Proiezione.ID=?");
+        ->prepare("SELECT Film.Titolo, Proiezione.Data, Proiezione.NumeroSala, Film.ID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Proiezione.ID=?");
     $preparedQuery->bind_param("i", $idproiez);
     $preparedQuery->execute();
     $result1 = $preparedQuery->get_result();
@@ -89,6 +89,13 @@ session_start();
 			);
 		}
 		
+		if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
+			$document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+		}
+		else{
+			$document = str_replace("<ADMIN>","",$document);
+		}
+		
 		$document = str_replace(
             "<PAGETITLE>",
             "Acquista biglietti per " . $dataFilm["Titolo"] . " - PNG Cinema",
@@ -103,12 +110,15 @@ session_start();
         $document = str_replace(
             "<BREADCRUMB>",
             '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
-                /*$dataFilm["ID"]*/ "" .
-                '">Scheda Film: ' .
+                $dataFilm["ID"] . '"' .
+                '>Scheda Film: ' .
                 $dataFilm["Titolo"] .
-                "</a>",
+                "</a>" . ' / Acquisto biglietti' ,
             $document
         );
+		
+		$document = str_replace("<JAVASCRIPT-HEAD>", '<script  src="../js/panzoom.min.js"> </script>', $document);
+		$document = str_replace("<JAVASCRIPT-BODY>", '<script src="../js/controlliAcquisto.js"> </script>', $document);
 		
 		$prenotazione_content = str_replace("<FILM-TITLE>", $dataFilm["Titolo"], $prenotazione_content);
 		$prenotazione_content = str_replace("<PROJ-DATA>", $italianDate, $prenotazione_content);

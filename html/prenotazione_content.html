@@ -2,6 +2,9 @@
 <div id="filmData-pren">
 	<h2> Acquista i biglietti per <FILM-TITLE> </h2>
 	<h3> <PROJ-DATA>, Sala <NUM-SALA> </h3>
+	
+	<p role="alert" class="warning " id="warnPosti"> <strong>Affrettati</strong>, ci sono ancora pochi posti liberi, ma potresti non trovare posti vicini, 
+				puoi provare a deselezionare la casella "Posti vicini" e ti verranno selezionati dei posti casuali.</p>
 
 	
 </div>
@@ -13,7 +16,7 @@
 			<input type="hidden" name="orario" value="<TIME-PROJ>"/>
 			<input type="hidden" name="numSala" value="<NUM-SALA>"/>
 			<input type="hidden" name="titoloFilm" value="<FILM-TITLE>"/>
-			<input type="hidden" name="dataOraIta" value="<PROJ-DATA>">
+			<input type="hidden" name="dataOraIta" value="<PROJ-DATA>" />
 			
 			<fieldset id="modeSelectGroup">
 				<legend> Scegli la modalità di selezione dei posti: </legend>
@@ -35,7 +38,7 @@
 			<legend>Scegli in numero di biglietti (max 4):</legend>
 			<div class="labelPos">
 				<label for="selectNumTicketInt">Intero, <FULL-PRICE-FORMAT> € : </label>
-			<select id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>"/>
+			<select id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>">
 				<option value="0" selected>0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -49,7 +52,7 @@
 				<label for="selectNumTicketRed">
 				<span> Riduzioni disponibili per over 65, under 10 o persone con disabilità. <a href="info.php#info-riduz" title="Maggiori informazioni sulle riduzioni di prezzo"> Maggiori informazioni</a></span> <br/>
 				Ridotto, <DISC-PRICE-FORMAT> € : </label>
-			<select id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>"/>
+			<select id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>">
 				<option value="0" selected>0</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -71,15 +74,15 @@
 			
 				<fieldset id="autoRadioGroup">
 				<legend> Scegli la categoria dei posti: </legend>
-				<aside class="warning hide" id="warnPosti"> <strong>Affrettati</strong> ci sono ancora pochi posti liberi ma potresti non trovare posti vicini, 
-				puoi provare a deselezionare la casella "Posti vicini" e ti verranno selezionati dei posti a caso.</aside>
 				<label for="selezDavanti"> 
 					<input type="radio" id="selezDavanti" name="catPosti" checked value="davanti" />
 				<span>File anteriori 
 				
 				<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
 				<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>	
+				
 				<span class="postiLiberi" id="pDv" data-max-seq="<MAX-SEQ-DV>" data-posti-lib="<POSTI-LIB>"> Ci sono ancora posti liberi </span>
+				</span>
 				</label>
 				
 				<label for="selezCentro"> 
@@ -87,9 +90,9 @@
 				<span>File centrali 
 				<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
 				<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>	
-				</span>
+				
 				<span class="postiLiberi" id="pCe" data-max-seq="<MAX-SEQ-CE>" data-posti-lib="<POSTI-LIB>"> Ci sono ancora posti liberi </span>
-
+				</span>
 				</label>
 				
 				<label for="selezDietro"> 
@@ -110,16 +113,16 @@
 				<legend> Scegli i posti in sala: </legend>
 				<input type="hidden" name="seats" value="" id="seatsString" />
 					<div id="legenda">
-					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero non selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%"></rect>
-					<g class="legSvg libero"><circle cx="30" cy="30" r="20"></circle><text class="codicePosto" x="23" y="38">1</text><line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50"></line></g>
+					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero non selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
+					<g class="legSvg libero"><circle cx="30" cy="30" r="20" /><text class="codicePosto" x="23" y="38">1</text><line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50" /></g>
 					</svg> <span class="legLabel">Posto libero non selezionato</span></span>
 					
-					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto occupato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%"></rect>
-					<g class="legSvg occupato"><circle cx="30" cy="30" r="20"></circle><text class="codicePosto" x="23" y="38">1</text><line class="linex" x1="10" y1="10" x2="50" y2="50"></line></g>
+					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto occupato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
+					<g class="legSvg occupato"><circle cx="30" cy="30" r="20" /><text class="codicePosto" x="23" y="38">1</text><line class="linex" x1="10" y1="10" x2="50" y2="50" /></g>
 					</svg> <span class="legLabel">Posto occupato</span></span>
 					
-					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg" tabindex="0"><rect class="sfondosvg" width="100%" height="100%"></rect>
-					<g class="legSvg libero selezionato"><circle cx="30" cy="30" r="20"></circle><text class="codicePosto" x="23" y="38">1</text><line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50"></line></g>
+					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg" tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
+					<g class="legSvg libero selezionato"><circle cx="30" cy="30" r="20" /> <text class="codicePosto" x="23" y="38">1</text> <line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50" /></g>
 					</svg> <span class="legLabel">Posto libero selezionato</span></span>
 					</div>
 					
@@ -134,8 +137,8 @@
 				</button>
 			</form>
 	
-	<script type="text/javascript" src="../js/panzoom.min.js"> </script>
-	<script type="text/javascript" src="../js/controlliAcquisto.js"> </script>		
+	
+		
 </div>
 
 

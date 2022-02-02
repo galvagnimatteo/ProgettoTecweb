@@ -79,14 +79,19 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         );
         $document = str_replace(
             "<BREADCRUMB>",
-            '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
-                $dataFilm["ID"] .
-                '">Scheda Film: ' .
-                $dataFilm["Titolo"] .
-                "</a>",
+            '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
+            'Scheda Film: ' .
+            $dataFilm["Titolo"],
             $document
         );
-
+		
+		if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
+			$document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+		}
+		else {
+			$document = str_replace("<ADMIN>","",$document);
+		}
+		
         $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
         $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 
@@ -176,7 +181,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                     $hour_field =
                         '<input type="submit" name="orario" value="' .
                         substr($orarioRow["Ora"], 0, -3) .
-                        '">';
+                        '"/>';
                     $hour_fields .= $hour_field;
                 }
 

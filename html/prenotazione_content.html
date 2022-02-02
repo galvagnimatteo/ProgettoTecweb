@@ -39,7 +39,7 @@
 			
 			<fieldset id="ticketInfoGroup">
 			<legend>Scegli in numero di biglietti (max 4):</legend>
-			<noscript> Il numero <strong>totale</strong> dei biglietti (intero + ridotto) non deve essere maggiore di 4 </noscript>
+			<span class="noscript"> Il numero <strong>totale</strong> dei biglietti (intero + ridotto) non deve essere maggiore di 4 </span>
 			<div class="labelPos">
 				<label for="selectNumTicketInt">Intero, <FULL-PRICE-FORMAT> € : </label>
 			<select id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>">
@@ -143,7 +143,9 @@
 
 				
 				<button type="submit" value="acquisto" id="acquistaBtn">
-					<noscript> Acquista i biglietti </noscript>
+					 <span class="noscript" >
+					 Acquista i biglietti 
+					  </span>
 				</button>
 			</form>
 	

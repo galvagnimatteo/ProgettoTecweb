@@ -84,14 +84,14 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
             $dataFilm["Titolo"],
             $document
         );
-		
+
 		if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
 			$document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
 		}
 		else {
 			$document = str_replace("<ADMIN>","",$document);
 		}
-		
+
         $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
         $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 
@@ -157,7 +157,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 					'" />',
 					$filmscreeningfield
 				);
-								
+
                 $db->connect();
                 $preparedQuery4 = $db
                     ->getConnection()

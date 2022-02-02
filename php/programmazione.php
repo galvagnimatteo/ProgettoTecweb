@@ -117,7 +117,7 @@ $document = str_replace(
 
 $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
 $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-$document = str_replace('<a href="./programmazione.php">Programmazione</a>', "Programmazione", $document);
+$document = str_replace('<a href="./programmazione.php">Programmazione</a>', "<p>Programmazione</p>", $document);
 $document = str_replace("<CONTENT>", $programmazione_content, $document);
 if (isset($_SESSION["a"])) {
     $document = str_replace("<LOGIN>", $_SESSION["a"], $document);

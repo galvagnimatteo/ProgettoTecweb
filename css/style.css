@@ -152,6 +152,7 @@ a:visited:not(.carouselContainer a:visited){
 .js .quickPurchaseContainer form{
     display: flex;
     margin-bottom: 1rem;
+	justify-content: space-between;
 }
 .js .quickPurchaseContainer form select, .js .quickPurchaseContainer form button{
     background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/

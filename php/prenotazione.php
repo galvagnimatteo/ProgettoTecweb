@@ -139,7 +139,25 @@ session_start();
 		$prenotazione_content = str_replace("<MAX-SEQ-DV>", $seqConsecMax["davanti"], $prenotazione_content);	
 		$prenotazione_content = str_replace("<MAX-SEQ-DT>", $seqConsecMax["dietro"], $prenotazione_content);
 		$prenotazione_content = str_replace("<MAX-SEQ-CE>", $seqConsecMax["centrale"], $prenotazione_content);
-
+		
+		
+		if(isset($_GET["err_server1"])) {
+			$prenotazione_content = str_replace("<ERRORE-SERVER>", '
+			<p role="alert" class="warning"> <strong>Attenzione</strong>, ci sono stati alcuni errori con l\'ultima prenotazione, verifica di non aver selezionato più di 4 posti.</p>
+			' , $prenotazione_content);
+			
+		} else if (isset($_GET["err_server2"])) {
+			$prenotazione_content = str_replace("<ERRORE-SERVER>", '
+			<p role="alert" class="warning"> <strong>Attenzione</strong>, alcuni dei posti che hai selezionato sono già stati occupati oppure non ci sono più posti liberi nella categoria selezionata, per favore riprova.</p>
+			' , $prenotazione_content);
+		} else if (isset($_GET["err_server3"])) {
+			$prenotazione_content = str_replace("<ERRORE-SERVER>", '
+			<p role="alert" class="warning"> <strong>Attenzione</strong>, non hai selezionato tutti i posti, per favore riprova.</p>
+			' , $prenotazione_content);
+		} else {
+			$prenotazione_content = str_replace("<ERRORE-SERVER>", "" , $prenotazione_content);
+		}
+		
 		
 		$document = str_replace("<CONTENT>", $prenotazione_content, $document);
 		echo $document;

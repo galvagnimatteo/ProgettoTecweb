@@ -23,28 +23,31 @@
 				$idproiez,
 				$orario
 			);
-			$preparedQuery->execute();
+			$res = $preparedQuery->execute();
 			
 			$idprenot = mysqli_insert_id($db->getConnection());
 			$db->disconnect();
-			
-			foreach($posti as $posto) {
-				$numPosto = intval(substr($posto, 1));
-				$fila = strtoupper(substr($posto, 0, 1));
-				$db->connect();
-				$preparedQuery2 = $db
-					->getConnection()
-					->prepare("INSERT INTO Partecipa(NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione)". 
-							  "VALUES (?, ?, ?, ?)");
-				$preparedQuery2->bind_param(
-					"isii", 
-					$numPosto,
-					$fila,
-					$numSala,
-					$idprenot
-				);
-				$preparedQuery2->execute();
-				$db->disconnect();
+			if ($res){
+				foreach($posti as $posto) {
+					$numPosto = intval(substr($posto, 1));
+					$fila = strtoupper(substr($posto, 0, 1));
+					$db->connect();
+					$preparedQuery2 = $db
+						->getConnection()
+						->prepare("INSERT INTO Partecipa(NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione)". 
+								  "VALUES (?, ?, ?, ?)");
+					$preparedQuery2->bind_param(
+						"isii", 
+						$numPosto,
+						$fila,
+						$numSala,
+						$idprenot
+					);
+					$res2 = $preparedQuery2->execute();
+					$db->disconnect();
+					
+					if (!$res2) {return -1;}
+				}
 			}
 		}
 		return $idprenot;

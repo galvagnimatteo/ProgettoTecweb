@@ -3,9 +3,10 @@
 	<h2> Acquista i biglietti per <FILM-TITLE> </h2>
 	<h3> <PROJ-DATA>, Sala <NUM-SALA> </h3>
 	
-	<p role="alert" class="warning " id="warnPosti"> <strong>Affrettati</strong>, ci sono ancora pochi posti liberi, ma potresti non trovare posti vicini, 
+	<p role="alert" class="warning hide" id="warnPosti"> <strong>Affrettati</strong>, ci sono ancora pochi posti liberi, ma potresti non trovare posti vicini, 
 				puoi provare a deselezionare la casella "Posti vicini" e ti verranno selezionati dei posti casuali.</p>
-
+	
+	<ERRORE-SERVER>
 	
 </div>
 
@@ -17,6 +18,8 @@
 			<input type="hidden" name="numSala" value="<NUM-SALA>"/>
 			<input type="hidden" name="titoloFilm" value="<FILM-TITLE>"/>
 			<input type="hidden" name="dataOraIta" value="<PROJ-DATA>" />
+			<input type="hidden" name="pint" value="<FULL-PRICE>" />
+			<input type="hidden" name="prid" value="<DISC-PRICE>" />
 			
 			<fieldset id="modeSelectGroup">
 				<legend> Scegli la modalità di selezione dei posti: </legend>
@@ -36,6 +39,7 @@
 			
 			<fieldset id="ticketInfoGroup">
 			<legend>Scegli in numero di biglietti (max 4):</legend>
+			<noscript> Il numero <strong>totale</strong> dei biglietti (intero + ridotto) non deve essere maggiore di 4 </noscript>
 			<div class="labelPos">
 				<label for="selectNumTicketInt">Intero, <FULL-PRICE-FORMAT> € : </label>
 			<select id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>">
@@ -109,8 +113,14 @@
 			
 			
 			
-			<fieldset id="manualContainer">
+			<fieldset id="manualContainer" >
 				<legend> Scegli i posti in sala: </legend>
+				
+				
+				<p class="aiutocompilaz hide"> <strong>Attenzione</strong>, ci sono ancora posti da selezionare </p>
+
+				
+				
 				<input type="hidden" name="seats" value="" id="seatsString" />
 					<div id="legenda">
 					<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero non selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
@@ -133,7 +143,7 @@
 
 				
 				<button type="submit" value="acquisto" id="acquistaBtn">
-					Acquista 0 biglietti, Totale: 0,00 €
+					<noscript> Acquista i biglietti </noscript>
 				</button>
 			</form>
 	

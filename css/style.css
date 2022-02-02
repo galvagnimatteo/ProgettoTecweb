@@ -625,6 +625,24 @@ padding-left:2.5rem;
 	margin-left: 1rem;
 }
 
+.quickPurchaseContainer div.labelqp {
+	margin-top: 1rem;
+	padding: 0.5rem;
+	padding-left: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+div.labelqp label {
+	font-size: 1.1rem;
+	text-align: center;
+	border-bottom: 1px solid var(--secondary-color);
+}
+
+div.labelqp select {
+	min-width: 10rem;
+}
+
 @media (hover: hover) { /*da riunire tutte insieme le media query*/
 	#filmPageCard form input[type=submit]:hover {
 		text-decoration: underline;
@@ -700,6 +718,7 @@ padding-left:2.5rem;
     #loginLink{
         margin-left: auto;
     }
+
 }
 @media (max-width: 865px) {
     #titleWrapper{
@@ -722,6 +741,11 @@ padding-left:2.5rem;
     #loginLink{
         margin-left: 0;
     }
+		
+	div.labelqp label {
+		margin-left: 1rem;
+		text-align: start;
+	}
 }
 @media screen and (max-width: 800px) {
 	 .div_register,.div_user,.div_login{
@@ -932,7 +956,7 @@ padding-left:2.5rem;
 }
 
 #manualContainer {
-	display: flex;
+	display: none;
 	flex-direction: column;
     align-items: center;
 }
@@ -1046,6 +1070,13 @@ p.warning {
 
 .aiutocompilaz {
 	margin-top: 0.5rem;
+	color: #f00;
+}
+
+p.aiutocompilaz {
+	margin-bottom: 1rem;
+}
+p.aiutocompilaz strong {
 	color: #f00;
 }
 

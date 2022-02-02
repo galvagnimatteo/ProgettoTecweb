@@ -4,20 +4,55 @@
 	include "utils/prenotaPosti.php";
 	include "utils/mappaPosti.php";
 	
+	function pulisci(&$value) {
+	// elimina gli spazi
+        $value = trim($value);
+        // converte i caratteri speciali in entità html (ex. &lt;)
+        $value = htmlentities($value);
+        // rimuove tag html, non li vogliamo
+        $value = strip_tags($value);
+        
+	}
+	
+	
 	if (!isset($_POST["numTicketIntero"], $_POST["numTicketRidotto"], $_POST["catPosti"], 
 			   $_POST["modSelezPosti"], $_POST["idproiez"], $_POST["orario"], $_POST["seats"], 
-			   $_POST["numSala"], $_POST["titoloFilm"], $_POST["dataOraIta"])) 
+			   $_POST["numSala"], $_POST["titoloFilm"], $_POST["dataOraIta"], $_POST["pint"], $_POST["prid"])) 
 	{
 		
 		header("Location: 500.php");
 		die();
 	}
 	
+	pulisci($_POST["catPosti"]);
+	pulisci($_POST["orario"]);
+	pulisci($_POST["modSelezPosti"]);
+	pulisci($_POST["seats"]);
+	pulisci($_POST["dataOraIta"]);
+
+	
+	//verifiche
+	if(!(is_numeric($_POST["numTicketIntero"]) && is_numeric($_POST["numTicketRidotto"]) &&
+		is_numeric($_POST["idproiez"]) && is_numeric($_POST["numSala"]) && 
+		is_numeric($_POST["pint"]) && is_numeric($_POST["prid"]))) {
+		header("Location: 500.php");
+		die();
+	} 
+	
 	$username = ''; //se resta '' inserisce null e l'utente era un ospite
 	if (isset($_SESSION["a"])) 
 		$username = $_SESSION["a"];
 	
 	$totNumBiglietti = intval($_POST["numTicketIntero"]) + intval($_POST["numTicketRidotto"]);
+	
+	$postiver = explode(',', $_POST["seats"] );
+	
+	if($totNumBiglietti > 4 || count($postiver) > 4) {
+		
+		header("Location: prenotazione.php?idproiez=" . $_POST["idproiez"] . "&orario=" . $_POST["orario"] . "&err_server1=1");
+		die();
+		
+	}
 	
 	if ($_POST["modSelezPosti"]== "auto") {
 		
@@ -61,18 +96,41 @@
 				
 			}
 			
+			if (count(explode(",",$postiStr)) < $totNumBiglietti){
+				header("Location: prenotazione.php?idproiez=" . $_POST["idproiez"] . "&orario=" . $_POST["orario"] . "&err_server3=1");
+				die();
+		
+			}
+			
+			if ($seqConsecMax < count(explode(",",$postiStr)) ) {
+				header("Location: prenotazione.php?idproiez=" . $_POST["idproiez"] . "&orario=" . $_POST["orario"] . "&err_server2=1");
+				die();
+			} 
+			
 			$idPrenotaz = prenotaPosti($postiStr, $username, $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
 			unset($listaPostiStruct);
-			
-			generaPaginaConferma($postiStr, $idPrenotaz, $totNumBiglietti);
+			if($idPrenotaz != -1)
+				generaPaginaConferma($postiStr, $idPrenotaz, $totNumBiglietti);
+			else
+			{
+				header("Location: 500.php");
+				die();
+			}
+				
 			
 		
 		
 	} else if ($_POST["modSelezPosti"] == "manual") {
+		if (count(explode(",",$_POST["seats"])) < $totNumBiglietti){
+			header("Location: prenotazione.php?idproiez=" . $_POST["idproiez"] . "&orario=" . $_POST["orario"] . "&err_server3=1");
+				die();
 		
+		}
 		$idPrenotaz = prenotaPosti($_POST["seats"], $username, $_POST["idproiez"], $_POST["orario"], $_POST["numSala"]);
 		generaPaginaConferma($_POST["seats"], $idPrenotaz, $totNumBiglietti);
 	}
+	
+	
 	
 	
 	function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti) {
@@ -139,6 +197,10 @@
 			$acquistoconferma_content = str_replace("<PREN-SALA>", $_POST["numSala"] ,$acquistoconferma_content);
 			$acquistoconferma_content = str_replace("<POSTI-LISTA>", strtoupper($listaPostiFormat) ,$acquistoconferma_content);
 			$acquistoconferma_content = str_replace("<COD-ACQ>", $idPrenotaz ,$acquistoconferma_content);
+			$acquistoconferma_content = str_replace("<TOT-SPESO>", floatval($_POST["pint"]) * intval($_POST["numTicketIntero"]) + 
+																floatval($_POST["prid"]) * intval($_POST["numTicketRidotto"]) ,
+																$acquistoconferma_content);
+			
 			
 			$document = str_replace("<CONTENT>", $acquistoconferma_content, $document);
 			echo $document;

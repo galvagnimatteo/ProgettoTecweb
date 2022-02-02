@@ -668,6 +668,10 @@ div.labelqp select {
     a:hover:not(.carouselContainer a:hover){
         color: var(--links-hover-color);
     }
+	#acquistaBtn:hover {
+   background-color: var(--secondary-color);
+
+	}
 }
 @media screen and (max-width: 900px) {
 
@@ -845,10 +849,6 @@ div.labelqp select {
 
 }
 
-#modeSelectGroup input[type="radio"]:checked + span,
-#autoRadioGroup input[type="radio"]:checked + span {
-	/*background-color: #7E7715;*/
-}
 
 #autoRadioGroup label:checked {
   color: #000;
@@ -954,6 +954,14 @@ div.labelqp select {
   font-size: 1rem;
   font-weight: 800;
 
+}
+
+body.no-js #purchaseTicketForm span.noscript {
+	display: inline;
+}
+
+body.js #purchaseTicketForm span.noscript {
+	display: none;
 }
 
 #manualContainer {

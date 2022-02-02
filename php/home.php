@@ -29,8 +29,28 @@ $db->disconnect();
 
 if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
     $card_home_template = file_get_contents("../html/items/card-home.html");
+    $carouselFilms = 0;
 
     while ($row = $resultFilms->fetch_assoc()) {
+
+        if($carouselFilms < 3){
+
+            if($carouselFilms == 0){
+
+                $carouselImages = '<li class="slide not-hidden">
+                    <img src="' . $row["CarouselImg"] . '" alt="' . 'Locandina ' . $row["Titolo"] . '"/>
+                </li>';
+
+            }else{
+                $carouselImages = $carouselImages . '<li class="slide">
+                    <img src="' . $row["CarouselImg"] . '" alt="' . 'Locandina ' . $row["Titolo"] . '"/>
+                </li>';
+            }
+
+        }
+
+        $carouselFilms = $carouselFilms + 1;
+
         $quickpurchase_films =
             $quickpurchase_films .
             '<option value="' .
@@ -76,6 +96,12 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
 
         $cards = $cards . $card_home_item;
     }
+
+    $home_content = str_replace(
+        "<CAROUSELIMAGES>",
+        $carouselImages,
+        $home_content
+    );
 } else {
     $cards = '<p class="error">Nessun film trovato.</p>
 

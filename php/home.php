@@ -71,7 +71,7 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
 
         $card_home_item = str_replace(
             "<ALTIMG>",
-            $row["AltImg"],
+            "Locandina" . $row["Titolo"],
             $card_home_item
         );
 

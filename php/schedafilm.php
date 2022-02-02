@@ -105,7 +105,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
             '<img src=\'' .
                 $dataFilm["SrcImg"] .
                 ' \' alt=\'' .
-                $dataFilm["AltImg"] .
+                "Locandina " . $dataFilm["Titolo"] .
                 '\'/>',
             $schedafilm_content
         );

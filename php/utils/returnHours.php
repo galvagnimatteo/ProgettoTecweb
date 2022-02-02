@@ -20,7 +20,7 @@
 
     while($row = $result->fetch_assoc()) {
 
-        $hours = $hours . '<option value="' . $row["ID"] . '">' . $row["Ora"] . '</option>'; //(id proiezione)
+        $hours = $hours . '<option value="' . $row["Ora"] . '">' . $row["Ora"] . '</option>'; //(id proiezione)
 
     }
 

@@ -22,6 +22,7 @@ function populateQuickpurchaseDate(selectObject){
 
 }
 
+
 function populateQuickpurchaseHour(selectObject){
 
     let date = selectObject.value;

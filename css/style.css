@@ -955,12 +955,12 @@ div.labelqp select {
 
 }
 
-.js .noscript {
-	display: none;
+body.no-js #purchaseTicketForm span.noscript {
+	display: inline;
 }
 
-.js .noscript {
-	display: inline;
+body.js #purchaseTicketForm span.noscript {
+	display: none;
 }
 
 #manualContainer {

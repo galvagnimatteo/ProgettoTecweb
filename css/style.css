@@ -529,10 +529,10 @@ padding-left:2.5rem;
     width:100%;
     background-color:darkgreen;
 }
-.falure {
+.failure {
     width: 100%;
     background-color: darkgreen;
-}
+}*/
 .insert_movie, .insert_proiezione{
     max-width:30rem;
     align-self:center;
@@ -541,7 +541,7 @@ padding-left:2.5rem;
 }
     .insert_movie > input, .insert_proiezione > input,
     .insert_movie > select, .insert_proiezione > select,
-    .insert_movie > option, .insert_proiezione > option {
+    .insert_movie > option, .insert_proiezione option {
         width: 80%;
         height: 4vh;
         background: #e0dede;

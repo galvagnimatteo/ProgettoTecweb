@@ -503,8 +503,8 @@ VALUES
 
 INSERT INTO Utente (Username, Nome, Cognome, Password, Email)
 VALUES
-("admin", 'admin', 'admin', 'admin', 'admin@admin.it'),
-("user", 'user', 'user', 'user', 'user@user.it'),
+("admin", 'admin', 'admin', '$2y$10$oboMc3j0qLGtk7zLTIdMSuJi.ab4Hf2U7SZlEWdZ2gr3B/46fCH/u', 'admin@admin.it'),
+("user", 'user', 'user', '$2y$10$cx/Uk.IywbxIZyJDzwGWFeBoCteUMqwL4kDVgnjz3gVvZhl/Hi29O', 'user@user.it'),
 ("username1", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
 ("username2", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
 ("username3", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),

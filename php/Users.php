@@ -75,13 +75,13 @@ class Users
                     $row = $resultCast->fetch_assoc();
 					$hash=$row['Password'];
 					$v=password_verify($password, $hash);
-					
+
                if($v)
 					{
 					$_SESSION["a"] = $row['Username'];
 					$_SESSION["b"] = $row['Email'];
 					$_SESSION["c"] = $password;
-						
+
                     $db2 = SingletonDB::getInstance();
                     $query2 = "SELECT Username FROM Amministratori WHERE Username=?";
                     $preparedQuery2 = $db2->getConnection()->prepare($query2);
@@ -108,9 +108,9 @@ class Users
 						unset($_SESSION["b"]);
 						unset($_SESSION["c"]);
 						header("location:area_utenti.php?action=login_page&errorLogin=true");
-					
-                  
-                }                    
+
+
+                }
 
                 }
                 else

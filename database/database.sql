@@ -512,10 +512,10 @@ VALUES
 
 INSERT INTO Prenotazione(ID, NumeroPersone, UsernameUtente, IDProiezione, OraProiezione)
 VALUES
-(1, 4, "username1", 2, '21:30:00'),
-(2, 2, "username1", 1, '17:30:00'),
-(3, 3, "username2", 3, '21:30:00'),
-(4, 4, "username3", 3, '21:30:00');
+(1, 4, "user", 2, '21:30:00'),
+(2, 2, "user", 1, '17:30:00'),
+(3, 3, "user", 3, '21:30:00'),
+(4, 4, "user", 3, '21:30:00');
 
 INSERT INTO Partecipa (FilaPosto, NumeroPosto, NumeroSala, IDPrenotazione)
 VALUES

@@ -2,7 +2,6 @@
 session_start();
 
 include "SingletonDB.php";
-include "mostra_errori.php";
 include "utils/createCastStr.php";
 
 $document = file_get_contents("../html/template.html");

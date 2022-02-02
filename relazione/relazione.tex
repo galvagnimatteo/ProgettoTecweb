@@ -8,7 +8,7 @@
 \usepackage[table,xcdraw]{xcolor}
 
 \settitolo{PNG Cinema}
-\setmembri{Matteo\\Giovanni\\Michele\\Antonio}
+\setmembri{Matteo Galvagni (1224451)\\Antonio Stan (1225426)\\Michele Gatto (1224458)\\Giovanni Cristellon (1216730)}
 \setanno{2021-2022}
 \setdescrizione{Relazione PNG Cinema - Tecnologie Web}
 
@@ -52,7 +52,7 @@ I controlli sui campi di input vengono effettuati anche a lato server, utilizzan
 È stato scelto di priorizzare la visualizzazione mobile del sito per l'alto numero di utenti mobile attesi, non dimenticandosi però delle altre tipologie di utenti.
 
 \section{Presentazione}
-L'idea di fondo è stata di rendere il sito quanto più facilmente usabile possibile da ogni categoria d'utenti.
+L'idea di fondo è stata di rendere il sito quanto più facilmente utilizzabile possibile da ogni categoria d'utenti.
 Le pagine sono relativamente piccole, con il contenuto essenziale nella zona di prima visualizzazione (per non obbligare l'utente frettoloso allo scroll).
 È stata implementata la possibilità di acquistare un biglietto rapidamente direttamente dalla pagina Home (sezione acquisto rapido), per velocizzare la procedura d'acquisto per l'utente che ha fretta.
 La posizione di quest'utima sezione è a favore di dita, considerando che l'acquisto di fretta è fatto nella quasi totalità dei casi da smartphone.
@@ -73,7 +73,7 @@ non indifferente, l'acquisto rapido e il menù andrebbero eliminati perchè inut
 \section{Accessibilità}
 Sono stati inseriti diversi aiuti nascosti per utenti che navigano il sito con screenreader per saltare parti di contenuto non interessanti.
 Ogni immagine è accompagnata da una descrizione testuale accessibile ad utenti con screenreader.
-Sono stati scelti colori con ottimo contrasto tra di loro per facilitare la lettura, nonchè un font semplice e leggibile.
+Sono stati scelti colori con un buon contrasto tra di loro per facilitare la lettura, nonchè un font semplice e leggibile.
 Per l'impaginazione è stato scelto di utilizzare display di tipo "flex" per maggiore compatibilità nei browser rispetto all'alternativa grid.
 Nessun tag HTML è stato utilizzato per creare elementi grafici, ogni tag è coerente col tipo di contenuto che rappresenta per facilitare l'analisi della pagina.
 La grandezza della gerarchia delle pagine, in entrambe le dimensioni, è conforme agli standard.
@@ -88,5 +88,49 @@ Simulazioni di ricerca nel sito da parte di utenti con diverse disabilità visiv
 Ogni parola in lingua diversa dall'italiano è stata dichiarata coerentemente nel codice HTML per rendere la lettura da screenreader piacevole.
 Il testo presente nel sito è stato pensato per essere di semplice comprensione e di modesta sintesi, in parte per favorire utenti "frettolosi", in parte per garantire l'accessibilità delle pagine anche
 a utenti con disabilità cognitive.
+\newpage
+\section{Divisione del lavoro}
+\subsection{Matteo Galvagni}
+\begin{itemize}
+    \item Template (HTML + CSS)
+    \item Home (HTML + CSS + PHP + JS)
+    \item Programmazione (PHP Parziale)
+    \item Area Utenti - Registrazione (PHP Parziale)
+    \item Area Utenti - Modifica (PHP Parziale)
+    \item Controlli Input (JS + PHP)
+    \item Pagine di errore (HTML + CSS + PHP)
+    \item Relazione
+\end{itemize}
+\subsection{Antonio Stan}
+\begin{itemize}
+    \item Area utenti - Login (HTML + CSS + PHP)
+    \item Area utenti - Registrazione (HTML + CSS + PHP)
+    \item Area utenti - Modifica (HTML + CSS + PHP)
+    \item Programmazione (PHP Parziale)
+    \item Database (Parziale)
+\end{itemize}
+\subsection{Michele Gatto}
+\begin{itemize}
+    \item Scheda Film (HTML + CSS + PHP)
+    \item Prenotazione (HTML + CSS + PHP + JS)
+    \item Programmazione (PHP)
+    \item Database
+    \item Info e Costi (HTML + CSS + PHP)
+    \item Home (PHP Parziale)
+    \item Validazione
+\end{itemize}
+\subsection{Giovanni Cristellon}
+\begin{itemize}
+    \item Area amministrazione (HTML + CSS + PHP)
+    \item Contatti (HTML + CSS + PHP)
+    \item Info e Costi (HTML Parziale)
+    \item Revisione Accessibilità
+\end{itemize}
+
+\section{Conclusioni}
+In questo progetto è stata prestata maggiore attenzione alla struttura del sito rispetto che al funzionamento nel complesso: per questo motivo, parti come il pagamento di un biglietto non sono state implementate
+per mancanza di tempo e perchè non di diretto interesse. Per lo stesso motivo potrebbero essere presenti dei bug non ancora trovati all'interno del sito. Parte dei problemi sono derivati anche da un metodo lavorativo
+non esplicitato in modo sufficientemente chiaro in partenza, che a tratti ha portato confusione all'interno del gruppo (merge effettuati senza aver controllato il pieno funzionamento del codice, sovrascrittura
+su branch di lavoro altrui...).
 
 \end{document}

@@ -9,7 +9,6 @@ if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
 $_SESSION["discard_after"] = $now + 400;
 
 include "SingletonDB.php";
-include "mostra_errori.php";
 
 $document = file_get_contents("../html/template.html");
 $home_content = file_get_contents("../html/home_content.html");

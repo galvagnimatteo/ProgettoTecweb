@@ -82,6 +82,18 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
             $card_prog_item
         );
 
+        $card_prog_item = str_replace(
+            "<SRCIMG>",
+            $row["SrcImg"],
+            $card_prog_item
+        );
+
+        $card_prog_item = str_replace(
+            "<ALTIMG>",
+            "Locandina " . $row["Titolo"],
+            $card_prog_item
+        );
+
         $cards = $cards . $card_prog_item;
     }
 } else {

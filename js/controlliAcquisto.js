@@ -72,7 +72,7 @@ for (var i = 0; i < posti.length; i++) {
 changeCard(null);
 calcolaPrezzoTot(null);
 controllaInput(null);
-
+submitButton.innerHTML = "Acquista 0 biglietti, Totale: 0,00 €";
 
 panzoom(elem, {
 	maxZoom: 1.8,

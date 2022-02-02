@@ -932,7 +932,7 @@ padding-left:2.5rem;
 }
 
 #manualContainer {
-	display: flex;
+	display: none;
 	flex-direction: column;
     align-items: center;
 }

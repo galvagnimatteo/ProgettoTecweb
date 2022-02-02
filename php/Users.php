@@ -63,7 +63,7 @@ class Users
                 $query = "SELECT * FROM Utente WHERE Username=?";
                 $preparedQuery = $db->getConnection()
                     ->prepare($query);
-                $preparedQuery->bind_param("ss", $username, $password);
+                $preparedQuery->bind_param("s", $username);
 
                 $preparedQuery->execute();
                 $resultCast = $preparedQuery->get_result();

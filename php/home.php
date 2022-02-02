@@ -63,6 +63,18 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
             $card_home_item
         );
 
+        $card_home_item = str_replace(
+            "<SRCIMG>",
+            $row["SrcImg"],
+            $card_home_item
+        );
+
+        $card_home_item = str_replace(
+            "<ALTIMG>",
+            "Locandina" . $row["Titolo"],
+            $card_home_item
+        );
+
         $cards = $cards . $card_home_item;
     }
 } else {
@@ -85,7 +97,7 @@ $document = str_replace(
 );
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / ',
+    'Home / ',
     $document
 );
 
@@ -107,7 +119,7 @@ $home_content = str_replace(
     $home_content
 );
 $home_content = str_replace("<CARDS-HOME>", $cards, $home_content);
-$document = str_replace('a href="./home.php" lang="en">Home</a>"', "home", $document);
+$document = str_replace('<a href="./home.php" lang="en">Home</a>', '<p><span lang="en"> Home <span></p>', $document);
 $document = str_replace("<CONTENT>", $home_content, $document);
 
 if (isset($_SESSION["a"])) {
@@ -126,7 +138,7 @@ if (isset($_SESSION["a"])) {
     );
 }
 if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+    $document = str_replace("<ADMIN>","<ul><li><a href='admin.php'>Amministrazione</a></li></ul>",$document);
 }
 else{
     $document = str_replace("<ADMIN>","",$document);

@@ -20,7 +20,7 @@ class Users
             $confirm_password = $_POST["pass_register_confirm"];
 
             $result = registerControls($username, $name, $surname, $email, $password, $confirm_password);
-			$hash = password_hash($password, PASSWORD_DEFAULT);
+			      $hash = password_hash($password, PASSWORD_DEFAULT);
             if ($result == "OK")
             {
 
@@ -68,7 +68,7 @@ class Users
                 $preparedQuery->execute();
                 $resultCast = $preparedQuery->get_result();
 
-                
+
 
                 if ($resultCast->num_rows > 0)
                 {
@@ -102,6 +102,7 @@ class Users
                     $db->disconnect();
                     $preparedQuery->close();
                     header("location:home.php");
+
 					}else{
 						unset($_SESSION["a"]);
 						unset($_SESSION["b"]);
@@ -110,6 +111,7 @@ class Users
 					
                   
                 }                    
+
                 }
                 else
                 {
@@ -133,11 +135,11 @@ class Users
 		$db = SingletonDB::getInstance();
 
 
-        $queryE = "SELECT * FROM Utente WHERE Email=?";
+    $queryE = "SELECT * FROM Utente WHERE Email=?";
 		$preparedQueryE = $db->getConnection()->prepare($queryE);
 		$preparedQueryE->bind_param("s", $email);
 		$preparedQueryE->execute();
-        $resultCastE = $preparedQueryE->get_result();
+    $resultCastE = $preparedQueryE->get_result();
 		$isDoubled=false;
 		$isEmail=false;
 		if($value==0){
@@ -241,7 +243,7 @@ class Users
             $row = $resultCast->fetch_assoc();
 			$home_content = file_get_contents("../html/items/updateProfile_content.html");
 			if($resultCast->num_rows > 0){
-			
+
 		     $home_content = str_replace("<USERNAME>", $row["Username"] ,  $home_content);
 		     $home_content = str_replace("<NOME>",  $row["Nome"] ,  $home_content);
 		     $home_content = str_replace("<COGNOME>", $row["Cognome"] ,  $home_content);
@@ -253,7 +255,7 @@ class Users
 				$error=$_GET["error"];
 
 				if($error==3)
-				$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
+				$home_content = str_replace("<ERRORMESSAGE>", "Email e username già registrati", $home_content);
 
 				if($error==2)
 				$home_content = str_replace("<ERRORMESSAGE>", "Username già registrato", $home_content);

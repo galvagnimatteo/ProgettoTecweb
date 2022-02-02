@@ -23,7 +23,7 @@ $document = str_replace(
 $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
 $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
 
-$document = str_replace('<a href="./contatti.php">Contatti</a>', "Contatti", $document);
+$document = str_replace('<a href="./contatti.php">Contatti</a>', "<p>Contatti</p>", $document);
 $document = str_replace("<CONTENT>", $home_content, $document); //fills template with content
 
 if (isset($_SESSION["a"])) {
@@ -42,7 +42,7 @@ if (isset($_SESSION["a"])) {
     );
 }
 if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-    $document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
+    $document = str_replace("<ADMIN>","<ul><li><a href='admin.php'>Amministrazione</a></li></ul>",$document);
 }
 else{
     $document = str_replace("<ADMIN>","",$document);

@@ -62,7 +62,7 @@
 				$count = intval(substr($codice, 1));
 				
 				if ($lastRow != strtolower($fila)) {
-					$SVG .= '<text class="letteraFila" x="' . $tx-8 . '" y="' . $ty . '">' . strtoupper($lastRow) . '</text>';
+					$SVG .= '<text class="letteraFila" x="' . $tx - 8 . '" y="' . $ty . '">' . strtoupper($lastRow) . '</text>';
 					$cy += 60;
 					$ty += 60;
 					$ly1 += 60;

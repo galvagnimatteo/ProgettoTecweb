@@ -20,7 +20,7 @@ class Users
             $confirm_password = $_POST["pass_register_confirm"];
 
             $result = registerControls($username, $name, $surname, $email, $password, $confirm_password);
-
+			$hash = password_hash($password, PASSWORD_DEFAULT);
             if ($result == "OK")
             {
 
@@ -29,10 +29,11 @@ class Users
                 $query = "INSERT INTO Utente(Username,Email,Nome,Cognome,Password) VALUES (?,?,?,?,?)";
                 $preparedQuery = $db->getConnection()
                     ->prepare($query);
-                $preparedQuery->bind_param("sssss", $username, $email, $name, $surname, $password);
+                $preparedQuery->bind_param("sssss", $username, $email, $name, $surname, $hash);
 
                 $_SESSION["a"] = $username;
 				$_SESSION["b"] = $email;
+				$_SESSION["c"] = $password;
                 $preparedQuery->execute();
                 $db->disconnect();
                 $preparedQuery->close();
@@ -59,7 +60,7 @@ class Users
             {
 
                 $db = SingletonDB::getInstance();
-                $query = "SELECT Username,Email FROM Utente WHERE Username=? AND Password=?";
+                $query = "SELECT * FROM Utente WHERE Username=?";
                 $preparedQuery = $db->getConnection()
                     ->prepare($query);
                 $preparedQuery->bind_param("ss", $username, $password);
@@ -72,11 +73,17 @@ class Users
                 if ($resultCast->num_rows > 0)
                 {
                     $row = $resultCast->fetch_assoc();
-                    $_SESSION["a"] = $row["Username"];
-					$_SESSION["b"] = $row["Email"];
-
+					$hash=$row['Password'];
+					$v=password_verify($password, $hash);
+					
+               if($v)
+					{
+					$_SESSION["a"] = $row['Username'];
+					$_SESSION["b"] = $row['Email'];
+					$_SESSION["c"] = $password;
+						
                     $db2 = SingletonDB::getInstance();
-                    $query2 = "SELECT username FROM Amministratori WHERE username=?";
+                    $query2 = "SELECT Username FROM Amministratori WHERE Username=?";
                     $preparedQuery2 = $db2->getConnection()->prepare($query2);
                     $preparedQuery2->bind_param("s", $row["Username"]);
 
@@ -94,12 +101,21 @@ class Users
                     }
                     $db->disconnect();
                     $preparedQuery->close();
-                    header("location:home.php");                    
+                    header("location:home.php");
+					}else{
+						unset($_SESSION["a"]);
+						unset($_SESSION["b"]);
+						unset($_SESSION["c"]);
+						header("location:area_utenti.php?action=login_page&errorLogin=true");
+					
+                  
+                }                    
                 }
                 else
                 {
                     unset($_SESSION["a"]);
 					unset($_SESSION["b"]);
+					unset($_SESSION["c"]);
                     header("location:area_utenti.php?action=login_page&errorLogin=true");
                 }
 
@@ -230,7 +246,7 @@ class Users
 		     $home_content = str_replace("<NOME>",  $row["Nome"] ,  $home_content);
 		     $home_content = str_replace("<COGNOME>", $row["Cognome"] ,  $home_content);
 		     $home_content = str_replace("<EMAIL>", $row["Email"],  $home_content);
-		     $home_content = str_replace("<PASSWORD>", $row["Password"] ,  $home_content);
+		     $home_content = str_replace("<PASSWORD>", $_SESSION["c"],  $home_content);
 			}
 			 if (isset($_GET["error"]))
             {
@@ -272,6 +288,7 @@ class Users
                 $username = $_SESSION["a"];
 				unset($_SESSION["a"]);
 				unset($_SESSION["b"]);
+				unset($_SESSION["c"]);
                 $preparedQuery->execute();
                 $db->disconnect();
                 $preparedQuery->close();
@@ -298,7 +315,7 @@ class Users
             $surname = $_POST["surname_profile"];
             $email = $_POST["email_profile"];
             $confirm_password = $_POST["pass_profile_confirm"];
-
+			$hash = password_hash($password, PASSWORD_DEFAULT);
             $result = registerControls($newusername, $name, $surname, $email, $password, $confirm_password);
 
             if($result == "OK"){
@@ -309,7 +326,7 @@ class Users
                 if ($preparedQuery = $db->getConnection()
                     ->prepare($query))
                 {
-                    $preparedQuery->bind_param("ssssss", $newusername, $name, $surname, $password, $email, $oldusername);
+                    $preparedQuery->bind_param("ssssss", $newusername, $name, $surname, $hash, $email, $oldusername);
 
                     $preparedQuery->execute();
 
@@ -317,6 +334,7 @@ class Users
                     $preparedQuery->close();
                     $_SESSION["a"] = $newusername;
 					$_SESSION["b"] = $email;
+					$_SESSION["c"] = $password;
                 }else{
                     header("location:500.php");
                     die();

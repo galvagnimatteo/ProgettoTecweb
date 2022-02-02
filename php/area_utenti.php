@@ -21,8 +21,7 @@ $document = str_replace('<KEYWORDS>', 'Login', $document);
 $document = str_replace('<DESCRIPTION>', 'Pagina di login', $document);
 
 $document = str_replace(
-    "<BREADCRUMB>",    '<a href="home.php">Home</a> / <p>Area Utenti</p>',
-    $document
+    "<BREADCRUMB>", '<a href="home.php">Home</a> / <p> Area Utenti</p>', $document
 );
 $document = str_replace("<JAVASCRIPT-HEAD>", '<script type="text/javascript" src="../js/controls.js"> </script>', $document);
 

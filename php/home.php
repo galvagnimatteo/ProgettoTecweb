@@ -63,6 +63,18 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
             $card_home_item
         );
 
+        $card_home_item = str_replace(
+            "<SRCIMG>",
+            $row["SrcImg"],
+            $card_home_item
+        );
+
+        $card_home_item = str_replace(
+            "<ALTIMG>",
+            $row["AltImg"],
+            $card_home_item
+        );
+
         $cards = $cards . $card_home_item;
     }
 } else {

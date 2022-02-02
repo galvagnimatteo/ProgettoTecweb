@@ -38,7 +38,9 @@ selectNumTicketRed.addEventListener("change", controllaInput);
 document.getElementById("purchaseTicketForm").addEventListener("submit", function(event) {
 	var tot = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
 	var aiuto = document.getElementsByClassName("aiutocompilaz");
-	
+	var arrPosti = document.getElementById("seatsString").value.split(",");
+	var numPostiSelez = arrPosti.length;
+	console.log(numPostiSelez);
 	if (tot == 0) {
 		aiuto[0].setAttribute("class", "aiutocompilaz");
 		aiuto[1].setAttribute("class", "aiutocompilaz");
@@ -47,6 +49,11 @@ document.getElementById("purchaseTicketForm").addEventListener("submit", functio
 		event.preventDefault(); // non fa submit
 		
 		return false; //su qualche browser senza questo non va
+	} else if (tot > numPostiSelez) {
+		aiuto[2].setAttribute("class", "aiutocompilaz");
+		event.preventDefault(); 
+		
+		return false;
 	}
 	
 });
@@ -117,16 +124,16 @@ function maxOption(max, target) {
 
 function dynamicOption(event) {
 	
-	var val = parseInt(e.target.value);
-	var target2 = selectNumTicketInt.getAttribute("id") == e.target.getAttribute("id") ?
+	var val = parseInt(event.target.value);
+	var target2 = selectNumTicketInt.getAttribute("id") == event.target.getAttribute("id") ?
 				  selectNumTicketRed : selectNumTicketInt;
 	
 	if (val == 0 && parseInt(target2.value)==0) {
 		maxOption(MAX_POSTI_SELEZIONABILI, target2);
-		maxOption(MAX_POSTI_SELEZIONABILI, e.target);
+		maxOption(MAX_POSTI_SELEZIONABILI, event.target);
 	} else {
 		maxOption(MAX_POSTI_SELEZIONABILI - val, target2);
-		maxOption(val, e.target);
+		maxOption(val, event.target);
 	}
 }
 
@@ -171,6 +178,8 @@ function selezionePosto(event) {
 		inputListaPosti.setAttribute("value", listaPosti.join());
 		calcolaPrezzoTot(null);
 	}
+	
+	
 	
 }
 
@@ -250,6 +259,8 @@ function controllaInput(event) {
 	}
 	
 }
+
+
 
 function pulisciPostiSelezionati(event) {
 	if (!autoRadioBtn.checked) {

@@ -1049,6 +1049,13 @@ p.warning {
 	color: #f00;
 }
 
+p.aiutocompilaz {
+	margin-bottom: 1rem;
+}
+p.aiutocompilaz strong {
+	color: #f00;
+}
+
 
 /*stile info e costi*/
 #content.infocosti ul {

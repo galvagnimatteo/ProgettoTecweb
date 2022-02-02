@@ -85,7 +85,7 @@ $document = str_replace(
 );
 $document = str_replace(
     "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / ',
+    'Home / ',
     $document
 );
 
@@ -107,7 +107,7 @@ $home_content = str_replace(
     $home_content
 );
 $home_content = str_replace("<CARDS-HOME>", $cards, $home_content);
-$document = str_replace("/php/home.php", "#", $document);
+$document = str_replace('<a href="./home.php" lang="en">Home</a>', '<p><span lang="en"> Home <span></p>', $document);
 $document = str_replace("<CONTENT>", $home_content, $document);
 
 if (isset($_SESSION["a"])) {

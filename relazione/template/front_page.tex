@@ -1,0 +1,45 @@
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{makecell}
+
+\newcommand{\settitolo}[1]{\newcommand{\titolo}{#1\\}}
+\newcommand{\setmembri}[1]{\newcommand{\membri}{#1\\}}
+\newcommand{\setanno}[1]{\newcommand{\anno}{#1\\}}
+\newcommand{\setdescrizione}[1]{\newcommand{\descrizione}{#1\\}}
+
+\newcommand{\makefrontpage}{
+	\begin{titlepage}
+		\begin{center}
+
+
+		{\Large Relazione Progetto di Tecnologie Web}\\[6pt]
+
+		\vspace{1.5cm}
+		{\LARGE\titolo}
+
+		\vfill
+
+		\begin{tabular}{r | l}
+		\multicolumn{2}{c}{\textit{Informazioni}}\\
+		\hline
+
+		\ifdefined\membri
+			\textit{Membri del gruppo} &
+			\makecell[l]{\membri}\\
+		\else\fi
+
+		\textit{Anno scolastico} & \anno
+
+		\end{tabular}
+
+		\vspace{2cm}
+
+		\ifdefined\descrizione
+		Descrizione
+		\vspace{6pt}
+		\hrule
+		\descrizione
+		\else\fi
+		\end{center}
+	\end{titlepage}
+}

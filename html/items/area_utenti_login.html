@@ -1,35 +1,36 @@
 
 <div class="div_user">
-	Sign up
+	Registrati
 </div>
 <div class="div_login ">
 	<form action="../php/area_utenti.php?action=search" method="post" onsubmit="return loginControls()">
 		<div class="row">
 			<div class="col_25">
-				<label for="email_login"><span xml:lang="en">Email</span></label>
+				<label for="username_login" lang="en">Username</label>
 			</div>
 			<div class="col_75">
-				<input id="email_login" type="email" placeholder=" Email" name="email_login" required>
+				<input id="username_login" type="text" placeholder=" Username" name="username_login" required>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col_25">
-				<label for="password_login"><span xml:lang="en">Password</span></label>
+				<label for="password_login" lang="en">Password</label>
 			</div>
 			<div class="col_75">
-				<input id="password_login" type="password" placeholder=" Password" name="password_login"  required>
+				<input id="password_login" type="password" placeholder=" Password" name="password_login" required />
 			</div>
 		</div>
 		<div class="row">
 			<p id="errorMessage"> <ERRORMESSAGE> </p>
 		</div>
 		<div class="row">
-			<input type="submit" value="Login " >
+			<input type="submit" value="Login " />
 		</div>
 	</form>
 </div>
 <div class="div_user">
 	<form action="../php/area_utenti.php?action=register_page" method="post" >
-		<button type="submit" class="link_button">Create an account </button>
+		<button type="submit" class="link_button">Crea un nuovo <span lang="en">account</span></button>
 	</form>
 </div>
+

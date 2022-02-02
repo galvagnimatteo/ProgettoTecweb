@@ -8,13 +8,11 @@
     --error-color: #C2B800;
     --links-hover-color: #ffdd36;
 }
-
 *{
 	padding: 0;
 	margin: 0;
     color: var(--text-color);
 }
-
 html{
 	font-size: 100%;
     font-family: "Arial", sans-serif;
@@ -22,89 +20,32 @@ html{
 	max-width: 1024px;
     background-color: var(--primary-color);
 }
-
 body{
 	margin:0;
 	padding:0;
 	font-size:1.5rem;
 	margin:auto;
 }
-
 .subtitle{
     padding-top: 1rem;
     padding-left: 1rem;
 }
-
 header h1 {
     padding: 1rem;
     font-size: 1.5rem;
 }
-
 .headerWrapper{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 }
-
 nav ul {
     list-style-type: none;
 }
-
 #loginLink{
     margin-left: auto;
 }
-
 #menubutton{
     padding: 1rem;
     margin-left: auto;
-}
-
-@media (min-width: 865px) {
-
-    header, ul {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
-
-    nav {
-        width: 100%;
-    }
-
-    #menubutton {
-        display: none;
-    }
-
-    #loginLink{
-        margin-left: auto;
-    }
-
-}
-
-@media (max-width: 865px) {
-    #titleWrapper{
-        display: flex;
-        flex-direction: row;
-    }
-
-    ul{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .openMenu {
-        display: normal;
-    }
-
-    .closedMenu {
-        display: none;
-    }
-
-    #menubutton {
-        text-decoration: none;
-    }
-
-    #loginLink{
-        margin-left: 0;
-    }
 }
 
 /*ovverides per assenza di js visualizzani il menù come sempre aperto*/
@@ -115,8 +56,7 @@ nav ul {
 .no-js .closedMenu {
     display: normal;
 }
-
-nav li a {
+nav li a, nav li p {
     display: block;
     text-align: center;
     text-decoration: none;
@@ -126,41 +66,28 @@ nav li a {
 a:visited:not(.carouselContainer a:visited){
     color: var(--visited-links);
 }
-
-@media (hover: hover) {
-    a:hover:not(.carouselContainer a:hover){
-        color: var(--links-hover-color);
-    }
-}
-
 .breadcrumbs{
     margin: 1rem;
     font-size: 1.2rem;
 }
-
 .slide{
     list-style-type: none;
 }
 
 /*codice per css con javascript abilitato*/
-
 .js .carouselContainer {
     position: relative;
 }
-
 .js .slide {
     display: none;
 }
-
 .js .slide img{
     width: 100%;
     height: auto;
 }
-
 .js .not-hidden{
     display: block;
 }
-
 .js .prev, .js .next {
     cursor: pointer;
     position: absolute;
@@ -169,27 +96,17 @@ a:visited:not(.carouselContainer a:visited){
     font-weight: bold;
     user-select: none;
 }
-
 .js .prev{
     border-radius: 0 1rem 1rem 0;
     left: 0;
 }
-
 .js .next {
     right: 0;
     border-radius: 1rem 0 0 1rem;
 }
-
-@media (hover: hover) {
-    .js .prev:hover, .js .next:hover{
-        background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
-    }
-}
-
 .js .circles{
     text-align: center;
 }
-
 .js .circle {
   cursor: pointer;
   height: 1rem;
@@ -198,61 +115,44 @@ a:visited:not(.carouselContainer a:visited){
   border-radius: 50%;
   display: inline-block;
 }
-
-@media (hover: hover) {
-    .js .circle:hover {
-        background-color: #777777;
-    }
-}
-
 .js .active{
     background-color: var(--secondary-color);
 }
-
 .js .active.circle:hover{ /*active E circle:hover deve risultare in rosso comunque*/
     background-color: var(--secondary-color);
 }
-
 /*codice per css con javascript disabilitato*/
 .no-js.carouselContainer{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
-
 .no-js .slide{
     width: calc(50% - 1rem);
     margin: 0.5rem;
 }
-
 .no-js .slide img{
     width: 100%;
     height: auto;
     display: block; /*se no viene trattata come inline e lascia un leggero spazio sul bottom*/
 }
-
 .no-js .not-hidden{
     display: block;
 }
-
 .no-js .prev, .no-js .next {
     display: none;
 }
-
 .no-js .circles{
     display: none;
 }
-
 .js .quickPurchaseContainer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     margin-top: 0.8rem;
 }
-
 .js .quickPurchaseContainer form{
     display: flex;
     margin-bottom: 1rem;
 }
-
 .js .quickPurchaseContainer form select, .js .quickPurchaseContainer form button{
     background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
     font-size: 1.1rem;
@@ -263,31 +163,14 @@ a:visited:not(.carouselContainer a:visited){
     margin-bottom: 1rem;
     outline: 0;
 }
-
 .js .quickPurchaseContainer form select{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
-@media screen and (max-width: 880px) {
-    .js .quickPurchaseContainer form{
-        flex-direction: column;
-    }
-
-    .js .quickPurchaseContainer form select{
-        width: calc(100% - 1.5rem);
-        margin-right: 1rem; /*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
-    }
-
-    .js .quickPurchaseContainer form button{
-        width: calc(100% - 2rem);
-    }
-}
-
 .js .quickPurchaseContainer form select option{
     background: var(--primary-color);
 }
-
 .js .quickPurchaseContainer form button{
     border: 1px solid var(--secondary-color);
     cursor: pointer;
@@ -296,28 +179,19 @@ a:visited:not(.carouselContainer a:visited){
     border-radius: 8px;
 }
 
-@media (hover: hover) {
-    .js .quickPurchaseContainer form button:hover{
-        background-color: var(--secondary-color);
-    }
-}
-
 .no-js .quickPurchaseContainer{
     display: none;
 }
-
 .cardsContainer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
     margin-bottom: 1rem;
 }
-
 .cardsContainer ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
-
 .cardsContainer ul li {
     box-sizing: border-box; /*se no non conta il border e va a capo*/
     border: 2px solid;
@@ -328,42 +202,19 @@ a:visited:not(.carouselContainer a:visited){
     font-size: 1rem;
     overflow: hidden;
 }
-
 .cardsContainer ul li img{
     width: 100%;
     height: auto;
 }
-
-@media screen and (max-width: 880px) {
-    .cardsContainer ul li{
-        flex: 0 1 calc(33.3% - 2rem);
-    }
-}
-
-
-@media screen and (max-width: 700px) {
-    .cardsContainer ul li{
-        flex: 0 1 calc(50% - 2rem);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .cardsContainer ul li{
-        flex: 0 1 calc(100% - 2rem);
-    }
-}
-
 .error{
     padding: 1rem;
     color: var(--error-color);
     font-size: 2rem;
 }
-
 .errorDescription{
     padding-left: 1rem;
     padding-bottom: 2rem;
 }
-
 .SRskip {/*per screen reader*/
     position: absolute;
     left: -10000px;
@@ -377,34 +228,25 @@ a:visited:not(.carouselContainer a:visited){
     width: auto;
     height: auto;
 }
-
-
 .cardContentText{
     padding: 1rem;
 }
-
 .cardContentSubtitle{
     font-style: italic;
     padding-top: 0.5rem;
 }
-
 .showMovieLink{
     margin-top: 1rem;
     display: inline-block;
 }
-
 footer{
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));/**/
     width: calc(100% - 2rem);
     padding: 1rem;
-
 }
-
-
 /*
 programmazione.html
 */
-
 .cardsContainer-prog {
 	padding-top: 0.5rem;
 	font-size: 1.3rem;
@@ -419,33 +261,27 @@ programmazione.html
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
-
 .cardContentText dd{
     margin:0.5rem;
+	margin-left: 0;
 }
-
 .card dt {
 	float: left;
 	clear: left;
 	font-style: italic;
 }
-
 .card dd:before {
 	content: "\00a0";
 }
-
 .card img {
 	width: 30%;
 }
-
 .card p {
 	margin: 1rem 0rem;
 }
-
 .filmTitle{
     margin-bottom: 1rem;
 }
-
 .card form input[type=submit] {
   background-color: var(--primary-color);
   border: 2px solid var(--secondary-color);
@@ -459,7 +295,6 @@ programmazione.html
   font-size: 1rem;
   font-weight: 800;
 }
-
 .card button{
     margin-top: 1rem;
     margin-left: 1rem;
@@ -470,63 +305,6 @@ programmazione.html
     cursor: pointer;
     border-radius: 8px;
 }
-
-@media (hover: hover) {
-    .card button:hover{
-        background-color: var(--secondary-color);
-    }
-
-}
-
-@media (hover: hover) { /*da riunire tutte insieme le media query*/
-	.card form input[type=submit]:hover {
-		text-decoration: underline;
-		background-color: var(--secondary-color);
-	}
-
-
-}
-
-@media screen and (max-width: 700px) {
-
-    .card{
-        display: flex;
-        flex-direction: column;
-        border: 2px solid;
-        border-color: var(--secondary-color);
-        border-radius: 10px;
-    }
-
-    .card img{
-        width: 50%;
-        margin: auto;
-    }
-
-}
-
-@media screen and (max-width: 475px) {
-
-    .card img{
-        width: 100%;
-    }
-
-    .card button{
-        margin-left: 0;
-    }
-
-    .card{
-        display: flex;
-        flex-direction: column;
-        border: 2px solid;
-        border-color: var(--secondary-color);
-        border-radius: 10px;
-    }
-
-}
-
-
-
-
 /*log/reg*/
 
 .div_login
@@ -538,8 +316,7 @@ programmazione.html
     padding-top:2.8rem;
 	padding-bottom:2rem;
 }
-
-.div_login  input[type=password], .div_login input[type=email]{
+.div_login  input[type=password], .div_login input[type=text]{
   width:70%;
  display:flex;
  height: 4vh;
@@ -552,8 +329,6 @@ programmazione.html
 	font-size:0.9rem;
 	display:block;
 	box-sizing: border-box;
-
-
 }
 .div_login  label{
 margin:auto;
@@ -561,12 +336,10 @@ display:flex;
 justify-content:left;
 padding-left:4.5rem;
 }
-
 .div_login input[type=submit]{
 	width:60%;
 	height:3rem;
 	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
-
 	margin-bottom: 1rem;
 	border: none;
 	border-radius: 5px;
@@ -574,8 +347,6 @@ padding-left:4.5rem;
 	display: block;
 	margin: 1em auto;
 }
-
-
 .div_user{
 	margin:auto;
 	width: 50%;
@@ -586,11 +357,8 @@ padding-left:4.5rem;
 	 padding-top:1.5rem;
     padding-bottom:1.5rem;
 	border-radius: 5px;
-
 }
-
 .div_register{
-
 	margin:auto;
 	width: 50%;
 	display:flex;
@@ -612,26 +380,17 @@ padding-left:4.5rem;
 	font-size:0.9rem;
 	display:flex;
 	box-sizing: border-box;
-
-
 }
-
 #errorMessage{
     color: var(--error-color);
     font-size: 1.2rem;
     margin-bottom: 1rem;
 }
-
-
 .div_register input[type=submit]{
 	width:70%;
 	height:3rem;
-
-	
 	color: #fff;
-	
 	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
-
 	font-weight: bold;
 	margin-bottom: 1rem;
 	border: none;
@@ -641,83 +400,25 @@ padding-left:4.5rem;
 }
 .div_register form{
 	width:90%;
-
 }
 .div_register label{
 padding-left:2.5rem;
-
 	    display: block;
     font-size:0.8em;
-
-
 }
-
-
 .col-25 {
   float:left;
   width: 25%;
-
-
 }
-
 .col-75 {
   float:left;
   width: 75%;
-
 }
-
 .row:after{
-
   content: "";
   display: table;
   clear: both;
 }
-
-@media screen and (max-width: 700px) {
-
-  .div_register input[type=submit]{
-    width: 100%;
-
-    margin-top: 0;
-  }
-
-}
-
-@media screen and (max-width: 320px) {
-
-.div_register label,.div_login label{
-padding:0rem;
-font-size:6.5vw;
-}
-
-}
-
-
-
-@media screen and (max-width: 800px) {
-
-	 .div_register,.div_user,.div_login{
- width:80%;
-
-	  }
-
-
-
-}
-
-@media screen and (max-width: 450px) {
-
-	 .div_register,.div_user,.div_login{
- width:100%;
-	  }
-
-
-
-}
-
-
-
-
 .link_button {
   background: none!important;
   border: none;
@@ -726,22 +427,15 @@ font-size:6.5vw;
   text-decoration: underline;
   cursor: pointer;
 }
-/*end*/
-/*end*/
 
 .contactpage iframe {
     width: 100%;
     align-self: end;
 }
-
-@media text {
-}
-
 @keyframes materialize {
     0% {
         opacity: 0;
     }
-
     100% {
         opacity: 1;
     }
@@ -751,7 +445,6 @@ font-size:6.5vw;
     animation-duration: 2s;
     animation-fill-mode: both;
 }
-
 #contatti {
     position: relative;
     animation-name: materialize;
@@ -760,27 +453,22 @@ font-size:6.5vw;
     animation-fill-mode: both;
     text-align: right;
 }
-
 .contactsParagraph{
     margin: 1rem;
 }
-
 #contatti h2{
     text-align: right;
 }
-
 #social {
     animation-name: materialize;
     animation-duration: 2s;
     animation-delay: 4s;
     animation-fill-mode: both;
 }
-
 .contactpage {
     display: flex;
     flex-direction: column;
 }
-
 #posizione dl, #contatti dl, #social dl {
     display: flex;
     flex-flow: row;
@@ -788,14 +476,11 @@ font-size:6.5vw;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-
 #posizione dt, #contatti dt, #social dt {
     flex-basis: 20%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-
-
 #posizione dd, #contatti dd, #social dd {
     flex-basis: 70%;
     flex-grow: 1;
@@ -807,12 +492,10 @@ font-size:6.5vw;
         margin-left: 1rem;
         margin-right: 1rem;
     }
-
     .contactpage {
         display: flex;
         flex-direction: column;
     }
-
     #posizione dl, #contatti dl, #social dl {
         display: flex;
         flex-flow: row;
@@ -820,20 +503,17 @@ font-size:6.5vw;
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
-
     #posizione dt, #contatti dt, #social dt {
         flex-basis: 20%;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
     }
-
     #posizione dd, #contatti dd, #social dd {
         flex-basis: 70%;
         flex-grow: 1;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
     }
-
     @media (min-width: 49rem) {
         #contatti {
             width: 50%;
@@ -855,7 +535,7 @@ font-size:6.5vw;
 }*/
 .insert_movie, .insert_proiezione{
     max-width:30rem;
-    align-self:center;    
+    align-self:center;
     display: flex;
     flex-direction: column;
 }
@@ -880,18 +560,14 @@ font-size:6.5vw;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-
 #social h3 {
     font-size: 1.5rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-
 /* scheda-film.html */
-
 #filmPageTitle { text-align:center;}
-
 #filmPageCard{
     margin: 2rem;
     border-radius: 1rem;
@@ -900,66 +576,80 @@ font-size:6.5vw;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
 }
-
 #filmDataContainer {
 	display:flex;
 	align-items: flex-start;
 }
-
 #filmData {
 	margin: 0.5rem;
 	padding: 0.5rem;
 	font-size: 1.2rem;
 }
-
 #filmData dt {
 	float: left;
 	clear: left;
 	font-style: italic;
 }
-
 #filmData dl {
 	margin-bottom:1rem;
 
 	border-radius: 1rem;
 }
-
 #filmData dt:after {
 	content: "\00a0";
-
 }
-
 #filmPageCard form{
     margin: 1rem;
 }
-
-    #filmPageCard form input[type=submit],
-    .insert_movie form input[type=submit],
-    .insert_proiezione form input[type=submit] {
-        background-color: var(--primary-color);
-        border: 2px solid var(--secondary-color);
-        color: #fff;
-        border-radius: 10px;
-        padding: 0.5rem 1rem;
-        text-decoration: none;
-        margin-right: 0.5rem;
-        margin-top: 0.4rem;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: 800;
-    }
-
-
-@media (hover: hover) { /*da riunire tutte insieme le media query*/
-    #filmPageCard form input[type=submit]:hover,
-    .insert_movie form input[type=submit]:hover,
-    .insert_proiezione form input[type=submit]:hover {
-        text-decoration: underline;
-        background-color: var(--secondary-color);
-    }
+#filmPageCard form input[type=submit] {
+  background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+}
+#filmPageCard form fieldset {
+	margin-top: 1.5rem;
+	border: 0;
+	border-top: 2px solid var(--secondary-color);
+	/*border-left: 2px solid var(--secondary-color);*/
+}
+#filmPageCard form legend {
+	padding: 0.3rem;
+	margin-left: 1rem;
 }
 
-
+@media (hover: hover) { /*da riunire tutte insieme le media query*/
+	#filmPageCard form input[type=submit]:hover {
+		text-decoration: underline;
+		background-color: var(--secondary-color);
+	}
+    .js .quickPurchaseContainer form button:hover{
+        background-color: var(--secondary-color);
+    }
+    .card button:hover{
+        background-color: var(--secondary-color);
+    }
+    .card form input[type=submit]:hover {
+		text-decoration: underline;
+		background-color: var(--secondary-color);
+	}
+    .js .circle:hover {
+        background-color: #777777;
+    }
+    .js .prev:hover, .js .next:hover{
+        background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
+    }
+    a:hover:not(.carouselContainer a:hover){
+        color: var(--links-hover-color);
+    }
+}
 @media screen and (max-width: 900px) {
 
     #filmPageCard{
@@ -979,40 +669,468 @@ font-size:6.5vw;
 	}
 
 }
+@media screen and (max-width: 880px) {
+    .js .quickPurchaseContainer form{
+        flex-direction: column;
+    }
+    .js .quickPurchaseContainer form select{
+        width: calc(100% - 1.5rem);
+        margin-right: 1rem; /*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
+    }
+    .js .quickPurchaseContainer form button{
+        width: calc(100% - 2rem);
+    }
+    .cardsContainer ul li{
+        flex: 0 1 calc(33.3% - 2rem);
+    }
+}
+@media (min-width: 865px) {
 
+    header, ul {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    nav {
+        width: 100%;
+    }
+    #menubutton {
+        display: none;
+    }
+    #loginLink{
+        margin-left: auto;
+    }
+}
+@media (max-width: 865px) {
+    #titleWrapper{
+        display: flex;
+        flex-direction: row;
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+    }
+    .openMenu {
+        display: normal;
+    }
+    .closedMenu {
+        display: none;
+    }
+    #menubutton {
+        text-decoration: none;
+    }
+    #loginLink{
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 800px) {
+	 .div_register,.div_user,.div_login{
+ width:80%;
+	  }
+}
+@media screen and (max-width: 700px) {
+    .div_register input[type=submit]{
+    width: 100%;
 
+    margin-top: 0;
+  }
+    .cardsContainer ul li{
+        flex: 0 1 calc(50% - 2rem);
+    }
+    .card{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        border-color: var(--secondary-color);
+        border-radius: 10px;
+    }
+
+    .card img{
+        width: 50%;
+        margin: auto;
+    }
+}
+@media screen and (max-width: 480px) {
+    .cardsContainer ul li{
+        flex: 0 1 calc(100% - 2rem);
+    }
+}
+@media screen and (max-width: 475px) {
+
+    .card img{
+        width: 100%;
+    }
+
+    .card button{
+        margin-left: 0;
+    }
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid;
+        border-color: var(--secondary-color);
+        border-radius: 10px;
+    }
+
+}
 @media screen and (max-width: 450px) {
-
 	#filmDataContainer img {
 		margin: auto;
         width: 100%;
 	}
-
+	.div_register,.div_user,.div_login{
+    width:100%;
+	}
+}
+@media screen and (max-width: 320px) {
+    .div_register label,.div_login label{
+    padding:0rem;
+    font-size:6.5vw;
+    }
 }
 
-
-
-#filmPageCard form fieldset {
-	margin-top: 1.5rem;
-	border: 0;
-	border-top: 2px solid var(--secondary-color);
-	/*border-left: 2px solid var(--secondary-color);*/
-}
 
 #filmPageCard form legend {
 	padding: 0.3rem;
 	margin-left: 1rem;
 }
+
+
+/*stile prenotazione.html*/
+
+#modeSelectGroup {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+#modeSelectGroup label, #autoRadioGroup label {
+	display: block;
+	background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+
+}
+
+#modeSelectGroup input[type="radio"]:checked + span,
+#autoRadioGroup input[type="radio"]:checked + span {
+	/*background-color: #7E7715;*/
+}
+
+#autoRadioGroup label:checked {
+  color: #000;
+}
+
+#autoRadioGroup {
+	display: flex;
+	flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+#autoRadioGroup {display: flex; flex-direction: column; }
+
+#ticketInfoGroup select {
+	color: #000;
+	min-width: 2.5rem;
+	min-height: 1.5rem;
+
+}
+#ticketInfoGroup option {
+	color: #000;
+}
+
+
+
+#purchaseTicketForm fieldset {
+	margin-top: 1.5rem;
+	border: 0;
+	border-top: 2px solid var(--secondary-color);
+
+}
+
+#purchaseTicketForm legend {
+	padding: 0.3rem;
+	margin-left: 1rem;
+}
+
+
+#manualContainer {
+	justify-content: center;
+}
+
+
+#ticketInfoGroup {
+	display: flex;
+	flex-direction: column;
+}
+
+#ticketInfoGroup label{
+	flex: 1 1 70%;
+
+}
+
+#ticketInfoGroup select, #ticketInfoGroup input{
+	flex: 1 1 30%;
+	max-width: 3rem;
+}
+
+#ticketInfoGroup .labelPos span {
+	font-size: 1rem;
+}
+
+#ticketInfoGroup div {
+	border: 2px solid var(--secondary-color);
+	max-width: 90%;
+	padding: 1rem;
+	border-radius: 10px;
+}
+#ticketInfoGroup .noBorder {
+	border: 2px solid var(--secondary-color);
+	border-top: 0;
+}
+
+#ticketInfoGroup .labelPos {
+	display: flex;
+    flex-wrap: wrap;
+	align-items: center;
+}
+
+#autoRadioGroup .prezzo {
+	display:flex;
+	 flex-direction: column;
+    align-items: flex-end;
+}
+
+#autoRadioGroup .postiLiberi {
+	display:flex;
+	 flex-direction: column;
+    align-items: flex-start;
+}
+
+#acquistaBtn {
+  background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+  margin: 2rem auto;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+
+}
+
+#manualContainer {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+
+#manualContainer .mappaposti {
+	min-height: 30rem;
+	margin-top: 2rem;
+
+}
+
+#legenda {display: flex; flex-wrap: wrap;}
+#legenda svg {
+	max-width: 60px;
+	max-height: 60px;
+	padding-top: 1rem;
+}
+
+#legenda .legLabel {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+
+#legenda .labelContLeg {
+	display: flex;
+	align-items: center
+
+}
+
+/*roba di js*/
+svg .sfondosvg {
+	fill: #2725AD;
+}
+
+svg .letteraFila {
+	fill: #FFF;
+	font-weight: bolder;
+}
+
+svg .codicePosto {
+	fill: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+svg .seat, svg .legSvg {
+	cursor: pointer;
+}
+
+svg .linex {
+	stroke: #000;
+	stroke-width: 4;
+}
+
+svg .libero {
+	fill: #FFF;
+}
+
+svg .occupato {
+	fill: #F84444;
+	text-decoration-color: #000;
+}
+
+svg .nascondilinea {
+	display: none;
+}
+
+svg .libero.selezionato {
+	fill: #AC940C;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+svg .libero.selezionato .codicePosto{
+	text-decoration: underline;
+}
+
+/* pagina conferma*/
+#riepilogo {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	margin-top: 1.5rem;
+}
+
+#riepilogo li{
+	padding-top: 0.5rem;
+}
+
+#codice_acq {
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+#confermaAcq a {
+	display: block;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+p.warning {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	border: 4px dotted var(--secondary-color);
+	padding: 0.5rem;
+}
+
+.hide {
+	display: none;
+}
+
+.aiutocompilaz {
+	margin-top: 0.5rem;
+	color: #f00;
+}
+
+
+/*stile info e costi*/
+#content.infocosti ul {
+	font-size: 1.2rem;
+
+	/*default*/
+	display:block;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 40px;
+
+}
+
+#content.infocosti p {
+	font-size: 1.2rem;
+}
+
+#content.infocosti section {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+#content.infocosti h3 {
+	margin-bottom: 1rem;
+}
+
+#content.infocosti h4 {
+	margin-top: 0.5rem;
+}
+
+#content.infocosti table {
+	margin:auto;
+	border: 2px solid #f00;
+	border-collapse:collapse;
+
+}
+
+#content.infocosti table th,
+#content.infocosti table td {
+	border: 2px solid #f00;
+	padding: 0.4rem 0.8rem;
+	text-align:center;
+}
+
+#content.infocosti th {
+	max-width: 15rem;
+	background-color: #757575;
+	font-size: 1.2rem;
+}
+
+#content.infocosti thead {
+	background-color: #757575;
+}
+
+
 @media print{
-    
+
+
     body, #content {
         page-break-inside: auto;
     }
-    #content> * {
-        page-break-inside: avoid;
+
+        #content > * {
+            page-break-inside: avoid;
+        }
+
+    div {
+
+        page-break-before: avoid;
+        page-break-after: auto;
     }
-    div{
-        page-break-before:avoid;
-        page-break-after:auto;
-    }
+
+
+	#confermaAcq .warning {
+		visibility: hidden;
+	}
+
+	#menubutton {
+		display:none;
+	}
+
 }
+

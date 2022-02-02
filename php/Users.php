@@ -67,7 +67,7 @@ class Users
                 $preparedQuery->execute();
                 $resultCast = $preparedQuery->get_result();
 
-                
+
 
                 if ($resultCast->num_rows > 0)
                 {
@@ -76,7 +76,7 @@ class Users
 					$_SESSION["b"] = $row["Email"];
 
                     $db2 = SingletonDB::getInstance();
-                    $query2 = "SELECT username FROM Amministratori WHERE username=?";
+                    $query2 = "SELECT Username FROM Amministratori WHERE Username=?";
                     $preparedQuery2 = $db2->getConnection()->prepare($query2);
                     $preparedQuery2->bind_param("s", $row["Username"]);
 
@@ -94,7 +94,7 @@ class Users
                     }
                     $db->disconnect();
                     $preparedQuery->close();
-                    header("location:home.php");                    
+                    header("location:home.php");
                 }
                 else
                 {
@@ -225,7 +225,7 @@ class Users
             $row = $resultCast->fetch_assoc();
 			$home_content = file_get_contents("../html/items/updateProfile_content.html");
 			if($resultCast->num_rows > 0){
-			
+
 		     $home_content = str_replace("<USERNAME>", $row["Username"] ,  $home_content);
 		     $home_content = str_replace("<NOME>",  $row["Nome"] ,  $home_content);
 		     $home_content = str_replace("<COGNOME>", $row["Cognome"] ,  $home_content);
@@ -237,7 +237,7 @@ class Users
 				$error=$_GET["error"];
 
 				if($error==3)
-				$home_content = str_replace("<ERRORMESSAGE>", "Email/Username già registrati", $home_content);
+				$home_content = str_replace("<ERRORMESSAGE>", "Email e username già registrati", $home_content);
 
 				if($error==2)
 				$home_content = str_replace("<ERRORMESSAGE>", "Username già registrato", $home_content);

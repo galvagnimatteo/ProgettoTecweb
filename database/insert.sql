@@ -399,6 +399,8 @@ VALUES
 
 INSERT INTO Utente (Username, Nome, Cognome, Password, Email)
 VALUES
+("admin", 'admin', 'admin', 'admin', 'admin@admin.it'),
+("user", 'user', 'user', 'user', 'user@user.it'),
 ("username1", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
 ("username2", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),
 ("username3", 'Gino', 'Ginetto', 'ngjaoag', 'asdfg@grim.com'),

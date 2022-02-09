@@ -83,7 +83,7 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
 
         $card_prog_item = str_replace(
             "<SRCIMG>",
-            $row["SrcImg"],
+            "../images/" . $row["SrcImg"],
             $card_prog_item
         );
 

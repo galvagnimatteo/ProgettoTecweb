@@ -157,13 +157,14 @@ a:visited:not(.carouselContainer a:visited){
 .js .quickPurchaseContainer form select, .js .quickPurchaseContainer form button{
     background: none; /*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
     font-size: 1.1rem;
-    width: 25%;
+    min-width: 20%;
     border: none;
     padding: 0.3rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     outline: 0;
 }
+
 .js .quickPurchaseContainer form select{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -581,6 +582,10 @@ padding-left:2.5rem;
 	display:flex;
 	align-items: flex-start;
 }
+
+#filmDataContainer img{
+    width: 20rem;
+}
 #filmData {
 	margin: 0.5rem;
 	padding: 0.5rem;
@@ -746,7 +751,7 @@ div.labelqp select {
     #loginLink{
         margin-left: 0;
     }
-		
+
 	div.labelqp label {
 		margin-left: 1rem;
 		text-align: start;
@@ -803,7 +808,7 @@ div.labelqp select {
     }
 
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 480px) {
 	#filmDataContainer img {
 		margin: auto;
         width: 100%;

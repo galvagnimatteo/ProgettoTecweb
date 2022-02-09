@@ -38,12 +38,12 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
             if($carouselFilms == 0){
 
                 $carouselImages = '<li class="slide not-hidden">
-                    <img src="' . $row["CarouselImg"] . '" alt="' . 'Locandina ' . $row["Titolo"] . '"/>
+                    <img src="../images/' . $row["CarouselImg"] . '" alt="' . 'Locandina ' . $row["Titolo"] . '"/>
                 </li>';
 
             }else{
                 $carouselImages = $carouselImages . '<li class="slide">
-                    <img src="' . $row["CarouselImg"] . '" alt="' . 'Locandina ' . $row["Titolo"] . '"/>
+                    <img src="../images/' . $row["CarouselImg"] . '" alt="' . 'Locandina ' . $row["Titolo"] . '"/>
                 </li>';
             }
 
@@ -84,7 +84,7 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
 
         $card_home_item = str_replace(
             "<SRCIMG>",
-            $row["SrcImg"],
+            "../images/" . $row["SrcImg"],
             $card_home_item
         );
 

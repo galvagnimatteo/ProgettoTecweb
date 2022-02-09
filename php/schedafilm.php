@@ -103,7 +103,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $schedafilm_content = str_replace(
             "<FILM-IMG>",
             '<img src=\'' .
-                $dataFilm["SrcImg"] .
+                "../images/" . $dataFilm["SrcImg"] .
                 ' \' alt=\'' .
                 "Locandina " . $dataFilm["Titolo"] .
                 '\'/>',

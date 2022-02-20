@@ -2,8 +2,11 @@
 	session_start();
 	include "SingletonDB.php";
 	include "utils/prenotaPosti.php";
-	include "utils/mappaPosti.php";
-	
+	include "utils/mappaPosti.php";	
+	include "pageGenerator.php";
+	//CheckSession($login_required, $admin_required);
+	CheckSession(false,false); //refresh della sessione se scaduta
+
 	function pulisci(&$value) {
 	// elimina gli spazi
         $value = trim($value);
@@ -134,58 +137,11 @@
 	
 	
 	function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti) {
-		//pagina conferma
-		$document = file_get_contents("../html/template.html");
+		//pagina conferma		
 		$acquistoconferma_content = file_get_contents("../html/acquistoconferma_content.html");
 		
 		//SESSION
-			if (isset($_SESSION["a"])) {
-				$acquistoconferma_content = str_replace("<CLASS-WARNING>", "hide" ,$acquistoconferma_content);
-
-				$document = str_replace("<LOGIN>", $_SESSION["a"], $document);
-				$document = str_replace(
-					"<LINK>",
-					"./area_utenti.php?action=getProfile",
-					$document
-				);
-			} else {
-				$acquistoconferma_content = str_replace("<CLASS-WARNING>", "" ,$acquistoconferma_content);				
-				$document = str_replace("<LOGIN>", "Login", $document);
-				$document = str_replace(
-					"<LINK>",
-					"./area_utenti.php?action=login_page",
-					$document
-				);
-			}
-			
-			if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-				$document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
-			}
-			else {
-				$document = str_replace("<ADMIN>","",$document);
-			}
-			
-			$document = str_replace(
-				"<PAGETITLE>",
-				"Conferma acquisto biglietti per " . $_POST["titoloFilm"] . " - PNG Cinema",
-				$document
-			);
-			$document = str_replace("<KEYWORDS>", "Acquisto, biglietti, ".$_POST["titoloFilm"], $document);
-			$document = str_replace(
-				"<DESCRIPTION>",
-				"Pagina conferma acquisto: " . $_POST["titoloFilm"],
-				$document
-			);
-			$document = str_replace(
-				"<BREADCRUMB>",
-				"Conferma acquisto",
-				$document
-			);
-			
-			$document = str_replace("<JAVASCRIPT-HEAD>", '<meta name="robots" content="noindex" follow /> ' . //lo attacco da qua perche non ho voglia di modificare tutto
-														' <script src="../js/promptonclose.js"></script>', $document);
-			$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-		
+	
 			$acquistoconferma_content = str_replace("<FILM-TITLE>", $_POST["titoloFilm"] ,$acquistoconferma_content);
 			$acquistoconferma_content = str_replace("<NUM-BIGLIETTI>", $totNumBiglietti ,$acquistoconferma_content);
 			$acquistoconferma_content = str_replace("<NUM-BIGLIETTI-INT-RID>", 
@@ -200,10 +156,14 @@
 			$acquistoconferma_content = str_replace("<TOT-SPESO>", floatval($_POST["pint"]) * intval($_POST["numTicketIntero"]) + 
 																floatval($_POST["prid"]) * intval($_POST["numTicketRidotto"]) ,
 																$acquistoconferma_content);
-			
-			
-			$document = str_replace("<CONTENT>", $acquistoconferma_content, $document);
-			echo $document;
+			$title ="Conferma acquisto  ".$_POST["titoloFilm"]." - PNG Cinema";
+			$keywords ="Acquisto, biglietti, ".$_POST["titoloFilm"];
+			$description = "pagina di conferma acquisto biglietti per ".$_POST["titoloFilm"];
+			$breadcrumbs ='Conferma acquisto';
+			$jshead='<meta name="robots" content="noindex" follow /> ' . //lo attacco da qua perche non ho voglia di modificare tutto
+														' <script src="../js/promptonclose.js"></script>';
+			//GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+			echo GeneratePage("Info e Costi",$acquistoconferma_content,$breadcrumbs,$title,$description,$keywords,$jshead,"");
 		
 	}
 ?>

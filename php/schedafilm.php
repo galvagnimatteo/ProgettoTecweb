@@ -4,6 +4,9 @@ session_start();
 include "SingletonDB.php";
 include "utils/createCastStr.php";
 include "utils/generateItalianDate.php";
+include "pageGenerator.php";
+//CheckSession($login_required, $admin_required);
+CheckSession(false,false); //refresh della sessione se scaduta
 
 if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
     $db = SingletonDB::getInstance();
@@ -45,55 +48,10 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $dataFilm = $result1->fetch_assoc();
         $cast = createCastStr($result2);
 
-        $document = file_get_contents("../html/template.html");
-		//SESSION
-			if (isset($_SESSION["a"])) {
-		$document = str_replace("<LOGIN>", $_SESSION["a"], $document);
-		$document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=getProfile",
-        $document
-			);
-		} else {
-    $document = str_replace("<LOGIN>", "Login", $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=login_page",
-        $document
-			);
-		}
         $schedafilm_content = file_get_contents(
             "../html/schedafilm_content.html"
         );
-		//endS
-        $document = str_replace(
-            "<PAGETITLE>",
-            $dataFilm["Titolo"] . " - PNG Cinema",
-            $document
-        );
-        $document = str_replace("<KEYWORDS>", $dataFilm["Titolo"], $document);
-        $document = str_replace(
-            "<DESCRIPTION>",
-            "Scheda informativa del film: " . $dataFilm["Titolo"],
-            $document
-        );
-        $document = str_replace(
-            "<BREADCRUMB>",
-            '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
-            'Scheda Film: ' .
-            $dataFilm["Titolo"],
-            $document
-        );
-
-		if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-			$document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
-		}
-		else {
-			$document = str_replace("<ADMIN>","",$document);
-		}
-
-        $document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
-        $document = str_replace("<JAVASCRIPT-BODY>", "", $document);
+        
 
         $schedafilm_content = str_replace(
             "<FILM-TITLE>",
@@ -203,10 +161,14 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
 
         } //else nessun problema, il film non ha programmazioni in corso
-
-        $document = str_replace("<CONTENT>", $schedafilm_content, $document);
-
-        echo $document;
+        $title = $dataFilm["Titolo"] . " - PNG Cinema";
+        $keywords = $dataFilm["Titolo"];
+        $description ="Scheda informativa del film: " . $dataFilm["Titolo"];
+        $breadcrumb ='<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
+            'Scheda Film: ' .
+            $dataFilm["Titolo"];
+        //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+        echo GeneratePage("login",$schedafilm_content,$breadcrumbs,'Login - PNG Cinema',$description,$keywords,$jshead,"");
     } else {
         header("Location: 404.php");
         die();

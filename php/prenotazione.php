@@ -4,7 +4,9 @@ session_start();
 	include "utils/generateSVG.php";
 	include "utils/generateItalianDate.php";
 	include "utils/mappaPosti.php";
-	
+	include "pageGenerator.php";
+	//CheckSession($login_required, $admin_required);
+	CheckSession(false,false); //refresh della sessione se scaduta
 	$idproiez = -1;
 	$orario = '';
 	if(isset($_GET["idproiez"]) && is_numeric($_GET["idproiez"])) {
@@ -69,56 +71,11 @@ session_start();
 			die();
 		}
 		
-		$document = file_get_contents("../html/template.html");
 		$prenotazione_content = file_get_contents("../html/prenotazione_content.html");
 		
-		//SESSION
-		if (isset($_SESSION["a"])) {
-			$document = str_replace("<LOGIN>", $_SESSION["a"], $document);
-			$document = str_replace(
-				"<LINK>",
-				"./area_utenti.php?action=getProfile",
-				$document
-			);
-		} else {
-			$document = str_replace("<LOGIN>", "Login", $document);
-			$document = str_replace(
-				"<LINK>",
-				"./area_utenti.php?action=login_page",
-				$document
-			);
-		}
 		
-		if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-			$document = str_replace("<ADMIN>","<li><a href='admin.php'>Amministrazione</a></li>",$document);
-		}
-		else{
-			$document = str_replace("<ADMIN>","",$document);
-		}
 		
-		$document = str_replace(
-            "<PAGETITLE>",
-            "Acquista biglietti per " . $dataFilm["Titolo"] . " - PNG Cinema",
-            $document
-        );
-        $document = str_replace("<KEYWORDS>", "Acquista, biglietti, ".$dataFilm["Titolo"], $document);
-        $document = str_replace(
-            "<DESCRIPTION>",
-            "Scheda informativa del film: " . $dataFilm["Titolo"],
-            $document
-        );
-        $document = str_replace(
-            "<BREADCRUMB>",
-            '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
-                $dataFilm["ID"] . '"' .
-                '>Scheda Film: ' .
-                $dataFilm["Titolo"] .
-                "</a>" . ' / Acquisto biglietti' ,
-            $document
-        );
 		
-		$document = str_replace("<JAVASCRIPT-HEAD>", '<script  src="../js/panzoom.min.js"> </script>', $document);
-		$document = str_replace("<JAVASCRIPT-BODY>", '<script src="../js/controlliAcquisto.js"> </script>', $document);
 		
 		$prenotazione_content = str_replace("<FILM-TITLE>", $dataFilm["Titolo"], $prenotazione_content);
 		$prenotazione_content = str_replace("<PROJ-DATA>", $italianDate, $prenotazione_content);
@@ -157,10 +114,21 @@ session_start();
 		} else {
 			$prenotazione_content = str_replace("<ERRORE-SERVER>", "" , $prenotazione_content);
 		}
+
+		$title ="Acquista biglietti per " . $dataFilm["Titolo"] . " - PNG Cinema";
+        $keywords = "Acquista, biglietti, ".$dataFilm["Titolo"];
+        $description ="Scheda informativa del film: " . $dataFilm["Titolo"];
+        $breadcrumb = '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
+                $dataFilm["ID"] . '"' .
+                '>Scheda Film: ' .
+                $dataFilm["Titolo"] .
+                "</a>" . ' / Acquisto biglietti' ;
 		
+		$jshead = '<script  src="../js/panzoom.min.js"> </script>';
+		$jsbody = '<script src="../js/controlliAcquisto.js"> </script>';
 		
-		$document = str_replace("<CONTENT>", $prenotazione_content, $document);
-		echo $document;
+		//GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+		echo GeneratePage("Programmazione",$prenotazione_content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 	} else {
 		header("Location: 404.php");
         die();

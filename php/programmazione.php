@@ -3,6 +3,11 @@ session_start();
 
 include "SingletonDB.php";
 include "utils/createCastStr.php";
+include "pageGenerator.php";
+//CheckSession($login_required, $admin_required)
+CheckSession(false,false); //refresh della sessione se scaduta
+
+
 
 $document = file_get_contents("../html/template.html");
 $programmazione_content = file_get_contents(
@@ -105,53 +110,9 @@ $programmazione_content = str_replace(
     $programmazione_content
 );
 
-$document = str_replace(
-    "<PAGETITLE>",
-    "Programmazione - PNG Cinema",
-    $document
-);
-$document = str_replace(
-    "<KEYWORDS>",
-    "programmazione, ultime uscite, ultimi film, film programmati, film in programma",
-    $document
-);
-$document = str_replace(
-    "<DESCRIPTION>",
-    "Pagina sulla programmazione: è possibile consultare i film e le opere in programma nelle prossime settimane.",
-    $document
-);
-$document = str_replace(
-    "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / Programmazione',
-    $document
-);
-
-$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
-$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-$document = str_replace('<a href="./programmazione.php">Programmazione</a>', "<p>Programmazione</p>", $document);
-$document = str_replace("<CONTENT>", $programmazione_content, $document);
-if (isset($_SESSION["a"])) {
-    $document = str_replace("<LOGIN>", $_SESSION["a"], $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=getProfile",
-        $document
-    );
-} else {
-    $document = str_replace("<LOGIN>", "Login", $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=login_page",
-        $document
-    );
-}
-
-if(isset($_SESSION["admin"], $_SESSION["admin"])){
-    $document = str_replace("<ADMIN>","<ul><li><a href='admin.php'>Amministrazione</a></li></ul>",$document);
-}
-else{
-    $document = str_replace("<ADMIN>","",$document);
-}
-echo $document;
-
+$keywords="programmazione, ultime uscite, ultimi film, film programmati, film in programma";
+$description="Pagina sulla programmazione: è possibile consultare i film e le opere in programma nelle prossime settimane.";
+$breadcrumbs='<a href="home.php">Home</a> / Programmazione';
+//GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+echo GeneratePage("Programmazione",$programmazione_content,$breadcrumbs,"Programmazione - PNG Cinema",$description,$keywords,"","");
 ?>

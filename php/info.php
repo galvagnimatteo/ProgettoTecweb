@@ -1,53 +1,15 @@
 <?php
 session_start();
-$document = file_get_contents("../html/template.html"); //load template
+include "pageGenerator.php";
+//CheckSession($login_required, $admin_required);
+CheckSession(false,false); //refresh della sessione se scaduta
 $home_content = file_get_contents("../html/info_content.html"); //load content
 
-$document = str_replace("<PAGETITLE>", "Info e Costi - PNG Cinema", $document);
-$document = str_replace(
-    "<KEYWORDS>",
-    "info, costi, costo biglietto, convenzioni, sconti",
-    $document
-);
-$document = str_replace(
-    "<DESCRIPTION>",
-    "Pagina informativa sui costi: è possibile consultare prezzi e convenzioni sui biglietti.",
-    $document
-);
-$document = str_replace(
-    "<BREADCRUMB>",
-    '<a href="home.php">Home</a> / Info e Costi',
-    $document
-);
+$title ="Info e Costi - PNG Cinema";
+$keywords ="info, costi, costo biglietto, convenzioni, sconti";
+$description = "Pagina informativa sui costi: è possibile consultare prezzi e convenzioni sui biglietti.",;
+$breadcrumbs ='<a href="home.php">Home</a> / Info e Costi';
 
-$document = str_replace("<JAVASCRIPT-HEAD>", "", $document);
-$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-
-if (isset($_SESSION["a"])) {
-    $document = str_replace("<LOGIN>", $_SESSION["a"], $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=getProfile",
-        $document
-    );
-} else {
-    $document = str_replace("<LOGIN>", "Login", $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=login_page",
-        $document
-    );
-}
-if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-    $document = str_replace("<ADMIN>","<ul><li><a href='admin.php'>Amministrazione</a></li></ul>",$document);
-}
-else{
-    $document = str_replace("<ADMIN>","",$document);
-}
-
-$document = str_replace('<a href="./info.php">Info e Costi</a>', "<p>Info e Costi</p>", $document);
-$document = str_replace("<CONTENT>", $home_content, $document);
-
-echo $document;
-
+//GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+echo GeneratePage("Info e Costi",$home_content,$breadcrumbs,$title,$description,$keywords,"","");
 ?>

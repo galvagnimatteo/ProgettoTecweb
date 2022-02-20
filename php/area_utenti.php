@@ -1,49 +1,10 @@
 <?php
 
 session_start();
-$now = time();
-if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
-
-	unset($_SESSION["a"]);
-
-    session_unset();
-    session_destroy();
-    session_start();
-	header("location:area_utenti.php?action=login_page");
-}
-
-$_SESSION["discard_after"] = $now + 400;
-
-$document = file_get_contents("../html/template.html"); //load template
+include "pageGenerator.php";
+//CheckSession($login_required, $admin_required);
+CheckSession(false,false); //refresh della sessione se scaduta
 $home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
-$document = str_replace('<PAGETITLE>', 'Login - PNG Cinema', $document);
-$document = str_replace('<KEYWORDS>', 'Login', $document);
-$document = str_replace('<DESCRIPTION>', 'Pagina di login', $document);
-
-$document = str_replace(
-    "<BREADCRUMB>", '<a href="home.php">Home</a> / <p> Area Utenti</p>', $document
-);
-$document = str_replace("<JAVASCRIPT-HEAD>", '<script type="text/javascript" src="../js/controls.js"> </script>', $document);
-
-$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-
-if (isset($_SESSION["a"])) {
-    $document = str_replace("<LOGIN>", $_SESSION["a"], $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=getProfile",
-        $document
-    );
-
-    $home_content = file_get_contents("../html/home_content.html");
-} else {
-    $document = str_replace("<LOGIN>", "Login", $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=login_page",
-        $document
-    );
-}
 
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
@@ -205,18 +166,6 @@ if (isset($_GET["action"])) {
     $home_content = file_get_contents(
         "../html/area_utenti_register_content.html"
     );
-    $document = str_replace("<LOGIN>", "Login", $document);
-}
-
-
-
-
-if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-    $document = str_replace("<ADMIN>","<ul><li><a href='admin.php'>Amministrazione</a></li></ul>",$document);
-}
-else{
-    $document = str_replace("<ADMIN>","",$document);
-
 }
 if(isset($_GET["errorLogin"]))
 {
@@ -226,7 +175,12 @@ if(isset($_GET["errorLogin"]))
 
 $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancora presente <errormessage> viene tolto, non funziona se non presente (già sostituito con errore)
 
-$document = str_replace("<CONTENT>", $home_content, $document);
-echo $document;
+
+$description = 'Pagina di login';
+$keywords = 'Login';
+$breadcrumb='<p><a href="home.php">Home</a> /  Area Utenti</p>';
+$jshead '<script type="text/javascript" src="../js/controls.js"> </script>';
+//GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+echo GeneratePage("login",$home_content,$breadcrumbs,'Login - PNG Cinema',$description,$keywords,$jshead,"");
 
 ?>

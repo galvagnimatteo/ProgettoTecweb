@@ -1,19 +1,11 @@
 <?php
 session_start();
-$now = time();
-if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
-    session_unset();
-    session_destroy();
-    session_start();
-}
-$_SESSION["discard_after"] = $now + 400;
-
+include "pageGenerator.php";
 include "SingletonDB.php";
+//CheckSession($login_required, $admin_required);
+CheckSession(false,false); //refresh della sessione se scaduta
 
-$document = file_get_contents("../html/template.html");
 $home_content = file_get_contents("../html/home_content.html");
-$document = str_replace('<PAGETITLE>', 'PNG Cinema', $document);
-$document = str_replace('<KEYWORDS>', '', $document);
 $quickpurchase_films = "";
 $cards = "";
 
@@ -108,65 +100,20 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
                   <p class="errorDescription"> Nessun film in programmazione nelle prossime settimane. </p>';
 
 }
-
-$document = str_replace("<PAGETITLE>", "Home - PNG Cinema", $document);
-$document = str_replace(
-    "<KEYWORDS>",
-    "ultime uscite, acquisto, acquisto rapido",
-    $document
-);
-$document = str_replace(
-    "<DESCRIPTION>",
-    "Pagina principale: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.",
-    $document
-);
-$document = str_replace(
-    "<BREADCRUMB>",
-    'Home / ',
-    $document
-);
-
-$document = str_replace(
-    "<JAVASCRIPT-HEAD>",
-    '<script type="text/javascript" src="../js/carousel.js"> </script>',
-    $document
-);
-$document = str_replace(
-    "<JAVASCRIPT-BODY>",
-    '<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
-                            <script type="text/javascript" src="../js/quickpurchase.js"> </script>',
-    $document
-);
-
 $home_content = str_replace(
     "<FILM-OPTIONS>",
     $quickpurchase_films,
     $home_content
 );
 $home_content = str_replace("<CARDS-HOME>", $cards, $home_content);
-$document = str_replace('<a href="./home.php" lang="en">Home</a>', '<p><span lang="en"> Home <span></p>', $document);
-$document = str_replace("<CONTENT>", $home_content, $document);
 
-if (isset($_SESSION["a"])) {
-    $document = str_replace("<LOGIN>", $_SESSION["a"], $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=getProfile",
-        $document
-    );
-} else {
-    $document = str_replace("<LOGIN>", "Login", $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=login_page",
-        $document
-    );
-}
-if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-    $document = str_replace("<ADMIN>","<ul><li><a href='admin.php'>Amministrazione</a></li></ul>",$document);
-}
-else{
-    $document = str_replace("<ADMIN>","",$document);
-}
-echo $document;
+$title ="Home - PNG Cinema";
+$keywords ="ultime uscite, acquisto, acquisto rapido";
+$description = "Pagina principale: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.";
+$breadcrumbs ='Home / ';
+$jshead='<script type="text/javascript" src="../js/carousel.js"> </script>';
+$jsbody='<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
+                            <script type="text/javascript" src="../js/quickpurchase.js"> </script>';
+//GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+echo GeneratePage("Info e Costi",$home_content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 ?>

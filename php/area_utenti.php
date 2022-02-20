@@ -178,7 +178,7 @@ $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancor
 
 $description = 'Pagina di login';
 $keywords = 'Login';
-$breadcrumb='<a href="home.php">Home</a> / <p> Area Utenti</p>';
+$breadcrumb='<p><a href="home.php">Home</a> /  Area Utenti</p>';
 $jshead '<script type="text/javascript" src="../js/controls.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage("login",$home_content,$breadcrumbs,'Login - PNG Cinema',$description,$keywords,$jshead,"");

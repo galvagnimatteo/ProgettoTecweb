@@ -33,8 +33,8 @@ $menuvoices=[
     "Info e Costi" => "info.php",
 ];
 function GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody){
-    GLOBAL$site_template;
-    GLOBAL$menuvoices;
+    GLOBAL $site_template;
+    GLOBAL $menuvoices;
     $output= $site_template;
     $output = str_replace('<PAGETITLE/>', $title, $output);
     $output = str_replace('<KEYWORDS/>', $keywords, $output);

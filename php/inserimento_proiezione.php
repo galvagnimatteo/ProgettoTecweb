@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once "SingletonDB.php";
-include "pageGenerator.php";
+include "utils/pageGenerator.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(true,true); //verifica che la sessione sia un utente loggato ed un admin
 

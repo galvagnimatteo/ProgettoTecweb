@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "pageGenerator.php";
+include "utils/pageGenerator.php";
 
 CheckSession(true,true); //verifica che la sessione sia un utente loggato ed un admin
 $content=file_get_contents("../html/admin.html");

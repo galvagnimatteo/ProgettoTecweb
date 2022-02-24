@@ -42,7 +42,8 @@ function GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,
     $output = str_replace("<JAVASCRIPT-HEAD/>", $jshead, $output);
     $menu='<ul id="menu" class="closedMenu">';
     foreach($menuvoices as $name => $link){
-        if($name!=$page){
+        
+		if($name!=$page){
             $menu=$menu."<li><a href=".$link.">".$name."</a></li>";
         }
         else{

@@ -116,5 +116,5 @@ $jshead='<script type="text/javascript" src="../js/carousel.js"> </script>';
 $jsbody='<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
                             <script type="text/javascript" src="../js/quickpurchase.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
-echo GeneratePage("Info e Costi",$home_content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+echo GeneratePage("Home",$home_content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 ?>

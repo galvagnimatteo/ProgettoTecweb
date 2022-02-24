@@ -3,7 +3,7 @@
 	include "SingletonDB.php";
 	include "utils/prenotaPosti.php";
 	include "utils/mappaPosti.php";	
-	include "pageGenerator.php";
+	include "utils/pageGenerator.php";
 	//CheckSession($login_required, $admin_required);
 	CheckSession(false,false); //refresh della sessione se scaduta
 

@@ -4,7 +4,7 @@ session_start();
 include "SingletonDB.php";
 include "utils/createCastStr.php";
 include "utils/generateItalianDate.php";
-include "pageGenerator.php";
+include "utils/pageGenerator.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false,false); //refresh della sessione se scaduta
 

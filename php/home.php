@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "pageGenerator.php";
+include "utils/pageGenerator.php";
 include "SingletonDB.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false,false); //refresh della sessione se scaduta
@@ -22,6 +22,7 @@ $db->disconnect();
 if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
     $card_home_template = file_get_contents("../html/items/card-home.html");
     $carouselFilms = 0;
+    $carouselImages="";
 
     while ($row = $resultFilms->fetch_assoc()) {
 

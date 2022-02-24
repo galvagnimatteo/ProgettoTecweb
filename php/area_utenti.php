@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include "pageGenerator.php";
+include "utils/pageGenerator.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false,false); //refresh della sessione se scaduta
 $home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
@@ -178,8 +178,8 @@ $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancor
 
 $description = 'Pagina di login';
 $keywords = 'Login';
-$breadcrumb='<p><a href="home.php">Home</a> /  Area Utenti</p>';
-$jshead '<script type="text/javascript" src="../js/controls.js"> </script>';
+$breadcrumbs='<p><a href="home.php">Home</a> /  Area Utenti</p>';
+$jshead ='<script type="text/javascript" src="../js/controls.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage("login",$home_content,$breadcrumbs,'Login - PNG Cinema',$description,$keywords,$jshead,"");
 

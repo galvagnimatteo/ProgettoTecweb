@@ -4,7 +4,7 @@ session_start();
 	include "utils/generateSVG.php";
 	include "utils/generateItalianDate.php";
 	include "utils/mappaPosti.php";
-	include "pageGenerator.php";
+	include "utils/pageGenerator.php";
 	//CheckSession($login_required, $admin_required);
 	CheckSession(false,false); //refresh della sessione se scaduta
 	$idproiez = -1;

@@ -41,6 +41,7 @@ document.getElementById("purchaseTicketForm").addEventListener("submit", functio
 	var arrPosti = document.getElementById("seatsString").value.split(",");
 	var numPostiSelez = arrPosti.length;
 	console.log(numPostiSelez);
+	
 	if (tot == 0) {
 		aiuto[0].setAttribute("class", "aiutocompilaz");
 		aiuto[1].setAttribute("class", "aiutocompilaz");
@@ -49,12 +50,13 @@ document.getElementById("purchaseTicketForm").addEventListener("submit", functio
 		event.preventDefault(); // non fa submit
 		
 		return false; //su qualche browser senza questo non va
-	} else if (tot > numPostiSelez) {
+	} else if (tot > numPostiSelez && manualRadioBtn.checked) {
 		aiuto[2].setAttribute("class", "aiutocompilaz");
 		event.preventDefault(); 
 		
 		return false;
 	}
+	
 	
 });
 

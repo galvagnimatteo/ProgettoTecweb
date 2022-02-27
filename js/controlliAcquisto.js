@@ -67,8 +67,8 @@ var inputListaPosti = document.getElementById("seatsString");
 
 for (var i = 0; i < posti.length; i++) {
 	var posto = posti[i];
-	
-	posto.addEventListener("click", selezionePosto);
+	if (posto.getAttribute("class") != "seat occupato")
+		posto.addEventListener("click", selezionePosto);
 }
 
 changeCard(null);

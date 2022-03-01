@@ -312,18 +312,34 @@ programmazione.html
 
 .cards_reservation{
 display:grid;
-grid-template-columns: 1fr;
+grid-template-columns: 1fr 1fr;
 
 grid-template-areas:
-	"a";
+	"a b ";
 	
-	grid-column-gap: 0.2em;
-	grid-row-gap:0em;
+	
+	grid-column-gap:1em;
+	grid-row-gap:2em;
+	  border-style: solid;
+border-color: red;
+
+margin:0.3em;
+border-width: thin;
+border-radius:1rem;
 }
 .card1_reservation{ 
 	grid-area: a;
 }
 
+.card2_reservation{ 
+	grid-area: b;
+}
+
+.div_register.reservation{
+	
+	width:100%;
+	display:inline-block;
+}
 
 .cards_users{
 display:grid;
@@ -352,8 +368,17 @@ grid-template-areas:
 		  padding:0em;
 	}  
 	}
+@media screen and (max-width: 420px) {
 	
+   .cards_users{
+  display:block;
+   }
+   .cards_reservation{
+	     display:block;
+   }
+}	
 	
+
 
 
 

@@ -242,14 +242,7 @@ class Users
             $preparedQuery->close();
             $row = $resultCast->fetch_assoc();
 			$home_content = file_get_contents("../html/items/updateProfile_content.html");
-			/*
-			if(isset($scelta) && $scelta==1){
-			$home_content = file_get_contents("../html/items/updateProfile_content.html");
-			}else{
-			if(isset($scelta) && $scelta==2){
-			$home_content = file_get_contents("../html/items/updatePassword_content.html");
-			}
-			}	*/
+			
 			if($resultCast->num_rows > 0){
 
 		     $home_content = str_replace("<USERNAME>", $row["Username"] ,  $home_content);
@@ -320,25 +313,22 @@ class Users
 
             $newusername = $_POST["username_profile"];
             $oldusername = $_SESSION["a"];
-          //  $password = $_POST["password_profile"];
-            $name = $_POST["name_profile"];
+			$name = $_POST["name_profile"];
             $surname = $_POST["surname_profile"];
             $email = $_POST["email_profile"];
-            //$confirm_password = $_POST["pass_profile_confirm"];
-			//$hash = password_hash($password, PASSWORD_DEFAULT);
-           // $result = registerControls($newusername, $name, $surname, $email, $password, $confirm_password);
+          
             $result = registerControls($newusername, $name, $surname, $email, nil ,nil);
 
             if($result == "OK"){
 
                 $db = SingletonDB::getInstance();
 
-               // $query = "UPDATE Utente SET Username=?, Nome=?, Cognome=?, Password=?,Email=? WHERE Username=?";
+         
                 $query = "UPDATE Utente SET Username=?, Nome=?, Cognome=?,Email=? WHERE Username=?";
                 if ($preparedQuery = $db->getConnection()
                     ->prepare($query))
                 {
-                    //$preparedQuery->bind_param("ssssss", $newusername, $name, $surname, $hash, $email, $oldusername);
+                    
                     $preparedQuery->bind_param("sssss", $newusername, $name, $surname,$email, $oldusername);
 
                     $preparedQuery->execute();
@@ -347,7 +337,7 @@ class Users
                     $preparedQuery->close();
                     $_SESSION["a"] = $newusername;
 					$_SESSION["b"] = $email;
-					//$_SESSION["c"] = $password;
+					
                 }else{
                     header("location:500.php");
                     die();
@@ -377,8 +367,7 @@ class Users
 	if($passOld==nil && isset($pass) && isset($passConf))
 	{
 	$result=loginControls($username, $password);
-/*	if($result!="OK")
-		return array(false,2);	*/
+
 	
 	if($pass!=$passConf)
 		return array(false,3);
@@ -424,13 +413,15 @@ class Users
 	
 	
 	function getHistory(){
-		if(isset($_SESSION["a"]))
+	if(isset($_SESSION["a"]))
 		{
 	$db = SingletonDB::getInstance();
 
-            $query = "SELECT f1.Titolo, p1.NumeroPersone, p1.OraProiezione,pe1.Data,pe1.NumeroSala,pe1.Id
+           $query = "SELECT f1.Titolo, p1.NumeroPersone, p1.OraProiezione,pe1.Data,pe1.NumeroSala,pe1.Id
 						from Prenotazione p1,Film f1,Proiezione pe1
 						WHERE p1.Id=f1.Id AND pe1.Id=p1.Id AND p1.UsernameUtente=?";
+						
+				//$query="SELECT Id,NumeroPersone,IDProiezione,OraProiezione FROM prenotazione WHERE UsernameUtente=? ";	
             $preparedQuery = $db->getConnection()
                 ->prepare($query);
 				
@@ -438,36 +429,37 @@ class Users
             $preparedQuery->bind_param("s", $username);
 
             $preparedQuery->execute();
-            $resultCast = $preparedQuery->get_result();
+            $result = $preparedQuery->get_result();
             $db->disconnect();
             $preparedQuery->close();
-            $row = $resultCast->fetch_assoc();
-			//$home_content = file_get_contents("../html/items/viewHistory_content.html");
-			
+         
 			$tot="";
 			$home_content = file_get_contents("../html/items/viewHistory_content.html");
-			if($resultCast->num_rows > 0){
+			$content=file_get_contents("../html/items/card-reservation.html");
+			if($result->num_rows > 0){
 						
-						while($row=$resultCast->fetch_assoc())	{	
-				 $content=$home_content;
-		     $content = str_replace("<CODICE>", $row["Id"] ,  $content);
-		     $content = str_replace("<TITOLO>", $row["Titolo"] ,  $content);
-		     $content = str_replace("<PERSONE>",  $row["NumeroPersone"] ,  $content);
+						while($row=$result->fetch_assoc())	{	
+		
+			$content=file_get_contents("../html/items/card-reservation.html");
+		     $content = str_replace("<CODICE>",	$row["Id"] ,  $content);
+		    $content = str_replace("<TITOLO>", $row["Titolo"] ,  $content);
+		     $content = str_replace("<PERSONE>",$row["NumeroPersone"] ,  $content);
 		     $content = str_replace("<ORA>", $row["OraProiezione"] ,  $content);
-		     $content = str_replace("<DATA>", $row["Data"],  $content);
-		     $content = str_replace("<SALA>", $row["NumeroSala"],  $content);
+		    $content = str_replace("<DATA>", $row["Data"],  $content);
+		    $content = str_replace("<SALA>", $row["NumeroSala"],  $content);
 			
-		$tot=$tot .$content;
+		$tot=$tot . $content;
+		
 						}
-					
-			}
-			
+		
+		$home_content = 	str_replace("<CARD_RESERVATION>", $tot,  $home_content);
 			
 			
 			
 	}
 	
-	  return $tot;
+	  return $home_content;
+	}
 	}
 	
 }

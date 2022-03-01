@@ -23,7 +23,7 @@ function registerControls($username, $name, $surname, $email, $password, $confir
         return "Il cognome può essere composto da sole lettere.";
 
     }
-/*
+
     if(!str_contains($email, "@")){
 
         return "Chiocciola (@) mancante nell'email.";
@@ -31,7 +31,7 @@ function registerControls($username, $name, $surname, $email, $password, $confir
     }
 	
 	if(pass!=nil){
-    if(strlen($password) < 8 || str_contains($password, " ")){       DA CANCELLARE
+    if(strlen($password) < 8 || str_contains($password, " ")){      
 
         return "La password deve essere di almeno 8 caratteri e non può contenere spazi.";
 
@@ -43,7 +43,7 @@ function registerControls($username, $name, $surname, $email, $password, $confir
 
     }
 	}
-*/
+
     return "OK";
 
 }

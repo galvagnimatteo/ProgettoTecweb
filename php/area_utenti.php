@@ -85,13 +85,32 @@ if (isset($_GET["action"])) {
         }
 
     }
-
+	
+	if ($action =="getHistoryProfile")
+	{
+		include_once "Users.php";
+        $Users = new Users();
+        $home_content = $Users->getHistory();	
+		
+	}	
     if ($action == "getProfile") {
         include_once "Users.php";
         $Users = new Users();
         $home_content = $Users->getProfile();
     }
-
+	 if ($action == "getProfilePassword") {
+        include_once "Users.php";
+        $Users = new Users();
+		$home_content = file_get_contents("../html/items/updatePassword_content.html");
+	}
+	
+	 if ($action == "getDeleteProfile") {
+        include_once "Users.php";
+        $Users = new Users();
+         $home_content = file_get_contents(
+            "../html/items/deleteProfile_content.html"
+        );
+    }
      if ($action == "changeProfile") {
       include_once "Users.php";
         $Users = new Users();
@@ -143,14 +162,36 @@ if (isset($_GET["action"])) {
 	{
 	 include_once "Users.php";
      $Users = new Users();
+	 list($valid,$error)=$Users->checkPassword(nil,$_POST["password_delete"],$_POST["password_delete_confirm"]);
+	 if(!$valid)
+	 {
+		  header("location:area_utenti.php?action=getDeleteProfile&errorPass=".$error);	
+	 }else{
      if($Users->deleteProfile())
 	 {
-		session_destroy();
-		unset($_SESSION["a"]);
-		    header("location:area_utenti.php?action=login_page");
-		 }
+			session_destroy();
+		    header("location:area_utenti.php?action=login_page&errorPass=".$error);
+	 }
+	 }
 	}
+	
+	if($action == "changePassword")
+	{
+	include_once "Users.php";
+    $Users = new Users();
+	list($valid,$error)=$Users->checkPassword($_POST["password_old"],$_POST["password_profile"],$_POST["password_profile_confirm"]);
+	if(!$valid)
+	{
+		
+	header("location:area_utenti.php?action=getProfilePassword&errorPass=".$error);		
+	}else{
+	$Users->changePassword();
+	header("location:area_utenti.php?action=getProfilePassword&errorPass=".$error);
+	}
+	//rimasto qui
 
+	
+	}
 	if($action == "logout")
 	{
 	unset($_SESSION["a"]);
@@ -171,6 +212,30 @@ if(isset($_GET["errorLogin"]))
 {
 	$home_content = str_replace("<ERRORMESSAGE>", "Credenziali errate", $home_content);
 	unset($_GET["errorLogin"]);
+}
+
+if(isset($_GET["errorPass"]))
+{
+	if($_GET["errorPass"]==0)
+		$home_content = str_replace("<ERRORMESSAGE>", "Password cambiata", $home_content);
+		
+
+	if($_GET["errorPass"]==1)
+		$home_content = str_replace("<ERRORMESSAGE>", "Password Errata", $home_content);
+		
+				
+	if($_GET["errorPass"]==3)
+		$home_content = str_replace("<ERRORMESSAGE>", "Le due password non coincidono", $home_content);
+		
+		
+	if($_GET["errorPass"]==2)
+		$home_content = str_replace("<ERRORMESSAGE>", "La password deve essere di almeno 8 caratteri e non può contenere spazi", $home_content);
+	
+		
+	if($_GET["errorPass"]==4)
+		$home_content = str_replace("<ERRORMESSAGE>", "Account eliminato!", $home_content);	
+	
+	unset($_GET["errorPass"]);
 }
 
 $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancora presente <errormessage> viene tolto, non funziona se non presente (già sostituito con errore)

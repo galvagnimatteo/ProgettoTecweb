@@ -309,6 +309,91 @@ programmazione.html
 }
 /*log/reg*/
 
+
+.cards_reservation{
+display:grid;
+grid-template-columns: 1fr;
+
+grid-template-areas:
+	"a";
+	
+	grid-column-gap: 0.2em;
+	grid-row-gap:0em;
+}
+.card1_reservation{ 
+	grid-area: a;
+}
+
+
+.cards_users{
+display:grid;
+grid-template-columns: 0.5fr 1fr 3fr 0.5fr;
+
+grid-template-areas:
+	". c c ."
+	". a b .";
+	padding:2em;
+	grid-column-gap: 0.2em;
+	grid-row-gap:0em;
+}
+
+@media screen and (max-width: 760px) {
+	
+   .cards_users{
+	   grid-template-columns: 1fr;
+grid-template-areas:
+	"c"
+	"a"
+	"b";  
+   }
+}
+@media screen and (max-width: 500px) {
+	  .cards_users{
+		  padding:0em;
+	}  
+	}
+	
+	
+
+
+
+.card1_users{ 
+	grid-area: a;
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+	display:flex;
+}
+.card2_users{
+	grid-area: b;
+}
+.div_user.card3_users{
+	width:100%;
+	grid-area: c;
+}	
+.div_register.profile{
+	width: 100%;
+}
+.cards_users ul {
+	 list-style-type: none;
+	display:block !important;
+	
+	margin:1em;
+	font-size:0.8em;
+}
+.cards_users li {
+padding-top:1em;
+font-size:0.8em;
+
+}
+.link_button_cards {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+	padding-top:1em;
+    
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .div_login
 {
 	margin:auto;
@@ -394,17 +479,19 @@ padding-left:4.5rem;
 	color: #fff;
 	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
 	font-weight: bold;
-	margin-bottom: 1rem;
+	margin: 1rem auto;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	float:right;
+	display: block;
+	margin: 0rem auto;
+	
 }
 .div_register form{
 	width:90%;
 }
 .div_register label{
-padding-left:2.5rem;
+padding-left:3rem;
 	    display: block;
     font-size:0.8em;
 }

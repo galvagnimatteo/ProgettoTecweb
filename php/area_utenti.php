@@ -1,49 +1,10 @@
 <?php
 
 session_start();
-$now = time();
-if (isset($_SESSION["discard_after"]) && $now > $_SESSION["discard_after"]) {
-
-	unset($_SESSION["a"]);
-
-    session_unset();
-    session_destroy();
-    session_start();
-	header("location:area_utenti.php?action=login_page");
-}
-
-$_SESSION["discard_after"] = $now + 400;
-
-$document = file_get_contents("../html/template.html"); //load template
+include "utils/pageGenerator.php";
+//CheckSession($login_required, $admin_required);
+CheckSession(false,false); //refresh della sessione se scaduta
 $home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
-$document = str_replace('<PAGETITLE>', 'Login - PNG Cinema', $document);
-$document = str_replace('<KEYWORDS>', 'Login', $document);
-$document = str_replace('<DESCRIPTION>', 'Pagina di login', $document);
-
-$document = str_replace(
-    "<BREADCRUMB>", '<a href="home.php">Home</a> / <p> Area Utenti</p>', $document
-);
-$document = str_replace("<JAVASCRIPT-HEAD>", '<script type="text/javascript" src="../js/controls.js"> </script>', $document);
-
-$document = str_replace("<JAVASCRIPT-BODY>", "", $document);
-
-if (isset($_SESSION["a"])) {
-    $document = str_replace("<LOGIN>", $_SESSION["a"], $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=getProfile",
-        $document
-    );
-
-    $home_content = file_get_contents("../html/home_content.html");
-} else {
-    $document = str_replace("<LOGIN>", "Login", $document);
-    $document = str_replace(
-        "<LINK>",
-        "./area_utenti.php?action=login_page",
-        $document
-    );
-}
 
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
@@ -124,13 +85,32 @@ if (isset($_GET["action"])) {
         }
 
     }
-
+	
+	if ($action =="getHistoryProfile")
+	{
+		include_once "Users.php";
+        $Users = new Users();
+        $home_content = $Users->getHistory();	
+		
+	}	
     if ($action == "getProfile") {
         include_once "Users.php";
         $Users = new Users();
         $home_content = $Users->getProfile();
     }
-
+	 if ($action == "getProfilePassword") {
+        include_once "Users.php";
+        $Users = new Users();
+		$home_content = file_get_contents("../html/items/updatePassword_content.html");
+	}
+	
+	 if ($action == "getDeleteProfile") {
+        include_once "Users.php";
+        $Users = new Users();
+         $home_content = file_get_contents(
+            "../html/items/deleteProfile_content.html"
+        );
+    }
      if ($action == "changeProfile") {
       include_once "Users.php";
         $Users = new Users();
@@ -182,14 +162,36 @@ if (isset($_GET["action"])) {
 	{
 	 include_once "Users.php";
      $Users = new Users();
+	 list($valid,$error)=$Users->checkPassword(nil,$_POST["password_delete"],$_POST["password_delete_confirm"]);
+	 if(!$valid)
+	 {
+		  header("location:area_utenti.php?action=getDeleteProfile&errorPass=".$error);	
+	 }else{
      if($Users->deleteProfile())
 	 {
-		session_destroy();
-		unset($_SESSION["a"]);
-		    header("location:area_utenti.php?action=login_page");
-		 }
+			session_destroy();
+		    header("location:area_utenti.php?action=login_page&errorPass=".$error);
+	 }
+	 }
 	}
+	
+	if($action == "changePassword")
+	{
+	include_once "Users.php";
+    $Users = new Users();
+	list($valid,$error)=$Users->checkPassword($_POST["password_old"],$_POST["password_profile"],$_POST["password_profile_confirm"]);
+	if(!$valid)
+	{
+		
+	header("location:area_utenti.php?action=getProfilePassword&errorPass=".$error);		
+	}else{
+	$Users->changePassword();
+	header("location:area_utenti.php?action=getProfilePassword&errorPass=".$error);
+	}
+	//rimasto qui
 
+	
+	}
 	if($action == "logout")
 	{
 	unset($_SESSION["a"]);
@@ -205,18 +207,6 @@ if (isset($_GET["action"])) {
     $home_content = file_get_contents(
         "../html/area_utenti_register_content.html"
     );
-    $document = str_replace("<LOGIN>", "Login", $document);
-}
-
-
-
-
-if(isset($_SESSION["admin"])&&$_SESSION["admin"]){
-    $document = str_replace("<ADMIN>","<ul><li><a href='admin.php'>Amministrazione</a></li></ul>",$document);
-}
-else{
-    $document = str_replace("<ADMIN>","",$document);
-
 }
 if(isset($_GET["errorLogin"]))
 {
@@ -224,9 +214,38 @@ if(isset($_GET["errorLogin"]))
 	unset($_GET["errorLogin"]);
 }
 
+if(isset($_GET["errorPass"]))
+{
+	if($_GET["errorPass"]==0)
+		$home_content = str_replace("<ERRORMESSAGE>", "Password cambiata", $home_content);
+		
+
+	if($_GET["errorPass"]==1)
+		$home_content = str_replace("<ERRORMESSAGE>", "Password Errata", $home_content);
+		
+				
+	if($_GET["errorPass"]==3)
+		$home_content = str_replace("<ERRORMESSAGE>", "Le due password non coincidono", $home_content);
+		
+		
+	if($_GET["errorPass"]==2)
+		$home_content = str_replace("<ERRORMESSAGE>", "La password deve essere di almeno 8 caratteri e non può contenere spazi", $home_content);
+	
+		
+	if($_GET["errorPass"]==4)
+		$home_content = str_replace("<ERRORMESSAGE>", "Account eliminato!", $home_content);	
+	
+	unset($_GET["errorPass"]);
+}
+
 $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancora presente <errormessage> viene tolto, non funziona se non presente (già sostituito con errore)
 
-$document = str_replace("<CONTENT>", $home_content, $document);
-echo $document;
+
+$description = 'Pagina di login';
+$keywords = 'Login';
+$breadcrumbs='<p><a href="home.php">Home</a> /  Area Utenti</p>';
+$jshead ='<script type="text/javascript" src="../js/controls.js"> </script>';
+//GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+echo GeneratePage("login",$home_content,$breadcrumbs,'Login - PNG Cinema',$description,$keywords,$jshead,"");
 
 ?>

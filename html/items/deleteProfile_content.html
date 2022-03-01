@@ -1,8 +1,8 @@
-
 <div class="cards_users">
 
 <div class="div_user card3_users">
-	<p>Cambio dati Personali</p>
+	<p>
+		<p>Inserisci la password per Eliminare l'account</p></p>
 </div>
 
 <div class="card1_users">
@@ -36,48 +36,35 @@
 </div>
 
 <div class="card2_users">
+
 <div class="div_register profile">
-	<form action="../php/area_utenti.php?action=changeProfile" method="post" onsubmit="return modifyControls()">
-		<div class="row">
-			<div class="col_25">
-				<label for="username_profile">Username</label>
-			</div>
-			<div class="col_75">
-				<input id="username_profile" type="text" placeholder=" Username" name="username_profile"  value="<USERNAME>"  required>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="name_profile">Nome</label>
-			</div>
-			<div class="col_75">
-				<input id="name_profile" type="text" placeholder=" Name" name="name_profile" value="<NOME>"  required   >
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="surname_profile">Cognome</label>
-			</div>
-			<div class="col_75">
-				<input id="surname_profile" type="text" placeholder=" Surname" name="surname_profile"   value="<COGNOME>"   required>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="email_profile">Email</label>
-			</div>
-			<div class="col_75">
-				<input id="email_profile" type="email" placeholder=" Email" name="email_profile"  value="<EMAIL>"   >
-			</div>
-		</div>
+
+	<form action="../php/area_utenti.php?action=deleteProfile" method="post" onsubmit="return modifyControls()">
 		
+		
+		<div class="row">
+			<div class="col_25">
+				<label for="password_delete">Password</label>
+			</div>
+			<div class="col_75">
+				<input id="password_delete" type="password" placeholder=" Password" name="password_delete"    >
+			</div>
+		</div>
+		<div class="row">
+			<div class="col_25">
+				<label for="password_delete_confirm">Conferma Password</label>
+			</div>
+			<div class="col_75">
+				<input id="password_delete_confirm" type="password" placeholder=" Conferma Password" name="password_delete_confirm"    required>
+			</div>
+		</div>
 		<div class="row">
 			<p id="errorMessage">
 				<ERRORMESSAGE>
 			</p>
 		</div>
 		<div class="row">
-			<input type="submit" value="Conferma il tuo profilo" >
+			<input type="submit" value="Elimina il tuo profilo" >
 		</div>
 	</form>
 </div>

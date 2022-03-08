@@ -311,6 +311,7 @@ programmazione.html
 
 
 .cards_reservation{
+
 	
 	display:grid;
 	grid-template-columns: 1.3fr 1fr 0.4fr;
@@ -348,6 +349,7 @@ grid-template-areas:
 	grid-column-gap: 0.2em;
 	grid-row-gap:0em;
 }
+
 
 .cards_see_reservation{
 	display:grid;
@@ -418,6 +420,7 @@ grid-template-areas:
 	
 }
 
+
 @media screen and (max-width: 760px) {
 	
    .cards_users{
@@ -431,6 +434,7 @@ grid-template-areas:
 @media screen and (max-width: 500px) {
 	  .cards_users{
 		  padding:0em;
+
 		  display:block;
 	}  
 	}
@@ -444,6 +448,7 @@ grid-template-areas:
 	
 	
 @media screen and (max-width: 450px) {
+
 	
    .cards_users{
   display:block;
@@ -453,6 +458,7 @@ grid-template-areas:
    }
 }	
 	
+
 @media screen and (max-width: 620px) {
 	
    .cards_see_reservation{
@@ -466,6 +472,7 @@ grid-template-areas:
 	padding-left:0rem;
 }	
 }	
+
 
 
 .card1_users{ 

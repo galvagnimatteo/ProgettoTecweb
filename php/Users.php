@@ -417,6 +417,7 @@ class Users
 		{
 	$db = SingletonDB::getInstance();
 
+
 				$query = "
 						SELECT  p1.ID, p1.OraProiezione, f1.Titolo, f1.SrcImg, pe1.Data, pe1.NumeroSala, p1.NumeroPersone
 						FROM Prenotazione p1,Film f1,Proiezione pe1
@@ -424,6 +425,7 @@ class Users
 
 				
 			
+
             $preparedQuery = $db->getConnection()
                 ->prepare($query);
 				
@@ -443,7 +445,9 @@ class Users
 						while($row=$result->fetch_assoc())	{	
 		
 			$content=file_get_contents("../html/items/card-reservation.html");
+
 		     $content = str_replace("<CODICE>",	$row["ID"] ,  $content);
+
 		    $content = str_replace("<TITOLO>", $row["Titolo"] ,  $content);
 		     $content = str_replace("<PERSONE>",$row["NumeroPersone"] ,  $content);
 		     $content = str_replace("<ORA>", $row["OraProiezione"] ,  $content);
@@ -464,6 +468,7 @@ class Users
 	}
 	}
 	
+
 	function  viewReservation($codice){
 	
 	if(isset($codice))
@@ -516,6 +521,7 @@ class Users
 	
 	
 	
+
 }
 
 ?>

@@ -311,29 +311,26 @@ programmazione.html
 
 
 .cards_reservation{
-display:grid;
-grid-template-columns: 1fr 1fr;
 
-grid-template-areas:
-	"a b ";
 	
-	
-	grid-column-gap:1em;
+	display:grid;
+	grid-template-columns: 1.3fr 1fr 0.4fr;
+	grid-template-areas:
+	"a a a";
+	/*grid-column-gap:1em;*/
 	grid-row-gap:2em;
-	  border-style: solid;
-border-color: red;
+	border-style: solid;
+	border-color: var(--secondary-color);
+	margin:0.3em;
+	border-width: thin;
+	border-radius:1rem;
 
-margin:0.3em;
-border-width: thin;
-border-radius:1rem;
 }
-.card1_reservation{ 
+
+.card_reservation{ 
 	grid-area: a;
 }
 
-.card2_reservation{ 
-	grid-area: b;
-}
 
 .div_register.reservation{
 	
@@ -353,6 +350,77 @@ grid-template-areas:
 	grid-row-gap:0em;
 }
 
+
+.cards_see_reservation{
+	display:grid;
+	grid-template-columns: 1fr 1fr  1fr;
+    background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+	grid-template-areas:
+	"a b b";
+	padding:2em;
+	grid-column-gap: 0.2em;
+	grid-row-gap:0em;
+}
+
+.card_one_see_reservation{
+	grid-area:a;
+}
+
+.card_one_see_reservation img{
+	width:100%;
+}	
+
+.card_two_see_reservation{
+	grid-area:b;
+	padding-left:2rem;
+}	
+.card_two_see_reservation p{
+	padding-top:0.6em;
+}
+
+
+.reservation_button{
+/*	
+ -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;*/
+    border-radius: 0.3rem;
+   
+    /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);*/
+	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
+	color:white !important;
+	padding:0.5rem 0.8rem;
+    text-decoration: none;
+	
+}
+#watch_again{
+	float:right;
+	padding-top:10em;
+}	
+
+#ul_reservation{
+	padding-top:2rem;
+	
+}
+	
+.reservation_button:hover{
+    color:white !important;
+}	
+ @media screen and (max-width: 190px) {
+	 .reservation_button{
+	  font-size:0.8em;
+	 }
+ }
+@media screen and (max-width: 190px) {
+	 .reservation_button{
+	  font-size:0.6em;
+	 }
+	
+}
+
+
 @media screen and (max-width: 760px) {
 	
    .cards_users{
@@ -366,9 +434,21 @@ grid-template-areas:
 @media screen and (max-width: 500px) {
 	  .cards_users{
 		  padding:0em;
+
+		  display:block;
 	}  
 	}
-@media screen and (max-width: 420px) {
+	
+	@media screen and (max-width: 580px) {
+	  .cards_users{
+		  padding:0em;
+		  display:block;
+	}  
+	}
+	
+	
+@media screen and (max-width: 450px) {
+
 	
    .cards_users{
   display:block;
@@ -379,6 +459,19 @@ grid-template-areas:
 }	
 	
 
+@media screen and (max-width: 620px) {
+	
+   .cards_see_reservation{
+  display:block;
+   }
+ .card_one_see_reservation img{
+	width:70%;
+}	
+.card_two_see_reservation{
+	grid-area:b;
+	padding-left:0rem;
+}	
+}	
 
 
 

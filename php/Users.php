@@ -417,11 +417,15 @@ class Users
 		{
 	$db = SingletonDB::getInstance();
 
-           $query = "SELECT f1.Titolo, p1.NumeroPersone, p1.OraProiezione,pe1.Data,pe1.NumeroSala,pe1.Id
-						from Prenotazione p1,Film f1,Proiezione pe1
-						WHERE p1.Id=f1.Id AND pe1.Id=p1.Id AND p1.UsernameUtente=?";
-						
-				//$query="SELECT Id,NumeroPersone,IDProiezione,OraProiezione FROM prenotazione WHERE UsernameUtente=? ";	
+
+				$query = "
+						SELECT  p1.ID, p1.OraProiezione, f1.Titolo, f1.SrcImg, pe1.Data, pe1.NumeroSala, p1.NumeroPersone
+						FROM Prenotazione p1,Film f1,Proiezione pe1
+						WHERE p1.IDProiezione=pe1.ID AND pe1.IDFilm=f1.ID AND p1.UsernameUtente=?";	
+
+				
+			
+
             $preparedQuery = $db->getConnection()
                 ->prepare($query);
 				
@@ -441,7 +445,9 @@ class Users
 						while($row=$result->fetch_assoc())	{	
 		
 			$content=file_get_contents("../html/items/card-reservation.html");
-		     $content = str_replace("<CODICE>",	$row["Id"] ,  $content);
+
+		     $content = str_replace("<CODICE>",	$row["ID"] ,  $content);
+
 		    $content = str_replace("<TITOLO>", $row["Titolo"] ,  $content);
 		     $content = str_replace("<PERSONE>",$row["NumeroPersone"] ,  $content);
 		     $content = str_replace("<ORA>", $row["OraProiezione"] ,  $content);
@@ -462,6 +468,60 @@ class Users
 	}
 	}
 	
+
+	function  viewReservation($codice){
+	
+	if(isset($codice))
+	{
+	$db = SingletonDB::getInstance();
+	$query = "
+			SELECT  p1.ID, p1.OraProiezione, f1.Titolo, f1.SrcImg, pe1.Data, pe1.NumeroSala, p1.NumeroPersone,pe1.IDFilm
+			FROM Prenotazione p1,Film f1,Proiezione pe1
+			WHERE p1.IDProiezione=pe1.ID AND pe1.IDFilm=f1.ID AND p1.UsernameUtente=? AND p1.ID=? ";
+	
+	  $preparedQuery = $db->getConnection()
+                ->prepare($query);
+				
+      $username = $_SESSION["a"];
+      $preparedQuery->bind_param("ss", $username,$codice);
+	  $preparedQuery->execute();
+      $result = $preparedQuery->get_result();
+      $db->disconnect();
+      $preparedQuery->close();	
+
+
+		$home_content = file_get_contents("../html/items/viewReservation_content.html");
+	
+		if($result->num_rows > 0){
+			
+			while($row=$result->fetch_assoc())	{	
+			
+		
+		    $home_content = str_replace("<CODICE>",	$row["ID"] ,  $home_content);
+		    $home_content = str_replace("<TITOLO>", $row["Titolo"] ,  $home_content);
+		    $home_content = str_replace("<PERSONE>",$row["NumeroPersone"] ,  $home_content);
+		    $home_content = str_replace("<ORA>", $row["OraProiezione"] ,  $home_content);
+		    $home_content = str_replace("<DATA>", $row["Data"],  $home_content);
+		    $home_content = str_replace("<SALA>", $row["NumeroSala"],  $home_content);	
+		    $home_content = str_replace("<IMAGE>", $row["SrcImg"],  $home_content);	
+		    $home_content = str_replace("<IDFILM>", $row["IDFilm"],  $home_content);	
+			
+			
+			}
+			
+		}
+
+	unset($codice);
+	}
+	
+	return $home_content;
+	}
+	
+	
+	
+	
+	
+
 }
 
 ?>

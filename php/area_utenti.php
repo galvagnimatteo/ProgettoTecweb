@@ -173,6 +173,7 @@ if (isset($_GET["action"])) {
 		    header("location:area_utenti.php?action=login_page&errorPass=".$error);
 	 }
 	 }
+
 	}
 	
 	if($action == "changePassword")
@@ -188,10 +189,16 @@ if (isset($_GET["action"])) {
 	$Users->changePassword();
 	header("location:area_utenti.php?action=getProfilePassword&errorPass=".$error);
 	}
-	//rimasto qui
-
-	
 	}
+	
+	if($action == "viewReservation" && isset($_GET["codice"]))
+	{
+	include_once "Users.php";
+    $Users = new Users();
+	$home_content=$Users->viewReservation($_GET["codice"]);
+	}	
+	
+
 	if($action == "logout")
 	{
 	unset($_SESSION["a"]);

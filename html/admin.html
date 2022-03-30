@@ -1,6 +1,60 @@
-<div>
+<div id="admin">
+    <ul id="funzioni">
+        <li class="activeoption">Film</li>
+        <li class="inactiveoption">Proiezioni</li>
+    </ul>
+    <div class="workarea">
+        <div id="films" class="open">
+            <button type="button" onclick="document.getElementById('inserisci_film').className = 'open';">aggiungi</button>
+            <ul id="filmlist">
+            </ul>
+        </div>
+        
+        <div id="proiezioni" class="closed">
+            <button type="button" onclick="document.getElementById('inserisci_proiezione').className = 'open';">aggiungi</button>
+            <table id="proiezionilist">
+            </table>
+        </div>
+        <div id="inserisci_film" class="closed">
+            <button type="button" onclick="document.getElementById('inserisci_film').className = 'closed';">chiudi form</button>
+            <label for="Titolo"><span xml:lang="en">Titolo</span></label>
+            <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
 
-    <a href="/php/inserimento_film.php"><p>inserisci nuovo film</p></a>
-    <a href="/php/inserimento_proiezione.php"><p>inserisci nuova proiezione</p></a>
 
+            <label for="Genere">Genere</label>
+            <input type="text" placeholder="Genere" name="Genere" required id="imputgenere">
+
+            <label for="DataUscita">Data Uscita</label>
+            <input type="date" name="DataUscita" required id="imputdatauscita">
+
+            <label for="Descrizione">Descrizione</label>
+            <input type="text" name="Descrizione" placeholder="descrizione" required id="imputdescizione">
+
+            <label for="SrcImg">Sorgente Immagine</label>
+            <input type="url" name="SrcImg" required id="imputimmagine">
+
+            <label for="AltImg">Descrizione immagine</label>
+            <input type="text" name="AltImg" requiredid="imputdescimmagine">
+
+            <label for="Durata">Durata</label>
+            <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
+
+            <button type="button" onclick="post_film();">Inserisci</button>
+            <p id="result_insert_film"></p>
+        </div>
+        <div id="inserisci_proiezione" class="closed">
+            <button type="button" onclick="document.getElementById('inserisci_proiezione').className = 'closed'; ">chiudi form</button>
+            <select name="film" id="filmselector">
+            </select>
+            <select name="sala" id="imputsala">
+                <option value="1">Sala 1</option>
+                <option value="2">Sala 2</option>
+                <option value="3">Sala 3</option>
+            </select>
+            <label for="Giorno">Giorno</label>
+            <input type="date" name="Giorno" required id="imputgiorno">
+            <button type="button" onclick="post_proiezione();">Inserisci</button>
+            <p id="result_insert_proiezione"></p>
+        </div>
+    </div>
 </div>

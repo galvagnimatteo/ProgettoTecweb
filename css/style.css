@@ -714,7 +714,7 @@ div.labelqp select {
 }
 @media (min-width: 865px) {
 
-    header, ul {
+    header,header ul {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -1180,4 +1180,35 @@ p.aiutocompilaz strong {
 	}
 
 }
+#funzioni {
+    list-style-type: none;
+}
 
+@media screen and (min-width: 49rem) {
+    #admin {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #funzioni {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #funzioni > li {
+        width: 100%;
+    }
+
+    .workarea {
+        width: 80%;
+    }
+}
+
+.open {
+    display: block;
+}
+
+.closed{
+    display:none;
+}

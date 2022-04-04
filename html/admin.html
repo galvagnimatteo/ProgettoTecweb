@@ -21,22 +21,22 @@
             <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
 
 
-            <label for="Genere">Genere</label>
+            <label for="imputgenere">Genere</label>
             <input type="text" placeholder="Genere" name="Genere" required id="imputgenere">
 
-            <label for="DataUscita">Data Uscita</label>
+            <label for="imputdatauscita">Data Uscita</label>
             <input type="date" name="DataUscita" required id="imputdatauscita">
 
-            <label for="Descrizione">Descrizione</label>
+            <label for="imputdescizione">Descrizione</label>
             <input type="text" name="Descrizione" placeholder="descrizione" required id="imputdescizione">
 
-            <label for="SrcImg">Sorgente Immagine</label>
+            <label for="imputimmagine">Sorgente Immagine</label>
             <input type="url" name="SrcImg" required id="imputimmagine">
 
-            <label for="AltImg">Descrizione immagine</label>
+            <label for="imputdescimmagine">Descrizione immagine</label>
             <input type="text" name="AltImg" requiredid="imputdescimmagine">
 
-            <label for="Durata">Durata</label>
+            <label for="imputdurata">Durata</label>
             <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
 
             <button type="submit" onclick="post_film();">Inserisci</button>
@@ -44,14 +44,14 @@
         </form>
         <form id="inserisci_proiezione" class="closed">
             <button type="button" onclick="toggleform('proiezioni');">chiudi form</button>
-            <select name="film" id="filmselector">
+            <select name="film" title="film" id="filmselector">
             </select>
-            <select name="sala" id="imputsala">
+            <select name="sala" title="sala" id="imputsala">
                 <option value="1">Sala 1</option>
                 <option value="2">Sala 2</option>
                 <option value="3">Sala 3</option>
             </select>
-            <label for="Giorno">Giorno</label>
+            <label for="imputgiorno">Giorno</label>
             <input type="date" name="Giorno" required id="imputgiorno">
             <button type="submit" onclick="post_proiezione();">Inserisci</button>
             <p id="result_insert_proiezione"></p>

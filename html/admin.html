@@ -1,22 +1,22 @@
 <div id="admin">
     <ul id="funzioni">
-        <li class="activeoption">Film</li>
-        <li class="inactiveoption">Proiezioni</li>
+        <li class="activeoption"id="filmarea">Film</li>
+        <li class="inactiveoption"id="Proiezioniarea">Proiezioni</li>
     </ul>
     <div class="workarea">
         <div id="films" class="open">
-            <button type="button" onclick="document.getElementById('inserisci_film').className = 'open';">aggiungi</button>
-            <ul id="filmlist">
-            </ul>
+            <button type="button" onclick="toggleform('film'); ">aggiungi</button>
+            <table id="filmlist">
+            </table>
         </div>
         
         <div id="proiezioni" class="closed">
-            <button type="button" onclick="document.getElementById('inserisci_proiezione').className = 'open';">aggiungi</button>
+            <button type="button" onclick="toggleform('proiezione'); ">aggiungi</button>
             <table id="proiezionilist">
             </table>
         </div>
-        <div id="inserisci_film" class="closed">
-            <button type="button" onclick="document.getElementById('inserisci_film').className = 'closed';">chiudi form</button>
+        <form id="inserisci_film" class="closed">
+            <button type="button" onclick="toggleform('film');">chiudi form</button>
             <label for="Titolo"><span xml:lang="en">Titolo</span></label>
             <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
 
@@ -39,11 +39,11 @@
             <label for="Durata">Durata</label>
             <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
 
-            <button type="button" onclick="post_film();">Inserisci</button>
+            <button type="submit" onclick="post_film();">Inserisci</button>
             <p id="result_insert_film"></p>
-        </div>
-        <div id="inserisci_proiezione" class="closed">
-            <button type="button" onclick="document.getElementById('inserisci_proiezione').className = 'closed'; ">chiudi form</button>
+        </form>
+        <form id="inserisci_proiezione" class="closed">
+            <button type="button" onclick="toggleform('proiezioni');">chiudi form</button>
             <select name="film" id="filmselector">
             </select>
             <select name="sala" id="imputsala">
@@ -53,8 +53,8 @@
             </select>
             <label for="Giorno">Giorno</label>
             <input type="date" name="Giorno" required id="imputgiorno">
-            <button type="button" onclick="post_proiezione();">Inserisci</button>
+            <button type="submit" onclick="post_proiezione();">Inserisci</button>
             <p id="result_insert_proiezione"></p>
-        </div>
+        </form>
     </div>
 </div>

@@ -63,7 +63,7 @@ nav li a, nav li p {
     padding: 1rem;
 }
 
-a:visited:not(.carouselContainer a:visited){
+a:visited:not(.carouselContainer, a:visited){
     color: var(--visited-links);
 }
 .breadcrumbs{
@@ -670,7 +670,7 @@ div.labelqp select {
     .js .prev:hover, .js .next:hover{
         background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
     }
-    a:hover:not(.carouselContainer a:hover){
+    a:hover:not(.carouselContainer, a:hover){
         color: var(--links-hover-color);
     }
 	#acquistaBtn:hover {

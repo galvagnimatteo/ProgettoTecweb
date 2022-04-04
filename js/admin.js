@@ -1,4 +1,57 @@
-﻿
+﻿var visible = {    
+    filmform: false,    
+    proiezioniform: false
+};
+function changecontext(context){
+    if (context === "films") {
+        document.getElementById('inserisci_proiezione').className = 'closed'
+        document.getElementById('proiezioni').className = 'closed'
+        document.getElementById('films').className = 'open'
+        document.getElementById('filmarea').className = 'activeoption'
+        document.getElementById('proiezioniarea').className = 'inactiveoption'
+        if (visible.filmform) {
+            document.getElementById('inserisci_film').className = 'open'
+        }
+        else {
+            document.getElementById('inserisci_film').className = 'closed'
+        }
+    }
+    else {
+        document.getElementById('inserisci_film').className = 'closed'
+        document.getElementById('films').className = 'closed'
+        document.getElementById('proiezioni').className = 'open'
+        document.getElementById('proiezioniarea').className = 'activeoption'
+        document.getElementById('filmarea').className = 'inactiveoption'
+        if (visible.filmform) {
+            document.getElementById('inserisci_proiezione').className = 'open'
+        }
+        else {
+            document.getElementById('inserisci_proiezione').className = 'closed'
+        }
+    }
+}
+
+function toggleform(form){
+    if (form === "film") {
+        visible.filmform = !visible.filmform;
+        if (visible.filmform) {
+            document.getElementById('inserisci_film').className = 'open'
+        }
+        else {
+            document.getElementById('inserisci_film').className = 'closed'
+        }
+    }
+    else {
+        visible.proiezioniform = !visible.proiezioniform;
+        if (visible.proiezioniform) {
+            document.getElementById('inserisci_proiezione').className = 'open'
+        }
+        else {
+            document.getElementById('inserisci_proiezione').className = 'closed'
+        }
+    }
+}
+
 films = null;
 proiezioni = null;
 
@@ -6,7 +59,7 @@ function richiedi_film() {
     var request = new XMLHttpRequest();
     request.open('GET', './api/films.php');
     request.send();
-    request.onload = () => {
+    request.onload = () => {        
         var data = JSON.parse(request.response);
         var films = data.films;
         updatehtml_film(films);
@@ -93,7 +146,12 @@ function post_proiezione() {
 
 
 function gnereate_entry_film(entry) {
-    return "<li class=filmentry>" + entry.titolo + "</li>";
+    result = "<tr class=filmentry><td>"
+        + entry.titolo + "</td><td>"
+        + entry.genere + "</td><td>" +
+        + entry.datauscita + "</td><td>" +
+        + entry.durata+"</td></tr>";
+    return result;
 }
 function gnereate_entry_proiezione(entry) {
     result= "<tr class=proiezioneentry><td>"
@@ -105,15 +163,17 @@ function gnereate_entry_proiezione(entry) {
 
 function updatehtml_proiezioni(proiezioni) {
     var proiezionilist = '<tr><th>giorno</th><th>sala</th><th>film</th></tr>';
-    for (entry in proiezioni) {
+    for (entryindex in proiezioni) {
+        var entry = proiezioni[entryindex];
         proiezionilist += gnereate_entry_proiezione(entry);
     }
     document.getElementById("proiezionilist").innerHTML = proiezionilist;
 }
 function updatehtml_film(films) {
-    var filmlist = "";
+    var filmlist = '<tr><th>titolo</th><th>genere</th><th>data uscita</th><th>durata</th></tr>';
     var filmoptions = "";
-    for (entry in films) {
+    for (entryindex in films) {
+        var entry = films[entryindex];
         filmlist += gnereate_entry_film(entry);
         filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
     }

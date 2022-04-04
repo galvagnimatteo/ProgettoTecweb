@@ -12,8 +12,8 @@ require_once '../SingletonDB.php';
 //    echo '{"status":"unauthorized"}';
 //    exit();
 //}
-$status='"ok"';
-$reply= '{';
+$reply=new \stdClass();
+$reply->status="ok";
 if (isset($_Post['action'])&&$_Post['action']=='insert') 
 {
     if(isset($_POST['Titolo']) &&
@@ -54,35 +54,37 @@ if (isset($_Post['action'])&&$_Post['action']=='insert')
         $db->disconnect();
         $preparedQuery->close();
         if($res){
-            $status='"ok"';
+            $reply->status="ok";
         }
         else{
-            $status='"database error"';
+            $reply->status="database error";
         }
     }
     else {
-        $status='"parametri insufficenti"';
+        $reply->status="parametri insufficenti";
 	}
 }
-$reply=$reply.'"status":'.$status.',';
-$reply=$reply.'"films":[';
+$films;
 $db = SingletonDB::getInstance();
 $resultFilms = $db
     ->getConnection()
     ->query('SELECT * FROM Film ORDER BY DataUscita DESC');
 $db->disconnect();
+$i=0;
 while ($row = $resultFilms->fetch_assoc()) {
-$reply=$reply.'{ "id":"'.$row['ID'].'",'.
-                '"titolo":"'.$row['Titolo'].'",'.
-                '"genere":"'.$row['Genere'].'",'.
-                '"datauscita":"'. $row['DataUscita'].'",'.
-                '"descrizione":"'.$row['Descrizione'].'",'.
-                '"srcimg":"'.$row['SrcImg'].'",'.
-                '"altimg":"'.$row['AltImg'].'",'.        
-                '"durata":"'.$row['Durata'].'"},';
+    $film=new \stdClass();
+    $film->id=$row['ID'];
+    $film->titolo=$row['Titolo'];
+    $film->genere=$row['Genere'];
+    $film->datauscita=$row['DataUscita'];
+    $film->descrizione=$row['Descrizione'];
+    $film->srcimg=$row['SrcImg'];
+    $film->altimg=$row['AltImg'];
+    $film->durata=$row['Durata'];                
+    $films[$i]=$film;
+    $i++;
 }
-$reply=$reply.']}';
-$reply=str_replace(',]',']',$reply);
-echo $reply;
+$reply->films=$films;
+echo json_encode($reply);
 
 ?>

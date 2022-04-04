@@ -535,15 +535,15 @@ padding-left:2.5rem;
     width: 100%;
     background-color: darkgreen;
 }*/
-.insert_movie, .insert_proiezione{
-    max-width:30rem;
-    align-self:center;
+#inserisci_film, #inserisci_proiezione {
+    max-width: 30rem;
+    align-self: center;
     display: flex;
     flex-direction: column;
 }
-    .insert_movie > input, .insert_proiezione > input,
-    .insert_movie > select, .insert_proiezione > select,
-    .insert_movie > option, .insert_proiezione option {
+    #inserisci_film > input, #inserisci_proiezione > input,
+    #inserisci_film > select, #inserisci_proiezione > select,
+    #inserisci_film > option, #inserisci_proiezione option {
         width: 80%;
         height: 4vh;
         background: #e0dede;
@@ -1205,10 +1205,10 @@ p.aiutocompilaz strong {
     }
 }
 
-.open {
+/*.open {
     display: block;
-}
+}*/
 
 .closed{
-    display:none;
+    display:none !important;
 }

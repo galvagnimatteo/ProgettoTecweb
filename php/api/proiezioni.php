@@ -12,8 +12,8 @@ $now = time();
 //    echo '{"status":"unauthorized"}';
 //    exit();
 //}
-$status='"ok"';
-$reply= '{';
+$reply=new \stdClass();
+$reply->status="ok";
 if (isset($_Post['action'])&&$_Post['action']=='insert') 
 {
     if(isset($_POST['film']) &&
@@ -40,30 +40,32 @@ if (isset($_Post['action'])&&$_Post['action']=='insert')
         /*$db->disconnect();*/
         $preparedQuery->close();
         if($res){
-            $status='"ok"';
+            $reply->status="ok";
         }
         else{
-            $status='"database error"';
+            $reply->status="database error";
         }
     }
     else {
-        $status='"parametri insufficenti"';
+        $reply->status="parametri insufficenti";
 	}
 }
-$reply=$reply.'"status":'.$status.',';
-$reply=$reply.'"Proiezione":[';
+$proiezioni;
 $db = SingletonDB::getInstance();
 $resultproiezioni = $db
     ->getConnection()
     ->query('SELECT * FROM Proiezione');
 $db->disconnect();
+$i=0;
 while ($row = $resultproiezioni->fetch_assoc()) { 
-$reply=$reply.'{ "data":"'.$row['Data'].'",'.
-                '"idfilm":"'.$row['IDFilm'].'",'.                
-                '"numeroSala":"'. $row['NumeroSala'].'"},';
+    $proiezione=new \stdClass();
+    $proiezione->data=$row['Data'];
+    $proiezione->idfilm=$row['IDFilm'];
+    $proiezione->numeroSala=$row['NumeroSala'];
+    $proiezioni[i]=$Proiezione;
+    $i++;
 }
-$reply=$reply.']}';
-$reply=str_replace(',]',']',$reply);
-echo $reply;
+$reply->proiezioni=$proiezioni;
+echo json_encode($reply);
 
 ?>

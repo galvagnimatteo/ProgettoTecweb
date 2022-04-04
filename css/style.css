@@ -536,14 +536,25 @@ padding-left:2.5rem;
     background-color: darkgreen;
 }*/
 #inserisci_film, #inserisci_proiezione {
-    max-width: 30rem;
+    width: 40%;
     align-self: center;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    top: 100px;
+    left: 30%;
+    z-index: 10;
+    background-color: darkred;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom:2rem;
+    /*background-image: linear-gradient(var(--secondary-color),var(--gradient-last-color));*/
 }
     #inserisci_film > input, #inserisci_proiezione > input,
     #inserisci_film > select, #inserisci_proiezione > select,
-    #inserisci_film > option, #inserisci_proiezione option {
+    #inserisci_film > option, #inserisci_proiezione > option,
+    .submit{
         width: 80%;
         height: 4vh;
         background: #e0dede;
@@ -1211,4 +1222,14 @@ p.aiutocompilaz strong {
 
 .closed{
     display:none !important;
+}
+.formcloser {
+    background: #e0dede;
+    color: #000000;
+    top: 5px;
+    max-width: 2rem;
+    font-size: 2rem;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
 }

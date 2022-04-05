@@ -187,3 +187,8 @@ function updatehtml_film(films) {
 
 richiedi_film();
 richiedi_proiezioni();
+
+setInterval(() => {//aggiorna i dati e mantiene attiva la sessione
+    richiedi_film();
+    richiedi_proiezioni(); }
+    , 30000);

@@ -54,15 +54,16 @@ $proiezioni;
 $db = SingletonDB::getInstance();
 $resultproiezioni = $db
     ->getConnection()
-    ->query('SELECT * FROM Proiezione');
+    ->query('SELECT * FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm');
 $db->disconnect();
 $i=0;
 while ($row = $resultproiezioni->fetch_assoc()) { 
     $proiezione=new \stdClass();
     $proiezione->data=$row['Data'];
     $proiezione->idfilm=$row['IDFilm'];
+    $proiezione->titolofilm=$row['Titolo'];
     $proiezione->numeroSala=$row['NumeroSala'];
-    $proiezioni[i]=$Proiezione;
+    $proiezioni[$i]=$proiezione;
     $i++;
 }
 $reply->proiezioni=$proiezioni;

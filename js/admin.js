@@ -22,7 +22,7 @@ function changecontext(context){
         document.getElementById('proiezioni').className = 'open'
         document.getElementById('proiezioniarea').className = 'activeoption'
         document.getElementById('filmarea').className = 'inactiveoption'
-        if (visible.filmform) {
+        if (visible.proiezioniform) {
             document.getElementById('inserisci_proiezione').className = 'open'
         }
         else {
@@ -59,9 +59,9 @@ function richiedi_film() {
     var request = new XMLHttpRequest();
     request.open('GET', './api/films.php');
     request.send();
-    request.onload = () => {        
+    request.onload = () => {
         var data = JSON.parse(request.response);
-        var films = data.films;
+        films = data.films;
         updatehtml_film(films);
     }
 }
@@ -71,7 +71,8 @@ function richiedi_proiezioni() {
     request.send();
     request.onload = () => {
         var data = JSON.parse(request.response);
-        var proiezioni = data.proiezioni;
+        proiezioni = data.proiezioni;
+        console.log(films);
         updatehtml_proiezioni(proiezioni);
     }
 }
@@ -157,7 +158,7 @@ function gnereate_entry_proiezione(entry) {
     result= "<tr class=proiezioneentry><td>"
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>" +
-        films.find(function (value, index) { return value.id === entry.film }).titolo + "</td></tr>";
+        entry.titolofilm + "</td></tr>";
     return result;
 }
 

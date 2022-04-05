@@ -63,7 +63,7 @@ nav li a, nav li p {
     padding: 1rem;
 }
 
-a:visited:not(.carouselContainer a:visited){
+a:visited:not(.carouselContainer, a:visited){
     color: var(--visited-links);
 }
 .breadcrumbs{
@@ -740,15 +740,26 @@ padding-left:3rem;
     width: 100%;
     background-color: darkgreen;
 }*/
-.insert_movie, .insert_proiezione{
-    max-width:30rem;
-    align-self:center;
+#inserisci_film, #inserisci_proiezione {
+    width: 40%;
+    align-self: center;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    top: 100px;
+    left: 30%;
+    z-index: 10;
+    background-color: darkred;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom:2rem;
+    /*background-image: linear-gradient(var(--secondary-color),var(--gradient-last-color));*/
 }
-    .insert_movie > input, .insert_proiezione > input,
-    .insert_movie > select, .insert_proiezione > select,
-    .insert_movie > option, .insert_proiezione option {
+    #inserisci_film > input, #inserisci_proiezione > input,
+    #inserisci_film > select, #inserisci_proiezione > select,
+    #inserisci_film > option, #inserisci_proiezione > option,
+    .submit{
         width: 80%;
         height: 4vh;
         background: #e0dede;
@@ -875,7 +886,7 @@ div.labelqp select {
     .js .prev:hover, .js .next:hover{
         background-color: rgba(0,0,0,0.8); /*background nero con 0.8 di opacità (leggermente trasparente)*/
     }
-    a:hover:not(.carouselContainer a:hover){
+    a:hover:not(.carouselContainer, a:hover){
         color: var(--links-hover-color);
     }
 	#acquistaBtn:hover {
@@ -919,7 +930,7 @@ div.labelqp select {
 }
 @media (min-width: 865px) {
 
-    header, ul {
+    header,header ul {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -1384,5 +1395,70 @@ p.aiutocompilaz strong {
 		display:none;
 	}
 
+}
+#funzioni {
+    list-style-type: none;
+}
+
+@media screen and (min-width: 49rem) {
+    #admin {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #funzioni {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #funzioni > li {
+        width: 100%;
+    }
+
+    .workarea {
+        width: 80%;
+    }
+}
+
+/*.open {
+    display: block;
+}*/
+.formcloser {
+    background: #e0dede;
+    color: #000000;
+    top: 5px;
+    width: 2rem;
+    font-size: 2rem;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.formopener {
+    float:right;
+    background: #e0dede;
+    color: #000000;
+    top: 5px;
+    width: 2rem;
+    font-size: 2rem;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+td {
+    margin-left: 30px;
+    margin-right: 60px;
+    padding-left: 30px;
+    padding-right: 60px;
+}
+.activeoption{
+    background-color:darkred;
+}
+.inactiveoption{
+
+}
+
+.closed{
+    display:none !important;
 }
 

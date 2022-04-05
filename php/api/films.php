@@ -8,10 +8,10 @@ require_once '../SingletonDB.php';
         session_start();
     }
     $_SESSION['discard_after'] = $now+200;
-//if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
-//    echo '{"status":"unauthorized"}';
-//    exit();
-//}
+if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
+    echo '{"status":"unauthorized"}';
+    exit();
+}
 $reply=new \stdClass();
 $reply->status="ok";
 if (isset($_Post['action'])&&$_Post['action']=='insert') 

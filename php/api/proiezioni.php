@@ -50,6 +50,24 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
     else {
         $reply->status="parametri insufficenti";
 	}
+}else{
+    if (isset($_POST['action'])&&$_POST['action']=='delete'){ 
+    $db = SingletonDB::getInstance();        
+
+        $id = $_POST['idproiezione'];
+        $query =
+            'delete FROM Proiezione where ID=?;';
+        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery->bind_param(
+            's',
+            $id
+        );
+
+        $res=$preparedQuery->execute();
+        $db->disconnect();
+        $preparedQuery->close();
+    }
+    
 }
 $proiezioni;
 $db = SingletonDB::getInstance();

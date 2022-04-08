@@ -82,43 +82,35 @@ function post_film() {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
 
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/json");
+    //xhr.setRequestHeader("Accept", "application/json");
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            console.log(xhr.responseText);
-            var data = JSON.parse(xhr.responseText);
-            var status = data.status;
-            if (status === "ok") {
-                var films = data.films;
-                updatehtml_film(films);
-                document.getElementById("result_insert_film").innerText = "inserimento avvenuto con successo"
-            }
-            else {
-                document.getElementById("result_insert_film").innerText = status;
-            }
-        }
-    };
+    
     let data = {
         action:'insert',
         Titolo : document.getElementById("imputtitolo").value,
         Genere : document.getElementById("imputgenere").value,
         DataUscita : document.getElementById("imputdatauscita").value,
         SrcImg : document.getElementById("imputimmagine").value,
-        durata : document.getElementById("imputdurata").value
+        Durata : document.getElementById("imputdurata").value
     };
-    //let data = '{'+
-    //    '"Titolo":"' + +'",'+
-    //    '"Genere":"' +  + '",' +
-    //    '"DataUscita":"' + + '",' +
-    //    '"Descrizione":"' + document.getElementById("imputdescizione").value + '",' +
-    //    '"SrcImg":"' + document.getElementById("imputimmagine").value + '",' +
-    //    //'"AltImg":"' + document.getElementById("imputdescimmagine").value + '",' +
-    //    '"Durata":"' +  + '"' +
-    //    '}';
     console.log(data);
     xhr.send(data);
+    xhr.onload = function () {        
+        console.log(xhr.responseText);
+        var data = JSON.parse(xhr.responseText);
+        var status = data.status;
+        if (status === "ok") {
+            var films = data.films;
+            updatehtml_film(films);
+            document.getElementById("result_insert_film").innerText = "inserimento avvenuto con successo"
+        }
+        else {
+            document.getElementById("result_insert_film").innerText = status;
+        }        
+    };
 }
 function post_proiezione() {
     let url = "./api/proiezioni.php";
@@ -126,24 +118,12 @@ function post_proiezione() {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
 
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/json");
+    //xhr.setRequestHeader("Accept", "application/json");
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            console.log(xhr.responseText);
-            var data = JSON.parse(xhr.responseText);
-            var status = data.status;
-            if (status === "ok") {
-                var proiezioni = data.proiezioni;
-                updatehtml_proiezioni(proiezioni);
-                document.getElementById("result_insert_proiezione").innerText = "inserimento avvenuto con successo"
-            }
-            else {
-                document.getElementById("result_insert_proiezione").innerText = status;
-            }
-        }
-    };
+    
 
     let data = {
         action: 'insert',
@@ -153,19 +133,100 @@ function post_proiezione() {
         };   
     console.log(data);
     xhr.send(data);
+    xhr.onload = function () {        
+        console.log(xhr.responseText);
+        var data = JSON.parse(xhr.responseText);
+        var status = data.status;
+        if (status === "ok") {
+            var proiezioni = data.proiezioni;
+            updatehtml_proiezioni(proiezioni);
+            document.getElementById("result_insert_proiezione").innerText = "inserimento avvenuto con successo"
+        }
+        else {
+            document.getElementById("result_insert_proiezione").innerText = status;
+        }        
+    };
+}
+function delete_film(id) {
+    let url = "./api/films.php";
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    //xhr.setRequestHeader("Accept", "application/json");
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+    
+    let data = {
+        action: 'delete',
+        idfilm: id
+    };
+    console.log(data);
+    xhr.send(data);
+    xhr.onload = function () {        
+        console.log(xhr.responseText);
+        var data = JSON.parse(xhr.responseText);
+        var status = data.status;
+        if (status === "ok") {
+            var films = data.films;
+            updatehtml_film(films);
+            //document.getElementById("result_insert_film").innerText = "inserimento avvenuto con successo"
+        }
+        else {
+            //document.getElementById("result_insert_film").innerText = status;
+        }        
+    };
+}
+function delete_prieizione(id) {
+    let url = "./api/proiezioni.php";
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    //xhr.setRequestHeader("Accept", "application/json");
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');   
+
+    let data = {
+        action: 'delete',
+        idproiezione:id
+    };
+    console.log(data);
+    xhr.send(data);
+    xhr.onload  = function () {        
+        console.log(xhr.responseText);
+        var data = JSON.parse(xhr.responseText);
+        var status = data.status;
+        if (status === "ok") {
+            var proiezioni = data.proiezioni;
+            updatehtml_proiezioni(proiezioni);
+            //document.getElementById("result_insert_proiezione").innerText = "inserimento avvenuto con successo"
+        }
+        else {
+            //document.getElementById("result_insert_proiezione").innerText = status;
+        }        
+    };
 }
 
-
-function gnereate_entry_film(entry) {
-    result = "<tr class=filmentry><td>"
+function gnereate_entry_film(entry, index) {
+    rowtype = (index % 2 === 0) ? "even" : "odd";
+    result = "<tr class='filmentry " + rowtype + "' ><td class='entryfunctions'>"+
+        '<button type = "button" onclick = "deletefilm(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
+        '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>" +
         + entry.datauscita + "</td><td>" +
         + entry.durata+"</td></tr>";
     return result;
 }
-function gnereate_entry_proiezione(entry) {
-    result= "<tr class=proiezioneentry><td>"
+function gnereate_entry_proiezione(entry, index) {
+    rowtype = (index%2===0) ? "even" : "odd";
+    result = "<tr class='proiezioneentry " + rowtype + "' ><td class='entryfunctions'>"+
+        '<button type = "button" onclick = "deleteproiezione(' + entry.id + ');" class="deleteentry" >	&#128465;</button >'+
+    '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>" +
         entry.titolofilm + "</td></tr>";
@@ -173,19 +234,19 @@ function gnereate_entry_proiezione(entry) {
 }
 
 function updatehtml_proiezioni(proiezioni) {
-    var proiezionilist = '<tr><th>giorno</th><th>sala</th><th>film</th></tr>';
+    var proiezionilist = '<tr><th></th><th>giorno</th><th>sala</th><th>film</th></tr>';
     for (entryindex in proiezioni) {
         var entry = proiezioni[entryindex];
-        proiezionilist += gnereate_entry_proiezione(entry);
+        proiezionilist += gnereate_entry_proiezione(entry, entryindex);
     }
     document.getElementById("proiezionilist").innerHTML = proiezionilist;
 }
 function updatehtml_film(films) {
-    var filmlist = '<tr><th>titolo</th><th>genere</th><th>data uscita</th><th>durata</th></tr>';
+    var filmlist = '<tr><th></th><th>titolo</th><th>genere</th><th>data uscita</th><th>durata</th></tr>';
     var filmoptions = "";
     for (entryindex in films) {
         var entry = films[entryindex];
-        filmlist += gnereate_entry_film(entry);
+        filmlist += gnereate_entry_film(entry, entryindex);
         filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
     }
     document.getElementById("filmlist").innerHTML = filmlist;

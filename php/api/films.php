@@ -24,7 +24,15 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         isset($_POST['Durata'])
         )
     {
-        $db = SingletonDB::getInstance();
+        $db = SingletonDB::getInstance();        
+
+        $Titolo = $_POST['Titolo'];
+        $Genere = $_POST['Genere'];
+        $DataUscita = $_POST['DataUscita'];
+        $Descrizione = $_POST['Descrizione'];
+        $SrcImg = $_POST['SrcImg'];
+        $AltImg = $_POST['AltImg'];
+        $Durata = $_POST['Durata'];
 
         $query =
             'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata) VALUES (?,?,?,?,?,?,?)';
@@ -39,20 +47,11 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $Durata
         );
 
-        $Titolo = $_POST['Titolo'];
-        $Genere = $_POST['Genere'];
-        $DataUscita = $_POST['DataUscita'];
-        $Descrizione = $_POST['Descrizione'];
-        $SrcImg = $_POST['SrcImg'];
-        $AltImg = $_POST['AltImg'];
-        $Durata = $_POST['Durata'];
-
-
         $res=$preparedQuery->execute();
         $db->disconnect();
         $preparedQuery->close();
         if($res){
-            $reply->status=$res;
+            $reply->status="ok";
         }
         else{
             $reply->status="database error";
@@ -61,6 +60,31 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
     else {
         $reply->status="parametri insufficenti";
 	}
+}
+else{
+    if (isset($_POST['action'])&&$_POST['action']=='delete')
+    {
+    $db = SingletonDB::getInstance();        
+
+        $id = $_POST['idfilm'];
+        $query =
+            'delete FROM Film where ID=?;';
+        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery->bind_param(
+            's',
+            $id
+        );
+
+        $res=$preparedQuery->execute();
+        $db->disconnect();
+        $preparedQuery->close();
+        if($res){
+            $reply->status="ok";
+        }
+        else{
+            $reply->status="database error";
+        }
+    }
 }
 $films;
 $db = SingletonDB::getInstance();

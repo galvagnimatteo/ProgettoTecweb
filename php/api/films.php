@@ -20,7 +20,8 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         isset($_POST['Genere']) &&
         isset($_POST['DataUscita']) &&
         isset($_POST['Descrizione']) &&
-        isset($_POST['SrcImg']) &&        
+        isset($_POST['SrcImg']) &&  
+        isset($_POST['CarouselImg']) &&
         isset($_POST['Durata'])
         )
     {
@@ -31,11 +32,13 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $DataUscita = $_POST['DataUscita'];
         $Descrizione = $_POST['Descrizione'];
         $SrcImg = $_POST['SrcImg'];
-        $AltImg = $_POST['AltImg'];
-        $Durata = $_POST['Durata'];
-
+        //$AltImg = $_POST['AltImg'];
+        $Durata = $_POST['Durata'];       
+        $CarouselImg=$_POST['CarouselImg'];
+        
+        
         $query =
-            'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata) VALUES (?,?,?,?,?,?,?)';
+            'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg) VALUES (?,?,?,?,?,?,?)';
         $preparedQuery = $db->getConnection()->prepare($query);
         $preparedQuery->bind_param(
             'sssssss',
@@ -44,11 +47,11 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $DataUscita,
             $Descrizione,
             $SrcImg,            
-            $Durata
+            $Durata,
+            $CarouselImg
         );
 
-        $res=$preparedQuery->execute();
-        $db->disconnect();
+        $res=$preparedQuery->execute();        
         $preparedQuery->close();
         if($res){
             $reply->status="ok";
@@ -75,8 +78,7 @@ else{
             $id
         );
 
-        $res=$preparedQuery->execute();
-        $db->disconnect();
+        $res=$preparedQuery->execute();        
         $preparedQuery->close();
         if($res){
             $reply->status="ok";

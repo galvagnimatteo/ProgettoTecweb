@@ -32,8 +32,11 @@
             <label for="imputdescizione">Descrizione</label>
             <input type="text" name="Descrizione" placeholder="descrizione" required id="imputdescizione">
 
-            <label for="imputimmagine">Sorgente Immagine</label>
-            <input type="url" name="SrcImg" required id="imputimmagine">
+            <label for="imputimmagine">Immagine</label>
+            <input type="text" name="SrcImg" required id="imputimmagine">
+
+            <label for="imputcarousel">Immagine carousel</label>
+            <input type="url" name="CarouselImg" required id="imputcarousel">
 
             <!--<label for="imputdescimmagine">Descrizione immagine</label>
             <input type="text" name="AltImg" requiredid="imputdescimmagine">-->
@@ -41,7 +44,7 @@
             <label for="imputdurata">Durata</label>
             <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
 
-            <button type="submit" onclick="post_film();"class="submit">Inserisci</button>
+            <button type="submit" onclick="post_film();" class="submit">Inserisci</button>
             <p id="result_insert_film"></p>
         </form>
         <form id="inserisci_proiezione" class="closed" onsubmit="return false">

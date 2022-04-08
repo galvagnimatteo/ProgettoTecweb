@@ -89,15 +89,21 @@ function post_film() {
 
     
     let data = {
-        action:'insert',
+        //action:'insert',
         Titolo : document.getElementById("imputtitolo").value,
-        Genere : document.getElementById("imputgenere").value,
+        Genere: document.getElementById("imputgenere").value,
+        Descrizione: document.getElementById("imputdescizione").value,
         DataUscita : document.getElementById("imputdatauscita").value,
         SrcImg : document.getElementById("imputimmagine").value,
-        Durata : document.getElementById("imputdurata").value
+        Durata: document.getElementById("imputdurata").value,
+        CarouselImg: document.getElementById("imputcarousel").value
     };
-    console.log(data);
-    xhr.send(data);
+    let urlEncodedData = "action=insert", name;
+    for (name in data) {
+        urlEncodedData += "&" + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
+    }
+    console.log(urlEncodedData);
+    xhr.send(urlEncodedData);
     xhr.onload = function () {        
         console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
@@ -130,9 +136,13 @@ function post_proiezione() {
         film: document.getElementById("filmselector").value,
         sala:document.getElementById("imputsala").value,
         Giorno:+ document.getElementById("imputgiorno").value
-        };   
-    console.log(data);
-    xhr.send(data);
+    };
+    let urlEncodedData = "", urlEncodedDataPairs = [], name;
+    for (name in data) {
+        urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
+    }
+    xhr.send(urlEncodedData);
+
     xhr.onload = function () {        
         console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
@@ -158,13 +168,7 @@ function delete_film(id) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-    
-    let data = {
-        action: 'delete',
-        idfilm: id
-    };
-    console.log(data);
-    xhr.send(data);
+    xhr.send('action=delete&idfilm=' + id);
     xhr.onload = function () {        
         console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
@@ -190,12 +194,8 @@ function delete_prieizione(id) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');   
 
-    let data = {
-        action: 'delete',
-        idproiezione:id
-    };
-    console.log(data);
-    xhr.send(data);
+    
+    xhr.send('action=delete&idproiezione='+id);
     xhr.onload  = function () {        
         console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
@@ -214,7 +214,7 @@ function delete_prieizione(id) {
 function gnereate_entry_film(entry, index) {
     rowtype = (index % 2 === 0) ? "even" : "odd";
     result = "<tr class='filmentry " + rowtype + "' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "deletefilm(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
+        '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>" +
@@ -225,7 +225,7 @@ function gnereate_entry_film(entry, index) {
 function gnereate_entry_proiezione(entry, index) {
     rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='proiezioneentry " + rowtype + "' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "deleteproiezione(' + entry.id + ');" class="deleteentry" >	&#128465;</button >'+
+        '<button type = "button" onclick = "delete_proiezione(' + entry.id + ');" class="deleteentry" >	&#128465;</button >'+
     '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>" +

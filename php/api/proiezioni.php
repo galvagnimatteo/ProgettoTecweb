@@ -13,9 +13,10 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
     exit();
 }
 $reply=new \stdClass();
-$reply->status="ok";
-if (isset($_Post['action'])&&$_Post['action']=='insert') 
+$reply->status="none";
+if (isset($_POST['action'])&&$_POST['action']=='insert') 
 {
+
     if(isset($_POST['film']) &&
             isset($_POST['sala']) &&
             isset($_POST['Giorno']) 
@@ -37,10 +38,10 @@ if (isset($_Post['action'])&&$_Post['action']=='insert')
         $Data = $_POST['Giorno'];
 
         $res=$preparedQuery->execute();
-        /*$db->disconnect();*/
+        $db->disconnect();
         $preparedQuery->close();
         if($res){
-            $reply->status="ok";
+            $reply->status=$res;
         }
         else{
             $reply->status="database error";

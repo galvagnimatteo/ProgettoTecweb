@@ -70,14 +70,14 @@ function richiedi_proiezioni() {
     request.open('GET', './api/proiezioni.php');
     request.send();
     request.onload = () => {
+        console.log(request.response);
         var data = JSON.parse(request.response);
         proiezioni = data.proiezioni;
-        console.log(films);
         updatehtml_proiezioni(proiezioni);
     }
 }
 function post_film() {
-    let url = "./api/films";
+    let url = "./api/films.php";
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -86,7 +86,8 @@ function post_film() {
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {            
+        if (xhr.readyState === 4) {
+            console.log(xhr.responseText);
             var data = JSON.parse(xhr.responseText);
             var status = data.status;
             if (status === "ok") {
@@ -99,21 +100,28 @@ function post_film() {
             }
         }
     };
-
-    let data = '{'+
-        '"Titolo":"' + document.getElementById("imputtitolo").value+'",'+
-        '"Genere":"' + document.getElementById("imputgenere").value + '",' +
-        '"DataUscita":"' + document.getElementById("imputdatauscita").value + '",' +
-        '"Descrizione":"' + document.getElementById("imputdescizione").value + '",' +
-        '"SrcImg":"' + document.getElementById("imputimmagine").value + '",' +
-        '"AltImg":"' + document.getElementById("imputdescimmagine").value + '",' +
-        '"Durata":"' + document.getElementById("imputdurata").value + '"' +
-        '}';
-    
+    let data = {
+        action:'insert',
+        Titolo : document.getElementById("imputtitolo").value,
+        Genere : document.getElementById("imputgenere").value,
+        DataUscita : document.getElementById("imputdatauscita").value,
+        SrcImg : document.getElementById("imputimmagine").value,
+        durata : document.getElementById("imputdurata").value
+    };
+    //let data = '{'+
+    //    '"Titolo":"' + +'",'+
+    //    '"Genere":"' +  + '",' +
+    //    '"DataUscita":"' + + '",' +
+    //    '"Descrizione":"' + document.getElementById("imputdescizione").value + '",' +
+    //    '"SrcImg":"' + document.getElementById("imputimmagine").value + '",' +
+    //    //'"AltImg":"' + document.getElementById("imputdescimmagine").value + '",' +
+    //    '"Durata":"' +  + '"' +
+    //    '}';
+    console.log(data);
     xhr.send(data);
 }
 function post_proiezione() {
-    let url = "./api/proiezioni";
+    let url = "./api/proiezioni.php";
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -123,6 +131,7 @@ function post_proiezione() {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
+            console.log(xhr.responseText);
             var data = JSON.parse(xhr.responseText);
             var status = data.status;
             if (status === "ok") {
@@ -136,12 +145,13 @@ function post_proiezione() {
         }
     };
 
-    let data = '{' +
-        '"film":"' + document.getElementById("filmselector").value + '",' +
-        '"sala":"' + document.getElementById("imputsala").value + '",' +
-        '"Giorno":"' + document.getElementById("imputgiorno").value + '"'+
-        '}';   
-
+    let data = {
+        action: 'insert',
+        film: document.getElementById("filmselector").value,
+        sala:document.getElementById("imputsala").value,
+        Giorno:+ document.getElementById("imputgiorno").value
+        };   
+    console.log(data);
     xhr.send(data);
 }
 

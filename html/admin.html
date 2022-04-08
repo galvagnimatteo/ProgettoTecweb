@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="overlays">
-        <form id="inserisci_film" class="closed">
+        <form id="inserisci_film" class="closed" onsubmit="return false">
             <button type="button" onclick="toggleform('film');" class="formcloser">X</button>
             <label for="Titolo"><span xml:lang="en">Titolo</span></label>
             <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
@@ -35,8 +35,8 @@
             <label for="imputimmagine">Sorgente Immagine</label>
             <input type="url" name="SrcImg" required id="imputimmagine">
 
-            <label for="imputdescimmagine">Descrizione immagine</label>
-            <input type="text" name="AltImg" requiredid="imputdescimmagine">
+            <!--<label for="imputdescimmagine">Descrizione immagine</label>
+            <input type="text" name="AltImg" requiredid="imputdescimmagine">-->
 
             <label for="imputdurata">Durata</label>
             <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
@@ -44,7 +44,7 @@
             <button type="submit" onclick="post_film();"class="submit">Inserisci</button>
             <p id="result_insert_film"></p>
         </form>
-        <form id="inserisci_proiezione" class="closed">
+        <form id="inserisci_proiezione" class="closed" onsubmit="return false">
             <button type="button" onclick="toggleform('proiezioni');" class="formcloser">X</button>
             <select name="film" title="film" id="filmselector">
             </select>

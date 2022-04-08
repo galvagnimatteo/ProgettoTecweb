@@ -13,22 +13,21 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
     exit();
 }
 $reply=new \stdClass();
-$reply->status="ok";
-if (isset($_Post['action'])&&$_Post['action']=='insert') 
+$reply->status="none";
+if (isset($_POST['action'])&&$_POST['action']=='insert') 
 {
     if(isset($_POST['Titolo']) &&
         isset($_POST['Genere']) &&
         isset($_POST['DataUscita']) &&
         isset($_POST['Descrizione']) &&
-        isset($_POST['SrcImg']) &&
-        isset($_POST['AltImg']) &&
+        isset($_POST['SrcImg']) &&        
         isset($_POST['Durata'])
         )
     {
         $db = SingletonDB::getInstance();
 
         $query =
-            'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,AltImg,Durata) VALUES (?,?,?,?,?,?,?)';
+            'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata) VALUES (?,?,?,?,?,?,?)';
         $preparedQuery = $db->getConnection()->prepare($query);
         $preparedQuery->bind_param(
             'sssssss',
@@ -36,8 +35,7 @@ if (isset($_Post['action'])&&$_Post['action']=='insert')
             $Genere,
             $DataUscita,
             $Descrizione,
-            $SrcImg,
-            $AltImg,
+            $SrcImg,            
             $Durata
         );
 
@@ -54,7 +52,7 @@ if (isset($_Post['action'])&&$_Post['action']=='insert')
         $db->disconnect();
         $preparedQuery->close();
         if($res){
-            $reply->status="ok";
+            $reply->status=$res;
         }
         else{
             $reply->status="database error";
@@ -79,7 +77,7 @@ while ($row = $resultFilms->fetch_assoc()) {
     $film->datauscita=$row['DataUscita'];
     $film->descrizione=$row['Descrizione'];
     $film->srcimg=$row['SrcImg'];
-    $film->altimg=$row['AltImg'];
+    //$film->altimg=$row['AltImg'];
     $film->durata=$row['Durata'];                
     $films[$i]=$film;
     $i++;

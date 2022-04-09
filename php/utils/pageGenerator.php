@@ -33,8 +33,8 @@ $menuvoices=[
     "Info e Costi" => "info.php",
 ];
 function GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody){
-    GLOBAL$site_template;
-    GLOBAL$menuvoices;
+    GLOBAL $site_template;
+    GLOBAL $menuvoices;
     $output= $site_template;
     $output = str_replace('<PAGETITLE/>', $title, $output);
     $output = str_replace('<KEYWORDS/>', $keywords, $output);
@@ -42,7 +42,8 @@ function GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,
     $output = str_replace("<JAVASCRIPT-HEAD/>", $jshead, $output);
     $menu='<ul id="menu" class="closedMenu">';
     foreach($menuvoices as $name => $link){
-        if($name!=$page){
+        
+		if($name!=$page){
             $menu=$menu."<li><a href=".$link.">".$name."</a></li>";
         }
         else{

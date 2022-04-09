@@ -1,7 +1,7 @@
 <?php
 
     include '../SingletonDB.php';
-    include '../mostra_errori.php';
+  
 
     $IDfilm = $_POST["IDfilm"];
     $Date = $_POST["Date"];

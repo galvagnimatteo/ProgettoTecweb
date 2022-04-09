@@ -20,10 +20,10 @@
 	
 	if (!isset($_POST["numTicketIntero"], $_POST["numTicketRidotto"], $_POST["catPosti"], 
 			   $_POST["modSelezPosti"], $_POST["idproiez"], $_POST["orario"], $_POST["seats"], 
-			   $_POST["numSala"], $_POST["titoloFilm"], $_POST["dataOraIta"], $_POST["pint"], $_POST["prid"])) 
+			   $_POST["numSala"], $_POST["titoloFilm"], $_POST["dataIta"], $_POST["pint"], $_POST["prid"])) 
 	{
-		
 		header("Location: 500.php");
+		//echo "1";
 		die();
 	}
 	
@@ -31,13 +31,15 @@
 	pulisci($_POST["orario"]);
 	pulisci($_POST["modSelezPosti"]);
 	pulisci($_POST["seats"]);
-	pulisci($_POST["dataOraIta"]);
+	pulisci($_POST["dataIta"]);
 
 	
 	//verifiche
 	if(!(is_numeric($_POST["numTicketIntero"]) && is_numeric($_POST["numTicketRidotto"]) &&
 		is_numeric($_POST["idproiez"]) && is_numeric($_POST["numSala"]) && 
-		is_numeric($_POST["pint"]) && is_numeric($_POST["prid"]))) {
+		is_numeric($_POST["pint"]) && is_numeric($_POST["prid"]))) 
+	{		
+		//echo "2";
 		header("Location: 500.php");
 		die();
 	} 
@@ -116,6 +118,7 @@
 				generaPaginaConferma($postiStr, $idPrenotaz, $totNumBiglietti);
 			else
 			{
+				//echo "3";
 				header("Location: 500.php");
 				die();
 			}
@@ -149,7 +152,7 @@
 												"Ridotto: " . $_POST["numTicketRidotto"],
 												$acquistoconferma_content);
 			
-			$acquistoconferma_content = str_replace("<PREN-DATA-ORA>", $_POST["dataOraIta"] ,$acquistoconferma_content);
+			$acquistoconferma_content = str_replace("<PREN-DATA-ORA>", $_POST["dataIta"]. ", " . substr($_POST["orario"], 0, -3)  ,$acquistoconferma_content);
 			$acquistoconferma_content = str_replace("<PREN-SALA>", $_POST["numSala"] ,$acquistoconferma_content);
 			$acquistoconferma_content = str_replace("<POSTI-LISTA>", strtoupper($listaPostiFormat) ,$acquistoconferma_content);
 			$acquistoconferma_content = str_replace("<COD-ACQ>", $idPrenotaz ,$acquistoconferma_content);
@@ -163,7 +166,7 @@
 			$jshead='<meta name="robots" content="noindex" follow /> ' . //lo attacco da qua perche non ho voglia di modificare tutto
 														' <script src="../js/promptonclose.js"></script>';
 			//GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
-			echo GeneratePage("Info e Costi",$acquistoconferma_content,$breadcrumbs,$title,$description,$keywords,$jshead,"");
+			echo GeneratePage("Conferma",$acquistoconferma_content,$breadcrumbs,$title,$description,$keywords,$jshead,"");
 		
 	}
 ?>

@@ -60,6 +60,7 @@ function richiedi_film() {
     request.open('GET', './api/films.php');
     request.send();
     request.onload = () => {
+        console.log(request.response);
         var data = JSON.parse(request.response);
         films = data.films;
         updatehtml_film(films);
@@ -69,8 +70,7 @@ function richiedi_proiezioni() {
     var request = new XMLHttpRequest();
     request.open('GET', './api/proiezioni.php');
     request.send();
-    request.onload = () => {
-        console.log(request.response);
+    request.onload = () => {        
         var data = JSON.parse(request.response);
         proiezioni = data.proiezioni;
         updatehtml_proiezioni(proiezioni);
@@ -101,11 +101,9 @@ function post_film() {
     let urlEncodedData = "action=insert", name;
     for (name in data) {
         urlEncodedData += "&" + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
-    }
-    console.log(urlEncodedData);
+    }    
     xhr.send(urlEncodedData);
     xhr.onload = function () {        
-        console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -139,12 +137,10 @@ function post_proiezione() {
     let urlEncodedData = "action=insert", name;
     for (name in data) {
         urlEncodedData += "&" + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
-    }
-    console.log(urlEncodedData);
+    }    
     xhr.send(urlEncodedData);
 
-    xhr.onload = function () {        
-        console.log(xhr.responseText);
+    xhr.onload = function () {                
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -169,8 +165,7 @@ function delete_film(id) {
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
     xhr.send('action=delete&idfilm=' + id);
-    xhr.onload = function () {        
-        console.log(xhr.responseText);
+    xhr.onload = function () {
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -196,8 +191,7 @@ function delete_proiezione(id) {
 
     
     xhr.send('action=delete&idproiezione='+id);
-    xhr.onload  = function () {        
-        console.log(xhr.responseText);
+    xhr.onload  = function () {
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -217,7 +211,7 @@ function gnereate_entry_film(entry, index) {
         '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
-        + entry.genere + "</td><td>" +
+        + entry.genere + "</td><td>"
         + entry.datauscita + "</td><td>" +
         + entry.durata+"</td></tr>";
     return result;

@@ -56,14 +56,21 @@ nav ul {
 .no-js .closedMenu {
     display: normal;
 }
-nav li a, nav li p {
+nav li a, nav li {
     display: block;
     text-align: center;
     text-decoration: none;
     padding: 1rem;
 }
+nav li > a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 0rem;
+}
 
-a:visited:not(.carouselContainer, a:visited){
+
+a:visited:not(.carouselContainer, a:visited) {
     color: var(--visited-links);
 }
 .breadcrumbs{
@@ -551,9 +558,9 @@ padding-left:2.5rem;
     margin-bottom:2rem;
     /*background-image: linear-gradient(var(--secondary-color),var(--gradient-last-color));*/
 }
-    #inserisci_film > input, #inserisci_proiezione > input,
-    #inserisci_film > select, #inserisci_proiezione > select,
-    #inserisci_film > option, #inserisci_proiezione > option,
+    #inserisci_film  input, #inserisci_proiezione  input,
+    #inserisci_film  select, #inserisci_proiezione  select,
+    #inserisci_film  option, #inserisci_proiezione option,
     .submit{
         width: 80%;
         height: 4vh;
@@ -1200,14 +1207,19 @@ p.aiutocompilaz strong {
         display: flex;
         flex-direction: row;
     }
-
-    #funzioni {
+    .adminsidebar {
         width: 20%;
         display: flex;
         flex-direction: column;
     }
+ 
+    #funzioni {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 
-    #funzioni > li {
+    #funzioni  li {
         width: 100%;
     }
 
@@ -1215,7 +1227,13 @@ p.aiutocompilaz strong {
         width: 80%;
     }
 }
-
+.adminsidebar {
+    background-color: grey;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
 /*.open {
     display: block;
 }*/
@@ -1240,12 +1258,12 @@ p.aiutocompilaz strong {
     border-radius: 15px;
     box-sizing: border-box;
 }
-.filmentry > td, .proiezioneentry>td {    
+.filmentry  td, .proiezioneentry td {    
     padding-left: 30px;
     padding-right: 60px;
 }
-.filmentry > .entryfunctions,
-.proiezioneentry > .entryfunctions {
+.filmentry  .entryfunctions,
+.proiezioneentry  .entryfunctions {
     padding-left: 0px;
     padding-right: 0px;
 }

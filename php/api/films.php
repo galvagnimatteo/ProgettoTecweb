@@ -12,6 +12,7 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
     echo '{"status":"unauthorized"}';
     exit();
 }
+$db = SingletonDB::getInstance();
 $reply=new \stdClass();
 $reply->status="none";
 if (isset($_POST['action'])&&$_POST['action']=='insert') 
@@ -25,8 +26,6 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         isset($_POST['Durata'])
         )
     {
-        $db = SingletonDB::getInstance();        
-
         $Titolo = $_POST['Titolo'];
         $Genere = $_POST['Genere'];
         $DataUscita = $_POST['DataUscita'];
@@ -67,8 +66,6 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 else{
     if (isset($_POST['action'])&&$_POST['action']=='delete')
     {
-    $db = SingletonDB::getInstance();        
-
         $id = $_POST['idfilm'];
         $query =
             'delete FROM Film where ID=?;';
@@ -89,7 +86,6 @@ else{
     }
 }
 $films;
-$db = SingletonDB::getInstance();
 $resultFilms = $db
     ->getConnection()
     ->query('SELECT * FROM Film ORDER BY DataUscita DESC');

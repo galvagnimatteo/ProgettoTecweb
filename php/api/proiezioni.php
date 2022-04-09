@@ -12,6 +12,7 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
     echo '{"status":"unauthorized"}';
     exit();
 }
+$db = SingletonDB::getInstance();
 $reply=new \stdClass();
 $reply->status="none";
 if (isset($_POST['action'])&&$_POST['action']=='insert') 
@@ -37,8 +38,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $NumeroSala = $_POST['sala'];
         $Data = $_POST['Giorno'];
 
-        $res=$preparedQuery->execute();
-        $db->disconnect();
+        $res=$preparedQuery->execute();        
         $preparedQuery->close();
         if($res){
             $reply->status=$res;
@@ -51,9 +51,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $reply->status="parametri insufficenti";
 	}
 }else{
-    if (isset($_POST['action'])&&$_POST['action']=='delete'){ 
-    $db = SingletonDB::getInstance();        
-
+    if (isset($_POST['action'])&&$_POST['action']=='delete'){
         $id = $_POST['idproiezione'];
         $query =
             'delete FROM Proiezione where ID=?;';
@@ -63,22 +61,21 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $id
         );
 
-        $res=$preparedQuery->execute();
-        $db->disconnect();
+        $res=$preparedQuery->execute();        
         $preparedQuery->close();
     }
     
 }
 $proiezioni;
-$db = SingletonDB::getInstance();
 $resultproiezioni = $db
     ->getConnection()
-    ->query('SELECT * FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm');
+    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm');
 $db->disconnect();
 $i=0;
 while ($row = $resultproiezioni->fetch_assoc()) { 
     $proiezione=new \stdClass();
     $proiezione->data=$row['Data'];
+    $proiezione->id=$row['ID'];
     $proiezione->idfilm=$row['IDFilm'];
     $proiezione->titolofilm=$row['Titolo'];
     $proiezione->numeroSala=$row['NumeroSala'];

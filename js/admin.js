@@ -132,15 +132,15 @@ function post_proiezione() {
     
 
     let data = {
-        action: 'insert',
         film: document.getElementById("filmselector").value,
         sala:document.getElementById("imputsala").value,
-        Giorno:+ document.getElementById("imputgiorno").value
+        Giorno:document.getElementById("imputgiorno").value
     };
-    let urlEncodedData = "", urlEncodedDataPairs = [], name;
+    let urlEncodedData = "action=insert", name;
     for (name in data) {
-        urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
+        urlEncodedData += "&" + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
     }
+    console.log(urlEncodedData);
     xhr.send(urlEncodedData);
 
     xhr.onload = function () {        
@@ -183,7 +183,7 @@ function delete_film(id) {
         }        
     };
 }
-function delete_prieizione(id) {
+function delete_proiezione(id) {
     let url = "./api/proiezioni.php";
 
     let xhr = new XMLHttpRequest();
@@ -234,7 +234,7 @@ function gnereate_entry_proiezione(entry, index) {
 }
 
 function updatehtml_proiezioni(proiezioni) {
-    var proiezionilist = '<tr><th></th><th>giorno</th><th>sala</th><th>film</th></tr>';
+    var proiezionilist = '<tr class=odd><th></th><th>giorno</th><th>sala</th><th>film</th></tr>';
     for (entryindex in proiezioni) {
         var entry = proiezioni[entryindex];
         proiezionilist += gnereate_entry_proiezione(entry, entryindex);
@@ -242,7 +242,7 @@ function updatehtml_proiezioni(proiezioni) {
     document.getElementById("proiezionilist").innerHTML = proiezionilist;
 }
 function updatehtml_film(films) {
-    var filmlist = '<tr><th></th><th>titolo</th><th>genere</th><th>data uscita</th><th>durata</th></tr>';
+    var filmlist = '<tr class=odd><th></th><th>titolo</th><th>genere</th><th>data uscita</th><th>durata</th></tr>';
     var filmoptions = "";
     for (entryindex in films) {
         var entry = films[entryindex];

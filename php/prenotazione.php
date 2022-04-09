@@ -118,7 +118,7 @@ session_start();
 		$title ="Acquista biglietti per " . $dataFilm["Titolo"] . " - PNG Cinema";
         $keywords = "Acquista, biglietti, ".$dataFilm["Titolo"];
         $description ="Scheda informativa del film: " . $dataFilm["Titolo"];
-        $breadcrumb = '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
+        $breadcrumbs = '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
                 $dataFilm["ID"] . '"' .
                 '>Scheda Film: ' .
                 $dataFilm["Titolo"] .

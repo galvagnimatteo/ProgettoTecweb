@@ -1268,7 +1268,8 @@ p.aiutocompilaz strong {
     padding-right: 0px;
 }
 .activeoption {
-    background-color: darkred;
+    background-image: linear-gradient(red, darkred);
+    /*background-color: darkred;*/
     border: none;
     border-radius: 15px;
     box-sizing: border-box;

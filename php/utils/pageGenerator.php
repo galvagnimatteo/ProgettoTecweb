@@ -50,16 +50,22 @@ function GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,
             $menu=$menu."<li class=\"menu_name\">".$name."</li>";
         }
     }
-    $menu=$menu."<li>";
-    if (isset($_SESSION["a"])){
+
+    if($page == "login" && !isset($_SESSION["a"])){
+        $menu=$menu."<li id=\"loginMenu\" class=\"menu_name\">Login</li>";
+    }elseif($page == "login" && isset($_SESSION["a"])){
+        $menu=$menu."<li id=\"loginMenu\" class=\"menu_name\">".$_SESSION["a"]."</li>";
+    }elseif($page!="login" && isset($_SESSION["a"])){
+        $menu=$menu."<li id=\"loginMenu\">";
         $menu=$menu.'<a id="loginbutton" href="./area_utenti.php?action=getProfile">'.$_SESSION["a"].'</a>';
+        $menu=$menu."</li>";
+    }else{
+        $menu=$menu."<li id=\"loginMenu\">";
+        $menu=$menu.'<a id="loginbutton" href="./area_utenti.php?action=login_page">Login</a>';
+        $menu=$menu."</li>";
     }
-    else
-    {
-	    $menu=$menu.'<a id="loginbutton" href="./area_utenti.php?action=login_page">Login</a>';
-    }
-    $menu=$menu."</li>";
     $menu=$menu."</ul>";
+
     $output = str_replace("<MENU/>",$menu , $output);
     $admin="";
     if(isset($_SESSION["admin"])&&$_SESSION["admin"])

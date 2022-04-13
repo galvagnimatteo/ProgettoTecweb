@@ -40,9 +40,7 @@ header h1 {
 nav ul {
     list-style-type: none;
 }
-#loginLink{
-    margin-left: auto;
-}
+
 #loginMenu{
     margin-left: auto;
 }
@@ -933,7 +931,8 @@ div.labelqp select {
     #menubutton {
         display: none;
     }
-    #loginLink{
+
+    #loginMenu{
         margin-left: auto;
     }
 
@@ -956,7 +955,8 @@ div.labelqp select {
     #menubutton {
         text-decoration: none;
     }
-    #loginLink{
+
+    #loginMenu{
         margin-left: 0;
     }
 

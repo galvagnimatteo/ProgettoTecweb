@@ -1,4 +1,4 @@
-var elem = document.getElementById("scene");
+var mappaPosti = document.getElementById("scene");
 var autoCard = document.getElementById("autoRadioGroup");
 var manualCard = document.getElementById("manualContainer");
 var postiViciniCheck = document.getElementById("postiViciniCheck");
@@ -61,7 +61,6 @@ document.getElementById("purchaseTicketForm").addEventListener("submit", functio
 });
 
 
-
 var posti = document.getElementsByClassName("seat");
 var inputListaPosti = document.getElementById("seatsString");
 
@@ -76,17 +75,12 @@ calcolaPrezzoTot(null);
 controllaInput(null);
 submitButton.innerHTML = "Acquista 0 biglietti, Totale: 0,00 €";
 
-panzoom(elem, {
-	maxZoom: 1.8,
-	minZoom: 0.2,
+var panzoomController = panzoom(mappaPosti, {
+	maxZoom: 2.0,
+	minZoom: 1.0,
 	bounds: true,
 	boundsPadding: 0.2,
 });
-
-/*var zoomFactor = Math.min(Math.max(document.documentElement.clientWidth, 0), 1204) / Math.min(Math.max(document.documentElement.clientHeight, 0), 900);
-
-instance.smoothZoom(Math.floor(manualCard.offsetWidth/2 * 0.08), Math.floor(manualCard.offsetHeight/2), zoomFactor * 0.80); */
-
 
 
 
@@ -185,7 +179,6 @@ function selezionePosto(event) {
 	
 }
 
-
 function controllaInput(event) {
 	var totPosti = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
 
@@ -261,8 +254,6 @@ function controllaInput(event) {
 	}
 	
 }
-
-
 
 function pulisciPostiSelezionati(event) {
 	if (!autoRadioBtn.checked) {

@@ -4,7 +4,7 @@
     --gradient-first-color: #282828;
     --gradient-last-color: #121212;
     --visited-links: #BBBBBB;
-    --text-color: white;
+    --text-color: #fff;
     --error-color: #C2B800;
     --links-hover-color: #ffdd36;
 }
@@ -666,43 +666,26 @@ padding-left:3rem;
   cursor: pointer;
 }
 
-.contactpage iframe {
-    width: 100%;
-    align-self: end;
-}
-@keyframes materialize {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-#posizione {
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-fill-mode: both;
-}
+
+/*contatti*/
+
+
+
 #contatti {
-    position: relative;
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 2s;
-    animation-fill-mode: both;
+    
     text-align: right;
 }
+
+
+#contatti h2 {
+    text-align: center;
+}
+
 .contactsParagraph{
     margin: 1rem;
 }
-#contatti h2{
-    text-align: right;
-}
-#social {
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 4s;
-    animation-fill-mode: both;
-}
+
+
 .contactpage {
     display: flex;
     flex-direction: column;
@@ -758,6 +741,8 @@ padding-left:3rem;
         padding-right:0;
     }
 }
+
+/* fine - contatti */
 
 .insert_movie, .insert_proiezione{
     max-width:30rem;
@@ -1385,33 +1370,5 @@ p.aiutocompilaz strong {
 }
 
 
-@media print{
 
-
-    body, #content {
-        page-break-inside: auto;
-    }
-    div {
-        page-break-inside: auto;
-        page-break-before: auto;
-        page-break-after: auto;
-    }
-    .card, li, section, article, #psizione, #contatti, #social {
-        page-break-inside: avoid;
-        page-break-after: auto;
-        page-break-before: auto;
-    }
-    .cardsContainer ul, li {
-        flex-grow: 1;
-    }
-
-	#confermaAcq .warning {
-		visibility: hidden;
-	}
-
-	#menubutton-apri, #menubutton-chiudi {
-		display:none;
-	}
-
-}
 

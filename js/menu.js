@@ -18,12 +18,24 @@ function togglemenu() {
 
 window.addEventListener("resize", function() {
 	if(window.innerWidth > 865){
+		//chiudi menu in ogni caso, non è proprio il massimo ma vabbe 
+		menuon = true;
+		togglemenu();
+		
 		btnChiudiMenu.style = "display: none;";
-		btnApriMenu.style = "display: none;";	
+		btnApriMenu.style = "display: none;";
+		
+		
 	}
 	
 	else{
-		btnChiudiMenu.style = "display: none;";
-		btnApriMenu.style = "display: block;";
+		if (menuon) {
+			btnChiudiMenu.style = "display: block;";
+			btnApriMenu.style = "display: none;";
+		} else {
+			btnChiudiMenu.style = "display: none;";
+			btnApriMenu.style = "display: block;";
+		}
+		
 	}
 });

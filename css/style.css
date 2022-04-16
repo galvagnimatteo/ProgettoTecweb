@@ -672,7 +672,8 @@ padding-left:3rem;
 
 
 #contatti {
-    
+    margin-left:2rem;
+    margin-right:2rem;
     text-align: right;
 }
 
@@ -690,29 +691,12 @@ padding-left:3rem;
     display: flex;
     flex-direction: column;
 }
-#posizione dl, #contatti dl, #social dl {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-#posizione dt, #contatti dt, #social dt {
-    flex-basis: 20%;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-#posizione dd, #contatti dd, #social dd {
-    flex-basis: 70%;
-    flex-grow: 1;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+
+#social {
+	margin-left: 1rem;
+	margin-right: 1rem;
 }
 
-.contactpage {
-    display: flex;
-    flex-direction: column;
-}
 #posizione dl, #contatti dl, #social dl {
     display: flex;
     flex-flow: row;
@@ -731,14 +715,13 @@ padding-left:3rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-@media (min-width: 49rem) {
+@media (min-width: 768px) {
     #contatti {
         width: 50%;
         left: 50%;
-        margin-left:0;
-        margin-right:0;
-        padding-left:0;
-        padding-right:0;
+        margin-left:2rem;
+        margin-right:2rem;
+
     }
 }
 
@@ -977,7 +960,7 @@ div.labelqp select {
 }
 @media screen and (max-width: 800px) {
 	 .div_register,.div_user,.div_login{
- width:80%;
+		min-width:95%;
 	  }
 }
 @media screen and (max-width: 700px) {
@@ -1325,6 +1308,10 @@ p.aiutocompilaz strong {
 	margin-right: 0;
 	padding-left: 40px;
 
+}
+
+#content.infocosti {
+	margin-left: 1rem;
 }
 
 #content.infocosti p {

@@ -44,9 +44,39 @@ nav ul {
 #loginMenu{
     margin-left: auto;
 }
-#menubutton{
+
+.nascondiTesto {
+	text-indent: -9999px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
+#menubutton-apri{
     padding: 1rem;
     margin-left: auto;
+	background-image: url("../images/burger-menu.svg");
+	background-repeat: no-repeat;
+    background-color: unset;
+    background-size: 1.5em;
+	position: absolute;
+	top: 0.7rem;
+	left: 1rem;
+	
+}
+
+#menubutton-chiudi{
+    padding: 1rem;
+    margin-left: auto;
+	background-image: url("../images/chiudi-menu.svg");
+	background-repeat: no-repeat;
+    background-color: unset;
+    background-size: 1.5em;
+	position: absolute;
+	top: 0.7rem;
+	left: 1rem;
+	
 }
 
 /*ovverides per assenza di js visualizzani il menù come sempre aperto*/
@@ -916,7 +946,7 @@ div.labelqp select {
     nav {
         width: 100%;
     }
-    #menubutton {
+    #menubutton-apri, #menubutton-chiudi {
         display: none;
     }
 
@@ -929,6 +959,7 @@ div.labelqp select {
     #titleWrapper{
         display: flex;
         flex-direction: row;
+		justify-content: center;
     }
     ul{
         display: flex;
@@ -940,9 +971,15 @@ div.labelqp select {
     .closedMenu {
         display: none;
     }
-    #menubutton {
-        text-decoration: none;
-    }
+    
+    #menubutton-apri{
+		display:block;
+	} 
+	
+	#menubutton-chiudi{
+		display:none;
+	}
+    
 
     #loginMenu{
         margin-left: 0;
@@ -1310,16 +1347,17 @@ p.aiutocompilaz strong {
 }
 
 #content.infocosti section {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+	margin-top: 2.3rem;
+	margin-bottom: 3rem;
 }
 
 #content.infocosti h3 {
 	margin-bottom: 1rem;
+	margin-top: 2rem;
 }
 
 #content.infocosti h4 {
-	margin-top: 0.5rem;
+	margin-top: 1.2rem;
 }
 
 #content.infocosti table {
@@ -1371,7 +1409,7 @@ p.aiutocompilaz strong {
 		visibility: hidden;
 	}
 
-	#menubutton {
+	#menubutton-apri, #menubutton-chiudi {
 		display:none;
 	}
 

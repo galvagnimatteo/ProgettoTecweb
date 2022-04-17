@@ -9,6 +9,7 @@ session_start();
 	CheckSession(false,false); //refresh della sessione se scaduta
 	$idproiez = -1;
 	$orario = '';
+	
 	if(isset($_GET["idproiez"]) && is_numeric($_GET["idproiez"])) {
 		$idproiez = $_GET["idproiez"]; 
 	} else {

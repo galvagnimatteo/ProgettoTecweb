@@ -41,6 +41,7 @@ document.getElementById("purchaseTicketForm").addEventListener("submit", functio
 	var arrPosti = document.getElementById("seatsString").value.split(",");
 	var numPostiSelez = arrPosti.length;
 	console.log(numPostiSelez);
+	
 	if (tot == 0) {
 		aiuto[0].setAttribute("class", "aiutocompilaz");
 		aiuto[1].setAttribute("class", "aiutocompilaz");
@@ -49,12 +50,13 @@ document.getElementById("purchaseTicketForm").addEventListener("submit", functio
 		event.preventDefault(); // non fa submit
 		
 		return false; //su qualche browser senza questo non va
-	} else if (tot > numPostiSelez) {
+	} else if (tot > numPostiSelez && manualRadioBtn.checked) {
 		aiuto[2].setAttribute("class", "aiutocompilaz");
 		event.preventDefault(); 
 		
 		return false;
 	}
+	
 	
 });
 
@@ -65,8 +67,8 @@ var inputListaPosti = document.getElementById("seatsString");
 
 for (var i = 0; i < posti.length; i++) {
 	var posto = posti[i];
-	
-	posto.addEventListener("click", selezionePosto);
+	if (posto.getAttribute("class") != "seat occupato")
+		posto.addEventListener("click", selezionePosto);
 }
 
 changeCard(null);

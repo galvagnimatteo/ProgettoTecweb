@@ -7,7 +7,7 @@
                'maggio', 'giugno', 'luglio', 'agosto',
                'settembre', 'ottobre', 'novembre','dicembre');
 
-		$giorni = array('Sunday' => 'Domenica','Monday' => 'Lunedì','Tuesday' => 'Marted','Wednesday' => 'Mercoledì',
+		$giorni = array('Sunday' => 'Domenica','Monday' => 'Lunedì','Tuesday' => 'Martedì','Wednesday' => 'Mercoledì',
                 'Thursday'=> 'Giovedì','Friday' => 'Venerdì','Saturday' => 'Sabato');
 
 		list($nomeGiorno, $giorno, $mese, $anno) = explode('-',date('l-d-m-Y', $timestamp));

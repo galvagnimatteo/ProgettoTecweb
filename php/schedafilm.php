@@ -164,7 +164,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $title = $dataFilm["Titolo"] . " - PNG Cinema";
         $keywords = $dataFilm["Titolo"];
         $description ="Scheda informativa del film: " . $dataFilm["Titolo"];
-        $breadcrumbs ='<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
+        $breadcrumb ='<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
             'Scheda Film: ' .
             $dataFilm["Titolo"];
         //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);

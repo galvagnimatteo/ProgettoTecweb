@@ -1,0 +1,66 @@
+* {
+	color: #000;
+	font-family: serif;
+	font-size: 95%;
+}
+
+html, body {
+	max-width: 1200px;
+}
+
+
+body, #content {
+	page-break-inside: auto;
+}
+
+nav {display: none;}
+
+
+
+
+/*home*/
+.quickPurchaseContainer {
+	display:none;
+}
+
+.cardsContainer {
+	display: block;
+}
+
+.cardsContainer ul img{
+	display: none;
+}
+
+/*contatti*/
+
+
+
+#contatti dt, #contatti dd{
+	text-align: left;
+	
+}
+
+div {
+	page-break-inside: auto;
+	page-break-before: auto;
+	page-break-after: auto;
+}
+
+.card, li, section, article{
+	page-break-inside: avoid;
+	page-break-after: auto;
+	page-break-before: auto;
+}
+
+
+
+
+
+#confermaAcq .warning {
+	visibility: hidden;
+}
+
+#menubutton-apri, #menubutton-chiudi {
+	display:none;
+}
+

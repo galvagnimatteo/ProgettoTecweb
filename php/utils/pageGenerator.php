@@ -13,13 +13,13 @@ function CheckSession($login_required, $admin_required){
     }
     $_SESSION["discard_after"] = $now+$sessiondiscard_timer;
 
-    if($admin_required){    
+    if($admin_required){
         if(!isset($_SESSION["admin"])||!$_SESSION["admin"]){
             header("location:area_utenti.php?action=login_page");
             exit();
         }
     }
-    if($login_required){    
+    if($login_required){
         if(!isset($_SESSION["a"])){
             header("location:area_utenti.php?action=login_page");
             exit();
@@ -42,24 +42,30 @@ function GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,
     $output = str_replace("<JAVASCRIPT-HEAD/>", $jshead, $output);
     $menu='<ul id="menu" class="closedMenu">';
     foreach($menuvoices as $name => $link){
-        
+
 		if($name!=$page){
             $menu=$menu."<li><a href=".$link.">".$name."</a></li>";
         }
         else{
-            $menu=$menu."<li>".$name."</li>";
+            $menu=$menu."<li class=\"menu_name\">".$name."</li>";
         }
     }
-    $menu=$menu."<li>";
-    if (isset($_SESSION["a"])){
+
+    if($page == "login" && !isset($_SESSION["a"])){
+        $menu=$menu."<li id=\"loginMenu\" class=\"menu_name\">Login</li>";
+    }elseif($page == "login" && isset($_SESSION["a"])){
+        $menu=$menu."<li id=\"loginMenu\" class=\"menu_name\">".$_SESSION["a"]."</li>";
+    }elseif($page!="login" && isset($_SESSION["a"])){
+        $menu=$menu."<li id=\"loginMenu\">";
         $menu=$menu.'<a id="loginbutton" href="./area_utenti.php?action=getProfile">'.$_SESSION["a"].'</a>';
+        $menu=$menu."</li>";
+    }else{
+        $menu=$menu."<li id=\"loginMenu\">";
+        $menu=$menu.'<a id="loginbutton" href="./area_utenti.php?action=login_page">Login</a>';
+        $menu=$menu."</li>";
     }
-    else 
-    {
-	    $menu=$menu.'<a id="loginbutton" href="./area_utenti.php?action=login_page">Login</a>';
-    }
-    $menu=$menu."</li>";
     $menu=$menu."</ul>";
+
     $output = str_replace("<MENU/>",$menu , $output);
     $admin="";
     if(isset($_SESSION["admin"])&&$_SESSION["admin"])

@@ -85,14 +85,14 @@ if (isset($_GET["action"])) {
         }
 
     }
-	
+
 	if ($action =="getHistoryProfile")
 	{
 		include_once "Users.php";
         $Users = new Users();
-        $home_content = $Users->getHistory();	
-		
-	}	
+        $home_content = $Users->getHistory();
+
+	}
     if ($action == "getProfile") {
         include_once "Users.php";
         $Users = new Users();
@@ -103,7 +103,7 @@ if (isset($_GET["action"])) {
         $Users = new Users();
 		$home_content = file_get_contents("../html/items/updatePassword_content.html");
 	}
-	
+
 	 if ($action == "getDeleteProfile") {
         include_once "Users.php";
         $Users = new Users();
@@ -165,7 +165,7 @@ if (isset($_GET["action"])) {
 	 list($valid,$error)=$Users->checkPassword(nil,$_POST["password_delete"],$_POST["password_delete_confirm"]);
 	 if(!$valid)
 	 {
-		  header("location:area_utenti.php?action=getDeleteProfile&errorPass=".$error);	
+		  header("location:area_utenti.php?action=getDeleteProfile&errorPass=".$error);
 	 }else{
      if($Users->deleteProfile())
 	 {
@@ -175,7 +175,7 @@ if (isset($_GET["action"])) {
 	 }
 
 	}
-	
+
 	if($action == "changePassword")
 	{
 	include_once "Users.php";
@@ -183,21 +183,21 @@ if (isset($_GET["action"])) {
 	list($valid,$error)=$Users->checkPassword($_POST["password_old"],$_POST["password_profile"],$_POST["password_profile_confirm"]);
 	if(!$valid)
 	{
-		
-	header("location:area_utenti.php?action=getProfilePassword&errorPass=".$error);		
+
+	header("location:area_utenti.php?action=getProfilePassword&errorPass=".$error);
 	}else{
 	$Users->changePassword();
 	header("location:area_utenti.php?action=getProfilePassword&errorPass=".$error);
 	}
 	}
-	
+
 	if($action == "viewReservation" && isset($_GET["codice"]))
 	{
 	include_once "Users.php";
     $Users = new Users();
 	$home_content=$Users->viewReservation($_GET["codice"]);
-	}	
-	
+	}
+
 
 	if($action == "logout")
 	{
@@ -225,23 +225,23 @@ if(isset($_GET["errorPass"]))
 {
 	if($_GET["errorPass"]==0)
 		$home_content = str_replace("<ERRORMESSAGE>", "Password cambiata", $home_content);
-		
+
 
 	if($_GET["errorPass"]==1)
 		$home_content = str_replace("<ERRORMESSAGE>", "Password Errata", $home_content);
-		
-				
+
+
 	if($_GET["errorPass"]==3)
 		$home_content = str_replace("<ERRORMESSAGE>", "Le due password non coincidono", $home_content);
-		
-		
+
+
 	if($_GET["errorPass"]==2)
 		$home_content = str_replace("<ERRORMESSAGE>", "La password deve essere di almeno 8 caratteri e non può contenere spazi", $home_content);
-	
-		
+
+
 	if($_GET["errorPass"]==4)
-		$home_content = str_replace("<ERRORMESSAGE>", "Account eliminato!", $home_content);	
-	
+		$home_content = str_replace("<ERRORMESSAGE>", "Account eliminato!", $home_content);
+
 	unset($_GET["errorPass"]);
 }
 
@@ -250,7 +250,7 @@ $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancor
 
 $description = 'Pagina di login';
 $keywords = 'Login';
-$breadcrumbs='<p><a href="home.php">Home</a> /  Area Utenti</p>';
+$breadcrumbs='<a href="home.php">Home</a> /  Area Utenti';
 $jshead ='<script type="text/javascript" src="../js/controls.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage("login",$home_content,$breadcrumbs,'Login - PNG Cinema',$description,$keywords,$jshead,"");

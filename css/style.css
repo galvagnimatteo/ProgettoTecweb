@@ -4,7 +4,7 @@
     --gradient-first-color: #282828;
     --gradient-last-color: #121212;
     --visited-links: #BBBBBB;
-    --text-color: white;
+    --text-color: #fff;
     --error-color: #C2B800;
     --links-hover-color: #ffdd36;
 }
@@ -40,12 +40,43 @@ header h1 {
 nav ul {
     list-style-type: none;
 }
-#loginLink{
+
+#loginMenu{
     margin-left: auto;
 }
-#menubutton{
+
+.nascondiTesto {
+	text-indent: -9999px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
+#menubutton-apri{
     padding: 1rem;
     margin-left: auto;
+	background-image: url("../images/burger-menu.svg");
+	background-repeat: no-repeat;
+    background-color: unset;
+    background-size: 1.5em;
+	position: absolute;
+	top: 0.7rem;
+	left: 1rem;
+	
+}
+
+#menubutton-chiudi{
+    padding: 1rem;
+    margin-left: auto;
+	background-image: url("../images/chiudi-menu.svg");
+	background-repeat: no-repeat;
+    background-color: unset;
+    background-size: 1.5em;
+	position: absolute;
+	top: 0.7rem;
+	left: 1rem;
+	
 }
 
 /*ovverides per assenza di js visualizzani il menù come sempre aperto*/
@@ -56,7 +87,7 @@ nav ul {
 .no-js .closedMenu {
     display: normal;
 }
-nav li a, nav li p {
+nav li a, nav li p, nav .menu_name {
     display: block;
     text-align: center;
     text-decoration: none;
@@ -312,7 +343,7 @@ programmazione.html
 
 .cards_reservation{
 
-	
+
 	display:grid;
 	grid-template-columns: 1.3fr 1fr 0.4fr;
 	grid-template-areas:
@@ -327,13 +358,13 @@ programmazione.html
 
 }
 
-.card_reservation{ 
+.card_reservation{
 	grid-area: a;
 }
 
 
 .div_register.reservation{
-	
+
 	width:100%;
 	display:inline-block;
 }
@@ -368,23 +399,23 @@ grid-template-areas:
 
 .card_one_see_reservation img{
 	width:100%;
-}	
+}
 
 .card_two_see_reservation{
 	grid-area:b;
 	padding-left:2rem;
-}	
+}
 .card_two_see_reservation p{
 	padding-top:0.6em;
 }
 
 
 .reservation_button{
-/*	
+/*
  -webkit-border-radius: 4px;
     -moz-border-radius: 4px;*/
     border-radius: 0.3rem;
-   
+
     /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -393,21 +424,21 @@ grid-template-areas:
 	color:white !important;
 	padding:0.5rem 0.8rem;
     text-decoration: none;
-	
+
 }
 #watch_again{
 	float:right;
 	padding-top:10em;
-}	
+}
 
 #ul_reservation{
 	padding-top:2rem;
-	
+
 }
-	
+
 .reservation_button:hover{
     color:white !important;
-}	
+}
  @media screen and (max-width: 190px) {
 	 .reservation_button{
 	  font-size:0.8em;
@@ -417,18 +448,18 @@ grid-template-areas:
 	 .reservation_button{
 	  font-size:0.6em;
 	 }
-	
+
 }
 
 
 @media screen and (max-width: 760px) {
-	
+
    .cards_users{
 	   grid-template-columns: 1fr;
 grid-template-areas:
 	"c"
 	"a"
-	"b";  
+	"b";
    }
 }
 @media screen and (max-width: 500px) {
@@ -436,46 +467,46 @@ grid-template-areas:
 		  padding:0em;
 
 		  display:block;
-	}  
 	}
-	
+	}
+
 	@media screen and (max-width: 580px) {
 	  .cards_users{
 		  padding:0em;
 		  display:block;
-	}  
 	}
-	
-	
+	}
+
+
 @media screen and (max-width: 450px) {
 
-	
+
    .cards_users{
   display:block;
    }
    .cards_reservation{
 	     display:block;
    }
-}	
-	
+}
+
 
 @media screen and (max-width: 620px) {
-	
+
    .cards_see_reservation{
   display:block;
    }
  .card_one_see_reservation img{
 	width:70%;
-}	
+}
 .card_two_see_reservation{
 	grid-area:b;
 	padding-left:0rem;
-}	
-}	
+}
+}
 
 
 
-.card1_users{ 
+.card1_users{
 	grid-area: a;
     background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	display:flex;
@@ -486,14 +517,14 @@ grid-template-areas:
 .div_user.card3_users{
 	width:100%;
 	grid-area: c;
-}	
+}
 .div_register.profile{
 	width: 100%;
 }
 .cards_users ul {
 	 list-style-type: none;
 	display:block !important;
-	
+
 	margin:1em;
 	font-size:0.8em;
 }
@@ -507,7 +538,7 @@ font-size:0.8em;
     border: none;
     padding: 0!important;
 	padding-top:1em;
-    
+
     text-decoration: underline;
     cursor: pointer;
 }
@@ -522,27 +553,27 @@ font-size:0.8em;
 	padding-bottom:2rem;
 }
 .div_login  input[type=password], .div_login input[type=text]{
-  width:70%;
- display:flex;
- height: 4vh;
-	background: #e0dede;
-	color:#000000;
-	margin: 1rem auto;
-	padding:0.8rem;
-	border: none;
-	border-radius: 5px;
-	font-size:0.9rem;
-	display:block;
-	box-sizing: border-box;
+    width:70%;
+    display:flex;
+    height: 4vh;
+    background: #e0dede;
+    color:#000000;
+    margin: 1rem auto;
+    padding:0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size:0.9rem;
+    display:block;
+    box-sizing: border-box;
 }
 .div_login  label{
-margin:auto;
-display:flex;
-justify-content:left;
-padding-left:4.5rem;
+    margin:auto;
+    display:flex;
+    justify-content:left;
+    padding-left:4.5rem;
 }
 .div_login input[type=submit]{
-	width:60%;
+	width:70%;
 	height:3rem;
 	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
 	margin-bottom: 1rem;
@@ -592,7 +623,7 @@ padding-left:4.5rem;
     margin-bottom: 1rem;
 }
 .div_register input[type=submit]{
-	width:70%;
+	width:80%;
 	height:3rem;
 	color: #fff;
 	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
@@ -603,7 +634,7 @@ padding-left:4.5rem;
 	cursor: pointer;
 	display: block;
 	margin: 0rem auto;
-	
+
 }
 .div_register form{
 	width:90%;
@@ -635,47 +666,37 @@ padding-left:3rem;
   cursor: pointer;
 }
 
-.contactpage iframe {
-    width: 100%;
-    align-self: end;
-}
-@keyframes materialize {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-#posizione {
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-fill-mode: both;
-}
+
+/*contatti*/
+
+
+
 #contatti {
-    position: relative;
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 2s;
-    animation-fill-mode: both;
+    margin-left:2rem;
+    margin-right:2rem;
     text-align: right;
 }
+
+
+#contatti h2 {
+    text-align: center;
+}
+
 .contactsParagraph{
     margin: 1rem;
 }
-#contatti h2{
-    text-align: right;
-}
-#social {
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 4s;
-    animation-fill-mode: both;
-}
+
+
 .contactpage {
     display: flex;
     flex-direction: column;
 }
+
+#social {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
 #posizione dl, #contatti dl, #social dl {
     display: flex;
     flex-flow: row;
@@ -694,52 +715,18 @@ padding-left:3rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-/*@supports not (display: grid) {*/
-    body {
-        margin-left: 1rem;
-        margin-right: 1rem;
+@media (min-width: 768px) {
+    #contatti {
+        width: 50%;
+        left: 50%;
+        margin-left:2rem;
+        margin-right:2rem;
+
     }
-    .contactpage {
-        display: flex;
-        flex-direction: column;
-    }
-    #posizione dl, #contatti dl, #social dl {
-        display: flex;
-        flex-flow: row;
-        flex-wrap: wrap;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-    #posizione dt, #contatti dt, #social dt {
-        flex-basis: 20%;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-    #posizione dd, #contatti dd, #social dd {
-        flex-basis: 70%;
-        flex-grow: 1;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-    @media (min-width: 49rem) {
-        #contatti {
-            width: 50%;
-            left: 50%;
-            margin-left:0;
-            margin-right:0;
-            padding-left:0;
-            padding-right:0;
-        }
-    }
-/*}
-.success{
-    width:100%;
-    background-color:darkgreen;
 }
-.failure {
-    width: 100%;
-    background-color: darkgreen;
-}*/
+
+/* fine - contatti */
+
 .insert_movie, .insert_proiezione{
     max-width:30rem;
     align-self:center;
@@ -927,10 +914,11 @@ div.labelqp select {
     nav {
         width: 100%;
     }
-    #menubutton {
+    #menubutton-apri, #menubutton-chiudi {
         display: none;
     }
-    #loginLink{
+
+    #loginMenu{
         margin-left: auto;
     }
 
@@ -939,6 +927,7 @@ div.labelqp select {
     #titleWrapper{
         display: flex;
         flex-direction: row;
+		justify-content: center;
     }
     ul{
         display: flex;
@@ -950,10 +939,17 @@ div.labelqp select {
     .closedMenu {
         display: none;
     }
-    #menubutton {
-        text-decoration: none;
-    }
-    #loginLink{
+    
+    #menubutton-apri{
+		display:block;
+	} 
+	
+	#menubutton-chiudi{
+		display:none;
+	}
+    
+
+    #loginMenu{
         margin-left: 0;
     }
 
@@ -964,7 +960,7 @@ div.labelqp select {
 }
 @media screen and (max-width: 800px) {
 	 .div_register,.div_user,.div_login{
- width:80%;
+		min-width:95%;
 	  }
 }
 @media screen and (max-width: 700px) {
@@ -1314,21 +1310,27 @@ p.aiutocompilaz strong {
 
 }
 
+#content.infocosti {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
 #content.infocosti p {
 	font-size: 1.2rem;
 }
 
 #content.infocosti section {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+	margin-top: 2.3rem;
+	margin-bottom: 3rem;
 }
 
 #content.infocosti h3 {
 	margin-bottom: 1rem;
+	margin-top: 2rem;
 }
 
 #content.infocosti h4 {
-	margin-top: 0.5rem;
+	margin-top: 1.2rem;
 }
 
 #content.infocosti table {
@@ -1356,33 +1358,5 @@ p.aiutocompilaz strong {
 }
 
 
-@media print{
 
-
-    body, #content {
-        page-break-inside: auto;
-    }
-    div {
-        page-break-inside: auto;
-        page-break-before: auto;
-        page-break-after: auto;
-    }
-    .card, li, section, article, #psizione, #contatti, #social {
-        page-break-inside: avoid;
-        page-break-after: auto;
-        page-break-before: auto;
-    }
-    .cardsContainer ul, li {
-        flex-grow: 1;
-    }
-
-	#confermaAcq .warning {
-		visibility: hidden;
-	}
-
-	#menubutton {
-		display:none;
-	}
-
-}
 

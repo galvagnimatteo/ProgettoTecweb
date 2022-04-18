@@ -164,11 +164,11 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $title = $dataFilm["Titolo"] . " - PNG Cinema";
         $keywords = $dataFilm["Titolo"];
         $description ="Scheda informativa del film: " . $dataFilm["Titolo"];
-        $breadcrumb ='<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
+        $breadcrumbs ='<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
             'Scheda Film: ' .
             $dataFilm["Titolo"];
         //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
-        echo GeneratePage("login",$schedafilm_content,$breadcrumbs,'Login - PNG Cinema',$description,$keywords,"","");
+        echo GeneratePage("login",$schedafilm_content,$breadcrumbs,$dataFilm["Titolo"] . " - PNG Cinema",$description,$keywords,"","");
     } else {
         header("Location: 404.php");
         die();

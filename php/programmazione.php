@@ -5,15 +5,12 @@ include "SingletonDB.php";
 include "utils/createCastStr.php";
 include "utils/pageGenerator.php";
 //CheckSession($login_required, $admin_required)
-CheckSession(false,false); //refresh della sessione se scaduta
-
-
+CheckSession(false, false); //refresh della sessione se scaduta
 
 $document = file_get_contents("../html/template.html");
 $programmazione_content = file_get_contents(
     "../html/programmazione_content.html"
 );
-
 
 $db = SingletonDB::getInstance();
 $filmsResult = $db
@@ -110,9 +107,20 @@ $programmazione_content = str_replace(
     $programmazione_content
 );
 
-$keywords="programmazione, ultime uscite, ultimi film, film programmati, film in programma";
-$description="Pagina sulla programmazione: è possibile consultare i film e le opere in programma nelle prossime settimane.";
-$breadcrumbs='<a href="home.php">Home</a> / Programmazione';
+$keywords =
+    "programmazione, ultime uscite, ultimi film, film programmati, film in programma";
+$description =
+    "Pagina sulla programmazione: è possibile consultare i film e le opere in programma nelle prossime settimane.";
+$breadcrumbs = '<a href="home.php">Home</a> / Programmazione';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
-echo GeneratePage("Programmazione",$programmazione_content,$breadcrumbs,"Programmazione - PNG Cinema",$description,$keywords,"","");
+echo GeneratePage(
+    "Programmazione",
+    $programmazione_content,
+    $breadcrumbs,
+    "Programmazione - PNG Cinema",
+    $description,
+    $keywords,
+    "",
+    ""
+);
 ?>

@@ -3,7 +3,7 @@ session_start();
 include "utils/pageGenerator.php";
 include "SingletonDB.php";
 //CheckSession($login_required, $admin_required);
-CheckSession(false,false); //refresh della sessione se scaduta
+CheckSession(false, false); //refresh della sessione se scaduta
 
 $home_content = file_get_contents("../html/home_content.html");
 $quickpurchase_films = "";
@@ -22,24 +22,32 @@ $db->disconnect();
 if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
     $card_home_template = file_get_contents("../html/items/card-home.html");
     $carouselFilms = 0;
-    $carouselImages="";
+    $carouselImages = "";
 
     while ($row = $resultFilms->fetch_assoc()) {
-
-        if($carouselFilms < 3){
-
-            if($carouselFilms == 0){
-
-                $carouselImages = '<li class="slide not-hidden">
-                    <img src="../images/' . $row["CarouselImg"] . '" alt="' . 'Locandina ' . $row["Titolo"] . '"/>
+        if ($carouselFilms < 3) {
+            if ($carouselFilms == 0) {
+                $carouselImages =
+                    '<li class="slide not-hidden">
+                    <img src="../images/' .
+                    $row["CarouselImg"] .
+                    '" alt="' .
+                    "Locandina " .
+                    $row["Titolo"] .
+                    '"/>
                 </li>';
-
-            }else{
-                $carouselImages = $carouselImages . '<li class="slide">
-                    <img src="../images/' . $row["CarouselImg"] . '" alt="' . 'Locandina ' . $row["Titolo"] . '"/>
+            } else {
+                $carouselImages =
+                    $carouselImages .
+                    '<li class="slide">
+                    <img src="../images/' .
+                    $row["CarouselImg"] .
+                    '" alt="' .
+                    "Locandina " .
+                    $row["Titolo"] .
+                    '"/>
                 </li>';
             }
-
         }
 
         $carouselFilms = $carouselFilms + 1;
@@ -99,7 +107,6 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
     $cards = '<p class="error">Nessun film trovato.</p>
 
                   <p class="errorDescription"> Nessun film in programmazione nelle prossime settimane. </p>';
-
 }
 $home_content = str_replace(
     "<FILM-OPTIONS>",
@@ -108,13 +115,23 @@ $home_content = str_replace(
 );
 $home_content = str_replace("<CARDS-HOME>", $cards, $home_content);
 
-$title ="Home - PNG Cinema";
-$keywords ="ultime uscite, acquisto, acquisto rapido";
-$description = "Pagina principale: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.";
-$breadcrumbs ='Home / ';
-$jshead='<script type="text/javascript" src="../js/carousel.js"> </script>';
-$jsbody='<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
+$title = "Home - PNG Cinema";
+$keywords = "ultime uscite, acquisto, acquisto rapido";
+$description =
+    "Pagina principale: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.";
+$breadcrumbs = "Home / ";
+$jshead = '<script type="text/javascript" src="../js/carousel.js"> </script>';
+$jsbody = '<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
                             <script type="text/javascript" src="../js/quickpurchase.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
-echo GeneratePage("Home",$home_content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+echo GeneratePage(
+    "Home",
+    $home_content,
+    $breadcrumbs,
+    $title,
+    $description,
+    $keywords,
+    $jshead,
+    $jsbody
+);
 ?>

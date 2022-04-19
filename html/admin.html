@@ -5,7 +5,7 @@
             <li class="inactiveoption" id="projectionarea" onclick="change_context('proiezioni')">Proiezioni</li>
         </ul>
     </div>
-    <div class="workarea">        
+    <div class="workarea">
         <div id="films" class="open">
             <button type="button" onclick="toggle_form('film'); " class="formopener">+</button>
             <table id="filmlist">
@@ -15,6 +15,11 @@
         <div id="projections" class="closed">
             <button type="button" onclick="toggle_form('proiezione'); " class="formopener">+</button>
             <table id="projectionlist">
+            </table>
+        </div>
+        <div id="people_cast" class="closed">
+            <button type="button" onclick="toggle_form('people_cast'); " class="formopener">+</button>
+            <table id="people_cast_list">
             </table>
         </div>
     </div>
@@ -41,7 +46,7 @@
             <input type="url" name="CarouselImg" required id="imputcarousel">
 
             <!--<label for="imputdescimmagine">Descrizione immagine</label>
-            <input type="text" name="AltImg" requiredid="imputdescimmagine">-->
+        <input type="text" name="AltImg" requiredid="imputdescimmagine">-->
 
             <label for="imputdurata">Durata</label>
             <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
@@ -62,6 +67,12 @@
             <input type="date" name="Giorno" required id="imputgiorno">
             <button type="submit" onclick="post_projection();" class="submit">Inserisci</button>
             <p id="result_insert_projection"></p>
+        </form>
+        <form id="insert_people_cast" class="closed" onsubmit="return false">
+            <button type="button" onclick="toggle_form('people_cast');" class="formcloser">X</button>
+            
+            <button type="submit" onclick="post_people_cast();" class="submit">Inserisci</button>
+            <p id="result_insert_people_cast"></p>
         </form>
     </div>
 </div>

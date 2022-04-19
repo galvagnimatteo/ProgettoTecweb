@@ -1,8 +1,15 @@
 ﻿var visible = {    
     filmform: false,    
-    proiezioniform: false
+    proiezioniform: false,
+    people_cast:false
 };
-function change_context(context){
+var areas = {
+    
+};
+var forms = {
+
+};
+function change_context(context) {
     if (context === "films") {
         document.getElementById('insert_projection').className = 'closed'
         document.getElementById('projections').className = 'closed'
@@ -40,8 +47,10 @@ function toggleform(form){
         else {
             document.getElementById('insert_film').className = 'closed'
         }
+        return;
     }
-    else {
+    if (form === "proiezione")
+    {
         visible.proiezioniform = !visible.proiezioniform;
         if (visible.proiezioniform) {
             document.getElementById('insert_projection').className = 'open'
@@ -49,6 +58,18 @@ function toggleform(form){
         else {
             document.getElementById('insert_projection').className = 'closed'
         }
+        return;
+    }
+    if (form === "people_cast")
+    {
+        visible.people_cast = !visible.people_cast;
+        if (visible.people_cast) {
+            document.getElementById('insert_people_cast').className = 'open'
+        }
+        else {
+            document.getElementById('insert_people_cast').className = 'closed'
+        }
+        return;
     }
 }
 

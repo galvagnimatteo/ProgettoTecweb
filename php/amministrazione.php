@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "utils/pageGenerator.php";
+require_once "utils/generaPagina.php";
 
 CheckSession(true, true); //verifica che la sessione sia un utente loggato ed un admin
 $content = file_get_contents("../html/admin.html");
@@ -8,8 +8,8 @@ $content = file_get_contents("../html/admin.html");
 echo GeneratePage(
     "admin",
     $content,
-    "<p>admin</p>",
-    "amministazione-PNG Cinema",
+    "Amministrazione",
+    "Amministrazione - PNG Cinema",
     "",
     "",
     "",

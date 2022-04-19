@@ -41,20 +41,21 @@ function registerControls(
     return "OK";
 }
 
-function loginControls($username, $password)
-{
+function loginControls($username, $password) {
+
     if ($username == "admin" && ($password = "admin")) {
         return "OK";
     }
+
     if ($username == "user" && ($password = "user")) {
         return "OK";
     }
-    /*
+
     if(strlen($password) < 8 || str_contains($password, " ")){
 
         return "La password deve essere di almeno 8 caratteri e non può contenere spazi.";
 
-    }*/
+    }
 
     return "OK";
 }

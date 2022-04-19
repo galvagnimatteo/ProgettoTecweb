@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "SingletonDB.php";
-include "utils/pageGenerator.php";
+require_once "utils/SingletonDB.php";
+require_once "utils/generaPagina.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(true,true); //verifica che la sessione sia un utente loggato ed un admin
 
@@ -63,7 +63,7 @@ $content = str_replace("<FILM>", $stringfilms, $content);
 
 $title = 'inserimento Proiezione - PNG Cinema';
 $keywords = '';
-$breadcrumb ='<a href="home.php">Home</a> / <a href="admin.php">amministrazione</a>/inserimento Proiezione';
+$breadcrumb ='<a href="home.php">Home</a> / <a href="amministrazione.php">amministrazione</a>/inserimento Proiezione';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage("inserimento Proiezione",$content,$breadcrumb,$title,"pagina di inserimento proiezioni",$keywords,"","");
 ?>

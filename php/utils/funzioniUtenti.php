@@ -1,6 +1,6 @@
 <?php
 require_once "SingletonDB.php";
-require_once "utils/controls.php";
+require_once "controlli.php";
 
 class Users
 {

@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-include "SingletonDB.php";
-include "utils/createCastStr.php";
-include "utils/generateItalianDate.php";
-include "utils/pageGenerator.php";
+require_once "utils/SingletonDB.php";
+require_once "utils/generaStringaCast.php";
+require_once "utils/generaPagina.php";
+require_once "utils/generaData.php";
+
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 

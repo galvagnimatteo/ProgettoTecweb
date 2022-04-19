@@ -1,6 +1,6 @@
 <?php
 
-include "SingletonDB.php";
+require_once "SingletonDB.php";
 
 if (!isset($_GET["sceltafilm"], $_GET["sceltadata"], $_GET["sceltaora"])) {
     header("Location: 404.php");

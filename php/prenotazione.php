@@ -1,10 +1,10 @@
 <?php
 session_start();
-include "SingletonDB.php";
-include "utils/generateSVG.php";
-include "utils/generateItalianDate.php";
-include "utils/mappaPosti.php";
-include "utils/pageGenerator.php";
+require_once "utils/SingletonDB.php";
+require_once "utils/generaSVG.php";
+require_once "utils/generaData.php";
+require_once "utils/mappaPosti.php";
+require_once "utils/generaPagina.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 $idproiez = -1;

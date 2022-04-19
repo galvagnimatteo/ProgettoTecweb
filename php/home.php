@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "utils/pageGenerator.php";
-include "SingletonDB.php";
+require_once "utils/generaPagina.php";
+require_once "utils/SingletonDB.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 

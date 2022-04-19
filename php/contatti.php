@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "utils/pageGenerator.php";
+require_once "utils/generaPagina.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 $home_content = file_get_contents("../html/contatti_content.html"); //load content

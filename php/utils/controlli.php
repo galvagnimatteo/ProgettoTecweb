@@ -60,4 +60,16 @@ function loginControls($username, $password) {
     return "OK";
 }
 
+
+function pulisci(&$value)
+{
+    // elimina gli spazi
+    $value = trim($value);
+    // converte i caratteri speciali in entità html (ex. &lt;)
+    $value = htmlentities($value);
+    // rimuove tag html, non li vogliamo
+    $value = strip_tags($value);
+	return $value
+}
+
 ?>

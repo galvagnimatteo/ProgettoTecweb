@@ -14,7 +14,16 @@ class Users
             isset($_POST["surname_register"]) &&
             isset($_POST["pass_register_confirm"])
         ) {
-            $username = $_POST["username_register"];
+			
+			pulisci($_POST["username_register"])
+			pulisci($_POST["password_register"]);
+            pulisci($_POST["name_register"]);
+            pulisci($_POST["surname_register"]);
+            pulisci($_POST["email_register"]);
+			pulisci($_POST["pass_register_confirm"]);
+            
+			
+			$username = $_POST["username_register"];
             $password = $_POST["password_register"];
             $name = $_POST["name_register"];
             $surname = $_POST["surname_register"];
@@ -64,7 +73,10 @@ class Users
             isset($_POST["username_login"]) &&
             isset($_POST["password_login"])
         ) {
-            $username = $_POST["username_login"];
+			pulisci($_POST["username_login"]);
+			pulisci($_POST["password_login"]);	
+            
+			$username = $_POST["username_login"];
             $password = $_POST["password_login"];
 
             $result = loginControls($username, $password);
@@ -316,7 +328,12 @@ class Users
             isset($_POST["surname_profile"]) &&
             isset($_SESSION["a"])
         ) {
-            $newusername = $_POST["username_profile"];
+			pulisci($_POST["username_profile"]);
+            pulisci($_POST["name_profile"]);
+            pulisci($_POST["surname_profile"]);
+            pulisci($_POST["email_profile"]);
+            
+			$newusername = $_POST["username_profile"];
             $oldusername = $_SESSION["a"];
             $name = $_POST["name_profile"];
             $surname = $_POST["surname_profile"];
@@ -404,6 +421,7 @@ class Users
             isset($_POST["password_profile"]) &&
             isset($_POST["password_profile_confirm"])
         ) {
+			pulisci($_POST["password_profile"]);
             $username = $_SESSION["a"];
             $password = $_POST["password_profile"];
             $hash = password_hash($password, PASSWORD_DEFAULT);

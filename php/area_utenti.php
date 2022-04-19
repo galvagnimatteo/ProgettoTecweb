@@ -155,6 +155,8 @@ if (isset($_GET["action"])) {
     if ($action == "deleteProfile") {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
+		pulisci($_POST["password_delete"]);
+		pulisci($_POST["password_delete_confirm"]);
         list($valid, $error) = $Users->checkPassword(
             null,
             $_POST["password_delete"],
@@ -179,6 +181,9 @@ if (isset($_GET["action"])) {
     if ($action == "changePassword") {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
+		pulisci($_POST["password_old"])
+        pulisci($_POST["password_profile"]);
+        pulisci($_POST["password_profile_confirm"]);
         list($valid, $error) = $Users->checkPassword(
             $_POST["password_old"],
             $_POST["password_profile"],

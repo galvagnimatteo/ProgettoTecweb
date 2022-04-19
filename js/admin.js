@@ -55,7 +55,7 @@ function toggleform(form){
 films = null;
 proiezioni = null;
 
-function richiedi_film() {
+function request_film() {
     var request = new XMLHttpRequest();
     request.open('GET', './api/films.php');
     request.send();
@@ -66,7 +66,7 @@ function richiedi_film() {
         updatehtml_film(films);
     }
 }
-function richiedi_proiezioni() {
+function request_projection() {
     var request = new XMLHttpRequest();
     request.open('GET', './api/proiezioni.php');
     request.send();
@@ -116,7 +116,7 @@ function post_film() {
         }        
     };
 }
-function post_proiezione() {
+function post_projection() {
     let url = "./api/proiezioni.php";
 
     let xhr = new XMLHttpRequest();
@@ -216,7 +216,7 @@ function gnereate_entry_film(entry, index) {
         + entry.durata+"</td></tr>";
     return result;
 }
-function gnereate_entry_proiezione(entry, index) {
+function gnereate_entry_projection(entry, index) {
     rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='projectionentry " + rowtype + "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry" >	&#128465;</button >'+
@@ -227,11 +227,11 @@ function gnereate_entry_proiezione(entry, index) {
     return result;
 }
 
-function updatehtml_proiezioni(proiezioni) {
+function updatehtml_projection(proiezioni) {
     var proiezionilist = '<tr class=odd><th></th><th>giorno</th><th>sala</th><th>film</th></tr>';
     for (entryindex in proiezioni) {
         var entry = proiezioni[entryindex];
-        proiezionilist += gnereate_entry_proiezione(entry, entryindex);
+        proiezionilist += gnereate_entry_projection(entry, entryindex);
     }
     document.getElementById("projectionlist").innerHTML = proiezionilist;
 }
@@ -251,9 +251,9 @@ function updatehtml_film(films) {
 
 
 richiedi_film();
-richiedi_proiezioni();
+richiedi_projection();
 
 setInterval(() => {//aggiorna i dati e mantiene attiva la sessione
-    richiedi_film();
-    richiedi_proiezioni(); }
+    request_film();
+    request_projection(); }
     , 30000);

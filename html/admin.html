@@ -7,20 +7,20 @@
     </div>
     <div class="workarea">        
         <div id="films" class="open">
-            <button type="button" onclick="toggleform('film'); " class="formopener">+</button>
+            <button type="button" onclick="toggle_form('film'); " class="formopener">+</button>
             <table id="filmlist">
             </table>
         </div>
 
         <div id="projections" class="closed">
-            <button type="button" onclick="toggleform('proiezione'); " class="formopener">+</button>
+            <button type="button" onclick="toggle_form('proiezione'); " class="formopener">+</button>
             <table id="projectionlist">
             </table>
         </div>
     </div>
     <div class="overlays">
         <form id="insert_film" class="closed" onsubmit="return false">
-            <button type="button" onclick="toggleform('film');" class="formcloser">X</button>
+            <button type="button" onclick="toggle_form('film');" class="formcloser">X</button>
             <label for="Titolo"><span xml:lang="en">Titolo</span></label>
             <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
 
@@ -50,7 +50,7 @@
             <p id="result_insert_film"></p>
         </form>
         <form id="insert_projection" class="closed" onsubmit="return false">
-            <button type="button" onclick="toggleform('proiezioni');" class="formcloser">X</button>
+            <button type="button" onclick="toggle_form('proiezioni');" class="formcloser">X</button>
             <select name="film" title="film" id="filmselector">
             </select>
             <select name="sala" title="sala" id="imputsala">
@@ -60,7 +60,7 @@
             </select>
             <label for="imputgiorno">Giorno</label>
             <input type="date" name="Giorno" required id="imputgiorno">
-            <button type="submit" onclick="post_proiezione();" class="submit">Inserisci</button>
+            <button type="submit" onclick="post_projection();" class="submit">Inserisci</button>
             <p id="result_insert_projection"></p>
         </form>
     </div>

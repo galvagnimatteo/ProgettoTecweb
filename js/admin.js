@@ -4,7 +4,9 @@
 //    people_cast:false
 //};
 var areas = {
-    
+    film: "films",
+    projection: "projections",
+    people_cast: "people_cast"
 };
 var forms = [
     {
@@ -33,7 +35,6 @@ var forms = [
     }
 ];
 
-
 function change_context(context) {
     for (area in areas) {
         if (context === area) {
@@ -53,7 +54,7 @@ function change_context(context) {
     }    
 }
 
-function toggleform(toggledform) {
+function toggle_form(toggledform) {
     for (form in forms) {
         if (toggledform === forms[form].name) {
             forms[form].visible = !forms[form].visible
@@ -67,10 +68,6 @@ function toggleform(toggledform) {
         }
     }    
 }
-
-films = null;
-proiezioni = null;
-
 function request_film() {
     var request = new XMLHttpRequest();
     request.open('GET', './api/films.php');
@@ -225,6 +222,7 @@ function gnereate_entry_film(entry, index) {
     rowtype = (index % 2 === 0) ? "even" : "odd";
     result = "<tr class='filmentry " + rowtype + "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
+        '<button type = "button" onclick = "cast_edit(' + entry.id + ');" class="castedit" >modifica cast</button >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -235,7 +233,7 @@ function gnereate_entry_film(entry, index) {
 function gnereate_entry_projection(entry, index) {
     rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='projectionentry " + rowtype + "' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry" >	&#128465;</button >'+
+        '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
     '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>" +
@@ -263,6 +261,16 @@ function updatehtml_film(films) {
     document.getElementById("filmselector").innerHTML = filmoptions;
 }
 
+function cast_edit(idfilm){
+    var request = new XMLHttpRequest();
+    request.open('GET', './api/cast_film.php?'+idfilm);
+    request.send();
+    request.onload = () => {
+        console.log(request.response);
+        var data = JSON.parse(request.response);
+        
+    }
+}
 
 
 

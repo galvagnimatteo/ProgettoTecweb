@@ -10,17 +10,17 @@ $content = file_get_contents("../html/admin_inserimento_proiezione_content.html"
 
 $db = SingletonDB::getInstance();
 
-if (isset($_GET["action"])) 
+if (isset($_GET["action"]))
 {
     $action = $_GET["action"];
     if($action=="insert")
     {
         if(isset($_POST["film"]) &&
             isset($_POST["sala"]) &&
-            isset($_POST["Giorno"]) 
+            isset($_POST["Giorno"])
             )
         {
-            
+
             $query =
                 "INSERT INTO Proiezione ( Data,IDFilm,NumeroSala) VALUES (?,?,?)";
             $preparedQuery = $db->getConnection()->prepare($query);

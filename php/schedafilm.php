@@ -6,7 +6,7 @@ include "utils/createCastStr.php";
 include "utils/generateItalianDate.php";
 include "utils/pageGenerator.php";
 //CheckSession($login_required, $admin_required);
-CheckSession(false,false); //refresh della sessione se scaduta
+CheckSession(false, false); //refresh della sessione se scaduta
 
 if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
     $db = SingletonDB::getInstance();
@@ -51,7 +51,6 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $schedafilm_content = file_get_contents(
             "../html/schedafilm_content.html"
         );
-        
 
         $schedafilm_content = str_replace(
             "<FILM-TITLE>",
@@ -61,9 +60,11 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $schedafilm_content = str_replace(
             "<FILM-IMG>",
             '<img src=\'' .
-                "../images/" . $dataFilm["SrcImg"] .
+                "../images/" .
+                $dataFilm["SrcImg"] .
                 ' \' alt=\'' .
-                "Locandina " . $dataFilm["Titolo"] .
+                "Locandina " .
+                $dataFilm["Titolo"] .
                 '\'/>',
             $schedafilm_content
         );
@@ -102,19 +103,19 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
             while ($row = $result3->fetch_assoc()) {
                 $filmscreeningfield = $filmscreeningfield_template;
 
-				$filmscreeningfield = str_replace(
+                $filmscreeningfield = str_replace(
                     "<DATA>",
-					generateItalianDate($row["Data"]),
+                    generateItalianDate($row["Data"]),
                     $filmscreeningfield
                 );
 
-				$filmscreeningfield = str_replace(
-					"<IDPROIEZ-HIDDEN>",
-					'<input type="hidden" name="idproiez" value="' .
-					$row["IDProiezione"] .
-					'" />',
-					$filmscreeningfield
-				);
+                $filmscreeningfield = str_replace(
+                    "<IDPROIEZ-HIDDEN>",
+                    '<input type="hidden" name="idproiez" value="' .
+                        $row["IDProiezione"] .
+                        '" />',
+                    $filmscreeningfield
+                );
 
                 $db->connect();
                 $preparedQuery4 = $db
@@ -152,23 +153,30 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                 $filmscreeningfields .= $filmscreeningfield;
             }
 
-
             $schedafilm_content = str_replace(
                 "<SCREENING-FIELDS>",
                 $filmscreeningfields,
                 $schedafilm_content
             );
-
-
         } //else nessun problema, il film non ha programmazioni in corso
         $title = $dataFilm["Titolo"] . " - PNG Cinema";
         $keywords = $dataFilm["Titolo"];
-        $description ="Scheda informativa del film: " . $dataFilm["Titolo"];
-        $breadcrumbs ='<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / '.
-            'Scheda Film: ' .
+        $description = "Scheda informativa del film: " . $dataFilm["Titolo"];
+        $breadcrumbs =
+            '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / ' .
+            "Scheda Film: " .
             $dataFilm["Titolo"];
         //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
-        echo GeneratePage("login",$schedafilm_content,$breadcrumbs,$dataFilm["Titolo"] . " - PNG Cinema",$description,$keywords,"","");
+        echo GeneratePage(
+            "login",
+            $schedafilm_content,
+            $breadcrumbs,
+            $dataFilm["Titolo"] . " - PNG Cinema",
+            $description,
+            $keywords,
+            "",
+            ""
+        );
     } else {
         header("Location: 404.php");
         die();

@@ -73,7 +73,7 @@ function request_projection() {
     request.onload = () => {        
         var data = JSON.parse(request.response);
         proiezioni = data.proiezioni;
-        updatehtml_proiezioni(proiezioni);
+        updatehtml_projection(proiezioni);
     }
 }
 function post_film() {
@@ -250,8 +250,8 @@ function updatehtml_film(films) {
 
 
 
-richiedi_film();
-richiedi_projection();
+request_film();
+request_projection();
 
 setInterval(() => {//aggiorna i dati e mantiene attiva la sessione
     request_film();

@@ -9,7 +9,7 @@ CheckSession(false, false); //refresh della sessione se scaduta
 
 $document = file_get_contents("../html/template.html");
 $programmazione_content = file_get_contents(
-    "../html/programmazione_content.html"
+    "../html/programmazione.html"
 );
 
 $db = SingletonDB::getInstance();
@@ -21,7 +21,7 @@ $db->disconnect();
 $cards = "";
 
 if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
-    $card_prog_template = file_get_contents("../html/items/card-prog.html");
+    $card_prog_template = file_get_contents("../html/items/card_programmazione.html");
 
     while ($row = $filmsResult->fetch_assoc()) {
         $card_prog_item = $card_prog_template;

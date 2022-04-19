@@ -5,7 +5,7 @@ require_once "utils/SingletonDB.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 
-$home_content = file_get_contents("../html/home_content.html");
+$home_content = file_get_contents("../html/home.html");
 $quickpurchase_films = "";
 $cards = "";
 
@@ -20,7 +20,7 @@ $db->disconnect();
 //--------------------------------------------------------------------------
 
 if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
-    $card_home_template = file_get_contents("../html/items/card-home.html");
+    $card_home_template = file_get_contents("../html/items/card_home.html");
     $carouselFilms = 0;
     $carouselImages = "";
 

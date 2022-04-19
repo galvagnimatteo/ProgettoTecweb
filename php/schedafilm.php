@@ -50,7 +50,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $cast = createCastStr($result2);
 
         $schedafilm_content = file_get_contents(
-            "../html/schedafilm_content.html"
+            "../html/scheda_film.html"
         );
 
         $schedafilm_content = str_replace(
@@ -97,7 +97,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
         if (!empty($result3) && $result3->num_rows) {
             $filmscreeningfield_template = file_get_contents(
-                "../html/items/filmscreeningfield.html"
+                "../html/items/campo_proiezione.html"
             );
             $filmscreeningfields = "";
 

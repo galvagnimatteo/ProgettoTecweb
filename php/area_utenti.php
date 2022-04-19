@@ -4,20 +4,20 @@ session_start();
 require_once "utils/generaPagina.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
-$home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
+$home_content = file_get_contents("../html/area_utenti_registrazione.html"); //load content
 
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 
     if ($action == "login_page") {
         $home_content = file_get_contents(
-            "../html/items/area_utenti_login.html"
+            "../html/area_utenti_login.html"
         );
     }
 
     if ($action == "register_page") {
         $home_content = file_get_contents(
-            "../html/area_utenti_register_content.html"
+            "../html/area_utenti_registrazione.html"
         );
     }
 
@@ -77,7 +77,7 @@ if (isset($_GET["action"])) {
         $result = $Users->search();
 
         $home_content = file_get_contents(
-            "../html/items/area_utenti_login.html"
+            "../html/area_utenti_login.html"
         );
 
         if (!($result == "OK")) {
@@ -104,7 +104,7 @@ if (isset($_GET["action"])) {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = file_get_contents(
-            "../html/items/updatePassword_content.html"
+            "../html/items/aggiorna_password.html"
         );
     }
 
@@ -112,7 +112,7 @@ if (isset($_GET["action"])) {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = file_get_contents(
-            "../html/items/deleteProfile_content.html"
+            "../html/items/elimina_profilo.html"
         );
     }
     if ($action == "changeProfile") {
@@ -215,7 +215,7 @@ if (isset($_GET["action"])) {
     }
 } else {
     $home_content = file_get_contents(
-        "../html/area_utenti_register_content.html"
+        "../html/area_utenti_registrazione.html"
     );
 }
 if (isset($_GET["errorLogin"])) {

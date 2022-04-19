@@ -3,7 +3,7 @@
 require_once "SingletonDB.php";
 
 if (!isset($_GET["sceltafilm"], $_GET["sceltadata"], $_GET["sceltaora"])) {
-    header("Location: 404.php");
+    header("Location: ../404.php");
     die();
 }
 
@@ -23,7 +23,7 @@ if (!empty($result1) && $result1->num_rows > 0) {
     $dati = $result1->fetch_assoc();
 
     header(
-        "Location:prenotazione.php?idproiez=" .
+        "Location: ../prenotazione.php?idproiez=" .
             $dati["ID"] .
             "&orario=" .
             $_GET["sceltaora"]
@@ -31,7 +31,7 @@ if (!empty($result1) && $result1->num_rows > 0) {
 
     die();
 } else {
-    header("Location: 404.php");
+    header("Location: ../404.php");
     die();
 }
 

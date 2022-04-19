@@ -214,7 +214,7 @@ class Users
             $preparedQuery->close();
             $row = $resultCast->fetch_assoc();
             $home_content = file_get_contents(
-                "../html/items/updateProfile_content.html"
+                "../html/items/aggiorna_profilo.html"
             );
 
             if ($resultCast->num_rows > 0) {
@@ -443,13 +443,13 @@ class Users
 
             $tot = "";
             $home_content = file_get_contents(
-                "../html/items/viewHistory_content.html"
+                "../html/items/storico_profilo.html"
             );
-            $content = file_get_contents("../html/items/card-reservation.html");
+            $content = file_get_contents("../html/items/card_prenotazione.html");
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $content = file_get_contents(
-                        "../html/items/card-reservation.html"
+                        "../html/items/card_prenotazione.html"
                     );
 
                     $content = str_replace("<CODICE>", $row["ID"], $content);
@@ -509,7 +509,7 @@ class Users
             $preparedQuery->close();
 
             $home_content = file_get_contents(
-                "../html/items/viewReservation_content.html"
+                "../html/prenotazione.html"
             );
 
             if ($result->num_rows > 0) {

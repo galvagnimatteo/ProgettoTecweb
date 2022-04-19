@@ -188,7 +188,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
 {
     //pagina conferma
     $acquistoconferma_content = file_get_contents(
-        "../html/acquistoconferma_content.html"
+        "../html/conferma_acquisto.html"
     );
 
     //SESSION

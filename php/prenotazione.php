@@ -76,7 +76,7 @@ if (!empty($result1) && $result1->num_rows > 0) {
     }
 
     $prenotazione_content = file_get_contents(
-        "../html/prenotazione_content.html"
+        "../html/prenota.html"
     );
 
     $prenotazione_content = str_replace(

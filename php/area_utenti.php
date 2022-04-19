@@ -25,7 +25,8 @@ if (isset($_GET["action"])) {
         require_once "utils/funzioniUtenti.php";
 
         $Users = new Users();
-
+		pulisci($_POST["email_register"]);
+		pulisci($_POST["username_register"]);
         list($isDoubled, $isUser, $isEmail) = $Users->searchRegistered(
             $_POST["email_register"],
             $_POST["username_register"],
@@ -118,7 +119,8 @@ if (isset($_GET["action"])) {
     if ($action == "changeProfile") {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
-
+		pulisci($_POST["email_profile"]);
+        pulisci($_POST["username_profile"]);
         list($isDoubled, $isUser, $isEmail) = $Users->searchRegistered(
             $_POST["email_profile"],
             $_POST["username_profile"],

@@ -7,11 +7,14 @@
     --text-color: white;
     --error-color: #C2B800;
     --links-hover-color: #ffdd36;
-    --admin-sections-background: grey;
-    --admin-sections-option: red;
+    --admin-areaselector-background: grey;
+    --admin-areaselector-option-color1: red;
+    --admin-areaselector-option-color2: darkred;
     --admin-list-even: darkgrey;
     --admin-list-odd: grey;
-    --admin-form-nackground:red;
+    --admin-form-background: red;
+    --admin-button-background: #e0dede;
+    --admin-button-text:#000000;
 }
 *{
 	padding: 0;
@@ -760,7 +763,7 @@ padding-left:3rem;
     top: 100px;
     left: 30%;
     z-index: 10;
-    background-color: darkred;
+    background-color: var(--admin-form-background);
     border: none;
     border-radius: 10px;
     box-sizing: border-box;
@@ -1445,7 +1448,7 @@ p.aiutocompilaz strong {
     overflow-x: scroll;
 }
 .adminsidebar {
-    background-color: grey;
+    background-color: var(--admin-areaselector-background);
     padding: 10px;
     border: none;
     border-radius: 15px;
@@ -1455,8 +1458,8 @@ p.aiutocompilaz strong {
 display: block;
 }*/
 .formcloser {
-    background: #e0dede;
-    color: #000000;
+    background: var(--admin-button-background);
+    color: var(--admin-button-text);
     top: 5px;
     width: 2rem;
     font-size: 2rem;
@@ -1466,8 +1469,8 @@ display: block;
 }
 
 .formopener {
-    background: #e0dede;
-    color: #000000;
+    background: var(--admin-button-background);
+    color: var(--admin-button-text);
     top: 5px;
     width: 2rem;
     font-size: 2rem;
@@ -1488,7 +1491,7 @@ display: block;
 }
 
 .activeoption {
-    background-image: linear-gradient(red, darkred);
+    background-image: linear-gradient(var(--admin-areaselector-option-color1),var(--admin-areaselector-option-color2));
     /*background-color: darkred;*/
     border: none;
     border-radius: 15px;
@@ -1504,16 +1507,16 @@ display: block;
 }
 
 .even {
-    background-color: grey;
+    background-color: var(--admin-list-even);
 }
 
 .odd {
-    background-color: darkgray;
+    background-color:var(--admin-list-odd);
 }
 
 .deleteentry {
-    background: #e0dede;
-    color: #000000;
+    background:var(--admin-button-background);
+    color: var(--admin-button-text);
     border: none;
     width: 1.5rem;
     font-size: 1.5rem;

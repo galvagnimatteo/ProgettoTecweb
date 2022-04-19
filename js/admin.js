@@ -178,7 +178,7 @@ function delete_film(id) {
         }        
     };
 }
-function delete_proiezione(id) {
+function delete_projection(id) {
     let url = "./api/proiezioni.php";
 
     let xhr = new XMLHttpRequest();
@@ -218,8 +218,8 @@ function gnereate_entry_film(entry, index) {
 }
 function gnereate_entry_proiezione(entry, index) {
     rowtype = (index%2===0) ? "even" : "odd";
-    result = "<tr class='proiezioneentry " + rowtype + "' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "delete_proiezione(' + entry.id + ');" class="deleteentry" >	&#128465;</button >'+
+    result = "<tr class='projectionentry " + rowtype + "' ><td class='entryfunctions'>"+
+        '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry" >	&#128465;</button >'+
     '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>" +

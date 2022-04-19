@@ -661,17 +661,8 @@ padding-left:3rem;
         opacity: 1;
     }
 }
-#posizione {
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-fill-mode: both;
-}
 #contatti {
-    position: relative;
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 2s;
-    animation-fill-mode: both;
+    position: relative;  
     text-align: right;
 }
 .contactsParagraph{
@@ -680,29 +671,23 @@ padding-left:3rem;
 #contatti h2{
     text-align: right;
 }
-#social {
-    animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 4s;
-    animation-fill-mode: both;
-}
 .contactpage {
     display: flex;
     flex-direction: column;
 }
-#posizione dl, #contatti dl, #social dl {
+.contactsection dl {
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-#posizione dt, #contatti dt, #social dt {
+.contactsection dt {
     flex-basis: 20%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-#posizione dd, #contatti dd, #social dd {
+.contactsection dd {
     flex-basis: 70%;
     flex-grow: 1;
     margin-top: 0.5rem;
@@ -717,19 +702,19 @@ padding-left:3rem;
         display: flex;
         flex-direction: column;
     }
-    #posizione dl, #contatti dl, #social dl {
+    .contactsection dl {
         display: flex;
         flex-flow: row;
         flex-wrap: wrap;
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
-    #posizione dt, #contatti dt, #social dt {
+    .contactsection dt {
         flex-basis: 20%;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
     }
-    #posizione dd, #contatti dd, #social dd {
+    .contactsection dd {
         flex-basis: 70%;
         flex-grow: 1;
         margin-top: 0.5rem;

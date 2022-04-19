@@ -1540,14 +1540,13 @@ p.aiutocompilaz strong {
 #areasselector li {
         width: 100%;
     }
-@media screen and (min-width: 49rem) {
+@media screen and (max-width: 49rem) {
     .workarea {
-        width: 100%;
-        overflow-x: scroll;
+        width: 100%;       
     }
 }
 .workarea {
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 .adminsidebar {
     background-color: var(--admin-areaselector-background);

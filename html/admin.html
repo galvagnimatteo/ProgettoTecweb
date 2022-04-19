@@ -2,7 +2,7 @@
     <div class="adminsidebar">        
         <ul id="areasselector">
             <li class="activeoption" id="filmarea" onclick="change_context('films')">Film</li>
-            <li class="inactiveoption" id="projectionarea" onclick="change_context('proiezioni')">Proiezioni</li>
+            <li class="inactiveoption" id="projectionarea" onclick="change_context('projection')">Proiezioni</li>
         </ul>
     </div>
     <div class="workarea">
@@ -13,7 +13,7 @@
         </div>
 
         <div id="projections" class="closed">
-            <button type="button" onclick="toggle_form('proiezione'); " class="formopener">+</button>
+            <button type="button" onclick="toggle_form('projection'); " class="formopener">+</button>
             <table id="projectionlist">
             </table>
         </div>
@@ -55,7 +55,7 @@
             <p id="result_insert_film"></p>
         </form>
         <form id="insert_projection" class="closed" onsubmit="return false">
-            <button type="button" onclick="toggle_form('proiezioni');" class="formcloser">X</button>
+            <button type="button" onclick="toggle_form('projection');" class="formcloser">X</button>
             <select name="film" title="film" id="filmselector">
             </select>
             <select name="sala" title="sala" id="imputsala">

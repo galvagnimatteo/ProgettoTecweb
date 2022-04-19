@@ -1,76 +1,71 @@
-﻿var visible = {    
-    filmform: false,    
-    proiezioniform: false,
-    people_cast:false
-};
+﻿//var visible = {    
+//    filmform: false,    
+//    proiezioniform: false,
+//    people_cast:false
+//};
 var areas = {
     
 };
-var forms = {
+var forms = [
+    {
+        name:"film",
+        area: "film",
+        element:"insert_film",
+        visible: false
+    },
+    {
+        name: "projection",
+        area: "projection",
+        element: "insert_projection",
+        visible: false
+    },
+    {
+        name: "people_cast",
+        area: "people_cast",
+        element: "insert_people_cast",
+        visible: false
+    },
+    {
+        name: "film_cast",
+        area: "film",
+        element: "insert_film_cast",
+        visible: false
+    }
+];
 
-};
+
 function change_context(context) {
-    if (context === "films") {
-        document.getElementById('insert_projection').className = 'closed'
-        document.getElementById('projections').className = 'closed'
-        document.getElementById('films').className = 'open'
-        document.getElementById('filmarea').className = 'activeoption'
-        document.getElementById('projectionarea').className = 'inactiveoption'
-        if (visible.filmform) {
-            document.getElementById('insert_film').className = 'open'
+    for (area in areas) {
+        if (context === area) {
+            document.getElementById(areas[area]).className = 'open';
         }
         else {
-            document.getElementById('insert_film').className = 'closed'
+            document.getElementById(areas[area]).className = 'closed';
         }
     }
-    else {
-        document.getElementById('insert_film').className = 'closed'
-        document.getElementById('films').className = 'closed'
-        document.getElementById('projections').className = 'open'
-        document.getElementById('projectionarea').className = 'activeoption'
-        document.getElementById('filmarea').className = 'inactiveoption'
-        if (visible.proiezioniform) {
-            document.getElementById('insert_projection').className = 'open'
+    for (form in forms) {
+        if (context === forms[form].area && forms[form].visible) {
+            document.getElementById(forms[form].element).className = 'open';
         }
         else {
-            document.getElementById('insert_projection').className = 'closed'
+            document.getElementById(forms[form].element).className = 'closed';
         }
-    }
+    }    
 }
 
-function toggleform(form){
-    if (form === "film") {
-        visible.filmform = !visible.filmform;
-        if (visible.filmform) {
-            document.getElementById('insert_film').className = 'open'
+function toggleform(toggledform) {
+    for (form in forms) {
+        if (toggledform === forms[form].name) {
+            forms[form].visible = !forms[form].visible
+            if (forms[form].visible) {
+
+                document.getElementById(forms[form].element).className = 'open';
+            }
+            else {
+                document.getElementById(forms[form].element).className = 'closed';
+            }
         }
-        else {
-            document.getElementById('insert_film').className = 'closed'
-        }
-        return;
-    }
-    if (form === "proiezione")
-    {
-        visible.proiezioniform = !visible.proiezioniform;
-        if (visible.proiezioniform) {
-            document.getElementById('insert_projection').className = 'open'
-        }
-        else {
-            document.getElementById('insert_projection').className = 'closed'
-        }
-        return;
-    }
-    if (form === "people_cast")
-    {
-        visible.people_cast = !visible.people_cast;
-        if (visible.people_cast) {
-            document.getElementById('insert_people_cast').className = 'open'
-        }
-        else {
-            document.getElementById('insert_people_cast').className = 'closed'
-        }
-        return;
-    }
+    }    
 }
 
 films = null;

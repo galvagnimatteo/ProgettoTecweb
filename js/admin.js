@@ -4,29 +4,29 @@
 };
 function changecontext(context){
     if (context === "films") {
-        document.getElementById('inserisci_proiezione').className = 'closed'
-        document.getElementById('proiezioni').className = 'closed'
+        document.getElementById('insert_projection').className = 'closed'
+        document.getElementById('projections').className = 'closed'
         document.getElementById('films').className = 'open'
         document.getElementById('filmarea').className = 'activeoption'
-        document.getElementById('proiezioniarea').className = 'inactiveoption'
+        document.getElementById('projectionarea').className = 'inactiveoption'
         if (visible.filmform) {
-            document.getElementById('inserisci_film').className = 'open'
+            document.getElementById('insert_film').className = 'open'
         }
         else {
-            document.getElementById('inserisci_film').className = 'closed'
+            document.getElementById('insert_film').className = 'closed'
         }
     }
     else {
-        document.getElementById('inserisci_film').className = 'closed'
+        document.getElementById('insert_film').className = 'closed'
         document.getElementById('films').className = 'closed'
-        document.getElementById('proiezioni').className = 'open'
-        document.getElementById('proiezioniarea').className = 'activeoption'
+        document.getElementById('projections').className = 'open'
+        document.getElementById('projectionarea').className = 'activeoption'
         document.getElementById('filmarea').className = 'inactiveoption'
         if (visible.proiezioniform) {
-            document.getElementById('inserisci_proiezione').className = 'open'
+            document.getElementById('insert_projection').className = 'open'
         }
         else {
-            document.getElementById('inserisci_proiezione').className = 'closed'
+            document.getElementById('insert_projection').className = 'closed'
         }
     }
 }
@@ -35,19 +35,19 @@ function toggleform(form){
     if (form === "film") {
         visible.filmform = !visible.filmform;
         if (visible.filmform) {
-            document.getElementById('inserisci_film').className = 'open'
+            document.getElementById('insert_film').className = 'open'
         }
         else {
-            document.getElementById('inserisci_film').className = 'closed'
+            document.getElementById('insert_film').className = 'closed'
         }
     }
     else {
         visible.proiezioniform = !visible.proiezioniform;
         if (visible.proiezioniform) {
-            document.getElementById('inserisci_proiezione').className = 'open'
+            document.getElementById('insert_projection').className = 'open'
         }
         else {
-            document.getElementById('inserisci_proiezione').className = 'closed'
+            document.getElementById('insert_projection').className = 'closed'
         }
     }
 }
@@ -233,7 +233,7 @@ function updatehtml_proiezioni(proiezioni) {
         var entry = proiezioni[entryindex];
         proiezionilist += gnereate_entry_proiezione(entry, entryindex);
     }
-    document.getElementById("proiezionilist").innerHTML = proiezionilist;
+    document.getElementById("projectionlist").innerHTML = proiezionilist;
 }
 function updatehtml_film(films) {
     var filmlist = '<tr class=odd><th></th><th>titolo</th><th>genere</th><th>data uscita</th><th>durata</th></tr>';

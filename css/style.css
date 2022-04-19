@@ -1,4 +1,4 @@
-:root{
+:root {
     --primary-color: #121212;
     --secondary-color: #b80000;
     --gradient-first-color: #282828;
@@ -7,6 +7,11 @@
     --text-color: white;
     --error-color: #C2B800;
     --links-hover-color: #ffdd36;
+    --admin-sections-background: grey;
+    --admin-sections-option: red;
+    --admin-list-even: darkgrey;
+    --admin-list-odd: grey;
+    --admin-form-nackground:red;
 }
 *{
 	padding: 0;
@@ -746,7 +751,7 @@ padding-left:3rem;
     width: 100%;
     background-color: darkgreen;
 }*/
-#inserisci_film, #inserisci_proiezione {
+#insert_film, #insert_projection {
     width: 40%;
     align-self: center;
     display: flex;
@@ -759,25 +764,25 @@ padding-left:3rem;
     border: none;
     border-radius: 10px;
     box-sizing: border-box;
-    margin-bottom:2rem;
+    margin-bottom: 2rem;
     /*background-image: linear-gradient(var(--secondary-color),var(--gradient-last-color));*/
 }
-    #inserisci_film  input, #inserisci_proiezione  input,
-    #inserisci_film  select, #inserisci_proiezione  select,
-    #inserisci_film  option, #inserisci_proiezione option,
-    .submit{
-        width: 80%;
-        height: 4vh;
-        background: #e0dede;
-        color: #000000;
-        margin: 1rem auto;
-        padding: 0.8rem;
-        border: none;
-        border-radius: 5px;
-        font-size: 0.9rem;
-        display: flex;
-        box-sizing: border-box
-    }
+#insert_film input, #insert_projection input,
+#insert_film select, #insert_projection select,
+#insert_film option, #insert_projection option,
+.submit {
+    width: 80%;
+    height: 4vh;
+    background: #e0dede;
+    color: #000000;
+    margin: 1rem auto;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    display: flex;
+    box-sizing: border-box
+}
 #posizione h2, #contatti h2 {
     font-size: 1.5rem;
     font-weight: bold;
@@ -1402,7 +1407,7 @@ p.aiutocompilaz strong {
 	}
 
 }
-#funzioni {
+#areasselector {
     list-style-type: none;
 }
 
@@ -1416,20 +1421,28 @@ p.aiutocompilaz strong {
         display: flex;
         flex-direction: column;
     }
- 
-    #funzioni {
+
+    #areasselector {
         width: 100%;
         display: flex;
         flex-direction: column;
-    }
-
-    #funzioni  li {
-        width: 100%;
-    }
+    }    
 
     .workarea {
         width: 80%;
     }
+}
+#areasselector li {
+        width: 100%;
+    }
+@media screen and (min-width: 49rem) {
+    .workarea {
+        width: 100%;
+        overflow-x: scroll;
+    }
+}
+.workarea {
+    overflow-x: scroll;
 }
 .adminsidebar {
     background-color: grey;
@@ -1439,7 +1452,7 @@ p.aiutocompilaz strong {
     box-sizing: border-box;
 }
 /*.open {
-    display: block;
+display: block;
 }*/
 .formcloser {
     background: #e0dede;
@@ -1451,8 +1464,8 @@ p.aiutocompilaz strong {
     border-radius: 15px;
     box-sizing: border-box;
 }
+
 .formopener {
-    float:right;
     background: #e0dede;
     color: #000000;
     top: 5px;
@@ -1462,15 +1475,18 @@ p.aiutocompilaz strong {
     border-radius: 15px;
     box-sizing: border-box;
 }
-.filmentry  td, .proiezioneentry td {    
+
+.filmentry td, .projectionentry td {
     padding-left: 30px;
     padding-right: 60px;
 }
-.filmentry  .entryfunctions,
-.proiezioneentry  .entryfunctions {
+
+.filmentry .entryfunctions,
+.projectionentry .entryfunctions {
     padding-left: 0px;
     padding-right: 0px;
 }
+
 .activeoption {
     background-image: linear-gradient(red, darkred);
     /*background-color: darkred;*/
@@ -1479,18 +1495,22 @@ p.aiutocompilaz strong {
     box-sizing: border-box;
     padding: 15px;
 }
+
 .inactiveoption {
     border: none;
     border-radius: 15px;
     box-sizing: border-box;
-    padding:15px;
+    padding: 15px;
 }
-.even{
-    background-color:grey;
+
+.even {
+    background-color: grey;
 }
+
 .odd {
     background-color: darkgray;
 }
+
 .deleteentry {
     background: #e0dede;
     color: #000000;
@@ -1501,7 +1521,7 @@ p.aiutocompilaz strong {
     box-sizing: border-box;
 }
 
-.closed{
-    display:none !important;
+.closed {
+    display: none !important;
 }
 

@@ -1,8 +1,8 @@
 <div id="admin">
     <div class="adminsidebar">        
-        <ul id="funzioni">
+        <ul id="areasselector">
             <li class="activeoption" id="filmarea" onclick="changecontext('films')">Film</li>
-            <li class="inactiveoption" id="proiezioniarea" onclick="changecontext('proiezioni')">Proiezioni</li>
+            <li class="inactiveoption" id="projectionarea" onclick="changecontext('proiezioni')">Proiezioni</li>
         </ul>
     </div>
     <div class="workarea">        
@@ -12,14 +12,14 @@
             </table>
         </div>
 
-        <div id="proiezioni" class="closed">
+        <div id="projections" class="closed">
             <button type="button" onclick="toggleform('proiezione'); " class="formopener">+</button>
-            <table id="proiezionilist">
+            <table id="projectionlist">
             </table>
         </div>
     </div>
     <div class="overlays">
-        <form id="inserisci_film" class="closed" onsubmit="return false">
+        <form id="insert_film" class="closed" onsubmit="return false">
             <button type="button" onclick="toggleform('film');" class="formcloser">X</button>
             <label for="Titolo"><span xml:lang="en">Titolo</span></label>
             <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
@@ -49,7 +49,7 @@
             <button type="submit" onclick="post_film();" class="submit">Inserisci</button>
             <p id="result_insert_film"></p>
         </form>
-        <form id="inserisci_proiezione" class="closed" onsubmit="return false">
+        <form id="insert_projection" class="closed" onsubmit="return false">
             <button type="button" onclick="toggleform('proiezioni');" class="formcloser">X</button>
             <select name="film" title="film" id="filmselector">
             </select>
@@ -61,7 +61,7 @@
             <label for="imputgiorno">Giorno</label>
             <input type="date" name="Giorno" required id="imputgiorno">
             <button type="submit" onclick="post_proiezione();" class="submit">Inserisci</button>
-            <p id="result_insert_proiezione"></p>
+            <p id="result_insert_projection"></p>
         </form>
     </div>
 </div>

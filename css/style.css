@@ -1,12 +1,12 @@
-:root {
-	--primary-color: #121212;
-	--secondary-color: #b80000;
-	--gradient-first-color: #282828;
-	--gradient-last-color: #121212;
-	--visited-links: #BBBBBB;
-	--text-color: #fff;
-	--error-color: #C2B800;
-	--links-hover-color: #ffdd36;
+:root{
+    --primary-color: #121212;
+    --secondary-color: #b80000;
+    --gradient-first-color: #282828;
+    --gradient-last-color: #121212;
+    --visited-links: #BBBBBB;
+    --text-color: white;
+    --error-color: #C2B800;
+    --links-hover-color: #ffdd36;
 }
 
 * {
@@ -729,68 +729,95 @@ programmazione.html
 	cursor: pointer;
 }
 
-
-/*contatti*/
-
+.contactpage iframe {
+    width: 100%;
+    align-self: end;
+}
+@keyframes materialize {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+#posizione {
+    position: relative;  
+    text-align: right;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
 #contatti {
-	margin-left: 2rem;
-	margin-right: 2rem;
-	text-align: right;
-}
+    position: relative;
+    animation-name: materialize;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-fill-mode: both;
 
-#contatti h2 {
-	text-align: center;
 }
-
-.contactsParagraph {
-	margin: 1rem;
+#contatti h2{
+    text-align: right;
 }
-
-.contactpage {
-	display: flex;
-	flex-direction: column;
+.contactsection dl {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
-
-#social {
-	margin-left: 1rem;
-	margin-right: 1rem;
+.contactsection dt {
+    flex-basis: 20%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
-
-#posizione dl,
-#contatti dl,
-#social dl {
-	display: flex;
-	flex-flow: row;
-	flex-wrap: wrap;
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+.contactsection dd {
+    flex-basis: 70%;
+    flex-grow: 1;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
-
-#posizione dt,
-#contatti dt,
-#social dt {
-	flex-basis: 20%;
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-}
-
-#posizione dd,
-#contatti dd,
-#social dd {
-	flex-basis: 70%;
-	flex-grow: 1;
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-}
-
-@media (min-width: 768px) {
-	#contatti {
-		width: 50%;
-		left: 50%;
-		margin-left: 2rem;
-		margin-right: 2rem;
-	}
-}
+/*@supports not (display: grid) {*/
+    body {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .contactpage {
+        display: flex;
+        flex-direction: column;
+    }
+    .contactsection dl {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .contactsection dt {
+        flex-basis: 20%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .contactsection dd {
+        flex-basis: 70%;
+        flex-grow: 1;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    @media (min-width: 49rem) {
+        #contatti {
+            width: 50%;
+            left: 50%;
+            margin-left:0;
+            margin-right:0;
+            padding-left:0;
+            padding-right:0;
+        }
+    }
+/*}
+.success{
+    width:100%;
+    background-color:darkgreen;
+            margin-left:0;
 
 
 /* fine - contatti */
@@ -801,7 +828,7 @@ programmazione.html
 	align-self: center;
 	display: flex;
 	flex-direction: column;
-}
+    position: absolute;
 
 .insert_movie>input,
 .insert_proiezione>input,
@@ -828,6 +855,16 @@ programmazione.html
 	font-weight: bold;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        display: flex;
+        box-sizing: border-box
+    }
+#posizione h2, #contatti h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 #social h3 {
@@ -1442,12 +1479,161 @@ p.aiutocompilaz strong {
 	text-align: center;
 }
 
-#content.infocosti th {
-	max-width: 15rem;
-	background-color: #757575;
-	font-size: 1.2rem;
+
+@media print{
+
+
+    body, #content {
+        page-break-inside: auto;
+    }
+    div {
+        page-break-inside: auto;
+        page-break-before: auto;
+        page-break-after: auto;
+    }
+    .card, li, section, article, #psizione, #contatti, #social {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        page-break-before: auto;
+    }
+    .cardsContainer ul, li {
+        flex-grow: 1;
+    }
+
+	#confermaAcq .warning {
+		visibility: hidden;
+	}
+
+	#menubutton {
+		display:none;
+	}
+
+}
+#areasselector {
+    list-style-type: none;
 }
 
-#content.infocosti thead {
-	background-color: #757575;
+@media screen and (min-width: 49rem) {
+    #admin {
+        display: flex;
+        flex-direction: row;
+    }
+    .adminsidebar {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #areasselector {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }    
+
+    .workarea {
+        width: 80%;
+    }
 }
+#areasselector li {
+        width: 100%;
+    }
+@media screen and (min-width: 49rem) {
+    .workarea {
+        width: 100%;
+        overflow-x: scroll;
+    }
+}
+.workarea {
+    overflow-x: scroll;
+}
+.adminsidebar {
+    background-color: var(--admin-areaselector-background);
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+/*.open {
+display: block;
+}*/
+.formcloser {
+    background: var(--admin-button-background);
+    color: var(--admin-button-text);
+    top: 5px;
+    width: 2rem;
+    font-size: 2rem;
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.formopener {
+    background: var(--admin-button-background);
+    color: var(--admin-button-text);
+    top: 5px;
+    width: 2rem;
+    font-size: 2rem;
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.filmentry td, .projectionentry td {
+    padding-left: 30px;
+    padding-right: 60px;
+}
+
+.filmentry .entryfunctions,
+.projectionentry .entryfunctions {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.activeoption {
+    background-image: linear-gradient(var(--admin-areaselector-option-color1),var(--admin-areaselector-option-color2));
+    /*background-color: darkred;*/
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.inactiveoption {
+    border: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.even {
+    background-color: var(--admin-list-even);
+}
+
+.odd {
+    background-color:var(--admin-list-odd);
+}
+
+.deleteentry {
+    background:var(--admin-button-background);
+    color: var(--admin-button-text);
+    border: none;
+    width: 1.5rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.closed {
+    display: none !important;
+}
+
+    width: 1.5rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.closed{
+    display:none !important;
+}
+

@@ -24,11 +24,11 @@ function registerControls(
         return "Il cognome può essere composto da sole lettere.";
     }
 
-    if (!str_contains($email, "@")) {
-        return "Chiocciola (@) mancante nell'email.";
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		return "L'email inserita non è valida, deve essere nella forma example@email.com"
     }
 
-    if ($password != nil) {
+    if ($password != null) {
         if (strlen($password) < 8 || str_contains($password, " ")) {
             return "La password deve essere di almeno 8 caratteri e non può contenere spazi.";
         }

@@ -327,8 +327,8 @@ class Users
                 $name,
                 $surname,
                 $email,
-                nil,
-                nil
+                null,
+                null
             );
 
             if ($result == "OK") {
@@ -362,7 +362,7 @@ class Users
     }
     function checkPassword($passOld, $pass, $passConf)
     {
-        if ($passOld != nil && isset($pass) && isset($passConf)) {
+        if ($passOld != null && isset($pass) && isset($passConf)) {
             if ($passOld != $_SESSION["c"]) {
                 return [false, 1];
             }
@@ -383,7 +383,7 @@ class Users
             }
         }
 
-        if ($passOld == nil && isset($pass) && isset($passConf)) {
+        if ($passOld == null && isset($pass) && isset($passConf)) {
             $result = loginControls($username, $password);
 
             if ($pass != $passConf) {

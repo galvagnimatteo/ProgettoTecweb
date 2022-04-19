@@ -156,7 +156,7 @@ if (isset($_GET["action"])) {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         list($valid, $error) = $Users->checkPassword(
-            nil,
+            null,
             $_POST["password_delete"],
             $_POST["password_delete_confirm"]
         );

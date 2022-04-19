@@ -2,7 +2,7 @@
     filmform: false,    
     proiezioniform: false
 };
-function changecontext(context){
+function change_context(context){
     if (context === "films") {
         document.getElementById('insert_projection').className = 'closed'
         document.getElementById('projections').className = 'closed'

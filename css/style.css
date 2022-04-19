@@ -7,6 +7,14 @@
     --text-color: white;
     --error-color: #C2B800;
     --links-hover-color: #ffdd36;
+	--admin-areaselector-background: grey;
+	--admin-areaselector-option-color1: red;
+	--admin-areaselector-option-color2: darkred;
+	--admin-list-even: darkgrey;
+	--admin-list-odd: grey;
+	--admin-form-background: red;
+	--admin-button-background: #e0dede;
+	--admin-button-text: #000000;
 }
 
 * {
@@ -828,8 +836,8 @@ programmazione.html
 	align-self: center;
 	display: flex;
 	flex-direction: column;
-    position: absolute;
-
+	position: absolute;
+}
 .insert_movie>input,
 .insert_proiezione>input,
 .insert_movie>select,
@@ -849,22 +857,21 @@ programmazione.html
 	box-sizing: border-box
 }
 
-#posizione h2,
-#contatti h2 {
+.contactsection h2 {
 	font-size: 1.5rem;
 	font-weight: bold;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
-        border-radius: 5px;
-        font-size: 0.9rem;
-        display: flex;
-        box-sizing: border-box
-    }
-#posizione h2, #contatti h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+	border-radius: 5px;
+	font-size: 0.9rem;
+	display: flex;
+	box-sizing: border-box
+}
+.contactsection h2 {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 #social h3 {
@@ -1625,15 +1632,5 @@ display: block;
 
 .closed {
     display: none !important;
-}
-
-    width: 1.5rem;
-    font-size: 1.5rem;
-    border-radius: 10px;
-    box-sizing: border-box;
-}
-
-.closed{
-    display:none !important;
 }
 

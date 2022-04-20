@@ -3,11 +3,24 @@
 //    proiezioniform: false,
 //    people_cast:false
 //};
-var areas = {
-    film: "films",
-    projection: "projections",
-    people_cast: "people_cast"
-};
+
+var areas = [
+    {
+        name: "film",
+        element: "films",
+        areaselector: "filmarea"
+    },
+    {
+        name: "projection",
+        element: "projections",
+        areaselector: "projectionarea"
+    },
+    {
+        name: "people_cast",
+        element: "people_cast",
+        areaselector: "people_cast_area"
+    }
+];
 var forms = [
     {
         name:"film",
@@ -27,21 +40,23 @@ var forms = [
         element: "insert_people_cast",
         visible: false
     },
-    {
-        name: "film_cast",
-        area: "film",
-        element: "insert_film_cast",
-        visible: false
-    }
+    //{
+    //    name: "film_cast",
+    //    area: "film",
+    //    element: "insert_film_cast",
+    //    visible: false
+    //}
 ];
 
 function change_context(context) {
     for (area in areas) {
-        if (context === area) {
-            document.getElementById(areas[area]).className = 'open';
+        if (context === areas[area].name) {
+            document.getElementById(areas[area].element).className = 'open';
+            document.getElementById(areas[area].areaselector).className = 'activeoption';
         }
         else {
-            document.getElementById(areas[area]).className = 'closed';
+            document.getElementById(areas[area].element).className = 'closed';
+            document.getElementById(areas[area].areaselector).className = 'inactiveoption';
         }
     }
     for (form in forms) {
@@ -220,9 +235,9 @@ function delete_projection(id) {
 
 function gnereate_entry_film(entry, index) {
     rowtype = (index % 2 === 0) ? "even" : "odd";
-    result = "<tr class='filmentry " + rowtype + "' ><td class='entryfunctions'>"+
+    result = "<tr class='entry " + rowtype + "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
-        '<button type = "button" onclick = "cast_edit(' + entry.id + ');" class="castedit" >modifica cast</button >' +
+        '<button type = "button" onclick = "cast_edit(' + entry.id + ');" class="castedit" >cast</button >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -231,8 +246,8 @@ function gnereate_entry_film(entry, index) {
     return result;
 }
 function gnereate_entry_projection(entry, index) {
-    rowtype = (index%2===0) ? "even" : "odd";
-    result = "<tr class='projectionentry " + rowtype + "' ><td class='entryfunctions'>"+
+    //rowtype = (index%2===0) ? "even" : "odd";
+    result = "<tr class='entry "/* + rowtype */+ "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
     '</td ><td>'
         + entry.data + "</td><td>"
@@ -263,7 +278,7 @@ function updatehtml_film(films) {
 
 function cast_edit(idfilm){
     var request = new XMLHttpRequest();
-    request.open('GET', './api/cast_film.php?'+idfilm);
+    request.open('GET', './api/cast_film.php?action=list&id='+idfilm);
     request.send();
     request.onload = () => {
         console.log(request.response);

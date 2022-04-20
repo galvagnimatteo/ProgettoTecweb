@@ -1664,9 +1664,9 @@ display: block;
 	box-sizing: border-box;
 	overflow-y:auto;
 }
-.overlays > form > input,
-.overlays > form > select,
-.overlays > form > option,
+.overlays  form > input,
+.overlays  form > select,
+.overlays  form > option,
 .submit {
 	width: 80%;	
 	background: var(--admin-button-background);

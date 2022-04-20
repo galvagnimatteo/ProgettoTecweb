@@ -12,31 +12,30 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
     echo '{"status":"unauthorized"}';
     exit();
 }
+if(!isset($_GET['IDFilm'])){
+    echo '{"status":"manca identificativo film"}';
+}
 $db = SingletonDB::getInstance();
 $reply=new \stdClass();
 $reply->status="none";
 if (isset($_POST['action'])&&$_POST['action']=='add') 
 {
 
-    if(isset($_POST['film']) &&
-            isset($_POST['sala']) &&
-            isset($_POST['Giorno']) 
-            )
+    if(isset($_POST['IDCast']))
         {
-            
+        $IDFilm = $_POST['IDFilm'];
+        $IDCast = $_POST['IDCast'];        
+
         $query =
-            'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala) VALUES (?,?,?)';
+            'INSERT INTO Afferisce ( IDFilm,IDCast) VALUES (?,?)';
         $preparedQuery = $db->getConnection()->prepare($query);
         $preparedQuery->bind_param(
-            'sss',
-            $Data,
+            'ss',
             $IDFilm,
-            $NumeroSala
+            $IDCast
         );
 
-        $IDFilm = $_POST['film'];
-        $NumeroSala = $_POST['sala'];
-        $Data = $_POST['Giorno'];
+        
 
         $res=$preparedQuery->execute();        
         $preparedQuery->close();
@@ -52,8 +51,8 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
 	}
 }else{
     if (isset($_POST['action'])&&$_POST['action']=='remove'){
-        $idcast = $_POST['idcast'];
-        $idfilm=$_POST['idfilm'];
+        $idcast = $_POST['$IDCast'];
+        $idfilm=$_POST['IDFilm'];
         $query =
             'delete FROM Afferisce where IDCast=? AND IDFilm=?;';
         $preparedQuery = $db->getConnection()->prepare($query);
@@ -67,23 +66,29 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
     }
     
 }
-$proiezioni;
-$resultproiezioni = $db
+$cast;
+$preparedQuery = $db
     ->getConnection()
-    ->query('SELECT  FROM CastFilm,Film,Afferisce WHERE Film.ID=Afferisce.IDFilm AND Afferisce.IDCast=CastFilm.ID');
+    ->query('SELECT CastFilm.* ,Afferisce.IDFilm FROM CastFilm,Afferisce WHERE Afferisce.IDFilm=? AND Afferisce.IDCast=CastFilm.ID');    
+    $preparedQuery->bind_param(
+        's',
+        $IDFilm        
+    );
+$cast_query=$preparedQuery->execute();        
+    $preparedQuery->close();
 $db->disconnect();
 $i=0;
-while ($row = $resultproiezioni->fetch_assoc()) { 
-    $proiezione=new \stdClass();
-    $proiezione->data=$row['Data'];
-    $proiezione->id=$row['ID'];
-    $proiezione->idfilm=$row['IDFilm'];
-    $proiezione->titolofilm=$row['Titolo'];
-    $proiezione->numeroSala=$row['NumeroSala'];
-    $proiezioni[$i]=$proiezione;
+while ($row = $cast_query->fetch_assoc()) { 
+    $castmember=new \stdClass();
+    $castmember->Nome=$row['Nome'];
+    $castmember->ID=$row['ID'];
+    $castmember->Cognome=$row['Cognome'];
+    $castmember->Lingua=$row['Lingua'];
+    $castmember->Ruolo=$row['Ruolo'];
+    $cast[$i]=$castmember;
     $i++;
 }
-$reply->proiezioni=$proiezioni;
+$reply->cast=$cast;
 echo json_encode($reply);
 
 ?>

@@ -26,7 +26,7 @@ var forms = [
         name:"film",
         area: "film",
         element:"insert_film",
-        visible: false
+        visible: true
     },
     {
         name: "projection",

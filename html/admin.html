@@ -7,70 +7,73 @@
         </ul>
     </div>
     <div class="workarea">
-        <div id="films" class="open">
-            <button type="button" onclick="toggle_form('film'); " class="formopener">+</button>
-            <table id="filmlist">
-            </table>
+        <div class="lists">
+            <div id="films" class="open">
+                <button type="button" onclick="toggle_form('film'); " class="formopener">+</button>
+                <table id="filmlist">
+                </table>
+            </div>
+
+            <div id="projections" class="closed">
+                <button type="button" onclick="toggle_form('projection'); " class="formopener">+</button>
+                <table id="projectionlist">
+                </table>
+            </div>
+
+            <div id="people_cast" class="closed">
+                <button type="button" onclick="toggle_form('people_cast'); " class="formopener">+</button>
+                <table id="people_cast_list">
+                </table>
+            </div>
         </div>
-
-        <div id="projections" class="closed">
-            <button type="button" onclick="toggle_form('projection'); " class="formopener">+</button>
-            <table id="projectionlist">
-            </table>
-        </div>
-        <div id="people_cast" class="closed">
-            <button type="button" onclick="toggle_form('people_cast'); " class="formopener">+</button>
-            <table id="people_cast_list">
-            </table>
-        </div>
-    </div>
-    <div class="overlays">
-        <form id="insert_film" class="closed" onsubmit="return false">
-            <button type="button" onclick="toggle_form('film');" class="formcloser">X</button>
-            <label for="Titolo"><span xml:lang="en">Titolo</span></label>
-            <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
+        <div class="overlays">
+            <form id="insert_film" class="closed" onsubmit="return false">
+                <button type="button" onclick="toggle_form('film');" class="formcloser">X</button>
+                <label for="Titolo"><span xml:lang="en">Titolo</span></label>
+                <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
 
 
-            <label for="imputgenere">Genere</label>
-            <input type="text" placeholder="Genere" name="Genere" required id="imputgenere">
+                <label for="imputgenere">Genere</label>
+                <input type="text" placeholder="Genere" name="Genere" required id="imputgenere">
 
-            <label for="imputdatauscita">Data Uscita</label>
-            <input type="date" name="DataUscita" required id="imputdatauscita">
+                <label for="imputdatauscita">Data Uscita</label>
+                <input type="date" name="DataUscita" required id="imputdatauscita">
 
-            <label for="imputdescizione">Descrizione</label>
-            <input type="text" name="Descrizione" placeholder="descrizione" required id="imputdescizione">
+                <label for="imputdescizione">Descrizione</label>
+                <input type="text" name="Descrizione" placeholder="descrizione" required id="imputdescizione">
 
-            <label for="imputimmagine">Immagine</label>
-            <input type="text" name="SrcImg" required id="imputimmagine">
+                <label for="imputimmagine">Immagine</label>
+                <input type="text" name="SrcImg" required id="imputimmagine">
 
-            <label for="imputcarousel">Immagine carousel</label>
-            <input type="url" name="CarouselImg" required id="imputcarousel">
+                <label for="imputcarousel">Immagine carousel</label>
+                <input type="url" name="CarouselImg" required id="imputcarousel">
 
-            <label for="imputdurata">Durata</label>
-            <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
+                <label for="imputdurata">Durata</label>
+                <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
 
-            <button type="submit" onclick="post_film();" class="submit">Inserisci</button>
-            <p id="result_insert_film"></p>
-        </form>
-        <form id="insert_projection" class="closed" onsubmit="return false">
-            <button type="button" onclick="toggle_form('projection');" class="formcloser">X</button>
-            <select name="film" title="film" id="filmselector">
-            </select>
-            <select name="sala" title="sala" id="imputsala">
-                <option value="1">Sala 1</option>
-                <option value="2">Sala 2</option>
-                <option value="3">Sala 3</option>
-            </select>
-            <label for="imputgiorno">Giorno</label>
-            <input type="date" name="Giorno" required id="imputgiorno">
-            <button type="submit" onclick="post_projection();" class="submit">Inserisci</button>
-            <p id="result_insert_projection"></p>
-        </form>
-        <form id="insert_people_cast" class="closed" onsubmit="return false">
-            <button type="button" onclick="toggle_form('people_cast');" class="formcloser">X</button>
-            
-            <button type="submit" onclick="post_people_cast();" class="submit">Inserisci</button>
-            <p id="result_insert_people_cast"></p>
-        </form>
+                <button type="submit" onclick="post_film();" class="submit">Inserisci</button>
+                <p id="result_insert_film"></p>
+            </form>
+            <form id="insert_projection" class="closed" onsubmit="return false">
+                <button type="button" onclick="toggle_form('projection');" class="formcloser">X</button>
+                <select name="film" title="film" id="filmselector">
+                </select>
+                <select name="sala" title="sala" id="imputsala">
+                    <option value="1">Sala 1</option>
+                    <option value="2">Sala 2</option>
+                    <option value="3">Sala 3</option>
+                </select>
+                <label for="imputgiorno">Giorno</label>
+                <input type="date" name="Giorno" required id="imputgiorno">
+                <button type="submit" onclick="post_projection();" class="submit">Inserisci</button>
+                <p id="result_insert_projection"></p>
+            </form>
+            <form id="insert_people_cast" class="closed" onsubmit="return false">
+                <button type="button" onclick="toggle_form('people_cast');" class="formcloser">X</button>
+
+                <button type="submit" onclick="post_people_cast();" class="submit">Inserisci</button>
+                <p id="result_insert_people_cast"></p>
+            </form>            
+        </div>        
     </div>
 </div>

@@ -18,25 +18,27 @@ $reply->status="none";
 if (isset($_POST['action'])&&$_POST['action']=='insert') 
 {
 
-    if(isset($_POST['film']) &&
-            isset($_POST['sala']) &&
-            isset($_POST['Giorno']) 
+    if(isset($_POST['Nome']) &&
+            isset($_POST['Cognome']) &&
+            isset($_POST['Ruolo']) &&
+            isset($_POST['Lingua']) 
             )
         {
+        $Nome=$row['Nome'];        
+        $Cognome=$row['Cognome'];
+        $Lingua=$row['Lingua'];
+        $Ruolo=$row['Ruolo'];        
             
         $query =
-            'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala) VALUES (?,?,?)';
+            'INSERT INTO CastFilm ( Nome,Cognome,Lingua,Ruolo) VALUES (?,?,?,?)';
         $preparedQuery = $db->getConnection()->prepare($query);
         $preparedQuery->bind_param(
-            'sss',
-            $Data,
-            $IDFilm,
-            $NumeroSala
-        );
-
-        $IDFilm = $_POST['film'];
-        $NumeroSala = $_POST['sala'];
-        $Data = $_POST['Giorno'];
+            'ssss',
+            $Nome,
+            $Cognome,
+            $Lingua,
+            $Ruolo
+        );       
 
         $res=$preparedQuery->execute();        
         $preparedQuery->close();
@@ -52,14 +54,13 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 	}
 }else{
     if (isset($_POST['action'])&&$_POST['action']=='delete'){
-        $idcast = $_POST['idcast'];
-        $idfilm=$_POST['idfilm'];
+        $idcast = $_POST['idcast'];        
         $query =
-            'delete FROM Afferisce where IDCast=? AND IDFilm=?;';
+            'delete FROM CastFilm where ID=?;';
         $preparedQuery = $db->getConnection()->prepare($query);
         $preparedQuery->bind_param(
             's',
-            $id
+            $idcast
         );
 
         $res=$preparedQuery->execute();        
@@ -67,23 +68,23 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
     }
     
 }
-$proiezioni;
-$resultproiezioni = $db
+$people;
+$resultcast = $db
     ->getConnection()
-    ->query('SELECT  FROM CastFilm,Film,Afferisce WHERE Film.ID=Afferisce.IDFilm AND Afferisce.IDCast=CastFilm.ID');
+    ->query('SELECT * FROM CastFilm');
 $db->disconnect();
 $i=0;
-while ($row = $resultproiezioni->fetch_assoc()) { 
-    $proiezione=new \stdClass();
-    $proiezione->data=$row['Data'];
-    $proiezione->id=$row['ID'];
-    $proiezione->idfilm=$row['IDFilm'];
-    $proiezione->titolofilm=$row['Titolo'];
-    $proiezione->numeroSala=$row['NumeroSala'];
-    $proiezioni[$i]=$proiezione;
+while ($row = $resultcast->fetch_assoc()) { 
+    $person=new \stdClass();
+    $person->Nome=$row['Nome'];
+    $person->ID=$row['ID'];
+    $person->Cognome=$row['Cognome'];
+    $person->Lingua=$row['Lingua'];
+    $person->Ruolo=$row['Ruolo'];
+    $people[$i]=$person;
     $i++;
 }
-$reply->proiezioni=$proiezioni;
+$reply->cast_people=$people;
 echo json_encode($reply);
 
 ?>

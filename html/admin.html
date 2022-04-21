@@ -88,6 +88,15 @@
                 <button type="submit" onclick="post_people_cast();" class="submit">Inserisci</button>
                 <p id="result_insert_people_cast"></p>
             </form>
+            <form id="cast_film" class="closed" onsubmit="return false">
+                <button type="button" onclick="toggle_form('film_cast'); active_film = null;" class="formcloser">X</button>
+                <select name="selector_cast" title="Persona" id="selector_cast">
+                </select>                
+                <button type="submit" onclick="post_cast_film();" class="submit">Conferma</button>
+                <table id="cast_film_recap">
+                    
+                </table>
+            </form>
         </div>
     </div>
 </div>

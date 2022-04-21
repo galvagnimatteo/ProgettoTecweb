@@ -26,7 +26,7 @@ var forms = [
         name:"film",
         area: "film",
         element:"insert_film",
-        visible: true
+        visible: false
     },
     {
         name: "projection",
@@ -60,7 +60,7 @@ function change_context(context) {
         }
     }
     for (form in forms) {
-        if (context === forms[form].area && forms[form].visible) {
+        if ((context === forms[form].area) && forms[form].visible) {
             document.getElementById(forms[form].element).className = 'open';
         }
         else {
@@ -87,8 +87,7 @@ function request_film() {
     var request = new XMLHttpRequest();
     request.open('GET', './api/films.php');
     request.send();
-    request.onload = () => {
-        console.log(request.response);
+    request.onload = () => {        
         var data = JSON.parse(request.response);
         films = data.films;
         updatehtml_film(films);
@@ -109,9 +108,10 @@ function request_people_cast() {
     request.open('GET', './api/cast_person.php');
     request.send();
     request.onload = () => {
+        console.log(request.response);
         var data = JSON.parse(request.response);
-        people = data.people;
-        updatehtml_people_cast(people);
+        cast_people = data.cast_people;
+        updatehtml_people_cast(cast_people);
     }
 }
 function post_film() {
@@ -323,8 +323,8 @@ function generate_entry_people_cast(entry) {
         '</td ><td>'
         + entry.Nome + "</td><td>"
         + entry.Cognome + "</td><td>" +
-        entry.Ruolo + "</td></tr>" +
-        entry.Lingua + "</td></tr>";
+        entry.Ruolo + "</td><td>" +
+        ((entry.Lingua !== null) ? entry.Lingua:"--") + "</td></tr>";
     return result;
 }
 
@@ -371,8 +371,10 @@ function cast_edit(idfilm){
 
 request_film();
 request_projection();
+request_people_cast();
 
 setInterval(() => {//aggiorna i dati e mantiene attiva la sessione
     request_film();
-    request_projection(); }
+    request_projection();
+    request_people_cast();}
     , 30000);

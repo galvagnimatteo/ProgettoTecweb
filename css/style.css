@@ -1544,6 +1544,7 @@ p.aiutocompilaz strong {
 	top:-600px;
 	z-index: 10;
 	height:100%;
+	pointer-events:none;
 }
 .lists{	
 	width:100%;
@@ -1664,21 +1665,46 @@ display: block;
 	box-sizing: border-box;
 	overflow-y:auto;
 }
-.overlays  form > input,
-.overlays  form > select,
-.overlays  form > option,
+fieldset {
+	width: 100%;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	border: none;
+	margin-top: 1.2rem;
+	
+}
+fieldset legend {
+	font-size: 1.4rem;
+	text-align: center;
+}
+.overlays form input,
+.overlays form select,
+.overlays form option,
+overlays form input:not(:empty),
+.overlays form select:not(:empty),
+.overlays form option:not(:empty),
 .submit {
-	width: 80%;	
+	align-self: center;
+	width: 80%;
 	background: var(--admin-button-background);
 	color: var(--admin-button-text);
 	padding: 1rem;
 	margin: 1rem;
 	border: none;
 	border-radius: 5px;
-	font-size: 0.9rem;	
-	box-sizing: border-box
+	font-size: 0.9rem;
+	box-sizing: border-box;
+}
+.overlays form label {
+	width:80%;
+	position:relative;
+	left:10%;
+}
+.open{
+	pointer-events:initial;
 }
 .closed {
-    display: none !important;
+	display: none !important;	
 }
 

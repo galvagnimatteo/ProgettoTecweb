@@ -27,32 +27,33 @@
             </div>
         </div>
         <div class="overlays">
-            <form id="insert_film" class="closed" onsubmit="return false">
+            <form id="insert_film" class="closed" onsubmit="return false">                
                 <button type="button" onclick="toggle_form('film');" class="formcloser">X</button>
-                <label for="Titolo"><span xml:lang="en">Titolo</span></label>
-                <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
-
-
-                <label for="imputgenere">Genere</label>
-                <input type="text" placeholder="Genere" name="Genere" required id="imputgenere">
-
-                <label for="imputdatauscita">Data Uscita</label>
-                <input type="date" name="DataUscita" required id="imputdatauscita">
-
-                <label for="imputdescizione">Descrizione</label>
-                <input type="text" name="Descrizione" placeholder="descrizione" required id="imputdescizione">
-
-                <label for="imputimmagine">Immagine</label>
-                <input type="text" name="SrcImg" required id="imputimmagine">
-
-                <label for="imputcarousel">Immagine carousel</label>
-                <input type="url" name="CarouselImg" required id="imputcarousel">
-
-                <label for="imputdurata">Durata</label>
-                <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
-
-                <button type="submit" onclick="post_film();" class="submit">Inserisci</button>
-                <p id="result_insert_film"></p>
+                <fieldset>
+                    <legend>informazioni base</legend>
+                    <label for="Titolo"><span xml:lang="en">Titolo</span></label>
+                    <input type="text" placeholder="Titolo" name="Titolo" required id="imputtitolo">
+                    <label for="imputgenere">Genere</label>
+                    <input type="text" placeholder="Genere" name="Genere" required id="imputgenere">
+                    <label for="imputdatauscita">Data Uscita</label>
+                    <input type="date" name="DataUscita" required id="imputdatauscita">
+                </fieldset>
+                <fieldset>
+                    <legend>dettagli</legend>
+                    <label for="imputdurata">Durata</label>
+                    <input type="number" name="Durata" inputmode="numeric" placeholder="120" required id="imputdurata">
+                    <label for="imputdescizione">Descrizione</label>
+                    <input type="text" name="Descrizione" placeholder="descrizione" required id="imputdescizione">
+                </fieldset>
+                <fieldset id="insert_film_immagini">
+                    <legend>immagini</legend>
+                    <label for="imputimmagine">Immagine</label>
+                    <input type="text" name="SrcImg" required id="imputimmagine">
+                    <label for="imputcarousel">Immagine carousel</label>
+                    <input type="url" name="CarouselImg" required id="imputcarousel">
+                </fieldset>
+                    <button type="submit" onclick="post_film();" class="submit">Inserisci</button>
+                    <p id="result_insert_film"></p>
             </form>
             <form id="insert_projection" class="closed" onsubmit="return false">
                 <button type="button" onclick="toggle_form('projection');" class="formcloser">X</button>

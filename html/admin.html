@@ -71,7 +71,20 @@
             </form>
             <form id="insert_people_cast" class="closed" onsubmit="return false">
                 <button type="button" onclick="toggle_form('people_cast');" class="formcloser">X</button>
-
+                <label for="imputNome"><span xml:lang="en">Nome</span></label>
+                <input type="text" placeholder="Nome" name="Nome" required id="imputNome">
+                <label for="imputCognome">Cognome</label>
+                <input type="text" placeholder="Cognome" name="Cognome" required id="imputCognome">
+                <select name="ruolo" title="ruolo" id="imputRuolo">
+                    <option value="A">Attore</option>
+                    <option value="R">Regista</option>
+                </select>
+                <select name="lingua" title="lingua" id="imputLingua">
+                    <option value="IT">Italiano</option>
+                    <option value="EN">Inglese</option>
+                    <option value="DE">Tedesco</option>
+                    <option value="FR">Francese</option>
+                </select>
                 <button type="submit" onclick="post_people_cast();" class="submit">Inserisci</button>
                 <p id="result_insert_people_cast"></p>
             </form>

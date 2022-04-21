@@ -205,9 +205,10 @@ function post_people_cast() {
 
 
     let data = {
-        film: document.getElementById("filmselector").value,
-        sala: document.getElementById("imputsala").value,
-        Giorno: document.getElementById("imputgiorno").value
+        Nome: document.getElementById("imputNome").value,
+        Cognome: document.getElementById("imputCognome").value,
+        Ruolo: document.getElementById("imputgRuolo").value,
+        Lingua: document.getElementById("imputLingua").value
     };
     let urlEncodedData = "action=insert", name;
     for (name in data) {
@@ -228,6 +229,7 @@ function post_people_cast() {
         }
     };
 }
+
 function delete_film(id) {
     let url = "./api/films.php";
 

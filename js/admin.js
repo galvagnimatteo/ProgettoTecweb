@@ -104,6 +104,16 @@ function request_projection() {
         updatehtml_projection(proiezioni);
     }
 }
+function request_people_cast() {
+    var request = new XMLHttpRequest();
+    request.open('GET', './api/cast_person.php');
+    request.send();
+    request.onload = () => {
+        var data = JSON.parse(request.response);
+        people = data.people;
+        updatehtml_people_cast(people);
+    }
+}
 function post_film() {
     let url = "./api/films.php";
 
@@ -181,6 +191,43 @@ function post_projection() {
         }        
     };
 }
+function post_people_cast() {
+    let url = "./api/cast_person.php";
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    //xhr.setRequestHeader("Accept", "application/json");
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+
+
+    let data = {
+        film: document.getElementById("filmselector").value,
+        sala: document.getElementById("imputsala").value,
+        Giorno: document.getElementById("imputgiorno").value
+    };
+    let urlEncodedData = "action=insert", name;
+    for (name in data) {
+        urlEncodedData += "&" + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
+    }
+    xhr.send(urlEncodedData);
+
+    xhr.onload = function () {
+        var data = JSON.parse(xhr.responseText);
+        var status = data.status;
+        if (status === "ok") {
+            var people = data.people;
+            updatehtml_people_cast(people);
+            document.getElementById("result_insert_people_cast").innerText = "inserimento avvenuto con successo"
+        }
+        else {
+            document.getElementById("result_insert_people_cast").innerText = status;
+        }
+    };
+}
 function delete_film(id) {
     let url = "./api/films.php";
 
@@ -199,10 +246,6 @@ function delete_film(id) {
         if (status === "ok") {
             var films = data.films;
             updatehtml_film(films);
-            //document.getElementById("result_insert_film").innerText = "inserimento avvenuto con successo"
-        }
-        else {
-            //document.getElementById("result_insert_film").innerText = status;
         }        
     };
 }
@@ -224,18 +267,36 @@ function delete_projection(id) {
         var status = data.status;
         if (status === "ok") {
             var proiezioni = data.proiezioni;
-            updatehtml_proiezioni(proiezioni);
-            //document.getElementById("result_insert_proiezione").innerText = "inserimento avvenuto con successo"
-        }
-        else {
-            //document.getElementById("result_insert_proiezione").innerText = status;
+            updatehtml_proiezioni(proiezioni);            
+        }        
+    };
+}
+function delete_person_cast(id) {
+    let url = "./api/cast_person.php";
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    //xhr.setRequestHeader("Accept", "application/json");
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+
+    xhr.send('action=delete&IDCast=' + id);
+    xhr.onload = function () {
+        var data = JSON.parse(xhr.responseText);
+        var status = data.status;
+        if (status === "ok") {
+            var people = data.people;
+            updatehtml_people_cast(people);            
         }        
     };
 }
 
-function gnereate_entry_film(entry, index) {
-    rowtype = (index % 2 === 0) ? "even" : "odd";
-    result = "<tr class='entry " + rowtype + "' ><td class='entryfunctions'>"+
+function generate_entry_film(entry) {
+    //rowtype = (index % 2 === 0) ? "even" : "odd";
+    result = "<tr class='entry " /*+ rowtype*/ + "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
         '<button type = "button" onclick = "cast_edit(' + entry.id + ');" class="castedit" >cast</button >' +
         '</td ><td>'
@@ -245,7 +306,7 @@ function gnereate_entry_film(entry, index) {
         + entry.durata+"</td></tr>";
     return result;
 }
-function gnereate_entry_projection(entry, index) {
+function generate_entry_projection(entry) {
     //rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='entry "/* + rowtype */+ "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
@@ -255,12 +316,23 @@ function gnereate_entry_projection(entry, index) {
         entry.titolofilm + "</td></tr>";
     return result;
 }
+function generate_entry_people_cast(entry) {
+    //rowtype = (index%2===0) ? "even" : "odd";
+    result = "<tr class='entry "/* + rowtype */ + "' ><td class='entryfunctions'>" +
+        '<button type = "button" onclick = "delete_person_cast(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
+        '</td ><td>'
+        + entry.Nome + "</td><td>"
+        + entry.Cognome + "</td><td>" +
+        entry.Ruolo + "</td></tr>" +
+        entry.Lingua + "</td></tr>";
+    return result;
+}
 
 function updatehtml_projection(proiezioni) {
     var proiezionilist = '<tr class=odd><th></th><th>giorno</th><th>sala</th><th>film</th></tr>';
     for (entryindex in proiezioni) {
         var entry = proiezioni[entryindex];
-        proiezionilist += gnereate_entry_projection(entry, entryindex);
+        proiezionilist += generate_entry_projection(entry);
     }
     document.getElementById("projectionlist").innerHTML = proiezionilist;
 }
@@ -269,11 +341,19 @@ function updatehtml_film(films) {
     var filmoptions = "";
     for (entryindex in films) {
         var entry = films[entryindex];
-        filmlist += gnereate_entry_film(entry, entryindex);
+        filmlist += generate_entry_film(entry);
         filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
     }
     document.getElementById("filmlist").innerHTML = filmlist;
     document.getElementById("filmselector").innerHTML = filmoptions;
+}
+function updatehtml_people_cast(people) {
+    var people_cast_list = '<tr class=odd><th></th><th>Nome</th><th>Cognome</th><th>Ruolo</th><th>Lingua</th></tr>';    
+    for (entryindex in people) {
+        var entry = people[entryindex];
+        people_cast_list += generate_entry_people_cast(entry);
+    }
+    document.getElementById("people_cast_list").innerHTML = people_cast_list;
 }
 
 function cast_edit(idfilm){

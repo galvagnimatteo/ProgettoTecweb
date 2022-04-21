@@ -54,7 +54,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 	}
 }else{
     if (isset($_POST['action'])&&$_POST['action']=='delete'){
-        $idcast = $_POST['idcast'];        
+        $idcast = $_POST['IDCast'];        
         $query =
             'delete FROM CastFilm where ID=?;';
         $preparedQuery = $db->getConnection()->prepare($query);

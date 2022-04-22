@@ -80,19 +80,19 @@
                     <option value="R">Regista</option>
                 </select>
                 <select name="lingua" title="lingua" id="imputLingua">
-                    <option value="IT">Italiano</option>
-                    <option value="EN">Inglese</option>
-                    <option value="DE">Tedesco</option>
-                    <option value="FR">Francese</option>
+                    <option value="it">Italiano</option>
+                    <option value="en">Inglese</option>
+                    <option value="de">Tedesco</option>
+                    <option value="fr">Francese</option>
                 </select>
                 <button type="submit" onclick="post_people_cast();" class="submit">Inserisci</button>
                 <p id="result_insert_people_cast"></p>
             </form>
-            <form id="cast_film" class="closed" onsubmit="return false">
+            <form id="edit_cast_film" class="closed" onsubmit="return false">
                 <button type="button" onclick="toggle_form('film_cast'); active_film = null;" class="formcloser">X</button>
                 <select name="selector_cast" title="Persona" id="selector_cast">
                 </select>                
-                <button type="submit" onclick="post_cast_film();" class="submit">Conferma</button>
+                <button type="submit" onclick="post_film_cast();" class="submit">Ibserisci</button>
                 <table id="cast_film_recap">
                     
                 </table>

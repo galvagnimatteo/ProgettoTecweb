@@ -40,12 +40,12 @@ var forms = [
         element: "insert_people_cast",
         visible: false
     },
-    //{
-    //    name: "film_cast",
-    //    area: "film",
-    //    element: "insert_film_cast",
-    //    visible: false
-    //}
+    {
+        name: "film_cast",
+        area: "film",
+        element: "edit_cast_film",
+        visible: false
+    }
 ];
 
 var active_film = null;
@@ -210,7 +210,7 @@ function post_people_cast() {
     let data = {
         Nome: document.getElementById("imputNome").value,
         Cognome: document.getElementById("imputCognome").value,
-        Ruolo: document.getElementById("imputgRuolo").value,
+        Ruolo: document.getElementById("imputRuolo").value,
         Lingua: document.getElementById("imputLingua").value
     };
     let urlEncodedData = "action=insert", name;
@@ -220,6 +220,7 @@ function post_people_cast() {
     xhr.send(urlEncodedData);
 
     xhr.onload = function () {
+        console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -233,7 +234,7 @@ function post_people_cast() {
     };
 }
 function post_film_cast() {
-    let url = "./api/cast_film.php";
+    let url = "./api/cast_film.php?IDFilm="+active_film;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -247,15 +248,16 @@ function post_film_cast() {
 
     let data = {
         IDFilm: active_film,
-        $IDCast: document.getElementById("selector_cast").value
+        IDCast: document.getElementById("selector_cast").value
     };
-    let urlEncodedData = "action=insert", name;
+    let urlEncodedData = "action=add", name;
     for (name in data) {
         urlEncodedData += "&" + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
     }
     xhr.send(urlEncodedData);
 
     xhr.onload = function () {
+        console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -322,6 +324,7 @@ function delete_person_cast(id) {
 
     xhr.send('action=delete&IDCast=' + id);
     xhr.onload = function () {
+        console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -331,7 +334,7 @@ function delete_person_cast(id) {
     };
 }
 function delete_film_cast(person) {
-    let url = "./api/cast_film.php";
+    let url = "./api/cast_film.php?IDFilm=" + active_film;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -342,8 +345,9 @@ function delete_film_cast(person) {
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
 
-    xhr.send('action=delete&IDCast=' + person +'&IDFilm='+active_film);
+    xhr.send('action=remove&IDCast=' + person +'&IDFilm='+active_film);
     xhr.onload = function () {
+        console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -375,17 +379,22 @@ function generate_entry_projection(entry) {
         entry.titolofilm + "</td></tr>";
     return result;
 }
+var ruoli = {
+    A: "attore",
+    R: "regista"
+}
 function generate_entry_people_cast(entry) {
     //rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='entry "/* + rowtype */ + "' ><td class='entryfunctions'>" +
-        '<button type = "button" onclick = "delete_person_cast(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
+        '<button type = "button" onclick = "delete_person_cast(' + entry.ID + ');" class="deleteentry" >	&#128465;</button >' +
         '</td ><td>'
         + entry.Nome + "</td><td>"
         + entry.Cognome + "</td><td>" +
-        entry.Ruolo + "</td><td>" +
+        ruoli[entry.Ruolo] + "</td><td>" +
         ((entry.Lingua !== null) ? entry.Lingua:"--") + "</td></tr>";
     return result;
 }
+
 function generate_entry_film_cast(entry) {
     //rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='entry "/* + rowtype */ + "' ><td class='entryfunctions'>" +
@@ -393,7 +402,7 @@ function generate_entry_film_cast(entry) {
         '</td ><td>'
         + entry.Nome + "</td><td>"
         + entry.Cognome + "</td><td>" +
-        entry.Ruolo + "</td><td>" +
+        ruoli[entry.Ruolo] + "</td><td>" +
         ((entry.Lingua !== null) ? entry.Lingua : "--") + "</td></tr>";
     return result;
 }
@@ -423,9 +432,10 @@ function updatehtml_people_cast(people) {
     for (entryindex in people) {
         var entry = people[entryindex];
         people_cast_list += generate_entry_people_cast(entry);
-        cast_selector += "<option value='" + entry.id + "'>" + entry.Nome+" "+entry.Cognome+"</option>";
+        cast_selector += "<option value='" + entry.ID + "'>" + entry.Nome+" "+entry.Cognome+"</option>";
     }
     document.getElementById("people_cast_list").innerHTML = people_cast_list;
+    document.getElementById("selector_cast").innerHTML = cast_selector;
 }
 
 function cast_edit(idfilm) {
@@ -434,20 +444,21 @@ function cast_edit(idfilm) {
     }
     active_film = idfilm;
     var request = new XMLHttpRequest();
-    request.open('GET', './api/cast_film.php?action=list&id='+idfilm);
+    request.open('GET', './api/cast_film.php?action=list&IDFilm='+idfilm);
     request.send();
     request.onload = () => {
         console.log(request.response);
         var data = JSON.parse(request.response);
         var cast = data.cast;
-        generate_cast_list(cast);
+        generate_cast_recap(cast);
+        toggle_form("film_cast");
     }
 }
 
 function generate_cast_recap(cast) {
     var film_cast_recap = '<tr class=odd><th></th><th>Nome</th><th>Cognome</th><th>Ruolo</th><th>Lingua</th></tr>';
     for (entryindex in cast) {
-        var entry = people[entryindex];
+        var entry = cast[entryindex];
         film_cast_recap += generate_entry_film_cast(entry);
     }
     document.getElementById("cast_film_recap").innerHTML = film_cast_recap;
@@ -460,6 +471,5 @@ request_people_cast();
 
 setInterval(() => {//aggiorna i dati e mantiene attiva la sessione
     request_film();
-    request_projection();
-    request_people_cast();}
+    request_projection();}
     , 30000);

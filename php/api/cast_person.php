@@ -24,10 +24,10 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             isset($_POST['Lingua']) 
             )
         {
-        $Nome=$row['Nome'];        
-        $Cognome=$row['Cognome'];
-        $Lingua=$row['Lingua'];
-        $Ruolo=$row['Ruolo'];        
+        $Nome=$_POST['Nome'];        
+        $Cognome=$_POST['Cognome'];
+        $Lingua=$_POST['Lingua'];
+        $Ruolo=$_POST['Ruolo'];        
             
         $query =
             'INSERT INTO CastFilm ( Nome,Cognome,Lingua,Ruolo) VALUES (?,?,?,?)';

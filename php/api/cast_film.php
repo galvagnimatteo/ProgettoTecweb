@@ -14,6 +14,7 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
 }
 if(!isset($_GET['IDFilm'])){
     echo '{"status":"manca identificativo film"}';
+    exit();
 }
 $db = SingletonDB::getInstance();
 $reply=new \stdClass();
@@ -21,7 +22,7 @@ $reply->status="none";
 if (isset($_POST['action'])&&$_POST['action']=='add') 
 {
 
-    if(isset($_POST['IDCast']))
+    if(isset($_POST['IDCast'])&isset($_POST['IDFilm']))
         {
         $IDFilm = $_POST['IDFilm'];
         $IDCast = $_POST['IDCast'];        
@@ -57,8 +58,9 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
             'delete FROM Afferisce where IDCast=? AND IDFilm=?;';
         $preparedQuery = $db->getConnection()->prepare($query);
         $preparedQuery->bind_param(
-            's',
-            $id
+            'ss',
+            $idcast,
+            $idfilm
         );
 
         $res=$preparedQuery->execute();        
@@ -69,26 +71,32 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
 $cast;
 $preparedQuery = $db
     ->getConnection()
-    ->query('SELECT CastFilm.* ,Afferisce.IDFilm FROM CastFilm,Afferisce WHERE Afferisce.IDFilm=? AND Afferisce.IDCast=CastFilm.ID');    
+    ->prepare('SELECT CastFilm.* FROM CastFilm,Afferisce WHERE Afferisce.IDFilm = ? AND Afferisce.IDCast=CastFilm.ID;');    
     $preparedQuery->bind_param(
         's',
-        $IDFilm        
+        $_GET['IDFilm']
     );
-$cast_query=$preparedQuery->execute();        
+$preparedQuery->execute();
+$cast_query=$preparedQuery->get_result();
     $preparedQuery->close();
 $db->disconnect();
 $i=0;
-while ($row = $cast_query->fetch_assoc()) { 
-    $castmember=new \stdClass();
-    $castmember->Nome=$row['Nome'];
-    $castmember->ID=$row['ID'];
-    $castmember->Cognome=$row['Cognome'];
-    $castmember->Lingua=$row['Lingua'];
-    $castmember->Ruolo=$row['Ruolo'];
-    $cast[$i]=$castmember;
-    $i++;
+if($cast_query->num_rows > 0){    
+    while ($row = $cast_query->fetch_assoc()) { 
+        $castmember=new \stdClass();
+        $castmember->Nome=$row['Nome'];
+        $castmember->ID=$row['ID'];
+        $castmember->Cognome=$row['Cognome'];
+        $castmember->Lingua=$row['Lingua'];
+        $castmember->Ruolo=$row['Ruolo'];
+        $cast[$i]=$castmember;
+        $i++;
+    }
+    $reply->cast=$cast;
 }
-$reply->cast=$cast;
+else {
+	$reply->cast=null;
+}
 echo json_encode($reply);
 
 ?>

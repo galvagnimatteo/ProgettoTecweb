@@ -19,6 +19,8 @@ if(!isset($_GET['IDFilm'])){
 $db = SingletonDB::getInstance();
 $reply=new \stdClass();
 $reply->status="none";
+$connection=$db->getConnection();
+$connection->begin_transaction();
 if (isset($_POST['action'])&&$_POST['action']=='add') 
 {
 
@@ -29,7 +31,7 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
 
         $query =
             'INSERT INTO Afferisce ( IDFilm,IDCast) VALUES (?,?)';
-        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'ss',
             $IDFilm,
@@ -41,7 +43,7 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
         $res=$preparedQuery->execute();        
         $preparedQuery->close();
         if($res){
-            $reply->status=$res;
+            $reply->status="ok";
         }
         else{
             $reply->status="database error";
@@ -56,21 +58,23 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
         $idfilm=$_POST['IDFilm'];
         $query =
             'delete FROM Afferisce where IDCast=? AND IDFilm=?;';
-        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery =$connection->prepare($query);
         $preparedQuery->bind_param(
             'ss',
             $idcast,
             $idfilm
         );
 
-        $res=$preparedQuery->execute();        
+        $res=$preparedQuery->execute();
+        if($res){
+            $reply->status="ok";
+        }
         $preparedQuery->close();
     }
     
 }
 $cast;
-$preparedQuery = $db
-    ->getConnection()
+$preparedQuery = $connection
     ->prepare('SELECT CastFilm.* FROM CastFilm,Afferisce WHERE Afferisce.IDFilm = ? AND Afferisce.IDCast=CastFilm.ID;');    
     $preparedQuery->bind_param(
         's',
@@ -79,6 +83,8 @@ $preparedQuery = $db
 $preparedQuery->execute();
 $cast_query=$preparedQuery->get_result();
     $preparedQuery->close();
+    
+$connection->commit();//assicura che i dati letti contengano anche le modifiche più recenti
 $db->disconnect();
 $i=0;
 if($cast_query->num_rows > 0){    
@@ -97,6 +103,7 @@ if($cast_query->num_rows > 0){
 else {
 	$reply->cast=null;
 }
+
 echo json_encode($reply);
 
 ?>

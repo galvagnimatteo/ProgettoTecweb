@@ -15,6 +15,8 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
 $db = SingletonDB::getInstance();
 $reply=new \stdClass();
 $reply->status="none";
+$connection=$db->getConnection();
+$connection->begin_transaction();
 if (isset($_POST['action'])&&$_POST['action']=='insert') 
 {
 
@@ -26,7 +28,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             
         $query =
             'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala) VALUES (?,?,?)';
-        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'sss',
             $Data,
@@ -55,7 +57,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $id = $_POST['idproiezione'];
         $query =
             'delete FROM Proiezione where ID=?;';
-        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',
             $id
@@ -67,9 +69,9 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
     
 }
 $proiezioni;
-$resultproiezioni = $db
-    ->getConnection()
+$resultproiezioni = $connection
     ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm');
+    $connection->commit();//assicura che i dati letti contengano anche le modifiche più recenti
 $db->disconnect();
 $i=0;
 while ($row = $resultproiezioni->fetch_assoc()) { 

@@ -15,6 +15,8 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
 $db = SingletonDB::getInstance();
 $reply=new \stdClass();
 $reply->status="none";
+$connection=$db->getConnection();
+$connection->begin_transaction();
 if (isset($_POST['action'])&&$_POST['action']=='insert') 
 {
     if(isset($_POST['Titolo']) &&
@@ -38,7 +40,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         
         $query =
             'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg) VALUES (?,?,?,?,?,?,?)';
-        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'sssssss',
             $Titolo,
@@ -69,7 +71,7 @@ else{
         $id = $_POST['idfilm'];
         $query =
             'delete FROM Film where ID=?;';
-        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',
             $id
@@ -86,9 +88,9 @@ else{
     }
 }
 $films;
-$resultFilms = $db
-    ->getConnection()
+$resultFilms = $connection
     ->query('SELECT * FROM Film ORDER BY DataUscita DESC');
+    $connection->commit();//assicura che i dati letti contengano anche le modifiche più recenti
 $db->disconnect();
 $i=0;
 while ($row = $resultFilms->fetch_assoc()) {

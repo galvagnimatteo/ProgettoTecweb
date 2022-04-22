@@ -15,6 +15,8 @@ if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
 $db = SingletonDB::getInstance();
 $reply=new \stdClass();
 $reply->status="none";
+$connection=$db->getConnection();
+$connection->begin_transaction();
 if (isset($_POST['action'])&&$_POST['action']=='insert') 
 {
 
@@ -31,7 +33,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             
         $query =
             'INSERT INTO CastFilm ( Nome,Cognome,Lingua,Ruolo) VALUES (?,?,?,?)';
-        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             'ssss',
             $Nome,
@@ -43,7 +45,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $res=$preparedQuery->execute();        
         $preparedQuery->close();
         if($res){
-            $reply->status=$res;
+            $reply->status="ok";
         }
         else{
             $reply->status="database error";
@@ -57,21 +59,22 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $idcast = $_POST['IDCast'];        
         $query =
             'delete FROM CastFilm where ID=?;';
-        $preparedQuery = $db->getConnection()->prepare($query);
+        $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',
             $idcast
         );
-
-        $res=$preparedQuery->execute();        
+        $res=$preparedQuery->execute();
+        if($res){
+            $reply->status="ok";
+        }
         $preparedQuery->close();
     }
-    
 }
 $people;
-$resultcast = $db
-    ->getConnection()
+$resultcast = $connection
     ->query('SELECT * FROM CastFilm');
+$connection->commit();//assicura che i dati letti contengano anche le modifiche più recenti
 $db->disconnect();
 $i=0;
 while ($row = $resultcast->fetch_assoc()) { 

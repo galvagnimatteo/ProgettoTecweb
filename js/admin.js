@@ -224,8 +224,8 @@ function post_people_cast() {
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
-            var people = data.people;
-            updatehtml_people_cast(people);
+            var cast_people = data.cast_people;
+            updatehtml_people_cast(cast_people);
             document.getElementById("result_insert_people_cast").innerText = "inserimento avvenuto con successo"
         }
         else {
@@ -328,8 +328,8 @@ function delete_person_cast(id) {
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
-            var people = data.people;
-            updatehtml_people_cast(people);            
+            var cast_people = data.cast_people;
+            updatehtml_people_cast(cast_people);            
         }        
     };
 }
@@ -352,7 +352,7 @@ function delete_film_cast(person) {
         var status = data.status;
         if (status === "ok") {
             var cast = data.cast;
-            generate_cast_list(cast);
+            generate_cast_recap(cast);
         }
     };
 }

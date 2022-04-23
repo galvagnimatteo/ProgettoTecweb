@@ -1599,16 +1599,29 @@ display: block;
     padding: 15px;
 }
 .workarea table {
-	display:flex;
+	display:table;
 	width: 100%;
 	min-width:100%;
+	/*overflow-x: auto;*/
+	border-collapse: collapse;
+}
+/*display table non gestisce correttamente
+il dimensionamento della tabella in caso di overflow*/
+@media screen and (max-width: 600px) {
+	.workarea table {
+		display: flex;
+	}
+}
+.workarea tbody {
+	width: 100%;
+	min-width: 100%;
 	overflow-x: auto;
 	border-collapse: collapse;
 }
-.workarea tr {	
-	white-space: nowrap;
+.workarea tr {
+	display:table-row;
 	min-width: 100%;
-	width: 100%;
+	white-space: nowrap;
 }
 .workarea tr:nth-child(2n+1) {
 	background-color: var(--admin-list-odd);
@@ -1616,12 +1629,12 @@ display: block;
 .workarea tr:nth-child(even){
 	background-color: var(--admin-list-even);
 }
-.workarea th {	
+.workarea th {
 	font-size: 1.5rem;
 	text-align: left;
 	padding-left: 10px;
 	padding-right: 20px;
-	background-color:var(--admin-list-header);
+	background-color: var(--admin-list-header);
 }
 .workarea tr:hover {
 	background-color: var(--admin-list-hover);
@@ -1709,6 +1722,7 @@ overlays form input:not(:empty),
 	pointer-events:initial;
 }
 .closed {
-	display: none !important;	
+	pointer-events: none;
+	display: none !important;
 }
 

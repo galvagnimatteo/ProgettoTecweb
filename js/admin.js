@@ -408,7 +408,7 @@ function generate_entry_film_cast(entry) {
 }
 
 function updatehtml_projection(proiezioni) {
-    var proiezionilist = '<tr class=odd><th></th><th>giorno</th><th>sala</th><th>film</th></tr>';
+    var proiezionilist = '<trclass=headerrow><th></th><th>giorno</th><th>sala</th><th>film</th></tr>';
     for (entryindex in proiezioni) {
         var entry = proiezioni[entryindex];
         proiezionilist += generate_entry_projection(entry);
@@ -416,7 +416,7 @@ function updatehtml_projection(proiezioni) {
     document.getElementById("projectionlist").innerHTML = proiezionilist;
 }
 function updatehtml_film(films) {
-    var filmlist = '<tr class=odd><th></th><th>titolo</th><th>genere</th><th>data uscita</th><th>durata</th></tr>';
+    var filmlist = '<tr class=headerrow><th></th><th>titolo</th><th>genere</th><th>data uscita</th><th>durata</th></tr>';
     var filmoptions = "";
     for (entryindex in films) {
         var entry = films[entryindex];
@@ -427,7 +427,7 @@ function updatehtml_film(films) {
     document.getElementById("filmselector").innerHTML = filmoptions;
 }
 function updatehtml_people_cast(people) {
-    var people_cast_list = '<tr class=odd><th></th><th>Nome</th><th>Cognome</th><th>Ruolo</th><th>Lingua</th></tr>';
+    var people_cast_list = '<tr class=headerrow><th></th><th>Nome</th><th>Cognome</th><th>Ruolo</th><th>Lingua</th></tr>';
     cast_selector = "";
     for (entryindex in people) {
         var entry = people[entryindex];
@@ -456,7 +456,7 @@ function cast_edit(idfilm) {
 }
 
 function generate_cast_recap(cast) {
-    var film_cast_recap = '<tr class=odd><th></th><th>Nome</th><th>Cognome</th><th>Ruolo</th><th>Lingua</th></tr>';
+    var film_cast_recap = '<tr class=headerrow ><th></th><th>Nome</th><th>Cognome</th><th>Ruolo</th><th>Lingua</th></tr>';
     for (entryindex in cast) {
         var entry = cast[entryindex];
         film_cast_recap += generate_entry_film_cast(entry);

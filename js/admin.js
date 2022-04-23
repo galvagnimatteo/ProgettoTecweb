@@ -360,7 +360,7 @@ function delete_film_cast(person) {
 function generate_entry_film(entry) {
     //rowtype = (index % 2 === 0) ? "even" : "odd";
     result = "<tr class='entry " /*+ rowtype*/ + "' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
+        '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
         '<button type = "button" onclick = "cast_edit(' + entry.id + ');" class="castedit" >cast</button >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
@@ -372,7 +372,7 @@ function generate_entry_film(entry) {
 function generate_entry_projection(entry) {
     //rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='entry "/* + rowtype */+ "' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
+        '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</button >' +
     '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>" +
@@ -386,7 +386,7 @@ var ruoli = {
 function generate_entry_people_cast(entry) {
     //rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='entry "/* + rowtype */ + "' ><td class='entryfunctions'>" +
-        '<button type = "button" onclick = "delete_person_cast(' + entry.ID + ');" class="deleteentry" >	&#128465;</button >' +
+        '<button type = "button" onclick = "delete_person_cast(' + entry.ID + ');" class="deleteentry  nascondiTesto" >Elimina</button >' +
         '</td ><td>'
         + entry.Nome + "</td><td>"
         + entry.Cognome + "</td><td>" +
@@ -398,7 +398,7 @@ function generate_entry_people_cast(entry) {
 function generate_entry_film_cast(entry) {
     //rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='entry "/* + rowtype */ + "' ><td class='entryfunctions'>" +
-        '<button type = "button" onclick = "delete_film_cast(' + entry.id + ');" class="deleteentry" >	&#128465;</button >' +
+        '<button type = "button" onclick = "delete_film_cast(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
         '</td ><td>'
         + entry.Nome + "</td><td>"
         + entry.Cognome + "</td><td>" +

@@ -58,7 +58,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $reply->status="ok";
         }
         else{
-            $reply->status="database error";
+            $reply->status="errore interno";
         }
     }
     else {
@@ -83,14 +83,14 @@ else{
             $reply->status="ok";
         }
         else{
-            $reply->status="database error";
+            $reply->status="errore interno";
         }
     }
 }
 $films;
 $resultFilms = $connection
     ->query('SELECT * FROM Film ORDER BY DataUscita DESC');
-    $connection->commit();//assicura che i dati letti contengano anche le modifiche più recenti
+    $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;
 while ($row = $resultFilms->fetch_assoc()) {

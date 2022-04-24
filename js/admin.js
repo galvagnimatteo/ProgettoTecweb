@@ -187,10 +187,10 @@ function post_projection() {
         if (status === "ok") {
             var proiezioni = data.proiezioni;
             updatehtml_proiezioni(proiezioni);
-            document.getElementById("result_insert_proiezione").innerText = "inserimento avvenuto con successo"
+            document.getElementById("result_insert_projection").innerText = "inserimento avvenuto con successo"
         }
         else {
-            document.getElementById("result_insert_proiezione").innerText = status;
+            document.getElementById("result_insert_projection").innerText = status;
         }        
     };
 }
@@ -463,6 +463,16 @@ function generate_cast_recap(cast) {
     }
     document.getElementById("cast_film_recap").innerHTML = film_cast_recap;
 }
+
+document.getElementById("filmarea").onclick = function () { change_context('film'); }
+document.getElementById("projectionarea").onclick = function () { change_context('projection'); }
+document.getElementById("people_cast_area").onclick = function () { change_context('people_cast'); }
+
+
+
+
+
+
 
 
 request_film();

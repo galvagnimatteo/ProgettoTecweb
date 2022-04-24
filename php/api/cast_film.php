@@ -46,7 +46,7 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
             $reply->status="ok";
         }
         else{
-            $reply->status="database error";
+            $reply->status="errore interno";
         }
     }
     else {
@@ -69,6 +69,10 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
         if($res){
             $reply->status="ok";
         }
+        else 
+        {
+            $reply->status="errore interno";
+        }
         $preparedQuery->close();
     }
     
@@ -84,7 +88,7 @@ $preparedQuery->execute();
 $cast_query=$preparedQuery->get_result();
     $preparedQuery->close();
     
-$connection->commit();//assicura che i dati letti contengano anche le modifiche più recenti
+$connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;
 if($cast_query->num_rows > 0){    

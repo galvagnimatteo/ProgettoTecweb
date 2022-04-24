@@ -7,6 +7,8 @@
 	--text-color: white;
 	--error-color: #C2B800;
 	--links-hover-color: #ffdd36;
+	--scrollbar: #383838;
+	--scrollbar-background: #222222;
 	--admin-areaselector-background: #222222;
 	--admin-workarea-background: #222222;
 	--admin-areaselector-option-color1: red;
@@ -39,8 +41,25 @@ body {
 	padding: 0;
 	font-size: 1.5rem;
 	margin: auto;
+	/*supporto per firefox*/
+	scrollbar-width: thin; /* "auto" or "thin" */
+	scrollbar-color: var(--scrollbar) var(--scrollbar-background);
+}
+*::-webkit-scrollbar {
+	width: 15px;
 }
 
+*::-webkit-scrollbar-track {
+	background: var(--scrollbar-background);
+	border: outset var(--scrollbar-background);
+}
+
+*::-webkit-scrollbar-thumb {
+	width: 80%;
+	background-color: var(--scrollbar);
+	border-radius: 20px;
+	border: outset var(--scrollbar);
+}
 .subtitle {
 	padding-top: 1rem;
 	padding-left: 1rem;
@@ -344,6 +363,8 @@ footer {
 	/**/
 	width: calc(100% - 2rem);
 	padding: 1rem;
+	position: sticky;
+	bottom: 0;
 }
 
 
@@ -753,8 +774,8 @@ programmazione.html
     }
 }
 #posizione {
-    position: relative;  
-    text-align: right;
+    position: relative;
+    text-align: left;
     animation-duration: 2s;
     animation-fill-mode: both;
 }
@@ -1527,6 +1548,8 @@ p.aiutocompilaz strong {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
+		margin:0;
+		padding:0;
 	}
 }
 .workarea {
@@ -1552,7 +1575,6 @@ p.aiutocompilaz strong {
 }
 .adminsidebar {
     background-color: var(--admin-areaselector-background);
-    padding: 10px;
     /*border: none;
     border-radius: 15px;
     box-sizing: border-box;*/
@@ -1599,18 +1621,10 @@ display: block;
     padding: 15px;
 }
 .workarea table {
-	display:table;
+	display:table;	
 	width: 100%;
-	min-width:100%;
-	/*overflow-x: auto;*/
+	min-width:100%;	
 	border-collapse: collapse;
-}
-/*display table non gestisce correttamente
-il dimensionamento della tabella in caso di overflow*/
-@media screen and (max-width: 600px) {
-	.workarea table {
-		display: flex;
-	}
 }
 .workarea tbody {
 	width: 100%;

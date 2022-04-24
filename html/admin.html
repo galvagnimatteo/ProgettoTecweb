@@ -57,8 +57,10 @@
             </form>
             <form id="insert_projection" class="closed" onsubmit="post_projection();return false">
                 <button type="button" onclick="toggle_form('projection');" class="formcloser nascondiTesto">Chiudi</button>
+                <label for="filmselector">Film</label>
                 <select name="film" title="film" id="filmselector">
                 </select>
+                <label for="imputsala">Sala</label>
                 <select name="sala" title="sala" id="imputsala">
                     <option value="1">Sala 1</option>
                     <option value="2">Sala 2</option>
@@ -75,10 +77,12 @@
                 <input type="text" placeholder="Nome" name="Nome" required id="imputNome">
                 <label for="imputCognome">Cognome</label>
                 <input type="text" placeholder="Cognome" name="Cognome" required id="imputCognome">
+                <label for="imputRuolo">Ruolo</label>
                 <select name="ruolo" title="ruolo" id="imputRuolo">
                     <option value="A">Attore</option>
                     <option value="R">Regista</option>
                 </select>
+                <label for="imputLingua">Lingua</label>
                 <select name="lingua" title="lingua" id="imputLingua">
                     <option value="null"></option>
                     <option value="it">Italiano</option>
@@ -91,11 +95,11 @@
             </form>
             <form id="edit_cast_film" class="closed" onsubmit="post_film_cast();return false">
                 <button type="button" onclick="toggle_form('film_cast'); active_film = null;" class="formcloser nascondiTesto">Chiudi</button>
+                <label for="selector_cast">Persona</label>
                 <select name="selector_cast" title="Persona" id="selector_cast">
-                </select>                
-                <button type="submit" class="submit">Inserisci</button>
+                </select>
+                <button type="submit" class="submit">Aggiungi</button>
                 <table id="cast_film_recap">
-                    
                 </table>
             </form>
         </div>

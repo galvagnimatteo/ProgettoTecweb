@@ -7,8 +7,8 @@
 	--text-color: white;
 	--error-color: #C2B800;
 	--links-hover-color: #ffdd36;
-	--scrollbar: #383838;
-	--scrollbar-background: #222222;
+	--scrollbar: #484848;
+	--scrollbar-background: #282828;
 	--admin-areaselector-background: #222222;
 	--admin-workarea-background: #222222;
 	--admin-areaselector-option-color1: red;
@@ -55,7 +55,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-	width: 80%;
+	width: 60%;
 	background-color: var(--scrollbar);
 	border-radius: 20px;
 	border: outset var(--scrollbar);
@@ -1709,7 +1709,7 @@ display: block;
 	overflow-y:auto;
 }
 #edit_cast_film {
-	min-height: 50%;
+	min-height: 60%;
 }
 fieldset {
 	width: 100%;

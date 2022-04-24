@@ -54,7 +54,7 @@ if (isset($_POST['action'])&&$_POST['action']=='add')
 	}
 }else{
     if (isset($_POST['action'])&&$_POST['action']=='remove'){
-        $idcast = $_POST['$IDCast'];
+        $idcast = $_POST['IDCast'];
         $idfilm=$_POST['IDFilm'];
         $query =
             'delete FROM Afferisce where IDCast=? AND IDFilm=?;';

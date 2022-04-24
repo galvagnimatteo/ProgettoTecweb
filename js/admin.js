@@ -398,7 +398,7 @@ function generate_entry_people_cast(entry) {
 function generate_entry_film_cast(entry) {
     //rowtype = (index%2===0) ? "even" : "odd";
     result = "<tr class='entry "/* + rowtype */ + "' ><td class='entryfunctions'>" +
-        '<button type = "button" onclick = "delete_film_cast(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
+        '<button type = "button" onclick = "delete_film_cast(' + entry.ID + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
         '</td ><td>'
         + entry.Nome + "</td><td>"
         + entry.Cognome + "</td><td>" +

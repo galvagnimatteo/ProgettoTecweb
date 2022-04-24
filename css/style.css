@@ -1048,6 +1048,7 @@ div.labelqp select {
 	#menubutton-apri,
 	#menubutton-chiudi {
 		display: none;
+		color: var(--text-color);
 	}
 	#loginMenu {
 		margin-left: auto;
@@ -1554,7 +1555,7 @@ p.aiutocompilaz strong {
 }
 .workarea {
 	background-color: var(--admin-workarea-background);	
-	height: 650px;
+	height: 750px;
 	overflow-y:hidden;
 	/*display:flex;
 	flex-direction:column;*/
@@ -1562,14 +1563,14 @@ p.aiutocompilaz strong {
 .overlays {
 	width:100%;
 	position:relative;
-	top:-600px;
+	top:-700px;
 	z-index: 10;
 	height:100%;
 	pointer-events:none;
 }
 .lists, .lists div{	
 	width:100%;
-	height:600px;
+	height:700px;
 	overflow-y:auto;
 	z-index:0;
 }
@@ -1583,25 +1584,36 @@ p.aiutocompilaz strong {
 display: block;
 }*/
 .formcloser {
-    background: var(--admin-button-background);
-    color: var(--admin-button-text);
-    top: 5px;
-    width: 2rem;
-    font-size: 2rem;
-    border: none;
-    border-radius: 15px;
-    box-sizing: border-box;
+	background: none;
+	color: var(--admin-button-text);
+	top: 5px;
+	width: 2rem;
+	height: 2rem;
+	font-size: 2rem;
+	border: none;
+	border-radius: 15px;
+	box-sizing: border-box;
+	background-image: url(/images/chiudi-menu.svg);
+	background-size: cover;
+	background-position: center;
+	display: block;
+	overflow: visible; /*altrimenti non funziona in film per qualche ragione*/	
 }
 
 .formopener {
-    background: var(--admin-button-background);
-    color: var(--admin-button-text);
-    top: 5px;
-    width: 2rem;
-    font-size: 2rem;
-    border: none;
-    border-radius: 15px;
-    box-sizing: border-box;
+	background: none;
+	color: var(--admin-button-text);
+	top: 5px;
+	width: 1.5rem;
+	height: 1.5rem;
+	font-size: 1.5rem;
+	border: none;
+	border-radius: 15px;
+	box-sizing: border-box;
+	background-image: url(/images/formopener.svg);
+	fill: var(--admin-button-text);
+	background-size: cover;
+	background-position: center;
 }
 
 
@@ -1684,7 +1696,7 @@ display: block;
 	position: relative;
 	left: 5%;
 	width: 90%;
-	height:90%;
+	max-height:95%;
 	align-self: center;
 	display: flex;
 	flex-direction: column;
@@ -1696,6 +1708,9 @@ display: block;
 	box-sizing: border-box;
 	overflow-y:auto;
 }
+#edit_cast_film {
+	min-height: 50%;
+}
 fieldset {
 	width: 100%;
 	align-self: center;
@@ -1703,7 +1718,6 @@ fieldset {
 	flex-direction: column;
 	border: none;
 	margin-top: 1.2rem;
-	
 }
 fieldset legend {
 	font-size: 1.4rem;
@@ -1712,7 +1726,7 @@ fieldset legend {
 .overlays form input,
 .overlays form select,
 .overlays form option,
-overlays form input:not(:empty),
+.overlays form input:not(:empty),
 .overlays form select:not(:empty),
 .overlays form option:not(:empty),
 .submit {

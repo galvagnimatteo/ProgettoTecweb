@@ -9,26 +9,26 @@
     <div class="workarea">
         <div class="lists">
             <div id="films" class="open">
-                <button type="button" onclick="toggle_form('film'); " class="formopener">+</button>
+                <button type="button" onclick="toggle_form('film'); " class="formopener nascondiTesto">Apri form</button>
                 <table id="filmlist">
                 </table>
             </div>
 
             <div id="projections" class="closed">
-                <button type="button" onclick="toggle_form('projection'); " class="formopener">+</button>
+                <button type="button" onclick="toggle_form('projection'); " class="formopener nascondiTesto">Apri form</button>
                 <table id="projectionlist">
                 </table>
             </div>
 
             <div id="people_cast" class="closed">
-                <button type="button" onclick="toggle_form('people_cast'); " class="formopener">+</button>
+                <button type="button" onclick="toggle_form('people_cast'); " class="formopener nascondiTesto">Apri form</button>
                 <table id="people_cast_list">
                 </table>
             </div>
         </div>
         <div class="overlays">
             <form id="insert_film" class="closed" onsubmit="post_film();return false">                
-                <button type="button" onclick="toggle_form('film');" class="formcloser">X</button>
+                <button type="button" onclick="toggle_form('film');" class="formcloser nascondiTesto" >Chiudi</button>
                 <fieldset>
                     <legend>informazioni base</legend>
                     <label for="Titolo"><span xml:lang="en">Titolo</span></label>
@@ -56,7 +56,7 @@
                     <p id="result_insert_film"></p>
             </form>
             <form id="insert_projection" class="closed" onsubmit="post_projection();return false">
-                <button type="button" onclick="toggle_form('projection');" class="formcloser">X</button>
+                <button type="button" onclick="toggle_form('projection');" class="formcloser nascondiTesto">Chiudi</button>
                 <select name="film" title="film" id="filmselector">
                 </select>
                 <select name="sala" title="sala" id="imputsala">
@@ -70,7 +70,7 @@
                 <p id="result_insert_projection"></p>
             </form>
             <form id="insert_people_cast" class="closed" onsubmit="post_people_cast();return false">
-                <button type="button" onclick="toggle_form('people_cast');" class="formcloser">X</button>
+                <button type="button" onclick="toggle_form('people_cast');" class="formcloser nascondiTesto">Chiudi</button>
                 <label for="imputNome"><span xml:lang="en">Nome</span></label>
                 <input type="text" placeholder="Nome" name="Nome" required id="imputNome">
                 <label for="imputCognome">Cognome</label>
@@ -90,10 +90,10 @@
                 <p id="result_insert_people_cast"></p>
             </form>
             <form id="edit_cast_film" class="closed" onsubmit="post_film_cast();return false">
-                <button type="button" onclick="toggle_form('film_cast'); active_film = null;" class="formcloser">X</button>
+                <button type="button" onclick="toggle_form('film_cast'); active_film = null;" class="formcloser nascondiTesto">Chiudi</button>
                 <select name="selector_cast" title="Persona" id="selector_cast">
                 </select>                
-                <button type="submit" class="submit">Ibserisci</button>
+                <button type="submit" class="submit">Inserisci</button>
                 <table id="cast_film_recap">
                     
                 </table>

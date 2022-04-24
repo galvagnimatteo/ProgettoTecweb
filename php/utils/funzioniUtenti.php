@@ -16,12 +16,9 @@ class Users
         ) {
 			
 			pulisci($_POST["username_register"])
-			pulisci($_POST["password_register"]);
             pulisci($_POST["name_register"]);
             pulisci($_POST["surname_register"]);
             pulisci($_POST["email_register"]);
-			pulisci($_POST["pass_register_confirm"]);
-            
 			
 			$username = $_POST["username_register"];
             $password = $_POST["password_register"];
@@ -74,7 +71,6 @@ class Users
             isset($_POST["password_login"])
         ) {
 			pulisci($_POST["username_login"]);
-			pulisci($_POST["password_login"]);	
             
 			$username = $_POST["username_login"];
             $password = $_POST["password_login"];
@@ -421,7 +417,6 @@ class Users
             isset($_POST["password_profile"]) &&
             isset($_POST["password_profile_confirm"])
         ) {
-			pulisci($_POST["password_profile"]);
             $username = $_SESSION["a"];
             $password = $_POST["password_profile"];
             $hash = password_hash($password, PASSWORD_DEFAULT);

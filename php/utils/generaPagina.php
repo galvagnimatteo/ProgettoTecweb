@@ -56,7 +56,7 @@ function GeneratePage(
     $menu = '<ul id="menu" class="closedMenu">';
     foreach ($menuvoices as $name => $link) {
         if ($name != $page) {
-            $menu = $menu . "<li><a href=" . $link . ">" . $name . "</a></li>";
+            $menu = $menu . "<li><a href=\"" . $link . "\">" . $name . "</a></li>";
         } else {
             $menu = $menu . "<li class=\"menu_name\">" . $name . "</li>";
         }

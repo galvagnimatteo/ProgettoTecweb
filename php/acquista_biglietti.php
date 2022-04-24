@@ -1,21 +1,12 @@
 <?php
 session_start();
-include "SingletonDB.php";
-include "utils/prenotaPosti.php";
-include "utils/mappaPosti.php";
-include "utils/pageGenerator.php";
+require_once "utils/SingletonDB.php";
+require_once "utils/prenotaPosti.php";
+require_once "utils/mappaPosti.php";
+require_once "utils/generaPagina.php";
+require_once "utils/controlli.php"
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
-
-function pulisci(&$value)
-{
-    // elimina gli spazi
-    $value = trim($value);
-    // converte i caratteri speciali in entità html (ex. &lt;)
-    $value = htmlentities($value);
-    // rimuove tag html, non li vogliamo
-    $value = strip_tags($value);
-}
 
 if (
     !isset(
@@ -34,7 +25,6 @@ if (
     )
 ) {
     header("Location: 500.php");
-    //echo "1";
     die();
 }
 
@@ -55,12 +45,12 @@ if (
         is_numeric($_POST["prid"])
     )
 ) {
-    //echo "2";
+    
     header("Location: 500.php");
     die();
 }
 
-$username = ""; //se resta '' inserisce null e l'utente era un ospite
+$username = ""; //se resta '' inserisce null e l'utente è un ospite
 if (isset($_SESSION["a"])) {
     $username = $_SESSION["a"];
 }
@@ -188,7 +178,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
 {
     //pagina conferma
     $acquistoconferma_content = file_get_contents(
-        "../html/acquistoconferma_content.html"
+        "../html/conferma_acquisto.html"
     );
 
     //SESSION

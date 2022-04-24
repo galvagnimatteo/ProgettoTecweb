@@ -1,31 +1,32 @@
 <?php
 
 session_start();
-include "utils/pageGenerator.php";
+require_once "utils/generaPagina.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
-$home_content = file_get_contents("../html/area_utenti_register_content.html"); //load content
+$home_content = file_get_contents("../html/area_utenti_registrazione.html"); //load content
 
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 
     if ($action == "login_page") {
         $home_content = file_get_contents(
-            "../html/items/area_utenti_login.html"
+            "../html/area_utenti_login.html"
         );
     }
 
     if ($action == "register_page") {
         $home_content = file_get_contents(
-            "../html/area_utenti_register_content.html"
+            "../html/area_utenti_registrazione.html"
         );
     }
 
     if ($action == "register_user") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
 
         $Users = new Users();
-
+		pulisci($_POST["email_register"]);
+		pulisci($_POST["username_register"]);
         list($isDoubled, $isUser, $isEmail) = $Users->searchRegistered(
             $_POST["email_register"],
             $_POST["username_register"],
@@ -72,12 +73,12 @@ if (isset($_GET["action"])) {
     }
 
     if ($action == "search") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $result = $Users->search();
 
         $home_content = file_get_contents(
-            "../html/items/area_utenti_login.html"
+            "../html/area_utenti_login.html"
         );
 
         if (!($result == "OK")) {
@@ -91,34 +92,35 @@ if (isset($_GET["action"])) {
     }
 
     if ($action == "getHistoryProfile") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = $Users->getHistory();
     }
     if ($action == "getProfile") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = $Users->getProfile();
     }
     if ($action == "getProfilePassword") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = file_get_contents(
-            "../html/items/updatePassword_content.html"
+            "../html/items/aggiorna_password.html"
         );
     }
 
     if ($action == "getDeleteProfile") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = file_get_contents(
-            "../html/items/deleteProfile_content.html"
+            "../html/items/elimina_profilo.html"
         );
     }
     if ($action == "changeProfile") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
-
+		pulisci($_POST["email_profile"]);
+        pulisci($_POST["username_profile"]);
         list($isDoubled, $isUser, $isEmail) = $Users->searchRegistered(
             $_POST["email_profile"],
             $_POST["username_profile"],
@@ -153,10 +155,12 @@ if (isset($_GET["action"])) {
     }
 
     if ($action == "deleteProfile") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
+		pulisci($_POST["password_delete"]);
+		pulisci($_POST["password_delete_confirm"]);
         list($valid, $error) = $Users->checkPassword(
-            nil,
+            null,
             $_POST["password_delete"],
             $_POST["password_delete_confirm"]
         );
@@ -177,8 +181,11 @@ if (isset($_GET["action"])) {
     }
 
     if ($action == "changePassword") {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
+		pulisci($_POST["password_old"])
+        pulisci($_POST["password_profile"]);
+        pulisci($_POST["password_profile_confirm"]);
         list($valid, $error) = $Users->checkPassword(
             $_POST["password_old"],
             $_POST["password_profile"],
@@ -199,7 +206,7 @@ if (isset($_GET["action"])) {
     }
 
     if ($action == "viewReservation" && isset($_GET["codice"])) {
-        include_once "Users.php";
+        require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = $Users->viewReservation($_GET["codice"]);
     }
@@ -215,7 +222,7 @@ if (isset($_GET["action"])) {
     }
 } else {
     $home_content = file_get_contents(
-        "../html/area_utenti_register_content.html"
+        "../html/area_utenti_registrazione.html"
     );
 }
 if (isset($_GET["errorLogin"])) {

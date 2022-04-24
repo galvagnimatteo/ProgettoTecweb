@@ -24,11 +24,11 @@ function registerControls(
         return "Il cognome può essere composto da sole lettere.";
     }
 
-    if (!str_contains($email, "@")) {
-        return "Chiocciola (@) mancante nell'email.";
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		return "L'email inserita non è valida, deve essere nella forma example@email.com"
     }
 
-    if ($password != nil) {
+    if ($password != null) {
         if (strlen($password) < 8 || str_contains($password, " ")) {
             return "La password deve essere di almeno 8 caratteri e non può contenere spazi.";
         }
@@ -41,22 +41,35 @@ function registerControls(
     return "OK";
 }
 
-function loginControls($username, $password)
-{
+function loginControls($username, $password) {
+
     if ($username == "admin" && ($password = "admin")) {
         return "OK";
     }
+
     if ($username == "user" && ($password = "user")) {
         return "OK";
     }
-    /*
+
     if(strlen($password) < 8 || str_contains($password, " ")){
 
         return "La password deve essere di almeno 8 caratteri e non può contenere spazi.";
 
-    }*/
+    }
 
     return "OK";
+}
+
+
+function pulisci(&$value)
+{
+    // elimina gli spazi
+    $value = trim($value);
+    // converte i caratteri speciali in entità html (ex. &lt;)
+    $value = htmlentities($value);
+    // rimuove tag html, non li vogliamo
+    $value = strip_tags($value);
+	return $value
 }
 
 ?>

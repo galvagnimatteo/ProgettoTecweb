@@ -1,6 +1,6 @@
 <?php
 require_once "SingletonDB.php";
-require_once "utils/controls.php";
+require_once "controlli.php";
 
 class Users
 {
@@ -14,7 +14,13 @@ class Users
             isset($_POST["surname_register"]) &&
             isset($_POST["pass_register_confirm"])
         ) {
-            $username = $_POST["username_register"];
+			
+			pulisci($_POST["username_register"])
+            pulisci($_POST["name_register"]);
+            pulisci($_POST["surname_register"]);
+            pulisci($_POST["email_register"]);
+			
+			$username = $_POST["username_register"];
             $password = $_POST["password_register"];
             $name = $_POST["name_register"];
             $surname = $_POST["surname_register"];
@@ -64,7 +70,9 @@ class Users
             isset($_POST["username_login"]) &&
             isset($_POST["password_login"])
         ) {
-            $username = $_POST["username_login"];
+			pulisci($_POST["username_login"]);
+            
+			$username = $_POST["username_login"];
             $password = $_POST["password_login"];
 
             $result = loginControls($username, $password);
@@ -214,7 +222,7 @@ class Users
             $preparedQuery->close();
             $row = $resultCast->fetch_assoc();
             $home_content = file_get_contents(
-                "../html/items/updateProfile_content.html"
+                "../html/items/aggiorna_profilo.html"
             );
 
             if ($resultCast->num_rows > 0) {
@@ -316,7 +324,12 @@ class Users
             isset($_POST["surname_profile"]) &&
             isset($_SESSION["a"])
         ) {
-            $newusername = $_POST["username_profile"];
+			pulisci($_POST["username_profile"]);
+            pulisci($_POST["name_profile"]);
+            pulisci($_POST["surname_profile"]);
+            pulisci($_POST["email_profile"]);
+            
+			$newusername = $_POST["username_profile"];
             $oldusername = $_SESSION["a"];
             $name = $_POST["name_profile"];
             $surname = $_POST["surname_profile"];
@@ -327,8 +340,8 @@ class Users
                 $name,
                 $surname,
                 $email,
-                nil,
-                nil
+                null,
+                null
             );
 
             if ($result == "OK") {
@@ -362,7 +375,7 @@ class Users
     }
     function checkPassword($passOld, $pass, $passConf)
     {
-        if ($passOld != nil && isset($pass) && isset($passConf)) {
+        if ($passOld != null && isset($pass) && isset($passConf)) {
             if ($passOld != $_SESSION["c"]) {
                 return [false, 1];
             }
@@ -383,7 +396,7 @@ class Users
             }
         }
 
-        if ($passOld == nil && isset($pass) && isset($passConf)) {
+        if ($passOld == null && isset($pass) && isset($passConf)) {
             $result = loginControls($username, $password);
 
             if ($pass != $passConf) {
@@ -443,13 +456,13 @@ class Users
 
             $tot = "";
             $home_content = file_get_contents(
-                "../html/items/viewHistory_content.html"
+                "../html/items/storico_profilo.html"
             );
-            $content = file_get_contents("../html/items/card-reservation.html");
+            $content = file_get_contents("../html/items/card_prenotazione.html");
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $content = file_get_contents(
-                        "../html/items/card-reservation.html"
+                        "../html/items/card_prenotazione.html"
                     );
 
                     $content = str_replace("<CODICE>", $row["ID"], $content);
@@ -509,7 +522,7 @@ class Users
             $preparedQuery->close();
 
             $home_content = file_get_contents(
-                "../html/items/viewReservation_content.html"
+                "../html/prenotazione.html"
             );
 
             if ($result->num_rows > 0) {

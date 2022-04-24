@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once "SingletonDB.php";
-include "utils/pageGenerator.php";
+require_once "utils/SingletonDB.php";
+require_once "utils/generaPagina.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(true, true); //verifica che la sessione sia un utente loggato ed un admin
 
-$content = file_get_contents("../html/admin_inserimento_film_content.html"); //load content
+$content = file_get_contents("../html/inserimento_film.html"); //load content
 
 if (isset($_GET["action"])) {
     $action = $_GET["action"];

@@ -776,15 +776,15 @@ programmazione.html
 #posizione {
     position: relative;
     text-align: left;
-    animation-duration: 2s;
-    animation-fill-mode: both;
+    /*animation-duration: 2s;
+    animation-fill-mode: both;*/
 }
 #contatti {
     position: relative;
-    animation-name: materialize;
+    /*animation-name: materialize;
     animation-duration: 2s;
     animation-delay: 2s;
-    animation-fill-mode: both;
+    animation-fill-mode: both;*/
 
 }
 #contatti h2{

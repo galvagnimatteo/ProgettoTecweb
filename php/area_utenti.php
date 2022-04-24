@@ -119,8 +119,8 @@ if (isset($_GET["action"])) {
     if ($action == "changeProfile") {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
-		pulisci($_POST["email_profile"]);
-        pulisci($_POST["username_profile"]);
+		/*pulisci($_POST["email_profile"]);
+        pulisci($_POST["username_profile"]);*/
         list($isDoubled, $isUser, $isEmail) = $Users->searchRegistered(
             $_POST["email_profile"],
             $_POST["username_profile"],
@@ -157,8 +157,8 @@ if (isset($_GET["action"])) {
     if ($action == "deleteProfile") {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
-		pulisci($_POST["password_delete"]);
-		pulisci($_POST["password_delete_confirm"]);
+		/*pulisci($_POST["password_delete"]);
+		pulisci($_POST["password_delete_confirm"]);*/
         list($valid, $error) = $Users->checkPassword(
             null,
             $_POST["password_delete"],
@@ -183,9 +183,9 @@ if (isset($_GET["action"])) {
     if ($action == "changePassword") {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
-		pulisci($_POST["password_old"])
+		/*pulisci($_POST["password_old"])
         pulisci($_POST["password_profile"]);
-        pulisci($_POST["password_profile_confirm"]);
+        pulisci($_POST["password_profile_confirm"]);*/
         list($valid, $error) = $Users->checkPassword(
             $_POST["password_old"],
             $_POST["password_profile"],

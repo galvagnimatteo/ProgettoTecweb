@@ -33,6 +33,7 @@ pulisci($_POST["orario"]);
 pulisci($_POST["modSelezPosti"]);
 pulisci($_POST["seats"]);
 pulisci($_POST["dataIta"]);
+pulisci($_POST["titoloFilm"]);
 
 //verifiche
 if (

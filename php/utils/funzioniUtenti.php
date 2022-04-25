@@ -515,7 +515,7 @@ class Users
             $preparedQuery = $db->getConnection()->prepare($query);
 
             $username = $_SESSION["a"];
-            $preparedQuery->bind_param("ss", $username, $codice);
+            $preparedQuery->bind_param("si", $username, $codice);
             $preparedQuery->execute();
             $result = $preparedQuery->get_result();
             $db->disconnect();
@@ -567,11 +567,42 @@ class Users
                         $row["IDFilm"],
                         $home_content
                     );
+					
                 }
             }
 
-            unset($codice);
-        }
+            
+			
+			// cerca posti
+			
+			$db = SingletonDB::getInstance();
+			$db->connect();
+            $query = "SELECT p.NumeroPosto, p.FilaPosto FROM Partecipa as p WHERE p.IDPrenotazione=?";
+
+            $preparedQuery = $db->getConnection()->prepare($query);
+
+            $preparedQuery->bind_param("i", $codice);
+            $preparedQuery->execute();
+            $result = $preparedQuery->get_result();
+            $db->disconnect();
+            $preparedQuery->close();
+			
+			$listaPosti = "";
+			
+			if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+					$listaPosti = $listaPosti . $row["FilaPosto"] . $row["NumeroPosto"] . ", ";
+				}
+			}
+			
+			$home_content = str_replace(
+                        "<POSTI>",
+                        substr($listaPosti, 0, -2),
+                        $home_content
+            );
+			
+			unset($codice);
+		}
 
         return $home_content;
     }

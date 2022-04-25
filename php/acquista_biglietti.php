@@ -4,7 +4,7 @@ require_once "utils/SingletonDB.php";
 require_once "utils/prenotaPosti.php";
 require_once "utils/mappaPosti.php";
 require_once "utils/generaPagina.php";
-require_once "utils/controlli.php"
+require_once "utils/controlli.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 

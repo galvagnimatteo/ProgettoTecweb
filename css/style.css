@@ -1516,7 +1516,9 @@ p.aiutocompilaz strong {
 #areasselector {
     list-style-type: none;
 }
-
+.adminsidebar a {
+	text-decoration: none;
+}
 @media screen and (min-width: 49rem) {
     #admin {
         display: flex;
@@ -1596,11 +1598,12 @@ display: block;
 	background-image: url(/images/chiudi-menu.svg);
 	background-size: cover;
 	background-position: center;
-	display: block;
-	overflow: visible; /*altrimenti non funziona in film per qualche ragione*/	
+	display: block;	
+	overflow:visible;
 }
 
 .formopener {
+	display:block;
 	background: none;
 	color: var(--admin-button-text);
 	top: 5px;
@@ -1677,15 +1680,16 @@ display: block;
     padding-left: 0px;
     padding-right: 0px;
 }
-.entryfunctions button {
+.entryfunctions button, .entryfunctions a {
 	background: var(--admin-button-background);
 	color: var(--admin-button-text);
-	border:none;	
+	border: none;
 	border-radius: 5px;
 	font-size: 1.25rem;
-	padding:2px;
+	padding: 2px;
 	box-sizing: border-box;
-	margin:2px;
+	margin: 2px;
+	text-decoration:none;
 }
 .entryfunctions .deleteentry {
 	width: 1.5rem;

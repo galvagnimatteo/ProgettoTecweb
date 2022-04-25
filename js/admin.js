@@ -55,6 +55,7 @@ function change_context(context) {
         if (context === areas[area].name) {
             document.getElementById(areas[area].element).className = 'open';
             document.getElementById(areas[area].areaselector).className = 'activeoption';
+            //window.location.href = areas[area].element;
         }
         else {
             document.getElementById(areas[area].element).className = 'closed';
@@ -63,6 +64,7 @@ function change_context(context) {
     }
     for (form in forms) {
         if ((context === forms[form].area) && forms[form].visible) {
+            //window.location.href = forms[form].element
             document.getElementById(forms[form].element).className = 'open';
         }
         else {
@@ -76,7 +78,7 @@ function toggle_form(toggledform) {
         if (toggledform === forms[form].name) {
             forms[form].visible = !forms[form].visible
             if (forms[form].visible) {
-
+                //window.location.href = forms[form].element;
                 document.getElementById(forms[form].element).className = 'open';
             }
             else {
@@ -361,7 +363,7 @@ function generate_entry_film(entry) {
     //rowtype = (index % 2 === 0) ? "even" : "odd";
     result = "<tr class='entry " /*+ rowtype*/ + "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
-        '<button type = "button" onclick = "cast_edit(' + entry.id + ');" class="castedit" >cast</button >' +
+        '<a href="#edit_cast_film" onclick = "cast_edit(' + entry.id + ');" class="castedit" >cast</a>' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -467,6 +469,9 @@ function generate_cast_recap(cast) {
 document.getElementById("filmarea").onclick = function () { change_context('film'); }
 document.getElementById("projectionarea").onclick = function () { change_context('projection'); }
 document.getElementById("people_cast_area").onclick = function () { change_context('people_cast'); }
+document.getElementById("filmarea").firstChild.onclick = function () { change_context('film'); }
+document.getElementById("projectionarea").firstChild.onclick = function () { change_context('projection'); }
+document.getElementById("people_cast_area").firstChild.onclick = function () { change_context('people_cast'); }
 
 
 

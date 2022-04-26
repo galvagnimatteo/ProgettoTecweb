@@ -5,7 +5,7 @@ function populateQuickpurchaseDate(selectObject){
     if(idfilm != "scelta"){
 
         $.ajax({
-            url: "utils/returnDates.php",
+            url: "utils/dateJSON.php",
             type: "post",
             dataType: 'json',
             data: {IDfilm: idfilm},
@@ -15,7 +15,7 @@ function populateQuickpurchaseDate(selectObject){
                 document.getElementById("selectHour").innerHTML = '<option value="scelta">Scegli un orario</option>';
 
             }
-            
+
         });
 
     }
@@ -31,7 +31,7 @@ function populateQuickpurchaseHour(selectObject){
     if(date != "scelta"){
 
         $.ajax({
-            url: "utils/returnHours.php",
+            url: "utils/oreJSON.php",
             type: "post",
             dataType: 'json',
             data: {IDfilm: idfilm, Date: date},

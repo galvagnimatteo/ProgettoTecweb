@@ -28,6 +28,18 @@
 	color: var(--text-color);
 }
 
+a{
+	cursor:pointer;
+}
+button{
+	cursor:pointer;
+}
+input[type="text"] {
+	cursor: text;
+}
+select{
+	cursor:context-menu;
+}
 html {
 	font-size: 100%;
 	font-family: "Arial", sans-serif;
@@ -1591,6 +1603,7 @@ display: block;
 	top: 5px;
 	width: 2rem;
 	height: 2rem;
+	min-width:2rem;
 	font-size: 2rem;
 	border: none;
 	border-radius: 15px;
@@ -1598,8 +1611,8 @@ display: block;
 	background-image: url(/images/chiudi-menu.svg);
 	background-size: cover;
 	background-position: center;
-	display: block;	
-	overflow:visible;
+	display: block;
+	overflow:visible;/*TO DO debug form film*/
 }
 
 .formopener {

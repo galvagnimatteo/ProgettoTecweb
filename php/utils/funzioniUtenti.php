@@ -15,7 +15,7 @@ class Users
             isset($_POST["pass_register_confirm"])
         ) {
 			
-			pulisci($_POST["username_register"])
+			pulisci($_POST["username_register"]);
             pulisci($_POST["name_register"]);
             pulisci($_POST["surname_register"]);
             pulisci($_POST["email_register"]);

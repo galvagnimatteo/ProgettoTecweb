@@ -25,7 +25,7 @@ function registerControls(
     }
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		return "L'email inserita non è valida, deve essere nella forma example@email.com"
+		return "L'email inserita non è valida, deve essere nella forma example@email.com";
     }
 
     if ($password != null) {
@@ -69,7 +69,7 @@ function pulisci(&$value)
     $value = htmlentities($value);
     // rimuove tag html, non li vogliamo
     $value = strip_tags($value);
-	return $value
+	return $value;
 }
 
 ?>

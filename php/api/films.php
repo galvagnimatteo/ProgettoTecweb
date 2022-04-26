@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../SingletonDB.php';
+require_once '../utils/SingletonDB.php';
  $now = time();
     if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
         session_unset();

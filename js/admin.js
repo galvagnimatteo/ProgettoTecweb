@@ -74,6 +74,7 @@ function change_context(context) {
 }
 
 function toggle_form(toggledform) {
+    //console.log(toggledform);
     for (form in forms) {
         if (toggledform === forms[form].name) {
             forms[form].visible = !forms[form].visible
@@ -112,7 +113,7 @@ function request_people_cast() {
     request.open('GET', './api/cast_person.php');
     request.send();
     request.onload = () => {
-        console.log(request.response);
+        //console.log(request.response);
         var data = JSON.parse(request.response);
         cast_people = data.cast_people;
         updatehtml_people_cast(cast_people);
@@ -222,7 +223,7 @@ function post_people_cast() {
     xhr.send(urlEncodedData);
 
     xhr.onload = function () {
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -259,7 +260,7 @@ function post_film_cast() {
     xhr.send(urlEncodedData);
 
     xhr.onload = function () {
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -326,7 +327,7 @@ function delete_person_cast(id) {
 
     xhr.send('action=delete&IDCast=' + id);
     xhr.onload = function () {
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -349,7 +350,7 @@ function delete_film_cast(person) {
 
     xhr.send('action=remove&IDCast=' + person +'&IDFilm='+active_film);
     xhr.onload = function () {
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -441,15 +442,15 @@ function updatehtml_people_cast(people) {
 }
 
 function cast_edit(idfilm) {
-    if (active_film) {
-        return;
-    }
+    //if (active_film) {
+    //    return;
+    //}
     active_film = idfilm;
     var request = new XMLHttpRequest();
     request.open('GET', './api/cast_film.php?action=list&IDFilm='+idfilm);
     request.send();
     request.onload = () => {
-        console.log(request.response);
+        //console.log(request.response);
         var data = JSON.parse(request.response);
         var cast = data.cast;
         generate_cast_recap(cast);

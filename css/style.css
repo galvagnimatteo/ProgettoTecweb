@@ -1728,7 +1728,7 @@ display: block;
 #edit_cast_film {
 	min-height: 60%;
 }
-fieldset {
+#admin fieldset {
 	width: 100%;
 	align-self: center;
 	display: flex;
@@ -1736,7 +1736,7 @@ fieldset {
 	border: none;
 	margin-top: 1.2rem;
 }
-fieldset legend {
+#admin fieldset legend {
 	font-size: 1.4rem;
 	text-align: center;
 }

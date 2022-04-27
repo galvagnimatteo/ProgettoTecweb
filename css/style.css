@@ -994,6 +994,10 @@ div.labelqp select {
 	.cardsContainer ul li {
 		flex: 0 1 calc(33.3% - 2rem);
 	}
+	.quickPurchaseContainer div.labelqp{
+		padding:0;
+		padding-right: 1rem;
+	}
 }
 
 @media (min-width: 865px) {

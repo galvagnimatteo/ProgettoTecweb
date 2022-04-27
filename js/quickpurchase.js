@@ -5,7 +5,7 @@ function populateQuickpurchaseDate(selectObject){
     if(idfilm != "scelta"){
 
         $.ajax({
-            url: "api/dateJSON.php",
+            url: "utils/dateJSON.php",
             type: "post",
             dataType: 'json',
             data: {IDfilm: idfilm},
@@ -31,7 +31,7 @@ function populateQuickpurchaseHour(selectObject){
     if(date != "scelta"){
 
         $.ajax({
-            url: "api/oreJSON.php",
+            url: "utils/oreJSON.php",
             type: "post",
             dataType: 'json',
             data: {IDfilm: idfilm, Date: date},

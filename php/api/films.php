@@ -9,7 +9,7 @@ require_once '../utils/SingletonDB.php';
     }
     $_SESSION['discard_after'] = $now+200;
 if(!isset($_SESSION['admin'])||!$_SESSION['admin']){
-    echo '{"status":"unauthorized"}';
+    echo '{"status":"sessione non autenticata come amministratore"}';
     exit();
 }
 $db = SingletonDB::getInstance();

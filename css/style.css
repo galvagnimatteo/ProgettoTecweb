@@ -821,10 +821,7 @@ programmazione.html
     margin-bottom: 0.5rem;
 }
 /*@supports not (display: grid) {*/
-    body {
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
+
     .contactpage {
         display: flex;
         flex-direction: column;
@@ -1045,6 +1042,9 @@ div.labelqp select {
 	.cardsContainer ul li {
 		flex: 0 1 calc(33.3% - 2rem);
 	}
+	.quickPurchaseContainer div.labelqp{
+		padding-left: 0;
+	}
 }
 
 @media (min-width: 865px) {
@@ -1191,7 +1191,6 @@ div.labelqp select {
 	border-radius: 10px;
 	padding: 0.5rem 1rem;
 	text-decoration: none;
-	margin-right: 0.5rem;
 	margin-top: 1rem;
 	cursor: pointer;
 	font-size: 1rem;
@@ -1447,6 +1446,11 @@ p.aiutocompilaz strong {
 
 /*stile info e costi*/
 
+#content{
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
 #content.infocosti ul {
 	font-size: 1.2rem;
 	/*default*/
@@ -1546,7 +1550,7 @@ p.aiutocompilaz strong {
         width: 100%;
         display: flex;
         flex-direction: column;
-    }    
+    }
 
     .workarea{
         width: 85%;
@@ -1557,7 +1561,7 @@ p.aiutocompilaz strong {
     }
 @media screen and (max-width: 49rem) {
     .workarea {
-        width: 100%;       
+        width: 100%;
     }
 	.adminsidebar {
 		width: 100%;
@@ -1568,7 +1572,7 @@ p.aiutocompilaz strong {
 	}
 }
 .workarea {
-	background-color: var(--admin-workarea-background);	
+	background-color: var(--admin-workarea-background);
 	height: 750px;
 	overflow-y:hidden;
 	/*display:flex;
@@ -1582,7 +1586,7 @@ p.aiutocompilaz strong {
 	height:100%;
 	pointer-events:none;
 }
-.lists, .lists div{	
+.lists, .lists div{
 	width:100%;
 	height:700px;
 	overflow-y:auto;
@@ -1649,9 +1653,9 @@ display: block;
     padding: 15px;
 }
 .workarea table {
-	display:table;	
+	display:table;
 	width: 100%;
-	min-width:100%;	
+	min-width:100%;
 	border-collapse: collapse;
 }
 .workarea tbody {
@@ -1681,7 +1685,7 @@ display: block;
 .workarea tr:hover {
 	background-color: var(--admin-list-hover);
 }
-.entry td {	
+.entry td {
 	padding-left: 10px;
 	padding-right: 20px;
 }
@@ -1720,7 +1724,7 @@ display: block;
 	background-color: var(--admin-form-background);
 	padding: 0.8rem;
 	border: none;
-	border-radius: 15px;	
+	border-radius: 15px;
 	display: flex;
 	box-sizing: border-box;
 	overflow-y:auto;

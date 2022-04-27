@@ -1,6 +1,6 @@
 <?php
 
-include "SingletonDB.php";
+require_once "../utils/SingletonDB.php";
 
 $IDfilm = $_POST["IDfilm"];
 $Date = $_POST["Date"];

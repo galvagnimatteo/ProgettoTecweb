@@ -4,7 +4,7 @@ require_once "utils/SingletonDB.php";
 require_once "utils/prenotaPosti.php";
 require_once "utils/mappaPosti.php";
 require_once "utils/generaPagina.php";
-require_once "utils/controlli.php"
+require_once "utils/controlli.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 
@@ -33,6 +33,7 @@ pulisci($_POST["orario"]);
 pulisci($_POST["modSelezPosti"]);
 pulisci($_POST["seats"]);
 pulisci($_POST["dataIta"]);
+pulisci($_POST["titoloFilm"]);
 
 //verifiche
 if (

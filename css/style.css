@@ -412,84 +412,81 @@ programmazione.html
 /*log/reg*/
 
 .cards_reservation {
-	display: grid;
-	grid-template-columns: 1.3fr 1fr 0.4fr;
-	grid-template-areas: "a a a";
-	/*grid-column-gap:1em;*/
-	grid-row-gap: 2em;
-	border-style: solid;
-	border-color: var(--secondary-color);
+	border:1px solid var(--secondary-color);
 	margin: 0.3em;
-	border-width: thin;
 	border-radius: 1rem;
+	display: flex;
 }
 
 .card_reservation {
-	grid-area: a;
+	margin: 1rem;
+	flex-basis: 40%;
+}
+.card_reservation dd{
+	font-size: 1.25rem;
+	margin-bottom: 0.2rem;
+}
+.card_reservation dt{
+	font-size: 1.4rem;
 }
 
+
+
 .div_register.reservation {
-	width: 100%;
-	display: inline-block;
+	flex-direction: column;
+	flex-basis: 50%;
 }
 
 .cards_users {
-	display: grid;
-	grid-template-columns: 0.5fr 1fr 3fr 0.5fr;
-	grid-template-areas: ". c c ." ". a b .";
+	display: flex;
+	flex-direction: column;
 	padding: 2em;
-	grid-column-gap: 0.2em;
-	grid-row-gap: 0em;
 }
 
 .cards_see_reservation {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	display: flex;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-	grid-template-areas: "a b b";
 	padding: 2em;
-	grid-column-gap: 0.2em;
-	grid-row-gap: 0em;
+	
 }
 
 .card_one_see_reservation {
-	grid-area: a;
+	flex-basis: 40%;
 }
 
 .card_one_see_reservation img {
+	
 	width: 100%;
 }
 
-.card_two_see_reservation {
-	grid-area: b;
+.res_details_container {
+	flex-basis: 60%;
+
+
+}
+
+.res_details_container dl{
 	padding-left: 2rem;
 }
 
-.card_two_see_reservation p {
-	padding-top: 0.6em;
+.res_details_container dt{
+	float: left;
+	clear: left;
 }
 
-.reservation_button {
-	/*
- -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;*/
-	border-radius: 0.3rem;
-	/*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);*/
-	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
-	color: white !important;
-	padding: 0.5rem 0.8rem;
-	text-decoration: none;
+.reservation_link {
+	display: block;
+	margin-bottom: 2rem;
+	
+}
+.res_link_container {
+	margin: 1rem 0.8rem;
+	flex-basis: 15%;
+	
 }
 
-#watch_again {
-	float: right;
-	padding-top: 10em;
-}
 
-#ul_reservation {
+div.ul_reservation {
 	padding-top: 2rem;
 }
 
@@ -553,29 +550,27 @@ programmazione.html
 }
 
 .card1_users {
-	grid-area: a;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-	display: flex;
+	display: flex; 
 }
 
-.card2_users {
-	grid-area: b;
-}
+
 
 .div_user.card3_users {
 	width: 100%;
-	grid-area: c;
 }
 
 .div_register.profile {
 	width: 100%;
+	
 }
 
 .cards_users ul {
 	list-style-type: none;
-	display: block !important;
 	margin: 1em;
 	font-size: 0.8em;
+	display: block;
+	flex-basis: 30%;
 }
 
 .cards_users li {
@@ -654,7 +649,7 @@ programmazione.html
 	display: flex;
 	justify-content: center;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-	padding-top: 2.8rem;
+	padding-top: 1rem;
 	padding-bottom: 2rem;
 }
 
@@ -699,11 +694,11 @@ programmazione.html
 }
 
 .div_register label {
-	padding-left: 3rem;
+	padding-left: 4rem;
 	display: block;
 	font-size: 0.8em;
 }
-
+/*
 .col-25 {
 	float: left;
 	width: 25%;
@@ -718,7 +713,7 @@ programmazione.html
 	content: "";
 	display: table;
 	clear: both;
-}
+}*/
 
 .link_button {
 	background: none!important;
@@ -993,6 +988,10 @@ div.labelqp select {
 	}
 	.cardsContainer ul li {
 		flex: 0 1 calc(33.3% - 2rem);
+	}
+	.quickPurchaseContainer div.labelqp{
+		padding:0;
+		padding-right: 1rem;
 	}
 }
 

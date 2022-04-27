@@ -1,31 +1,32 @@
 
 <div class="cards_reservation">
-
-	<ul>
-		<div class="card_reservation">
-			<p >Codice: <CODICE></p>
-			<p >Titolo: <TITOLO></p>
-			<p  >Data: <DATA></p>
-		</div>
-	</ul>
-
-
-	<ul>
-		<div class="card_reservation">
-			<p >Numero Persone: <PERSONE></p>
-			<p >Ora: <ORA></p>
-			<p>Sala: <SALA></p>
-		</div>
-	</ul>
+	
+	<dl class="card_reservation">
+		
+		<dt>Codice:</dt> <dd><CODICE></dd>
+		<dt>Titolo:</dt> <dd><TITOLO></dd>
+		<dt>Data:</dt> <dd> <DATA> </dd>
+		
+	</dl>
 
 
+	<dl class="card_reservation">
+		
+		<dt >Persone:</dt> <dd><PERSONE></dd>
+		<dt >Ora:</dt> <dd><ORA></dd>
+		<dt>Sala:</dt> <dd><SALA></dd>
+		
+	</dl>
 
 
-	<ul id="ul_reservation">
 
-	<a href="../php/area_utenti.php?action=viewReservation&codice=<CODICE>" class="reservation_button">Visualizza</a>
 
-	</ul>
+	<div class="res_link_container">
+
+	<a href="../php/area_utenti.php?action=viewReservation&codice=<CODICE>" class="reservation_link">Visualizza</a>
+	<a href="../php/area_utenti.php?action=viewReservation&codice=<CODICE>" class="reservation_link">Visualizza</a>
+	</div>
+	
 
 
 </div>

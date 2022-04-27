@@ -33,59 +33,42 @@
 </li>
 
 </ul>
-</div>
 
-<div class="card2_users">
+
+
 <div class="div_register profile">
 	<form action="../php/area_utenti.php?action=changeProfile" method="post" onsubmit="return modifyControls()">
-		<div class="row">
-			<div class="col_25">
-				<label for="username_profile">Username</label>
-			</div>
-			<div class="col_75">
-				<input id="username_profile" type="text" placeholder=" Username" name="username_profile"  value="<USERNAME>"  required>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="name_profile">Nome</label>
-			</div>
-			<div class="col_75">
-				<input id="name_profile" type="text" placeholder=" Name" name="name_profile" value="<NOME>"  required   >
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="surname_profile">Cognome</label>
-			</div>
-			<div class="col_75">
-				<input id="surname_profile" type="text" placeholder=" Surname" name="surname_profile"   value="<COGNOME>"   required>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="email_profile">Email</label>
-			</div>
-			<div class="col_75">
-				<input id="email_profile" type="email" placeholder=" Email" name="email_profile"  value="<EMAIL>"   >
-			</div>
-		</div>
 		
-		<div class="row">
+			
+				<label for="username_profile">Username</label>
+			
+				<input id="username_profile" type="text" placeholder=" Username" name="username_profile"  value="<USERNAME>" required />
+			
+		
+		
+			
+				<label for="name_profile">Nome</label>
+			
+			
+				<input id="name_profile" type="text" placeholder=" Name" name="name_profile" value="<NOME>"  required />
+			
+		
+		
+				<label for="surname_profile">Cognome</label>
+				<input id="surname_profile" type="text" placeholder=" Surname" name="surname_profile"   value="<COGNOME>" required />
+	
+		
+				<label for="email_profile">Email</label>
+				<input id="email_profile" type="email" placeholder=" Email" name="email_profile"  value="<EMAIL>"   />
+
+		
+		
 			<p id="errorMessage">
 				<ERRORMESSAGE>
 			</p>
-		</div>
-		<div class="row">
-			<input type="submit" value="Conferma il tuo profilo" >
-		</div>
+		
+			<input type="submit" value="Conferma il tuo profilo" />
 	</form>
 </div>
 </div>
 </div>
-<!--
-<div class="div_user">
-	<form action="../php/area_utenti.php?action=deleteProfile" method="post" >
-		<button type="submit" class="link_button"> Cancella il tuo account </button>
-	</form>
-</div>-->

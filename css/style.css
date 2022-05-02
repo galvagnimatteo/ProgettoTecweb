@@ -20,6 +20,7 @@
 	--admin-form-background: #404040;
 	--admin-button-background: #585858;
 	--admin-button-text: white;
+	--admin-border:#353535;
 }
 
 * {
@@ -1591,7 +1592,7 @@ display: block;
 #admin button {
 	background: var(--admin-button-background);
 	color: var(--admin-button-text);
-	border: 1px outset var(--admin-button-background);
+	border: 1px outset var(--admin-border);
 	fill: var(--admin-button-text);
 	border-radius: 5px;
 	font-size: 1.25rem;
@@ -1696,7 +1697,7 @@ display: block;
 .entryfunctions button, .entryfunctions a {
 	background: var(--admin-button-background);
 	color: var(--admin-button-text);
-	border: 1px outset var(--admin-button-background);
+	border: 1px outset var(--admin-border);
 	border-radius: 5px;
 	font-size: 1.25rem;
 	padding: 2px;
@@ -1719,7 +1720,7 @@ display: block;
 	flex-direction: column;
 	background-color: var(--admin-form-background);
 	padding: 0.8rem;
-	border: none;
+	border: 3px outset var(--admin-border);
 	border-radius: 15px;
 	display: flex;
 	box-sizing: border-box;

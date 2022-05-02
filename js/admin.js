@@ -25,25 +25,36 @@ var forms = [
     {
         name:"film",
         area: "film",
-        element:"insert_film",
+        element: "insert_film",
+        statuselement: "result_insert_film",
         visible: false
     },
     {
         name: "projection",
         area: "projection",
         element: "insert_projection",
+        statuselement: "result_insert_projection",
         visible: false
     },
     {
         name: "people_cast",
         area: "people_cast",
         element: "insert_people_cast",
+        statuselement: "result_insert_people_cast",
         visible: false
     },
     {
         name: "film_cast",
         area: "film",
         element: "edit_cast_film",
+        statuselement: null,
+        visible: false
+    },
+    {
+        name: "projection_times",
+        area: "projection",
+        element: "projection_times",
+        statuselement: null,
         visible: false
     }
 ];
@@ -84,9 +95,12 @@ function toggle_form(toggledform) {
             }
             else {
                 document.getElementById(forms[form].element).className = 'closed';
+                if (forms[form].statuselement) {
+                    document.getElementById(forms[form].statuselement).innerText = '';
+                }
             }
         }
-    }    
+    }
 }
 function request_film() {
     var request = new XMLHttpRequest();
@@ -189,7 +203,7 @@ function post_projection() {
         var status = data.status;
         if (status === "ok") {
             var proiezioni = data.proiezioni;
-            updatehtml_proiezioni(proiezioni);
+            updatehtml_projection(proiezioni);
             document.getElementById("result_insert_projection").innerText = "inserimento avvenuto con successo"
         }
         else {
@@ -309,7 +323,7 @@ function delete_projection(id) {
         var status = data.status;
         if (status === "ok") {
             var proiezioni = data.proiezioni;
-            updatehtml_proiezioni(proiezioni);            
+            updatehtml_projection(proiezioni);            
         }        
     };
 }
@@ -459,12 +473,37 @@ function cast_edit(idfilm) {
         generate_cast_recap(cast);
     }
 }
-
+function projection_edit_times(idprojection) {
+    if (forms[1].active) {
+        toggle_form("projection");
+    }
+    if (!active_projection) {
+        toggle_form("projection_times");
+    }
+    active_projection = idprojection;
+    var request = new XMLHttpRequest();
+    request.open('GET', './api/cast_film.php?action=list&IDFilm=' + idfilm);
+    request.send();
+    request.onload = () => {
+        //console.log(request.response);
+        var data = JSON.parse(request.response);
+        var times = data.times;
+        generate_projection_times_recap(times);
+    }
+}
 function generate_cast_recap(cast) {
     var film_cast_recap = '';
     for (entryindex in cast) {
         var entry = cast[entryindex];
         film_cast_recap += generate_entry_film_cast(entry);
+    }
+    document.getElementById("cast_film_recap").innerHTML = film_cast_recap;
+}
+function generate_projection_times_recap(times) {
+    var projection_times_recap = '';
+    for (entryindex in times) {
+        var entry = times[entryindex];
+        projection_times_recap += '<li><button type="button" onclick="delete_film(8); " class="deleteentry nascondiTesto">Elimina</button>+'
     }
     document.getElementById("cast_film_recap").innerHTML = film_cast_recap;
 }

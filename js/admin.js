@@ -442,8 +442,11 @@ function updatehtml_people_cast(people) {
 }
 
 function cast_edit(idfilm) {
+    if (forms[0].active) {
+        toggle_form("film");
+    }
     if (!active_film) {
-        toggle_form("film_cast");
+        toggle_form("film_cast");        
     }
     active_film = idfilm;
     var request = new XMLHttpRequest();

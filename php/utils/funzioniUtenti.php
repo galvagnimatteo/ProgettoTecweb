@@ -15,10 +15,10 @@ class Users
             isset($_POST["pass_register_confirm"])
         ) {
 			
-			pulisci($_POST["username_register"]);
+			/*pulisci($_POST["username_register"])
             pulisci($_POST["name_register"]);
             pulisci($_POST["surname_register"]);
-            pulisci($_POST["email_register"]);
+            pulisci($_POST["email_register"]);*/
 			
 			$username = $_POST["username_register"];
             $password = $_POST["password_register"];
@@ -70,7 +70,7 @@ class Users
             isset($_POST["username_login"]) &&
             isset($_POST["password_login"])
         ) {
-			pulisci($_POST["username_login"]);
+			//pulisci($_POST["username_login"]);
             
 			$username = $_POST["username_login"];
             $password = $_POST["password_login"];
@@ -324,10 +324,10 @@ class Users
             isset($_POST["surname_profile"]) &&
             isset($_SESSION["a"])
         ) {
-			pulisci($_POST["username_profile"]);
+			/*pulisci($_POST["username_profile"]);
             pulisci($_POST["name_profile"]);
             pulisci($_POST["surname_profile"]);
-            pulisci($_POST["email_profile"]);
+            pulisci($_POST["email_profile"]);*/
             
 			$newusername = $_POST["username_profile"];
             $oldusername = $_SESSION["a"];
@@ -380,7 +380,7 @@ class Users
                 return [false, 1];
             }
 
-            $result = loginControls($username, $password);
+            $result = loginControls($_SESSION["a"], $pass);
             if ($result != "OK") {
                 return [false, 2];
             }
@@ -397,7 +397,7 @@ class Users
         }
 
         if ($passOld == null && isset($pass) && isset($passConf)) {
-            $result = loginControls($username, $password);
+            $result = loginControls($_SESSION["a"], $pass);
 
             if ($pass != $passConf) {
                 return [false, 3];
@@ -515,7 +515,7 @@ class Users
             $preparedQuery = $db->getConnection()->prepare($query);
 
             $username = $_SESSION["a"];
-            $preparedQuery->bind_param("ss", $username, $codice);
+            $preparedQuery->bind_param("si", $username, $codice);
             $preparedQuery->execute();
             $result = $preparedQuery->get_result();
             $db->disconnect();
@@ -567,11 +567,42 @@ class Users
                         $row["IDFilm"],
                         $home_content
                     );
+					
                 }
             }
 
-            unset($codice);
-        }
+            
+			
+			// cerca posti
+			
+			$db = SingletonDB::getInstance();
+			$db->connect();
+            $query = "SELECT p.NumeroPosto, p.FilaPosto FROM Partecipa as p WHERE p.IDPrenotazione=?";
+
+            $preparedQuery = $db->getConnection()->prepare($query);
+
+            $preparedQuery->bind_param("i", $codice);
+            $preparedQuery->execute();
+            $result = $preparedQuery->get_result();
+            $db->disconnect();
+            $preparedQuery->close();
+			
+			$listaPosti = "";
+			
+			if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+					$listaPosti = $listaPosti . $row["FilaPosto"] . $row["NumeroPosto"] . ", ";
+				}
+			}
+			
+			$home_content = str_replace(
+                        "<POSTI>",
+                        substr($listaPosti, 0, -2),
+                        $home_content
+            );
+			
+			unset($codice);
+		}
 
         return $home_content;
     }

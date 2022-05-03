@@ -157,7 +157,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
             "Scheda Film: " .
             $dataFilm["Titolo"];
         echo GeneratePage(
-            "login",
+            "scheda film",
             $schedafilm_content,
             $breadcrumbs,
             $dataFilm["Titolo"] . " - PNG Cinema",

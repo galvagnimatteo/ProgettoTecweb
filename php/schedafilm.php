@@ -21,7 +21,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
     $preparedQuery3 = $db
         ->getConnection()
         ->prepare(
-            "SELECT Data, Proiezione.ID as IDProiezione FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? ORDER BY Data"
+            "SELECT Data FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? GROUP BY Data ORDER BY Data "
         );
     $preparedQuery3->bind_param("i", $_GET["idfilm"]);
     $preparedQuery3->execute();
@@ -97,19 +97,11 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                     $filmscreeningfield
                 );
 
-                $filmscreeningfield = str_replace(
-                    "<IDPROIEZ-HIDDEN>",
-                    '<input type="hidden" name="idproiez" value="' .
-                        $row["IDProiezione"] .
-                        '" />',
-                    $filmscreeningfield
-                );
-
                 $db->connect();
                 $preparedQuery4 = $db
                     ->getConnection()
                     ->prepare(
-                        "SELECT * FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) WHERE Film.ID = ? AND Proiezione.Data = ?"
+                        "SELECT *, Proiezione.ID as IDProiezione FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) WHERE Film.ID = ? AND Proiezione.Data = ?"
                     );
                 $preparedQuery4->bind_param(
                     "is",
@@ -123,12 +115,22 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                 $hour_fields = "";
 
                 while ($orarioRow = $result4->fetch_assoc()) {
-                    //si assume che se c'è una data di proiezione ci siano anche degli orari quindi nessun controllo necessario
-
+/*
                     $hour_field =
-                        '<input type="submit" name="orario" value="' .
-                        substr($orarioRow["Orario"], 0, -3) .
+                        '<input type="hidden" name="idproiez" value="' .
+                        $orarioRow["IDProiezione"] .
                         '"/>';
+                    $hour_fields .= $hour_field;
+
+                    <button name="subject" type="submit" value="fav_HTML">HTML</button>
+
+*/
+                    $hour_field =
+                        '<button type="submit" name="idproiez" value="' .
+                        $orarioRow["IDProiezione"] .
+                        '"/>'.
+                        substr($orarioRow["Orario"], 0, -3) .
+                        "</button>";
                     $hour_fields .= $hour_field;
                 }
 

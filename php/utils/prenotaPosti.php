@@ -2,7 +2,7 @@
 
 //$postistr: stringa nella forma xy, x1y1, x2y2 dove x{1,2,3} è al fila e y{1,2,3} è il numero del posto
 
-function prenotaPosti($postistr, $username, $idproiez, $orario, $numSala)
+function prenotaPosti($postistr, $username, $idproiez, $numSala)
 {
     $idprenot = -1;
 
@@ -16,15 +16,14 @@ function prenotaPosti($postistr, $username, $idproiez, $orario, $numSala)
         $preparedQuery = $db
             ->getConnection()
             ->prepare(
-                "INSERT INTO Prenotazione(NumeroPersone, UsernameUtente, IDProiezione, OraProiezione)" .
-                    "VALUES (?, NULLIF(?, ''), ?, ?)"
+                "INSERT INTO Prenotazione(NumeroPersone, UsernameUtente, IDProiezione)" .
+                    "VALUES (?, NULLIF(?, ''), ?)"
             );
         $preparedQuery->bind_param(
-            "isis",
+            "isi",
             $totNumBiglietti,
             $username,
-            $idproiez,
-            $orario
+            $idproiez
         );
         $res = $preparedQuery->execute();
 
@@ -38,7 +37,7 @@ function prenotaPosti($postistr, $username, $idproiez, $orario, $numSala)
                 $preparedQuery2 = $db
                     ->getConnection()
                     ->prepare(
-                        "INSERT INTO Partecipa(NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione)" .
+                        "INSERT INTO Occupa(NumeroPosto, FilaPosto, NumeroSala, IDPrenotazione)" .
                             "VALUES (?, ?, ?, ?)"
                     );
                 $preparedQuery2->bind_param(

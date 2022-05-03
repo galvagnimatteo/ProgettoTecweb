@@ -46,7 +46,7 @@ if (
         is_numeric($_POST["prid"])
     )
 ) {
-    
+
     header("Location: 500.php");
     die();
 }
@@ -143,7 +143,6 @@ if ($_POST["modSelezPosti"] == "auto") {
         $postiStr,
         $username,
         $_POST["idproiez"],
-        $_POST["orario"],
         $_POST["numSala"]
     );
     unset($listaPostiStruct);
@@ -169,7 +168,6 @@ if ($_POST["modSelezPosti"] == "auto") {
         $_POST["seats"],
         $username,
         $_POST["idproiez"],
-        $_POST["orario"],
         $_POST["numSala"]
     );
     generaPaginaConferma($_POST["seats"], $idPrenotaz, $totNumBiglietti);

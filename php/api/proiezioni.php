@@ -79,7 +79,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 }
 $proiezioni;
 $resultproiezioni = $connection
-    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm');
+    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm');
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;

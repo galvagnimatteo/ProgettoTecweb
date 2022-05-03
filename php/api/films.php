@@ -39,7 +39,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $Durata = $_POST['Durata'];       
         $CarouselImg=$_POST['CarouselImg'];
         $Attori=$_POST['Attori'];
-        $Regista=$_POST['Regista']
+        $Regista=$_POST['Regista'];
         
         $query =
             'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg,Attori,Registi) VALUES (?,?,?,?,?,?,?,?,?)';

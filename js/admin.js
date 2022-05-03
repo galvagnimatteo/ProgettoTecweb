@@ -71,7 +71,8 @@ function request_film() {
     var request = new XMLHttpRequest();
     request.open('GET', './api/films.php');
     request.send();
-    request.onload = () => {        
+    request.onload = () => {
+        console.log(request.response);
         var data = JSON.parse(request.response);
         films = data.films;
         updatehtml_film(films);
@@ -82,6 +83,7 @@ function request_projection() {
     request.open('GET', './api/proiezioni.php');
     request.send();
     request.onload = () => {
+        console.log(request.response);
         var data = JSON.parse(request.response);
         proiezioni = data.proiezioni;
         updatehtml_projection(proiezioni);
@@ -146,8 +148,8 @@ function post_projection() {
     let data = {
         film: document.getElementById("filmselector").value,
         sala:document.getElementById("imputsala").value,
-        Giorno: document.getElementById("imputgiorno").value
-        orario: document.getElementById("imputorario").value
+        Giorno: document.getElementById("imputgiorno").value,
+        Orario: document.getElementById("imputorario").value
     };
     let urlEncodedData = "action=insert", name;
     for (name in data) {

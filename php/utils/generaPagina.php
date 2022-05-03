@@ -13,7 +13,7 @@ function CheckSession($login_required, $admin_required)
         session_unset();
         session_destroy();
         session_start();
-        header("location:area_utenti.php?action=login_page");
+        //header("location:area_utenti.php?action=login_page");
     }
     $_SESSION["discard_after"] = $now + $sessiondiscard_timer;
 

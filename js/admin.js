@@ -8,17 +8,17 @@ var areas = [
     {
         name: "film",
         element: "films",
-        areaselector: "filmarea"
+        area_selector: "filmarea"
     },
     {
         name: "projection",
         element: "projections",
-        areaselector: "projectionarea"
+        area_selector: "projectionarea"
     },
     {
         name: "people_cast",
         element: "people_cast",
-        areaselector: "people_cast_area"
+        area_selector: "people_cast_area"
     }
 ];
 var forms = [
@@ -26,35 +26,35 @@ var forms = [
         name:"film",
         area: "film",
         element: "insert_film",
-        statuselement: "result_insert_film",
+        status_element: "result_insert_film",
         visible: false
     },
     {
         name: "projection",
         area: "projection",
         element: "insert_projection",
-        statuselement: "result_insert_projection",
+        status_element: "result_insert_projection",
         visible: false
     },
     {
         name: "people_cast",
         area: "people_cast",
         element: "insert_people_cast",
-        statuselement: "result_insert_people_cast",
+        status_element: "result_insert_people_cast",
         visible: false
     },
     {
         name: "film_cast",
         area: "film",
         element: "edit_cast_film",
-        statuselement: null,
+        status_element: null,
         visible: false
     },
     {
         name: "projection_times",
         area: "projection",
         element: "projection_times",
-        statuselement: null,
+        status_element: null,
         visible: false
     }
 ];
@@ -65,12 +65,12 @@ function change_context(context) {
     for (area in areas) {
         if (context === areas[area].name) {
             document.getElementById(areas[area].element).className = 'open';
-            document.getElementById(areas[area].areaselector).className = 'activeoption';
+            document.getElementById(areas[area].area_selector).className = 'activeoption';
             //window.location.href = areas[area].element;
         }
         else {
             document.getElementById(areas[area].element).className = 'closed';
-            document.getElementById(areas[area].areaselector).className = 'inactiveoption';
+            document.getElementById(areas[area].area_selector).className = 'inactiveoption';
         }
     }
     for (form in forms) {
@@ -96,7 +96,7 @@ function toggle_form(toggledform) {
             else {
                 document.getElementById(forms[form].element).className = 'closed';
                 if (forms[form].statuselement) {
-                    document.getElementById(forms[form].statuselement).innerText = '';
+                    document.getElementById(forms[form].status_element).innerText = '';
                 }
             }
         }

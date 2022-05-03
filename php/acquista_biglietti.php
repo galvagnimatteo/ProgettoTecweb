@@ -24,7 +24,7 @@ if (
         $_POST["prid"]
     )
 ) {
-    header("Location: 500.php");
+    header("Location: 404.php");
     die();
 }
 
@@ -47,7 +47,7 @@ if (
     )
 ) {
 
-    header("Location: 500.php");
+    header("Location: 404.php");
     die();
 }
 
@@ -121,8 +121,6 @@ if ($_POST["modSelezPosti"] == "auto") {
         header(
             "Location: prenotazione.php?idproiez=" .
                 $_POST["idproiez"] .
-                "&orario=" .
-                $_POST["orario"] .
                 "&err_server3=1"
         );
         die();
@@ -132,8 +130,6 @@ if ($_POST["modSelezPosti"] == "auto") {
         header(
             "Location: prenotazione.php?idproiez=" .
                 $_POST["idproiez"] .
-                "&orario=" .
-                $_POST["orario"] .
                 "&err_server2=1"
         );
         die();

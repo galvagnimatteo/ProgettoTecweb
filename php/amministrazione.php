@@ -1,19 +1,20 @@
 <?php
 session_start();
-require_once "utils/generaPagina.php";
+include "utils/generaPagina.php";
 
 CheckSession(true, true); //verifica che la sessione sia un utente loggato ed un admin
 $content = file_get_contents("../html/amministrazione.html");
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
+$breadcrumbs = '<a href="home.php">Home</a> / Amministazione';
 echo GeneratePage(
     "admin",
     $content,
-    "Amministrazione",
-    "Amministrazione - PNG Cinema",
+    $breadcrumbs,
+    "Amministazione - PNG Cinema",
     "",
     "",
     "",
-    ""
+    '<script type="text/javascript" src="../js/admin.js"> </script>'
 );
 
 ?>

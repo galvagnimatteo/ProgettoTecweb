@@ -4,9 +4,23 @@
 	--gradient-first-color: #282828;
 	--gradient-last-color: #121212;
 	--visited-links: #BBBBBB;
-	--text-color: #fff;
+	--text-color: white;
 	--error-color: #C2B800;
 	--links-hover-color: #ffdd36;
+	--scrollbar: #585858;
+	--scrollbar-background: #282828;
+	--admin-areaselector-background: #222222;
+	--admin-workarea-background: #222222;
+	--admin-areaselector-option-color1: red;
+	--admin-areaselector-option-color2: darkred;
+	--admin-list-header: #585858;
+	--admin-list-even: #323232;
+	--admin-list-odd: #414141;
+	--admin-list-hover: #b50000;
+	--admin-form-background: #404040;
+	--admin-button-background: #585858;
+	--admin-button-text: white;
+	--admin-border:#353535;
 }
 
 * {
@@ -15,6 +29,18 @@
 	color: var(--text-color);
 }
 
+a{
+	cursor:pointer;
+}
+button{
+	cursor:pointer;
+}
+input[type="text"] {
+	cursor: text;
+}
+select{
+	cursor:context-menu;
+}
 html {
 	font-size: 100%;
 	font-family: "Arial", sans-serif;
@@ -28,8 +54,25 @@ body {
 	padding: 0;
 	font-size: 1.5rem;
 	margin: auto;
+	/*supporto per firefox*/
+	scrollbar-width: thin; /* "auto" or "thin" */
+	scrollbar-color: var(--scrollbar) var(--scrollbar-background);
+}
+*::-webkit-scrollbar {
+	width: 15px;
 }
 
+*::-webkit-scrollbar-track {
+	background: var(--scrollbar-background);
+	border: outset var(--scrollbar-background);
+}
+
+*::-webkit-scrollbar-thumb {
+	width: 60%;
+	background-color: var(--scrollbar);
+	border-radius: 20px;
+	border: outset var(--scrollbar);
+}
 .subtitle {
 	padding-top: 1rem;
 	padding-left: 1rem;
@@ -52,11 +95,7 @@ nav ul {
 	margin-left: auto;
 }
 
-.nascondiTesto {
-	text-indent: -9999px;
-	white-space: nowrap;
-	overflow: hidden;
-}
+
 
 #menubutton-apri {
 	padding: 1rem;
@@ -333,6 +372,8 @@ footer {
 	/**/
 	width: calc(100% - 2rem);
 	padding: 1rem;
+	position: sticky;
+	bottom: 0;
 }
 
 
@@ -724,101 +765,104 @@ div.ul_reservation {
 	cursor: pointer;
 }
 
-
-/*contatti*/
-
+.contactpage iframe {
+    width: 100%;
+    align-self: end;
+}
+@keyframes materialize {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+#posizione {
+    position: relative;
+    text-align: left;
+    /*animation-duration: 2s;
+    animation-fill-mode: both;*/
+}
 #contatti {
-	margin-left: 2rem;
-	margin-right: 2rem;
-	text-align: right;
-}
+    position: relative;
+    /*animation-name: materialize;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-fill-mode: both;*/
 
-#contatti h2 {
-	text-align: center;
 }
-
-.contactsParagraph {
-	margin: 1rem;
+#contatti h2{
+    text-align: right;
 }
-
-.contactpage {
-	display: flex;
-	flex-direction: column;
+.contactsection dl {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
-
-#social {
-	margin-left: 1rem;
-	margin-right: 1rem;
+.contactsection dt {
+    flex-basis: 20%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
-
-#posizione dl,
-#contatti dl,
-#social dl {
-	display: flex;
-	flex-flow: row;
-	flex-wrap: wrap;
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+.contactsection dd {
+    flex-basis: 70%;
+    flex-grow: 1;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
+/*@supports not (display: grid) {*/
+    .contactpage {
+        display: flex;
+        flex-direction: column;
+    }
+    .contactsection dl {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .contactsection dt {
+        flex-basis: 20%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .contactsection dd {
+        flex-basis: 70%;
+        flex-grow: 1;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    @media (min-width: 49rem) {
+        #contatti {
+            width: 50%;
+            left: 50%;
+            margin-left:0;
+            margin-right:0;
+            padding-left:0;
+            padding-right:0;
+        }
+    }
+/*}
+.success{
+    width:100%;
+    background-color:darkgreen;
+            margin-left:0;*/
 
-#posizione dt,
-#contatti dt,
-#social dt {
-	flex-basis: 20%;
+
+.contactsection h2 {
+	font-size: 1.5rem;
+	font-weight: bold;
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
-}
-
-#posizione dd,
-#contatti dd,
-#social dd {
-	flex-basis: 70%;
-	flex-grow: 1;
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-}
-
-@media (min-width: 768px) {
-	#contatti {
-		width: 50%;
-		left: 50%;
-		margin-left: 2rem;
-		margin-right: 2rem;
-	}
-}
-
-
-/* fine - contatti */
-
-.insert_movie,
-.insert_proiezione {
-	max-width: 30rem;
-	align-self: center;
-	display: flex;
-	flex-direction: column;
-}
-
-.insert_movie>input,
-.insert_proiezione>input,
-.insert_movie>select,
-.insert_proiezione>select,
-.insert_movie>option,
-.insert_proiezione option {
-	width: 80%;
-	height: 4vh;
-	background: #e0dede;
-	color: #000000;
-	margin: 1rem auto;
-	padding: 0.8rem;
-	border: none;
 	border-radius: 5px;
 	font-size: 0.9rem;
 	display: flex;
 	box-sizing: border-box
 }
-
-#posizione h2,
-#contatti h2 {
+.contactsection h2 {
 	font-size: 1.5rem;
 	font-weight: bold;
 	margin-top: 0.5rem;
@@ -830,7 +874,7 @@ div.ul_reservation {
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 }
-
+/* fine - contatti */
 
 /* scheda-film.html */
 
@@ -1008,6 +1052,7 @@ div.labelqp select {
 	#menubutton-apri,
 	#menubutton-chiudi {
 		display: none;
+		color: var(--text-color);
 	}
 	#loginMenu {
 		margin-left: auto;
@@ -1441,12 +1486,289 @@ p.aiutocompilaz strong {
 	text-align: center;
 }
 
-#content.infocosti th {
-	max-width: 15rem;
-	background-color: #757575;
-	font-size: 1.2rem;
+
+@media print{
+
+
+    body, #content {
+        page-break-inside: auto;
+    }
+    div {
+        page-break-inside: auto;
+        page-break-before: auto;
+        page-break-after: auto;
+    }
+    .card, li, section, article, #psizione, #contatti, #social {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        page-break-before: auto;
+    }
+    .cardsContainer ul, li {
+        flex-grow: 1;
+    }
+
+	#confermaAcq .warning {
+		visibility: hidden;
+	}
+
+	#menubutton {
+		display:none;
+	}
+
+}
+/*admin section*/
+#areasselector {
+    list-style-type: none;
+}
+.adminsidebar a {
+	text-decoration: none;
+}
+@media screen and (min-width: 49rem) {
+    #admin {
+        display: flex;
+        flex-direction: row;
+    }
+    .adminsidebar {
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #areasselector {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }    
+
+    .workarea{
+        width: 85%;
+    }
+}
+#areasselector li {
+        width: 100%;
+    }
+@media screen and (max-width: 49rem) {
+    .workarea {
+        width: 100%;       
+    }
+	.adminsidebar {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		margin:0;
+		padding:0;
+	}
+}
+.workarea {
+	background-color: var(--admin-workarea-background);	
+	height: 750px;
+	overflow-y:hidden;
+	/*display:flex;
+	flex-direction:column;*/
+}
+.overlays {
+	width:100%;
+	position:relative;
+	top:-700px;
+	z-index: 10;
+	height:100%;
+	pointer-events:none;
+}
+.lists, .lists div{	
+	width:100%;
+	height:700px;
+	overflow-y:auto;
+	z-index:0;
+}
+.adminsidebar {
+    background-color: var(--admin-areaselector-background);
+    /*border: none;
+    border-radius: 15px;
+    box-sizing: border-box;*/
+}
+/*.open {
+display: block;
+}*/
+#admin button {
+	background: var(--admin-button-background);
+	color: var(--admin-button-text);
+	border: 1px outset var(--admin-border);
+	fill: var(--admin-button-text);
+	border-radius: 5px;
+	font-size: 1.25rem;
+	padding: 2px;
+	box-sizing: border-box;
+	margin: 2px;
+	text-decoration: none;
+}
+#admin a:visited{
+	color:var(--admin-button-text);
+}
+.formcloser, .formopener {
+	display: block;
+	color: var(--admin-button-text);
+	width: 32px;
+	height: 32px;
+	fill: var(--admin-button-text);
+	background-size: cover;
+	background-position: center;
 }
 
-#content.infocosti thead {
-	background-color: #757575;
+.nascondiTesto {
+	text-indent: -9999px;
+	white-space: nowrap;
+	overflow: hidden;
 }
+
+.formcloser {
+	background-image: url(/images/chiudi-menu.svg);
+	overflow:visible;/*TODO risolvere glitch grafico nel pulsante di chiusura del form films*/
+}
+
+.formopener {
+	background-image: url(/images/formopener.svg);
+}
+
+.activeoption {
+	background-image: linear-gradient(var(--admin-areaselector-option-color1),var(--admin-areaselector-option-color2));
+	/*background-color: darkred;*/
+	border: none;
+	border-radius: 15px;
+	box-sizing: border-box;
+	padding: 15px;
+	pointer-events: none;
+}
+.activeoption a:hover{
+	color:inherit;
+}
+
+.inactiveoption {
+	border: none;
+	border-radius: 15px;
+	box-sizing: border-box;
+	padding: 15px;
+	pointer-events: initial;
+}
+.workarea table {
+	display:table;	
+	width: 100%;
+	min-width:100%;	
+	border-collapse: collapse;
+}
+.workarea tbody {
+	width: 100%;
+	min-width: 100%;
+	overflow-x: auto;
+	border-collapse: collapse;
+}
+.workarea tr {
+	display:table-row;
+	min-width: 100%;
+	white-space: nowrap;
+}
+.workarea tr:nth-child(2n+1) {
+	background-color: var(--admin-list-odd);
+}
+.workarea tr:nth-child(even) {
+	background-color: var(--admin-list-even);
+}
+.workarea th {
+	font-size: 1.5rem;
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 20px;
+	background-color: var(--admin-list-header);
+}
+.workarea tr:hover {
+	background-color: var(--admin-list-hover);
+}
+.entry td {	
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+.entry .entryfunctions
+ {
+	display:flex;
+	flex-direction:row;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.entryfunctions button, .entryfunctions a {
+	background: var(--admin-button-background);
+	color: var(--admin-button-text);
+	border: 1px outset var(--admin-border);
+	border-radius: 5px;
+	font-size: 1.25rem;
+	padding: 2px;
+	box-sizing: border-box;
+	margin: 2px;
+	text-decoration: none;
+}
+#admin .deleteentry {
+	width: 1.5rem;
+	background-image:url(/images/trash-svgrepo-com.svg);
+}
+
+#admin .overlays form {
+	position: relative;
+	left: 5%;
+	width: 90%;
+	max-height: 95%;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--admin-form-background);
+	padding: 0.8rem;
+	border: 3px outset var(--admin-border);
+	border-radius: 15px;
+	display: flex;
+	box-sizing: border-box;
+	overflow-y: auto;
+}
+#edit_cast_film {
+	min-height: 60%;
+}
+#admin fieldset {
+	width: 100%;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	border: none;
+	margin-top: 1.2rem;
+}
+#admin fieldset legend {
+	font-size: 1.4rem;
+	text-align: center;
+}
+#admin form input,
+#admin form select,
+#admin form option,
+#admin form input:not(:empty),
+#admin form select:not(:empty),
+#admin form option:not(:empty),
+#admin .submit {
+	align-self: center;
+	width: 80%;
+	background: var(--admin-button-background);
+	color: var(--admin-button-text);
+	padding: 1rem;
+	margin: 1rem;
+	border: none;
+	border-radius: 5px;
+	font-size: 0.9rem;
+	box-sizing: border-box;
+}
+.overlays form label {
+	width:80%;
+	position:relative;
+	left:10%;
+}
+.open{
+	pointer-events:initial;
+}
+.closed {
+	pointer-events: none;
+	display: none !important;
+}
+

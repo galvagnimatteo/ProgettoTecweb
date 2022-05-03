@@ -3,7 +3,7 @@
         <ul id="areasselector">
             <li class="activeoption" id="filmarea"><a href="#films">Film</a></li>
             <li class="inactiveoption" id="projectionarea"><a href="#projections">Proiezioni</a></li>
-            <li class="inactiveoption" id="people_cast_area"><a href="#people_cast">Cast</a></li>
+            <!--<li class="inactiveoption" id="people_cast_area"><a href="#people_cast">Cast</a></li>-->
         </ul>
     </div>
     <div class="workarea">
@@ -26,7 +26,6 @@
                 <a href="#films" class="SRskip">torna ad inizio lista</a>
                 <a href="#areasselector" class="SRskip">cambia area</a>
             </div>
-
             <div id="projections" class="closed">
                 <p class="SRskip">area: proiezioni</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>                
@@ -39,6 +38,7 @@
                             <th>Giorno</th>
                             <th>Sala</th>
                             <th>Film</th>
+                            <th>Orario</th>
                         </tr>
                     </thead>
                     <tbody id="projectionlist">
@@ -47,36 +47,13 @@
                 <a href="#projections" class="SRskip">torna ad inizio lista</a>
                 <a href="#areasselector" class="SRskip">cambia area</a>
             </div>
-
-            <div id="people_cast" class="closed">
-                <p class="SRskip">area: persone cast</p>
-                <a href="#areasselector" class="SRskip">cambia area</a>                
-                <table>
-                    <thead>
-                        <tr class=headerrow>
-                            <th>
-                                <a href="#insert_people_cast" onclick="toggle_form('people_cast');" class="formopener nascondiTesto">apri form</a>
-                            </th>
-                            <th>Nome</th>
-                            <th>Cognome</th>
-                            <th>Ruolo</th>
-                            <th>Lingua</th>
-                        </tr>
-                    </thead>
-                    <tbody id="people_cast_list">
-
-                    </tbody>
-                </table>
-                <a href="#people_cast" class="SRskip">torna ad inizio lista</a>
-                <a href="#areasselector" class="SRskip">cambia area</a>
-            </div>
         </div>
         <div class="overlays">
             <form id="insert_film" class="closed" onsubmit="post_film();return false">
                 <p class="SRskip">form: film</p>
                 <a href="#films" class="formcloser nascondiTesto" onclick="toggle_form('film');">chiudi form</a>
                 <fieldset>
-                    <legend>informazioni base</legend>
+                    <legend>Informazioni base</legend>
                     <label for="Titolo"><span xml:lang="en">Titolo</span></label>
                     <input type="text" name="Titolo" required id="imputtitolo">
                     <label for="imputgenere">Genere</label>
@@ -85,14 +62,21 @@
                     <input type="date" name="DataUscita" required id="imputdatauscita">
                 </fieldset>
                 <fieldset>
-                    <legend>dettagli</legend>
+                    <legend>Dettagli</legend>
                     <label for="imputdurata">Durata</label>
                     <input type="number" name="Durata" inputmode="numeric" required id="imputdurata">
                     <label for="imputdescizione">Descrizione</label>
                     <input type="text" name="Descrizione" required id="imputdescizione">
                 </fieldset>
+                <fieldset>
+                    <legend>Cast</legend>
+                    <label for="imputdescizione">Regista</label>
+                    <input type="text" name="regista" required id="imputregista">
+                    <label for="imputdescizione">Attori</label>
+                    <input type="text" name="attori" required id="imputattori" placeholder="Attore A, Attore B, etc">
+                </fieldset>
                 <fieldset id="insert_film_immagini">
-                    <legend>immagini</legend>
+                    <legend>Immagini</legend>
                     <label for="imputimmagine">Immagine</label>
                     <input type="text" name="SrcImg" required id="imputimmagine">
                     <label for="imputcarousel">Immagine carousel</label>
@@ -101,7 +85,7 @@
                 <button type="submit" class="submit">Inserisci</button>
                 <p id="result_insert_film"></p>
                 <a href="#insert_film" class="SRskip">torna ad inizio form</a>
-            </form>
+             </form>
             <form id="insert_projection" class="closed" onsubmit="post_projection();return false">
                 <p class="SRskip">form: proiezioni</p>
                 <a href="#projections" class="formcloser nascondiTesto" onclick="toggle_form('projection');">chiudi form</a>
@@ -115,34 +99,12 @@
                     <option value="3">Sala 3</option>
                 </select>
                 <label for="imputgiorno">Giorno</label>
-                <input type="date" name="Giorno" required id="imputgiorno">
+                <input type="date" name="Giorno" required id="imputgiorno"/>
+                <label for="imputorario">Orario</label>
+                <input type="time" name="orario" required id="imputorario" />
                 <button type="submit" class="submit">Inserisci</button>
                 <p id="result_insert_projection"></p>
                 <a href="#insert_projection" class="SRskip">torna ad inizio form</a>
-            </form>
-            <form id="insert_people_cast" class="closed" onsubmit="post_people_cast();return false">
-                <p class="SRskip">form: persone cast</p>
-                <a href="#people_cast" class="formcloser nascondiTesto" onclick="toggle_form('people_cast');">chiudi form</a>
-                <label for="imputNome"><span xml:lang="en">Nome</span></label>
-                <input type="text" name="Nome" required id="imputNome">
-                <label for="imputCognome">Cognome</label>
-                <input type="text" name="Cognome" required id="imputCognome">
-                <label for="imputRuolo">Ruolo</label>
-                <select name="ruolo" title="ruolo" id="imputRuolo">
-                    <option value="A">Attore</option>
-                    <option value="R">Regista</option>
-                </select>
-                <label for="imputLingua">Lingua</label>
-                <select name="lingua" title="lingua" id="imputLingua">
-                    <option value="null"></option>
-                    <option value="it">Italiano</option>
-                    <option value="en">Inglese</option>
-                    <option value="de">Tedesco</option>
-                    <option value="fr">Francese</option>
-                </select>
-                <button type="submit" class="submit">Inserisci</button>
-                <p id="result_insert_people_cast"></p>
-                <a href="#insert_people_cast" class="SRskip">torna ad inizio form</a>
             </form>
             <form id="edit_cast_film" class="closed" onsubmit="post_film_cast();return false">
                 <p class="SRskip">form: cast film</p>
@@ -168,18 +130,6 @@
                 </table>
                 <a href="#cast_film_recap" class="SRskip">torna ad inizio lista</a>
                 <a href="#edit_cast_film" class="SRskip">torna ad inizio form</a>
-            </form>
-            <form id="projection_times" class="closed" onsubmit="post_projection_times();return false">
-                <p class="SRskip">form: cast film</p>
-                <a href="#projection" class="formcloser nascondiTesto" onclick="toggle_form('projection_times');active_projection = null">chiudi form</a>
-                <label for="orarioimput">Orario</label>
-                <input type="time" id="orarioimput" name="orario" required/>
-                <button type="submit" class="submit">Aggiungi</button>
-                <ul id="projection_times_recap">
-
-                </ul>
-                <a href="#projection_times_recap" class="SRskip">torna ad inizio lista</a>
-                <a href="#projection_times" class="SRskip">torna ad inizio form</a>
             </form>
         </div>
     </div>

@@ -22,23 +22,26 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 
     if(isset($_POST['film']) &&
             isset($_POST['sala']) &&
+            isset($_POST['Orario']) &&
             isset($_POST['Giorno']) 
             )
         {
-            
+            $IDFilm = $_POST['film'];
+            $NumeroSala = $_POST['sala'];
+            $Data = $_POST['Giorno'];
+            $orario=$_POST['Orario'];
         $query =
-            'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala) VALUES (?,?,?)';
+            'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala,Orario) VALUES (?,?,?,?)';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
-            'sss',
+            'ssss',
             $Data,
             $IDFilm,
-            $NumeroSala
+            $NumeroSala,
+            $orario
         );
 
-        $IDFilm = $_POST['film'];
-        $NumeroSala = $_POST['sala'];
-        $Data = $_POST['Giorno'];
+        
 
         $res=$preparedQuery->execute();        
         $preparedQuery->close();
@@ -87,6 +90,7 @@ while ($row = $resultproiezioni->fetch_assoc()) {
     $proiezione->idfilm=$row['IDFilm'];
     $proiezione->titolofilm=$row['Titolo'];
     $proiezione->numeroSala=$row['NumeroSala'];
+    $proiezione->orario=$row['Orario'];
     $proiezioni[$i]=$proiezione;
     $i++;
 }

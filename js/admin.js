@@ -1,4 +1,6 @@
-﻿var areas = [
+﻿import { formvalidation } from "modernizr";
+
+var areas = [
     {
         name: "film",
         element: "films",
@@ -12,18 +14,100 @@
 ];
 var forms = [
     {
-        name:"film",
+        name: "film",
         area: "film",
         element: "insert_film",
         status_element: "result_insert_film",
-        visible: false
+        visible: false,
+        fields: [
+            {
+                name:"Titolo",
+                element:"imputtitolo",
+                condition: (value) => { return value.match(" /^[a-zA-Z0-9]/") },
+                error_message:"titolo puo contenere solo caratteri alfanumerici e spazi"
+            },
+            {
+                name: "Genere",
+                element: "imputgenere",
+                condition: (value) => { return value.match(" /^[a-zA-Z0-9]/") },
+                error_message:"genere puo contenere solo caratteri alfanumerici"
+            },
+            {
+                name: "Descrizione",
+                element: "imputdescizione",
+                condition: (value) => { return value.match(" /^[a-zA-Z0-9]/") },
+                error_message: "descrizione puo contenere solo caratteri alfanumerici"
+            },
+            {
+                name: "DataUscita",
+                element: "imputdatauscita",
+                condition: (value) => { return true; },
+                error_message:""
+            },
+            {
+                name: "SrcImg",
+                element: "imputimmagine",
+                condition: (value) => { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/") },
+                error_message:"l'immagine deve essere un url valido"
+            },
+            {
+                name: "CarouselImg",
+                element: "imputcarousel",
+                condition: (value) => { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/") },
+                error_message: "l'immagine deve essere un url valido"
+            },
+            {
+                name: "Durata",
+                element: "imputdurata",
+                condition: (value) => { return value > 0; },
+                error_message: "la durata deve essere un numero maggiore di 0"
+            },
+            {
+                name: "Attori",
+                element: "imputattori",
+                condition: (value) => { return true },
+                error_message:""
+            },
+            {
+                name: "Regista",
+                element: "imputregista",
+                condition: (value) => { return true },
+                error_message:""
+            }
+        ]
     },
     {
         name: "projection",
         area: "projection",
         element: "insert_projection",
         status_element: "result_insert_projection",
-        visible: false
+        visible: false,
+        fields: [
+            {
+                name: "film",
+                element: "filmselector",
+                condition: (value) => { return true },
+                error_message: ""
+            },
+            {
+                name: "sala",
+                element: "imputsala",
+                condition: (value) => { return true },
+                error_message: ""
+            },
+            {
+                name: "Giorno",
+                element: "imputgiorno",
+                condition: (value) => { return true },
+                error_message: ""
+            },
+            {
+                name: "Orario",
+                element: "imputorario",
+                condition: (value) => { return true },
+                error_message: ""
+            }
+        ]
     }
 ];
 function change_context(context) {
@@ -91,6 +175,12 @@ function request_projection() {
 }
 
 function post_film() {
+
+    let data = check_fields(forms[0]);
+    if (!data) {
+        return;
+    }
+
     let url = "./api/films.php";
 
     let xhr = new XMLHttpRequest();
@@ -102,22 +192,11 @@ function post_film() {
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
     
-    let data = {
-        //action:'insert',
-        Titolo : document.getElementById("imputtitolo").value,
-        Genere: document.getElementById("imputgenere").value,
-        Descrizione: document.getElementById("imputdescizione").value,
-        DataUscita : document.getElementById("imputdatauscita").value,
-        SrcImg : document.getElementById("imputimmagine").value,
-        Durata: document.getElementById("imputdurata").value,
-        CarouselImg: document.getElementById("imputcarousel").value,
-        Attori: document.getElementById("imputattori").value,
-        Regista: document.getElementById("imputregista").value
-    };
     let urlEncodedData = "action=insert", name;
-    for (name in data) {
-        urlEncodedData += "&" + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
-    }    
+    for (index in data) {
+        var field = data[index];
+        urlEncodedData += "&" + encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value);
+    }
     xhr.send(urlEncodedData);
     xhr.onload = function () {        
         var data = JSON.parse(xhr.responseText);
@@ -133,6 +212,10 @@ function post_film() {
     };
 }
 function post_projection() {
+    var data = check_fields(forms[1]);
+    if (!data) {
+        return;
+    }
     let url = "./api/proiezioni.php";
 
     let xhr = new XMLHttpRequest();
@@ -142,19 +225,11 @@ function post_projection() {
     //xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-    
-
-    let data = {
-        film: document.getElementById("filmselector").value,
-        sala:document.getElementById("imputsala").value,
-        Giorno: document.getElementById("imputgiorno").value,
-        Orario: document.getElementById("imputorario").value
-    };
     let urlEncodedData = "action=insert", name;
-    for (name in data) {
-        urlEncodedData += "&" + encodeURIComponent(name) + '=' + encodeURIComponent(data[name]);
-    }    
+    for (index in data) {
+        var field = data[index];
+        urlEncodedData += "&" + encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value);
+    }
     xhr.send(urlEncodedData);
 
     xhr.onload = function () {                
@@ -257,6 +332,23 @@ function updatehtml_film(films) {
     document.getElementById("filmselector").innerHTML = filmoptions;
 }
 
+function check_fields(form) {
+    var fields = form.fields;
+    var data = [];
+    for (index in fields) {
+        var field = fields[index];
+        value = document.getElementById(field.element);
+        if (!field.condition(value)) {
+            form.status_element.innerText = field.error_message;
+            return false;
+        }
+        data[i] = {
+            name: field.name,
+            value: value
+        }
+    }
+    return data;
+}
 
 
 //for (index in areas) {
@@ -266,6 +358,7 @@ function updatehtml_film(films) {
 //        return function () { console.log(area_name); change_context(area_name); } }(area.name));
 //    document.getElementById(area.area_selector).onclic = handler();
 //}
+
     document.getElementById("filmarea").onclick = function () { change_context('film'); }
     document.getElementById("projectionarea").onclick = function () { change_context('projection'); }
     document.getElementById("filmarea").firstChild.onclick = function () { change_context('film'); }
@@ -279,3 +372,6 @@ function updatehtml_film(films) {
         request_projection();
     }
         , 30000);
+
+
+

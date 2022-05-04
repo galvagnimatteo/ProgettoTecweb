@@ -1,6 +1,4 @@
-﻿import { formvalidation } from "modernizr";
-
-var areas = [
+﻿var areas = [
     {
         name: "film",
         element: "films",

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../utils/controlli.php';
 require_once '../utils/SingletonDB.php';
  $now = time();
     if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
@@ -30,22 +31,17 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         isset($_POST['Durata'])
         )
     {
-        $Titolo = $_POST['Titolo'];
-        $Genere = $_POST['Genere'];
-        $DataUscita = $_POST['DataUscita'];
-        $Descrizione = $_POST['Descrizione'];
-        $SrcImg = $_POST['SrcImg'];
-        //$AltImg = $_POST['AltImg'];
-        $Durata = $_POST['Durata'];       
-        $CarouselImg=$_POST['CarouselImg'];
-        $Attori=$_POST['Attori'];
-        $Regista=$_POST['Regista'];
-        
-        $query =
-            'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg,Attori,Registi) VALUES (?,?,?,?,?,?,?,?,?)';
-        $preparedQuery = $connection->prepare($query);
-        $preparedQuery->bind_param(
-            'sssssssss',
+        $Titolo         = return_cleaned($_POST['Titolo']);
+        $Genere         = return_cleaned($_POST['Genere']);
+        $DataUscita     = return_cleaned($_POST['DataUscita']);
+        $Descrizione    = return_cleaned($_POST['Descrizione']);
+        $SrcImg         = return_cleaned($_POST['SrcImg']);
+        $Durata         = return_cleaned( $_POST['Durata']);       
+        $CarouselImg    = return_cleaned($_POST['CarouselImg']);
+        $Attori         = return_cleaned($_POST['Attori']);
+        $Regista        = return_cleaned($_POST['Regista']);
+
+        $check=CheckFilm(
             $Titolo,
             $Genere,
             $DataUscita,
@@ -56,14 +52,33 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $Attori,
             $Regista
         );
-
-        $res=$preparedQuery->execute();        
-        $preparedQuery->close();
-        if($res){
-            $reply->status="ok";
+        if($check=="OK"){
+            $query =
+                'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg,Attori,Registi) VALUES (?,?,?,?,?,?,?,?,?)';
+            $preparedQuery = $connection->prepare($query);
+            $preparedQuery->bind_param(
+                'sssssssss',
+                $Titolo,
+                $Genere,
+                $DataUscita,
+                $Descrizione,
+                $SrcImg,            
+                $Durata,
+                $CarouselImg,
+                $Attori,
+                $Regista
+            );
+            $res=$preparedQuery->execute();        
+            $preparedQuery->close();
+            if($res){
+                $reply->status="ok";
+            }
+            else{
+                $reply->status="errore interno";
+            }
         }
         else{
-            $reply->status="errore interno";
+            $reply->status=$check;
         }
     }
     else {

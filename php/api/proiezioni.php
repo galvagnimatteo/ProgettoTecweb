@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../utils/controlli.php';
 require_once '../utils/SingletonDB.php';
 $now = time();
     if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
@@ -26,30 +27,41 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             isset($_POST['Giorno']) 
             )
         {
-            $IDFilm = $_POST['film'];
-            $NumeroSala = $_POST['sala'];
-            $Data = $_POST['Giorno'];
-            $orario=$_POST['Orario'];
-        $query =
-            'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala,Orario) VALUES (?,?,?,?)';
-        $preparedQuery = $connection->prepare($query);
-        $preparedQuery->bind_param(
-            'ssss',
-            $Data,
-            $IDFilm,
-            $NumeroSala,
-            $orario
+            $IDFilm      = return_cleaned( $_POST['film']);
+            $NumeroSala  = return_cleaned( $_POST['sala']);
+            $Data        = return_cleaned($_POST['Giorno']);
+            $orario      = return_cleaned($_POST['Orario']);
+
+
+
+            $check=CheckProiezione(
+                $Data,
+                $IDFilm,
+                $NumeroSala,
+                $orario
+            );
         );
-
-        
-
-        $res=$preparedQuery->execute();        
-        $preparedQuery->close();
-        if($res){
-            $reply->status="ok";
-        }
+        if($check=="OK"){
+            $query =
+                'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala,Orario) VALUES (?,?,?,?)';
+            $preparedQuery = $connection->prepare($query);
+            $preparedQuery->bind_param(
+                'ssss',
+                $Data,
+                $IDFilm,
+                $NumeroSala,
+                $orario
+            );
+            $res=$preparedQuery->execute();        
+            $preparedQuery->close();
+            if($res){
+                $reply->status="ok";
+            }
+            else{
+                $reply->status="errore interno";
+            }
         else{
-            $reply->status="errore interno";
+            $reply->status=$check;
         }
     }
     else {

@@ -59,7 +59,50 @@ function loginControls($username, $password) {
 
     return "OK";
 }
+function CheckFilm(
+        $Titolo,
+        $Genere,
+        $DataUscita,
+        $Descrizione,
+        $SrcImg,            
+        $Durata,
+        $CarouselImg,
+        $Attori,
+        $Regista
+) {
+    $titoloRegex = "/^[a-zA-Z0-9]/";
 
+    if (!preg_match($titoloRegex, $Titolo)) {
+        return "il titolo deve contenere solo lettere e numeri.";
+    }
+
+    $genereRegrex = "/^[a-zA-Z]/";
+
+    if (!preg_match($nameRegrex, $Genere)) {
+        return "Il genere può essere composto da sole lettere.";
+    }
+
+    $imageregex="/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)/";
+    if (!preg_match($imageregex, $SrcImg)) {
+        return "immagini devono esser url validi";
+    }
+    if (!preg_match($imageregex, $CarouselImg)) {
+        return "immagini devono esser url validi";
+    }
+    if($Durata<=0){
+        return "la durata deve essere maggiore di 0";
+    }
+    return "OK";
+}
+function CheckProiezione(
+                $Data,
+                $IDFilm,
+                $NumeroSala,
+                $orario
+            )
+{
+    return "OK";
+}
 
 function pulisci(&$value)
 {
@@ -70,6 +113,11 @@ function pulisci(&$value)
     // rimuove tag html, non li vogliamo
     $value = strip_tags($value);
 	//return $value;
+}
+function return_cleaned($value)
+{
+    pulisci($value);
+    return$value;
 }
 
 ?>

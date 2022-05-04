@@ -29,14 +29,14 @@ var forms = [
             {
                 name: "Genere",
                 element: "imputgenere",
-                condition: (value) => { return value.match(" /^[a-zA-Z0-9]/") },
+                condition: (value) => { return value.match(" /^[a-zA-Z]/") },
                 error_message:"genere puo contenere solo caratteri alfanumerici"
             },
             {
                 name: "Descrizione",
                 element: "imputdescizione",
-                condition: (value) => { return value.match(" /^[a-zA-Z0-9]/") },
-                error_message: "descrizione puo contenere solo caratteri alfanumerici"
+                condition: (value) => { return true; },
+                error_message: ""
             },
             {
                 name: "DataUscita",

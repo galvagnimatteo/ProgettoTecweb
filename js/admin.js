@@ -21,55 +21,56 @@ var forms = [
             {
                 name:"Titolo",
                 element:"imputtitolo",
-                condition: (value) => { return value.match(" /^[a-zA-Z0-9]/") },
+                condition: function (value) {return value.match("/^[a-zA-Z0-9]/");
+                },
                 error_message:"titolo puo contenere solo caratteri alfanumerici e spazi"
             },
             {
                 name: "Genere",
                 element: "imputgenere",
-                condition: (value) => { return value.match(" /^[a-zA-Z]/") },
+                condition: function (value) { return value.match("/^[a-zA-Z]/"); },
                 error_message:"genere puo contenere solo caratteri alfanumerici"
             },
             {
                 name: "Descrizione",
                 element: "imputdescizione",
-                condition: (value) => { return true; },
+                condition: function (value) { return true; },
                 error_message: ""
             },
             {
                 name: "DataUscita",
                 element: "imputdatauscita",
-                condition: (value) => { return true; },
+                condition: function (value) { return true; },
                 error_message:""
             },
             {
                 name: "SrcImg",
                 element: "imputimmagine",
-                condition: (value) => { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/") },
+                condition: function (value) { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/"); },
                 error_message:"l'immagine deve essere un url valido"
             },
             {
                 name: "CarouselImg",
                 element: "imputcarousel",
-                condition: (value) => { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/") },
+                condition: function (value) { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/"); },
                 error_message: "l'immagine deve essere un url valido"
             },
             {
                 name: "Durata",
                 element: "imputdurata",
-                condition: (value) => { return value > 0; },
+                condition: function (value) { return value > 0; },
                 error_message: "la durata deve essere un numero maggiore di 0"
             },
             {
                 name: "Attori",
                 element: "imputattori",
-                condition: (value) => { return true },
+                condition: function (value) { return true; },
                 error_message:""
             },
             {
                 name: "Regista",
                 element: "imputregista",
-                condition: (value) => { return true },
+                condition: function (value) { return true; },
                 error_message:""
             }
         ]
@@ -84,25 +85,25 @@ var forms = [
             {
                 name: "film",
                 element: "filmselector",
-                condition: (value) => { return true },
+                condition: function (value) { return true },
                 error_message: ""
             },
             {
                 name: "sala",
                 element: "imputsala",
-                condition: (value) => { return true },
+                condition: function (value) { return true },
                 error_message: ""
             },
             {
                 name: "Giorno",
                 element: "imputgiorno",
-                condition: (value) => { return true },
+                condition: function (value) { return true },
                 error_message: ""
             },
             {
                 name: "Orario",
                 element: "imputorario",
-                condition: (value) => { return true },
+                condition: function (value) { return true },
                 error_message: ""
             }
         ]
@@ -173,75 +174,83 @@ function request_projection() {
 }
 
 function post_film() {
+    try {
+        var data = check_fields(forms[0]);
+        if (data) {
+            let url = "./api/films.php";
 
-    let data = check_fields(forms[0]);
-    if (!data) {
-        return;
-    }
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", url);
 
-    let url = "./api/films.php";
+            //xhr.setRequestHeader("Accept", "application/json");
+            //xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url);
 
-    //xhr.setRequestHeader("Accept", "application/json");
-    //xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-    
-    let urlEncodedData = "action=insert", name;
-    for (index in data) {
-        var field = data[index];
-        urlEncodedData += "&" + encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value);
-    }
-    xhr.send(urlEncodedData);
-    xhr.onload = function () {        
-        var data = JSON.parse(xhr.responseText);
-        var status = data.status;
-        if (status === "ok") {
-            var films = data.films;
-            updatehtml_film(films);
-            document.getElementById("result_insert_film").innerText = "inserimento avvenuto con successo"
+            let urlEncodedData = "action=insert";
+            for (index in data) {
+                var field = data[index];
+                urlEncodedData += "&" + encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value);
+            }
+            xhr.send(urlEncodedData);
+            xhr.onload = function () {
+                console.log(xhr.responseText);
+                var data = JSON.parse(xhr.responseText);
+                var status = data.status;
+                if (status === "ok") {
+                    var films = data.films;
+                    updatehtml_film(films);
+                    document.getElementById("result_insert_film").innerText = "inserimento avvenuto con successo"
+                }
+                else {
+                    document.getElementById("result_insert_film").innerText = status;
+                }
+            };
         }
-        else {
-            document.getElementById("result_insert_film").innerText = status;
-        }        
-    };
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
 function post_projection() {
-    var data = check_fields(forms[1]);
-    if (!data) {
-        return;
-    }
-    let url = "./api/proiezioni.php";
+    try {
+        var data = check_fields(forms[1]);
+        if (data) {
+            let url = "./api/proiezioni.php";
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url);
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", url);
 
-    //xhr.setRequestHeader("Accept", "application/json");
-    //xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    let urlEncodedData = "action=insert", name;
-    for (index in data) {
-        var field = data[index];
-        urlEncodedData += "&" + encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value);
-    }
-    xhr.send(urlEncodedData);
+            //xhr.setRequestHeader("Accept", "application/json");
+            //xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            let urlEncodedData = "action=insert";
+            for (index in data) {
+                var field = data[index];
+                urlEncodedData += "&" + encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value);
+            }
+            xhr.send(urlEncodedData);
 
-    xhr.onload = function () {                
-        var data = JSON.parse(xhr.responseText);
-        var status = data.status;
-        if (status === "ok") {
-            var proiezioni = data.proiezioni;
-            updatehtml_projection(proiezioni);
-            document.getElementById("result_insert_projection").innerText = "inserimento avvenuto con successo"
+            xhr.onload = function () {
+                //console.log(xhr.responseText);
+                var data = JSON.parse(xhr.responseText);
+                var status = data.status;
+                if (status === "ok") {
+                    var proiezioni = data.proiezioni;
+                    updatehtml_projection(proiezioni);
+                    document.getElementById("result_insert_projection").innerText = "inserimento avvenuto con successo"
+                }
+                else {
+                    document.getElementById("result_insert_projection").innerText = status;
+                }
+            };
         }
-        else {
-            document.getElementById("result_insert_projection").innerText = status;
-        }        
-    };
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
 
 function delete_film(id) {
@@ -335,15 +344,16 @@ function check_fields(form) {
     var data = [];
     for (index in fields) {
         var field = fields[index];
-        value = document.getElementById(field.element);
+        value = document.getElementById(field.element).value;
         if (!field.condition(value)) {
             form.status_element.innerText = field.error_message;
-            return false;
+            //return false;
         }
-        data[i] = {
+        data[index] = {
             name: field.name,
             value: value
         }
+
     }
     return data;
 }
@@ -370,6 +380,3 @@ function check_fields(form) {
         request_projection();
     }
         , 30000);
-
-
-

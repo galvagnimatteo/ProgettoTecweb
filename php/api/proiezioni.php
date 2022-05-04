@@ -26,21 +26,20 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             isset($_POST['Orario']) &&
             isset($_POST['Giorno']) 
             )
-        {
-            $IDFilm      = return_cleaned( $_POST['film']);
-            $NumeroSala  = return_cleaned( $_POST['sala']);
-            $Data        = return_cleaned($_POST['Giorno']);
-            $orario      = return_cleaned($_POST['Orario']);
+    {
+            $IDFilm      = $_POST['film'];
+            $NumeroSala  = $_POST['sala'];
+            $Data        = $_POST['Giorno'];
+            $orario      = $_POST['Orario'];
 
 
 
-            $check=CheckProiezione(
-                $Data,
-                $IDFilm,
-                $NumeroSala,
-                $orario
-            );
-        );
+        $check=CheckProiezione(
+            $Data,
+            $IDFilm,
+            $NumeroSala,
+            $orario
+        );        
         if($check=="OK"){
             $query =
                 'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala,Orario) VALUES (?,?,?,?)';
@@ -60,6 +59,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             else{
                 $reply->status="errore interno";
             }
+        }
         else{
             $reply->status=$check;
         }

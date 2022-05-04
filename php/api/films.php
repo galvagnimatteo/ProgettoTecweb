@@ -33,15 +33,15 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
     {
         $Titolo         = return_cleaned($_POST['Titolo']);
         $Genere         = return_cleaned($_POST['Genere']);
-        $DataUscita     = return_cleaned($_POST['DataUscita']);
+        $DataUscita     = $_POST['DataUscita'];
         $Descrizione    = return_cleaned($_POST['Descrizione']);
         $SrcImg         = return_cleaned($_POST['SrcImg']);
-        $Durata         = return_cleaned( $_POST['Durata']);       
+        $Durata         = $_POST['Durata'];       
         $CarouselImg    = return_cleaned($_POST['CarouselImg']);
         $Attori         = return_cleaned($_POST['Attori']);
         $Regista        = return_cleaned($_POST['Regista']);
 
-        $check=CheckFilm(
+        $check= CheckFilm(
             $Titolo,
             $Genere,
             $DataUscita,

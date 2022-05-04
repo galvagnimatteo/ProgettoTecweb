@@ -78,7 +78,7 @@ function CheckFilm(
 
     $genereRegrex = "/^[a-zA-Z]/";
 
-    if (!preg_match($nameRegrex, $Genere)) {
+    if (!preg_match($genereRegrex, $Genere)) {
         return "Il genere può essere composto da sole lettere.";
     }
 
@@ -117,7 +117,7 @@ function pulisci(&$value)
 function return_cleaned($value)
 {
     pulisci($value);
-    return$value;
+    return $value;
 }
 
 ?>

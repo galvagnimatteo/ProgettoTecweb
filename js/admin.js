@@ -195,7 +195,7 @@ function post_film() {
             }
             xhr.send(urlEncodedData);
             xhr.onload = function () {
-                console.log(xhr.responseText);
+                //console.log(xhr.responseText);
                 var data = JSON.parse(xhr.responseText);
                 var status = data.status;
                 if (status === "ok") {
@@ -314,7 +314,7 @@ function generate_entry_projection(entry) {
         '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</button >' +
         '</td ><td>'
         + entry.data + "</td><td>"
-        + entry.numeroSala + "</td><td>" +
+        + entry.numeroSala + "</td><td>"
         + entry.titolofilm + "</td><td>" +
         entry.orario + "</td></tr>";
     return result;

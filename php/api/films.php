@@ -89,7 +89,7 @@ else{
     if (isset($_POST['action'])&&$_POST['action']=='delete')
     {
         $id = $_POST['idfilm'];
-        query='SELECT count(*) FROM Proiezione where IDFilm=?';
+        $query='SELECT count(*) FROM Proiezione where IDFilm=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',
@@ -120,7 +120,7 @@ else{
 }
 $films;
 $resultFilms = $connection
-    ->query('SELECT * FROM Film WHERE  ORDER BY DataUscita DESC');
+    ->query('SELECT * FROM Film WHERE DATEDIFF(DataUscita, CURRENT_DATE())> -35 ORDER BY DataUscita DESC');
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;

@@ -70,24 +70,35 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 }else{
     if (isset($_POST['action'])&&$_POST['action']=='delete'){
         $id = $_POST['idproiezione'];
-        $query =
-            'delete FROM Proiezione where ID=?;';
+        query='SELECT count(*) FROM Prenotazione where IDProiezione=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',
             $id
         );
-
         $res=$preparedQuery->execute();
-        if($res){
-            $reply->status="ok";
+        if($res->fetch_array(MYSQLI_NUM)[0]==0){
+            $query =
+                'delete FROM Proiezione where ID=?;';
+            $preparedQuery = $connection->prepare($query);
+            $preparedQuery->bind_param(
+                's',
+                $id
+            );
+
+            $res=$preparedQuery->execute();
+            if($res){
+                $reply->status="ok";
+            }
+            else{
+                $reply->status="errore interno";
+            }
+            $preparedQuery->close();
         }
-        else{
-            $reply->status="errore interno";
+        else {
+            $reply->status="impossibile eliminare una proiezione con prenotazioni";//TODO gestione cancellazione prenotazioni
         }
-        $preparedQuery->close();
     }
-    
 }
 $proiezioni;
 $resultproiezioni = $connection

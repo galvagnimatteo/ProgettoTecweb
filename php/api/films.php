@@ -89,27 +89,38 @@ else{
     if (isset($_POST['action'])&&$_POST['action']=='delete')
     {
         $id = $_POST['idfilm'];
-        $query =
-            'delete FROM Film where ID=?;';
+        query='SELECT count(*) FROM Proiezione where IDFilm=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',
             $id
         );
-
-        $res=$preparedQuery->execute();        
-        $preparedQuery->close();
-        if($res){
-            $reply->status="ok";
+        $res=$preparedQuery->execute();
+        if($res->fetch_array(MYSQLI_NUM)[0]==0){
+            $query =
+                'delete FROM Film where ID=?;';
+            $preparedQuery = $connection->prepare($query);
+            $preparedQuery->bind_param(
+                's',
+                $id
+            );
+            $res=$preparedQuery->execute();        
+            $preparedQuery->close();
+            if($res){
+                $reply->status="ok";
+            }
+            else{
+                $reply->status="errore interno";
+            }
         }
-        else{
-            $reply->status="errore interno";
+        else {
+            $reply->status="impossibile eliminare un Film con proiezioni";
         }
     }
 }
 $films;
 $resultFilms = $connection
-    ->query('SELECT * FROM Film ORDER BY DataUscita DESC');
+    ->query('SELECT * FROM Film WHERE  ORDER BY DataUscita DESC');
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;

@@ -76,7 +76,8 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             's',
             $id
         );
-        $res=$preparedQuery->execute();
+        $preparedQuery->execute();
+        $res=$preparedQuery->get_result();
         if($res->fetch_array(MYSQLI_NUM)[0]==0){
             $query =
                 'delete FROM Proiezione where ID=?;';

@@ -95,7 +95,8 @@ else{
             's',
             $id
         );
-        $res=$preparedQuery->execute();
+        $preparedQuery->execute();
+        $res=$preparedQuery->get_result();
         if($res->fetch_array(MYSQLI_NUM)[0]==0){
             $query =
                 'delete FROM Film where ID=?;';

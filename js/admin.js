@@ -266,6 +266,7 @@ function delete_film(id) {
 
     xhr.send('action=delete&idfilm=' + id);
     xhr.onload = function () {
+        console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {

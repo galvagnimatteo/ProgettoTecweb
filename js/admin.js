@@ -290,7 +290,9 @@ function updatehtml_film(films) {
     for (entryindex in films) {
         var entry = films[entryindex];
         filmlist += generate_entry_film(entry);
-        filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
+        if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
+            filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
+        }        
     }
     document.getElementById("filmlist").innerHTML = filmlist;
     document.getElementById("filmselector").innerHTML = filmoptions;

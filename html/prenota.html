@@ -1,7 +1,7 @@
 <div id="content">
 <div id="filmData-pren">
 	<h2> Acquista i biglietti per <FILM-TITLE> </h2>
-	<h3> <PROJ-DATA>, Sala <NUM-SALA> </h3>
+	<h3> <PROJ-DATA> <TIME-PROJ>, Sala <NUM-SALA> </h3>
 
 	<p role="alert" class="warning hide" id="warnPosti"> <strong>Affrettati</strong>, ci sono ancora pochi posti liberi, ma potresti non trovare posti vicini,
 				puoi provare a deselezionare la casella "Posti vicini" e ti verranno selezionati dei posti casuali.</p>
@@ -19,12 +19,13 @@
 	<input type="hidden" name="dataIta" value="<PROJ-DATA>" />
 	<input type="hidden" name="pint" value="<FULL-PRICE>" />
 	<input type="hidden" name="prid" value="<DISC-PRICE>" />
+	<input type="hidden" name="seats" value="" id="seatsString" />
 
 	<fieldset id="modeSelectGroup">
 		<legend> Scegli la modalità di selezione dei posti: </legend>
-		<label for="selezAuto">
-		<input type="radio" id="selezAuto" name="modSelezPosti" checked  value="auto"/>
-		<span>Selezione automatica posti </span>
+		<label for="selezTestuale">
+		<input type="radio" id="selezTestuale" name="modSelezPosti" checked  value="text"/>
+		<span>Selezione testuale posti </span>
 		</label>
 
 
@@ -37,8 +38,11 @@
 
 
 	<fieldset id="ticketInfoGroup">
-	<legend>Scegli in numero di biglietti (max 4):</legend>
-	<span class="noscript"> Il numero <strong>totale</strong> dei biglietti (intero + ridotto) non deve essere maggiore di 4 </span>
+	<legend>Scegli in numero di biglietti (massimo 4 in totale):</legend>
+	
+	<p role="alert" class="aiutocompilaz hide"> Scegli prima il numero di biglietti da acquistare </p>
+	<p class="aiutocompilaz hide"> <strong>Attenzione</strong>, ci sono ancora posti da selezionare </p>
+	<p role="alert" class="aiutocompilaz hide"> Hai selezionato due posti uguali </p>
 	<div class="labelPos">
 		<label for="selectNumTicketInt">Intero, <FULL-PRICE-FORMAT> € : </label>
 	<select id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>">
@@ -48,7 +52,7 @@
 		<option value="3">3</option>
 		<option value="4">4</option>
 	</select>
-	<span class="aiutocompilaz hide"> Scegli prima il numero di biglietti da acquistare </span>
+	
 	</div>
 
 	<div class="labelPos noBorder">
@@ -61,82 +65,186 @@
 		<option value="2">2</option>
 		<option value="3">3</option>
 		<option value="4">4</option>
+	
 	</select>
-	<span class="aiutocompilaz hide"> Scegli prima il numero di biglietti da acquistare </span>
 	</div>
 
-
-
-	<div id="postiViciniCheck" class="labelPos noBorder">
-	<label for="postiViciniFlag">Posti vicini</label>
-	<input type="checkbox" id="postiViciniFlag" name="postiVicini" checked value="check"/>
-	</div>
+	<span class="noscript"> Il numero <strong>totale</strong> dei biglietti (intero + ridotto) non deve essere maggiore di 4 </span>
 
 	</fieldset>
+	
+	<fieldset id="textSelectGroup" data-posti-occupati="<POSTI-OCCUPATI>">
+	<legend> Seleziona i posti: </legend>
+	
+	<div class="textSelectContainer">
+	<fieldset class="selezPostoFieldset hide">
+	<legend>Posto 1:</legend>
+	<label for="p1fila"> Fila: </label>
+	
+		<select id="p1fila" name="p1fila">
+			<option value="a">A</option>
+			<option value="b">B</option>
+			<option value="c">C</option>
+			<option value="d">D</option>
+			<option value="e">E</option>
+			<option value="f">F</option>
+			<option value="g">G</option>
 
+		</select>
+		<label for="p1numero"> Numero: </label>
+		<select id="p1numero" name="p1numero">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+		</select>
+	
+	</fieldset>
+	
+	<fieldset class="selezPostoFieldset hide">
+	<legend>Posto 2:</legend>
+	<label for="p2fila"> Fila: </label>
+	
+		<select id="p2fila" name="p2fila">
+			<option value="a">A</option>
+			<option value="b">B</option>
+			<option value="c">C</option>
+			<option value="d">D</option>
+			<option value="e">E</option>
+			<option value="f">F</option>
+			<option value="g">G</option>
 
-		<fieldset id="autoRadioGroup">
-		<legend> Scegli la categoria dei posti: </legend>
-		<label for="selezDavanti">
-			<input type="radio" id="selezDavanti" name="catPosti" checked value="davanti" />
-		<span>File anteriori
+		</select>
+		<label for="p2numero"> Numero: </label>
+		<select id="p2numero" name="p2numero">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+		</select>
+	
+	</fieldset>
+	
+	</div>
+	
+	<div class="textSelectContainer">
+	<fieldset class="selezPostoFieldset hide">
+	<legend>Posto 3:</legend>
+	<label for="p3fila"> Fila: </label>
+	
+		<select id="p3fila" name="p3fila">
+			<option value="a">A</option>
+			<option value="b">B</option>
+			<option value="c">C</option>
+			<option value="d">D</option>
+			<option value="e">E</option>
+			<option value="f">F</option>
+			<option value="g">G</option>
 
-		<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
-		<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>
+		</select>
+		<label for="p3numero"> Numero: </label>
+		<select id="p3numero" name="p3numero">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+		</select>
+	
+	</fieldset>
+	
+	<fieldset class="selezPostoFieldset hide">
+	<legend>Posto 4:</legend>
+	<label for="p4fila"> Fila: </label>
+	
+		<select id="p4fila" name="p4fila">
+			<option value="a">A</option>
+			<option value="b">B</option>
+			<option value="c">C</option>
+			<option value="d">D</option>
+			<option value="e">E</option>
+			<option value="f">F</option>
+			<option value="g">G</option>
 
-		<span class="postiLiberi" id="pDv" data-max-seq="<MAX-SEQ-DV>" data-posti-lib="<POSTI-LIB>"> Ci sono ancora posti liberi </span>
-		</span>
-		</label>
+		</select>
+		<label for="p4numero"> Numero: </label>
+		<select id="p4numero" name="p4numero">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+		</select>
+	
+	</fieldset>
+	</div>
+	
+	
+	</fieldset>
 
-		<label for="selezCentro">
-			<input type="radio" id="selezCentro" name="catPosti"  value="centrale"/>
-		<span>File centrali
-		<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
-		<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>
-
-		<span class="postiLiberi" id="pCe" data-max-seq="<MAX-SEQ-CE>" data-posti-lib="<POSTI-LIB>"> Ci sono ancora posti liberi </span>
-		</span>
-		</label>
-
-		<label for="selezDietro">
-			<input type="radio" id="selezDietro" name="catPosti"  value="dietro"/>
-		<span>File posteriori
-		<span class="prezzo">Prezzo intero: <FULL-PRICE-FORMAT> € </span>
-		<span class="prezzo">Prezzo ridotto: <DISC-PRICE-FORMAT> € </span>
-		<span class="postiLiberi" id="pDt" data-max-seq="<MAX-SEQ-DT>" data-posti-lib="<POSTI-LIB>"> Ci sono ancora posti liberi </span>
-
-		</span>
-		</label>
-
-		</fieldset>
-
-
+	
+	
 
 	<fieldset id="manualContainer" >
 		<legend> Scegli i posti in sala: </legend>
+		
+		<div id="legenda">
+		<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero non selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
+		<g class="legSvg libero"><circle cx="30" cy="30" r="20" /><text class="codicePosto" x="23" y="38">1</text><line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50" /></g>
+		</svg> <span class="legLabel">Posto libero non selezionato</span></span>
 
+		<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto occupato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
+		<g class="legSvg occupato"><circle cx="30" cy="30" r="20" /><text class="codicePosto" x="23" y="38">1</text><line class="linex" x1="10" y1="10" x2="50" y2="50" /></g>
+		</svg> <span class="legLabel">Posto occupato</span></span>
 
-		<p class="aiutocompilaz hide"> <strong>Attenzione</strong>, ci sono ancora posti da selezionare </p>
+		<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg" tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
+		<g class="legSvg libero selezionato"><circle cx="30" cy="30" r="20" /> <text class="codicePosto" x="23" y="38">1</text> <line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50" /></g>
+		</svg> <span class="legLabel">Posto libero selezionato</span></span>
+		</div>
 
-
-
-		<input type="hidden" name="seats" value="" id="seatsString" />
-			<div id="legenda">
-			<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero non selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
-			<g class="legSvg libero"><circle cx="30" cy="30" r="20" /><text class="codicePosto" x="23" y="38">1</text><line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50" /></g>
-			</svg> <span class="legLabel">Posto libero non selezionato</span></span>
-
-			<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto occupato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg"  tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
-			<g class="legSvg occupato"><circle cx="30" cy="30" r="20" /><text class="codicePosto" x="23" y="38">1</text><line class="linex" x1="10" y1="10" x2="50" y2="50" /></g>
-			</svg> <span class="legLabel">Posto occupato</span></span>
-
-			<span class="labelContLeg"><svg role="img" aria-label="legenda mappa posti: posto libero selezionato" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg" tabindex="0"><rect class="sfondosvg" width="100%" height="100%" />
-			<g class="legSvg libero selezionato"><circle cx="30" cy="30" r="20" /> <text class="codicePosto" x="23" y="38">1</text> <line class="linex nascondilinea" x1="10" y1="10" x2="50" y2="50" /></g>
-			</svg> <span class="legLabel">Posto libero selezionato</span></span>
-			</div>
-
-			<SVG-SEATS-MAP>
-
+		<SVG-SEATS-MAP>
 
 		</fieldset>
 

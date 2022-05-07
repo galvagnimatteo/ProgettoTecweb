@@ -1,15 +1,24 @@
 var mappaPosti = document.getElementById("scene");
-var autoCard = document.getElementById("autoRadioGroup");
+var textCard = document.getElementById("textSelectGroup");
 var manualCard = document.getElementById("manualContainer");
-var postiViciniCheck = document.getElementById("postiViciniCheck");
-var postiViciniFlag = document.getElementById("postiViciniFlag");
-var autoRadioBtn = document.getElementById("selezAuto");
+var textRadioBtn = document.getElementById("selezTestuale");
 var manualRadioBtn = document.getElementById("selezManual");
 var selectNumTicketInt = document.getElementById("selectNumTicketInt");
 var selectNumTicketRed = document.getElementById("selectNumTicketRed");
 var submitButton = document.getElementById("acquistaBtn");
+var textSelectList = [
+	document.getElementById("p1fila"),
+	document.getElementById("p1numero"),
+	document.getElementById("p2fila"),
+	document.getElementById("p2numero"),
+	document.getElementById("p3fila"),
+	document.getElementById("p3numero"),
+	document.getElementById("p4fila"),
+	document.getElementById("p4numero")
+]
 
 var listaPosti = [];
+var mappaPostiOccupati = {"a":[], "b":[], "c":[], "d":[], "e":[], "f":[], "g":[]};
 const MAX_POSTI_SELEZIONABILI = 4;
 const MAX_POSTI = 7*15; //tutte le sale sono uguali
 
@@ -20,8 +29,7 @@ const messaggi = {
 };
 
 manualRadioBtn.addEventListener("change", changeCard);
-autoRadioBtn.addEventListener("change", changeCard);
-
+textRadioBtn.addEventListener("change", changeCard);
 
 selectNumTicketInt.addEventListener("change", calcolaPrezzoTot);
 selectNumTicketRed.addEventListener("change", calcolaPrezzoTot);
@@ -32,30 +40,55 @@ selectNumTicketRed.addEventListener("change", dynamicOption);
 selectNumTicketInt.addEventListener("change", pulisciPostiSelezionati);
 selectNumTicketRed.addEventListener("change", pulisciPostiSelezionati);
 
-selectNumTicketInt.addEventListener("change", controllaInput);
-selectNumTicketRed.addEventListener("change", controllaInput);
+selectNumTicketInt.addEventListener("change", mostraScelteTestuali);
+selectNumTicketRed.addEventListener("change", mostraScelteTestuali);
+
+//selectNumTicketInt.addEventListener("change", controllaInput);
+//selectNumTicketRed.addEventListener("change", controllaInput);
+
+
+//genera mappa posti occupati
+arrayPostiOccupati = document.getElementById("textSelectGroup").dataset.postiOccupati.split(",");
+for (var i = 0; i < arrayPostiOccupati.length; i++) {
+	let posto = arrayPostiOccupati[i]
+	mappaPostiOccupati[posto.charAt(0)].push(posto.substring(1));
+}
+
 
 document.getElementById("purchaseTicketForm").addEventListener("submit", function(event) {
+	event.preventDefault();
 	var tot = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
 	var aiuto = document.getElementsByClassName("aiutocompilaz");
-	var arrPosti = document.getElementById("seatsString").value.split(",");
+	var arrPosti;
+	if (textRadioBtn.checked) {
+		arrPosti = []
+		for (var i = 0; i < tot*2; i+=2) {
+			arrPosti.push(textSelectList[i].value + textSelectList[i+1].value);
+			
+		}
+		arrPosti = arrPosti.join(",");
+	} else {
+		arrPosti = document.getElementById("seatsString").value.split(",");
+	}
+	
 	var numPostiSelez = arrPosti.length;
-	console.log(numPostiSelez);
 	
 	if (tot == 0) {
 		aiuto[0].setAttribute("class", "aiutocompilaz");
-		aiuto[1].setAttribute("class", "aiutocompilaz");
-		aiuto[0].focus();
-		
 		event.preventDefault(); // non fa submit
-		
 		return false; //su qualche browser senza questo non va
-	} else if (tot > numPostiSelez && manualRadioBtn.checked) {
+	
+	} else if (tot > numPostiSelez) {
+		aiuto[1].setAttribute("class", "aiutocompilaz");
+		event.preventDefault(); 
+		return false;
+		
+	} else if (duplicati(arrPosti)) {
 		aiuto[2].setAttribute("class", "aiutocompilaz");
 		event.preventDefault(); 
-		
 		return false;
 	}
+	return false;
 	
 	
 });
@@ -72,7 +105,8 @@ for (var i = 0; i < posti.length; i++) {
 
 changeCard(null);
 calcolaPrezzoTot(null);
-controllaInput(null);
+//controllaInput(null);
+mostraScelteTestuali(null);
 submitButton.innerHTML = "Acquista 0 biglietti, Totale: 0,00 €";
 
 var panzoomController = panzoom(mappaPosti, {
@@ -85,15 +119,13 @@ var panzoomController = panzoom(mappaPosti, {
 
 
 function changeCard(event) {
-	if (autoRadioBtn.checked) {
+	if (textRadioBtn.checked) {
 		manualCard.style.display = "none";
-		autoCard.style.display = "flex";
-		postiViciniCheck.style.display = "flex";
+		textCard.style.display = "flex";
 	} 
 	else {
 		manualCard.style.display = "flex";
-		postiViciniCheck.style.display = "none";
-		autoCard.style.display = "none";
+		textCard.style.display = "none";
 	}
 }
 
@@ -117,6 +149,8 @@ function maxOption(max, target) {
 	}
 	
 }
+
+
 
 function dynamicOption(event) {
 	
@@ -148,6 +182,7 @@ function calcolaPrezzoTot(event) {
 	//tolgo anche gli aiuti se sono visibili
 	if (nInt + nRid > 0) {
 		var aiuto = document.getElementsByClassName("aiutocompilaz");
+		
 		aiuto[0].setAttribute("class", "aiutocompilaz hide");
 		aiuto[1].setAttribute("class", "aiutocompilaz hide");
 	}
@@ -178,7 +213,7 @@ function selezionePosto(event) {
 	
 	
 }
-
+/*
 function controllaInput(event) {
 	var totPosti = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
 
@@ -254,9 +289,10 @@ function controllaInput(event) {
 	}
 	
 }
+*/
 
 function pulisciPostiSelezionati(event) {
-	if (!autoRadioBtn.checked) {
+	if (!textRadioBtn.checked) {
 		listaPosti = [];
 		inputListaPosti.setAttribute("value", listaPosti.join());
 		var list = document.getElementsByClassName("seat");
@@ -269,3 +305,30 @@ function pulisciPostiSelezionati(event) {
 	}
 }
 
+function mostraScelteTestuali(event) {
+	var tot = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
+	var selezPostiList = document.getElementsByClassName("selezPostoFieldset");
+	
+	
+	for (var i = 0; i < MAX_POSTI_SELEZIONABILI; i++) {
+		if (i < tot) {
+			selezPostiList[i].setAttribute("class", "selezPostoFieldset");
+		} else {
+			selezPostiList[i].setAttribute("class", "selezPostoFieldset hide");
+		}
+	}
+}
+
+function duplicati(arr) {
+    var map = {}, i, size;
+
+    for (i = 0, size = arr.length; i < size; i++){
+        if (map[arr[i]]){
+            return true;
+        }
+
+        map[arr[i]] = true;
+    }
+
+    return false;
+}

@@ -1174,8 +1174,7 @@ div.labelqp select {
 	justify-content: space-evenly;
 }
 
-#modeSelectGroup label,
-#autoRadioGroup label {
+#modeSelectGroup label {
 	display: block;
 	background-color: var(--primary-color);
 	border: 2px solid var(--secondary-color);
@@ -1190,29 +1189,32 @@ div.labelqp select {
 	font-weight: 800;
 }
 
-#autoRadioGroup label:checked {
+#textSelectGroup label:checked {
 	color: #000;
 }
 
-#autoRadioGroup {
+#textSelectGroup {
 	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
 	align-items: stretch;
+	justify-content: space-around
 }
 
-#autoRadioGroup {
-	display: flex;
-	flex-direction: column;
-}
 
-#ticketInfoGroup select {
+#ticketInfoGroup select,  
+#textSelectGroup select {
 	color: #000;
-	min-width: 2.5rem;
+	min-width: 3rem;
 	min-height: 1.5rem;
 }
 
-#ticketInfoGroup option {
+.textSelectContainer {
+	
+	margin: 1rem;
+	
+}
+
+#ticketInfoGroup option, 
+#textSelectGroup option {
 	color: #000;
 }
 
@@ -1221,6 +1223,12 @@ div.labelqp select {
 	border: 0;
 	border-top: 2px solid var(--secondary-color);
 }
+
+#purchaseTicketForm .selezPostoFieldset {
+	margin-top: 1.5rem;
+	border: 0;
+}
+
 
 #purchaseTicketForm legend {
 	padding: 0.3rem;

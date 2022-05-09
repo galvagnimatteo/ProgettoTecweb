@@ -137,7 +137,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 }
 $proiezioni;
 $resultproiezioni = $connection
-    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm AND DATEDIFF(Data, CURRENT_DATE())> 0');
+    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario,Durata FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm AND DATEDIFF(Data, CURRENT_DATE())> 0');
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;
@@ -149,6 +149,7 @@ while ($row = $resultproiezioni->fetch_assoc()) {
     $proiezione->titolofilm=$row['Titolo'];
     $proiezione->numeroSala=$row['NumeroSala'];
     $proiezione->orario=$row['Orario'];
+    $proiezione->durata=$row['Durata'];
     $proiezioni[$i]=$proiezione;
     $i++;
 }

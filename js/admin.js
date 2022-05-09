@@ -249,7 +249,12 @@ function delete_film(id) {
         if (status === "ok") {
             var films = data.films;
             updatehtml_film(films);
-        }        
+            document.getElementById("deletefilmstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+        }
+        else {
+            document.getElementById("deletefilmstatus").firstChild.textContent = status;
+        }
+        document.getElementById("deletefilmstatus").className = "open";
     };
 }
 function delete_projection(id) {
@@ -271,7 +276,16 @@ function delete_projection(id) {
         if (status === "ok") {
             var proiezioni = data.proiezioni;
             updatehtml_projection(proiezioni);            
-        }        
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+        }
+        else {
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = status;
+        }
+        document.getElementById("deleteprojectionstatus").className = "open";
+        setTimeout(function () {
+            document.getElementById("deleteprojectionstatus").className = "closed";
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
+        },5000)
     };
 }
 
@@ -301,7 +315,7 @@ function updatehtml_film(films) {
 function generate_entry_film(entry) {
     
     result = "<tr class='entry' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
+        '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -311,12 +325,13 @@ function generate_entry_film(entry) {
 }
 function generate_entry_projection(entry) {
     result = "<tr class='entry' ><td class='entryfunctions'>" +
-        '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</button >' +
+        '<a href="#deleteprojectionstatus" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</a >' +
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
         + entry.titolofilm + "</td><td>" +
-        entry.orario + "</td></tr>";
+        + entry.orario + "</td><td>" +
+        entry.durata + "</td></tr>";
     return result;
 }
 

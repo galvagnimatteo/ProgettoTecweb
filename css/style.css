@@ -1745,9 +1745,11 @@ display: block;
 #admin form input,
 #admin form select,
 #admin form option,
+#admin form textarea,
 #admin form input:not(:empty),
 #admin form select:not(:empty),
 #admin form option:not(:empty),
+#admin form textarea:not(:empty),
 #admin .submit {
 	align-self: center;
 	width: 80%;
@@ -1765,11 +1767,22 @@ display: block;
 	position:relative;
 	left:10%;
 }
-.open{
-	pointer-events:initial;
+#deletefilmstatus,
+#deleteprojectionstatus {
+	display: block;
+	position: relative;
+	left: 20%;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 2rem;
+	width: 60%;
+	padding: 5px;
+	height: 5rem;
+}
+.open {
+	pointer-events: initial;
 }
 .closed {
 	pointer-events: none;
 	display: none !important;
 }
-

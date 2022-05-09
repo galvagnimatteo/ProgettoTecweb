@@ -18,9 +18,6 @@ function populateQuickpurchaseDate(selectObject){
 
         });
 
-    }else{
-        document.getElementById("selectDate").innerHTML = '<option value="scelta">Scegli una data</option>';
-        document.getElementById("selectHour").innerHTML = '<option value="scelta">Scegli un orario</option>';
     }
 
 }
@@ -46,8 +43,6 @@ function populateQuickpurchaseHour(selectObject){
 
         });
 
-    }else{
-        document.getElementById("selectHour").innerHTML = '<option value="scelta">Scegli un orario</option>';
     }
 
 }

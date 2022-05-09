@@ -143,7 +143,7 @@ if (!empty($result1) && $result1->num_rows > 0) {
         $prenotazione_content = str_replace(
             "<ERRORE-SERVER>",
             '
-			<p role="alert" class="warning"> <strong>Attenzione</strong>, verifica di non aver selezionato più di 4 posti in totale.</p>
+			<p role="alert" class="warning"> <strong>Attenzione</strong>, hai itentato di prenotare più posti di quelli disponibili in totale.</p>
 			',
             $prenotazione_content
         );

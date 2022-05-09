@@ -14,7 +14,7 @@ var mappaPostiOccupati = {"a":[], "b":[], "c":[], "d":[], "e":[], "f":[], "g":[]
 arrayPostiOccupati = document.getElementById("textSelectGroup").dataset.postiOccupati.split(",");
 
 
-var MAX_POSTI_LIBERI = /*7*15 - arrayPostiOccupati.length*/ 5;
+var MAX_POSTI_LIBERI = 7*15 - arrayPostiOccupati.length;
 
 const messaggi = {
 	"libero": "Ci sono ancora posti liberi",
@@ -56,7 +56,7 @@ document.getElementById("purchaseTicketForm").addEventListener("submit", functio
 			arrPosti.push(textSelectList[i].value + textSelectList[i+1].value);
 			
 		}
-		arrPosti = arrPosti.join(",");
+		
 	} else {
 		arrPosti = document.getElementById("seatsString").value.split(",");
 	}
@@ -78,9 +78,10 @@ document.getElementById("purchaseTicketForm").addEventListener("submit", functio
 		event.preventDefault(); 
 		return false;
 	}
-	return false;
 	
-	
+	if (textRadioBtn.checked) {
+		document.getElementById("seatsString").value = arrPosti.join(",");
+	}
 });
 
 

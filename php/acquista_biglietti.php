@@ -59,7 +59,14 @@ $totNumBiglietti =
 
 $postiver = explode(",", $_POST["seats"]);
 
-if ($totNumBiglietti > 4 || count($postiver) > 4) {
+
+
+
+$totPostiLiberi = -1; 
+$statoPosti = mappaPosti($_POST["numSala"], $_POST["idproiez"], $_POST["orario"], $totPostiLiberi);
+
+
+if ($totNumBiglietti > $totPostiLiberi || count($postiver) > $totPostiLiberi) {
     header(
         "Location: prenotazione.php?idproiez=" .
             $_POST["idproiez"] .
@@ -68,28 +75,23 @@ if ($totNumBiglietti > 4 || count($postiver) > 4) {
     die();
 }
 
-
-
-$statoPosti = mappaPosti($_POST["numSala"], $_POST["idproiez"], $_POST["orario"]);
-
-$postoOccupato = false;
-foreach ($statoPosti as &$posto) {
+$postoOccupato = NULL;
+foreach ($postiver as $posto) {
 	if ($statoPosti[$posto] == 1) { //se un posto è occupato
-		$postoOccupato = true;
+		$postoOccupato = $posto;
 		break;
 	}
 }
 
-if ($postoOccupato) {
+if ($postoOccupato != NULL) {
 	header(
 		"Location: prenotazione.php?idproiez=" .
 			$_POST["idproiez"] .
-			"&err_server2=". $posto
+			"&err_server2=". $postoOccupato
 	);
-	unset($posto);
 	die();
 }
-unset($posto);
+
 
 if (count($postiver) < $totNumBiglietti) {
 	header(
@@ -101,7 +103,7 @@ if (count($postiver) < $totNumBiglietti) {
 }
 
 $idPrenotaz = prenotaPosti(
-	$postiver,
+	$_POST["seats"],
 	$username,
 	$_POST["idproiez"],
 	$_POST["numSala"]
@@ -110,7 +112,7 @@ $idPrenotaz = prenotaPosti(
 unset($statoPosti);
 
 if ($idPrenotaz != -1) {
-	generaPaginaConferma($postiver, $idPrenotaz, $totNumBiglietti);
+	generaPaginaConferma($_POST["seats"], $idPrenotaz, $totNumBiglietti);
 
 } else {
 	header("Location: 500.php");

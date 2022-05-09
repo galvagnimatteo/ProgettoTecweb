@@ -1,6 +1,6 @@
 <?php
 
-function mappaPosti($numSala, $idproiez, $orario )
+function mappaPosti($numSala, $idproiez, $orario, &$numPostiLiberi = NULL) //per $numPostiLiberi va passata una variabile inizializzata
 {
     //mappa posti
     $db = SingletonDB::getInstance();
@@ -26,7 +26,7 @@ function mappaPosti($numSala, $idproiez, $orario )
     $db->disconnect();
 
     $postiLiberi = $result1->num_rows - $result2->num_rows;
-
+	
     if (!empty($result1) && $result1->num_rows) {
         $listaPostiQuery = $result1->fetch_all(MYSQLI_ASSOC);
 
@@ -36,7 +36,7 @@ function mappaPosti($numSala, $idproiez, $orario )
             $listaPostiStruct[$fila . $row["Numero"]] = 0; //inizializzo tutti liberi
 
         }
-
+		$count = 0;
         if (!empty($result2) && $result2->num_rows > 0) {
             //se ci sono posti occupati
            
@@ -44,9 +44,14 @@ function mappaPosti($numSala, $idproiez, $orario )
 				$listaPostiStruct[
 					strtolower($row["Fila"]) . $row["Numero"]
 				] = 1; //posti occupati
+				$count++;
 			}
 			
         } 
+		
+		if ($numPostiLiberi != NULL) {
+			$numPostiLiberi = 7*15 - $count;
+		}
 		
         return $listaPostiStruct;
     } else {

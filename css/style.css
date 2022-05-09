@@ -1604,6 +1604,9 @@ display: block;
 #admin a:visited{
 	color:var(--admin-button-text);
 }
+#admin a:hover {
+	color:var(--links-hover-color);
+}
 .formcloser, .formopener {
 	display: block;
 	color: var(--admin-button-text);
@@ -1629,25 +1632,23 @@ display: block;
 	background-image: url(/images/formopener.svg);
 }
 
-.activeoption {
-	background-image: linear-gradient(var(--admin-areaselector-option-color1),var(--admin-areaselector-option-color2));
-	/*background-color: darkred;*/
-	border: none;
-	border-radius: 15px;
+.inactiveoption, .activeoption{
+	border: 2px outset var(--admin-border);
+	border-radius: 10px;
 	box-sizing: border-box;
 	padding: 15px;
+}
+.activeoption {
 	pointer-events: none;
+	background-image: linear-gradient(var(--admin-areaselector-option-color1),var(--admin-areaselector-option-color2));
 }
 .activeoption a:hover{
 	color:inherit;
 }
 
-.inactiveoption {
-	border: none;
-	border-radius: 15px;
-	box-sizing: border-box;
-	padding: 15px;
+.inactiveoption {	
 	pointer-events: initial;
+	background-color:var(--admin-button-background);
 }
 .workarea table {
 	display:table;

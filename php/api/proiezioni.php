@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../utils/controlli.php';
 require_once '../utils/SingletonDB.php';
 $now = time();
     if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
@@ -25,31 +26,42 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             isset($_POST['Orario']) &&
             isset($_POST['Giorno']) 
             )
-        {
-            $IDFilm = $_POST['film'];
-            $NumeroSala = $_POST['sala'];
-            $Data = $_POST['Giorno'];
-            $orario=$_POST['Orario'];
-        $query =
-            'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala,Orario) VALUES (?,?,?,?)';
-        $preparedQuery = $connection->prepare($query);
-        $preparedQuery->bind_param(
-            'ssss',
+    {
+            $IDFilm      = $_POST['film'];
+            $NumeroSala  = $_POST['sala'];
+            $Data        = $_POST['Giorno'];
+            $orario      = $_POST['Orario'];
+
+
+
+        $check=CheckProiezione(
             $Data,
             $IDFilm,
             $NumeroSala,
             $orario
-        );
-
-        
-
-        $res=$preparedQuery->execute();        
-        $preparedQuery->close();
-        if($res){
-            $reply->status="ok";
+        );        
+        if($check=="OK"){
+            $query =
+                'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala,Orario) VALUES (?,?,?,?)';
+            $preparedQuery = $connection->prepare($query);
+            $preparedQuery->bind_param(
+                'ssss',
+                $Data,
+                $IDFilm,
+                $NumeroSala,
+                $orario
+            );
+            $res=$preparedQuery->execute();        
+            $preparedQuery->close();
+            if($res){
+                $reply->status="ok";
+            }
+            else{
+                $reply->status="errore interno";
+            }
         }
         else{
-            $reply->status="errore interno";
+            $reply->status=$check;
         }
     }
     else {
@@ -58,28 +70,40 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 }else{
     if (isset($_POST['action'])&&$_POST['action']=='delete'){
         $id = $_POST['idproiezione'];
-        $query =
-            'delete FROM Proiezione where ID=?;';
+        $query='SELECT count(*) FROM Prenotazione where IDProiezione=?';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',
             $id
         );
+        $preparedQuery->execute();
+        $res=$preparedQuery->get_result();
+        if($res->fetch_array(MYSQLI_NUM)[0]==0){
+            $query =
+                'delete FROM Proiezione where ID=?;';
+            $preparedQuery = $connection->prepare($query);
+            $preparedQuery->bind_param(
+                's',
+                $id
+            );
 
-        $res=$preparedQuery->execute();
-        if($res){
-            $reply->status="ok";
+            $res=$preparedQuery->execute();
+            if($res){
+                $reply->status="ok";
+            }
+            else{
+                $reply->status="errore interno";
+            }
+            $preparedQuery->close();
         }
-        else{
-            $reply->status="errore interno";
+        else {
+            $reply->status="impossibile eliminare una proiezione con prenotazioni";//TODO gestione cancellazione prenotazioni
         }
-        $preparedQuery->close();
     }
-    
 }
 $proiezioni;
 $resultproiezioni = $connection
-    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm');
+    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm AND DATEDIFF(Data, CURRENT_DATE())> -0');
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;

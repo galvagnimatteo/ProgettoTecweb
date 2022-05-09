@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Feb 09, 2022 alle 11:42
+-- Creato il: Mag 03, 2022 alle 17:36
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 8.0.3
 
@@ -20,48 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cinemadb`
 --
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `Afferisce`
---
-
-CREATE TABLE `Afferisce` (
-  `IDFilm` int(11) NOT NULL,
-  `IDCast` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `Afferisce`
---
-
-INSERT INTO `Afferisce` (`IDFilm`, `IDCast`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5),
-(2, 7),
-(2, 8),
-(2, 9),
-(2, 10),
-(2, 11),
-(2, 12),
-(2, 13),
-(2, 14),
-(2, 15),
-(3, 16),
-(3, 17),
-(3, 18),
-(3, 19),
-(3, 20),
-(3, 21),
-(4, 6),
-(4, 22),
-(4, 23),
-(4, 24),
-(4, 25);
 
 -- --------------------------------------------------------
 
@@ -83,51 +41,6 @@ INSERT INTO `Amministratori` (`Username`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `CastFilm`
---
-
-CREATE TABLE `CastFilm` (
-  `Nome` varchar(50) NOT NULL,
-  `Cognome` varchar(50) NOT NULL,
-  `ID` int(11) NOT NULL,
-  `Lingua` char(2) DEFAULT NULL,
-  `Ruolo` char(1) NOT NULL
-) ;
-
---
--- Dump dei dati per la tabella `CastFilm`
---
-
-INSERT INTO `CastFilm` (`Nome`, `Cognome`, `ID`, `Lingua`, `Ruolo`) VALUES
-('Ramona', 'Jones', 1, NULL, 'R'),
-('Allen', 'Hart', 2, NULL, 'A'),
-('Terri', 'Turner', 3, NULL, 'A'),
-('Kevin', 'Gutierrez', 4, NULL, 'R'),
-('Jose', 'Roy', 5, NULL, 'A'),
-('Oliver', 'Carroll', 6, NULL, 'A'),
-('Kelley', 'Hunter', 7, NULL, 'A'),
-('Charles', 'Campbell', 8, NULL, 'A'),
-('Erma', 'Rowe', 9, NULL, 'A'),
-('Sherry', 'Malone', 10, NULL, 'A'),
-('Greg', 'Brady', 11, NULL, 'R'),
-('Constance', 'Fuller', 12, NULL, 'A'),
-('Lila', 'Lawson', 13, NULL, 'A'),
-('Orville', 'Ballard', 14, NULL, 'A'),
-('Carolyn', 'Wallace', 15, NULL, 'A'),
-('Sammy', 'Patrick', 16, NULL, 'A'),
-('Stephanie', 'Hanson', 17, NULL, 'R'),
-('Lyle', 'Bates', 18, NULL, 'A'),
-('Rosalie', 'Benson', 19, NULL, 'A'),
-('Cody', 'Bowers', 20, NULL, 'A'),
-('Josefina', 'Fitzgerald', 21, NULL, 'A'),
-('Bessie', 'Adams', 22, NULL, 'A'),
-('Camille', 'Jackson', 23, NULL, 'A'),
-('Myron', 'Santos', 24, 'en', 'A'),
-('Amanda', 'Ingram', 25, 'en', 'R');
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `Film`
 --
 
@@ -139,119 +52,33 @@ CREATE TABLE `Film` (
   `Descrizione` varchar(3000) NOT NULL,
   `SrcImg` varchar(100) NOT NULL,
   `CarouselImg` varchar(100) NOT NULL,
-  `Durata` int(11) NOT NULL
+  `Durata` int(11) NOT NULL,
+  `Registi` varchar(255) NOT NULL,
+  `Attori` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `Film`
 --
 
-INSERT INTO `Film` (`ID`, `Titolo`, `Genere`, `DataUscita`, `Descrizione`, `SrcImg`, `CarouselImg`, `Durata`) VALUES
-(1, 'Sonic 2', 'Azione', '2022-04-08', 'Dopo essersi stabilito a Green Hills, Sonic è pronto per una maggiore libertà, e Tom e Maddie accettano di lasciarlo a casa mentre vanno in vacanza. Ma, non appena se ne sono andati, il Dr. Robotnik ritorna, questa volta con un nuovo partner, Knuckles, alla ricerca di uno smeraldo che ha il potere di costruire e distruggere le civiltà. Sonic fa squadra con la sua spalla, Tails, e insieme intraprendono un viaggio per trovare lo smeraldo prima che cada nelle mani sbagliate. Diretto da Jeff Fowler e interpretato da Jim Carrey, James Marsden e Ben Schwartz.', 'sonic2-vertical.jpg', 'sonic2.jpg', 100),
-(2, 'Spider-Man: No Way Home', 'Fantastico', '2021-12-15', 'Spider-Man No Way Home, il film diretto da Jon Watts, vede, per la prima volta nella storia cinematografica di Spider-Man, la vera identità del nostro amichevole supereroe di quartiere rivelata al mondo intero.\r\nLa vita del 17enne Peter Parker (Tom Holland), così come quella delle persone a cui tiene, finisce al centro dell\'attenzione dell\'opinione pubblica. I pericoli e il caos che circondano Spider-Man rischiano di costare a Peter, a MJ (Zendaya) e Ned (Jacob Batalon) - che i media considerano suoi complici a tutti gli effetti - l\'ammissione al college.\r\nIncapace di restare a guardare passivamente infrangersi i sogni dei suoi amici, Peter decide di rivolgersi al Dottor Strange (Benedict Cumberbatch), chiedendogli di ripristinare il suo segreto, facendo dimenticare a tutti che Peter Parker è Spider-Man. Strange non può rimanere indifferente alla supplica di Peter e decide di aiutarlo.\r\nPurtroppo, l\'incantesimo dell\'Oblio eseguito da Strange apre uno squarcio nel loro mondo, liberando i più potenti nemici mai affrontati da uno Spider-Man in qualsiasi universo. Ora Peter dovrà superare la sua più grande sfida, che non solo cambierà per sempre il suo futuro, ma anche quello del Multiverso.', 'nowayhome-vertical.jpg', 'nowayhome.jpg', 148),
-(3, 'Uncharted', 'Azione', '2022-02-17', 'Basato su una delle serie di videogiochi più vendute e acclamate dalla critica, Uncharted presenta al pubblico il giovane e furbo Nathan Drake (Tom Holland) nella sua prima avventura alla ricerca del tesoro con l’arguto partner Victor “Sully” Sullivan (Mark Wahlberg). In un’epica avventura piena di azione che attraversa il mondo intero, i due protagonisti partono alla pericolosa ricerca del “più grande tesoro mai trovato”, inseguendo indizi che potrebbero condurli al fratello di Nathan, scomparso da tempo.', 'uncharted-vertical.jpg', 'uncharted.jpg', 125),
-(4, 'Sing 2', 'Animazione', '2021-12-23', 'Sing 2, diretto da Garth Jennings, è il sequel dell\'omonimo film di successo che vedeva un gruppo di animali, capitanati dal koala Buster Moon, che per salvare il Moon Theatre dalla chiusura decide di indire una gara canora così da riportare il teatro al suo vecchio splendore. Questa volta i protagonisti dovranno abbandonare il Moon Theatre per debuttare su un palco ancora più prestigioso. Buster sogna infatti di esibirsi al Crystal Tower Theater nell\'incantevole Redshore City, ma senza nessuna conoscenza non sarà facile.', 'sing2-vertical.jpg', 'sing2.jpg', 105);
+INSERT INTO `Film` (`ID`, `Titolo`, `Genere`, `DataUscita`, `Descrizione`, `SrcImg`, `CarouselImg`, `Durata`, `Registi`, `Attori`) VALUES
+(1, 'Sonic 2', 'Azione', '2022-04-08', 'Dopo essersi stabilito a Green Hills, Sonic è pronto per una maggiore libertà, e Tom e Maddie accettano di lasciarlo a casa mentre vanno in vacanza. Ma, non appena se ne sono andati, il Dr. Robotnik ritorna, questa volta con un nuovo partner, Knuckles, alla ricerca di uno smeraldo che ha il potere di costruire e distruggere le civiltà. Sonic fa squadra con la sua spalla, Tails, e insieme intraprendono un viaggio per trovare lo smeraldo prima che cada nelle mani sbagliate. Diretto da Jeff Fowler e interpretato da Jim Carrey, James Marsden e Ben Schwartz.', 'sonic2-vertical.jpg', 'sonic2.jpg', 100, 'Nome Cognome', 'Attore uno, Attore due, Attore tre'),
+(2, 'Spider-Man: No Way Home', 'Fantastico', '2021-12-15', 'Spider-Man No Way Home, il film diretto da Jon Watts, vede, per la prima volta nella storia cinematografica di Spider-Man, la vera identità del nostro amichevole supereroe di quartiere rivelata al mondo intero.\r\nLa vita del 17enne Peter Parker (Tom Holland), così come quella delle persone a cui tiene, finisce al centro dell\'attenzione dell\'opinione pubblica. I pericoli e il caos che circondano Spider-Man rischiano di costare a Peter, a MJ (Zendaya) e Ned (Jacob Batalon) - che i media considerano suoi complici a tutti gli effetti - l\'ammissione al college.\r\nIncapace di restare a guardare passivamente infrangersi i sogni dei suoi amici, Peter decide di rivolgersi al Dottor Strange (Benedict Cumberbatch), chiedendogli di ripristinare il suo segreto, facendo dimenticare a tutti che Peter Parker è Spider-Man. Strange non può rimanere indifferente alla supplica di Peter e decide di aiutarlo.\r\nPurtroppo, l\'incantesimo dell\'Oblio eseguito da Strange apre uno squarcio nel loro mondo, liberando i più potenti nemici mai affrontati da uno Spider-Man in qualsiasi universo. Ora Peter dovrà superare la sua più grande sfida, che non solo cambierà per sempre il suo futuro, ma anche quello del Multiverso.', 'nowayhome-vertical.jpg', 'nowayhome.jpg', 148, 'Regista 1', 'attore, attore, attore'),
+(3, 'Uncharted', 'Azione', '2022-02-17', 'Basato su una delle serie di videogiochi più vendute e acclamate dalla critica, Uncharted presenta al pubblico il giovane e furbo Nathan Drake (Tom Holland) nella sua prima avventura alla ricerca del tesoro con l’arguto partner Victor “Sully” Sullivan (Mark Wahlberg). In un’epica avventura piena di azione che attraversa il mondo intero, i due protagonisti partono alla pericolosa ricerca del “più grande tesoro mai trovato”, inseguendo indizi che potrebbero condurli al fratello di Nathan, scomparso da tempo.', 'uncharted-vertical.jpg', 'uncharted.jpg', 125, 'test', 'test test test'),
+(4, 'Sing 2', 'Animazione', '2021-12-23', 'Sing 2, diretto da Garth Jennings, è il sequel dell\'omonimo film di successo che vedeva un gruppo di animali, capitanati dal koala Buster Moon, che per salvare il Moon Theatre dalla chiusura decide di indire una gara canora così da riportare il teatro al suo vecchio splendore. Questa volta i protagonisti dovranno abbandonare il Moon Theatre per debuttare su un palco ancora più prestigioso. Buster sogna infatti di esibirsi al Crystal Tower Theater nell\'incantevole Redshore City, ma senza nessuna conoscenza non sarà facile.', 'sing2-vertical.jpg', 'sing2.jpg', 105, 'test', 'etstst, tstststs');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `Orario`
+-- Struttura della tabella `Occupa`
 --
 
-CREATE TABLE `Orario` (
-  `Ora` time NOT NULL,
-  `IDProiezione` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `Orario`
---
-
-INSERT INTO `Orario` (`Ora`, `IDProiezione`) VALUES
-('15:00:00', 4),
-('15:00:00', 6),
-('15:00:00', 7),
-('15:00:00', 12),
-('15:00:00', 13),
-('16:00:00', 1),
-('16:00:00', 4),
-('16:00:00', 6),
-('16:00:00', 7),
-('16:00:00', 12),
-('16:00:00', 13),
-('16:00:00', 15),
-('17:30:00', 1),
-('17:30:00', 4),
-('17:30:00', 6),
-('17:30:00', 7),
-('17:30:00', 9),
-('17:30:00', 11),
-('17:30:00', 12),
-('17:30:00', 13),
-('17:30:00', 15),
-('21:30:00', 1),
-('21:30:00', 2),
-('21:30:00', 3),
-('21:30:00', 4),
-('21:30:00', 5),
-('21:30:00', 6),
-('21:30:00', 7),
-('21:30:00', 8),
-('21:30:00', 9),
-('21:30:00', 10),
-('21:30:00', 11),
-('21:30:00', 12),
-('21:30:00', 13),
-('21:30:00', 14),
-('21:30:00', 15);
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `Partecipa`
---
-
-CREATE TABLE `Partecipa` (
+CREATE TABLE `Occupa` (
   `NumeroPosto` smallint(6) NOT NULL,
   `FilaPosto` char(1) NOT NULL,
   `NumeroSala` smallint(6) NOT NULL,
   `IDPrenotazione` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `Partecipa`
---
-
-INSERT INTO `Partecipa` (`NumeroPosto`, `FilaPosto`, `NumeroSala`, `IDPrenotazione`) VALUES
-(1, 'E', 1, 4),
-(1, 'F', 1, 4),
-(1, 'G', 1, 4),
-(2, 'A', 1, 4),
-(5, 'D', 1, 3),
-(5, 'E', 1, 3),
-(5, 'F', 1, 3),
-(6, 'C', 2, 5),
-(6, 'C', 2, 6),
-(6, 'D', 1, 7),
-(6, 'D', 1, 8),
-(7, 'C', 1, 8),
-(7, 'D', 1, 7),
-(8, 'D', 1, 7),
-(8, 'D', 1, 8),
-(8, 'D', 2, 5),
-(8, 'D', 2, 6),
-(9, 'D', 1, 7),
-(9, 'D', 1, 8),
-(11, 'G', 1, 2),
-(12, 'A', 1, 2),
-(13, 'B', 2, 5),
-(13, 'E', 2, 6),
-(14, 'G', 3, 1),
-(15, 'A', 3, 1),
-(15, 'B', 3, 1),
-(15, 'C', 3, 1),
-(15, 'G', 2, 5),
-(15, 'G', 2, 6);
 
 -- --------------------------------------------------------
 
@@ -595,24 +422,9 @@ INSERT INTO `Posto` (`Fila`, `Numero`, `NumeroSala`) VALUES
 CREATE TABLE `Prenotazione` (
   `ID` int(11) NOT NULL,
   `NumeroPersone` smallint(6) NOT NULL,
-  `UsernameUtente` varchar(50) DEFAULT NULL,
-  `IDProiezione` int(11) NOT NULL,
-  `OraProiezione` time NOT NULL
+  `UsernameUtente` varchar(50) NOT NULL,
+  `IDProiezione` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `Prenotazione`
---
-
-INSERT INTO `Prenotazione` (`ID`, `NumeroPersone`, `UsernameUtente`, `IDProiezione`, `OraProiezione`) VALUES
-(1, 4, 'user', 2, '21:30:00'),
-(2, 2, 'user', 1, '17:30:00'),
-(3, 3, 'user', 3, '21:30:00'),
-(4, 4, 'user', 3, '21:30:00'),
-(5, 4, NULL, 10, '21:30:00'),
-(6, 4, NULL, 10, '21:30:00'),
-(7, 4, 'admin', 4, '16:00:00'),
-(8, 4, 'admin', 4, '16:00:00');
 
 -- --------------------------------------------------------
 
@@ -649,29 +461,21 @@ CREATE TABLE `Proiezione` (
   `ID` int(11) NOT NULL,
   `Data` date NOT NULL,
   `IDFilm` int(11) NOT NULL,
-  `NumeroSala` smallint(6) NOT NULL
+  `NumeroSala` smallint(6) NOT NULL,
+  `Orario` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `Proiezione`
 --
 
-INSERT INTO `Proiezione` (`ID`, `Data`, `IDFilm`, `NumeroSala`) VALUES
-(8, '2022-01-04', 3, 2),
-(3, '2022-01-28', 1, 1),
-(15, '2022-02-01', 4, 1),
-(1, '2022-02-15', 1, 1),
-(14, '2022-03-15', 4, 2),
-(12, '2022-03-28', 3, 3),
-(4, '2022-05-04', 2, 1),
-(6, '2022-06-10', 2, 2),
-(13, '2022-06-13', 4, 2),
-(10, '2022-07-14', 3, 2),
-(7, '2022-08-19', 2, 1),
-(11, '2022-10-11', 3, 2),
-(5, '2022-10-28', 2, 3),
-(2, '2022-11-11', 1, 3),
-(9, '2022-11-20', 3, 1);
+INSERT INTO `Proiezione` (`ID`, `Data`, `IDFilm`, `NumeroSala`, `Orario`) VALUES
+(16, '2022-10-29', 1, 1, '21:00:00'),
+(17, '2022-10-29', 1, 2, '22:30:00'),
+(18, '2022-10-30', 1, 3, '21:30:00'),
+(19, '2022-10-29', 2, 1, '21:00:00'),
+(20, '2022-10-29', 3, 2, '22:30:00'),
+(21, '2022-10-30', 4, 3, '21:30:00');
 
 -- --------------------------------------------------------
 
@@ -719,24 +523,10 @@ INSERT INTO `Utente` (`Username`, `Nome`, `Cognome`, `Password`, `Email`) VALUES
 --
 
 --
--- Indici per le tabelle `Afferisce`
---
-ALTER TABLE `Afferisce`
-  ADD PRIMARY KEY (`IDFilm`,`IDCast`),
-  ADD KEY `IDCast` (`IDCast`);
-
---
 -- Indici per le tabelle `Amministratori`
 --
 ALTER TABLE `Amministratori`
   ADD PRIMARY KEY (`Username`);
-
---
--- Indici per le tabelle `CastFilm`
---
-ALTER TABLE `CastFilm`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `Nome` (`Nome`,`Cognome`,`Ruolo`);
 
 --
 -- Indici per le tabelle `Film`
@@ -745,16 +535,9 @@ ALTER TABLE `Film`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indici per le tabelle `Orario`
+-- Indici per le tabelle `Occupa`
 --
-ALTER TABLE `Orario`
-  ADD PRIMARY KEY (`Ora`,`IDProiezione`),
-  ADD KEY `IDProiezione` (`IDProiezione`);
-
---
--- Indici per le tabelle `Partecipa`
---
-ALTER TABLE `Partecipa`
+ALTER TABLE `Occupa`
   ADD PRIMARY KEY (`NumeroPosto`,`FilaPosto`,`NumeroSala`,`IDPrenotazione`),
   ADD KEY `IDPrenotazione` (`IDPrenotazione`);
 
@@ -771,7 +554,7 @@ ALTER TABLE `Posto`
 ALTER TABLE `Prenotazione`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `UsernameUtente` (`UsernameUtente`),
-  ADD KEY `IDProiezione` (`IDProiezione`,`OraProiezione`);
+  ADD KEY `Prenotazione_ibfk_2` (`IDProiezione`);
 
 --
 -- Indici per le tabelle `Prezzi`
@@ -805,12 +588,6 @@ ALTER TABLE `Utente`
 --
 
 --
--- AUTO_INCREMENT per la tabella `CastFilm`
---
-ALTER TABLE `CastFilm`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT per la tabella `Film`
 --
 ALTER TABLE `Film`
@@ -826,31 +603,24 @@ ALTER TABLE `Prenotazione`
 -- AUTO_INCREMENT per la tabella `Proiezione`
 --
 ALTER TABLE `Proiezione`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Limiti per le tabelle scaricate
 --
 
 --
--- Limiti per la tabella `Afferisce`
+-- Limiti per la tabella `Amministratori`
 --
-ALTER TABLE `Afferisce`
-  ADD CONSTRAINT `Afferisce_ibfk_1` FOREIGN KEY (`IDFilm`) REFERENCES `Film` (`ID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `Afferisce_ibfk_2` FOREIGN KEY (`IDCast`) REFERENCES `CastFilm` (`ID`) ON DELETE CASCADE;
+ALTER TABLE `Amministratori`
+  ADD CONSTRAINT `pk` FOREIGN KEY (`Username`) REFERENCES `Utente` (`Username`);
 
 --
--- Limiti per la tabella `Orario`
+-- Limiti per la tabella `Occupa`
 --
-ALTER TABLE `Orario`
-  ADD CONSTRAINT `Orario_ibfk_1` FOREIGN KEY (`IDProiezione`) REFERENCES `Proiezione` (`ID`) ON DELETE CASCADE;
-
---
--- Limiti per la tabella `Partecipa`
---
-ALTER TABLE `Partecipa`
-  ADD CONSTRAINT `Partecipa_ibfk_1` FOREIGN KEY (`NumeroPosto`,`FilaPosto`,`NumeroSala`) REFERENCES `Posto` (`Numero`, `Fila`, `NumeroSala`) ON DELETE CASCADE,
-  ADD CONSTRAINT `Partecipa_ibfk_2` FOREIGN KEY (`IDPrenotazione`) REFERENCES `Prenotazione` (`ID`) ON DELETE CASCADE;
+ALTER TABLE `Occupa`
+  ADD CONSTRAINT `Occupa_ibfk_1` FOREIGN KEY (`NumeroPosto`,`FilaPosto`,`NumeroSala`) REFERENCES `Posto` (`Numero`, `Fila`, `NumeroSala`) ON DELETE CASCADE,
+  ADD CONSTRAINT `Occupa_ibfk_2` FOREIGN KEY (`IDPrenotazione`) REFERENCES `Prenotazione` (`ID`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `Posto`
@@ -863,7 +633,7 @@ ALTER TABLE `Posto`
 --
 ALTER TABLE `Prenotazione`
   ADD CONSTRAINT `Prenotazione_ibfk_1` FOREIGN KEY (`UsernameUtente`) REFERENCES `Utente` (`Username`) ON DELETE CASCADE,
-  ADD CONSTRAINT `Prenotazione_ibfk_2` FOREIGN KEY (`IDProiezione`,`OraProiezione`) REFERENCES `Orario` (`IDProiezione`, `Ora`) ON DELETE CASCADE;
+  ADD CONSTRAINT `Prenotazione_ibfk_2` FOREIGN KEY (`IDProiezione`) REFERENCES `Proiezione` (`ID`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `Proiezione`

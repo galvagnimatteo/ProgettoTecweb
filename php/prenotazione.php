@@ -17,13 +17,6 @@ if (isset($_GET["idproiez"]) && is_numeric($_GET["idproiez"])) {
     die();
 }
 
-if (isset($_GET["orario"]) && strtotime($_GET["orario"])) {
-    $orario = $_GET["orario"];
-} else {
-    header("Location: 404.php");
-    die();
-}
-
 $db = SingletonDB::getInstance();
 
 $preparedQuery = $db

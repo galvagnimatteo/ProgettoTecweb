@@ -17,7 +17,7 @@ function mappaPosti($numSala, $idproiez, $orario)
     $preparedQuery2 = $db //posti occupati
         ->getConnection()
         ->prepare(
-            "SELECT NumeroPosto as Numero, FilaPosto as Fila FROM Prenotazione INNER JOIN Partecipa ON Prenotazione.ID=Partecipa.IDPrenotazione WHERE Prenotazione.IDProiezione=? AND Prenotazione.OraProiezione=?"
+            "SELECT NumeroPosto as Numero, FilaPosto as Fila FROM Prenotazione INNER JOIN Occupa ON Prenotazione.ID=Occupa.IDPrenotazione INNER JOIN Proiezione ON Prenotazione.IDProiezione=Proiezione.ID WHERE Prenotazione.IDProiezione=? AND Proiezione.Orario=?"
         );
     $preparedQuery2->bind_param("is", $idproiez, $orario);
     $preparedQuery2->execute();

@@ -282,14 +282,14 @@ $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancor
 
 $description = "Pagina di login";
 $keywords = "Login";
-$breadcrumbs = '<a href="home.php">Home</a> / Area Utenti';
+$breadcrumbs = '<a href="home.php">Home</a> /  Area Utenti';
 $jshead = '<script type="text/javascript" src="../js/controls.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage(
     "login",
     $home_content,
     $breadcrumbs,
-    "Area Utenti - PNG Cinema",
+    "Login - PNG Cinema",
     $description,
     $keywords,
     $jshead,

@@ -26,8 +26,6 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         isset($_POST['Descrizione']) &&
         isset($_POST['SrcImg']) &&  
         isset($_POST['CarouselImg']) &&
-        isset($_POST['Attori'])&&
-        isset($_POST['Regista'])&&
         isset($_POST['Durata'])
         )
     {
@@ -42,15 +40,14 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $Regista        = return_cleaned($_POST['Regista']);
 
         $check= CheckFilm(
+
             $Titolo,
             $Genere,
             $DataUscita,
             $Descrizione,
             $SrcImg,            
             $Durata,
-            $CarouselImg,
-            $Attori,
-            $Regista
+            $CarouselImg
         );
         if($check=="OK"){
             $query =

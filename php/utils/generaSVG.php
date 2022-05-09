@@ -1,12 +1,43 @@
 <?php
-require_once "mappaPosti.php";
+
 function generateSVG($sala, $idproiez, $orario)
 {
+    $db = SingletonDB::getInstance();
+    $db->connect();
+    $preparedQuery = $db
+        ->getConnection()
+        ->prepare(
+            "SELECT Posto.Numero, Posto.Fila FROM Posto INNER JOIN Sala ON Sala.Numero = Posto.NumeroSala WHERE Sala.Numero = ? ORDER BY Posto.Fila, Posto.Numero"
+        );
+    $preparedQuery->bind_param("i", $sala);
+    $preparedQuery->execute();
+    $result1 = $preparedQuery->get_result();
 
+    $preparedQuery2 = $db
+        ->getConnection()
+        ->prepare(
+            "SELECT NumeroPosto as Numero, FilaPosto as Fila FROM Prenotazione INNER JOIN Partecipa ON Prenotazione.ID=Partecipa.IDPrenotazione WHERE Prenotazione.IDProiezione=? AND Prenotazione.OraProiezione=?"
+        );
+    $preparedQuery2->bind_param("is", $idproiez, $orario);
+    $preparedQuery2->execute();
+    $result2 = $preparedQuery2->get_result();
 
-    $statoPosti = mappaPosti($sala, $idproiez, $orario);
+    $db->disconnect();
+
+    $statoPosti = [];
 
     $SVG = "";
+    if (!empty($result1) && $result1->num_rows) {
+        while ($row = $result1->fetch_assoc()) {
+            $statoPosti[$row["Fila"] . $row["Numero"]] = "libero"; //inizializzo tutti liberi
+        }
+
+        if (!empty($result2) && $result2->num_rows > 0) {
+            //se ci sono posti occupati
+            while ($row = $result2->fetch_assoc()) {
+                $statoPosti[$row["Fila"] . $row["Numero"]] = "occupato"; //posti occupati
+            }
+        }
 
         $SVG .=
             '<svg class="mappaposti" version="1.1" width="95%" xmlns="http://www.w3.org/2000/svg" aria-label="Mappa della sala per la scelta dei posti">' .
@@ -70,18 +101,16 @@ function generateSVG($sala, $idproiez, $orario)
 
             $lastRow = strtolower($fila);
             $mostraLinea = "";
-            if (!$stato) {
+            if ($stato == "libero") {
                 $mostraLinea = " nascondilinea";
             }
-			
-			$statoClass = $stato ? "occupato" : "libero";
-			
+
             $SVG .=
                 '<g data-codice="' .
                 strtolower($fila) .
                 $count .
                 '" class="seat ' .
-                $statoClass .
+                $stato .
                 '">' .
                 '<circle cx="' .
                 $cx .
@@ -133,6 +162,11 @@ function generateSVG($sala, $idproiez, $orario)
             "</text>";
         $SVG .= "</g></g></svg>";
         unset($statoPosti);
+    } else {
+        unset($statoPosti);
+        header("Location: 500.php");
+        die();
+    }
 
     return $SVG;
 }

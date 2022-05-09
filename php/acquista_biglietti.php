@@ -12,6 +12,7 @@ if (
     !isset(
         $_POST["numTicketIntero"],
         $_POST["numTicketRidotto"],
+        $_POST["catPosti"],
         $_POST["modSelezPosti"],
         $_POST["idproiez"],
         $_POST["orario"],
@@ -23,10 +24,11 @@ if (
         $_POST["prid"]
     )
 ) {
-    header("Location: 404.php");
+    header("Location: 500.php");
     die();
 }
 
+pulisci($_POST["catPosti"]);
 pulisci($_POST["orario"]);
 pulisci($_POST["modSelezPosti"]);
 pulisci($_POST["seats"]);
@@ -44,8 +46,8 @@ if (
         is_numeric($_POST["prid"])
     )
 ) {
-
-    header("Location: 404.php");
+    
+    header("Location: 500.php");
     die();
 }
 
@@ -59,70 +61,119 @@ $totNumBiglietti =
 
 $postiver = explode(",", $_POST["seats"]);
 
-
-
-
-$totPostiLiberi = -1; 
-$statoPosti = mappaPosti($_POST["numSala"], $_POST["idproiez"], $_POST["orario"], $totPostiLiberi);
-
-
-if ($totNumBiglietti > $totPostiLiberi || count($postiver) > $totPostiLiberi) {
+if ($totNumBiglietti > 4 || count($postiver) > 4) {
     header(
         "Location: prenotazione.php?idproiez=" .
             $_POST["idproiez"] .
+            "&orario=" .
+            $_POST["orario"] .
             "&err_server1=1"
     );
     die();
 }
 
-$postoOccupato = NULL;
-foreach ($postiver as $posto) {
-	if ($statoPosti[$posto] == 1) { //se un posto è occupato
-		$postoOccupato = $posto;
-		break;
-	}
+if ($_POST["modSelezPosti"] == "auto") {
+    $postiVicini = isset($_POST["postiVicini"]);
+
+    $catPosti = $_POST["catPosti"];
+
+    list(
+        $postiLiberi,
+        $seqConsecMax,
+        $seqConsecEnd,
+        $listaPostiQuery,
+    ) = mappaPosti($_POST["numSala"], $_POST["idproiez"], $_POST["orario"]);
+
+    $postiStr = "";
+    if ($postiVicini) {
+        for ($i = 0; $i < $totNumBiglietti; $i++) {
+            $fila = substr($seqConsecEnd[$catPosti], 0, 1);
+            $num = intval(substr($seqConsecEnd[$catPosti], 1));
+            $postiStr .= $fila . $num - $i . ",";
+        }
+        //rimuovo virgola finale
+        $postiStr = substr($postiStr, 0, -1);
+    } else {
+        //random
+        foreach ($listaPostiStruct as $cod => $stato) {
+            if ($stato) {
+                unset($listaPostiStruct[$cod]);
+            }
+        }
+
+        uksort($listaPostiStruct, function () {
+            return rand() > getrandmax() / 2;
+        });
+
+        foreach (
+            array_slice($listaPostiStruct, 0, $totNumBiglietti)
+            as $cod => $s
+        ) {
+            $fila = substr($cod, 0, 1);
+            $num = intval(substr($cod, 1));
+            $postiStr .= $fila . $num . ",";
+        }
+        //rimuovo virgola finale
+        $postiStr = substr($postiStr, 0, -1);
+    }
+
+    if (count(explode(",", $postiStr)) < $totNumBiglietti) {
+        header(
+            "Location: prenotazione.php?idproiez=" .
+                $_POST["idproiez"] .
+                "&orario=" .
+                $_POST["orario"] .
+                "&err_server3=1"
+        );
+        die();
+    }
+
+    if ($seqConsecMax < count(explode(",", $postiStr))) {
+        header(
+            "Location: prenotazione.php?idproiez=" .
+                $_POST["idproiez"] .
+                "&orario=" .
+                $_POST["orario"] .
+                "&err_server2=1"
+        );
+        die();
+    }
+
+    $idPrenotaz = prenotaPosti(
+        $postiStr,
+        $username,
+        $_POST["idproiez"],
+        $_POST["orario"],
+        $_POST["numSala"]
+    );
+    unset($listaPostiStruct);
+    if ($idPrenotaz != -1) {
+        generaPaginaConferma($postiStr, $idPrenotaz, $totNumBiglietti);
+    } else {
+        //echo "3";
+        header("Location: 500.php");
+        die();
+    }
+} elseif ($_POST["modSelezPosti"] == "manual") {
+    if (count(explode(",", $_POST["seats"])) < $totNumBiglietti) {
+        header(
+            "Location: prenotazione.php?idproiez=" .
+                $_POST["idproiez"] .
+                "&orario=" .
+                $_POST["orario"] .
+                "&err_server3=1"
+        );
+        die();
+    }
+    $idPrenotaz = prenotaPosti(
+        $_POST["seats"],
+        $username,
+        $_POST["idproiez"],
+        $_POST["orario"],
+        $_POST["numSala"]
+    );
+    generaPaginaConferma($_POST["seats"], $idPrenotaz, $totNumBiglietti);
 }
-
-if ($postoOccupato != NULL) {
-	header(
-		"Location: prenotazione.php?idproiez=" .
-			$_POST["idproiez"] .
-			"&err_server2=". $postoOccupato
-	);
-	die();
-}
-
-
-if (count($postiver) < $totNumBiglietti) {
-	header(
-		"Location: prenotazione.php?idproiez=" .
-			$_POST["idproiez"] .
-			"&err_server3=1"
-	);
-	die();
-}
-
-$idPrenotaz = prenotaPosti(
-	$_POST["seats"],
-	$username,
-	$_POST["idproiez"],
-	$_POST["numSala"]
-);
-
-unset($statoPosti);
-
-if ($idPrenotaz != -1) {
-	generaPaginaConferma($_POST["seats"], $idPrenotaz, $totNumBiglietti);
-
-} else {
-	header("Location: 500.php");
-	die();
-}
-
-
-
-
-
 
 function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
 {
@@ -179,12 +230,6 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
             floatval($_POST["prid"]) * intval($_POST["numTicketRidotto"]),
         $acquistoconferma_content
     );
-	$acquistoconferma_content = str_replace(
-        "<CLASS-WARNING>",
-		($_SESSION["a"]) ? "hide" : "",
-        $acquistoconferma_content
-    );
-	
     $title = "Conferma acquisto  " . $_POST["titoloFilm"] . " - PNG Cinema";
     $keywords = "Acquisto, biglietti, " . $_POST["titoloFilm"];
     $description =

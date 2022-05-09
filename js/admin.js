@@ -1,4 +1,10 @@
-﻿var areas = [
+﻿//var visible = {    
+//    filmform: false,    
+//    proiezioniform: false,
+//    people_cast:false
+//};
+
+var areas = [
     {
         name: "film",
         element: "films",
@@ -8,6 +14,11 @@
         name: "projection",
         element: "projections",
         area_selector: "projectionarea"
+    },
+    {
+        name: "people_cast",
+        element: "people_cast",
+        area_selector: "people_cast_area"
     }
 ];
 var forms = [
@@ -124,6 +135,7 @@ var api = {
         updatehtml: function (data) { updatehtml_projection(data.proiezioni); },
     }
 }
+
 function change_context(context) {
     for (area in areas) {
         if (context === areas[area].name) {
@@ -216,6 +228,7 @@ function api_post(api) {
     }
     catch (e) {
         console.log(e);
+
     }
 }
 
@@ -223,12 +236,23 @@ function api_request(api) {
     var request = new XMLHttpRequest();
     request.open('GET', api.url);
     request.send();
-    request.onload = () => {
-        console.log(request.response);
+    request.onload = () => {        
         var data = JSON.parse(request.response);
         api.updatehtml(data);
     }
 }
+function request_people_cast() {
+    var request = new XMLHttpRequest();
+    request.open('GET', './api/cast_person.php');
+    request.send();
+    request.onload = () => {
+        //console.log(request.response);
+        var data = JSON.parse(request.response);
+        cast_people = data.cast_people;
+        updatehtml_people_cast(cast_people);
+    }
+}
+
 
 function delete_film(id) {
     let url = "./api/films.php";
@@ -274,7 +298,39 @@ function delete_projection(id) {
         }        
     };
 }
+function delete_person_cast(id) {
+    let url = "./api/cast_person.php";
 
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    //xhr.setRequestHeader("Accept", "application/json");
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+
+    xhr.send('action=delete&IDCast=' + id);
+    xhr.onload = function () {
+        //console.log(xhr.responseText);
+        var data = JSON.parse(xhr.responseText);
+        var status = data.status;
+        if (status === "ok") {
+            var cast_people = data.cast_people;
+            updatehtml_people_cast(cast_people);            
+        }        
+    };
+}
+function delete_film_cast(person) {
+    let url = "./api/cast_film.php?IDFilm=" + active_film;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    //xhr.setRequestHeader("Accept", "application/json");
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
 function updatehtml_projection(proiezioni) {
     var proiezionilist = '';
@@ -296,12 +352,14 @@ function updatehtml_film(films) {
     }
     document.getElementById("filmlist").innerHTML = filmlist;
     document.getElementById("filmselector").innerHTML = filmoptions;
+
 }
 
 function generate_entry_film(entry) {
-    
-    result = "<tr class='entry' ><td class='entryfunctions'>"+
+    //rowtype = (index % 2 === 0) ? "even" : "odd";
+    result = "<tr class='entry " /*+ rowtype*/ + "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
+        '<a href="#edit_cast_film" onclick = "cast_edit(' + entry.id + ');" class="castedit" >cast</a>' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -310,9 +368,10 @@ function generate_entry_film(entry) {
     return result;
 }
 function generate_entry_projection(entry) {
-    result = "<tr class='entry' ><td class='entryfunctions'>" +
+    //rowtype = (index%2===0) ? "even" : "odd";
+    result = "<tr class='entry "/* + rowtype */+ "' ><td class='entryfunctions'>"+
         '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</button >' +
-        '</td ><td>'
+    '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
         + entry.titolofilm + "</td><td>" +
@@ -321,6 +380,12 @@ function generate_entry_projection(entry) {
 }
 
 
+document.getElementById("filmarea").onclick = function () { change_context('film'); }
+document.getElementById("projectionarea").onclick = function () { change_context('projection'); }
+document.getElementById("people_cast_area").onclick = function () { change_context('people_cast'); }
+document.getElementById("filmarea").firstChild.onclick = function () { change_context('film'); }
+document.getElementById("projectionarea").firstChild.onclick = function () { change_context('projection'); }
+document.getElementById("people_cast_area").firstChild.onclick = function () { change_context('people_cast'); }
 
 document.getElementById(api.film.imputform.element).onsubmit = function () {
     api.film.post();

@@ -2,6 +2,7 @@
 session_start();
 
 require_once "utils/SingletonDB.php";
+require_once "utils/generaStringaCast.php";
 require_once "utils/generaPagina.php";
 require_once "utils/generaData.php";
 
@@ -18,10 +19,19 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
     $preparedQuery->execute();
     $result1 = $preparedQuery->get_result();
 
+    $preparedQuery2 = $db
+        ->getConnection()
+        ->prepare(
+            "SELECT * FROM CastFilm JOIN Afferisce ON CastFilm.ID = Afferisce.IDCast WHERE Afferisce.IDFilm =?"
+        );
+    $preparedQuery2->bind_param("i", $_GET["idfilm"]);
+    $preparedQuery2->execute();
+    $result2 = $preparedQuery2->get_result();
+
     $preparedQuery3 = $db
         ->getConnection()
         ->prepare(
-            "SELECT Data FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? GROUP BY Data ORDER BY Data "
+            "SELECT Data, Proiezione.ID as IDProiezione FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? ORDER BY Data"
         );
     $preparedQuery3->bind_param("i", $_GET["idfilm"]);
     $preparedQuery3->execute();
@@ -31,10 +41,13 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
     if (
         !empty($result1) &&
-        $result1->num_rows > 0
+        $result1->num_rows > 0 &&
+        !empty($result2) &&
+        $result2->num_rows > 0
     ) {
-
+        //si assume che se c'è un film ha un cast e un direttore, per questo il controllo unico
         $dataFilm = $result1->fetch_assoc();
+        $cast = createCastStr($result2);
 
         $schedafilm_content = file_get_contents(
             "../html/scheda_film.html"
@@ -68,12 +81,12 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         );
         $schedafilm_content = str_replace(
             "<FILM-DIRECTOR>",
-            $dataFilm["Registi"],
+            $cast["R"],
             $schedafilm_content
         );
         $schedafilm_content = str_replace(
             "<FILM-CAST>",
-            $dataFilm["Attori"],
+            $cast["A"],
             $schedafilm_content
         );
         $schedafilm_content = str_replace(
@@ -97,11 +110,19 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                     $filmscreeningfield
                 );
 
+                $filmscreeningfield = str_replace(
+                    "<IDPROIEZ-HIDDEN>",
+                    '<input type="hidden" name="idproiez" value="' .
+                        $row["IDProiezione"] .
+                        '" />',
+                    $filmscreeningfield
+                );
+
                 $db->connect();
                 $preparedQuery4 = $db
                     ->getConnection()
                     ->prepare(
-                        "SELECT *, Proiezione.ID as IDProiezione FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) WHERE Film.ID = ? AND Proiezione.Data = ?"
+                        "SELECT * FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) INNER JOIN Orario ON (Proiezione.ID = Orario.IDProiezione) WHERE Film.ID = ? AND Proiezione.Data = ?"
                     );
                 $preparedQuery4->bind_param(
                     "is",
@@ -115,22 +136,12 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                 $hour_fields = "";
 
                 while ($orarioRow = $result4->fetch_assoc()) {
-/*
+                    //si assume che se c'è una data di proiezione ci siano anche degli orari quindi nessun controllo necessario
+
                     $hour_field =
-                        '<input type="hidden" name="idproiez" value="' .
-                        $orarioRow["IDProiezione"] .
+                        '<input type="submit" name="orario" value="' .
+                        substr($orarioRow["Ora"], 0, -3) .
                         '"/>';
-                    $hour_fields .= $hour_field;
-
-                    <button name="subject" type="submit" value="fav_HTML">HTML</button>
-
-*/
-                    $hour_field =
-                        '<button type="submit" name="idproiez" value="' .
-                        $orarioRow["IDProiezione"] .
-                        '"/>'.
-                        substr($orarioRow["Orario"], 0, -3) .
-                        "</button>";
                     $hour_fields .= $hour_field;
                 }
 
@@ -156,8 +167,9 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
             '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / ' .
             "Scheda Film: " .
             $dataFilm["Titolo"];
+        //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
         echo GeneratePage(
-            "scheda film",
+            "login",
             $schedafilm_content,
             $breadcrumbs,
             $dataFilm["Titolo"] . " - PNG Cinema",

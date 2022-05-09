@@ -13,7 +13,7 @@ function CheckSession($login_required, $admin_required)
         session_unset();
         session_destroy();
         session_start();
-        //header("location:area_utenti.php?action=login_page");
+        header("location:area_utenti.php?action=login_page");
     }
     $_SESSION["discard_after"] = $now + $sessiondiscard_timer;
 
@@ -89,7 +89,7 @@ function GeneratePage(
 
     $output = str_replace("<MENU/>", $menu, $output);
     $admin = "";
-    if (isset($_SESSION["admin"]) && $_SESSION["admin"]&&$page!="admin") {
+    if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
         $admin = "<ul><li><a href='amministrazione.php'>Amministrazione</a></li></ul>";
     }
     $output = str_replace("<ADMIN/>", $admin, $output);

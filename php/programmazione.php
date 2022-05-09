@@ -2,6 +2,7 @@
 session_start();
 
 require_once "utils/SingletonDB.php";
+require_once "utils/generaStringaCast.php";
 require_once "utils/generaPagina.php";
 //CheckSession($login_required, $admin_required)
 CheckSession(false, false); //refresh della sessione se scaduta
@@ -23,19 +24,33 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
     $card_prog_template = file_get_contents("../html/items/card_programmazione.html");
 
     while ($row = $filmsResult->fetch_assoc()) {
-
         $card_prog_item = $card_prog_template;
 
-        $card_prog_item = str_replace(
-            "<FILMDIRECTOR>",
-            $row["Registi"],
-            $card_prog_item
-        );
-        $card_prog_item = str_replace(
-            "<FILMCAST>",
-            $row["Attori"],
-            $card_prog_item
-        );
+        $db->connect();
+        $preparedQuery = $db
+            ->getConnection()
+            ->prepare(
+                "SELECT * FROM CastFilm JOIN Afferisce ON CastFilm.ID = Afferisce.IDCast WHERE Afferisce.IDFilm =?"
+            );
+        $preparedQuery->bind_param("i", $row["ID"]);
+        $preparedQuery->execute();
+        $castResult = $preparedQuery->get_result();
+        $db->disconnect();
+
+        if (!empty($castResult) && $castResult->num_rows > 0) {
+            $cast = createCastStr($castResult);
+
+            $card_prog_item = str_replace(
+                "<FILMDIRECTOR>",
+                $cast["R"],
+                $card_prog_item
+            );
+            $card_prog_item = str_replace(
+                "<FILMCAST>",
+                $cast["A"],
+                $card_prog_item
+            );
+        }
 
         $description = $row["Descrizione"];
         $description = substr($description, 0, 200);

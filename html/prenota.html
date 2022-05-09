@@ -23,22 +23,24 @@
 
 	<fieldset id="modeSelectGroup">
 		<legend> Scegli la modalità di selezione dei posti: </legend>
+		<label for="selezManual">
+		<input type="radio" id="selezManual" name="modSelezPosti" checked value="manual" />
+		<span>Selezione manuale posti</span> </label>
+		
 		<label for="selezTestuale">
-		<input type="radio" id="selezTestuale" name="modSelezPosti" checked  value="text"/>
+		<input type="radio" id="selezTestuale" name="modSelezPosti" value="text" />
 		<span>Selezione testuale posti </span>
 		</label>
 
 
-	<label for="selezManual">
-	<input type="radio" id="selezManual" name="modSelezPosti"   value="manual"/>
-	<span>Selezione manuale posti</span> </label>
+	
 	</fieldset>
 
 
 
 
 	<fieldset id="ticketInfoGroup">
-	<legend>Scegli in numero di biglietti (massimo 4 in totale):</legend>
+	<legend>Scegli in numero di biglietti:</legend>
 	
 	<p role="alert" class="aiutocompilaz hide"> Scegli prima il numero di biglietti da acquistare </p>
 	<p class="aiutocompilaz hide"> <strong>Attenzione</strong>, ci sono ancora posti da selezionare </p>

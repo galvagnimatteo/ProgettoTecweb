@@ -25,6 +25,8 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         isset($_POST['Descrizione']) &&
         isset($_POST['SrcImg']) &&  
         isset($_POST['CarouselImg']) &&
+        isset($_POST['Attori'])&&
+        isset($_POST['Regista'])&&
         isset($_POST['Durata'])
         )
     {
@@ -36,20 +38,23 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         //$AltImg = $_POST['AltImg'];
         $Durata = $_POST['Durata'];       
         $CarouselImg=$_POST['CarouselImg'];
-        
+        $Attori=$_POST['Attori'];
+        $Regista=$_POST['Regista'];
         
         $query =
-            'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg) VALUES (?,?,?,?,?,?,?)';
+            'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg,Attori,Registi) VALUES (?,?,?,?,?,?,?,?,?)';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
-            'sssssss',
+            'sssssssss',
             $Titolo,
             $Genere,
             $DataUscita,
             $Descrizione,
             $SrcImg,            
             $Durata,
-            $CarouselImg
+            $CarouselImg,
+            $Attori,
+            $Regista
         );
 
         $res=$preparedQuery->execute();        

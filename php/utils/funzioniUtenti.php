@@ -14,12 +14,12 @@ class Users
             isset($_POST["surname_register"]) &&
             isset($_POST["pass_register_confirm"])
         ) {
-			
+
 			/*pulisci($_POST["username_register"])
             pulisci($_POST["name_register"]);
             pulisci($_POST["surname_register"]);
             pulisci($_POST["email_register"]);*/
-			
+
 			$username = $_POST["username_register"];
             $password = $_POST["password_register"];
             $name = $_POST["name_register"];
@@ -71,7 +71,7 @@ class Users
             isset($_POST["password_login"])
         ) {
 			//pulisci($_POST["username_login"]);
-            
+
 			$username = $_POST["username_login"];
             $password = $_POST["password_login"];
 
@@ -328,7 +328,7 @@ class Users
             pulisci($_POST["name_profile"]);
             pulisci($_POST["surname_profile"]);
             pulisci($_POST["email_profile"]);*/
-            
+
 			$newusername = $_POST["username_profile"];
             $oldusername = $_SESSION["a"];
             $name = $_POST["name_profile"];
@@ -440,9 +440,9 @@ class Users
             $db = SingletonDB::getInstance();
 
             $query = "
-						SELECT  p1.ID, p1.OraProiezione, f1.Titolo, f1.SrcImg, pe1.Data, pe1.NumeroSala, p1.NumeroPersone
-						FROM Prenotazione p1,Film f1,Proiezione pe1
-						WHERE p1.IDProiezione=pe1.ID AND pe1.IDFilm=f1.ID AND p1.UsernameUtente=?";
+                SELECT pe1.Orario as orario, p1.ID, f1.Titolo, f1.SrcImg, pe1.Data, pe1.NumeroSala, p1.NumeroPersone
+                FROM Prenotazione p1,Film f1,Proiezione pe1
+                WHERE p1.IDProiezione=pe1.ID AND pe1.IDFilm=f1.ID AND p1.UsernameUtente=?";
 
             $preparedQuery = $db->getConnection()->prepare($query);
 
@@ -477,9 +477,10 @@ class Users
                         $row["NumeroPersone"],
                         $content
                     );
+
                     $content = str_replace(
                         "<ORA>",
-                        $row["OraProiezione"],
+                        $row["orario"],
                         $content
                     );
                     $content = str_replace("<DATA>", $row["Data"], $content);
@@ -508,9 +509,9 @@ class Users
         if (isset($codice)) {
             $db = SingletonDB::getInstance();
             $query = "
-			SELECT  p1.ID, p1.OraProiezione, f1.Titolo, f1.SrcImg, pe1.Data, pe1.NumeroSala, p1.NumeroPersone,pe1.IDFilm
-			FROM Prenotazione p1,Film f1,Proiezione pe1
-			WHERE p1.IDProiezione=pe1.ID AND pe1.IDFilm=f1.ID AND p1.UsernameUtente=? AND p1.ID=? ";
+    			SELECT pe1.Orario as orario, p1.ID, f1.Titolo, f1.SrcImg, pe1.Data, pe1.NumeroSala, p1.NumeroPersone,pe1.IDFilm
+    			FROM Prenotazione p1,Film f1,Proiezione pe1
+    			WHERE p1.IDProiezione=pe1.ID AND pe1.IDFilm=f1.ID AND p1.UsernameUtente=? AND p1.ID=? ";
 
             $preparedQuery = $db->getConnection()->prepare($query);
 
@@ -542,9 +543,10 @@ class Users
                         $row["NumeroPersone"],
                         $home_content
                     );
+
                     $home_content = str_replace(
                         "<ORA>",
-                        $row["OraProiezione"],
+                        $row["orario"],
                         $home_content
                     );
                     $home_content = str_replace(
@@ -567,17 +569,17 @@ class Users
                         $row["IDFilm"],
                         $home_content
                     );
-					
+
                 }
             }
 
-            
-			
+
+
 			// cerca posti
-			
+
 			$db = SingletonDB::getInstance();
 			$db->connect();
-            $query = "SELECT p.NumeroPosto, p.FilaPosto FROM Partecipa as p WHERE p.IDPrenotazione=?";
+            $query = "SELECT p.NumeroPosto, p.FilaPosto FROM Occupa as p WHERE p.IDPrenotazione=?";
 
             $preparedQuery = $db->getConnection()->prepare($query);
 
@@ -586,21 +588,21 @@ class Users
             $result = $preparedQuery->get_result();
             $db->disconnect();
             $preparedQuery->close();
-			
+
 			$listaPosti = "";
-			
+
 			if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
 					$listaPosti = $listaPosti . $row["FilaPosto"] . $row["NumeroPosto"] . ", ";
 				}
 			}
-			
+
 			$home_content = str_replace(
                         "<POSTI>",
                         substr($listaPosti, 0, -2),
                         $home_content
             );
-			
+
 			unset($codice);
 		}
 

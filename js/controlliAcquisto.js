@@ -11,8 +11,10 @@ var textSelectList = [];
 
 var listaPosti = [];
 var mappaPostiOccupati = {"a":[], "b":[], "c":[], "d":[], "e":[], "f":[], "g":[]};
+arrayPostiOccupati = document.getElementById("textSelectGroup").dataset.postiOccupati.split(",");
 
 
+var MAX_POSTI_LIBERI = /*7*15 - arrayPostiOccupati.length*/ 5;
 
 const messaggi = {
 	"libero": "Ci sono ancora posti liberi",
@@ -32,13 +34,12 @@ selectNumTicketRed.addEventListener("change", pulisciPostiSelezionati);
 selectNumTicketInt.addEventListener("change", mostraScelteTestuali);
 selectNumTicketRed.addEventListener("change", mostraScelteTestuali);
 
-//selectNumTicketInt.addEventListener("change", controllaInput);
-//selectNumTicketRed.addEventListener("change", controllaInput);
+selectNumTicketInt.addEventListener("change", controllaInput);
+selectNumTicketRed.addEventListener("change", controllaInput);
 //selectNumTicketInt.addEventListener("change", dynamicOption);
 //selectNumTicketRed.addEventListener("change", dynamicOption);
 
 //genera mappa posti occupati
-arrayPostiOccupati = document.getElementById("textSelectGroup").dataset.postiOccupati.split(",");
 for (var i = 0; i < arrayPostiOccupati.length; i++) {
 	let posto = arrayPostiOccupati[i]
 	mappaPostiOccupati[posto.charAt(0)].push(parseInt(posto.substring(1)));
@@ -248,7 +249,7 @@ function generaSelettorePosti(padre, num) {
 	sf.addEventListener("change", function(event) {
 		generaOptionNumeri(sn, sf.value);
 	});
-	//per generarei primi valori
+	//per generare i primi valori
 	generaOptionNumeri(sn, primaLetteraDisponibile);
 	
 	textSelectList.push(sf, sn);
@@ -370,80 +371,13 @@ function generaOptionNumeri(sn, lettera) {
 	}
 }*/
 
-/*
-function controllaInput(event) {
-	var totPosti = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);
 
+function controllaInput(event) {
+	nint = parseInt(selectNumTicketInt.value);
+	nred = parseInt(selectNumTicketRed.value);
 	
-	var selezDavanti = document.getElementById("selezDavanti");
-	var selezCentro = document.getElementById("selezCentro");
-	var selezDietro = document.getElementById("selezDietro");
+	maxPostiPrenotabili = MAX_POSTI_LIBERI - (nint + nred);
 	
-	var warningPosti = document.getElementById("warnPosti");
-	
-	var pDv = document.getElementById("pDv");
-	var pCe = document.getElementById("pCe");
-	var pDt = document.getElementById("pDt");
-	
-	
-	if (pDv.dataset.postiLib / MAX_POSTI >= 0.5) 
-		warningPosti.setAttribute("class", "warning hide"); //nascondi
-	 else 
-		warningPosti.setAttribute("class", "warning"); //mostra
-	
-	if(postiViciniFlag.checked) {
-		
-		if (pDv.dataset.maxSeq >= totPosti) {
-			pDv.innerHTML = messaggi["libero"];
-			selezDavanti.disabled = false;
-		} else {
-			pDv.innerHTML = messaggi["soldout"];
-			selezDavanti.disabled = true;
-		}
-		
-		if (pCe.dataset.maxSeq >= totPosti) {
-			pCe.innerHTML = messaggi["libero"];
-			selezCentro.disabled = false;
-		} else {
-			pCe.innerHTML = messaggi["soldout"];
-			selezCentro.disabled = true;
-			
-		}
-		
-		if (pDt.dataset.maxSeq >= totPosti) {
-			pDt.innerHTML = messaggi["libero"];
-			selezDietro.disabled = false;
-		} else {
-			pDt.innerHTML = messaggi["soldout"];
-			selezDietro.disabled = true;			
-			
-		}
-	} else {
-		
-		if (pDv.dataset.postiLib >= totPosti) {
-			pDv.innerHTML = messaggi["libero"];
-			selezDavanti.disabled = false;
-		} else {
-			pDv.innerHTML = messaggi["soldout"];
-			selezDavanti.disabled = true;
-		}
-		
-		if (pCe.dataset.postiLib >= totPosti) {
-			pCe.innerHTML = messaggi["libero"];
-			selezCentro.disabled = false;
-		} else {
-			pCe.innerHTML = messaggi["soldout"];
-			selezCentro.disabled = true;
-		}
-		
-		if (pDt.dataset.postiLib >= totPosti) {
-			pDt.innerHTML = messaggi["libero"];
-			selezDietro.disabled = false;
-		} else {
-			pDt.innerHTML = messaggi["soldout"];
-			selezDietro.disabled = true;			
-		}
-	}
-	
+	selectNumTicketInt.setAttribute("max", nint + maxPostiPrenotabili);
+	selectNumTicketRed.setAttribute("max", nred + maxPostiPrenotabili);
 }
-*/

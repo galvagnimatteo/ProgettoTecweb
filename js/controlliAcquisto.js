@@ -11,7 +11,7 @@ var textSelectList = [];
 
 var listaPosti = [];
 var mappaPostiOccupati = {"a":[], "b":[], "c":[], "d":[], "e":[], "f":[], "g":[]};
-arrayPostiOccupati = document.getElementById("textSelectGroup").dataset.postiOccupati.split(",");
+arrayPostiOccupati = [];
 
 
 var MAX_POSTI_LIBERI = 7*15 - arrayPostiOccupati.length;
@@ -40,11 +40,14 @@ selectNumTicketRed.addEventListener("change", controllaInput);
 //selectNumTicketRed.addEventListener("change", dynamicOption);
 
 //genera mappa posti occupati
-for (var i = 0; i < arrayPostiOccupati.length; i++) {
-	let posto = arrayPostiOccupati[i]
-	mappaPostiOccupati[posto.charAt(0)].push(parseInt(posto.substring(1)));
+var postiOccupatiString = document.getElementById("textSelectGroup").dataset.postiOccupati;
+if (postiOccupatiString != "") {
+	postiOccupatiString = postiOccupatiString.split(",");
+	for (var i = 0; i < arrayPostiOccupati.length; i++) {
+		let posto = arrayPostiOccupati[i]
+		mappaPostiOccupati[posto.charAt(0)].push(parseInt(posto.substring(1)));
+	}
 }
-
 
 document.getElementById("purchaseTicketForm").addEventListener("submit", function(event) {
 	var tot = parseInt(selectNumTicketInt.value) + parseInt(selectNumTicketRed.value);

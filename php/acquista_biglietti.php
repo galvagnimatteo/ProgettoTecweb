@@ -179,6 +179,12 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
             floatval($_POST["prid"]) * intval($_POST["numTicketRidotto"]),
         $acquistoconferma_content
     );
+	$acquistoconferma_content = str_replace(
+        "<CLASS-WARNING>",
+		($_SESSION["a"]) ? "hide" : "",
+        $acquistoconferma_content
+    );
+	
     $title = "Conferma acquisto  " . $_POST["titoloFilm"] . " - PNG Cinema";
     $keywords = "Acquisto, biglietti, " . $_POST["titoloFilm"];
     $description =

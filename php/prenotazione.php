@@ -5,6 +5,7 @@ require_once "utils/generaSVG.php";
 require_once "utils/generaData.php";
 require_once "utils/mappaPosti.php";
 require_once "utils/generaPagina.php";
+require_once "utils/controlli.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 $idproiez = -1;
@@ -22,7 +23,7 @@ $db = SingletonDB::getInstance();
 $preparedQuery = $db
     ->getConnection()
     ->prepare(
-        "SELECT Film.Titolo, Proiezione.Data, Proiezione.NumeroSala, Film.ID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Proiezione.ID=?"
+        "SELECT Film.Titolo, Proiezione.Data, Proiezione.NumeroSala, Proiezione.Orario, Film.ID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Proiezione.ID=?"
     );
 $preparedQuery->bind_param("i", $idproiez);
 $preparedQuery->execute();
@@ -38,14 +39,16 @@ if (!empty($result1) && $result1->num_rows > 0) {
 
     $temp = explode(" ", $italianDate);
     $giorno = $temp[0];
-
-    list(
-        $postiLiberi,
-        $seqConsecMax,
-        $seqConsecEnd,
-        $listaPostiQuery,
-    ) = mappaPosti($numeroSala, $idproiez, $orario);
-
+	$orario = $dataFilm["Orario"];
+	$postiOccupati = array();
+    $statoPosti = mappaPosti($numeroSala, $idproiez, $orario, $postiOccupati);
+	
+	//costruisco la lista di posti occupati
+	foreach ($statoPosti as $posto => $stato) {
+		if ($stato==1)
+			array_push($postiOccupati, $posto);
+	}
+	
     unset($listaPostiQuery);
 
     $db->connect();
@@ -67,7 +70,11 @@ if (!empty($result1) && $result1->num_rows > 0) {
         header("Location: 500.php");
         die();
     }
-
+	
+	
+	
+	
+	
     $prenotazione_content = file_get_contents(
         "../html/prenota.html"
     );
@@ -125,25 +132,10 @@ if (!empty($result1) && $result1->num_rows > 0) {
         generateSVG($numeroSala, $idproiez, $orario),
         $prenotazione_content
     );
-
-    $prenotazione_content = str_replace(
-        "<POSTI-LIB>",
-        $postiLiberi,
-        $prenotazione_content
-    );
-    $prenotazione_content = str_replace(
-        "<MAX-SEQ-DV>",
-        $seqConsecMax["davanti"],
-        $prenotazione_content
-    );
-    $prenotazione_content = str_replace(
-        "<MAX-SEQ-DT>",
-        $seqConsecMax["dietro"],
-        $prenotazione_content
-    );
-    $prenotazione_content = str_replace(
-        "<MAX-SEQ-CE>",
-        $seqConsecMax["centrale"],
+	
+	 $prenotazione_content = str_replace(
+        "<POSTI-OCCUPATI>",
+        implode(",", $postiOccupati),
         $prenotazione_content
     );
 
@@ -151,16 +143,16 @@ if (!empty($result1) && $result1->num_rows > 0) {
         $prenotazione_content = str_replace(
             "<ERRORE-SERVER>",
             '
-			<p role="alert" class="warning"> <strong>Attenzione</strong>, ci sono stati alcuni errori con l\'ultima prenotazione, verifica di non aver selezionato più di 4 posti.</p>
+			<p role="alert" class="warning"> <strong>Attenzione</strong>, hai itentato di prenotare più posti di quelli disponibili in totale.</p>
 			',
             $prenotazione_content
         );
     } elseif (isset($_GET["err_server2"])) {
+		pulisci($_GET["err_server2"]);
         $prenotazione_content = str_replace(
             "<ERRORE-SERVER>",
             '
-			<p role="alert" class="warning"> <strong>Attenzione</strong>, alcuni dei posti che hai selezionato sono già stati occupati oppure non ci sono più posti liberi nella categoria selezionata, per favore riprova.</p>
-			',
+			<p role="alert" class="warning"> <strong>Attenzione</strong>, il posto '. strtoupper($_GET["err_server2"]) .' selezionato risulta già occupato</p>',
             $prenotazione_content
         );
     } elseif (isset($_GET["err_server3"])) {
@@ -181,7 +173,7 @@ if (!empty($result1) && $result1->num_rows > 0) {
 
     $title = "Acquista biglietti per " . $dataFilm["Titolo"] . " - PNG Cinema";
     $keywords = "Acquista, biglietti, " . $dataFilm["Titolo"];
-    $description = "Scheda informativa del film: " . $dataFilm["Titolo"];
+    $description = "Pagina acquisto biglietti per il film: " . $dataFilm["Titolo"];
     $breadcrumbs =
         '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
         $dataFilm["ID"] .

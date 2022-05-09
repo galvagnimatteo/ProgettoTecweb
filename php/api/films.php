@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once '../utils/controlli.php';
 require_once '../utils/SingletonDB.php';
  $now = time();
     if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
@@ -29,18 +28,21 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         isset($_POST['Durata'])
         )
     {
-        $Titolo         = return_cleaned($_POST['Titolo']);
-        $Genere         = return_cleaned($_POST['Genere']);
-        $DataUscita     = $_POST['DataUscita'];
-        $Descrizione    = return_cleaned($_POST['Descrizione']);
-        $SrcImg         = return_cleaned($_POST['SrcImg']);
-        $Durata         = $_POST['Durata'];       
-        $CarouselImg    = return_cleaned($_POST['CarouselImg']);
-        $Attori         = return_cleaned($_POST['Attori']);
-        $Regista        = return_cleaned($_POST['Regista']);
-
-        $check= CheckFilm(
-
+        $Titolo = $_POST['Titolo'];
+        $Genere = $_POST['Genere'];
+        $DataUscita = $_POST['DataUscita'];
+        $Descrizione = $_POST['Descrizione'];
+        $SrcImg = $_POST['SrcImg'];
+        //$AltImg = $_POST['AltImg'];
+        $Durata = $_POST['Durata'];       
+        $CarouselImg=$_POST['CarouselImg'];
+        
+        
+        $query =
+            'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg) VALUES (?,?,?,?,?,?,?)';
+        $preparedQuery = $connection->prepare($query);
+        $preparedQuery->bind_param(
+            'sssssss',
             $Titolo,
             $Genere,
             $DataUscita,
@@ -49,33 +51,14 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $Durata,
             $CarouselImg
         );
-        if($check=="OK"){
-            $query =
-                'INSERT INTO Film ( Titolo,Genere,DataUscita, Descrizione,SrcImg,Durata,CarouselImg,Attori,Registi) VALUES (?,?,?,?,?,?,?,?,?)';
-            $preparedQuery = $connection->prepare($query);
-            $preparedQuery->bind_param(
-                'sssssssss',
-                $Titolo,
-                $Genere,
-                $DataUscita,
-                $Descrizione,
-                $SrcImg,            
-                $Durata,
-                $CarouselImg,
-                $Attori,
-                $Regista
-            );
-            $res=$preparedQuery->execute();        
-            $preparedQuery->close();
-            if($res){
-                $reply->status="ok";
-            }
-            else{
-                $reply->status="errore interno";
-            }
+
+        $res=$preparedQuery->execute();        
+        $preparedQuery->close();
+        if($res){
+            $reply->status="ok";
         }
         else{
-            $reply->status=$check;
+            $reply->status="errore interno";
         }
     }
     else {
@@ -86,39 +69,27 @@ else{
     if (isset($_POST['action'])&&$_POST['action']=='delete')
     {
         $id = $_POST['idfilm'];
-        $query='SELECT count(*) FROM Proiezione where IDFilm=?';
+        $query =
+            'delete FROM Film where ID=?;';
         $preparedQuery = $connection->prepare($query);
         $preparedQuery->bind_param(
             's',
             $id
         );
-        $preparedQuery->execute();
-        $res=$preparedQuery->get_result();
-        if($res->fetch_array(MYSQLI_NUM)[0]==0){
-            $query =
-                'delete FROM Film where ID=?;';
-            $preparedQuery = $connection->prepare($query);
-            $preparedQuery->bind_param(
-                's',
-                $id
-            );
-            $res=$preparedQuery->execute();        
-            $preparedQuery->close();
-            if($res){
-                $reply->status="ok";
-            }
-            else{
-                $reply->status="errore interno";
-            }
+
+        $res=$preparedQuery->execute();        
+        $preparedQuery->close();
+        if($res){
+            $reply->status="ok";
         }
-        else {
-            $reply->status="impossibile eliminare un Film con proiezioni";
+        else{
+            $reply->status="errore interno";
         }
     }
 }
 $films;
 $resultFilms = $connection
-    ->query('SELECT * FROM Film WHERE DATEDIFF(DataUscita, CURRENT_DATE())> -35 ORDER BY DataUscita DESC');
+    ->query('SELECT * FROM Film ORDER BY DataUscita DESC');
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;

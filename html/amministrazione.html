@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="overlays">
-            <form id="insert_film" class="closed" onsubmit="post_film();return false">
+            <form id="insert_film" class="closed" method="post">
                 <p class="SRskip">form: film</p>
                 <a href="#films" class="formcloser nascondiTesto" onclick="toggle_form('film');">chiudi form</a>
                 <fieldset>
@@ -101,8 +101,9 @@
                 <button type="submit" class="submit">Inserisci</button>
                 <p id="result_insert_film"></p>
                 <a href="#insert_film" class="SRskip">torna ad inizio form</a>
-            </form>
-            <form id="insert_projection" class="closed" onsubmit="post_projection();return false">
+             </form>
+            <form id="insert_projection" class="closed" method="post">
+
                 <p class="SRskip">form: proiezioni</p>
                 <a href="#projections" class="formcloser nascondiTesto" onclick="toggle_form('projection');">chiudi form</a>
                 <label for="filmselector">Film</label>
@@ -119,67 +120,6 @@
                 <button type="submit" class="submit">Inserisci</button>
                 <p id="result_insert_projection"></p>
                 <a href="#insert_projection" class="SRskip">torna ad inizio form</a>
-            </form>
-            <form id="insert_people_cast" class="closed" onsubmit="post_people_cast();return false">
-                <p class="SRskip">form: persone cast</p>
-                <a href="#people_cast" class="formcloser nascondiTesto" onclick="toggle_form('people_cast');">chiudi form</a>
-                <label for="imputNome"><span xml:lang="en">Nome</span></label>
-                <input type="text" name="Nome" required id="imputNome">
-                <label for="imputCognome">Cognome</label>
-                <input type="text" name="Cognome" required id="imputCognome">
-                <label for="imputRuolo">Ruolo</label>
-                <select name="ruolo" title="ruolo" id="imputRuolo">
-                    <option value="A">Attore</option>
-                    <option value="R">Regista</option>
-                </select>
-                <label for="imputLingua">Lingua</label>
-                <select name="lingua" title="lingua" id="imputLingua">
-                    <option value="null"></option>
-                    <option value="it">Italiano</option>
-                    <option value="en">Inglese</option>
-                    <option value="de">Tedesco</option>
-                    <option value="fr">Francese</option>
-                </select>
-                <button type="submit" class="submit">Inserisci</button>
-                <p id="result_insert_people_cast"></p>
-                <a href="#insert_people_cast" class="SRskip">torna ad inizio form</a>
-            </form>
-            <form id="edit_cast_film" class="closed" onsubmit="post_film_cast();return false">
-                <p class="SRskip">form: cast film</p>
-                <a href="#films" class="formcloser nascondiTesto" onclick="toggle_form('film_cast'); active_film = null;">chiudi form</a>
-                <label for="selector_cast">Persona</label>
-                <select name="selector_cast" title="Persona" id="selector_cast">
-                </select>
-                <button type="submit" class="submit">Aggiungi</button>
-                <table>
-                    <thead>
-                        <tr class=headerrow>
-                            <th>
-
-                            </th>
-                            <th>Nome</th>
-                            <th>Cognome</th>
-                            <th>Ruolo</th>
-                            <th>Lingua</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cast_film_recap">
-                    </tbody>
-                </table>
-                <a href="#cast_film_recap" class="SRskip">torna ad inizio lista</a>
-                <a href="#edit_cast_film" class="SRskip">torna ad inizio form</a>
-            </form>
-            <form id="projection_times" class="closed" onsubmit="post_projection_times();return false">
-                <p class="SRskip">form: cast film</p>
-                <a href="#projection" class="formcloser nascondiTesto" onclick="toggle_form('projection_times');active_projection = null">chiudi form</a>
-                <label for="orarioimput">Orario</label>
-                <input type="time" id="orarioimput" name="orario" required/>
-                <button type="submit" class="submit">Aggiungi</button>
-                <ul id="projection_times_recap">
-
-                </ul>
-                <a href="#projection_times_recap" class="SRskip">torna ad inizio lista</a>
-                <a href="#projection_times" class="SRskip">torna ad inizio form</a>
             </form>
         </div>
     </div>

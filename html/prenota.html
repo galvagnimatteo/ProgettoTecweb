@@ -45,21 +45,23 @@
 	<p role="alert" class="aiutocompilaz hide"> Hai selezionato due posti uguali </p>
 	<div class="labelPos">
 		<label for="selectNumTicketInt">Intero, <FULL-PRICE-FORMAT> € : </label>
-	<select id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>">
+		<input type="number" id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>" value="0" min="0"/>
+	<!--<select id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>">
 		<option value="0" selected>0</option>
 		<option value="1">1</option>
 		<option value="2">2</option>
 		<option value="3">3</option>
 		<option value="4">4</option>
 	</select>
-	
+	-->
 	</div>
 
 	<div class="labelPos noBorder">
 		<label for="selectNumTicketRed">
 		<span> Riduzioni disponibili per over 65, under 10 o persone con disabilità. <a href="info.php#info-riduz" title="Maggiori informazioni sulle riduzioni di prezzo"> Maggiori informazioni</a></span> <br/>
 		Ridotto, <DISC-PRICE-FORMAT> € : </label>
-	<select id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>">
+		<input type="number" id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>"  value="0" min="0"/>
+	<!--<select id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>">
 		<option value="0" selected>0</option>
 		<option value="1">1</option>
 		<option value="2">2</option>
@@ -67,6 +69,7 @@
 		<option value="4">4</option>
 	
 	</select>
+	-->
 	</div>
 
 	<span class="noscript"> Il numero <strong>totale</strong> dei biglietti (intero + ridotto) non deve essere maggiore di 4 </span>
@@ -77,148 +80,9 @@
 	<legend> Seleziona i posti: </legend>
 	
 	<div class="textSelectContainer">
-	<fieldset class="selezPostoFieldset hide">
-	<legend>Posto 1:</legend>
-	<label for="p1fila"> Fila: </label>
-	
-		<select id="p1fila" name="p1fila">
-			<option value="a">A</option>
-			<option value="b">B</option>
-			<option value="c">C</option>
-			<option value="d">D</option>
-			<option value="e">E</option>
-			<option value="f">F</option>
-			<option value="g">G</option>
-
-		</select>
-		<label for="p1numero"> Numero: </label>
-		<select id="p1numero" name="p1numero">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">12</option>
-			<option value="13">13</option>
-			<option value="14">14</option>
-			<option value="15">15</option>
-		</select>
-	
-	</fieldset>
-	
-	<fieldset class="selezPostoFieldset hide">
-	<legend>Posto 2:</legend>
-	<label for="p2fila"> Fila: </label>
-	
-		<select id="p2fila" name="p2fila">
-			<option value="a">A</option>
-			<option value="b">B</option>
-			<option value="c">C</option>
-			<option value="d">D</option>
-			<option value="e">E</option>
-			<option value="f">F</option>
-			<option value="g">G</option>
-
-		</select>
-		<label for="p2numero"> Numero: </label>
-		<select id="p2numero" name="p2numero">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">12</option>
-			<option value="13">13</option>
-			<option value="14">14</option>
-			<option value="15">15</option>
-		</select>
-	
-	</fieldset>
-	
 	</div>
 	
 	<div class="textSelectContainer">
-	<fieldset class="selezPostoFieldset hide">
-	<legend>Posto 3:</legend>
-	<label for="p3fila"> Fila: </label>
-	
-		<select id="p3fila" name="p3fila">
-			<option value="a">A</option>
-			<option value="b">B</option>
-			<option value="c">C</option>
-			<option value="d">D</option>
-			<option value="e">E</option>
-			<option value="f">F</option>
-			<option value="g">G</option>
-
-		</select>
-		<label for="p3numero"> Numero: </label>
-		<select id="p3numero" name="p3numero">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">12</option>
-			<option value="13">13</option>
-			<option value="14">14</option>
-			<option value="15">15</option>
-		</select>
-	
-	</fieldset>
-	
-	<fieldset class="selezPostoFieldset hide">
-	<legend>Posto 4:</legend>
-	<label for="p4fila"> Fila: </label>
-	
-		<select id="p4fila" name="p4fila">
-			<option value="a">A</option>
-			<option value="b">B</option>
-			<option value="c">C</option>
-			<option value="d">D</option>
-			<option value="e">E</option>
-			<option value="f">F</option>
-			<option value="g">G</option>
-
-		</select>
-		<label for="p4numero"> Numero: </label>
-		<select id="p4numero" name="p4numero">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">12</option>
-			<option value="13">13</option>
-			<option value="14">14</option>
-			<option value="15">15</option>
-		</select>
-	
-	</fieldset>
 	</div>
 	
 	

@@ -1200,11 +1200,22 @@ div.labelqp select {
 }
 
 
-#ticketInfoGroup select,  
+#ticketInfoGroup input,  
 #textSelectGroup select {
 	color: #000;
 	min-width: 3rem;
 	min-height: 1.5rem;
+	padding-left: 3px;
+}
+
+#ticketInfoGroup input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+#ticketInfoGroup input[type=number]::-webkit-inner-spin-button, 
+#ticketInfoGroup input[type=number]::-webkit-outer-spin-button { 
+  opacity: 1;
 }
 
 .textSelectContainer {
@@ -1213,7 +1224,6 @@ div.labelqp select {
 	
 }
 
-#ticketInfoGroup option, 
 #textSelectGroup option {
 	color: #000;
 }

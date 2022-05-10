@@ -35,63 +35,30 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 
 
         $check=CheckProiezione(
+            $connection,
             $Data,
             $IDFilm,
             $NumeroSala,
             $orario
         );
         if($check=="OK"){
-            $id = $_POST['idproiezione'];
-            $query='SELECT Durata FROM Film, where ID=?';
+            $query =
+                'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala,Orario) VALUES (?,?,?,?)';
             $preparedQuery = $connection->prepare($query);
             $preparedQuery->bind_param(
-                's',
-                $IDFilm
-            );
-            $preparedQuery->execute();
-            $res=$preparedQuery->get_result();
-            $duratafilm=$res->fetch_array(MYSQLI_NUM)[0]+15;//15 minuti di margine per la pulizia della sala
-
-            $query=='SELECT count(*) FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm '+
-            'AND Data= ? AND'+//stesso Giorno
-            'AND NumeroSala= ? AND'+//stessa sala
-            '(( MINUTE(TIMEDIFF(?,Orario))>0 AND MINUTE(TIMEDIFF(?,Orario))<Durata+15)'+//film inserito è tra inizio e fine di film gia presente
-            'OR MINUTE((TIMEDIFF(Orario,?))>0 AND MINUTE(TIMEDIFF(Orario,?))<?));';//film presente è tra inizio e fine di film inserito
-            $preparedQuery = $connection->prepare($query);
-            $preparedQuery->bind_param(
-                'sssssss',
+                'ssss',
                 $Data,
+                $IDFilm,
                 $NumeroSala,
-                $orario,                
-                $orario,
-                $orario,                
-                $orario,
-                $duratafilm
+                $orario
             );
-            $preparedQuery->execute();
-            $res=$preparedQuery->get_result();
-            if($res->fetch_array(MYSQLI_NUM)[0]==0)
-            {
-                $query =
-                    'INSERT INTO Proiezione ( Data,IDFilm,NumeroSala,Orario) VALUES (?,?,?,?)';
-                $preparedQuery = $connection->prepare($query);
-                $preparedQuery->bind_param(
-                    'ssss',
-                    $Data,
-                    $IDFilm,
-                    $NumeroSala,
-                    $orario
-                );
-                $res=$preparedQuery->execute();        
-                $preparedQuery->close();
-                if($res){
-                    $reply->status="ok";
-                }
-                else{
-                    $reply->status="errore interno";
-                }
-            }else{
-                $reply->status="sovrapposizione con un altro Film";
+            $res=$preparedQuery->execute();        
+            $preparedQuery->close();
+            if($res){
+                $reply->status="ok";
+            }
+            else{
+                $reply->status="errore interno";
             }
         }
         else{
@@ -131,14 +98,14 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $preparedQuery->close();
         }
         else {
-            $reply->status="impossibile eliminare una proiezione con prenotazioni";//TODO gestione cancellazione prenotazioni
+            $reply->status="impossibile eliminare una proiezione con prenotazioni";
         }
     }
 }
 $proiezioni;
 $resultproiezioni = $connection
-    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario,Durata FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm AND DATEDIFF(Data, CURRENT_DATE())> 0');
-    $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
+    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario,Durata FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm AND DATEDIFF(Data, CURRENT_DATE())>= 0');
+    $connection->commit();//la transazione assicura che la lettura avvenga dopo le modifiche
 $db->disconnect();
 $i=0;
 while ($row = $resultproiezioni->fetch_assoc()) { 

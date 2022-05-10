@@ -21,7 +21,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
     $preparedQuery3 = $db
         ->getConnection()
         ->prepare(
-            "SELECT Data FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? GROUP BY Data ORDER BY Data "
+            "SELECT Data FROM Proiezione INNER JOIN Film ON Proiezione.IDFilm = Film.ID WHERE Film.ID=? AND Data > 'date(\"Y-m-d\")' GROUP BY Data ORDER BY Data "
         );
     $preparedQuery3->bind_param("i", $_GET["idfilm"]);
     $preparedQuery3->execute();

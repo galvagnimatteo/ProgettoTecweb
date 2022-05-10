@@ -18,13 +18,13 @@ $reply=new \stdClass();
 $reply->status="none";
 $connection=$db->getConnection();
 $connection->begin_transaction();
-if (isset($_POST['action'])&&$_POST['action']=='insert') 
+if (isset($_POST['action'])&&$_POST['action']=='insert')
 {
     if(isset($_POST['Titolo']) &&
         isset($_POST['Genere']) &&
         isset($_POST['DataUscita']) &&
         isset($_POST['Descrizione']) &&
-        isset($_POST['SrcImg']) &&  
+        isset($_POST['SrcImg']) &&
         isset($_POST['CarouselImg']) &&
         isset($_POST['Attori'])&&
         isset($_POST['Regista'])&&
@@ -36,7 +36,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
         $DataUscita     = $_POST['DataUscita'];
         $Descrizione    = return_cleaned($_POST['Descrizione']);
         $SrcImg         = return_cleaned($_POST['SrcImg']);
-        $Durata         = $_POST['Durata'];       
+        $Durata         = $_POST['Durata'];
         $CarouselImg    = return_cleaned($_POST['CarouselImg']);
         $Attori         = return_cleaned($_POST['Attori']);
         $Regista        = return_cleaned($_POST['Regista']);
@@ -46,7 +46,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $Genere,
             $DataUscita,
             $Descrizione,
-            $SrcImg,            
+            $SrcImg,
             $Durata,
             $CarouselImg,
             $Attori,
@@ -62,13 +62,13 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
                 $Genere,
                 $DataUscita,
                 $Descrizione,
-                $SrcImg,            
+                $SrcImg,
                 $Durata,
                 $CarouselImg,
                 $Attori,
                 $Regista
             );
-            $res=$preparedQuery->execute();        
+            $res=$preparedQuery->execute();
             $preparedQuery->close();
             if($res){
                 $reply->status="ok";
@@ -105,7 +105,7 @@ else{
                 's',
                 $id
             );
-            $res=$preparedQuery->execute();        
+            $res=$preparedQuery->execute();
             $preparedQuery->close();
             if($res){
                 $reply->status="ok";
@@ -122,19 +122,20 @@ else{
 $films;
 $resultFilms = $connection
     ->query('SELECT * FROM Film WHERE DATEDIFF(DataUscita, CURRENT_DATE())>= -35 ORDER BY DataUscita DESC');
+
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;
 while ($row = $resultFilms->fetch_assoc()) {
     $film=new \stdClass();
-    $film->id=$row['ID'];
+    $film->id=$row['FilmID'];
     $film->titolo=$row['Titolo'];
     $film->genere=$row['Genere'];
     $film->datauscita=$row['DataUscita'];
     $film->descrizione=$row['Descrizione'];
     $film->srcimg=$row['SrcImg'];
     //$film->altimg=$row['AltImg'];
-    $film->durata=$row['Durata'];                
+    $film->durata=$row['Durata'];
     $films[$i]=$film;
     $i++;
 }

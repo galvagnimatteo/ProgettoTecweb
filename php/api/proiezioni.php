@@ -18,13 +18,13 @@ $reply=new \stdClass();
 $reply->status="none";
 $connection=$db->getConnection();
 $connection->begin_transaction();
-if (isset($_POST['action'])&&$_POST['action']=='insert') 
+if (isset($_POST['action'])&&$_POST['action']=='insert')
 {
 
     if(isset($_POST['film']) &&
             isset($_POST['sala']) &&
             isset($_POST['Orario']) &&
-            isset($_POST['Giorno']) 
+            isset($_POST['Giorno'])
             )
     {
             $IDFilm      = $_POST['film'];
@@ -52,7 +52,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
                 $NumeroSala,
                 $orario
             );
-            $res=$preparedQuery->execute();        
+            $res=$preparedQuery->execute();
             $preparedQuery->close();
             if($res){
                 $reply->status="ok";
@@ -106,9 +106,10 @@ $proiezioni;
 $resultproiezioni = $connection
     ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario,Durata FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm AND DATEDIFF(Data, CURRENT_DATE())>= 0');
     $connection->commit();//la transazione assicura che la lettura avvenga dopo le modifiche
+
 $db->disconnect();
 $i=0;
-while ($row = $resultproiezioni->fetch_assoc()) { 
+while ($row = $resultproiezioni->fetch_assoc()) {
     $proiezione=new \stdClass();
     $proiezione->data=$row['Data'];
     $proiezione->id=$row['ID'];

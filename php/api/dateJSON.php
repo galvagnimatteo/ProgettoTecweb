@@ -1,6 +1,6 @@
 <?php
 
-require_once "SingletonDB.php";
+require_once "../utils/SingletonDB.php";
 
 $IDfilm = $_POST["IDfilm"];
 
@@ -9,7 +9,7 @@ $db = SingletonDB::getInstance();
 $preparedQuery = $db
     ->getConnection()
     ->prepare(
-        "SELECT * FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) WHERE Film.ID = ?"
+        "SELECT Data FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) WHERE Film.ID = ? GROUP BY Data"
     );
 $preparedQuery->bind_param("i", $IDfilm);
 $preparedQuery->execute();

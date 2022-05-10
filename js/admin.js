@@ -46,14 +46,14 @@ var forms = [
             {
                 name: "SrcImg",
                 element: "imputimmagine",
-                condition: function (value) { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/"); },
-                error_message:"l'immagine deve essere un url valido"
+                condition: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
+                error_message:"l'immagine deve essere un file valido"
             },
             {
                 name: "CarouselImg",
                 element: "imputcarousel",
-                condition: function (value) { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/"); },
-                error_message: "l'immagine deve essere un url valido"
+                condition: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
+                error_message: "l'immagine deve essere un file valido"
             },
             {
                 name: "Durata",
@@ -249,7 +249,16 @@ function delete_film(id) {
         if (status === "ok") {
             var films = data.films;
             updatehtml_film(films);
-        }        
+            document.getElementById("deletefilmstatus").firstChild.textContent= "eliminazione avvenuta con successo";
+        }
+        else {
+            document.getElementById("deletefilmstatus").firstChild.textContent = status;
+        }
+        document.getElementById("deletefilmstatus").className = "open";
+        setTimeout(function () {
+            document.getElementById("deletefilmstatus").className = "closed";
+            document.getElementById("deletefilmstatus").firstChild.textContent = "";
+        }, 3000)
     };
 }
 function delete_projection(id) {
@@ -271,7 +280,16 @@ function delete_projection(id) {
         if (status === "ok") {
             var proiezioni = data.proiezioni;
             updatehtml_projection(proiezioni);            
-        }        
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+        }
+        else {
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = status;
+        }
+        document.getElementById("deleteprojectionstatus").className = "open";
+        setTimeout(function () {
+            document.getElementById("deleteprojectionstatus").className = "closed";
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
+        },3000)
     };
 }
 
@@ -290,18 +308,18 @@ function updatehtml_film(films) {
     for (entryindex in films) {
         var entry = films[entryindex];
         filmlist += generate_entry_film(entry);
-        if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
             filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
-        }        
     }
     document.getElementById("filmlist").innerHTML = filmlist;
-    document.getElementById("filmselector").innerHTML = filmoptions;
+    if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
+        document.getElementById("filmselector").innerHTML = filmoptions;
+    }
 }
 
 function generate_entry_film(entry) {
     
     result = "<tr class='entry' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
+        '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -311,12 +329,13 @@ function generate_entry_film(entry) {
 }
 function generate_entry_projection(entry) {
     result = "<tr class='entry' ><td class='entryfunctions'>" +
-        '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</button >' +
+        '<a href="#deleteprojectionstatus" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</a >' +
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
         + entry.titolofilm + "</td><td>" +
-        entry.orario + "</td></tr>";
+        + entry.orario + "</td><td>" +
+        entry.durata + "</td></tr>";
     return result;
 }
 

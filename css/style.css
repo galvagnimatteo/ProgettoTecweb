@@ -1174,8 +1174,7 @@ div.labelqp select {
 	justify-content: space-evenly;
 }
 
-#modeSelectGroup label,
-#autoRadioGroup label {
+#modeSelectGroup label {
 	display: block;
 	background-color: var(--primary-color);
 	border: 2px solid var(--secondary-color);
@@ -1190,29 +1189,42 @@ div.labelqp select {
 	font-weight: 800;
 }
 
-#autoRadioGroup label:checked {
+#textSelectGroup label:checked {
 	color: #000;
 }
 
-#autoRadioGroup {
+#textSelectGroup {
 	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
 	align-items: stretch;
+	justify-content: space-around
 }
 
-#autoRadioGroup {
-	display: flex;
-	flex-direction: column;
-}
 
-#ticketInfoGroup select {
+#ticketInfoGroup input,  
+#textSelectGroup select {
 	color: #000;
-	min-width: 2.5rem;
+	min-width: 3rem;
 	min-height: 1.5rem;
+	padding-left: 3px;
 }
 
-#ticketInfoGroup option {
+#ticketInfoGroup input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+#ticketInfoGroup input[type=number]::-webkit-inner-spin-button, 
+#ticketInfoGroup input[type=number]::-webkit-outer-spin-button { 
+  opacity: 1;
+}
+
+.textSelectContainer {
+	
+	margin: 1rem;
+	
+}
+
+#textSelectGroup option {
 	color: #000;
 }
 
@@ -1221,6 +1233,12 @@ div.labelqp select {
 	border: 0;
 	border-top: 2px solid var(--secondary-color);
 }
+
+#purchaseTicketForm .selezPostoFieldset {
+	margin-top: 1.5rem;
+	border: 0;
+}
+
 
 #purchaseTicketForm legend {
 	padding: 0.3rem;
@@ -1745,9 +1763,11 @@ display: block;
 #admin form input,
 #admin form select,
 #admin form option,
+#admin form textarea,
 #admin form input:not(:empty),
 #admin form select:not(:empty),
 #admin form option:not(:empty),
+#admin form textarea:not(:empty),
 #admin .submit {
 	align-self: center;
 	width: 80%;
@@ -1765,11 +1785,22 @@ display: block;
 	position:relative;
 	left:10%;
 }
-.open{
-	pointer-events:initial;
+#deletefilmstatus,
+#deleteprojectionstatus {
+	display: block;
+	position: relative;
+	left: 20%;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 2rem;
+	width: 60%;
+	padding: 5px;
+	height: 5rem;
+}
+.open {
+	pointer-events: initial;
 }
 .closed {
 	pointer-events: none;
 	display: none !important;
 }
-

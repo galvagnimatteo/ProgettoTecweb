@@ -1,6 +1,6 @@
 <?php
 
-//$postistr: stringa nella forma xy, x1y1, x2y2 dove x{1,2,3} è al fila e y{1,2,3} è il numero del posto
+//$postistr: stringa nella forma xy, x1y1, x2y2,..., xnyn  dove x{1,2,3,..., n} è al fila e y{1,2,3,..., n} è il numero del posto
 
 function prenotaPosti($postistr, $username, $idproiez, $numSala)
 {

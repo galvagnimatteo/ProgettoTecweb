@@ -35,6 +35,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 
 
         $check=CheckProiezione(
+            $connection,
             $Data,
             $IDFilm,
             $NumeroSala,
@@ -97,14 +98,15 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
             $preparedQuery->close();
         }
         else {
-            $reply->status="impossibile eliminare una proiezione con prenotazioni";//TODO gestione cancellazione prenotazioni
+            $reply->status="impossibile eliminare una proiezione con prenotazioni";
         }
     }
 }
 $proiezioni;
 $resultproiezioni = $connection
-    ->query("SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm AND Data > 'date(\"Y-m-d\")'");
-    $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
+    ->query('SELECT Data,Proiezione.ID as ID,IDFilm,Titolo ,NumeroSala, Orario,Durata FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm AND DATEDIFF(Data, CURRENT_DATE())>= 0');
+    $connection->commit();//la transazione assicura che la lettura avvenga dopo le modifiche
+
 $db->disconnect();
 $i=0;
 while ($row = $resultproiezioni->fetch_assoc()) {
@@ -115,6 +117,7 @@ while ($row = $resultproiezioni->fetch_assoc()) {
     $proiezione->titolofilm=$row['Titolo'];
     $proiezione->numeroSala=$row['NumeroSala'];
     $proiezione->orario=$row['Orario'];
+    $proiezione->durata=$row['Durata'];
     $proiezioni[$i]=$proiezione;
     $i++;
 }

@@ -181,7 +181,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
     );
 	$acquistoconferma_content = str_replace(
         "<CLASS-WARNING>",
-		($_SESSION["a"]) ? "hide" : "",
+		(isset($_SESSION["a"])) ? "hide" : "",
         $acquistoconferma_content
     );
 	

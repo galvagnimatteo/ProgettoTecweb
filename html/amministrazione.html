@@ -10,28 +10,35 @@
         <div class="lists">
             <div id="films" class="open">
                 <p class="SRskip">area: film</p>
-                <a href="#areasselector" class="SRskip">cambia area</a>                
-                <table >
+                <a href="#areasselector" class="SRskip">cambia area</a>
+                <table>
                     <thead>
                         <tr class=headerrow>
-                        <th>
-                            <a href="#insert_film" class="formopener nascondiTesto" onclick="toggle_form('film');">apri form</a>
-                        </th>
-                        <th>Titolo</th><th>Genere</th><th>Data Uscita</th><th>Durata</th></tr>
+                            <th>
+                                <a href="#insert_film" class="formopener nascondiTesto" onclick="toggle_form('film');">apri form</a>
+                            </th>
+                            <th>Titolo</th>
+                            <th>Genere</th>
+                            <th>Data Uscita</th>
+                            <th>Durata</th>
+                        </tr>
                     </thead>
                     <tbody id="filmlist">
-
                     </tbody>
                 </table>
                 <a href="#films" class="SRskip">torna ad inizio lista</a>
                 <a href="#areasselector" class="SRskip">cambia area</a>
+                <div id="deletefilmstatus" class="closed">
+                    <p>test</p>
+                    <a href="#films" class="SRskip">torna a lista</a>
+                </div>
             </div>
             <div id="projections" class="closed">
                 <p class="SRskip">area: proiezioni</p>
-                <a href="#areasselector" class="SRskip">cambia area</a>                
+                <a href="#areasselector" class="SRskip">cambia area</a>
                 <table>
                     <thead>
-                        <tr class ='headerrow'>
+                        <tr class='headerrow'>
                             <th>
                                 <a href="#insert_projection" class="formopener nascondiTesto" onclick="toggle_form('projection');">apri form</a>
                             </th>
@@ -39,6 +46,7 @@
                             <th>Sala</th>
                             <th>Film</th>
                             <th>Orario</th>
+                            <th>Durata</th>
                         </tr>
                     </thead>
                     <tbody id="projectionlist">
@@ -46,10 +54,14 @@
                 </table>
                 <a href="#projections" class="SRskip">torna ad inizio lista</a>
                 <a href="#areasselector" class="SRskip">cambia area</a>
+                <div id="deleteprojectionstatus" class="closed">
+                    <p>test</p>
+                    <a href="#projections" class="SRskip">torna a lista</a>
+                </div>
             </div>
         </div>
         <div class="overlays">
-            <form id="insert_film" class="closed" onsubmit="post_film();return false">
+            <form id="insert_film" class="closed" method="post">
                 <p class="SRskip">form: film</p>
                 <a href="#films" class="formcloser nascondiTesto" onclick="toggle_form('film');">chiudi form</a>
                 <fieldset>
@@ -64,9 +76,12 @@
                 <fieldset>
                     <legend>Dettagli</legend>
                     <label for="imputdurata">Durata</label>
-                    <input type="number" name="Durata" inputmode="numeric" required id="imputdurata">
+                    <input type="number" name="Durata" inputmode="numeric" required min="0" placeholder="120" id="imputdurata">
                     <label for="imputdescizione">Descrizione</label>
-                    <input type="text" name="Descrizione" required id="imputdescizione">
+                    <!--<input type="text" name="Descrizione" required id="imputdescizione">-->
+                    <textarea id="imputdescizione" name="Descrizione" required rows="5">
+
+                    </textarea>
                 </fieldset>
                 <fieldset>
                     <legend>Cast</legend>
@@ -86,7 +101,7 @@
                 <p id="result_insert_film"></p>
                 <a href="#insert_film" class="SRskip">torna ad inizio form</a>
              </form>
-            <form id="insert_projection" class="closed" onsubmit="post_projection();return false">
+            <form id="insert_projection" class="closed" method="post">
                 <p class="SRskip">form: proiezioni</p>
                 <a href="#projections" class="formcloser nascondiTesto" onclick="toggle_form('projection');">chiudi form</a>
                 <label for="filmselector">Film</label>
@@ -105,31 +120,6 @@
                 <button type="submit" class="submit">Inserisci</button>
                 <p id="result_insert_projection"></p>
                 <a href="#insert_projection" class="SRskip">torna ad inizio form</a>
-            </form>
-            <form id="edit_cast_film" class="closed" onsubmit="post_film_cast();return false">
-                <p class="SRskip">form: cast film</p>
-                <a href="#films" class="formcloser nascondiTesto" onclick="toggle_form('film_cast'); active_film = null;">chiudi form</a>
-                <label for="selector_cast">Persona</label>
-                <select name="selector_cast" title="Persona" id="selector_cast">
-                </select>
-                <button type="submit" class="submit">Aggiungi</button>
-                <table>
-                    <thead>
-                        <tr class=headerrow>
-                            <th>
-
-                            </th>
-                            <th>Nome</th>
-                            <th>Cognome</th>
-                            <th>Ruolo</th>
-                            <th>Lingua</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cast_film_recap">
-                    </tbody>
-                </table>
-                <a href="#cast_film_recap" class="SRskip">torna ad inizio lista</a>
-                <a href="#edit_cast_film" class="SRskip">torna ad inizio form</a>
             </form>
         </div>
     </div>

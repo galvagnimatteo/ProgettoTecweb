@@ -1622,6 +1622,9 @@ display: block;
 #admin a:visited{
 	color:var(--admin-button-text);
 }
+#admin a:hover {
+	color:var(--links-hover-color);
+}
 .formcloser, .formopener {
 	display: block;
 	color: var(--admin-button-text);
@@ -1647,25 +1650,23 @@ display: block;
 	background-image: url(/images/formopener.svg);
 }
 
-.activeoption {
-	background-image: linear-gradient(var(--admin-areaselector-option-color1),var(--admin-areaselector-option-color2));
-	/*background-color: darkred;*/
-	border: none;
-	border-radius: 15px;
+.inactiveoption, .activeoption{
+	border: 2px outset var(--admin-border);
+	border-radius: 10px;
 	box-sizing: border-box;
 	padding: 15px;
+}
+.activeoption {
 	pointer-events: none;
+	background-image: linear-gradient(var(--admin-areaselector-option-color1),var(--admin-areaselector-option-color2));
 }
 .activeoption a:hover{
 	color:inherit;
 }
 
-.inactiveoption {
-	border: none;
-	border-radius: 15px;
-	box-sizing: border-box;
-	padding: 15px;
+.inactiveoption {	
 	pointer-events: initial;
+	background-color:var(--admin-button-background);
 }
 .workarea table {
 	display:table;
@@ -1762,9 +1763,11 @@ display: block;
 #admin form input,
 #admin form select,
 #admin form option,
+#admin form textarea,
 #admin form input:not(:empty),
 #admin form select:not(:empty),
 #admin form option:not(:empty),
+#admin form textarea:not(:empty),
 #admin .submit {
 	align-self: center;
 	width: 80%;
@@ -1782,11 +1785,22 @@ display: block;
 	position:relative;
 	left:10%;
 }
-.open{
-	pointer-events:initial;
+#deletefilmstatus,
+#deleteprojectionstatus {
+	display: block;
+	position: relative;
+	left: 20%;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 2rem;
+	width: 60%;
+	padding: 5px;
+	height: 5rem;
+}
+.open {
+	pointer-events: initial;
 }
 .closed {
 	pointer-events: none;
 	display: none !important;
 }
-

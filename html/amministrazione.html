@@ -10,28 +10,35 @@
         <div class="lists">
             <div id="films" class="open">
                 <p class="SRskip">area: film</p>
-                <a href="#areasselector" class="SRskip">cambia area</a>                
-                <table >
+                <a href="#areasselector" class="SRskip">cambia area</a>
+                <table>
                     <thead>
                         <tr class=headerrow>
-                        <th>
-                            <a href="#insert_film" class="formopener nascondiTesto" onclick="toggle_form('film');">apri form</a>
-                        </th>
-                        <th>Titolo</th><th>Genere</th><th>Data Uscita</th><th>Durata</th></tr>
+                            <th>
+                                <a href="#insert_film" class="formopener nascondiTesto" onclick="toggle_form('film');">apri form</a>
+                            </th>
+                            <th>Titolo</th>
+                            <th>Genere</th>
+                            <th>Data Uscita</th>
+                            <th>Durata</th>
+                        </tr>
                     </thead>
                     <tbody id="filmlist">
-
                     </tbody>
                 </table>
                 <a href="#films" class="SRskip">torna ad inizio lista</a>
                 <a href="#areasselector" class="SRskip">cambia area</a>
+                <div id="deletefilmstatus" class="closed">
+                    <p></p>
+                    <a href="#films" class="SRskip">torna a lista</a>
+                </div>
             </div>
             <div id="projections" class="closed">
                 <p class="SRskip">area: proiezioni</p>
-                <a href="#areasselector" class="SRskip">cambia area</a>                
+                <a href="#areasselector" class="SRskip">cambia area</a>
                 <table>
                     <thead>
-                        <tr class ='headerrow'>
+                        <tr class='headerrow'>
                             <th>
                                 <a href="#insert_projection" class="formopener nascondiTesto" onclick="toggle_form('projection');">apri form</a>
                             </th>
@@ -39,6 +46,7 @@
                             <th>Sala</th>
                             <th>Film</th>
                             <th>Orario</th>
+                            <th>Durata</th>
                         </tr>
                     </thead>
                     <tbody id="projectionlist">
@@ -46,6 +54,10 @@
                 </table>
                 <a href="#projections" class="SRskip">torna ad inizio lista</a>
                 <a href="#areasselector" class="SRskip">cambia area</a>
+                <div id="deleteprojectionstatus" class="closed">
+                    <p></p>
+                    <a href="#projections" class="SRskip">torna a lista</a>
+                </div>
             </div>
         </div>
         <div class="overlays">
@@ -64,9 +76,12 @@
                 <fieldset>
                     <legend>Dettagli</legend>
                     <label for="imputdurata">Durata</label>
-                    <input type="number" name="Durata" inputmode="numeric" required id="imputdurata">
+                    <input type="number" name="Durata" inputmode="numeric" required min="0" placeholder="120" id="imputdurata">
                     <label for="imputdescizione">Descrizione</label>
-                    <input type="text" name="Descrizione" required id="imputdescizione">
+                    <!--<input type="text" name="Descrizione" required id="imputdescizione">-->
+                    <textarea id="imputdescizione" name="Descrizione" required rows="5">
+
+                    </textarea>
                 </fieldset>
                 <fieldset>
                     <legend>Cast</legend>
@@ -80,7 +95,7 @@
                     <label for="imputimmagine">Immagine</label>
                     <input type="text" name="SrcImg" required id="imputimmagine">
                     <label for="imputcarousel">Immagine carousel</label>
-                    <input type="url" name="CarouselImg" required id="imputcarousel">
+                    <input type="text" name="CarouselImg" required id="imputcarousel">
                 </fieldset>
                 <button type="submit" class="submit">Inserisci</button>
                 <p id="result_insert_film"></p>

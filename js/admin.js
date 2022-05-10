@@ -49,6 +49,7 @@ var forms = [
                 element: "imputimmagine",
                 condition: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
                 error_message: "l'immagine deve essere un file valido"
+
             },
             {
                 name: "CarouselImg",
@@ -202,7 +203,6 @@ function api_post(api) {
             }
             xhr.send(urlEncodedData);
             xhr.onload = function () {
-                console.log(xhr.responseText);
                 let data = JSON.parse(xhr.responseText);
                 let status = data.status;
                 if (status === "ok") {
@@ -225,7 +225,6 @@ function api_request(api) {
     request.open('GET', api.url);
     request.send();
     request.onload = () => {
-        console.log(request.response);
         var data = JSON.parse(request.response);
         api.updatehtml(data);
     }
@@ -244,13 +243,13 @@ function delete_film(id) {
 
     xhr.send('action=delete&idfilm=' + id);
     xhr.onload = function () {
-        console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
             var films = data.films;
             updatehtml_film(films);
             document.getElementById("deletefilmstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+
         }
         else {
             document.getElementById("deletefilmstatus").firstChild.textContent = status;
@@ -273,7 +272,6 @@ function delete_projection(id) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-
     xhr.send('action=delete&idproiezione=' + id);
     xhr.onload = function () {
         var data = JSON.parse(xhr.responseText);
@@ -291,6 +289,7 @@ function delete_projection(id) {
             document.getElementById("deleteprojectionstatus").className = "closed";
             document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
         }, 3000)
+
     };
 }
 
@@ -310,6 +309,7 @@ function updatehtml_film(films) {
         var entry = films[entryindex];
         filmlist += generate_entry_film(entry);
         filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
+
     }
     document.getElementById("filmlist").innerHTML = filmlist;
     if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
@@ -320,6 +320,7 @@ function updatehtml_film(films) {
 function generate_entry_film(entry) {
 
     result = "<tr class='entry' ><td class='entryfunctions'>" +
+
         '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
@@ -337,6 +338,7 @@ function generate_entry_projection(entry) {
         + entry.titolofilm + "</td><td>"
         + entry.orario + "</td><td>"
         + entry.durata + "</td></tr>";
+
     return result;
 }
 
@@ -350,6 +352,7 @@ document.getElementById(api.proiezioni.imputform.element).onsubmit = function ()
     api.proiezioni.post();
     return false;//blocca caricamento pagina
 }
+
 
 
 document.getElementById("filmarea").onclick = function () { change_context('film'); }

@@ -9,7 +9,7 @@ $db = SingletonDB::getInstance();
 $preparedQuery = $db
     ->getConnection()
     ->prepare(
-        "SELECT Data FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) WHERE Film.ID = ? GROUP BY Data"
+        "SELECT Data FROM Film INNER JOIN Proiezione ON (Film.ID = Proiezione.IDFilm) WHERE Data > current_date AND Film.ID = ? GROUP BY Data"
     );
 $preparedQuery->bind_param("i", $IDfilm);
 $preparedQuery->execute();

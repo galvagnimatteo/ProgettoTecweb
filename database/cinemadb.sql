@@ -422,7 +422,7 @@ INSERT INTO `Posto` (`Fila`, `Numero`, `NumeroSala`) VALUES
 CREATE TABLE `Prenotazione` (
   `ID` int(11) NOT NULL,
   `NumeroPersone` smallint(6) NOT NULL,
-  `UsernameUtente` varchar(50) NOT NULL,
+  `UsernameUtente` varchar(50) NULL,
   `IDProiezione` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

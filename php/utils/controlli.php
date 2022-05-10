@@ -1,5 +1,4 @@
 <?php
-
 function registerControls(
     $username,
     $name,

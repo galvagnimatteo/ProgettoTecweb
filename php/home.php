@@ -14,7 +14,7 @@ $cards = "";
 $db = SingletonDB::getInstance();
 $resultFilms = $db
     ->getConnection()
-    ->query("SELECT *, Film.ID AS FilmID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Data > 'date(\"Y-m-d\")' GROUP BY Film.ID ORDER BY DataUscita DESC");
+    ->query("SELECT *, Film.ID AS FilmID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Data > current_date GROUP BY Film.ID ORDER BY DataUscita DESC");
 $db->disconnect();
 
 //--------------------------------------------------------------------------

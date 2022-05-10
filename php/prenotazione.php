@@ -23,7 +23,7 @@ $db = SingletonDB::getInstance();
 $preparedQuery = $db
     ->getConnection()
     ->prepare(
-        "SELECT Film.Titolo, Proiezione.Data, Proiezione.NumeroSala, Film.ID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Proiezione.ID=? AND Proiezione.Data > 'date(\"Y-m-d\")'"
+        "SELECT Film.Titolo, Proiezione.Data, Proiezione.NumeroSala, Film.ID, Proiezione.Orario FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Proiezione.ID=? AND Proiezione.Data > current_date"
     );
 $preparedQuery->bind_param("i", $idproiez);
 $preparedQuery->execute();
@@ -42,13 +42,13 @@ if (!empty($result1) && $result1->num_rows > 0) {
 	$orario = $dataFilm["Orario"];
 	$postiOccupati = array();
     $statoPosti = mappaPosti($numeroSala, $idproiez, $orario, $postiOccupati);
-	
+
 	//costruisco la lista di posti occupati
 	foreach ($statoPosti as $posto => $stato) {
 		if ($stato==1)
 			array_push($postiOccupati, $posto);
 	}
-	
+
     unset($listaPostiQuery);
 
     $db->connect();
@@ -70,11 +70,11 @@ if (!empty($result1) && $result1->num_rows > 0) {
         header("Location: 500.php");
         die();
     }
-	
-	
-	
-	
-	
+
+
+
+
+
     $prenotazione_content = file_get_contents(
         "../html/prenota.html"
     );
@@ -132,7 +132,7 @@ if (!empty($result1) && $result1->num_rows > 0) {
         generateSVG($numeroSala, $idproiez, $orario),
         $prenotazione_content
     );
-	
+
 	 $prenotazione_content = str_replace(
         "<POSTI-OCCUPATI>",
         implode(",", $postiOccupati),

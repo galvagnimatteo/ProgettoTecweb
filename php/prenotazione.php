@@ -22,7 +22,7 @@ $db = SingletonDB::getInstance();
 $preparedQuery = $db
     ->getConnection()
     ->prepare(
-        "SELECT Film.Titolo, Proiezione.Data, Proiezione.NumeroSala, Film.ID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Proiezione.ID=?"
+        "SELECT Film.Titolo, Proiezione.Data, Proiezione.NumeroSala, Film.ID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Proiezione.ID=? AND Proiezione.Data > 'date(\"Y-m-d\")'"
     );
 $preparedQuery->bind_param("i", $idproiez);
 $preparedQuery->execute();
@@ -196,7 +196,7 @@ if (!empty($result1) && $result1->num_rows > 0) {
 
     //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
     echo GeneratePage(
-        "Programmazione",
+        "Prenotazione",
         $prenotazione_content,
         $breadcrumbs,
         $title,

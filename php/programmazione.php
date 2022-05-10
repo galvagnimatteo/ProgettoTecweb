@@ -14,7 +14,7 @@ $programmazione_content = file_get_contents(
 $db = SingletonDB::getInstance();
 $filmsResult = $db
     ->getConnection()
-    ->query("SELECT * FROM Film ORDER BY DataUscita DESC");
+    ->query("SELECT *, Film.ID as FilmID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Data > 'date(\"Y-m-d\")' GROUP BY Film.ID ORDER BY DataUscita DESC");
 $db->disconnect();
 
 $cards = "";
@@ -64,7 +64,7 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
 
         $card_prog_item = str_replace(
             "<FILM-PAGE>",
-            "schedafilm.php?idfilm=" . $row["ID"],
+            "schedafilm.php?idfilm=" . $row["FilmID"],
             $card_prog_item
         );
 

@@ -14,7 +14,7 @@ $cards = "";
 $db = SingletonDB::getInstance();
 $resultFilms = $db
     ->getConnection()
-    ->query("SELECT * FROM Film ORDER BY DataUscita DESC");
+    ->query("SELECT *, Film.ID AS FilmID FROM Film INNER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Data > 'date(\"Y-m-d\")' GROUP BY Film.ID ORDER BY DataUscita DESC");
 $db->disconnect();
 
 //--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
         $quickpurchase_films =
             $quickpurchase_films .
             '<option value="' .
-            $row["ID"] .
+            $row["FilmID"] .
             '">' .
             $row["Titolo"] .
             "</option>";
@@ -79,7 +79,7 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
 
         $card_home_item = str_replace(
             "<LINK>",
-            "schedafilm.php?idfilm=" . $row["ID"],
+            "schedafilm.php?idfilm=" . $row["FilmID"],
             $card_home_item
         );
 

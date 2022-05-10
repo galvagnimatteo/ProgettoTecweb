@@ -128,7 +128,7 @@ $db->disconnect();
 $i=0;
 while ($row = $resultFilms->fetch_assoc()) {
     $film=new \stdClass();
-    $film->id=$row['ID'];
+    $film->id=$row['FilmID'];
     $film->titolo=$row['Titolo'];
     $film->genere=$row['Genere'];
     $film->datauscita=$row['DataUscita'];

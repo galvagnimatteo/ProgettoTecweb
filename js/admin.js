@@ -201,7 +201,6 @@ function api_post(api) {
             }
             xhr.send(urlEncodedData);
             xhr.onload = function () {
-                console.log(xhr.responseText);
                 let data = JSON.parse(xhr.responseText);
                 let status = data.status;
                 if (status === "ok") {
@@ -224,7 +223,6 @@ function api_request(api) {
     request.open('GET', api.url);
     request.send();
     request.onload = () => {
-        console.log(request.response);
         var data = JSON.parse(request.response);
         api.updatehtml(data);
     }
@@ -243,7 +241,6 @@ function delete_film(id) {
 
     xhr.send('action=delete&idfilm=' + id);
     xhr.onload = function () {
-        console.log(xhr.responseText);
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {

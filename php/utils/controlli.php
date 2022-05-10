@@ -144,6 +144,7 @@ function CheckProiezione(
     return "OK";
 }
 
+
 function pulisci(&$value)
 {
     // elimina gli spazi

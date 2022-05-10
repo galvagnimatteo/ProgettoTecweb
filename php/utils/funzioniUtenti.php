@@ -442,7 +442,7 @@ class Users
             $query = "
                 SELECT pe1.Orario as orario, p1.ID, f1.Titolo, f1.SrcImg, pe1.Data, pe1.NumeroSala, p1.NumeroPersone
                 FROM Prenotazione p1,Film f1,Proiezione pe1
-                WHERE p1.IDProiezione=pe1.ID AND pe1.IDFilm=f1.ID AND p1.UsernameUtente=? ORDER BY pe1.Data DESC";
+                WHERE p1.IDProiezione=pe1.ID AND pe1.IDFilm=f1.ID AND p1.UsernameUtente=? ORDER BY p1.ID DESC";
 
             $preparedQuery = $db->getConnection()->prepare($query);
 

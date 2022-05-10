@@ -82,12 +82,12 @@ function CheckFilm(
         return "Il genere può essere composto da sole lettere.";
     }
 
-    $imageregex="/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)/";
+    $imageregex="/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/";
     if (!preg_match($imageregex, $SrcImg)) {
-        return "immagini devono esser url validi";
+        return "immagini devono esser file validi";
     }
     if (!preg_match($imageregex, $CarouselImg)) {
-        return "immagini devono esser url validi";
+        return "immagini devono esser file validi";
     }
     if($Durata<=0){
         return "la durata deve essere maggiore di 0";
@@ -95,14 +95,56 @@ function CheckFilm(
     return "OK";
 }
 function CheckProiezione(
+                $connection,
                 $Data,
                 $IDFilm,
                 $NumeroSala,
                 $orario
             )
 {
+    if($NumeroSala<0||$NumeroSala>3){
+        return "sala insistente";
+    }
+    $query='SELECT Durata FROM Film where ID=?;';
+    $preparedQuery = $connection->prepare($query);
+    $preparedQuery->bind_param(
+        's',
+        $IDFilm
+    );
+    $preparedQuery->execute();
+    $res=$preparedQuery->get_result();
+    $row=$res->fetch_array(MYSQLI_NUM);
+    if($row){
+        $duratafilm=$row[0]+15;//15 minuti di margine per la pulizia della sala;
+    }
+    else{
+        return "film non esistente";
+    }   
+    $query='SELECT count(*) FROM Proiezione,Film WHERE Film.ID=Proiezione.IDFilm '.
+    'AND Data= ? './/stesso Giorno
+    'AND NumeroSala= ? AND'.//stessa sala
+    '(( MINUTE(TIMEDIFF( ? ,Orario))>0 AND MINUTE(TIMEDIFF( ? ,Orario))<(Durata+15))'.//film inserito è tra inizio e fine di film gia presente
+    'OR (MINUTE(TIMEDIFF(Orario, ? ))>0 AND MINUTE(TIMEDIFF(Orario, ? ))< ? ));';//film presente è tra inizio e fine di film inserito
+    $preparedQuery = $connection->prepare($query);
+    $preparedQuery->bind_param(
+        'ssssssi',
+        $Data,
+        $NumeroSala,
+        $orario,
+        $orario,
+        $orario,
+        $orario,
+        $duratafilm
+    );
+    $preparedQuery->execute();
+    $res=$preparedQuery->get_result();
+    if($res->fetch_array(MYSQLI_NUM)[0]>0)
+    {
+        return "sovrapposizione con un altro Film";
+    }
     return "OK";
 }
+
 
 function pulisci(&$value)
 {

@@ -1518,71 +1518,81 @@ p.aiutocompilaz strong {
 }
 /*admin section*/
 #areasselector {
-    list-style-type: none;
+	list-style-type: none;
 }
+
 .adminsidebar a {
 	text-decoration: none;
 }
+
 @media screen and (min-width: 49rem) {
-    #admin {
-        display: flex;
-        flex-direction: row;
-    }
-    .adminsidebar {
-        width: 15%;
-        display: flex;
-        flex-direction: column;
-    }
+	#admin {
+		display: flex;
+		flex-direction: row;
+	}
 
-    #areasselector {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
+	.adminsidebar {
+		width: 15%;
+		display: flex;
+		flex-direction: column;
+	}
 
-    .workarea{
-        width: 85%;
-    }
+	#areasselector {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.workarea {
+		width: 85%;
+	}
 }
+
 #areasselector li {
-        width: 100%;
-    }
+	width: 100%;
+}
+
 @media screen and (max-width: 49rem) {
-    .workarea {
-        width: 100%;
-    }
+	.workarea {
+		width: 100%;
+	}
+
 	.adminsidebar {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		margin:0;
-		padding:0;
+		margin: 0;
+		padding: 0;
 	}
 }
+
 .workarea {
 	background-color: var(--admin-workarea-background);
 	height: 750px;
-	overflow-y:hidden;
+	overflow-y: hidden;
 	/*display:flex;
 	flex-direction:column;*/
 }
+
 .overlays {
-	width:100%;
-	position:relative;
-	top:-700px;
+	width: 100%;
+	position: relative;
+	top: -700px;
 	z-index: 10;
-	height:100%;
-	pointer-events:none;
+	height: 100%;
+	pointer-events: none;
 }
-.lists, .lists div{
-	width:100%;
-	height:700px;
-	overflow-y:auto;
-	z-index:0;
+
+.lists, .lists div {
+	width: 100%;
+	height: 700px;
+	overflow-y: auto;
+	z-index: 0;
 }
+
 .adminsidebar {
-    background-color: var(--admin-areaselector-background);
-    /*border: none;
+	background-color: var(--admin-areaselector-background);
+	/*border: none;
     border-radius: 15px;
     box-sizing: border-box;*/
 }
@@ -1601,12 +1611,15 @@ display: block;
 	margin: 2px;
 	text-decoration: none;
 }
-#admin a:visited{
-	color:var(--admin-button-text);
+
+#admin a:visited {
+	color: var(--admin-button-text);
 }
+
 #admin a:hover {
-	color:var(--links-hover-color);
+	color: var(--links-hover-color);
 }
+
 .formcloser, .formopener {
 	display: block;
 	color: var(--admin-button-text);
@@ -1625,54 +1638,62 @@ display: block;
 
 .formcloser {
 	background-image: url(/images/chiudi-menu.svg);
-	overflow:visible;/*TODO risolvere glitch grafico nel pulsante di chiusura del form films*/
+	overflow: visible; /*TODO risolvere glitch grafico nel pulsante di chiusura del form films*/
 }
 
 .formopener {
 	background-image: url(/images/formopener.svg);
 }
 
-.inactiveoption, .activeoption{
+.inactiveoption, .activeoption {
 	border: 2px outset var(--admin-border);
 	border-radius: 10px;
 	box-sizing: border-box;
 	padding: 15px;
 }
+
 .activeoption {
 	pointer-events: none;
 	background-image: linear-gradient(var(--admin-areaselector-option-color1),var(--admin-areaselector-option-color2));
 }
-.activeoption a:hover{
-	color:inherit;
+
+	.activeoption a:hover {
+		color: inherit;
+	}
+
+.inactiveoption {
+	pointer-events: initial;
+	background-color: var(--admin-button-background);
 }
 
-.inactiveoption {	
-	pointer-events: initial;
-	background-color:var(--admin-button-background);
-}
 .workarea table {
-	display:table;
+	display: table;
 	width: 100%;
-	min-width:100%;
+	min-width: 100%;
 	border-collapse: collapse;
 }
+
 .workarea tbody {
 	width: 100%;
 	min-width: 100%;
 	overflow-x: auto;
 	border-collapse: collapse;
 }
+
 .workarea tr {
-	display:table-row;
+	display: table-row;
 	min-width: 100%;
 	white-space: nowrap;
 }
-.workarea tr:nth-child(2n+1) {
-	background-color: var(--admin-list-odd);
-}
-.workarea tr:nth-child(even) {
-	background-color: var(--admin-list-even);
-}
+
+	.workarea tr:nth-child(2n+1) {
+		background-color: var(--admin-list-odd);
+	}
+
+	.workarea tr:nth-child(even) {
+		background-color: var(--admin-list-even);
+	}
+
 .workarea th {
 	font-size: 1.5rem;
 	text-align: left;
@@ -1680,21 +1701,23 @@ display: block;
 	padding-right: 20px;
 	background-color: var(--admin-list-header);
 }
+
 .workarea tr:hover {
 	background-color: var(--admin-list-hover);
 }
+
 .entry td {
 	padding-left: 10px;
 	padding-right: 20px;
 }
 
-.entry .entryfunctions
- {
-	display:flex;
-	flex-direction:row;
-    padding-left: 0px;
-    padding-right: 0px;
+.entry .entryfunctions {
+	display: flex;
+	flex-direction: row;
+	padding-left: 0px;
+	padding-right: 0px;
 }
+
 .entryfunctions button, .entryfunctions a {
 	background: var(--admin-button-background);
 	color: var(--admin-button-text);
@@ -1706,9 +1729,10 @@ display: block;
 	margin: 2px;
 	text-decoration: none;
 }
+
 #admin .deleteentry {
 	width: 1.5rem;
-	background-image:url(/images/trash-svgrepo-com.svg);
+	background-image: url(/images/trash-svgrepo-com.svg);
 }
 
 #admin .overlays form {
@@ -1727,9 +1751,11 @@ display: block;
 	box-sizing: border-box;
 	overflow-y: auto;
 }
+
 #edit_cast_film {
 	min-height: 60%;
 }
+
 #admin fieldset {
 	width: 100%;
 	align-self: center;
@@ -1738,16 +1764,20 @@ display: block;
 	border: none;
 	margin-top: 1.2rem;
 }
-#admin fieldset legend {
-	font-size: 1.4rem;
-	text-align: center;
-}
+
+	#admin fieldset legend {
+		font-size: 1.4rem;
+		text-align: center;
+	}
+
 #admin form input,
 #admin form select,
 #admin form option,
+#admin form textarea,
 #admin form input:not(:empty),
 #admin form select:not(:empty),
 #admin form option:not(:empty),
+#admin form textarea:not(:empty),
 #admin .submit {
 	align-self: center;
 	width: 80%;
@@ -1760,16 +1790,31 @@ display: block;
 	font-size: 0.9rem;
 	box-sizing: border-box;
 }
+
 .overlays form label {
-	width:80%;
-	position:relative;
-	left:10%;
+	width: 80%;
+	position: relative;
+	left: 10%;
 }
-.open{
-	pointer-events:initial;
+
+#deletefilmstatus,
+#deleteprojectionstatus {
+	display: block;
+	position: relative;
+	left: 20%;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 1.5rem;
+	width: 60%;
+	padding: 5px;
+	height: 5rem;
 }
+
+.open {
+	pointer-events: initial;
+}
+
 .closed {
 	pointer-events: none;
 	display: none !important;
 }
-

@@ -121,13 +121,13 @@ else{
 }
 $films;
 $resultFilms = $connection
-    ->query('SELECT * FROM Film WHERE DATEDIFF(DataUscita, CURRENT_DATE())>= -35 ORDER BY DataUscita DESC';
+    ->query('SELECT * FROM Film WHERE DATEDIFF(DataUscita, CURRENT_DATE())>= -35 ORDER BY DataUscita DESC');
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();
 $i=0;
 while ($row = $resultFilms->fetch_assoc()) {
     $film=new \stdClass();
-    $film->id=$row['FilmID'];
+    $film->id=$row['ID'];
     $film->titolo=$row['Titolo'];
     $film->genere=$row['Genere'];
     $film->datauscita=$row['DataUscita'];

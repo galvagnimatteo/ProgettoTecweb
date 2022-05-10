@@ -19,17 +19,18 @@ var forms = [
         visible: false,
         fields: [
             {
-                name:"Titolo",
-                element:"imputtitolo",
-                condition: function (value) {return value.match("/^[a-zA-Z0-9]/");
+                name: "Titolo",
+                element: "imputtitolo",
+                condition: function (value) {
+                    return value.match("/^[a-zA-Z0-9]/");
                 },
-                error_message:"titolo puo contenere solo caratteri alfanumerici e spazi"
+                error_message: "titolo puo contenere solo caratteri alfanumerici e spazi"
             },
             {
                 name: "Genere",
                 element: "imputgenere",
                 condition: function (value) { return value.match("/^[a-zA-Z]/"); },
-                error_message:"genere puo contenere solo caratteri alfanumerici"
+                error_message: "genere puo contenere solo caratteri alfanumerici"
             },
             {
                 name: "Descrizione",
@@ -41,19 +42,19 @@ var forms = [
                 name: "DataUscita",
                 element: "imputdatauscita",
                 condition: function (value) { return true; },
-                error_message:""
+                error_message: ""
             },
             {
                 name: "SrcImg",
                 element: "imputimmagine",
-                condition: function (value) { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/"); },
-                error_message:"l'immagine deve essere un url valido"
+                condition: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
+                error_message: "l'immagine deve essere un file valido"
             },
             {
                 name: "CarouselImg",
                 element: "imputcarousel",
-                condition: function (value) { return value.match("/^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|bmp)$/"); },
-                error_message: "l'immagine deve essere un url valido"
+                condition: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
+                error_message: "l'immagine deve essere un file valido"
             },
             {
                 name: "Durata",
@@ -65,13 +66,13 @@ var forms = [
                 name: "Attori",
                 element: "imputattori",
                 condition: function (value) { return true; },
-                error_message:""
+                error_message: ""
             },
             {
                 name: "Regista",
                 element: "imputregista",
                 condition: function (value) { return true; },
-                error_message:""
+                error_message: ""
             }
         ]
     },
@@ -111,16 +112,16 @@ var forms = [
 ];
 
 var api = {
-    film:{
-        imputform:forms[0],
+    film: {
+        imputform: forms[0],
         url: "./api/films.php",
         post: function () { api_post(this); return false; },
         updatehtml: function (data) { updatehtml_film(data.films); },
     },
-    proiezioni:{
+    proiezioni: {
         imputform: forms[1],
         url: "./api/proiezioni.php",
-        post: function () { api_post(this); return false;},
+        post: function () { api_post(this); return false; },
         updatehtml: function (data) { updatehtml_projection(data.proiezioni); },
     }
 }
@@ -144,7 +145,7 @@ function change_context(context) {
         else {
             document.getElementById(forms[form].element).className = 'closed';
         }
-    }    
+    }
 }
 
 function toggle_form(toggledform) {
@@ -249,7 +250,16 @@ function delete_film(id) {
         if (status === "ok") {
             var films = data.films;
             updatehtml_film(films);
-        }        
+            document.getElementById("deletefilmstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+        }
+        else {
+            document.getElementById("deletefilmstatus").firstChild.textContent = status;
+        }
+        document.getElementById("deletefilmstatus").className = "open";
+        setTimeout(function () {
+            document.getElementById("deletefilmstatus").className = "closed";
+            document.getElementById("deletefilmstatus").firstChild.textContent = "";
+        }, 3000)
     };
 }
 function delete_projection(id) {
@@ -261,17 +271,26 @@ function delete_projection(id) {
     //xhr.setRequestHeader("Accept", "application/json");
     //xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');   
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-    
-    xhr.send('action=delete&idproiezione='+id);
-    xhr.onload  = function () {
+
+    xhr.send('action=delete&idproiezione=' + id);
+    xhr.onload = function () {
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
             var proiezioni = data.proiezioni;
-            updatehtml_projection(proiezioni);            
-        }        
+            updatehtml_projection(proiezioni);
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+        }
+        else {
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = status;
+        }
+        document.getElementById("deleteprojectionstatus").className = "open";
+        setTimeout(function () {
+            document.getElementById("deleteprojectionstatus").className = "closed";
+            document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
+        }, 3000)
     };
 }
 
@@ -290,33 +309,34 @@ function updatehtml_film(films) {
     for (entryindex in films) {
         var entry = films[entryindex];
         filmlist += generate_entry_film(entry);
-        if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
-            filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
-        }        
+        filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
     }
     document.getElementById("filmlist").innerHTML = filmlist;
-    document.getElementById("filmselector").innerHTML = filmoptions;
+    if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
+        document.getElementById("filmselector").innerHTML = filmoptions;
+    }
 }
 
 function generate_entry_film(entry) {
-    
-    result = "<tr class='entry' ><td class='entryfunctions'>"+
-        '<button type = "button" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</button >' +
+
+    result = "<tr class='entry' ><td class='entryfunctions'>" +
+        '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
         + entry.datauscita + "</td><td>" +
-        + entry.durata+"</td></tr>";
+        + entry.durata + "</td></tr>";
     return result;
 }
 function generate_entry_projection(entry) {
     result = "<tr class='entry' ><td class='entryfunctions'>" +
-        '<button type = "button" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</button >' +
+        '<a href="#deleteprojectionstatus" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</a >' +
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
-        + entry.titolofilm + "</td><td>" +
-        entry.orario + "</td></tr>";
+        + entry.titolofilm + "</td><td>"
+        + entry.orario + "</td><td>"
+        + entry.durata + "</td></tr>";
     return result;
 }
 
@@ -330,18 +350,18 @@ document.getElementById(api.proiezioni.imputform.element).onsubmit = function ()
     api.proiezioni.post();
     return false;//blocca caricamento pagina
 }
-  
 
-    document.getElementById("filmarea").onclick = function () { change_context('film'); }
-    document.getElementById("projectionarea").onclick = function () { change_context('projection'); }
-    document.getElementById("filmarea").firstChild.onclick = function () { change_context('film'); }
-    document.getElementById("projectionarea").firstChild.onclick = function () { change_context('projection'); }
 
+document.getElementById("filmarea").onclick = function () { change_context('film'); }
+document.getElementById("projectionarea").onclick = function () { change_context('projection'); }
+document.getElementById("filmarea").firstChild.onclick = function () { change_context('film'); }
+document.getElementById("projectionarea").firstChild.onclick = function () { change_context('projection'); }
+
+api_request(api.film);
+api_request(api.proiezioni);
+
+setInterval(() => {//aggiorna i dati e mantiene attiva la sessione
     api_request(api.film);
     api_request(api.proiezioni);
-
-    setInterval(() => {//aggiorna i dati e mantiene attiva la sessione
-        api_request(api.film);
-        api_request(api.proiezioni);
-    }
-        , 30000);
+}
+    , 30000);

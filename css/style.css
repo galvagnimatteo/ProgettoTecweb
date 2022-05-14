@@ -524,11 +524,17 @@ programmazione.html
 .res_details_container {
 	flex-basis: 60%;
 
+}
 
+.res_details_container a {
+	
+	
+	margin-left: 2rem;
 }
 
 .res_details_container dl{
 	padding-left: 2rem;
+	margin-bottom: 3rem;
 }
 
 .res_details_container dt{

@@ -477,6 +477,7 @@ programmazione.html
 	margin: 0.3em;
 	border-radius: 1rem;
 	display: flex;
+	flex-direction: row;
 }
 
 .card_reservation {
@@ -1110,11 +1111,13 @@ div.labelqp select {
 	}
 }
 
-@media screen and (max-width: 800px) {
-	.div_register,
-	.div_user,
-	.div_login {
-		min-width: 95%;
+@media screen and (max-width: 880px) {
+	.cards_reservation {
+		flex-direction: column;
+		text-align: center;
+	}
+	.res_link_container {
+		margin: auto;
 	}
 }
 
@@ -1166,19 +1169,19 @@ div.labelqp select {
 		margin: auto;
 		width: 100%;
 	}
-	.div_register,
+	/*.div_register,
 	.div_user,
 	.div_login {
 		width: 100%;
-	}
+	}*/
 }
 
 @media screen and (max-width: 320px) {
-	.div_register label,
+	/*.div_register label,
 	.div_login label {
 		padding: 0rem;
 		font-size: 6.5vw;
-	}
+	}*/
 }
 
 #filmPageCard form legend {

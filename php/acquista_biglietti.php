@@ -198,7 +198,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
         ">Scheda Film: " .
         $_POST["titoloFilm"] .
         "</a>" .
-        ' / <a href="prenotazione.php?idproiez="' .
+        ' / <a href="prenotazione.php?idproiez=' .
 		$_POST["idproiez"] . '"' .
 		'>Acquisto biglietti</a> / Conferma acquisto';
     

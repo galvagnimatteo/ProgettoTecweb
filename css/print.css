@@ -63,6 +63,10 @@ article {
 	visibility: hidden;
 }
 
+#confermaAcq a {
+	display: none;
+}
+
 #menubutton-apri,
 #menubutton-chiudi {
 	display: none;

@@ -22,6 +22,7 @@
 
     <h2 class="subtitle"> Acquisto Rapido </h2>
 
+    <p id="quickpurchaseError" class="error hidden"> </p>
 
     <form autocomplete="off" action="../php/utils/acquistoRapido.php" method="get">
 
@@ -29,7 +30,7 @@
 		<label for="selectFilm">Seleziona un film</label>
 
 
-        <select id="selectFilm" onchange="populateQuickpurchaseDate(this)" name="sceltafilm" data-text-required="Per favore, scegli un film.">
+        <select id="selectFilm" class="selectable" name="sceltafilm" data-text-required="Per favore, scegli un film.">
             <option value="scelta">Scegli un film</option>
             <FILM-OPTIONS>
         </select>
@@ -37,7 +38,7 @@
 
 		<div class="labelqp">
 		<label for="selectDate">Seleziona una data</label>
-        <select id="selectDate" onchange="populateQuickpurchaseHour(this)" name="sceltadata" data-text-required="Per favore, scegli una data.">
+        <select id="selectDate" name="sceltadata" data-text-required="Per favore, scegli una data.">
             <option value="scelta">Scegli una data</option>
         </select>
 		</div>

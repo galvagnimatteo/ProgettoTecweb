@@ -105,8 +105,7 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
     );
 } else {
     $cards = '<p class="error">Nessun film trovato.</p>
-
-                  <p class="errorDescription"> Nessun film in programmazione nelle prossime settimane. </p>';
+              <p class="errorDescription"> Nessun film in programmazione nelle prossime settimane. </p>';
 }
 $home_content = str_replace(
     "<FILM-OPTIONS>",
@@ -114,6 +113,15 @@ $home_content = str_replace(
     $home_content
 );
 $home_content = str_replace("<CARDS-HOME>", $cards, $home_content);
+
+if(isset($_GET["error"])){
+    if($_GET["error"] == "emptyData"){
+        $home_content = str_replace(
+            '<p id="quickpurchaseError" class="error hidden"> </p>',
+            '<p id="quickpurchaseError" class="error"> Riempi prima tutti i campi per acquistare un biglietto. </p>',
+            $home_content);
+    }
+}
 
 $title = "Home - PNG Cinema";
 $keywords = "ultime uscite, acquisto, acquisto rapido";

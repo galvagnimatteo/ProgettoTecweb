@@ -21,6 +21,7 @@
 	--admin-button-background: #585858;
 	--admin-button-text: white;
 	--admin-border:#353535;
+	--disabled-color: #888888;
 }
 
 * {
@@ -41,6 +42,14 @@ input[type="text"] {
 select{
 	cursor:context-menu;
 }
+
+.disabled {
+    user-select : none;
+    -moz-user-select : none;
+    -webkit-user-select : none;
+    color: var(--disabled-color);
+}
+
 html {
 	font-size: 100%;
 	font-family: "Arial", sans-serif;
@@ -89,6 +98,14 @@ header h1 {
 
 nav ul {
 	list-style-type: none;
+}
+
+.selectable{
+	cursor: pointer;
+}
+
+.hidden{
+	display:none;
 }
 
 #loginMenu {
@@ -1203,7 +1220,7 @@ div.labelqp select {
 }
 
 
-#ticketInfoGroup input,  
+#ticketInfoGroup input,
 #textSelectGroup select {
 	color: #000;
 	min-width: 3rem;
@@ -1216,15 +1233,15 @@ div.labelqp select {
      -moz-appearance: textfield;
           appearance: textfield;
 }
-#ticketInfoGroup input[type=number]::-webkit-inner-spin-button, 
-#ticketInfoGroup input[type=number]::-webkit-outer-spin-button { 
+#ticketInfoGroup input[type=number]::-webkit-inner-spin-button,
+#ticketInfoGroup input[type=number]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
 .textSelectContainer {
-	
+
 	margin: 1rem;
-	
+
 }
 
 #textSelectGroup option {

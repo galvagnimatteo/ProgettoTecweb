@@ -1,6 +1,6 @@
 <?php
 $site_template = file_get_contents("../html/template.html");
-$sessiondiscard_timer = 200;
+$sessiondiscard_timer = 1000;
 
 function CheckSession($login_required, $admin_required)
 {

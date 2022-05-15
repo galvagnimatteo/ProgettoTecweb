@@ -21,6 +21,7 @@
 	--admin-button-background: #585858;
 	--admin-button-text: white;
 	--admin-border:#353535;
+	--disabled-color: #888888;
 }
 
 * {
@@ -41,6 +42,14 @@ input[type="text"] {
 select{
 	cursor:context-menu;
 }
+
+.disabled {
+    user-select : none;
+    -moz-user-select : none;
+    -webkit-user-select : none;
+    color: var(--disabled-color);
+}
+
 html {
 	font-size: 100%;
 	font-family: "Arial", sans-serif;
@@ -89,6 +98,14 @@ header h1 {
 
 nav ul {
 	list-style-type: none;
+}
+
+.selectable{
+	cursor: pointer;
+}
+
+.hidden{
+	display:none;
 }
 
 #loginMenu {
@@ -183,16 +200,19 @@ a:visited:not(.carouselContainer a:visited) {
 	padding: 1rem;
 	font-weight: bold;
 	user-select: none;
+	background-size:cover;
 }
 
 .js .prev {
 	border-radius: 0 1rem 1rem 0;
 	left: 0;
+	background-image:url(/images/backwards.png);
 }
 
 .js .next {
 	right: 0;
 	border-radius: 1rem 0 0 1rem;
+	background-image: url(/images/forward.png);
 }
 
 .js .circles {
@@ -457,6 +477,7 @@ programmazione.html
 	margin: 0.3em;
 	border-radius: 1rem;
 	display: flex;
+	flex-direction: row;
 }
 
 .card_reservation {
@@ -503,11 +524,17 @@ programmazione.html
 .res_details_container {
 	flex-basis: 60%;
 
+}
 
+.res_details_container a {
+	
+	
+	margin-left: 2rem;
 }
 
 .res_details_container dl{
 	padding-left: 2rem;
+	margin-bottom: 3rem;
 }
 
 .res_details_container dt{
@@ -887,7 +914,7 @@ div.ul_reservation {
 	border-radius: 1rem;
 	overflow: hidden;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-	/**/
+	
 	margin-bottom: 1rem;
 	margin-top: 1.5rem;
 }
@@ -1090,11 +1117,13 @@ div.labelqp select {
 	}
 }
 
-@media screen and (max-width: 800px) {
-	.div_register,
-	.div_user,
-	.div_login {
-		min-width: 95%;
+@media screen and (max-width: 880px) {
+	.cards_reservation {
+		flex-direction: column;
+		text-align: center;
+	}
+	.res_link_container {
+		margin: auto;
 	}
 }
 
@@ -1146,19 +1175,19 @@ div.labelqp select {
 		margin: auto;
 		width: 100%;
 	}
-	.div_register,
+	/*.div_register,
 	.div_user,
 	.div_login {
 		width: 100%;
-	}
+	}*/
 }
 
 @media screen and (max-width: 320px) {
-	.div_register label,
+	/*.div_register label,
 	.div_login label {
 		padding: 0rem;
 		font-size: 6.5vw;
-	}
+	}*/
 }
 
 #filmPageCard form legend {
@@ -1168,6 +1197,10 @@ div.labelqp select {
 
 
 /*stile prenotazione.html*/
+
+#prenota-container {
+	margin: 0 1rem;
+}
 
 #modeSelectGroup {
 	display: flex;
@@ -1200,7 +1233,7 @@ div.labelqp select {
 }
 
 
-#ticketInfoGroup input,  
+#ticketInfoGroup input,
 #textSelectGroup select {
 	color: #000;
 	min-width: 3rem;
@@ -1213,15 +1246,15 @@ div.labelqp select {
      -moz-appearance: textfield;
           appearance: textfield;
 }
-#ticketInfoGroup input[type=number]::-webkit-inner-spin-button, 
-#ticketInfoGroup input[type=number]::-webkit-outer-spin-button { 
+#ticketInfoGroup input[type=number]::-webkit-inner-spin-button,
+#ticketInfoGroup input[type=number]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
 .textSelectContainer {
-	
+
 	margin: 1rem;
-	
+
 }
 
 #textSelectGroup option {
@@ -1405,6 +1438,9 @@ svg .libero.selezionato .codicePosto {
 
 
 /* pagina conferma*/
+#confermaAcq {
+	margin: 0 1rem;
+}
 
 #riepilogo {
 	list-style-type: none;

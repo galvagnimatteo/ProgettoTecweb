@@ -71,3 +71,9 @@ article {
 #menubutton-chiudi {
 	display: none;
 }
+
+
+.res_details_container a {
+	
+	display: none;
+}

@@ -96,6 +96,13 @@ if (isset($_GET["action"])) {
         $Users = new Users();
         $home_content = $Users->getHistory();
     }
+	
+	if ($action == "deleteReservation") {
+		require_once "utils/funzioniUtenti.php";
+		$Users = new Users();
+		$home_content = $Users->deleteReservation($_GET["codice"]);
+	}
+	
     if ($action == "getProfile") {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();

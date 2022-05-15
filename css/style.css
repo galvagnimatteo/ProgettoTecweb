@@ -701,7 +701,7 @@ div.ul_reservation {
 
 .div_user {
 	margin: auto;
-	width: 50%;
+	width: 60%;
 	display: flex;
 	border: none;
 	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
@@ -716,7 +716,7 @@ div.ul_reservation {
 	width: 50%;
 	display: flex;
 	justify-content: center;
-	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+	/*background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));*/
 	padding-top: 1rem;
 	padding-bottom: 2rem;
 }

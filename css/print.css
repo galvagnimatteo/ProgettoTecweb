@@ -22,17 +22,7 @@ footer {
 	display: none;
 }
 
-/*home*/
-
-.quickPurchaseContainer {
-	display: none;
-}
-
-.cardsContainer {
-	display: block;
-}
-
-.cardsContainer ul img {
+div .breadcrumbs{
 	display: none;
 }
 
@@ -74,6 +64,6 @@ article {
 
 
 .res_details_container a {
-	
+
 	display: none;
 }

@@ -20,10 +20,11 @@ if (
         $_POST["titoloFilm"],
         $_POST["dataIta"],
         $_POST["pint"],
-        $_POST["prid"]
+        $_POST["prid"],
+		$_POST["IDFilm"]
     )
 ) {
-    header("Location: 404.php");
+    header("Location: 500.php?1");
     die();
 }
 
@@ -41,11 +42,12 @@ if (
         is_numeric($_POST["idproiez"]) &&
         is_numeric($_POST["numSala"]) &&
         is_numeric($_POST["pint"]) &&
+		is_numeric($_POST["IDFilm"]) &&
         is_numeric($_POST["prid"])
     )
 ) {
 
-    header("Location: 404.php");
+    header("Location: 500.php?2");
     die();
 }
 
@@ -131,7 +133,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
         "../html/conferma_acquisto.html"
     );
 
-    //SESSION
+
 
     $acquistoconferma_content = str_replace(
         "<FILM-TITLE>",
@@ -181,7 +183,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
     );
 	$acquistoconferma_content = str_replace(
         "<CLASS-WARNING>",
-		($_SESSION["a"]) ? "hide" : "",
+		(isset($_SESSION["a"])) ? "hide" : "",
         $acquistoconferma_content
     );
 	
@@ -189,8 +191,18 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
     $keywords = "Acquisto, biglietti, " . $_POST["titoloFilm"];
     $description =
         "pagina di conferma acquisto biglietti per " . $_POST["titoloFilm"];
-    $breadcrumbs = "Conferma acquisto";
-    $jshead =
+    $breadcrumbs =
+        '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
+        $_POST["IDFilm"] .
+        '"' .
+        ">Scheda Film: " .
+        $_POST["titoloFilm"] .
+        "</a>" .
+        ' / <a href="prenotazione.php?idproiez=' .
+		$_POST["idproiez"] . '"' .
+		'>Acquisto biglietti</a> / Conferma acquisto';
+    
+	$jshead =
         '<meta name="robots" content="noindex" follow /> ' . //lo attacco da qua perche non ho voglia di modificare tutto
         ' <script src="../js/promptonclose.js"></script>';
     //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);

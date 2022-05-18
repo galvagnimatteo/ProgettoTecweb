@@ -138,6 +138,12 @@ if (!empty($result1) && $result1->num_rows > 0) {
         implode(",", $postiOccupati),
         $prenotazione_content
     );
+	$prenotazione_content = str_replace(
+        "<ID-FILM>",
+        $dataFilm["ID"] ,
+        $prenotazione_content
+    );
+	
 
     if (isset($_GET["err_server1"])) {
         $prenotazione_content = str_replace(

@@ -18,6 +18,9 @@ nav {
 	display: none;
 }
 
+footer {
+	display: none;
+}
 
 /*home*/
 
@@ -60,7 +63,17 @@ article {
 	visibility: hidden;
 }
 
+#confermaAcq a {
+	display: none;
+}
+
 #menubutton-apri,
 #menubutton-chiudi {
+	display: none;
+}
+
+
+.res_details_container a {
+	
 	display: none;
 }

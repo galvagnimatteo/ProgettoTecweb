@@ -477,6 +477,7 @@ programmazione.html
 	margin: 0.3em;
 	border-radius: 1rem;
 	display: flex;
+	flex-direction: row;
 }
 
 .card_reservation {
@@ -523,11 +524,17 @@ programmazione.html
 .res_details_container {
 	flex-basis: 60%;
 
+}
 
+.res_details_container a {
+	
+	
+	margin-left: 2rem;
 }
 
 .res_details_container dl{
 	padding-left: 2rem;
+	margin-bottom: 3rem;
 }
 
 .res_details_container dt{
@@ -650,7 +657,7 @@ div.ul_reservation {
 
 .div_login {
 	margin: auto;
-	width: 50%;
+	width: 60%;
 	justify-content: center;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	padding-top: 2.8rem;
@@ -694,7 +701,7 @@ div.ul_reservation {
 
 .div_user {
 	margin: auto;
-	width: 50%;
+	width: 60%;
 	display: flex;
 	border: none;
 	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
@@ -709,7 +716,7 @@ div.ul_reservation {
 	width: 50%;
 	display: flex;
 	justify-content: center;
-	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+	/*background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));*/
 	padding-top: 1rem;
 	padding-bottom: 2rem;
 }
@@ -755,7 +762,7 @@ div.ul_reservation {
 }
 
 .div_register label {
-	padding-left: 4rem;
+	padding-left: 10%;
 	display: block;
 	font-size: 0.8em;
 }
@@ -854,8 +861,9 @@ div.ul_reservation {
         flex-grow: 1;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+		margin-left: 2rem;
     }
-    @media (min-width: 49rem) {
+    @media (min-width: 870px) {
         #contatti {
             width: 50%;
             left: 50%;
@@ -907,7 +915,7 @@ div.ul_reservation {
 	border-radius: 1rem;
 	overflow: hidden;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-	/**/
+	
 	margin-bottom: 1rem;
 	margin-top: 1.5rem;
 }
@@ -1110,11 +1118,13 @@ div.labelqp select {
 	}
 }
 
-@media screen and (max-width: 800px) {
-	.div_register,
-	.div_user,
-	.div_login {
-		min-width: 95%;
+@media screen and (max-width: 880px) {
+	.cards_reservation {
+		flex-direction: column;
+		text-align: center;
+	}
+	.res_link_container {
+		margin: auto;
 	}
 }
 
@@ -1136,6 +1146,12 @@ div.labelqp select {
 	.card img {
 		width: 50%;
 		margin: auto;
+	}
+	
+	.div_user, 
+	.div_login {
+		width: 90%;
+		
 	}
 }
 
@@ -1166,19 +1182,19 @@ div.labelqp select {
 		margin: auto;
 		width: 100%;
 	}
-	.div_register,
+	/*.div_register,
 	.div_user,
-	.div_login {
+	*/.div_login {
 		width: 100%;
 	}
 }
 
 @media screen and (max-width: 320px) {
-	.div_register label,
+	/*.div_register label,
 	.div_login label {
 		padding: 0rem;
 		font-size: 6.5vw;
-	}
+	}*/
 }
 
 #filmPageCard form legend {
@@ -1188,6 +1204,10 @@ div.labelqp select {
 
 
 /*stile prenotazione.html*/
+
+#prenota-container {
+	margin: 0 1rem;
+}
 
 #modeSelectGroup {
 	display: flex;
@@ -1425,6 +1445,9 @@ svg .libero.selezionato .codicePosto {
 
 
 /* pagina conferma*/
+#confermaAcq {
+	margin: 0 1rem;
+}
 
 #riepilogo {
 	list-style-type: none;

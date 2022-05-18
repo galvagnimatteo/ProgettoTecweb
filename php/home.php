@@ -128,9 +128,10 @@ $keywords = "ultime uscite, acquisto, acquisto rapido";
 $description =
     "Pagina principale: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.";
 $breadcrumbs = "Home / ";
-$jshead = '<script type="text/javascript" src="../js/carousel.js"> </script>';
-$jsbody = '<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
-                            <script type="text/javascript" src="../js/quickpurchase.js"> </script>';
+$jshead = '';
+$jsbody = '<script type="text/javascript" src="../js/carousel.js"> </script>
+                <script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
+                <script type="text/javascript" src="../js/quickpurchase.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage(
     "Home",

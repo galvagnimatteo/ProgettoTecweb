@@ -82,6 +82,9 @@ body {
 	border-radius: 20px;
 	border: outset var(--scrollbar);
 }
+
+
+
 .subtitle {
 	padding-top: 1rem;
 	padding-left: 1rem;
@@ -392,7 +395,6 @@ footer {
 	/**/
 	width: calc(100% - 2rem);
 	padding: 1rem;
-	position: sticky;
 	bottom: 0;
 }
 
@@ -478,25 +480,29 @@ programmazione.html
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: row;
+	margin: 1rem;
+	padding: 0.2rem;
 }
 
 .card_reservation {
 	margin: 1rem;
 	flex-basis: 40%;
+	text-align: center;
 }
 .card_reservation dd{
-	font-size: 1.25rem;
-	margin-bottom: 0.2rem;
+	font-size: 1.6rem;
+	margin-bottom: 0.5rem;
 }
 .card_reservation dt{
-	font-size: 1.4rem;
+	font-size: 1.2rem;
+	font-style: italic;
 }
 
 
 
 .div_register.reservation {
 	flex-direction: column;
-	flex-basis: 50%;
+	flex-basis: 70%;
 }
 
 .cards_users {
@@ -509,7 +515,7 @@ programmazione.html
 	display: flex;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	padding: 2em;
-
+	margin-bottom: 0.4rem;
 }
 
 .card_one_see_reservation {
@@ -527,9 +533,10 @@ programmazione.html
 }
 
 .res_details_container a {
-	
-	
 	margin-left: 2rem;
+}
+.res_details_container dd {
+	margin-bottom: 1rem;
 }
 
 .res_details_container dl{
@@ -540,12 +547,14 @@ programmazione.html
 .res_details_container dt{
 	float: left;
 	clear: left;
+	padding-right: 0.5rem;
+
 }
 
 .reservation_link {
 	display: block;
 	margin-bottom: 2rem;
-
+	text-align: center;
 }
 .res_link_container {
 	margin: 1rem 0.8rem;
@@ -605,11 +614,26 @@ div.ul_reservation {
 }
 
 @media screen and (max-width: 620px) {
+
+	.res_details_container{
+		padding-left: 0;
+	}
+	.res_details_container a{
+		font-size: 1.2rem;
+		margin-left: 0;
+	}
 	.cards_see_reservation {
 		display: block;
 	}
+	.card_one_see_reservation{
+		align-items: center;
+		margin-bottom: 3rem;
+	}
 	.card_one_see_reservation img {
 		width: 70%;
+		margin-left: auto;
+  		margin-right: auto;
+  		display: block;
 	}
 	.card_two_see_reservation {
 		grid-area: b;
@@ -620,6 +644,7 @@ div.ul_reservation {
 .card1_users {
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	display: flex;
+	margin-bottom: 2rem;
 }
 
 
@@ -796,6 +821,17 @@ div.ul_reservation {
     width: 100%;
     align-self: end;
 }
+
+.contactpage{
+	margin: 1rem;
+}
+
+.contactsParagraph{
+	margin-bottom: 1rem;
+}
+.nomargin{
+	padding-left: 0;
+}
 @keyframes materialize {
     0% {
         opacity: 0;
@@ -915,7 +951,7 @@ div.ul_reservation {
 	border-radius: 1rem;
 	overflow: hidden;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-	
+
 	margin-bottom: 1rem;
 	margin-top: 1.5rem;
 }
@@ -1067,6 +1103,12 @@ div.labelqp select {
 	}
 }
 
+@media (max-width: 775px){
+	footer{
+		font-size: 1rem;
+	}
+}
+
 @media (min-width: 865px) {
 	header,
 	ul {
@@ -1147,11 +1189,11 @@ div.labelqp select {
 		width: 50%;
 		margin: auto;
 	}
-	
-	.div_user, 
+
+	.div_user,
 	.div_login {
 		width: 90%;
-		
+
 	}
 }
 
@@ -1706,7 +1748,7 @@ display: block;
 	background-image: url(/images/formopener.svg);
 }
 
-.inactiveoption, .activeoption {
+.inactiveoption, .activeoption, .btn-storico{
 	border: 2px outset var(--admin-border);
 	border-radius: 10px;
 	box-sizing: border-box;
@@ -1725,6 +1767,10 @@ display: block;
 .inactiveoption {
 	pointer-events: initial;
 	background-color: var(--admin-button-background);
+}
+
+.btn-storico{
+	background-color: var(--secondary-color);
 }
 
 .workarea table {

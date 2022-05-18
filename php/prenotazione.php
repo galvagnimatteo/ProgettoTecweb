@@ -6,6 +6,8 @@ require_once "utils/generaData.php";
 require_once "utils/mappaPosti.php";
 require_once "utils/generaPagina.php";
 require_once "utils/controlli.php";
+require_once "utils/filtraTestoInglese.php";
+
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 $idproiez = -1;
@@ -81,9 +83,20 @@ if (!empty($result1) && $result1->num_rows > 0) {
 
     $prenotazione_content = str_replace(
         "<FILM-TITLE>",
-        $dataFilm["Titolo"],
+        filtraTestoInglese($dataFilm["Titolo"]),
         $prenotazione_content
     );
+
+    $titolo = $dataFilm["Titolo"];
+    $titolo = str_replace("{", "", $titolo);
+    $titolo = str_replace("}", "", $titolo);
+
+    $prenotazione_content = str_replace(
+        "<FILM-TITLE-N>",
+        $titolo,
+        $prenotazione_content
+    );
+
     $prenotazione_content = str_replace(
         "<PROJ-DATA>",
         $italianDate,
@@ -143,13 +156,13 @@ if (!empty($result1) && $result1->num_rows > 0) {
         $dataFilm["ID"] ,
         $prenotazione_content
     );
-	
+
 
     if (isset($_GET["err_server1"])) {
         $prenotazione_content = str_replace(
             "<ERRORE-SERVER>",
             '
-			<p role="alert" class="warning"> <strong>Attenzione</strong>, hai itentato di prenotare più posti di quelli disponibili in totale.</p>
+			<p role="alert" class="warning"> <strong>Attenzione</strong>, hai tentato di prenotare più posti di quelli disponibili in totale.</p>
 			',
             $prenotazione_content
         );
@@ -177,15 +190,15 @@ if (!empty($result1) && $result1->num_rows > 0) {
         );
     }
 
-    $title = "Acquista biglietti per " . $dataFilm["Titolo"] . " - PNG Cinema";
-    $keywords = "Acquista, biglietti, " . $dataFilm["Titolo"];
-    $description = "Pagina acquisto biglietti per il film: " . $dataFilm["Titolo"];
+    $title = "Acquista biglietti per " . $titolo . " - PNG Cinema";
+    $keywords = "Acquista, biglietti, " . ($dataFilm["Titolo"]);
+    $description = "Pagina acquisto biglietti per il film: " . ($dataFilm["Titolo"]);
     $breadcrumbs =
         '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
         $dataFilm["ID"] .
         '"' .
         ">Scheda Film: " .
-        $dataFilm["Titolo"] .
+        filtraTestoInglese($dataFilm["Titolo"]) .
         "</a>" .
         " / Acquisto biglietti";
 

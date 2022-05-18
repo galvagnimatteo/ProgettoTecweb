@@ -3,6 +3,8 @@ session_start();
 
 require_once "utils/SingletonDB.php";
 require_once "utils/generaPagina.php";
+require_once "utils/filtraTestoInglese.php";
+
 //CheckSession($login_required, $admin_required)
 CheckSession(false, false); //refresh della sessione se scaduta
 
@@ -28,22 +30,23 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
 
         $card_prog_item = str_replace(
             "<FILMDIRECTOR>",
-            $row["Registi"],
+            filtraTestoInglese($row["Registi"]),
             $card_prog_item
         );
         $card_prog_item = str_replace(
             "<FILMCAST>",
-            $row["Attori"],
+            filtraTestoInglese($row["Attori"]),
             $card_prog_item
         );
 
         $description = $row["Descrizione"];
         $description = substr($description, 0, 200);
+        $description = filtraTestoInglese($description);
         $description = $description . "...";
 
         $card_prog_item = str_replace(
             "<FILMTITLE>",
-            $row["Titolo"],
+            filtraTestoInglese($row["Titolo"]),
             $card_prog_item
         );
         $card_prog_item = str_replace(
@@ -76,7 +79,7 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
 
         $card_prog_item = str_replace(
             "<ALTIMG>",
-            "Locandina " . $row["Titolo"],
+            "Locandina " . ($row["Titolo"]),
             $card_prog_item
         );
 

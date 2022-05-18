@@ -5,6 +5,8 @@ require_once "utils/prenotaPosti.php";
 require_once "utils/mappaPosti.php";
 require_once "utils/generaPagina.php";
 require_once "utils/controlli.php";
+require_once "utils/filtraTestoInglese.php";
+
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 
@@ -64,7 +66,7 @@ $postiver = explode(",", $_POST["seats"]);
 
 
 
-$totPostiLiberi = -1; 
+$totPostiLiberi = -1;
 $statoPosti = mappaPosti($_POST["numSala"], $_POST["idproiez"], $_POST["orario"], $totPostiLiberi);
 
 
@@ -137,7 +139,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
 
     $acquistoconferma_content = str_replace(
         "<FILM-TITLE>",
-        $_POST["titoloFilm"],
+        filtraTestoInglese($_POST["titoloFilm"]),
         $acquistoconferma_content
     );
     $acquistoconferma_content = str_replace(
@@ -186,22 +188,22 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
 		(isset($_SESSION["a"])) ? "hide" : "",
         $acquistoconferma_content
     );
-	
-    $title = "Conferma acquisto  " . $_POST["titoloFilm"] . " - PNG Cinema";
-    $keywords = "Acquisto, biglietti, " . $_POST["titoloFilm"];
+
+    $title = "Conferma acquisto  " . ($_POST["titoloFilm"]) . " - PNG Cinema";
+    $keywords = "Acquisto, biglietti, " . ($_POST["titoloFilm"]);
     $description =
-        "pagina di conferma acquisto biglietti per " . $_POST["titoloFilm"];
+        "pagina di conferma acquisto biglietti per " . ($_POST["titoloFilm"]);
     $breadcrumbs =
         '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
         $_POST["IDFilm"] .
         '"' .
         ">Scheda Film: " .
-        $_POST["titoloFilm"] .
+        filtraTestoInglese($_POST["titoloFilm"]) .
         "</a>" .
         ' / <a href="prenotazione.php?idproiez=' .
 		$_POST["idproiez"] . '"' .
 		'>Acquisto biglietti</a> / Conferma acquisto';
-    
+
 	$jshead =
         '<meta name="robots" content="noindex" follow /> ' . //lo attacco da qua perche non ho voglia di modificare tutto
         ' <script src="../js/promptonclose.js"></script>';

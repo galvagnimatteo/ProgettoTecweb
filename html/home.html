@@ -6,13 +6,13 @@
 
     </ul>
 
-    <a class="prev nascondiTesto" onclick="moveSlides(-1)">slide precedente</a>
-    <a class="next nascondiTesto" onclick="moveSlides(1)">slide successiva</a>
+    <a id="prev_slide" class="prev nascondiTesto">slide precedente</a>
+    <a id="next_slide" class="next nascondiTesto">slide successiva</a>
 
     <div class="circles">
-        <span class="circle active" onclick="showSlideByIndex(1)"></span>
-        <span class="circle" onclick="showSlideByIndex(2)"></span>
-        <span class="circle" onclick="showSlideByIndex(3)"></span>
+        <span id="slide_1" class="circle active" onclick="showSlideByIndex(1)"></span>
+        <span id="slide_2" class="circle" onclick="showSlideByIndex(2)"></span>
+        <span id="slide_3" class="circle" onclick="showSlideByIndex(3)"></span>
     </div>
 
 </div>

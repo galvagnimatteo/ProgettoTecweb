@@ -1,5 +1,6 @@
 <?php
 require_once "SingletonDB.php";
+require_once "filtraTestoInglese.php";
 require_once "controlli.php";
 
 class Users
@@ -454,35 +455,35 @@ class Users
             $db->disconnect();
             $preparedQuery->close();
 
-            
+
 			$tot = "";
             $home_content = file_get_contents(
                 "../html/items/storico_profilo.html"
             );
             $content = file_get_contents("../html/items/card_prenotazione.html");
-			
+
 			$today = new DateTime();
-			
+
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $content = file_get_contents(
                         "../html/items/card_prenotazione.html"
                     );
-					
-					
+
+
                     $content = str_replace("<CODICE>", $row["ID"], $content);
-					
+
 					$content = str_replace(
                         "<ELIMINA-PRENOTAZ>",
-                        ($today < new DateTime($row["Data"])) ? 
-						'<a href="../php/area_utenti.php?action=deleteReservation&codice='. $row["ID"] . '" class="reservation_link">Elimina</a>' : '',
+                        ($today < new DateTime($row["Data"])) ?
+						'<a href="../php/area_utenti.php?action=deleteReservation&codice='. $row["ID"] . '" class="reservation_link btn-storico">Annulla</a>' : '',
                         $content
                     );
-					
-					
+
+
                     $content = str_replace(
                         "<TITOLO>",
-                        $row["Titolo"],
+                        filtraTestoInglese($row["Titolo"]),
                         $content
                     );
                     $content = str_replace(
@@ -496,13 +497,13 @@ class Users
                         $row["orario"],
                         $content
                     );
-                    
+
 					$content = str_replace(
-						"<DATA>", 
-						$row["Data"], 
+						"<DATA>",
+						$row["Data"],
 						$content
 					);
-                    
+
 					$content = str_replace(
                         "<SALA>",
                         $row["NumeroSala"],
@@ -512,7 +513,7 @@ class Users
                     $tot = $tot . $content;
                 }
 
-                
+
             }
 			$home_content = str_replace(
                     "<CARD-RESERVATION>",
@@ -554,7 +555,7 @@ class Users
                     );
                     $home_content = str_replace(
                         "<TITOLO>",
-                        $row["Titolo"],
+                        filtraTestoInglese($row["Titolo"]),
                         $home_content
                     );
                     $home_content = str_replace(
@@ -629,7 +630,7 @@ class Users
     }
 
 	function deleteReservation($codice) {
-		
+
 		if (isset($codice)) {
 			$db = SingletonDB::getInstance();
 			$db->connect();

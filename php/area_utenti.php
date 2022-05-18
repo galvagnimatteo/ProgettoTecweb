@@ -6,6 +6,11 @@ require_once "utils/generaPagina.php";
 CheckSession(false, false); //refresh della sessione se scaduta
 $home_content = file_get_contents("../html/area_utenti_registrazione.html"); //load content
 
+$description = "Area Utenti";
+$keywords = "Area utenti, login, registrazione";
+$breadcrumbs = '<a href="home.php">Home</a> / Area Utenti';
+$jshead = '<script type="text/javascript" src="../js/controls.js"> </script>';
+
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
 
@@ -96,13 +101,13 @@ if (isset($_GET["action"])) {
         $Users = new Users();
         $home_content = $Users->getHistory();
     }
-	
+
 	if ($action == "deleteReservation") {
 		require_once "utils/funzioniUtenti.php";
 		$Users = new Users();
 		$home_content = $Users->deleteReservation($_GET["codice"]);
 	}
-	
+
     if ($action == "getProfile") {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
@@ -216,6 +221,8 @@ if (isset($_GET["action"])) {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = $Users->viewReservation($_GET["codice"]);
+        $breadcrumbs = '<a href="home.php">Home</a> / <a href="area_utenti.php?action=getProfile">Area Utenti</a> / Prenotazione numero ' . $_GET["codice"];
+
     }
 
     if ($action == "logout") {
@@ -287,10 +294,6 @@ if (isset($_GET["errorPass"])) {
 
 $home_content = str_replace("<ERRORMESSAGE>", " ", $home_content); //se è ancora presente <errormessage> viene tolto, non funziona se non presente (già sostituito con errore)
 
-$description = "Pagina di login";
-$keywords = "Login";
-$breadcrumbs = '<a href="home.php">Home</a> / Area Utenti';
-$jshead = '<script type="text/javascript" src="../js/controls.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage(
     "login",

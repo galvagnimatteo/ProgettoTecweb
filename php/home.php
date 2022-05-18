@@ -2,6 +2,7 @@
 session_start();
 require_once "utils/generaPagina.php";
 require_once "utils/SingletonDB.php";
+require_once "utils/filtraTestoInglese.php";
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 
@@ -33,7 +34,7 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
                     $row["CarouselImg"] .
                     '" alt="' .
                     "Locandina " .
-                    $row["Titolo"] .
+                    ($row["Titolo"]) .
                     '"/>
                 </li>';
             } else {
@@ -44,7 +45,7 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
                     $row["CarouselImg"] .
                     '" alt="' .
                     "Locandina " .
-                    $row["Titolo"] .
+                    ($row["Titolo"]) .
                     '"/>
                 </li>';
             }
@@ -52,24 +53,30 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
 
         $carouselFilms = $carouselFilms + 1;
 
+        $titolo = $row["Titolo"];
+
+        $titolo = str_replace("{", "", $titolo);
+        $titolo = str_replace("}", "", $titolo);
+
         $quickpurchase_films =
             $quickpurchase_films .
             '<option value="' .
             $row["FilmID"] .
             '">' .
-            $row["Titolo"] .
+            $titolo .
             "</option>";
 
         $card_home_item = $card_home_template;
 
         $card_home_item = str_replace(
             "<FILMTITLE>",
-            $row["Titolo"],
+            filtraTestoInglese($row["Titolo"]),
             $card_home_item
         );
 
         $description = $row["Descrizione"];
         $description = substr($description, 0, 200);
+        $description = filtraTestoInglese($description);
         $description = $description . "...";
         $card_home_item = str_replace(
             "<FILMDESCRIPTION>",

@@ -82,6 +82,9 @@ body {
 	border-radius: 20px;
 	border: outset var(--scrollbar);
 }
+
+
+
 .subtitle {
 	padding-top: 1rem;
 	padding-left: 1rem;

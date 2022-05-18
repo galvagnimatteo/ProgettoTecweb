@@ -1,5 +1,6 @@
 <?php
 require_once "SingletonDB.php";
+require_once "filtraTestoInglese.php";
 require_once "controlli.php";
 
 class Users
@@ -482,7 +483,7 @@ class Users
 
                     $content = str_replace(
                         "<TITOLO>",
-                        $row["Titolo"],
+                        filtraTestoInglese($row["Titolo"]),
                         $content
                     );
                     $content = str_replace(
@@ -554,7 +555,7 @@ class Users
                     );
                     $home_content = str_replace(
                         "<TITOLO>",
-                        $row["Titolo"],
+                        filtraTestoInglese($row["Titolo"]),
                         $home_content
                     );
                     $home_content = str_replace(

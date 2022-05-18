@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 03, 2022 alle 17:36
+-- Creato il: Mag 18, 2022 alle 16:59
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 8.0.3
 
@@ -62,10 +62,10 @@ CREATE TABLE `Film` (
 --
 
 INSERT INTO `Film` (`ID`, `Titolo`, `Genere`, `DataUscita`, `Descrizione`, `SrcImg`, `CarouselImg`, `Durata`, `Registi`, `Attori`) VALUES
-(1, 'Sonic 2', 'Azione', '2022-04-08', 'Dopo essersi stabilito a Green Hills, Sonic è pronto per una maggiore libertà, e Tom e Maddie accettano di lasciarlo a casa mentre vanno in vacanza. Ma, non appena se ne sono andati, il Dr. Robotnik ritorna, questa volta con un nuovo partner, Knuckles, alla ricerca di uno smeraldo che ha il potere di costruire e distruggere le civiltà. Sonic fa squadra con la sua spalla, Tails, e insieme intraprendono un viaggio per trovare lo smeraldo prima che cada nelle mani sbagliate. Diretto da Jeff Fowler e interpretato da Jim Carrey, James Marsden e Ben Schwartz.', 'sonic2-vertical.jpg', 'sonic2.jpg', 100, 'Nome Cognome', 'Attore uno, Attore due, Attore tre'),
-(2, 'Spider-Man: No Way Home', 'Fantastico', '2021-12-15', 'Spider-Man No Way Home, il film diretto da Jon Watts, vede, per la prima volta nella storia cinematografica di Spider-Man, la vera identità del nostro amichevole supereroe di quartiere rivelata al mondo intero.\r\nLa vita del 17enne Peter Parker (Tom Holland), così come quella delle persone a cui tiene, finisce al centro dell\'attenzione dell\'opinione pubblica. I pericoli e il caos che circondano Spider-Man rischiano di costare a Peter, a MJ (Zendaya) e Ned (Jacob Batalon) - che i media considerano suoi complici a tutti gli effetti - l\'ammissione al college.\r\nIncapace di restare a guardare passivamente infrangersi i sogni dei suoi amici, Peter decide di rivolgersi al Dottor Strange (Benedict Cumberbatch), chiedendogli di ripristinare il suo segreto, facendo dimenticare a tutti che Peter Parker è Spider-Man. Strange non può rimanere indifferente alla supplica di Peter e decide di aiutarlo.\r\nPurtroppo, l\'incantesimo dell\'Oblio eseguito da Strange apre uno squarcio nel loro mondo, liberando i più potenti nemici mai affrontati da uno Spider-Man in qualsiasi universo. Ora Peter dovrà superare la sua più grande sfida, che non solo cambierà per sempre il suo futuro, ma anche quello del Multiverso.', 'nowayhome-vertical.jpg', 'nowayhome.jpg', 148, 'Regista 1', 'attore, attore, attore'),
-(3, 'Uncharted', 'Azione', '2022-02-17', 'Basato su una delle serie di videogiochi più vendute e acclamate dalla critica, Uncharted presenta al pubblico il giovane e furbo Nathan Drake (Tom Holland) nella sua prima avventura alla ricerca del tesoro con l’arguto partner Victor “Sully” Sullivan (Mark Wahlberg). In un’epica avventura piena di azione che attraversa il mondo intero, i due protagonisti partono alla pericolosa ricerca del “più grande tesoro mai trovato”, inseguendo indizi che potrebbero condurli al fratello di Nathan, scomparso da tempo.', 'uncharted-vertical.jpg', 'uncharted.jpg', 125, 'test', 'test test test'),
-(4, 'Sing 2', 'Animazione', '2021-12-23', 'Sing 2, diretto da Garth Jennings, è il sequel dell\'omonimo film di successo che vedeva un gruppo di animali, capitanati dal koala Buster Moon, che per salvare il Moon Theatre dalla chiusura decide di indire una gara canora così da riportare il teatro al suo vecchio splendore. Questa volta i protagonisti dovranno abbandonare il Moon Theatre per debuttare su un palco ancora più prestigioso. Buster sogna infatti di esibirsi al Crystal Tower Theater nell\'incantevole Redshore City, ma senza nessuna conoscenza non sarà facile.', 'sing2-vertical.jpg', 'sing2.jpg', 105, 'test', 'etstst, tstststs');
+(1, 'Sonic 2', 'Azione', '2022-04-08', 'Dopo essersi stabilito a {Green Hills} Sonic è pronto per una maggiore libertà, e {Tom} e {Maddie} accettano di lasciarlo a casa mentre vanno in vacanza. Ma, non appena se ne sono andati, il Dr. {Robotnik} ritorna, questa volta con un nuovo partner, {Knuckles}, alla ricerca di uno smeraldo che ha il potere di costruire e distruggere le civiltà. Sonic fa squadra con la sua spalla, {Tails}, e insieme intraprendono un viaggio per trovare lo smeraldo prima che cada nelle mani sbagliate. Diretto da {Jeff Fowler} e interpretato da {Jim Carrey}, {James Marsden} e {Ben Schwartz}.', 'sonic2-vertical.jpg', 'sonic2.jpg', 100, '{Jeff Fowler}', '{Jim Carrey}, {James Marsden}, {Ben Schwartz}'),
+(2, '{Spider-Man: No Way Home}', 'Fantastico', '2021-12-15', '{Spider-Man No Way Home}, il film diretto da {Jon Watts}, vede, per la prima volta nella storia cinematografica di {Spider-Man}, la vera identità del nostro amichevole supereroe di quartiere rivelata al mondo intero.\r\nLa vita del 17enne {Peter Parker (Tom Holland)}, così come quella delle persone a cui tiene, finisce al centro dell\'attenzione dell\'opinione pubblica. I pericoli e il caos che circondano {Spider-Man} rischiano di costare a {Peter}, a {MJ (Zendaya)} e {Ned (Jacob Batalon)} - che i media considerano suoi complici a tutti gli effetti - l\'ammissione al {college}.\r\nIncapace di restare a guardare passivamente infrangersi i sogni dei suoi amici, {Peter} decide di rivolgersi al Dottor {Strange (Benedict Cumberbatch)}, chiedendogli di ripristinare il suo segreto, facendo dimenticare a tutti che {Peter Parker} è {Spider-Man}. {Strange} non può rimanere indifferente alla supplica di {Peter} e decide di aiutarlo.\r\nPurtroppo, l\'incantesimo dell\'Oblio eseguito da {Strange} apre uno squarcio nel loro mondo, liberando i più potenti nemici mai affrontati da uno {Spider-Man} in qualsiasi universo. Ora {Peter} dovrà superare la sua più grande sfida, che non solo cambierà per sempre il suo futuro, ma anche quello del Multiverso.', 'nowayhome-vertical.jpg', 'nowayhome.jpg', 148, 'Regista 1', 'attore, attore, attore'),
+(3, '{Uncharted}', 'Azione', '2022-02-17', 'Basato su una delle serie di videogiochi più vendute e acclamate dalla critica, {Uncharted} presenta al pubblico il giovane e furbo {Nathan Drake (Tom Holland)} nella sua prima avventura alla ricerca del tesoro con l’arguto partner {Victor “Sully” Sullivan (Mark Wahlberg)}. In un’epica avventura piena di azione che attraversa il mondo intero, i due protagonisti partono alla pericolosa ricerca del “più grande tesoro mai trovato”, inseguendo indizi che potrebbero condurli al fratello di {Nathan}, scomparso da tempo.', 'uncharted-vertical.jpg', 'uncharted.jpg', 125, 'test', 'test test test'),
+(4, '{Sing} 2', 'Animazione', '2021-12-23', '{Sing} 2, diretto da {Garth Jennings}, è il sequel dell\'omonimo film di successo che vedeva un gruppo di animali, capitanati dal koala {Buster Moon}, che per salvare il {Moon Theatre} dalla chiusura decide di indire una gara canora così da riportare il teatro al suo vecchio splendore. Questa volta i protagonisti dovranno abbandonare il {Moon Theatre} per debuttare su un palco ancora più prestigioso. {Buster} sogna infatti di esibirsi al {Crystal Tower Theater} nell\'incantevole {Redshore City}, ma senza nessuna conoscenza non sarà facile.', 'sing2-vertical.jpg', 'sing2.jpg', 105, 'test', 'etstst, tstststs');
 
 -- --------------------------------------------------------
 
@@ -79,6 +79,30 @@ CREATE TABLE `Occupa` (
   `NumeroSala` smallint(6) NOT NULL,
   `IDPrenotazione` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `Occupa`
+--
+
+INSERT INTO `Occupa` (`NumeroPosto`, `FilaPosto`, `NumeroSala`, `IDPrenotazione`) VALUES
+(1, 'A', 1, 9),
+(1, 'B', 1, 9),
+(1, 'G', 1, 9),
+(2, 'A', 1, 19),
+(2, 'G', 1, 9),
+(5, 'B', 1, 9),
+(8, 'D', 1, 10),
+(8, 'E', 1, 11),
+(9, 'B', 1, 18),
+(9, 'D', 1, 10),
+(11, 'C', 1, 13),
+(12, 'D', 1, 9),
+(13, 'B', 1, 20),
+(13, 'B', 2, 17),
+(14, 'B', 2, 17),
+(15, 'A', 1, 12),
+(15, 'B', 1, 21),
+(15, 'C', 2, 22);
 
 -- --------------------------------------------------------
 
@@ -422,9 +446,26 @@ INSERT INTO `Posto` (`Fila`, `Numero`, `NumeroSala`) VALUES
 CREATE TABLE `Prenotazione` (
   `ID` int(11) NOT NULL,
   `NumeroPersone` smallint(6) NOT NULL,
-  `UsernameUtente` varchar(50) NULL,
+  `UsernameUtente` varchar(50) DEFAULT NULL,
   `IDProiezione` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `Prenotazione`
+--
+
+INSERT INTO `Prenotazione` (`ID`, `NumeroPersone`, `UsernameUtente`, `IDProiezione`) VALUES
+(9, 6, NULL, 16),
+(10, 2, 'admin', 16),
+(11, 1, NULL, 16),
+(12, 1, 'admin', 16),
+(13, 1, 'admin', 16),
+(17, 2, 'admin', 20),
+(18, 1, 'admin', 16),
+(19, 1, 'admin', 16),
+(20, 1, 'admin', 16),
+(21, 1, 'admin', 16),
+(22, 1, 'admin', 20);
 
 -- --------------------------------------------------------
 
@@ -591,13 +632,13 @@ ALTER TABLE `Utente`
 -- AUTO_INCREMENT per la tabella `Film`
 --
 ALTER TABLE `Film`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `Prenotazione`
 --
 ALTER TABLE `Prenotazione`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT per la tabella `Proiezione`

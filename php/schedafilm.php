@@ -4,6 +4,7 @@ session_start();
 require_once "utils/SingletonDB.php";
 require_once "utils/generaPagina.php";
 require_once "utils/generaData.php";
+require_once "utils/filtraTestoInglese.php";
 
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
@@ -42,7 +43,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
         $schedafilm_content = str_replace(
             "<FILM-TITLE>",
-            $dataFilm["Titolo"],
+            filtraTestoInglese($dataFilm["Titolo"]),
             $schedafilm_content
         );
         $schedafilm_content = str_replace(
@@ -52,7 +53,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                 $dataFilm["SrcImg"] .
                 ' \' alt=\'' .
                 "Locandina " .
-                $dataFilm["Titolo"] .
+                filtraTestoInglese($dataFilm["Titolo"]) .
                 '\'/>',
             $schedafilm_content
         );
@@ -68,17 +69,17 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         );
         $schedafilm_content = str_replace(
             "<FILM-DIRECTOR>",
-            $dataFilm["Registi"],
+            filtraTestoInglese($dataFilm["Registi"]),
             $schedafilm_content
         );
         $schedafilm_content = str_replace(
             "<FILM-CAST>",
-            $dataFilm["Attori"],
+            filtraTestoInglese($dataFilm["Attori"]),
             $schedafilm_content
         );
         $schedafilm_content = str_replace(
             "<FILM-DESC>",
-            $dataFilm["Descrizione"],
+            filtraTestoInglese($dataFilm["Descrizione"]),
             $schedafilm_content
         );
 
@@ -150,17 +151,19 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
             );
         } //else nessun problema, il film non ha programmazioni in corso
         $title = $dataFilm["Titolo"] . " - PNG Cinema";
-        $keywords = $dataFilm["Titolo"];
-        $description = "Scheda informativa del film: " . $dataFilm["Titolo"];
+        $title = str_replace("{", "", $title);
+        $title = str_replace("}", "", $title);
+        $keywords = "scheda film, " . ($dataFilm["Titolo"]);
+        $description = "Scheda informativa del film " . ($dataFilm["Titolo"]);
         $breadcrumbs =
             '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / ' .
             "Scheda Film: " .
-            $dataFilm["Titolo"];
+            filtraTestoInglese($dataFilm["Titolo"]);
         echo GeneratePage(
             "scheda film",
             $schedafilm_content,
             $breadcrumbs,
-            $dataFilm["Titolo"] . " - PNG Cinema",
+            $title,
             $description,
             $keywords,
             "",

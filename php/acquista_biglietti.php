@@ -189,12 +189,17 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
         $acquistoconferma_content
     );
 
-    $title = "Conferma acquisto  " . ($_POST["titoloFilm"]) . " - PNG Cinema";
-    $keywords = "Acquisto, biglietti, " . ($_POST["titoloFilm"]);
+    $titolo = $_POST["titoloFilm"];
+    $titolo = str_replace("{", "", $titolo);
+    $titolo = str_replace("}", "", $titolo);
+
+
+    $title = "Conferma acquisto - PNG Cinema";
+    $keywords = "Acquisto, biglietti, " . $titolo;
     $description =
-        "pagina di conferma acquisto biglietti per " . ($_POST["titoloFilm"]);
+        "pagina di conferma acquisto biglietti per " . $titolo;
     $breadcrumbs =
-        '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
+        '<a href="home.php"><span lang="en">Home</span></a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
         $_POST["IDFilm"] .
         '"' .
         ">Scheda Film: " .

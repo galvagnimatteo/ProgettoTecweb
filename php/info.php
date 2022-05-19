@@ -10,7 +10,7 @@ $title = "Info e Costi - PNG Cinema";
 $keywords = "info, costi, costo biglietto, convenzioni, sconti";
 $description =
     "Pagina informativa sui costi: è possibile consultare prezzi e convenzioni sui biglietti.";
-$breadcrumbs = '<a href="home.php">Home</a> / Info e Costi';
+$breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Info e Costi';
 
 $db = SingletonDB::getInstance();
 $result = $db
@@ -24,25 +24,25 @@ if (!empty($result) && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
 		$p_int = str_replace(".", ",", $row["PrezzoRidotto"]);
 		$p_rid = str_replace(".", ",", $row["PrezzoIntero"]);
-		
+
 		switch($row["Giorno"]) {
 			case "Domenica":
 				//considero festivi
 				$prezzi["festivi-int"] = $p_int;
 				$prezzi["festivi-rid"] = $p_rid;
 				break;
-			
+
 			case "Mercoledì":
 				$prezzi["mercoledi-int"] = $p_int;
 				$prezzi["mercoledi-rid"] = $p_rid;
 				break;
-			
+
 			case "Lunedì":
 				//considero feriali
 				$prezzi["feriali-int"] = $p_int;
 				$prezzi["feriali-rid"] = $p_rid;
 				break;
-			
+
 		}
 	}
 

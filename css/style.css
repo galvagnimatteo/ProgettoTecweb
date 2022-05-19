@@ -50,6 +50,14 @@ select{
     color: var(--disabled-color);
 }
 
+.breadcrumbs a:visited span{
+	color: var(--visited-links);
+}
+
+.breadcrumbs a:hover span{
+	color: var(--links-hover-color);
+}
+
 html {
 	font-size: 100%;
 	font-family: "Arial", sans-serif;
@@ -396,6 +404,7 @@ footer {
 	width: calc(100% - 2rem);
 	padding: 1rem;
 	bottom: 0;
+	margin-top: 1rem;
 }
 
 
@@ -1107,6 +1116,26 @@ div.labelqp select {
 	footer{
 		font-size: 1rem;
 	}
+
+	.breadcrumbs{
+		font-size: 1rem;
+	}
+
+	h2{
+		font-size: 1.7rem;
+	}
+
+	h3{
+		font-size: 1.3rem;
+	}
+
+	#aside-warn, .warning{
+		font-size: 1.2rem;
+	}
+}
+
+h3{
+	padding-top: 1rem;
 }
 
 @media (min-width: 865px) {

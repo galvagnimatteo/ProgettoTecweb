@@ -612,10 +612,6 @@ div.ul_reservation {
 	width: 100%;
 }
 
-.div_register.profile {
-	width: 100%;
-
-}
 
 .cards_users ul {
 	list-style-type: none;
@@ -1159,8 +1155,13 @@ h3{
 	.div_login,
 	.div_register	{
 		width: 90%;
-
+		padding: 1.5rem;
 	}
+	
+	.div_user.card3_users {
+		width: 90%;
+	}
+	
 }
 
 @media screen and (max-width: 480px) {

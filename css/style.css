@@ -697,10 +697,10 @@ div.ul_reservation {
 
 .div_register {
 	margin: auto;
-	width: 50%;
+	width: 60%;
 	display: flex;
 	justify-content: center;
-	/*background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));*/
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	padding-top: 1rem;
 	padding-bottom: 2rem;
 }
@@ -1057,9 +1057,9 @@ div.labelqp select {
 		font-size: 1rem;
 	}
 
-	h2{
+	/*h2{
 		font-size: 1.7rem;
-	}
+	}*/
 
 	h3{
 		font-size: 1.3rem;
@@ -1156,7 +1156,8 @@ h3{
 	}
 
 	.div_user,
-	.div_login {
+	.div_login,
+	.div_register	{
 		width: 90%;
 
 	}
@@ -1191,9 +1192,9 @@ h3{
 	}
 	/*.div_register,
 	.div_user,
-	*/.div_login {
+	.div_login {
 		width: 100%;
-	}
+	}*/
 }
 
 @media screen and (max-width: 320px) {
@@ -1255,16 +1256,6 @@ h3{
 	padding-left: 3px;
 }
 
-#ticketInfoGroup input[type="number"] {
-  -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
-}
-#ticketInfoGroup input[type=number]::-webkit-inner-spin-button,
-#ticketInfoGroup input[type=number]::-webkit-outer-spin-button {
-  opacity: 1;
-}
-
 .textSelectContainer {
 
 	margin: 1rem;
@@ -1285,6 +1276,11 @@ h3{
 	margin-top: 1.5rem;
 	border: 0;
 }
+
+#purchaseTicketForm .selezPostoFieldset select {
+	margin: 0 0.5rem;
+}
+
 
 
 #purchaseTicketForm legend {

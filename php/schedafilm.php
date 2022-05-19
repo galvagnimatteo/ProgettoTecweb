@@ -157,7 +157,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $description = "Scheda informativa del film " . $title;
         $breadcrumbs =
             '<a href="home.php"><span lang="en">Home</span></a> / <a href="programmazione.php">Programmazione</a> / ' .
-            "Scheda Film: " .
+            "" .
             filtraTestoInglese($dataFilm["Titolo"]);
         echo GeneratePage(
             "scheda film",

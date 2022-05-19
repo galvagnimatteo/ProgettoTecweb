@@ -366,14 +366,15 @@ function genera_span_lingua(stringa){
 var film_area = areas[0];
 
 //selettore
-document.getElementById(film_area.area_selector).onclick = function () { cambia_contesto('film'); };
-document.getElementById(film_area.area_selector).firstChild.onclick = function () { cambia_contesto('film'); }
+var selettore = document.getElementById(film_area.area_selector);
+selettore.onclick = function () { cambia_contesto('film'); };
+selettore.firstChild.onclick = function () { cambia_contesto('film'); }
 
 //Form
-document.getElementById(film_area.elemento).getElementsByClassName("formopener").onclick = function () {
+document.getElementById("apri_film").onclick = function () {
     toggle_form('film');
 };
-document.getElementById(api.film.imputform.elemento).getElementsByClassName("formcloser").onclick = function () {
+document.getElementById("chiudi_film").onclick = function () {
     toggle_form('film');
 };
 document.getElementById(api.film.imputform.elemento).onsubmit = function () {
@@ -389,18 +390,17 @@ var proiezioni_area = areas[1];
 
 //selettore proiezioni
 
-var selettore = document.getElementById(proiezioni_area.area_selector);
+selettore = document.getElementById(proiezioni_area.area_selector);
 selettore.onclick = function () { cambia_contesto('projection'); }
 selettore.firstChild.onclick = function () { cambia_contesto('projection'); }
 
 
 //form proiezioni
-document.getElementById(proiezioni.elemento)
-    .childNodes.getElementsByClassName("formopener").onclick = function () { toggle_form('projection'); }
+document.getElementById("apri_proiezioni").onclick = function () { toggle_form('projection'); }
 
 var form_proiezioni = document.getElementById(api.proiezioni.imputform.elemento);
 
-form_proiezioni.childNodes.getElementsByClassName("formcloser").onclick = function () {
+document.getElementById("chiudi_proiezioni").onclick = function () {
     toggle_form('projection');
 }
 form_proiezioni.onsubmit = function () {

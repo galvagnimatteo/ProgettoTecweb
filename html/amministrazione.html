@@ -15,7 +15,7 @@
                     <thead>
                         <tr class=headerrow>
                             <th>
-                                <a href="#insert_film" class="formopener nascondiTesto">apri form</a>
+                                <a href="#insert_film" class="formopener nascondiTesto" id="apri_film">apri form</a>
                             </th>
                             <th>Titolo</th>
                             <th>Genere</th>
@@ -40,7 +40,7 @@
                     <thead>
                         <tr class='headerrow'>
                             <th>
-                                <a href="#insert_projection" class="formopener nascondiTesto">apri form</a>
+                                <a href="#insert_projection" class="formopener nascondiTesto" id="apri_proiezioni">apri form</a>
                             </th>
                             <th>Giorno</th>
                             <th>Sala</th>
@@ -63,7 +63,7 @@
         <div class="overlays">
             <form id="insert_film" class="closed" method="post">
                 <p class="SRskip">form: film</p>
-                <a href="#films" class="formcloser nascondiTesto">chiudi form</a>
+                <a href="#films" class="formcloser nascondiTesto" id="chiudi_film">chiudi form</a>
                 <fieldset>
                     <legend>Informazioni base</legend>
                     <label for="Titolo"><span xml:lang="en">Titolo</span></label>
@@ -103,7 +103,7 @@
             </form>
             <form id="insert_projection" class="closed" method="post">
                 <p class="SRskip">form: proiezioni</p>
-                <a href="#projections" class="formcloser nascondiTesto">chiudi form</a>
+                <a href="#projections" class="formcloser nascondiTesto" id="chiudi_proiezioni">chiudi form</a>
                 <label for="filmselector">Film</label>
                 <select name="film" title="film" id="filmselector">
                 </select>

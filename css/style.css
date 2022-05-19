@@ -149,18 +149,6 @@ nav ul {
 	left: 1rem;
 }
 
-
-/*ovverides per assenza di js visualizzani il menù come sempre aperto*/
-
-.no-js nav {
-	width: 100%;
-	position: relative;
-}
-
-.no-js .closedMenu {
-	display: normal;
-}
-
 nav li a,
 nav li p,
 nav .menu_name {
@@ -186,25 +174,25 @@ a:visited:not(.carouselContainer a:visited) {
 
 /*codice per css con javascript abilitato*/
 
-.js .carouselContainer {
+.carouselContainer {
 	position: relative;
 }
 
-.js .slide {
+.slide {
 	display: none;
 }
 
-.js .slide img {
+.slide img {
 	width: 100%;
 	height: auto;
 }
 
-.js .not-hidden {
+.not-hidden {
 	display: block;
 }
 
-.js .prev,
-.js .next {
+.prev,
+.next {
 	cursor: pointer;
 	position: absolute;
 	top: calc(50% - 2rem - 0.9rem);
@@ -214,23 +202,23 @@ a:visited:not(.carouselContainer a:visited) {
 	background-size:cover;
 }
 
-.js .prev {
+.prev {
 	border-radius: 0 1rem 1rem 0;
 	left: 0;
 	background-image:url(/images/backwards.png);
 }
 
-.js .next {
+.next {
 	right: 0;
 	border-radius: 1rem 0 0 1rem;
 	background-image: url(/images/forward.png);
 }
 
-.js .circles {
+.circles {
 	text-align: center;
 }
 
-.js .circle {
+.circle {
 	cursor: pointer;
 	height: 1rem;
 	width: 1rem;
@@ -239,62 +227,28 @@ a:visited:not(.carouselContainer a:visited) {
 	display: inline-block;
 }
 
-.js .active {
+.active {
 	background-color: var(--secondary-color);
 }
 
-.js .active.circle:hover {
+.active.circle:hover {
 	/*active E circle:hover deve risultare in rosso comunque*/
 	background-color: var(--secondary-color);
 }
 
-
-/*codice per css con javascript disabilitato*/
-
-.no-js.carouselContainer {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-}
-
-.no-js .slide {
-	width: calc(50% - 1rem);
-	margin: 0.5rem;
-}
-
-.no-js .slide img {
-	width: 100%;
-	height: auto;
-	display: block;
-	/*se no viene trattata come inline e lascia un leggero spazio sul bottom*/
-}
-
-.no-js .not-hidden {
-	display: block;
-}
-
-.no-js .prev,
-.no-js .next {
-	display: none;
-}
-
-.no-js .circles {
-	display: none;
-}
-
-.js .quickPurchaseContainer {
+.quickPurchaseContainer {
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	margin-top: 0.8rem;
 }
 
-.js .quickPurchaseContainer form {
+.quickPurchaseContainer form {
 	display: flex;
 	margin-bottom: 1rem;
 	justify-content: space-between;
 }
 
-.js .quickPurchaseContainer form select,
-.js .quickPurchaseContainer form button {
+.quickPurchaseContainer form select,
+.quickPurchaseContainer form button {
 	background: none;
 	/*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
 	font-size: 1.1rem;
@@ -306,26 +260,22 @@ a:visited:not(.carouselContainer a:visited) {
 	outline: 0;
 }
 
-.js .quickPurchaseContainer form select {
+.quickPurchaseContainer form select {
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
 }
 
-.js .quickPurchaseContainer form select option {
+.quickPurchaseContainer form select option {
 	background: var(--primary-color);
 }
 
-.js .quickPurchaseContainer form button {
+.quickPurchaseContainer form button {
 	border: 1px solid var(--secondary-color);
 	cursor: pointer;
 	margin-right: 1rem;
 	/*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
 	margin-left: 1rem;
 	border-radius: 8px;
-}
-
-.no-js .quickPurchaseContainer {
-	display: none;
 }
 
 .cardsContainer {
@@ -1049,7 +999,7 @@ div.labelqp select {
 		text-decoration: underline;
 		background-color: var(--secondary-color);
 	}
-	.js .quickPurchaseContainer form button:hover {
+	.quickPurchaseContainer form button:hover {
 		background-color: var(--secondary-color);
 	}
 	.card button:hover {
@@ -1059,11 +1009,11 @@ div.labelqp select {
 		text-decoration: underline;
 		background-color: var(--secondary-color);
 	}
-	.js .circle:hover {
+	.circle:hover {
 		background-color: #777777;
 	}
-	.js .prev:hover,
-	.js .next:hover {
+	.prev:hover,
+	.next:hover {
 		background-color: rgba(0, 0, 0, 0.8);
 		/*background nero con 0.8 di opacità (leggermente trasparente)*/
 	}
@@ -1092,15 +1042,15 @@ div.labelqp select {
 }
 
 @media screen and (max-width: 880px) {
-	.js .quickPurchaseContainer form {
+	.quickPurchaseContainer form {
 		flex-direction: column;
 	}
-	.js .quickPurchaseContainer form select {
+	.quickPurchaseContainer form select {
 		width: calc(100% - 1.5rem);
 		margin-right: 1rem;
 		/*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
 	}
-	.js .quickPurchaseContainer form button {
+	.quickPurchaseContainer form button {
 		width: calc(100% - 2rem);
 	}
 	.cardsContainer ul li {
@@ -1423,11 +1373,7 @@ h3{
 	font-weight: 800;
 }
 
-body.no-js #purchaseTicketForm span.noscript {
-	display: inline;
-}
-
-body.js #purchaseTicketForm span.noscript {
+body #purchaseTicketForm span.noscript {
 	display: none;
 }
 

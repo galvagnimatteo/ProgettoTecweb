@@ -750,22 +750,7 @@ div.ul_reservation {
 	display: block;
 	font-size: 0.8em;
 }
-/*
-.col-25 {
-	float: left;
-	width: 25%;
-}
 
-.col-75 {
-	float: left;
-	width: 75%;
-}
-
-.row:after {
-	content: "";
-	display: table;
-	clear: both;
-}*/
 
 .link_button {
 	background: none!important;
@@ -802,15 +787,11 @@ div.ul_reservation {
 #posizione {
     position: relative;
     text-align: left;
-    /*animation-duration: 2s;
-    animation-fill-mode: both;*/
+
 }
 #contatti {
     position: relative;
-    /*animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 2s;
-    animation-fill-mode: both;*/
+
 
 }
 #contatti h2{
@@ -834,7 +815,7 @@ div.ul_reservation {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-/*@supports not (display: grid) {*/
+
     .contactpage {
         display: flex;
         flex-direction: column;
@@ -858,6 +839,13 @@ div.ul_reservation {
         margin-bottom: 0.5rem;
 		margin-left: 2rem;
     }
+	
+	@media (max-width: 443px) {
+        .contactsection dl {
+			flex-direction: column;
+		}
+    }
+	
     @media (min-width: 870px) {
         #contatti {
             width: 50%;
@@ -868,11 +856,9 @@ div.ul_reservation {
             padding-right:0;
         }
     }
-/*}
-.success{
-    width:100%;
-    background-color:darkgreen;
-            margin-left:0;*/
+	
+
+
 
 
 .contactsection h2 {

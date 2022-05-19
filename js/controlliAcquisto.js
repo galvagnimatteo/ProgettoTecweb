@@ -87,8 +87,14 @@ var inputListaPosti = document.getElementById("seatsString");
 
 for (var i = 0; i < posti.length; i++) {
 	var posto = posti[i];
-	if (posto.getAttribute("class") != "seat occupato")
+	if (posto.getAttribute("class") != "seat occupato") {
 		posto.addEventListener("click", selezionePosto);
+		
+		posto.addEventListener("touchstart", function(e) { e.target.dataset.touchStart = 1;});
+		posto.addEventListener("touchmove", function(e) { e.target.dataset.touchStart = 0;});
+		posto.addEventListener("touchend", function(e) { if(e.target.dataset.touchStart == 1) selezionePosto(e);});
+	}
+		
 }
 
 changeCard(null);

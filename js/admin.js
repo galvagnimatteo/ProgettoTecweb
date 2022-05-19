@@ -22,9 +22,9 @@ var forms = [
                 nome: "Titolo",
                 elemento: "imputtitolo",
                 condizione: function (value) {
-                    return value.match("/^[a-zA-Z0-9]/");
+                    return value.match("/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*/");
                 },
-                messaggio_errore: "titolo puo contenere solo caratteri alfanumerici e spazi"
+                messaggio_errore: "titolo non valido"
             },
             {
                 nome: "Genere",
@@ -35,8 +35,8 @@ var forms = [
             {
                 nome: "Descrizione",
                 elemento: "imputdescizione",
-                condizione: function (value) { return true; },
-                messaggio_errore: ""
+                condizione: function (value) { return value.match("/^(?|{?*})*/"); },
+                messaggio_errore: "errore sintassi graffe descrizione"
             },
             {
                 nome: "DataUscita",

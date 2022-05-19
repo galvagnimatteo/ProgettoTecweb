@@ -69,17 +69,25 @@ function CheckFilm(
         $Attori,
         $Regista
 ) {
-    $titoloRegex = "/^[a-zA-Z0-9]/";
+    $titoloRegex = "/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*/";
+    $grafferegex="/^(?|{?*})*/"
+    if (!preg_match($grafferegex, $Titolo)) {
+        f (!preg_match($titoloRegex, $Titolo)) {
 
-    if (!preg_match($titoloRegex, $Titolo)) {
-        return "il titolo deve contenere solo lettere e numeri.";
+            return "il titolo deve contenere solo lettere e numeri.";
+        }
+        return "errore sintassi graffe in titolo";
     }
-
+    if (!preg_match($grafferegex, $Descrizione)) {
+        return "errore sintassi graffe in descrizione";
+    }
     $genereRegrex = "/^[a-zA-Z]/";
 
     if (!preg_match($genereRegrex, $Genere)) {
         return "Il genere può essere composto da sole lettere.";
     }
+    
+    
 
     $imageregex="/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/";
     if (!preg_match($imageregex, $SrcImg)) {

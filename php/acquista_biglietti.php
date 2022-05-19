@@ -199,7 +199,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
     $description =
         "pagina di conferma acquisto biglietti per " . $titolo;
     $breadcrumbs =
-        '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
+        '<a href="home.php"><span lang="en">Home</span></a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
         $_POST["IDFilm"] .
         '"' .
         ">Scheda Film: " .

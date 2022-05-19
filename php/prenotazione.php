@@ -194,7 +194,7 @@ if (!empty($result1) && $result1->num_rows > 0) {
     $keywords = "Acquista, biglietti, " . $titolo;
     $description = "Pagina acquisto biglietti per il film: " . $titolo;
     $breadcrumbs =
-        '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
+        '<a href="home.php"><span lang="en">Home</span></a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
         $dataFilm["ID"] .
         '"' .
         ">Scheda Film: " .

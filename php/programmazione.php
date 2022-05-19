@@ -99,7 +99,7 @@ $keywords =
     "programmazione, ultime uscite, ultimi film, film programmati, film in programma";
 $description =
     "Pagina sulla programmazione: è possibile consultare i film e le opere in programma nelle prossime settimane.";
-$breadcrumbs = '<a href="home.php">Home</a> / Programmazione';
+$breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Programmazione';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage(
     "Programmazione",

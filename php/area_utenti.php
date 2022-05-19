@@ -8,7 +8,7 @@ $home_content = file_get_contents("../html/area_utenti_registrazione.html"); //l
 
 $description = "Area Utenti";
 $keywords = "Area utenti, login, registrazione";
-$breadcrumbs = '<a href="home.php">Home</a> / Area Utenti';
+$breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Area Utenti';
 $jshead = '<script type="text/javascript" src="../js/controls.js"> </script>';
 
 if (isset($_GET["action"])) {
@@ -221,7 +221,7 @@ if (isset($_GET["action"])) {
         require_once "utils/funzioniUtenti.php";
         $Users = new Users();
         $home_content = $Users->viewReservation($_GET["codice"]);
-        $breadcrumbs = '<a href="home.php">Home</a> / <a href="area_utenti.php?action=getProfile">Area Utenti</a> / Prenotazione numero ' . $_GET["codice"];
+        $breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / <a href="area_utenti.php?action=getProfile">Area Utenti</a> / Prenotazione numero ' . $_GET["codice"];
 
     }
 

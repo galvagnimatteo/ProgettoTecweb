@@ -150,11 +150,11 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                 $schedafilm_content
             );
         } //else nessun problema, il film non ha programmazioni in corso
-        $title = $dataFilm["Titolo"] . " - PNG Cinema";
+        $title = $dataFilm["Titolo"];
         $title = str_replace("{", "", $title);
         $title = str_replace("}", "", $title);
-        $keywords = "scheda film, " . ($dataFilm["Titolo"]);
-        $description = "Scheda informativa del film " . ($dataFilm["Titolo"]);
+        $keywords = "scheda film, " . $title;
+        $description = "Scheda informativa del film " . $title;
         $breadcrumbs =
             '<a href="home.php">Home</a> / <a href="programmazione.php">Programmazione</a> / ' .
             "Scheda Film: " .
@@ -163,7 +163,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
             "scheda film",
             $schedafilm_content,
             $breadcrumbs,
-            $title,
+            $title . " - PNG Cinema",
             $description,
             $keywords,
             "",

@@ -5,43 +5,31 @@
 <div class="div_register">
 	<form action="../php/area_utenti.php?action=register_user" method="post" onsubmit="return registerControls()">
 		
-			
-				<label for="username" lang="en"> Username </label>
-			
-			
-				<input id="username" type="text" placeholder=" Username" name="username_register"   required />
+		<label for="username" lang="en"> Username </label>
 		
-				<label for="name" >Nome</label>
-				
-				<input id="name" type="text" placeholder=" Nome" name="name_register"  />
-			
-		
-			
-				<label for="surname" >Cognome</label>
-			
-			
-				<input id="surname" type="text" placeholder=" Cognome" name="surname_register" />
-			
-		
-			
-				<label for="email" lang="en">Email</label>
-			
-			
-				<input id="email" type="email" placeholder=" Email" name="email_register" />
-			
-				<label for="password" lang="en">Password</label>
-			
-			
-				<input id="password" type="password" placeholder=" Password" name="password_register"  />
+		<input id="username" type="text" placeholder=" Username" name="username_register"   required />
 
-				<label for="password_confirm">Ripeti password</label>
-			
-				<input id="password_confirm" type="password" placeholder=" Ripeti password" name="pass_register_confirm"  required />
-			
+		<label for="name" >Nome</label>
 		
-		
+		<input id="name" type="text" placeholder=" Nome" name="name_register"  />
+
+		<label for="surname" >Cognome</label>
+				
+		<input id="surname" type="text" placeholder=" Cognome" name="surname_register" />
+
+		<label for="email" lang="en">Email</label>
+	
+		<input id="email" type="email" placeholder=" Email" name="email_register" />
+	
+		<label for="password" lang="en">Password</label>
+	
+		<input id="password" type="password" placeholder=" Password" name="password_register"  />
+
+		<label for="password_confirm">Ripeti password</label>
+	
+		<input id="password_confirm" type="password" placeholder=" Ripeti password" name="pass_register_confirm"  required />
+			
 			<p id="errorMessage"> <ERRORMESSAGE> </p>
-		
 		
 			<input type="submit" value="Conferma registrazione" />
 		
@@ -49,7 +37,8 @@
 	</form>
 </div>
 <div class="div_user">
-	<form action="../php/area_utenti.php?action=login_page" method="post" >
+	<!--<form action="../php/area_utenti.php?action=login_page" method="post" >
 		<button type="submit" class="link_button"> Ho già un account </button>
-	</form>
+	</form>-->
+	<a href="./area_utenti.php?action=login_page"> Ho già un account </a>
 </div>

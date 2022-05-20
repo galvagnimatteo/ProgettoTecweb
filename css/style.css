@@ -521,7 +521,7 @@ programmazione.html
 
 }
 
-
+/*
 div.ul_reservation {
 	padding-top: 2rem;
 }
@@ -540,7 +540,7 @@ div.ul_reservation {
 	.reservation_button {
 		font-size: 0.6em;
 	}
-}
+}*/
 
 @media screen and (max-width: 760px) {
 	.cards_users {
@@ -594,13 +594,14 @@ div.ul_reservation {
   		margin-right: auto;
   		display: block;
 	}
-	.card_two_see_reservation {
+	/*.card_two_see_reservation {
 		grid-area: b;
 		padding-left: 0rem;
-	}
+	}*/
 }
 
 .card1_users {
+	width: 100%;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	display: flex;
 	margin-bottom: 2rem;
@@ -626,14 +627,14 @@ div.ul_reservation {
 	font-size: 0.8em;
 }
 
-.link_button_cards {
+/*.link_button_cards {
 	background: none!important;
 	border: none;
 	padding: 0!important;
 	padding-top: 1em;
 	text-decoration: underline;
 	cursor: pointer;
-}
+}*/
 
 .div_login {
 	margin: auto;
@@ -689,6 +690,7 @@ div.ul_reservation {
 	padding-top: 1.5rem;
 	padding-bottom: 1.5rem;
 	border-radius: 5px;
+	text-align: center;
 }
 
 .div_register {
@@ -748,19 +750,19 @@ div.ul_reservation {
 }
 
 
-.link_button {
+/*.link_button {
 	background: none!important;
 	border: none;
 	padding: 0!important;
 	font-size: 1.5rem;
 	text-decoration: underline;
 	cursor: pointer;
-}
+}*/
 
-.contactpage iframe {
+/*.contactpage iframe {
     width: 100%;
     align-self: end;
-}
+}*/
 
 .contactpage{
 	margin: 1rem;
@@ -772,14 +774,16 @@ div.ul_reservation {
 .nomargin{
 	padding-left: 0;
 }
-@keyframes materialize {
+
+/*@keyframes materialize {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
     }
-}
+}*/
+
 #posizione {
     position: relative;
     text-align: left;
@@ -1155,12 +1159,14 @@ h3{
 	.div_login,
 	.div_register	{
 		width: 90%;
-		padding: 1.5rem;
+		/*margin-left: 1.5rem;*/
 	}
 	
-	.div_user.card3_users {
+	/*.div_user.card3_users {
 		width: 90%;
-	}
+		margin: 0;
+		margin-left: 1.5rem;
+	}*/
 	
 }
 
@@ -1657,9 +1663,11 @@ p.aiutocompilaz strong {
     border-radius: 15px;
     box-sizing: border-box;*/
 }
+
 /*.open {
 display: block;
 }*/
+
 #admin button {
 	background: var(--admin-button-background);
 	color: var(--admin-button-text);

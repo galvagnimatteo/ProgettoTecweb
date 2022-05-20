@@ -16,11 +16,6 @@ arrayPostiOccupati = [];
 
 var MAX_POSTI_LIBERI = 7*15 - arrayPostiOccupati.length;
 
-const messaggi = {
-	"libero": "Ci sono ancora posti liberi",
-	"soldout": "Non ci sono più posti liberi"
-};
-
 manualRadioBtn.addEventListener("change", changeCard);
 textRadioBtn.addEventListener("change", changeCard);
 
@@ -36,13 +31,12 @@ selectNumTicketRed.addEventListener("change", mostraScelteTestuali);
 
 selectNumTicketInt.addEventListener("change", controllaInput);
 selectNumTicketRed.addEventListener("change", controllaInput);
-//selectNumTicketInt.addEventListener("change", dynamicOption);
-//selectNumTicketRed.addEventListener("change", dynamicOption);
+
 
 //genera mappa posti occupati
 var postiOccupatiString = document.getElementById("textSelectGroup").dataset.postiOccupati;
 if (postiOccupatiString != "") {
-	postiOccupatiString = postiOccupatiString.split(",");
+	arrayPostiOccupati = postiOccupatiString.split(",");
 	for (var i = 0; i < arrayPostiOccupati.length; i++) {
 		let posto = arrayPostiOccupati[i]
 		mappaPostiOccupati[posto.charAt(0)].push(parseInt(posto.substring(1)));
@@ -99,7 +93,7 @@ for (var i = 0; i < posti.length; i++) {
 
 changeCard(null);
 calcolaPrezzoTot(null);
-//controllaInput(null);
+controllaInput(null);
 mostraScelteTestuali(null);
 submitButton.innerHTML = "Acquista 0 biglietti, Totale: 0,00 €";
 
@@ -284,8 +278,8 @@ function generaOptionNumeri(sn, lettera) {
 	
 	//rimuovi tutto
 	while (sn.firstChild) {
-    sn.removeChild(sn.lastChild);
-  }
+		sn.removeChild(sn.lastChild);
+	}
 	
 	for (var i = 1; i < 16; i++) {
 		if (mappaPostiOccupati[lettera].indexOf(i) == -1) {
@@ -297,83 +291,6 @@ function generaOptionNumeri(sn, lettera) {
 	}
 	
 }
-
-/*<fieldset class="selezPostoFieldset hide">
-	<legend>Posto 1:</legend>
-	
-	<label for="p1fila"> Fila: </label>
-	
-		<select id="p1fila" name="p1fila">
-			<option value="a">A</option>
-			<option value="b">B</option>
-			<option value="c">C</option>
-			<option value="d">D</option>
-			<option value="e">E</option>
-			<option value="f">F</option>
-			<option value="g">G</option>
-
-		</select>
-		<label for="p1numero"> Numero: </label>
-		<select id="p1numero" name="p1numero">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">12</option>
-			<option value="13">13</option>
-			<option value="14">14</option>
-			<option value="15">15</option>
-		</select>
-	
-	</fieldset>
-*/
-
-
-
-/*function maxOption(max, target) {
-	max = max + 1;
-	var numChildren = target.options.length;
-	
-	if (numChildren <= max) {
-		for (var i = numChildren; i < max; i++) {
-			var opt = document.createElement("option");
-			opt.value = String(i);
-			opt.innerText = String(i);
-			target.appendChild(opt);
-		}
-	}
-	
-	else {
-		for (var i = numChildren; i > max; i--) 
-			target.removeChild(target.options[i-1]);
-		
-	}
-	
-}*/
-
-
-
-/*function dynamicOption(event) {
-	
-	var val = parseInt(event.target.value);
-	var target2 = selectNumTicketInt.getAttribute("id") == event.target.getAttribute("id") ?
-				  selectNumTicketRed : selectNumTicketInt;
-	
-	if (val == 0 && parseInt(target2.value)==0) {
-		maxOption(MAX_POSTI_SELEZIONABILI, target2);
-		maxOption(MAX_POSTI_SELEZIONABILI, event.target);
-	} else {
-		maxOption(MAX_POSTI_SELEZIONABILI - val, target2);
-		maxOption(val, event.target);
-	}
-}*/
 
 
 function controllaInput(event) {

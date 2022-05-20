@@ -50,6 +50,14 @@ select{
     color: var(--disabled-color);
 }
 
+.breadcrumbs a:visited span{
+	color: var(--visited-links);
+}
+
+.breadcrumbs a:hover span{
+	color: var(--links-hover-color);
+}
+
 html {
 	font-size: 100%;
 	font-family: "Arial", sans-serif;
@@ -133,18 +141,6 @@ nav ul {
 	background-image: url("../images/chiudi-menu.svg");
 }
 
-
-/*ovverides per assenza di js visualizzani il menù come sempre aperto*/
-
-.no-js nav {
-	width: 100%;
-	position: relative;
-}
-
-.no-js .closedMenu {
-	display: normal;
-}
-
 nav li a,
 nav li p,
 nav .menu_name {
@@ -170,25 +166,25 @@ a:visited:not(.carouselContainer a:visited) {
 
 /*codice per css con javascript abilitato*/
 
-.js .carouselContainer {
+.carouselContainer {
 	position: relative;
 }
 
-.js .slide {
+.slide {
 	display: none;
 }
 
-.js .slide img {
+.slide img {
 	width: 100%;
 	height: auto;
 }
 
-.js .not-hidden {
+.not-hidden {
 	display: block;
 }
 
-.js .prev,
-.js .next {
+.prev,
+.next {
 	cursor: pointer;
 	position: absolute;
 	top: calc(50% - 2rem - 0.9rem);
@@ -200,23 +196,23 @@ a:visited:not(.carouselContainer a:visited) {
 	background-color:transparent;
 }
 
-.js .prev {
+.prev {
 	border-radius: 0 1rem 1rem 0;
 	left: 0;
 	background-image:url(/images/backwards.png);
 }
 
-.js .next {
+.next {
 	right: 0;
 	border-radius: 1rem 0 0 1rem;
 	background-image: url(/images/forward.png);
 }
 
-.js .circles {
+.circles {
 	text-align: center;
 }
 
-.js .circle {
+.circle {
 	cursor: pointer;
 	height: 1rem;
 	width: 1rem;
@@ -225,62 +221,28 @@ a:visited:not(.carouselContainer a:visited) {
 	display: inline-block;
 }
 
-.js .active {
+.active {
 	background-color: var(--secondary-color);
 }
 
-.js .active.circle:hover {
+.active.circle:hover {
 	/*active E circle:hover deve risultare in rosso comunque*/
 	background-color: var(--secondary-color);
 }
 
-
-/*codice per css con javascript disabilitato*/
-
-.no-js.carouselContainer {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-}
-
-.no-js .slide {
-	width: calc(50% - 1rem);
-	margin: 0.5rem;
-}
-
-.no-js .slide img {
-	width: 100%;
-	height: auto;
-	display: block;
-	/*se no viene trattata come inline e lascia un leggero spazio sul bottom*/
-}
-
-.no-js .not-hidden {
-	display: block;
-}
-
-.no-js .prev,
-.no-js .next {
-	display: none;
-}
-
-.no-js .circles {
-	display: none;
-}
-
-.js .quickPurchaseContainer {
+.quickPurchaseContainer {
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	margin-top: 0.8rem;
 }
 
-.js .quickPurchaseContainer form {
+.quickPurchaseContainer form {
 	display: flex;
 	margin-bottom: 1rem;
 	justify-content: space-between;
 }
 
-.js .quickPurchaseContainer form select,
-.js .quickPurchaseContainer form button {
+.quickPurchaseContainer form select,
+.quickPurchaseContainer form button {
 	background: none;
 	/*su firefox rimane lo sfondo grigio sulla freccia, si potrebbe eliminare con -moz-apparence: none e sostituire con un'immagine, ma non è così antiestetico da valutarne l'eliminazione*/
 	font-size: 1.1rem;
@@ -292,26 +254,22 @@ a:visited:not(.carouselContainer a:visited) {
 	outline: 0;
 }
 
-.js .quickPurchaseContainer form select {
+.quickPurchaseContainer form select {
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
 }
 
-.js .quickPurchaseContainer form select option {
+.quickPurchaseContainer form select option {
 	background: var(--primary-color);
 }
 
-.js .quickPurchaseContainer form button {
+.quickPurchaseContainer form button {
 	border: 1px solid var(--secondary-color);
 	cursor: pointer;
 	margin-right: 1rem;
 	/*margini diversi dal select perchè il border del button non è influenzato dal padding dunque risulta scentrato*/
 	margin-left: 1rem;
 	border-radius: 8px;
-}
-
-.no-js .quickPurchaseContainer {
-	display: none;
 }
 
 .cardsContainer {
@@ -391,6 +349,7 @@ footer {
 	padding: 1rem;
 	position: sticky;
 	bottom: 0;
+	margin-top: 1rem;
 }
 
 
@@ -474,25 +433,30 @@ programmazione.html
 	margin: 0.3em;
 	border-radius: 1rem;
 	display: flex;
+	flex-direction: row;
+	margin: 1rem;
+	padding: 0.2rem;
 }
 
 .card_reservation {
 	margin: 1rem;
 	flex-basis: 40%;
+	text-align: center;
 }
 .card_reservation dd{
-	font-size: 1.25rem;
-	margin-bottom: 0.2rem;
+	font-size: 1.6rem;
+	margin-bottom: 0.5rem;
 }
 .card_reservation dt{
-	font-size: 1.4rem;
+	font-size: 1.2rem;
+	font-style: italic;
 }
 
 
 
 .div_register.reservation {
 	flex-direction: column;
-	flex-basis: 50%;
+	flex-basis: 70%;
 }
 
 .cards_users {
@@ -505,7 +469,7 @@ programmazione.html
 	display: flex;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	padding: 2em;
-
+	margin-bottom: 0.4rem;
 }
 
 .card_one_see_reservation {
@@ -520,22 +484,31 @@ programmazione.html
 .res_details_container {
 	flex-basis: 60%;
 
+}
 
+.res_details_container a {
+	margin-left: 2rem;
+}
+.res_details_container dd {
+	margin-bottom: 1rem;
 }
 
 .res_details_container dl{
 	padding-left: 2rem;
+	margin-bottom: 3rem;
 }
 
 .res_details_container dt{
 	float: left;
 	clear: left;
+	padding-right: 0.5rem;
+
 }
 
 .reservation_link {
 	display: block;
 	margin-bottom: 2rem;
-
+	text-align: center;
 }
 .res_link_container {
 	margin: 1rem 0.8rem;
@@ -595,11 +568,26 @@ div.ul_reservation {
 }
 
 @media screen and (max-width: 620px) {
+
+	.res_details_container{
+		padding-left: 0;
+	}
+	.res_details_container a{
+		font-size: 1.2rem;
+		margin-left: 0;
+	}
 	.cards_see_reservation {
 		display: block;
 	}
+	.card_one_see_reservation{
+		align-items: center;
+		margin-bottom: 3rem;
+	}
 	.card_one_see_reservation img {
 		width: 70%;
+		margin-left: auto;
+  		margin-right: auto;
+  		display: block;
 	}
 	.card_two_see_reservation {
 		grid-area: b;
@@ -610,6 +598,7 @@ div.ul_reservation {
 .card1_users {
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	display: flex;
+	margin-bottom: 2rem;
 }
 
 
@@ -647,7 +636,7 @@ div.ul_reservation {
 
 .div_login {
 	margin: auto;
-	width: 50%;
+	width: 60%;
 	justify-content: center;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	padding-top: 2.8rem;
@@ -691,7 +680,7 @@ div.ul_reservation {
 
 .div_user {
 	margin: auto;
-	width: 50%;
+	width: 60%;
 	display: flex;
 	border: none;
 	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
@@ -706,7 +695,7 @@ div.ul_reservation {
 	width: 50%;
 	display: flex;
 	justify-content: center;
-	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
+	/*background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));*/
 	padding-top: 1rem;
 	padding-bottom: 2rem;
 }
@@ -752,7 +741,7 @@ div.ul_reservation {
 }
 
 .div_register label {
-	padding-left: 4rem;
+	padding-left: 10%;
 	display: block;
 	font-size: 0.8em;
 }
@@ -785,6 +774,17 @@ div.ul_reservation {
 .contactpage iframe {
     width: 100%;
     align-self: end;
+}
+
+.contactpage{
+	margin: 1rem;
+}
+
+.contactsParagraph{
+	margin-bottom: 1rem;
+}
+.nomargin{
+	padding-left: 0;
 }
 @keyframes materialize {
     0% {
@@ -851,8 +851,9 @@ div.ul_reservation {
         flex-grow: 1;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+		margin-left: 2rem;
     }
-    @media (min-width: 49rem) {
+    @media (min-width: 870px) {
         #contatti {
             width: 50%;
             left: 50%;
@@ -904,7 +905,7 @@ div.ul_reservation {
 	border-radius: 1rem;
 	overflow: hidden;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
-	/**/
+
 	margin-bottom: 1rem;
 	margin-top: 1.5rem;
 }
@@ -1004,7 +1005,7 @@ div.labelqp select {
 		text-decoration: underline;
 		background-color: var(--secondary-color);
 	}
-	.js .quickPurchaseContainer form button:hover {
+	.quickPurchaseContainer form button:hover {
 		background-color: var(--secondary-color);
 	}
 	.card button:hover {
@@ -1014,11 +1015,11 @@ div.labelqp select {
 		text-decoration: underline;
 		background-color: var(--secondary-color);
 	}
-	.js .circle:hover {
+	.circle:hover {
 		background-color: #777777;
 	}
-	.js .prev:hover,
-	.js .next:hover {
+	.prev:hover,
+	.next:hover {
 		background-color: rgba(0, 0, 0, 0.8);
 		/*background nero con 0.8 di opacità (leggermente trasparente)*/
 	}
@@ -1047,15 +1048,15 @@ div.labelqp select {
 }
 
 @media screen and (max-width: 880px) {
-	.js .quickPurchaseContainer form {
+	.quickPurchaseContainer form {
 		flex-direction: column;
 	}
-	.js .quickPurchaseContainer form select {
+	.quickPurchaseContainer form select {
 		width: calc(100% - 1.5rem);
 		margin-right: 1rem;
 		/*la freccia in giù del select è scritta sopra al padding dunque maggiore spazio a destra è richiesto per centrare tutto il select*/
 	}
-	.js .quickPurchaseContainer form button {
+	.quickPurchaseContainer form button {
 		width: calc(100% - 2rem);
 	}
 	.cardsContainer ul li {
@@ -1065,6 +1066,32 @@ div.labelqp select {
 		padding:0;
 		padding-right: 1rem;
 	}
+}
+
+@media (max-width: 775px){
+	footer{
+		font-size: 1rem;
+	}
+
+	.breadcrumbs{
+		font-size: 1rem;
+	}
+
+	h2{
+		font-size: 1.7rem;
+	}
+
+	h3{
+		font-size: 1.3rem;
+	}
+
+	#aside-warn, .warning{
+		font-size: 1.2rem;
+	}
+}
+
+h3{
+	padding-top: 1rem;
 }
 
 @media (min-width: 865px) {
@@ -1118,11 +1145,13 @@ div.labelqp select {
 	}
 }
 
-@media screen and (max-width: 800px) {
-	.div_register,
-	.div_user,
-	.div_login {
-		min-width: 95%;
+@media screen and (max-width: 880px) {
+	.cards_reservation {
+		flex-direction: column;
+		text-align: center;
+	}
+	.res_link_container {
+		margin: auto;
 	}
 }
 
@@ -1144,6 +1173,12 @@ div.labelqp select {
 	.card img {
 		width: 50%;
 		margin: auto;
+	}
+
+	.div_user,
+	.div_login {
+		width: 90%;
+
 	}
 }
 
@@ -1174,19 +1209,19 @@ div.labelqp select {
 		margin: auto;
 		width: 100%;
 	}
-	.div_register,
+	/*.div_register,
 	.div_user,
-	.div_login {
+	*/.div_login {
 		width: 100%;
 	}
 }
 
 @media screen and (max-width: 320px) {
-	.div_register label,
+	/*.div_register label,
 	.div_login label {
 		padding: 0rem;
 		font-size: 6.5vw;
-	}
+	}*/
 }
 
 #filmPageCard form legend {
@@ -1196,6 +1231,10 @@ div.labelqp select {
 
 
 /*stile prenotazione.html*/
+
+#prenota-container {
+	margin: 0 1rem;
+}
 
 #modeSelectGroup {
 	display: flex;
@@ -1340,11 +1379,7 @@ div.labelqp select {
 	font-weight: 800;
 }
 
-body.no-js #purchaseTicketForm span.noscript {
-	display: inline;
-}
-
-body.js #purchaseTicketForm span.noscript {
+body #purchaseTicketForm span.noscript {
 	display: none;
 }
 
@@ -1433,6 +1468,9 @@ svg .libero.selezionato .codicePosto {
 
 
 /* pagina conferma*/
+#confermaAcq {
+	margin: 0 1rem;
+}
 
 #riepilogo {
 	list-style-type: none;
@@ -1691,7 +1729,7 @@ display: block;
 	background-image: url(/images/formopener.svg);
 }
 
-.inactiveoption, .activeoption {
+.inactiveoption, .activeoption, .btn-storico{
 	border: 2px outset var(--admin-border);
 	border-radius: 10px;
 	box-sizing: border-box;
@@ -1710,6 +1748,10 @@ display: block;
 .inactiveoption {
 	pointer-events: initial;
 	background-color: var(--admin-button-background);
+}
+
+.btn-storico{
+	background-color: var(--secondary-color);
 }
 
 .workarea table {

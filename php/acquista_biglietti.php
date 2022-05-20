@@ -5,6 +5,8 @@ require_once "utils/prenotaPosti.php";
 require_once "utils/mappaPosti.php";
 require_once "utils/generaPagina.php";
 require_once "utils/controlli.php";
+require_once "utils/filtraTestoInglese.php";
+
 //CheckSession($login_required, $admin_required);
 CheckSession(false, false); //refresh della sessione se scaduta
 
@@ -20,10 +22,11 @@ if (
         $_POST["titoloFilm"],
         $_POST["dataIta"],
         $_POST["pint"],
-        $_POST["prid"]
+        $_POST["prid"],
+		$_POST["IDFilm"]
     )
 ) {
-    header("Location: 404.php");
+    header("Location: 500.php?1");
     die();
 }
 
@@ -41,11 +44,12 @@ if (
         is_numeric($_POST["idproiez"]) &&
         is_numeric($_POST["numSala"]) &&
         is_numeric($_POST["pint"]) &&
+		is_numeric($_POST["IDFilm"]) &&
         is_numeric($_POST["prid"])
     )
 ) {
 
-    header("Location: 404.php");
+    header("Location: 500.php?2");
     die();
 }
 
@@ -62,7 +66,7 @@ $postiver = explode(",", $_POST["seats"]);
 
 
 
-$totPostiLiberi = -1; 
+$totPostiLiberi = -1;
 $statoPosti = mappaPosti($_POST["numSala"], $_POST["idproiez"], $_POST["orario"], $totPostiLiberi);
 
 
@@ -131,11 +135,11 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
         "../html/conferma_acquisto.html"
     );
 
-    //SESSION
+
 
     $acquistoconferma_content = str_replace(
         "<FILM-TITLE>",
-        $_POST["titoloFilm"],
+        filtraTestoInglese($_POST["titoloFilm"]),
         $acquistoconferma_content
     );
     $acquistoconferma_content = str_replace(
@@ -181,16 +185,31 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
     );
 	$acquistoconferma_content = str_replace(
         "<CLASS-WARNING>",
-		($_SESSION["a"]) ? "hide" : "",
+		(isset($_SESSION["a"])) ? "hide" : "",
         $acquistoconferma_content
     );
-	
-    $title = "Conferma acquisto  " . $_POST["titoloFilm"] . " - PNG Cinema";
-    $keywords = "Acquisto, biglietti, " . $_POST["titoloFilm"];
+
+    $titolo = $_POST["titoloFilm"];
+    $titolo = str_replace("{", "", $titolo);
+    $titolo = str_replace("}", "", $titolo);
+
+
+    $title = "Conferma acquisto - PNG Cinema";
+    $keywords = "Acquisto, biglietti, " . $titolo . "conferma";
     $description =
-        "pagina di conferma acquisto biglietti per " . $_POST["titoloFilm"];
-    $breadcrumbs = "Conferma acquisto";
-    $jshead =
+        "pagina di conferma acquisto biglietti per il film " . $titolo . "di png cinema: stampa questa pagina per salvare la prenotazione o presenta il codice prenotazione direttamente al cinema";
+    $breadcrumbs =
+        '<a href="home.php"><span lang="en">Home</span></a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
+        $_POST["IDFilm"] .
+        '"' .
+        ">Scheda Film: " .
+        filtraTestoInglese($_POST["titoloFilm"]) .
+        "</a>" .
+        ' / <a href="prenotazione.php?idproiez=' .
+		$_POST["idproiez"] . '"' .
+		'>Acquisto biglietti</a> / Conferma acquisto';
+
+	$jshead =
         '<meta name="robots" content="noindex" follow /> ' . //lo attacco da qua perche non ho voglia di modificare tutto
         ' <script src="../js/promptonclose.js"></script>';
     //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);

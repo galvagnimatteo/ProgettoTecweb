@@ -1,7 +1,44 @@
+document.getElementById("prev_slide").addEventListener("click", moveSlidesLeft);
+document.getElementById("next_slide").addEventListener("click", moveSlidesRight);
+
+document.getElementById("slide_1").addEventListener("click", showSlideOne);
+document.getElementById("slide_2").addEventListener("click", showSlideTwo);
+document.getElementById("slide_3").addEventListener("click", showSlideThree);
+
+document.addEventListener('keydown', function(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+       // left arrow
+       moveSlidesLeft();
+    }else if (e.keyCode == '39') {
+       // right arrow
+       moveSlidesRight();
+    }
+
+});
+
 var index = 1;
 
-function moveSlides(n) {
-    showSlides(index += n); //Mostra la slide con indice index +/- n, serve con +1 e -1 per spostarsi a destra o a sinistra.
+function moveSlidesRight() {
+    showSlides(index += 1);
+}
+
+function moveSlidesLeft() {
+    showSlides(index -= 1);
+}
+
+function showSlideOne(){
+    showSlideByIndex(1);
+}
+
+function showSlideTwo(){
+    showSlideByIndex(2);
+}
+
+function showSlideThree(){
+    showSlideByIndex(3);
 }
 
 function showSlideByIndex(n) {

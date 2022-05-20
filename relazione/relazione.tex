@@ -23,70 +23,59 @@ Altre informazioni che dovranno essere presenti nel sito riguardano il costo dei
 Trattandosi di un cinema/teatro locale e non facente parte di una catena, è prevista anche una parte del sito (accessibile ai soli utenti con i privilegi di amministratore) per l'inserimento manuale delle proiezioni/opere in programma.
 
 \section{Analisi dei Requisiti}
-Uno studio preliminare sull'utenza target rileva che il sito verrà principalmente utilizzato per la prenotazione di biglietti online, con in secondo piano il reperimento di informazioni riguardanti i film.
-Questo perchè la maggior parte degli utenti del sito saprà già che spettacolo è intenzionata a seguire: per questo motivo l'acquisto dei biglietti è proposto in primo piano nella struttura del sito, oltre che
-per facilitare l'acquisto di un biglietto in modo rapido (in caso l'utente ne abbia urgente bisogno, per esempio nel caso si trovasse già al cinema e lo spettacolo iniziasse a breve ma la coda in biglietteria fosse significativamente lunga).
-Un'altra tipologia di query di ricerca molto comune è quella per sapere se il cinema ha in programma un film uscito da poco, pertanto si ritiene importante riportare in prima pagina alcuni degli ultimi film usciti e in generale ordinare la visualizzazione delle programmazioni per data di uscita decrescente.\\\\
-Particolare attenzione deve essere prestata alla visualizzazione su smartphone: l'utenza media sarà infatti abbastanza giovane (fascia 18-36 anni) e il cellulare sarà il metodo di prenotazione
-più utilizzato. Al secondo posto, invece, sarà l'utilizzo da parte di utenti desktop, con un'incidenza leggermente inferiore rispetto agli utenti da smartphone.
-La prenotazione da smartphone tenderà ad essere quella più "frettolosa" con un tempo di permanenza sul sito minore.
-La percentuale d'utilizzo di dispositivi mobili come tablet sarà invece all'ultimo posto, con meno del 10\% del traffico del sito proveniente da questi dispositivi.
-L'inserimento di spettacoli e proiezioni in programma riservato ai soli amministratori, invece, sarà dominato dall'utilizzo su desktop.\\\\
-Per facilitare l'acquisto dei biglietti e il reperimento delle informazioni (soprattutto nel caso in cui l'utente abbia fretta, ma non solo) il sito sarà sviluppato con un design semplice e intuitivo,
-senza una gerarchia delle pagine eccessivamente ampia o profonda, e seguendo le convenzioni esterne a cui l'utente generico è abituato.
-Si vuole assolutamente evitare che l'utente che ha fretta non trovi un'informazione rapidamente per colpa dell'organizzazione del sito, generando frustrazione verso il cinema.
-Si vuole altresì creare un sito piacevole alla vista, utilizzando colori tipici di un cinema/teatro che richiamino le emozioni desiderate e attese da un utente in un cinema.
-Il sito dovrà essere facilmente accessibile ad ogni categoria di utenti, nonchè intuitivo e sintetico.
-
-\section{Analisi delle Tecnologie}
-L'analisi dei requisiti ha riportato un prevalente utilizzo da parte di utenti con dispositivi mobili e comunque utenti molto giovani.
-Va inoltre considerato che utenti meno giovani tenderanno a preferire la biglietteria fisica che comunque rimane presente all'interno del cinema.
-Per questi motivi è stato scelto di utilizzare HTML5 per il contenuto e CSS3 per la grafica, non avendo particolari preoccupazioni di compatibilità con versioni di browser molto vecchie; in ogni caso la sintassi
-XHTML è rispettata per degradazione elegante in browser senza il supporto per HTML5.\\\\
-È stato scelto di utilizzare Javascript per i controlli negli inserimenti lato client e per il funzionamento di alcuni elementi grafici.
-Ogni pagina è creata dinamicamente lato server con PHP, presentando informazioni reperite da un database SQL. Questo perchè molti elementi del sito sono dinamici e personalizzati, per esempio lo username dell'utente loggato oppure le breadcrumbs che indicano in che pagina l'utente si trovi.
-I controlli sui campi di input vengono effettuati anche a lato server, utilizzando il principio che tutto ciò che arriva dal client è potenzialmente malevolo e va controllato.
-È stato scelto di priorizzare la visualizzazione mobile della pagina principale per l'alto numero di utenti mobile "frettolosi" attesi, non dimenticandosi però delle altre tipologie di utenti.
+\subsection{Utenza target}
+Si individuano due particolari tipologie di clienti target:
+\begin{itemize}
+    \item Utenti "frettolosi": sono clienti che, a poco tempo dall'inizio della proiezione di interesse e volendo saltare la fila alla biglietteria fisica, accedono al sito per acquistare rapidamente un biglietto.
+    \\\item Utenti "ordinari": sono utenti interessati a reperire informazioni circa le proiezioni in programma nelle prossime settimane, il costo dei biglietti (ed eventuali convenzioni) e l'ubicazione del cinema.
+\end{itemize}
+I clienti target, in ogni caso, hanno un'età media nel range dei 25-30 anni. La categoria di clienti oltre i 65 anni, che gode di particolari sconti, preferisce in modo quasi assoluto l'acquisto in biglietteria fisica.
+Esistono inoltre gli utenti "amministratori" del cinema, che vogliono la possibilità di inserire film e proiezioni all'interno del sito.
+\subsection{Search Engine Optimization}
+Per ogni pagina sono state scelte delle keyword coerenti, che fossero presenti nella relativa pagina.\\
+In ogni pagina il nome del cinema è riportato nel tag \textit{h1}, essendo la ricerca per nome del cinema una delle più probabili.\\
+Keyword e tag di intestazione sono in ogni caso stati scelti in base alle parole che possano con maggiore probabilità apparire in una ricerca da parte dei clienti.
+Inoltre, tutto il codice HTML e CSS è stato validato.
+Non viene utilizzato Javascript per riempire di contenuto il sito, ma solo per alcune funzionalità di comodità dedicate agli utenti.
 \newpage
-\section{Presentazione}
-L'idea di fondo è stata di rendere il sito quanto più facilmente utilizzabile possibile da ogni categoria d'utenti.
-Le pagine sono relativamente piccole, con il contenuto essenziale nella zona di prima visualizzazione (per non obbligare l'utente frettoloso allo scroll).
-È stata implementata la possibilità di acquistare un biglietto rapidamente direttamente dalla pagina Home (sezione acquisto rapido), per velocizzare la procedura d'acquisto per l'utente che ha fretta.
-La posizione di quest'utima sezione è a favore di dita, considerando che l'acquisto di fretta è fatto nella quasi totalità dei casi da smartphone.\\\\
-Il menù di navigazione è in testa, per consentire una navigazione tra le pagine veloce ed efficiente.
-Ogni pagina include delle breadcrumbs create dinamicamente, in modo da evitare per quanto possibile lo smarrimento di un'utente tra le pagine del sito.
-Grazie a menù e breadcrumbs è possibile rispondere alle domande "Dove mi trovo?"", "Dove posso andare?" e "Cosa sto guardando?" evitando disorientamento da parte dell'utente.
-In caso di input errati, dei messaggi di errore esplicativi sono mostrati all'utente.\\\\
-Il layout da mobile è molto simile al layout da desktop, per non confondere un utente che ha cercato una proiezione da desktop ed eventualmente volesse acquistare un biglietto successivamente da mobile.
-La pagina "contatti" è reperibile sia dal menù principale sia dal footer, in modo tale che se un utente arrivasse a fine pagina (magari cercando un film senza trovarlo) e avesse delle domande non sarebbe costretto a scrollare fino ad inizio pagina per trovare informazioni relative ai contatti.
-Da desktop la dimensione massima di larghezza dei contenuti è stata fissata a 1024px, per evitare che l'utente debba muovere la testa per cercare informazioni durante la visualizzazione del sito da un monitor molto grande.\\\\
-I punti di rottura del sito dipendono dal tipo di contenuto: alcuni contenuti richiedono di essere adattati in più modi in base alla grandezza dello schermo, altri hanno solo due "versioni" (desktop/mobile).
-In generale, i contenuti su mobile sono organizzati seguendo una struttura verticale e di facile esplorazione. Il menù, oltre una certa grandezza di schermo, non è più sempre "aperto" ma viene collassato in un menù ad
-hamburger apribile e chiudibile a piacimento (di deafult chiuso).\\\\
-È stato sviluppato anche uno stile grafico dedicato alla stampa, per le pagine con più probabilità di essere stampate (prenotazione, info, contatti).
-Altre pagine non prevedono questa possibilità perchè ritenuto che le informazioni riportate non siano interessanti o utili da stampate: per esempio, stampare la pagina Home non porterebbe alcuna informazione sufficientemente significativa da giustificarne un layout di stampa (le descrizioni degli spettacoli non sono complete, le immagini sono inutili e anche se fossero tenute sarebbero uno spreco di inchiostro
-non indifferente, l'acquisto rapido e il menù andrebbero eliminati perchè inutili e dunque non rimarrebbe nulla di utile).
-
+\section{Progettazione}
+Il sito web è stato progettato fin da subito per rispondere alle tre domande "Dove mi trovo?", "Dove posso andare?" e "Cosa c'è in questa pagina?": è stato utilizzato un layout "classico", con menù in testa ad ogni pagina e con subito sotto le breadcrumbs che indicano all'utente dove si trova e che percorso ha effettuato per arrivarci. Oltre un certo punto di rottura, il menù collassa ad un menù ad hamburger per meglio adattarsi ai dispositivi con schermi di piccola dimensione.\\
+\\In fondo ad ogni pagina è presente un footer che riassume gli orari di apertura del cinema e che linka alla pagina dei contatti, in caso un utente abbia scrollato fino in fondo e abbia la necessità di visualizzare la pagina dei contatti (non obbligandolo a ri-scrollare fino al menù).
+\subsection{Acquisto rapido}
+La pagina Home contiene, fra le altre cose, un form che consente l'acquisto rapido (cioè senza passare per programmazione/scheda film/prenotazione) di biglietti per una particolare proiezione. Questa sezione è presente nella zona "above the fold", perchè pensata in particolar modo per la categoria di utenti "frettolosi" che nella stragrande maggioranza dei casi acquisterà i biglietti da dispositivo mobile (essendo probabilmente già fuori casa). In ogni caso, la possibilità di acquistare rapidamente dei biglietti direttamente dalla pagina Home risulta particolarmente comoda anche per clienti abituali o che comunque sanno già cosa vogliono.
+\subsection{Organizzazione pagine}
+Le pagine del sito sono organizzate per "argomento", raggruppando le informazioni più interessanti per i clienti.
+Le pagine raggiungibili dal menù sono:
+\begin{itemize}
+    \item Home
+    \item Contatti
+    \item Programmazione
+    \item Info e Costi
+    \item Area Utente
+    \item Amministrazione
+\end{itemize}
+Altre pagine raggiungibili dalla pagina "Programmazione" sono "Scheda Film" e successivamente "Conferma Acquisto" all'acquisto di uno o più biglietti.
+\subsection{Selezione posti}
+All'interno del sito sono presenti due modalità per acquistare i biglietti: la prima prevede la selezione grafica dei posti scelti all'interno di una sezione apposita; la seconda, più accessibile, prevede la semplice selezione dei posti come coppia fila-numero posto. In entrambe le modalità è richiesto all'utente di specificare quanti biglietti (e di che tipo) voglia acquistare.
+\section{Implementazione}
+È stato scelto di sviluppare il sito utilizzando HTML5, non avendo particolari esigenze di compatibilità vista l'utenza molto giovane.
+Avendo prestato particolare attenzione alla categoria di utenti "frettolosi", e dunque all'accesso del sito da mobile, fin da subito ogni unità di misura utilizzata in CSS è stata relativa per permettere la corretta responsività del sito (fatta eccezione per la massima larghezza del body, 1024px, e i bordi di alcuni elementi grafici).
+Sono stati implementati diversi controlli sia lato client (Javascript) sia lato server (PHP) ad ogni input dell'utente.
+La connessione al database è stata effettuata implementando il design pattern Singleton.\\\\
+In alcune parti del sito abbiamo ritenuto opportuno l'utilizzo di AJAX: nella pagina Home ci consente di riempire dinamicamente i campi di selezione della sezione di acquisto rapido; nella pagina di amministrazione consente di visualizzare in modo dinamico e senza ricaricare la pagina la lista di film e proiezioni.
+Nella pagina di amministrazione, inoltre, per inserire un film o una proiezione all'interno del sito si apriranno dei popup: questa scelta è stata fatta per rendere l'esperienza utente dell'amministratore simile a quella di una webapp, contrapposta all'alternativa di aprire una nuova scheda o modificare la pagina ad ogni richiesta di inserimento, giudicate soluzioni piuttosto invasive; in ogni caso questa pagina è stata dotata di link nascosti per rendere la navigazione piacevole anche da screenreader. La visualizzazione delle tabelle di questa pagina, da mobile, è stata mantenuta con uno scorrimento orizzontale delle singole tabelle: questo, seppure non ottimale, è stato considerato migliore all'adattamento verticale di tabelle con molti film e proiezioni che ne diminuivano di molto la leggibilità e aumentavano esponenzialmente la lunghezza dello scroll necessario per arrivare a fondo pagina; è stata inoltre pensata come soluzione accettabile per via della prevalenza di utilizzo di questa pagina da desktop.
 \newpage
-Pur essendo gestita la possibilità dell'assenza di Javascript nelle pagine informative per un'eventuale seppur rarissima visita "di facciata" da parte di un utente senza Javascript (per esempio, in Home il carosello viene ridotto a sole immagini e l'acquisto rapido viene nascosto), la parte di sito dedicata all'amministrazione richiede l'utilizzo di JS in quanto pensata per un amministratore che utilizza un browser con JS abilitato. Inoltre, nella zona dedicata all'amministrazione, è possibile inserire film o proiezioni aprendo dei pop-up: essi sono stati comunque controllati con screenreader per garantirne l'accessibilità, e sono stati pensati per facilitare l'esperienza all'amministratore (contrapposti all'apertura di una nuova pagina per ogni inserimento, giudicata fastidiosa e invasiva).
-
 \section{Accessibilità}
-Sono stati inseriti diversi link nascosti per utenti che navigano il sito con screenreader per saltare parti di contenuto non interessanti.
-Ogni immagine è accompagnata da una descrizione testuale accessibile ad utenti con screenreader.
-Sono stati scelti colori con un buon contrasto tra di loro per facilitare la lettura, nonché un font semplice e facilmente leggibile.\\\\
-Per l'impaginazione di alcuni elementi è stato scelto di utilizzare display di tipo "flex" per maggiore compatibilità nei browser rispetto all'alternativa grid.
-Nessun tag HTML è stato utilizzato per creare elementi grafici, ogni tag è coerente col tipo di contenuto che rappresenta per facilitare l'analisi della pagina.
-La grandezza della gerarchia delle pagine, in entrambe le dimensioni, è conforme agli standard.
-Il colore dei link visitati è stato scelto per avere un buon contrasto con lo sfondo rimanendo riconoscibile e distinguibile dal colore di link non visitati.
-Gli eventi "hover" sono definiti solo su dispositivi e browser che li supportano tramite media query.
-\newpage
-\section{Validazione}
-Il codice HTML e CSS è stato validato, per favorire accessibilità e usabilità (nonchè per indicizzazione positiva da parte dei motori di ricerca).
-Simulazioni di ricerca nel sito da parte di utenti con diverse disabilità visive sono state necessarie per assicurarsi la piena accessibilità da parte di quest'ultimi (cecità con screenreader, daltonismo, perdita di visione periferica o centrale).
-Ogni parola in lingua diversa dall'italiano è stata dichiarata coerentemente nel codice HTML per rendere la lettura da screenreader piacevole.
-Il testo presente nel sito è stato pensato per essere di semplice comprensione e di modesta sintesi, in parte per favorire utenti "frettolosi", in parte per garantire l'accessibilità delle pagine anche
-a utenti con disabilità cognitive.
-\newpage
+Il codice HTML5 è stato validato utilizzando il servizio di W3C https://validator.w3.org/.
+Il codice CSS è stato validato utilizzando il servizio di W3C https://jigsaw.w3.org/css-validator/.
+\\\\
+Sono stati controllati i contrasti di ogni colore utilizzando il servizio \\https://webaim.org/resources/contrastchecker/.
+Il sito è stato testato nella sua interezza sia con screenreader di default di Windows sia con estensione per browser.
+In ogni pagina del sito sono presenti dei link nascosti che consentono agli utenti che navigano spostandosi tra link di saltare al contenuto interessante della pagina evitando elementi grafici o inutili.
+Il sito è stato testato su più browser per verificarne il corretto funzionamento.
+Il carosello presente in home è stato reso scorribile sia con bottoni cliccabili, sia con frecce della tastiera, sia con link a fondo carosello.
+\\\\
+Vista la quantità non indifferente di attori, registi e in generale parole inglesi sia nel titolo che nella descrizione dei film, è stato pensato di consentire all'amministratore l'inserimento di tali parole delimitato da caratteri di "escape" in modo che vengano filtrati dal codice PHP sostituendoli con appositi tag che specifichino la lingua di quel pezzo di testo (in questo caso è stato scelto di indicare le parole inglesi tra parentesi grafe, es. "\{Spiderman\}").
 \section{Divisione del lavoro}
 \subsection{Matteo Galvagni}
 \begin{itemize}

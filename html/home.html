@@ -6,13 +6,13 @@
 
     </ul>
 
-    <button class="prev nascondiTesto" onclick="moveSlides(-1)">slide precedente</button>
-    <button class="next nascondiTesto" onclick="moveSlides(1)">slide successiva</button>
+    <button id="prev_slide" class="prev nascondiTesto" onclick="moveSlides(-1)">slide precedente</button>
+    <button id="next_slide" class="next nascondiTesto" onclick="moveSlides(1)">slide successiva</button>
 
     <div class="circles">
-        <span role="button" title="visualizza slide 1" class="circle active" onclick="showSlideByIndex(1)"></span>
-        <span role="button" title="visualizza slide 2"class="circle" onclick="showSlideByIndex(2)"></span>
-        <span role="button" title="visualizza slide 3"class="circle" onclick="showSlideByIndex(3)"></span>
+        <span id="slide_1" role="button" title="visualizza slide 1" class="circle active" onclick="showSlideByIndex(1)"></span>
+        <span id="slide_2"role="button" title="visualizza slide 2"class="circle" onclick="showSlideByIndex(2)"></span>
+        <span id="slide_3"role="button" title="visualizza slide 3"class="circle" onclick="showSlideByIndex(3)"></span>
     </div>
 
 </div>
@@ -56,7 +56,7 @@
 
 <div class="cardsContainer">
 
-    <h2 class="subtitle"> Film in evidenza </h2>
+    <h2 class="subtitle"> Ultime uscite </h2>
 
     <ul>
 

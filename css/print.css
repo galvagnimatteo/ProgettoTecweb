@@ -18,18 +18,11 @@ nav {
 	display: none;
 }
 
-
-/*home*/
-
-.quickPurchaseContainer {
+footer {
 	display: none;
 }
 
-.cardsContainer {
-	display: block;
-}
-
-.cardsContainer ul img {
+div .breadcrumbs{
 	display: none;
 }
 
@@ -60,7 +53,17 @@ article {
 	visibility: hidden;
 }
 
+#confermaAcq a {
+	display: none;
+}
+
 #menubutton-apri,
 #menubutton-chiudi {
+	display: none;
+}
+
+
+.res_details_container a {
+
 	display: none;
 }

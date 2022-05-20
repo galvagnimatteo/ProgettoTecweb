@@ -196,6 +196,8 @@ a:visited:not(.carouselContainer a:visited) {
 	font-weight: bold;
 	user-select: none;
 	background-size:cover;
+	border:none;
+	background-color:transparent;
 }
 
 .js .prev {

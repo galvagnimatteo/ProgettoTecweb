@@ -113,30 +113,24 @@ nav ul {
 	margin-left: auto;
 }
 
-
-
-#menubutton-apri {
+#menubutton-apri, #menubutton-chiudi{
 	padding: 1rem;
 	margin-left: auto;
-	background-image: url("../images/burger-menu.svg");
 	background-repeat: no-repeat;
 	background-color: unset;
-	background-size: 1.5em;
+	background-size: 2.5em;
 	position: absolute;
 	top: 0.7rem;
 	left: 1rem;
+	border: none;
+}
+
+#menubutton-apri {
+	background-image: url("../images/burger-menu.svg");
 }
 
 #menubutton-chiudi {
-	padding: 1rem;
-	margin-left: auto;
 	background-image: url("../images/chiudi-menu.svg");
-	background-repeat: no-repeat;
-	background-color: unset;
-	background-size: 1.5em;
-	position: absolute;
-	top: 0.7rem;
-	left: 1rem;
 }
 
 

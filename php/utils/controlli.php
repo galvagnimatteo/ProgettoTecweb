@@ -70,9 +70,9 @@ function CheckFilm(
         $Regista
 ) {
     $titoloRegex = "/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*/";
-    $grafferegex="/^(?|{?*})*/"
+    $grafferegex="/^(?|{?*})*/";
     if (!preg_match($grafferegex, $Titolo)) {
-        f (!preg_match($titoloRegex, $Titolo)) {
+        if (!preg_match($titoloRegex, $Titolo)) {
 
             return "il titolo deve contenere solo lettere e numeri.";
         }

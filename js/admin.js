@@ -2,12 +2,12 @@
     {
         nome: "film",
         elemento: "films",
-        area_selector: "filmarea"
+        selettore_area: "filmarea"
     },
     {
         nome: "projection",
         elemento: "projections",
-        area_selector: "projectionarea"
+        selettore_area: "projectionarea"
     }
 ];
 var forms = [
@@ -135,21 +135,25 @@ function cambia_contesto(contesto) {
     for (area in areas) {
         if (contesto === areas[area].nome) {
             document.getElementById(areas[area].elemento).className = 'open';
-            document.getElementById(areas[area].area_selector).className = 'activeoption';
+            document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'false');
+            document.getElementById(areas[area].selettore_area).className = 'activeoption';
             //window.location.href = areas[area].elemento;
         }
         else {
             document.getElementById(areas[area].elemento).className = 'closed';
-            document.getElementById(areas[area].area_selector).className = 'inactiveoption';
+            document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'true');
+            document.getElementById(areas[area].selettore_area).className = 'inactiveoption';
         }
     }
     for (form in forms) {
         if ((contesto === forms[form].area) && forms[form].visible) {
             //window.location.href = forms[form].elemento
             document.getElementById(forms[form].elemento).className = 'open';
+            document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
         }
         else {
             document.getElementById(forms[form].elemento).className = 'closed';
+            document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
         }
     }
 }
@@ -161,9 +165,11 @@ function toggle_form(toggledform) {
             forms[form].visible = !forms[form].visible
             if (forms[form].visible) {
                 document.getElementById(forms[form].elemento).className = 'open';
+                document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
             }
             else {
                 document.getElementById(forms[form].elemento).className = 'closed';
+                document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
                 if (forms[form].output_stato) {
                     document.getElementById(forms[form].output_stato).innerText = '';
                 }
@@ -333,7 +339,7 @@ function genera_entry_film(entry) {
 
     result = "<tr class='entry' ><td class='entryfunctions'>" +
 
-        '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</a >' +
+        '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" role="button">Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -343,7 +349,7 @@ function genera_entry_film(entry) {
 }
 function genera_entry_projection(entry) {
     result = "<tr class='entry' ><td class='entryfunctions'>" +
-        '<a href="#deleteprojectionstatus" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</a >' +
+        '<a href="#deleteprojectionstatus" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" role="button" >Elimina</a >' +
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
@@ -366,7 +372,7 @@ function genera_span_lingua(stringa){
 var film_area = areas[0];
 
 //selettore
-var selettore = document.getElementById(film_area.area_selector);
+var selettore = document.getElementById(film_area.selettore_area);
 selettore.onclick = function () { cambia_contesto('film'); };
 selettore.firstChild.onclick = function () { cambia_contesto('film'); }
 
@@ -390,7 +396,7 @@ var proiezioni_area = areas[1];
 
 //selettore proiezioni
 
-selettore = document.getElementById(proiezioni_area.area_selector);
+selettore = document.getElementById(proiezioni_area.selettore_area);
 selettore.onclick = function () { cambia_contesto('projection'); }
 selettore.firstChild.onclick = function () { cambia_contesto('projection'); }
 

@@ -126,11 +126,11 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
 */
                     $hour_field =
-                        '<button type="submit" name="idproiez" value="' .
+                        '<li><a href="../php/prenotazione.php?idproiez=' .
                         $orarioRow["IDProiezione"] .
                         '"/>'.
                         substr($orarioRow["Orario"], 0, -3) .
-                        "</button>";
+                        "</a></li>";
                     $hour_fields .= $hour_field;
                 }
 

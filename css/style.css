@@ -939,7 +939,10 @@ div.ul_reservation {
 	content: "\00a0";
 }
 
-#filmPageCard form {
+#filmPageCard .screenings {
+	display:flex;
+	flex-direction:column;
+	list-style:none;
 	margin: 1rem;
 }
 
@@ -957,14 +960,22 @@ div.ul_reservation {
 	font-weight: 800;
 }
 
-#filmPageCard form fieldset {
+#filmPageCard .screenings ul {
+	display: flex;
+	flex-direction: row;
 	margin-top: 1.5rem;
+	list-style: none;
 	border: 0;
 	border-top: 2px solid var(--secondary-color);
 	/*border-left: 2px solid var(--secondary-color);*/
 }
+#filmPageCard .screenings a {
+	padding: 5px;
+	margin:2px;
+	/*border-left: 2px solid var(--secondary-color);*/
+}
 
-#filmPageCard form legend {
+#filmPageCard .screenings h2 {
 	padding: 0.3rem;
 	margin-left: 1rem;
 }

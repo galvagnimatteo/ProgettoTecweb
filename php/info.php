@@ -7,9 +7,9 @@ CheckSession(false, false); //refresh della sessione se scaduta
 $info_content = file_get_contents("../html/info.html"); //load content
 
 $title = "Info e Costi - PNG Cinema";
-$keywords = "info, costi, costo biglietto, convenzioni, sconti";
+$keywords = "pngcinema, info, costi, costo, biglietto, convenzioni, sconti";
 $description =
-    "Pagina informativa sui costi: è possibile consultare prezzi e convenzioni sui biglietti.";
+    "Pagina informativa di PNG cinema: è possibile consultare prezzi e convenzioni sui biglietti.";
 $breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Info e Costi';
 
 $db = SingletonDB::getInstance();

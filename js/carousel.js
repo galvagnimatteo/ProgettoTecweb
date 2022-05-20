@@ -5,6 +5,20 @@ document.getElementById("slide_1").addEventListener("click", showSlideOne);
 document.getElementById("slide_2").addEventListener("click", showSlideTwo);
 document.getElementById("slide_3").addEventListener("click", showSlideThree);
 
+document.addEventListener('keydown', function(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+       // left arrow
+       moveSlidesLeft();
+    }else if (e.keyCode == '39') {
+       // right arrow
+       moveSlidesRight();
+    }
+
+});
+
 var index = 1;
 
 function moveSlidesRight() {

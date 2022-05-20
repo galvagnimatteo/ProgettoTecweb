@@ -7,9 +7,9 @@ $home_content = file_get_contents("../html/contatti.html"); //load content
 
 $title = "Contatti - PNG Cinema";
 $keywords =
-    "contatti, indirizzo, numero, telefono, email, mail, telegram, mappa, indicazioni";
+    "pngcinema, contatti, dove, siamo, telefono, mail, email, telegram, twitter";
 $description =
-    "Pagina dei contatti: è possibile reperire le informazioni su come contattarci nonchè quelle su come arrivare al cinema.";
+    "Pagina dei contatti di png cinema: è possibile reperire le informazioni su come contattarci nonché l'indirizzo e i social.";
 $breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Contatti';
 $jshead = '<script type="text/javascript" src="../js/carousel.js"> </script>';
 $jsbody = '<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>

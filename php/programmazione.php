@@ -96,9 +96,9 @@ $programmazione_content = str_replace(
 );
 
 $keywords =
-    "programmazione, ultime uscite, ultimi film, film programmati, film in programma";
+    "programmazione, film, pngcinema, uscite, programma";
 $description =
-    "Pagina sulla programmazione: è possibile consultare i film e le opere in programma nelle prossime settimane.";
+    "Pagina della programmazione di png cinema: è possibile consultare i film e le opere in programma nelle prossime settimane.";
 $breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Programmazione';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage(

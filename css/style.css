@@ -1901,8 +1901,8 @@ display: block;
 .open {
 	pointer-events: initial;
 }
-
-.closed {
+/*usare con riferimento ad un id per agire su elementi con uno stile associato all id*/
+#admin .closed,#admin form.closed {
 	pointer-events: none;
-	display: none !important;
+	display: none;
 }

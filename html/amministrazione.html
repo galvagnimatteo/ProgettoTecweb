@@ -1,21 +1,21 @@
 ﻿<div id="admin">
     <div class="adminsidebar">
         <ul id="areasselector">
-            <li class="activeoption" id="filmarea"><a href="#films">Film</a></li>
-            <li class="inactiveoption" id="projectionarea"><a href="#projections">Proiezioni</a></li>
+            <li class="activeoption" id="filmarea"><a href="#films" role="button">Film</a></li>
+            <li class="inactiveoption" id="projectionarea"><a href="#projections" role="button">Proiezioni</a></li>
             <!--<li class="inactiveoption" id="people_cast_area"><a href="#people_cast">Cast</a></li>-->
         </ul>
     </div>
     <div class="workarea">
         <div class="lists">
-            <div id="films" class="open">
+            <div id="films" class="open" aria-hidden="false">
                 <p class="SRskip">area: film</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
                 <table>
                     <thead>
                         <tr class=headerrow>
                             <th>
-                                <a href="#insert_film" class="formopener nascondiTesto" onclick="toggle_form('film');">apri form</a>
+                                <a href="#insert_film" class="formopener nascondiTesto" id="apri_film" role="button">apri form</a>
                             </th>
                             <th>Titolo</th>
                             <th>Genere</th>
@@ -33,14 +33,14 @@
                     <a href="#films" class="SRskip">torna a lista</a>
                 </div>
             </div>
-            <div id="projections" class="closed">
+            <div id="projections" class="closed" aria-hidden="true">
                 <p class="SRskip">area: proiezioni</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
                 <table>
                     <thead>
                         <tr class='headerrow'>
                             <th>
-                                <a href="#insert_projection" class="formopener nascondiTesto" onclick="toggle_form('projection');">apri form</a>
+                                <a href="#insert_projection" class="formopener nascondiTesto" id="apri_proiezioni" role="button">apri form</a>
                             </th>
                             <th>Giorno</th>
                             <th>Sala</th>
@@ -61,9 +61,9 @@
             </div>
         </div>
         <div class="overlays">
-            <form id="insert_film" class="closed" method="post">
+            <form id="insert_film" class="closed" method="post" aria-hidden="true">
                 <p class="SRskip">form: film</p>
-                <a href="#films" class="formcloser nascondiTesto" onclick="toggle_form('film');">chiudi form</a>
+                <a href="#films" class="formcloser nascondiTesto" id="chiudi_film" role="button">chiudi form</a>
                 <fieldset>
                     <legend>Informazioni base</legend>
                     <label for="Titolo"><span xml:lang="en">Titolo</span></label>
@@ -78,10 +78,7 @@
                     <label for="imputdurata">Durata</label>
                     <input type="number" name="Durata" inputmode="numeric" required min="0" placeholder="120" id="imputdurata">
                     <label for="imputdescizione">Descrizione</label>
-                    <!--<input type="text" name="Descrizione" required id="imputdescizione">-->
-                    <textarea id="imputdescizione" name="Descrizione" required rows="5">
-
-                    </textarea>
+                    <textarea id="imputdescizione" name="Descrizione" required rows="5"></textarea>
                 </fieldset>
                 <fieldset>
                     <legend>Cast</legend>
@@ -101,9 +98,9 @@
                 <p id="result_insert_film"></p>
                 <a href="#insert_film" class="SRskip">torna ad inizio form</a>
             </form>
-            <form id="insert_projection" class="closed" method="post">
+            <form id="insert_projection" class="closed" method="post" aria-hidden="true">
                 <p class="SRskip">form: proiezioni</p>
-                <a href="#projections" class="formcloser nascondiTesto" onclick="toggle_form('projection');">chiudi form</a>
+                <a href="#projections" class="formcloser nascondiTesto" id="chiudi_proiezioni" role="button">chiudi form</a>
                 <label for="filmselector">Film</label>
                 <select name="film" title="film" id="filmselector">
                 </select>

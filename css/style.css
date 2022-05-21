@@ -71,10 +71,11 @@ body {
 	padding: 0;
 	font-size: 1.5rem;
 	margin: auto;
-	/*supporto per firefox*/
-	scrollbar-width: thin; /* "auto" or "thin" */
-	scrollbar-color: var(--scrollbar) var(--scrollbar-background);
+	/*supporto per firefox
+	scrollbar-width: thin; // "auto" or "thin"
+	scrollbar-color: var(--scrollbar) var(--scrollbar-background);*/
 }
+/*
 *::-webkit-scrollbar {
 	width: 15px;
 }
@@ -89,10 +90,7 @@ body {
 	background-color: var(--scrollbar);
 	border-radius: 20px;
 	border: outset var(--scrollbar);
-}
-
-
-
+}*/
 .subtitle {
 	padding-top: 1rem;
 	padding-left: 1rem;
@@ -123,30 +121,24 @@ nav ul {
 	margin-left: auto;
 }
 
-
-
-#menubutton-apri {
+#menubutton-apri, #menubutton-chiudi{
 	padding: 1rem;
 	margin-left: auto;
-	background-image: url("../images/burger-menu.svg");
 	background-repeat: no-repeat;
 	background-color: unset;
-	background-size: 1.5em;
+	background-size: 2.5em;
 	position: absolute;
 	top: 0.7rem;
 	left: 1rem;
+	border: none;
+}
+
+#menubutton-apri {
+	background-image: url("../images/burger-menu.svg");
 }
 
 #menubutton-chiudi {
-	padding: 1rem;
-	margin-left: auto;
 	background-image: url("../images/chiudi-menu.svg");
-	background-repeat: no-repeat;
-	background-color: unset;
-	background-size: 1.5em;
-	position: absolute;
-	top: 0.7rem;
-	left: 1rem;
 }
 
 nav li a,
@@ -200,6 +192,8 @@ a:visited:not(.carouselContainer a:visited) {
 	font-weight: bold;
 	user-select: none;
 	background-size:cover;
+	border:none;
+	background-color:transparent;
 }
 
 .prev {
@@ -353,6 +347,7 @@ footer {
 	/**/
 	width: calc(100% - 2rem);
 	padding: 1rem;
+	position: sticky;
 	bottom: 0;
 	margin-top: 1rem;
 }
@@ -945,7 +940,10 @@ div.ul_reservation {
 	content: "\00a0";
 }
 
-#filmPageCard form {
+#filmPageCard .screenings {
+	display:flex;
+	flex-direction:column;
+	list-style:none;
 	margin: 1rem;
 }
 
@@ -963,14 +961,22 @@ div.ul_reservation {
 	font-weight: 800;
 }
 
-#filmPageCard form fieldset {
+#filmPageCard .screenings ul {
+	display: flex;
+	flex-direction: row;
 	margin-top: 1.5rem;
+	list-style: none;
 	border: 0;
 	border-top: 2px solid var(--secondary-color);
 	/*border-left: 2px solid var(--secondary-color);*/
 }
+#filmPageCard .screenings a {
+	padding: 5px;
+	margin:2px;
+	/*border-left: 2px solid var(--secondary-color);*/
+}
 
-#filmPageCard form legend {
+#filmPageCard .screenings h2 {
 	padding: 0.3rem;
 	margin-left: 1rem;
 }
@@ -1895,8 +1901,8 @@ display: block;
 .open {
 	pointer-events: initial;
 }
-
-.closed {
+/*usare con riferimento ad un id per agire su elementi con uno stile associato all id*/
+#admin .closed,#admin form.closed {
 	pointer-events: none;
-	display: none !important;
+	display: none;
 }

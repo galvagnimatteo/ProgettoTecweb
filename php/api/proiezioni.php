@@ -2,8 +2,6 @@
 session_start();
 require_once '../utils/controlli.php';
 require_once '../utils/SingletonDB.php';
-require_once '../utils/filtraTestoInglese.php';
-
 $now = time();
     if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
         session_unset();
@@ -116,7 +114,7 @@ while ($row = $resultproiezioni->fetch_assoc()) {
     $proiezione->data=$row['Data'];
     $proiezione->id=$row['ID'];
     $proiezione->idfilm=$row['IDFilm'];
-    $proiezione->titolofilm=filtraTestoInglese($row['Titolo']);
+    $proiezione->titolofilm=$row['Titolo'];
     $proiezione->numeroSala=$row['NumeroSala'];
     $proiezione->orario=$row['Orario'];
     $proiezione->durata=$row['Durata'];

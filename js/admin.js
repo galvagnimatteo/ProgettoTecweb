@@ -1,112 +1,112 @@
 ﻿var areas = [
     {
-        name: "film",
-        element: "films",
-        area_selector: "filmarea"
+        nome: "film",
+        elemento: "films",
+        selettore_area: "filmarea"
     },
     {
-        name: "projection",
-        element: "projections",
-        area_selector: "projectionarea"
+        nome: "projection",
+        elemento: "projections",
+        selettore_area: "projectionarea"
     }
 ];
 var forms = [
     {
-        name: "film",
+        nome: "film",
         area: "film",
-        element: "insert_film",
-        status_element: "result_insert_film",
+        elemento: "insert_film",
+        output_stato: "result_insert_film",
         visible: false,
         fields: [
             {
-                name: "Titolo",
-                element: "imputtitolo",
-                condition: function (value) {
-                    return value.match("/^[a-zA-Z0-9]/");
+                nome: "Titolo",
+                elemento: "imputtitolo",
+                condizione: function (value) {
+                    return value.match("/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*/");
                 },
-                error_message: "titolo puo contenere solo caratteri alfanumerici e spazi"
+                messaggio_errore: "titolo non valido"
             },
             {
-                name: "Genere",
-                element: "imputgenere",
-                condition: function (value) { return value.match("/^[a-zA-Z]/"); },
-                error_message: "genere puo contenere solo caratteri alfanumerici"
+                nome: "Genere",
+                elemento: "imputgenere",
+                condizione: function (value) { return value.match("/^[a-zA-Z]/"); },
+                messaggio_errore: "genere puo contenere solo caratteri alfanumerici"
             },
             {
-                name: "Descrizione",
-                element: "imputdescizione",
-                condition: function (value) { return true; },
-                error_message: ""
+                nome: "Descrizione",
+                elemento: "imputdescizione",
+                condizione: function (value) { return value.match("/^(?|{?*})*/"); },
+                messaggio_errore: "errore sintassi graffe descrizione"
             },
             {
-                name: "DataUscita",
-                element: "imputdatauscita",
-                condition: function (value) { return true; },
-                error_message: ""
+                nome: "DataUscita",
+                elemento: "imputdatauscita",
+                condizione: function (value) { return true; },
+                messaggio_errore: ""
             },
             {
-                name: "SrcImg",
-                element: "imputimmagine",
-                condition: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
-                error_message: "l'immagine deve essere un file valido"
+                nome: "SrcImg",
+                elemento: "imputimmagine",
+                condizione: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
+                messaggio_errore: "l'immagine deve essere un file valido"
 
             },
             {
-                name: "CarouselImg",
-                element: "imputcarousel",
-                condition: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
-                error_message: "l'immagine deve essere un file valido"
+                nome: "CarouselImg",
+                elemento: "imputcarousel",
+                condizione: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
+                messaggio_errore: "l'immagine deve essere un file valido"
             },
             {
-                name: "Durata",
-                element: "imputdurata",
-                condition: function (value) { return value > 0; },
-                error_message: "la durata deve essere un numero maggiore di 0"
+                nome: "Durata",
+                elemento: "imputdurata",
+                condizione: function (value) { return value > 0; },
+                messaggio_errore: "la durata deve essere un numero maggiore di 0"
             },
             {
-                name: "Attori",
-                element: "imputattori",
-                condition: function (value) { return true; },
-                error_message: ""
+                nome: "Attori",
+                elemento: "imputattori",
+                condizione: function (value) { return true; },
+                messaggio_errore: ""
             },
             {
-                name: "Regista",
-                element: "imputregista",
-                condition: function (value) { return true; },
-                error_message: ""
+                nome: "Regista",
+                elemento: "imputregista",
+                condizione: function (value) { return true; },
+                messaggio_errore: ""
             }
         ]
     },
     {
-        name: "projection",
+        nome: "projection",
         area: "projection",
-        element: "insert_projection",
-        status_element: "result_insert_projection",
+        elemento: "insert_projection",
+        output_stato: "result_insert_projection",
         visible: false,
         fields: [
             {
-                name: "film",
-                element: "filmselector",
-                condition: function (value) { return true },
-                error_message: ""
+                nome: "film",
+                elemento: "filmselector",
+                condizione: function (value) { return true },
+                messaggio_errore: ""
             },
             {
-                name: "sala",
-                element: "imputsala",
-                condition: function (value) { return true },
-                error_message: ""
+                nome: "sala",
+                elemento: "imputsala",
+                condizione: function (value) { return true },
+                messaggio_errore: ""
             },
             {
-                name: "Giorno",
-                element: "imputgiorno",
-                condition: function (value) { return true },
-                error_message: ""
+                nome: "Giorno",
+                elemento: "imputgiorno",
+                condizione: function (value) { return true },
+                messaggio_errore: ""
             },
             {
-                name: "Orario",
-                element: "imputorario",
-                condition: function (value) { return true },
-                error_message: ""
+                nome: "Orario",
+                elemento: "imputorario",
+                condizione: function (value) { return true },
+                messaggio_errore: ""
             }
         ]
     }
@@ -116,35 +116,44 @@ var api = {
     film: {
         imputform: forms[0],
         url: "./api/films.php",
-        post: function () { api_post(this); return false; },
-        updatehtml: function (data) { updatehtml_film(data.films); },
+        post: function () { api_post(this); },
+        aggiorna_html: function (data) { aggiorna_html_film(data.films); },
     },
     proiezioni: {
         imputform: forms[1],
         url: "./api/proiezioni.php",
-        post: function () { api_post(this); return false; },
-        updatehtml: function (data) { updatehtml_projection(data.proiezioni); },
+        post: function () { api_post(this); },
+        aggiorna_html: function (data) { aggiorna_html_projection(data.proiezioni); },
     }
 }
-function change_context(context) {
+
+//
+// Interfaccia
+//
+
+function cambia_contesto(contesto) {
     for (area in areas) {
-        if (context === areas[area].name) {
-            document.getElementById(areas[area].element).className = 'open';
-            document.getElementById(areas[area].area_selector).className = 'activeoption';
-            //window.location.href = areas[area].element;
+        if (contesto === areas[area].nome) {
+            document.getElementById(areas[area].elemento).className = 'open';
+            document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'false');
+            document.getElementById(areas[area].selettore_area).className = 'activeoption';
+            //window.location.href = areas[area].elemento;
         }
         else {
-            document.getElementById(areas[area].element).className = 'closed';
-            document.getElementById(areas[area].area_selector).className = 'inactiveoption';
+            document.getElementById(areas[area].elemento).className = 'closed';
+            document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'true');
+            document.getElementById(areas[area].selettore_area).className = 'inactiveoption';
         }
     }
     for (form in forms) {
-        if ((context === forms[form].area) && forms[form].visible) {
-            //window.location.href = forms[form].element
-            document.getElementById(forms[form].element).className = 'open';
+        if ((contesto === forms[form].area) && forms[form].visible) {
+            //window.location.href = forms[form].elemento
+            document.getElementById(forms[form].elemento).className = 'open';
+            document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
         }
         else {
-            document.getElementById(forms[form].element).className = 'closed';
+            document.getElementById(forms[form].elemento).className = 'closed';
+            document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
         }
     }
 }
@@ -152,44 +161,49 @@ function change_context(context) {
 function toggle_form(toggledform) {
     //console.log(toggledform);
     for (form in forms) {
-        if (toggledform === forms[form].name) {
+        if (toggledform === forms[form].nome) {
             forms[form].visible = !forms[form].visible
             if (forms[form].visible) {
-                //window.location.href = forms[form].element;
-                document.getElementById(forms[form].element).className = 'open';
+                document.getElementById(forms[form].elemento).className = 'open';
+                document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
             }
             else {
-                document.getElementById(forms[form].element).className = 'closed';
-                if (forms[form].statuselement) {
-                    document.getElementById(forms[form].status_element).innerText = '';
+                document.getElementById(forms[form].elemento).className = 'closed';
+                document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
+                if (forms[form].output_stato) {
+                    document.getElementById(forms[form].output_stato).innerText = '';
                 }
             }
         }
     }
 }
 
-function check_fields(form) {
+
+//
+// interfaccia API
+//
+function controlla_campi(form) {
     var fields = form.fields;
     var data = [];
     for (index in fields) {
         var field = fields[index];
-        value = document.getElementById(field.element).value;
-        if (!field.condition(value)) {
-            form.status_element.innerText = field.error_message;
-            //return false;
+        valore = document.getElementById(field.elemento).value;
+        if (!field.condizione(valore)) {
+            form.output_stato.innerText = field.messaggio_errore;
+            return false;
         }
         data[index] = {
-            name: field.name,
-            value: value
+            nome: field.nome,
+            valore: valore
         }
-
     }
     return data;
 }
+
 function api_post(api) {
     try {
         let form = api.imputform;
-        let data = check_fields(form);
+        let data = controlla_campi(form);
         if (data) {
             let url = api.url;
             let xhr = new XMLHttpRequest();
@@ -198,19 +212,19 @@ function api_post(api) {
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
             let urlEncodedData = "action=insert";
             for (index in data) {
-                var field = data[index];
-                urlEncodedData += "&" + encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value);
+                var campo = data[index];
+                urlEncodedData += "&" + encodeURIComponent(campo.nome) + '=' + encodeURIComponent(campo.valore);
             }
             xhr.send(urlEncodedData);
             xhr.onload = function () {
                 let data = JSON.parse(xhr.responseText);
                 let status = data.status;
                 if (status === "ok") {
-                    api.updatehtml(data);
-                    document.getElementById(form.status_element).innerText = "inserimento avvenuto con successo"
+                    api.aggiorna_html(data);
+                    document.getElementById(form.output_stato).innerText = "inserimento avvenuto con successo"
                 }
                 else {
-                    document.getElementById(form.status_element).innerText = status;
+                    document.getElementById(form.output_stato).innerText = status;
                 }
             };
         }
@@ -226,12 +240,15 @@ function api_request(api) {
     request.send();
     request.onload = () => {
         var data = JSON.parse(request.response);
-        api.updatehtml(data);
+        api.aggiorna_html(data);
     }
 }
+//
+//Funzionalità aggiuntivie
+//
 
 function delete_film(id) {
-    let url = "./api/films.php";
+    let url = api.film.url;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -247,7 +264,7 @@ function delete_film(id) {
         var status = data.status;
         if (status === "ok") {
             var films = data.films;
-            updatehtml_film(films);
+            aggiorna_html_film(films);
             document.getElementById("deletefilmstatus").firstChild.textContent = "eliminazione avvenuta con successo";
 
         }
@@ -262,7 +279,7 @@ function delete_film(id) {
     };
 }
 function delete_projection(id) {
-    let url = "./api/proiezioni.php";
+    let url = api.proiezioni.url;
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -278,7 +295,7 @@ function delete_projection(id) {
         var status = data.status;
         if (status === "ok") {
             var proiezioni = data.proiezioni;
-            updatehtml_projection(proiezioni);
+            aggiorna_html_projection(proiezioni);
             document.getElementById("deleteprojectionstatus").firstChild.textContent = "eliminazione avvenuta con successo";
         }
         else {
@@ -293,21 +310,23 @@ function delete_projection(id) {
     };
 }
 
-
-function updatehtml_projection(proiezioni) {
+//
+// Funzioni html
+//
+function aggiorna_html_projection(proiezioni) {
     var proiezionilist = '';
     for (entryindex in proiezioni) {
         var entry = proiezioni[entryindex];
-        proiezionilist += generate_entry_projection(entry);
+        proiezionilist += genera_entry_projection(entry);
     }
     document.getElementById("projectionlist").innerHTML = proiezionilist;
 }
-function updatehtml_film(films) {
+function aggiorna_html_film(films) {
     var filmlist = '';
     var filmoptions = "";
     for (entryindex in films) {
         var entry = films[entryindex];
-        filmlist += generate_entry_film(entry);
+        filmlist += genera_entry_film(entry);
         filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
 
     }
@@ -316,22 +335,21 @@ function updatehtml_film(films) {
         document.getElementById("filmselector").innerHTML = filmoptions;
     }
 }
-
-function generate_entry_film(entry) {
+function genera_entry_film(entry) {
 
     result = "<tr class='entry' ><td class='entryfunctions'>" +
 
-        '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" >Elimina</a >' +
+        '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" role="button">Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
         + entry.datauscita + "</td><td>" +
         + entry.durata + "</td></tr>";
-    return result;
+    return genera_span_lingua(result);
 }
-function generate_entry_projection(entry) {
+function genera_entry_projection(entry) {
     result = "<tr class='entry' ><td class='entryfunctions'>" +
-        '<a href="#deleteprojectionstatus" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" >Elimina</a >' +
+        '<a href="#deleteprojectionstatus" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" role="button" >Elimina</a >' +
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
@@ -339,26 +357,69 @@ function generate_entry_projection(entry) {
         + entry.orario + "</td><td>"
         + entry.durata + "</td></tr>";
 
-    return result;
+    return genera_span_lingua(result);
+}
+
+function genera_span_lingua(stringa){
+    return stringa.replace("{", "<span lang='en'>").replace("}", "</span");
 }
 
 
+//
+//Film
+//
 
-document.getElementById(api.film.imputform.element).onsubmit = function () {
+var film_area = areas[0];
+
+//selettore
+var selettore = document.getElementById(film_area.selettore_area);
+selettore.onclick = function () { cambia_contesto('film'); };
+selettore.firstChild.onclick = function () { cambia_contesto('film'); }
+
+//Form
+document.getElementById("apri_film").onclick = function () {
+    toggle_form('film');
+};
+document.getElementById("chiudi_film").onclick = function () {
+    toggle_form('film');
+};
+document.getElementById(api.film.imputform.elemento).onsubmit = function () {
     api.film.post();
     return false;//blocca caricamento pagina
+};
+
+//
+//Proiezioni
+//
+
+var proiezioni_area = areas[1];
+
+//selettore proiezioni
+
+selettore = document.getElementById(proiezioni_area.selettore_area);
+selettore.onclick = function () { cambia_contesto('projection'); }
+selettore.firstChild.onclick = function () { cambia_contesto('projection'); }
+
+
+//form proiezioni
+document.getElementById("apri_proiezioni").onclick = function () { toggle_form('projection'); }
+
+var form_proiezioni = document.getElementById(api.proiezioni.imputform.elemento);
+
+document.getElementById("chiudi_proiezioni").onclick = function () {
+    toggle_form('projection');
 }
-document.getElementById(api.proiezioni.imputform.element).onsubmit = function () {
+form_proiezioni.onsubmit = function () {
     api.proiezioni.post();
     return false;//blocca caricamento pagina
 }
 
 
 
-document.getElementById("filmarea").onclick = function () { change_context('film'); }
-document.getElementById("projectionarea").onclick = function () { change_context('projection'); }
-document.getElementById("filmarea").firstChild.onclick = function () { change_context('film'); }
-document.getElementById("projectionarea").firstChild.onclick = function () { change_context('projection'); }
+
+
+
+
 
 api_request(api.film);
 api_request(api.proiezioni);

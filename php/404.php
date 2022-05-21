@@ -12,7 +12,7 @@ echo GeneratePage(
     $breadcrumbs,
     "404 - PNG Cinema",
     "Errore: pagina non trovata. Forse hai digitato il link sbagliato.",
-    "",
+    "errore, 404",
     "",
     ''
 );

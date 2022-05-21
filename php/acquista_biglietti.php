@@ -195,9 +195,9 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
 
 
     $title = "Conferma acquisto - PNG Cinema";
-    $keywords = "Acquisto, biglietti, " . $titolo;
+    $keywords = "Acquisto, biglietti, " . $titolo . "conferma";
     $description =
-        "pagina di conferma acquisto biglietti per " . $titolo;
+        "pagina di conferma acquisto biglietti per il film " . $titolo . "di png cinema: stampa questa pagina per salvare la prenotazione o presenta il codice prenotazione direttamente al cinema";
     $breadcrumbs =
         '<a href="home.php"><span lang="en">Home</span></a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
         $_POST["IDFilm"] .

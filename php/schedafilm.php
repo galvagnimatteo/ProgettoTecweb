@@ -127,11 +127,11 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
 
 */
                     $hour_field =
-                        '<button type="submit" name="idproiez" value="' .
+                        '<li><a href="../php/prenotazione.php?idproiez=' .
                         $orarioRow["IDProiezione"] .
                         '"/>'.
                         substr($orarioRow["Orario"], 0, -3) .
-                        "</button>";
+                        "</a></li>";
                     $hour_fields .= $hour_field;
                 }
 
@@ -153,8 +153,8 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
         $title = $dataFilm["Titolo"];
         $title = str_replace("{", "", $title);
         $title = str_replace("}", "", $title);
-        $keywords = "scheda film, " . $title;
-        $description = "Scheda informativa del film " . $title;
+        $keywords = "scheda, film, " . $title . ", genere, regia, descrizione, durata, cast, orari, programmazione";
+        $description = "Scheda informativa del film " . $title . " in proiezione a png cinema: è possibile leggere descrizione e informazioni varie sul film nonchè visualizzare date e orari di proiezione";
         $breadcrumbs =
             '<a href="home.php"><span lang="en">Home</span></a> / <a href="programmazione.php">Programmazione</a> / ' .
             "" .

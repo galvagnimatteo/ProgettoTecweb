@@ -2,7 +2,6 @@
 session_start();
 require_once '../utils/controlli.php';
 require_once '../utils/SingletonDB.php';
-require_once '../utils/filtraTestoInglese.php';
  $now = time();
     if (isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
         session_unset();
@@ -130,7 +129,7 @@ $i=0;
 while ($row = $resultFilms->fetch_assoc()) {
     $film=new \stdClass();
     $film->id=$row['FilmID'];
-    $film->titolo=filtraTestoInglese($row['Titolo']);
+    $film->titolo=$row['Titolo'];
     $film->genere=$row['Genere'];
     $film->datauscita=$row['DataUscita'];
     $film->descrizione=$row['Descrizione'];

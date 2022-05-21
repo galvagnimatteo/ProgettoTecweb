@@ -131,9 +131,9 @@ if(isset($_GET["error"])){
 }
 
 $title = "Home - PNG Cinema";
-$keywords = "ultime uscite, acquisto, acquisto rapido";
+$keywords = "pngcinema, film, cinema, acquisto, rapido, ultime, uscite";
 $description =
-    "Pagina principale: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.";
+    "Pagina principale PNG cinema: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.";
 $breadcrumbs = '<span lang="en"> Home </span> / ';
 $jshead = '';
 $jsbody = '<script type="text/javascript" src="../js/carousel.js"> </script>

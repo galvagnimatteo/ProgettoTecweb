@@ -191,8 +191,8 @@ if (!empty($result1) && $result1->num_rows > 0) {
     }
 
     $title = "Acquista biglietti per " . $titolo . " - PNG Cinema";
-    $keywords = "Acquista, biglietti, " . $titolo;
-    $description = "Pagina acquisto biglietti per il film: " . $titolo;
+    $keywords = "Acquista, biglietti, " . $titolo . "acquisto, selezione, posti, manuale, testuale, biglietto";
+    $description = "Pagina acquisto biglietti di png cinema per il film: " . $titolo. ": è possibile acquistare un biglietto scegliendone i posti graficamente o testualmente.";
     $breadcrumbs =
         '<a href="home.php"><span lang="en">Home</span></a> / <a href="programmazione.php">Programmazione</a> / <a href="schedafilm.php?idfilm=' .
         $dataFilm["ID"] .

@@ -11,8 +11,8 @@ echo GeneratePage(
     $error_content,
     $breadcrumbs,
     "500 - PNG Cinema",
-    "Errore: il server ha risposto con un errore.",
-    "",
+    "Errore: il server ha risposto con un errore. Ci scusiamo del disagio, risolveremo al più presto.",
+    "errore, 500",
     "",
     ''
 );

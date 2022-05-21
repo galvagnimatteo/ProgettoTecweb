@@ -6,8 +6,8 @@ require_once "utils/generaPagina.php";
 CheckSession(false, false); //refresh della sessione se scaduta
 $home_content = file_get_contents("../html/area_utenti_registrazione.html"); //load content
 
-$description = "Area Utenti";
-$keywords = "Area utenti, login, registrazione";
+$description = "Area Utenti png cinema: è possibile effettuare login o registrazione, modificare i propri dati e visualizzare lo storico degli acquisti.";
+$keywords = "Area, utenti, login, registrazione, modifica, utente, password, dati, storico, ordini, acquisti, logout";
 $breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Area Utenti';
 $jshead = '<script type="text/javascript" src="../js/controls.js"> </script>';
 

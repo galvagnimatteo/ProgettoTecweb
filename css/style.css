@@ -516,7 +516,7 @@ programmazione.html
 
 }
 
-
+/*
 div.ul_reservation {
 	padding-top: 2rem;
 }
@@ -535,7 +535,7 @@ div.ul_reservation {
 	.reservation_button {
 		font-size: 0.6em;
 	}
-}
+}*/
 
 @media screen and (max-width: 760px) {
 	.cards_users {
@@ -589,13 +589,14 @@ div.ul_reservation {
   		margin-right: auto;
   		display: block;
 	}
-	.card_two_see_reservation {
+	/*.card_two_see_reservation {
 		grid-area: b;
 		padding-left: 0rem;
-	}
+	}*/
 }
 
 .card1_users {
+	width: 100%;
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	display: flex;
 	margin-bottom: 2rem;
@@ -607,10 +608,6 @@ div.ul_reservation {
 	width: 100%;
 }
 
-.div_register.profile {
-	width: 100%;
-
-}
 
 .cards_users ul {
 	list-style-type: none;
@@ -625,14 +622,14 @@ div.ul_reservation {
 	font-size: 0.8em;
 }
 
-.link_button_cards {
+/*.link_button_cards {
 	background: none!important;
 	border: none;
 	padding: 0!important;
 	padding-top: 1em;
 	text-decoration: underline;
 	cursor: pointer;
-}
+}*/
 
 .div_login {
 	margin: auto;
@@ -688,14 +685,15 @@ div.ul_reservation {
 	padding-top: 1.5rem;
 	padding-bottom: 1.5rem;
 	border-radius: 5px;
+	text-align: center;
 }
 
 .div_register {
 	margin: auto;
-	width: 50%;
+	width: 60%;
 	display: flex;
 	justify-content: center;
-	/*background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));*/
+	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 	padding-top: 1rem;
 	padding-bottom: 2rem;
 }
@@ -745,36 +743,21 @@ div.ul_reservation {
 	display: block;
 	font-size: 0.8em;
 }
-/*
-.col-25 {
-	float: left;
-	width: 25%;
-}
 
-.col-75 {
-	float: left;
-	width: 75%;
-}
 
-.row:after {
-	content: "";
-	display: table;
-	clear: both;
-}*/
-
-.link_button {
+/*.link_button {
 	background: none!important;
 	border: none;
 	padding: 0!important;
 	font-size: 1.5rem;
 	text-decoration: underline;
 	cursor: pointer;
-}
+}*/
 
-.contactpage iframe {
+/*.contactpage iframe {
     width: 100%;
     align-self: end;
-}
+}*/
 
 .contactpage{
 	margin: 1rem;
@@ -786,26 +769,24 @@ div.ul_reservation {
 .nomargin{
 	padding-left: 0;
 }
-@keyframes materialize {
+
+/*@keyframes materialize {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
     }
-}
+}*/
+
 #posizione {
     position: relative;
     text-align: left;
-    /*animation-duration: 2s;
-    animation-fill-mode: both;*/
+
 }
 #contatti {
     position: relative;
-    /*animation-name: materialize;
-    animation-duration: 2s;
-    animation-delay: 2s;
-    animation-fill-mode: both;*/
+
 
 }
 #contatti h2{
@@ -829,7 +810,7 @@ div.ul_reservation {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-/*@supports not (display: grid) {*/
+
     .contactpage {
         display: flex;
         flex-direction: column;
@@ -853,6 +834,13 @@ div.ul_reservation {
         margin-bottom: 0.5rem;
 		margin-left: 2rem;
     }
+	
+	@media (max-width: 443px) {
+        .contactsection dl {
+			flex-direction: column;
+		}
+    }
+	
     @media (min-width: 870px) {
         #contatti {
             width: 50%;
@@ -863,11 +851,9 @@ div.ul_reservation {
             padding-right:0;
         }
     }
-/*}
-.success{
-    width:100%;
-    background-color:darkgreen;
-            margin-left:0;*/
+	
+
+
 
 
 .contactsection h2 {
@@ -1077,9 +1063,9 @@ div.labelqp select {
 		font-size: 1rem;
 	}
 
-	h2{
+	/*h2{
 		font-size: 1.7rem;
-	}
+	}*/
 
 	h3{
 		font-size: 1.3rem;
@@ -1176,10 +1162,18 @@ h3{
 	}
 
 	.div_user,
-	.div_login {
+	.div_login,
+	.div_register	{
 		width: 90%;
-
+		/*margin-left: 1.5rem;*/
 	}
+	
+	/*.div_user.card3_users {
+		width: 90%;
+		margin: 0;
+		margin-left: 1.5rem;
+	}*/
+	
 }
 
 @media screen and (max-width: 480px) {
@@ -1211,9 +1205,9 @@ h3{
 	}
 	/*.div_register,
 	.div_user,
-	*/.div_login {
+	.div_login {
 		width: 100%;
-	}
+	}*/
 }
 
 @media screen and (max-width: 320px) {
@@ -1275,16 +1269,6 @@ h3{
 	padding-left: 3px;
 }
 
-#ticketInfoGroup input[type="number"] {
-  -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
-}
-#ticketInfoGroup input[type=number]::-webkit-inner-spin-button,
-#ticketInfoGroup input[type=number]::-webkit-outer-spin-button {
-  opacity: 1;
-}
-
 .textSelectContainer {
 
 	margin: 1rem;
@@ -1305,6 +1289,11 @@ h3{
 	margin-top: 1.5rem;
 	border: 0;
 }
+
+#purchaseTicketForm .selezPostoFieldset select {
+	margin: 0 0.5rem;
+}
+
 
 
 #purchaseTicketForm legend {
@@ -1680,9 +1669,11 @@ p.aiutocompilaz strong {
     border-radius: 15px;
     box-sizing: border-box;*/
 }
+
 /*.open {
 display: block;
 }*/
+
 #admin button {
 	background: var(--admin-button-background);
 	color: var(--admin-button-text);

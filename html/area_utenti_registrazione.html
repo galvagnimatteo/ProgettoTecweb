@@ -4,63 +4,40 @@
 </h2>
 <div class="div_register">
 	<form action="../php/area_utenti.php?action=register_user" method="post" onsubmit="return registerControls()">
-		<div class="row">
-			<div class="col_25">
-				<label for="username" lang="en"> Username </label>
-			</div>
-			<div class="col_75">
-				<input id="username" type="text" placeholder=" Username" name="username_register"   required />
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="name" >Nome</label>
-			</div>
-			<div class="col_75">
-				<input id="name" type="text" placeholder=" Nome" name="name_register"  />
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="surname" >Cognome</label>
-			</div>
-			<div class="col_75">
-				<input id="surname" type="text" placeholder=" Cognome" name="surname_register" />
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="email" lang="en">Email</label>
-			</div>
-			<div class="col_75">
-				<input id="email" type="email" placeholder=" Email" name="email_register" />
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="password" lang="en">Password</label>
-			</div>
-			<div class="col_75">
-				<input id="password" type="password" placeholder=" Password" name="password_register"  />
-			</div>
-		</div>
-		<div class="row">
-			<div class="col_25">
-				<label for="password_confirm">Ripeti password</label>
-			</div>
-			<div class="col_75">
-				<input id="password_confirm" type="password" placeholder=" Ripeti password" name="pass_register_confirm"  required />
-			</div>
-		</div>
-		<div class="row">
+		
+		<label for="username" lang="en"> Username </label>
+		
+		<input id="username" type="text" placeholder=" Username" name="username_register"   required />
+
+		<label for="name" >Nome</label>
+		
+		<input id="name" type="text" placeholder=" Nome" name="name_register"  />
+
+		<label for="surname" >Cognome</label>
+				
+		<input id="surname" type="text" placeholder=" Cognome" name="surname_register" />
+
+		<label for="email" lang="en">Email</label>
+	
+		<input id="email" type="email" placeholder=" Email" name="email_register" />
+	
+		<label for="password" lang="en">Password</label>
+	
+		<input id="password" type="password" placeholder=" Password" name="password_register"  />
+
+		<label for="password_confirm">Ripeti password</label>
+	
+		<input id="password_confirm" type="password" placeholder=" Ripeti password" name="pass_register_confirm"  required />
+			
 			<p id="errorMessage"> <ERRORMESSAGE> </p>
-		</div>
-		<div class="row">
+		
 			<input type="submit" value="Conferma registrazione" />
-		</div>
+		
 
 	</form>
 </div>
 <div class="div_user">
-    <a href="../php/area_utenti.php?action=login_page"class="link_button"> Ho già un <span lang="en">account</span></a>
+
+	<a href="./area_utenti.php?action=login_page"> Sono già registrto </a>
+
 </div>

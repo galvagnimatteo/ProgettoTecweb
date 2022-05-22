@@ -143,6 +143,8 @@ function calcolaPrezzoTot(event) {
 		
 		aiuto[0].setAttribute("class", "aiutocompilaz hide");
 		aiuto[1].setAttribute("class", "aiutocompilaz hide");
+		aiuto[2].setAttribute("class", "aiutocompilaz hide");
+		aiuto[3].setAttribute("class", "aiutocompilaz hide");
 	}
 }
 
@@ -300,11 +302,20 @@ function generaOptionNumeri(sn, lettera) {
 
 
 function controllaInput(event) {
-	nint = parseInt(selectNumTicketInt.value);
-	nred = parseInt(selectNumTicketRed.value);
-	
-	maxPostiPrenotabili = MAX_POSTI_LIBERI - (nint + nred);
-	
-	selectNumTicketInt.setAttribute("max", nint + maxPostiPrenotabili);
-	selectNumTicketRed.setAttribute("max", nred + maxPostiPrenotabili);
+	var rexp = /^\d+$/;
+	var aiuto = document.getElementsByClassName("aiutocompilaz");
+	if (rexp.test(selectNumTicketRed.value) && rexp.test(selectNumTicketInt.value)) {
+		aiuto[3].setAttribute("class", "aiutocompilaz hide");
+		nint = parseInt(selectNumTicketInt.value);
+		nred = parseInt(selectNumTicketRed.value);
+		
+		maxPostiPrenotabili = MAX_POSTI_LIBERI - (nint + nred);
+		
+		selectNumTicketInt.setAttribute("max", nint + maxPostiPrenotabili);
+		selectNumTicketRed.setAttribute("max", nred + maxPostiPrenotabili);
+	} else {
+		
+		aiuto[3].setAttribute("class", "aiutocompilaz");
+		
+	}
 }

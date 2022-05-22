@@ -947,13 +947,24 @@ div.ul_reservation {
 	font-weight: 800;
 }
 
+#filmPageCard .screenings section {
+	border: 2px solid var(--secondary-color);
+	border-right: 0;
+	border-bottom: 0;
+	margin-top: 2rem;
+	padding-top: 0.5rem;
+	padding-bottom: 2rem;
+	padding-left: 1rem;
+	
+}
+
 #filmPageCard .screenings ul {
 	display: flex;
 	flex-direction: row;
 	margin-top: 1.5rem;
 	list-style: none;
 	border: 0;
-	border-top: 2px solid var(--secondary-color);
+	/*border-top: 2px solid var(--secondary-color);*/
 	/*border-left: 2px solid var(--secondary-color);*/
 }
 #filmPageCard .screenings a {

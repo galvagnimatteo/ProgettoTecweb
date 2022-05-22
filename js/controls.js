@@ -146,3 +146,37 @@ function modifyControls(){
     return true;
 
 }
+
+var formLogin = document.getElementById("form-login");
+var formRegister = document.getElementById("form-register");
+var formModify = document.getElementById("form-modify");
+
+if (formLogin)
+	formLogin.addEventListener("submit", function(e) { 
+	
+		if (!loginControls()) {
+			e.preventDefault(); 
+			return false;
+		} 
+	
+	});
+
+if (formRegister)
+	formRegister.addEventListener("submit", function(e) { 
+		if (!registerControls()) {
+			e.preventDefault(); 
+			return false;
+		} 
+	
+	});
+
+if (formModify)
+	formModify.addEventListener("submit", function(e) { 
+		
+		
+		if (!modifyControls()) {
+			e.preventDefault(); 
+			return false;
+		} 
+		
+	});

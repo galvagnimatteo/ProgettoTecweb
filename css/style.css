@@ -662,17 +662,24 @@ div.ul_reservation {
 	justify-content: left;
 	padding-left: 4.5rem;
 }
+   
 
-.div_login input[type=submit] {
+.div_login input[type=submit],
+.div_register input[type=submit] {
 	width: 70%;
 	height: 3rem;
-	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
-	margin-bottom: 1rem;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
 	display: block;
-	margin: 1em auto;
+	border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    margin: 2rem auto;
+    border-radius: 8px;
+	background: none;
+	font-size: 1.1rem;
+}
+
+.div_login input[type=submit]:hover,
+.div_register input[type=submit]:hover {
+	background-color: var(--secondary-color);
 }
 
 .div_user {
@@ -718,20 +725,6 @@ div.ul_reservation {
 	color: var(--error-color);
 	font-size: 1.2rem;
 	margin-bottom: 1rem;
-}
-
-.div_register input[type=submit] {
-	width: 80%;
-	height: 3rem;
-	color: #fff;
-	background-image: linear-gradient(var(--secondary-color), var(--gradient-last-color));
-	font-weight: bold;
-	margin: 1rem auto;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	display: block;
-	margin: 0rem auto;
 }
 
 .div_register form {
@@ -955,6 +948,7 @@ div.ul_reservation {
 	padding-top: 0.5rem;
 	padding-bottom: 2rem;
 	padding-left: 1rem;
+	border-radius: 8px; 
 	
 }
 

@@ -1,5 +1,9 @@
 \documentclass[a4paper, 12pt]{article}
 
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+
 \newcommand{\templates}{./template}
 \input{\templates/style}
 \input{\templates/front_page}
@@ -68,8 +72,18 @@ Nella pagina di amministrazione, inoltre, per inserire un film o una proiezione 
 \section{Accessibilità}
 Il codice HTML5 è stato validato utilizzando il servizio di W3C https://validator.w3.org/.
 Il codice CSS è stato validato utilizzando il servizio di W3C https://jigsaw.w3.org/css-validator/.
-\\\\
 Sono stati controllati i contrasti di ogni colore utilizzando il servizio \\https://webaim.org/resources/contrastchecker/.
+Sono stati generati report con LightHouse di Chrome che non hanno evidenziato particolari criticità, se non per la grandezza delle immagini che comunque, essendo locandine, si è ritenuto ragionevole non
+diminuirne la risoluzione.
+\begin{center}
+    \includegraphics[scale=0.4]{home}
+\end{center}
+È stato controllato come le pagine reagiscono rispetto a diversi disturbi visivi; di seguito alcuni esempi.
+\begin{center}
+    \includegraphics[scale=0.1]{protanopia}
+    \includegraphics[scale=0.1]{tritanopia}
+\end{center}
+
 Il sito è stato testato nella sua interezza sia con screenreader di default di Windows sia con estensione per browser.
 In ogni pagina del sito sono presenti dei link nascosti che consentono agli utenti che navigano spostandosi tra link di saltare al contenuto interessante della pagina evitando elementi grafici o inutili.
 Il sito è stato testato su più browser per verificarne il corretto funzionamento.

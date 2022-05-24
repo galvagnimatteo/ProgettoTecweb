@@ -40,9 +40,6 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
         );
 
         $description = $row["Descrizione"];
-        $description = substr($description, 0, 200);
-        $description = filtraTestoInglese($description);
-        $description = $description . "...";
 
         $card_prog_item = str_replace(
             "<FILMTITLE>",
@@ -59,6 +56,30 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
             $row["Durata"] . "'",
             $card_prog_item
         );
+
+        $desc_arr = str_split($description);
+        $counter = 0;
+        $isOpen = false;
+
+        foreach($desc_arr as $character){
+            if($character == '{'){
+                $isOpen = true;
+            }
+            if($character == "}"){
+                $isOpen = false;
+            }
+
+            if($counter >= 200 && $isOpen == false){
+                break;
+            }
+
+            $counter = $counter + 1;
+        }
+
+        $description = substr($description, 0, $counter+1);
+        $description = filtraTestoInglese($description);
+        $description = $description . "...";
+
         $card_prog_item = str_replace(
             "<FILMDESCRIPTION>",
             $description,
@@ -77,9 +98,14 @@ if (!empty($filmsResult) && $filmsResult->num_rows > 0) {
             $card_prog_item
         );
 
+        $titolo = $row["Titolo"];
+
+        $titolo = str_replace("{", "", $titolo);
+        $titolo = str_replace("}", "", $titolo);
+
         $card_prog_item = str_replace(
             "<ALTIMG>",
-            "Locandina " . ($row["Titolo"]),
+            "Locandina " . $titolo,
             $card_prog_item
         );
 

@@ -46,6 +46,13 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
             filtraTestoInglese($dataFilm["Titolo"]),
             $schedafilm_content
         );
+
+        $titolo = $dataFilm["Titolo"];
+
+        $titolo = str_replace("{", "", $titolo);
+        $titolo = str_replace("}", "", $titolo);
+
+
         $schedafilm_content = str_replace(
             "<FILM-IMG>",
             '<img src=\'' .
@@ -53,7 +60,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                 $dataFilm["SrcImg"] .
                 ' \' alt=\'' .
                 "Locandina " .
-                filtraTestoInglese($dataFilm["Titolo"]) .
+                $titolo .
                 '\'/>',
             $schedafilm_content
         );
@@ -129,7 +136,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                     $hour_field =
                         '<li><a href="../php/prenotazione.php?idproiez=' .
                         $orarioRow["IDProiezione"] .
-                        '"/>'.
+                        '">'.
                         substr($orarioRow["Orario"], 0, -3) .
                         "</a></li>";
                     $hour_fields .= $hour_field;

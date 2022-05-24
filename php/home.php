@@ -94,7 +94,7 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
             $counter = $counter + 1;
         }
 
-        $description = substr($description, 0, $counter);
+        $description = substr($description, 0, $counter+1);
         $description = filtraTestoInglese($description);
         $description = $description . "...";
         $card_home_item = str_replace(
@@ -115,9 +115,15 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
             $card_home_item
         );
 
+        $titolo = $row["Titolo"];
+
+        $titolo = str_replace("{", "", $titolo);
+        $titolo = str_replace("}", "", $titolo);
+
+
         $card_home_item = str_replace(
             "<ALTIMG>",
-            "Locandina" . $row["Titolo"],
+            "Locandina" . $titolo,
             $card_home_item
         );
 

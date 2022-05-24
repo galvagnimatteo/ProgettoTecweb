@@ -185,6 +185,7 @@ a:visited:not(.carouselContainer a:visited) {
 
 .prev,
 .next {
+	height: 3.5rem;
 	cursor: pointer;
 	position: absolute;
 	top: calc(50% - 2rem - 0.9rem);
@@ -347,7 +348,6 @@ footer {
 	/**/
 	width: calc(100% - 2rem);
 	padding: 1rem;
-	position: sticky;
 	bottom: 0;
 	margin-top: 1rem;
 }
@@ -390,6 +390,12 @@ programmazione.html
 
 .card img {
 	width: 30%;
+}
+
+@supports ( -moz-appearance:none ){
+	.card img {
+    	width: 80%;
+    }
 }
 
 .card p {
@@ -662,7 +668,7 @@ div.ul_reservation {
 	justify-content: left;
 	padding-left: 4.5rem;
 }
-   
+
 
 .div_login input[type=submit],
 .div_register input[type=submit] {
@@ -827,13 +833,13 @@ div.ul_reservation {
         margin-bottom: 0.5rem;
 		margin-left: 2rem;
     }
-	
+
 	@media (max-width: 443px) {
         .contactsection dl {
 			flex-direction: column;
 		}
     }
-	
+
     @media (min-width: 870px) {
         #contatti {
             width: 50%;
@@ -844,7 +850,7 @@ div.ul_reservation {
             padding-right:0;
         }
     }
-	
+
 
 
 
@@ -948,8 +954,8 @@ div.ul_reservation {
 	padding-top: 0.5rem;
 	padding-bottom: 2rem;
 	padding-left: 1rem;
-	border-radius: 8px; 
-	
+	border-radius: 8px;
+
 }
 
 #filmPageCard .screenings ul {
@@ -1172,13 +1178,13 @@ h3{
 		width: 90%;
 		/*margin-left: 1.5rem;*/
 	}
-	
+
 	/*.div_user.card3_users {
 		width: 90%;
 		margin: 0;
 		margin-left: 1.5rem;
 	}*/
-	
+
 }
 
 @media screen and (max-width: 480px) {
@@ -1718,7 +1724,7 @@ display: block;
 
 .formcloser {
 	background-image: url(/images/chiudi-menu.svg);
-	overflow: visible; /*TODO risolvere glitch grafico nel pulsante di chiusura del form films*/
+	overflow: visible;
 }
 
 .formopener {
@@ -1744,7 +1750,9 @@ display: block;
 .inactiveoption {
 	pointer-events: initial;
 	background-color: var(--admin-button-background);
+	cursor: pointer;
 }
+
 
 .btn-storico{
 	background-color: var(--secondary-color);

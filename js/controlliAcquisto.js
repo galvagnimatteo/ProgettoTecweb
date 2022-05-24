@@ -233,6 +233,7 @@ function generaSelettorePosti(padre, num) {
 	
 	var label1 = document.createElement("label");
 	label1.setAttribute("for", "f" + num);
+	label1.setAttribute("class", "labelMoreMargin");
 	label1.innerHTML = "Fila:";
 	fieldset.appendChild(label1);
 	

@@ -14,6 +14,8 @@
 \settitolo{PNG Cinema}
 \setmembri{Matteo Galvagni (1224451)\\Antonio Stan (1225426)\\Michele Gatto (1224458)\\Giovanni Cristellon (1216730)}
 \setanno{2021-2022}
+\setutentebase{Username: user, Password: user}
+\setutenteadmin{Username: admin, Password: admin}
 \setdescrizione{Relazione PNG Cinema - Tecnologie Web}
 
 \begin{document}
@@ -65,9 +67,11 @@ All'interno del sito sono presenti due modalità per acquistare i biglietti: la 
 È stato scelto di sviluppare il sito utilizzando HTML5, non avendo particolari esigenze di compatibilità vista l'utenza molto giovane.
 Avendo prestato particolare attenzione alla categoria di utenti "frettolosi", e dunque all'accesso del sito da mobile, fin da subito ogni unità di misura utilizzata in CSS è stata relativa per permettere la corretta responsività del sito (fatta eccezione per la massima larghezza del body, 1024px, e i bordi di alcuni elementi grafici).
 Sono stati implementati diversi controlli sia lato client (Javascript) sia lato server (PHP) ad ogni input dell'utente.
+Ogni input inoltre è sottoposto a controllo, lato server, dell'assenza di codice malevolo per evitare JS/SQL injections.
 La connessione al database è stata effettuata implementando il design pattern Singleton.\\\\
 In alcune parti del sito abbiamo ritenuto opportuno l'utilizzo di AJAX: nella pagina Home ci consente di riempire dinamicamente i campi di selezione della sezione di acquisto rapido; nella pagina di amministrazione consente di visualizzare in modo dinamico e senza ricaricare la pagina la lista di film e proiezioni.
-Nella pagina di amministrazione, inoltre, per inserire un film o una proiezione all'interno del sito si apriranno dei popup: questa scelta è stata fatta per rendere l'esperienza utente dell'amministratore simile a quella di una webapp, contrapposta all'alternativa di aprire una nuova scheda o modificare la pagina ad ogni richiesta di inserimento, giudicate soluzioni piuttosto invasive; in ogni caso questa pagina è stata dotata di link nascosti per rendere la navigazione piacevole anche da screenreader. La visualizzazione delle tabelle di questa pagina, da mobile, è stata mantenuta con uno scorrimento orizzontale delle singole tabelle: questo, seppure non ottimale, è stato considerato migliore all'adattamento verticale di tabelle con molti film e proiezioni che ne diminuivano di molto la leggibilità e aumentavano esponenzialmente la lunghezza dello scroll necessario per arrivare a fondo pagina; è stata inoltre pensata come soluzione accettabile per via della prevalenza di utilizzo di questa pagina da desktop.
+Nella pagina di amministrazione, inoltre, per inserire un film o una proiezione all'interno del sito si apriranno dei popup: questa scelta è stata fatta per rendere l'esperienza utente dell'amministratore simile a quella di una webapp, contrapposta all'alternativa di aprire una nuova scheda o modificare la pagina ad ogni richiesta di inserimento, giudicate soluzioni piuttosto invasive; in ogni caso questa pagina è stata dotata di link nascosti per rendere la navigazione piacevole anche da screenreader. La visualizzazione delle tabelle di questa pagina, da mobile, è stata mantenuta con uno scorrimento orizzontale delle singole tabelle: questo, seppure non ottimale, è stato considerato migliore all'adattamento verticale di tabelle con molti film e proiezioni che ne diminuivano di molto la leggibilità e aumentavano esponenzialmente la lunghezza dello scroll necessario per arrivare a fondo pagina; è stata inoltre pensata come soluzione accettabile per via della prevalenza di utilizzo di questa pagina da desktop.\\\\
+Il sito è stato testato su tutti i browser maggiormente utilizzati (Chrome, Firefox, Opera, Safari, Brave, Edge). È stato ritenuto ragionevole, tuttavia, omettere la compatibilità del sito con il browser Internet Explorer sia per l'utenza target molto giovane sia perchè il browser in questione è stato abbandonato dall'azienda di produzione in favore di Edge (meno dello 0.5\% degli utenti utilizza IE in Italia ad aprile \\di quest'anno, fonte https://gs.statcounter.com/browser-market-share/all/italy).
 \newpage
 \section{Accessibilità}
 Il codice HTML5 è stato validato utilizzando il servizio di W3C https://validator.w3.org/.

@@ -5,6 +5,8 @@
 \newcommand{\settitolo}[1]{\newcommand{\titolo}{#1\\}}
 \newcommand{\setmembri}[1]{\newcommand{\membri}{#1\\}}
 \newcommand{\setanno}[1]{\newcommand{\anno}{#1\\}}
+\newcommand{\setutentebase}[1]{\newcommand{\utentebase}{#1\\}}
+\newcommand{\setutenteadmin}[1]{\newcommand{\utenteadmin}{#1\\}}
 \newcommand{\setdescrizione}[1]{\newcommand{\descrizione}{#1\\}}
 
 \newcommand{\makefrontpage}{
@@ -28,7 +30,11 @@
 			\makecell[l]{\membri}\\
 		\else\fi
 
-		\textit{Anno scolastico} & \anno
+		\textit{Anno scolastico} & \anno \\
+
+		\textit{Utente base} & \utentebase
+
+		\textit{Utente amministratore} & \utenteadmin
 
 		\end{tabular}
 

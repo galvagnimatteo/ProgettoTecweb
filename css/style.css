@@ -91,6 +91,9 @@ body {
 	border-radius: 20px;
 	border: outset var(--scrollbar);
 }*/
+
+img { max-width: 100%; height: auto }
+
 .subtitle {
 	padding-top: 1rem;
 	padding-left: 1rem;
@@ -1310,10 +1313,11 @@ h3{
 	border-top: 2px solid var(--secondary-color);
 }
 
-/*#purchaseTicketForm .selezPostoFieldset {
-	margin-top: 1.5rem;
-	border: 0;
-}*/
+#purchaseTicketForm .selezPostoFieldset {
+	border:2px solid var(--secondary-color);
+	padding:1rem;
+	border-radius: 10px;
+}
 
 #purchaseTicketForm .selezPostoFieldset select {
 	margin: 0.3rem 0;

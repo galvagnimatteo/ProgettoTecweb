@@ -75,7 +75,26 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
         );
 
         $description = $row["Descrizione"];
-        $description = substr($description, 0, 200);
+        $desc_arr = str_split($description);
+        $counter = 0;
+        $isOpen = false;
+
+        foreach($desc_arr as $character){
+            if($character == '{'){
+                $isOpen = true;
+            }
+            if($character == "}"){
+                $isOpen = false;
+            }
+
+            if($counter >= 200 && $isOpen == false){
+                break;
+            }
+
+            $counter = $counter + 1;
+        }
+
+        $description = substr($description, 0, $counter+1);
         $description = filtraTestoInglese($description);
         $description = $description . "...";
         $card_home_item = str_replace(
@@ -96,9 +115,15 @@ if (!empty($resultFilms) && $resultFilms->num_rows > 0) {
             $card_home_item
         );
 
+        $titolo = $row["Titolo"];
+
+        $titolo = str_replace("{", "", $titolo);
+        $titolo = str_replace("}", "", $titolo);
+
+
         $card_home_item = str_replace(
             "<ALTIMG>",
-            "Locandina" . $row["Titolo"],
+            "Locandina" . $titolo,
             $card_home_item
         );
 

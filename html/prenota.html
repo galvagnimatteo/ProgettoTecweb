@@ -4,9 +4,6 @@
 	<h2> Acquista i biglietti per <FILM-TITLE> </h2>
 	<h3> <PROJ-DATA> <TIME-PROJ>, Sala <NUM-SALA> </h3>
 
-	<p role="alert" class="warning hide" id="warnPosti"> <strong>Affrettati</strong>, ci sono ancora pochi posti liberi, ma potresti non trovare posti vicini,
-				puoi provare a deselezionare la casella "Posti vicini" e ti verranno selezionati dei posti casuali.</p>
-
 	<ERRORE-SERVER>
 
 </div>
@@ -45,10 +42,6 @@
 	<fieldset id="ticketInfoGroup">
 	<legend>Scegli in numero di biglietti:</legend>
 
-	<p role="alert" class="aiutocompilaz hide"> Scegli prima il numero di biglietti da acquistare </p>
-	<p role="alert" class="aiutocompilaz hide"> <strong>Attenzione</strong>, ci sono ancora posti da selezionare </p>
-	<p role="alert" class="aiutocompilaz hide"> Hai selezionato due posti uguali </p>
-	<p role="alert" class="aiutocompilaz hide"> Attenzione, puoi inserire solo numeri interi nella quantità dei posti </p>
 	<div class="labelPos">
 		<label for="selectNumTicketInt">Intero, <FULL-PRICE-FORMAT> € : </label>
 		<input type="number" id="selectNumTicketInt" name="numTicketIntero" data-prezzo-intero="<FULL-PRICE>" value="0" min="0" step="1" />
@@ -62,8 +55,6 @@
 		<input type="number" id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>"  value="0" min="0" step="1" />
 
 	</div>
-
-	<span class="noscript"> Il numero <strong>totale</strong> dei biglietti (intero + ridotto) non deve essere maggiore di 4 </span>
 
 	</fieldset>
 
@@ -103,6 +94,11 @@
 
 		</fieldset>
 
+
+			<p role="alert" class="aiutocompilaz hide"> Scegli prima il numero di biglietti da acquistare </p>
+			<p role="alert" class="aiutocompilaz hide"> <strong>Attenzione</strong>, ci sono ancora posti da selezionare </p>
+			<p role="alert" class="aiutocompilaz hide"> Hai selezionato due posti uguali </p>
+			<p role="alert" class="aiutocompilaz hide"> Attenzione, puoi inserire solo numeri interi nella quantità dei posti </p>
 
 		<button type="submit" value="acquisto" id="acquistaBtn">
 			 <span class="noscript" >

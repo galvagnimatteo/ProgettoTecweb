@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mag 18, 2022 alle 16:59
+-- Creato il: Giu 03, 2022 alle 15:24
 -- Versione del server: 10.4.18-MariaDB
 -- Versione PHP: 8.0.3
 
@@ -86,23 +86,51 @@ CREATE TABLE `Occupa` (
 
 INSERT INTO `Occupa` (`NumeroPosto`, `FilaPosto`, `NumeroSala`, `IDPrenotazione`) VALUES
 (1, 'A', 1, 9),
+(1, 'A', 2, 43),
 (1, 'B', 1, 9),
+(1, 'C', 1, 40),
+(1, 'D', 2, 47),
+(1, 'E', 2, 47),
 (1, 'G', 1, 9),
 (2, 'A', 1, 19),
+(2, 'A', 2, 43),
 (2, 'G', 1, 9),
+(3, 'A', 2, 43),
+(4, 'B', 2, 33),
+(5, 'A', 1, 41),
 (5, 'B', 1, 9),
-(8, 'D', 1, 10),
+(5, 'B', 2, 32),
+(5, 'C', 2, 31),
+(5, 'D', 2, 34),
+(6, 'C', 2, 25),
+(7, 'B', 2, 26),
+(7, 'C', 2, 27),
+(7, 'D', 2, 38),
+(7, 'F', 2, 29),
+(8, 'C', 2, 28),
 (8, 'E', 1, 11),
 (9, 'B', 1, 18),
-(9, 'D', 1, 10),
+(9, 'C', 1, 39),
+(9, 'C', 2, 47),
+(9, 'G', 2, 46),
+(10, 'D', 2, 30),
+(10, 'G', 2, 46),
 (11, 'C', 1, 13),
+(12, 'A', 1, 48),
+(12, 'A', 3, 37),
 (12, 'D', 1, 9),
+(12, 'E', 1, 35),
+(13, 'A', 1, 44),
 (13, 'B', 1, 20),
-(13, 'B', 2, 17),
-(14, 'B', 2, 17),
+(13, 'C', 1, 36),
+(13, 'D', 1, 48),
+(14, 'A', 1, 45),
+(14, 'C', 1, 23),
 (15, 'A', 1, 12),
 (15, 'B', 1, 21),
-(15, 'C', 2, 22);
+(15, 'C', 2, 22),
+(15, 'D', 1, 42),
+(15, 'G', 1, 24);
 
 -- --------------------------------------------------------
 
@@ -456,16 +484,40 @@ CREATE TABLE `Prenotazione` (
 
 INSERT INTO `Prenotazione` (`ID`, `NumeroPersone`, `UsernameUtente`, `IDProiezione`) VALUES
 (9, 6, NULL, 16),
-(10, 2, 'admin', 16),
 (11, 1, NULL, 16),
 (12, 1, 'admin', 16),
 (13, 1, 'admin', 16),
-(17, 2, 'admin', 20),
 (18, 1, 'admin', 16),
 (19, 1, 'admin', 16),
 (20, 1, 'admin', 16),
 (21, 1, 'admin', 16),
-(22, 1, 'admin', 20);
+(22, 1, 'admin', 20),
+(23, 1, 'admin', 16),
+(24, 1, 'admin', 16),
+(25, 1, NULL, 20),
+(26, 1, NULL, 20),
+(27, 1, NULL, 20),
+(28, 1, NULL, 20),
+(29, 1, NULL, 20),
+(30, 1, NULL, 20),
+(31, 1, NULL, 20),
+(32, 1, NULL, 20),
+(33, 1, NULL, 20),
+(34, 1, NULL, 20),
+(35, 1, NULL, 16),
+(36, 1, 'admin', 16),
+(37, 1, NULL, 21),
+(38, 1, NULL, 20),
+(39, 1, NULL, 19),
+(40, 1, NULL, 19),
+(41, 1, NULL, 16),
+(42, 1, NULL, 16),
+(43, 3, 'admin', 20),
+(44, 1, 'admin', 16),
+(45, 1, NULL, 16),
+(46, 2, NULL, 20),
+(47, 3, 'admin', 20),
+(48, 2, 'user', 16);
 
 -- --------------------------------------------------------
 
@@ -557,7 +609,8 @@ CREATE TABLE `Utente` (
 
 INSERT INTO `Utente` (`Username`, `Nome`, `Cognome`, `Password`, `Email`) VALUES
 ('admin', 'admin', 'admin', '$2y$10$oboMc3j0qLGtk7zLTIdMSuJi.ab4Hf2U7SZlEWdZ2gr3B/46fCH/u', 'admin@admin.it'),
-('user', 'user', 'user', '$2y$10$cx/Uk.IywbxIZyJDzwGWFeBoCteUMqwL4kDVgnjz3gVvZhl/Hi29O', 'user@user.it');
+('user', 'user', 'user', '$2y$10$cx/Uk.IywbxIZyJDzwGWFeBoCteUMqwL4kDVgnjz3gVvZhl/Hi29O', 'user@user.it'),
+('utente', 'utente', 'utente', '$2y$10$Va7wbOIjY4TrDg4G0AB2Veh442yB6G1e2xNPmsDR.Cv9yXglBwOqq', 'uten@te.com');
 
 --
 -- Indici per le tabelle scaricate
@@ -638,7 +691,7 @@ ALTER TABLE `Film`
 -- AUTO_INCREMENT per la tabella `Prenotazione`
 --
 ALTER TABLE `Prenotazione`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT per la tabella `Proiezione`

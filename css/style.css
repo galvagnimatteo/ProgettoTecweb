@@ -203,13 +203,13 @@ a:visited:not(.carouselContainer a:visited) {
 .prev {
 	border-radius: 0 1rem 1rem 0;
 	left: 0;
-	background-image:url(/images/backwards.png);
+	background-image:url(../images/backwards.png);
 }
 
 .next {
 	right: 0;
 	border-radius: 1rem 0 0 1rem;
-	background-image: url(/images/forward.png);
+	background-image: url(../images/forward.png);
 }
 
 .circles {
@@ -1752,12 +1752,12 @@ display: block;
 }
 
 .formcloser {
-	background-image: url(/images/chiudi-menu.svg);
+	background-image: url("../images/chiudi-menu.svg");
 	overflow: visible;
 }
 
 .formopener {
-	background-image: url(/images/formopener.svg);
+	background-image: url("../images/formopener.svg");
 }
 
 .inactiveoption, .activeoption, .btn-storico{
@@ -1853,7 +1853,7 @@ display: block;
 
 #admin .deleteentry {
 	width: 1.5rem;
-	background-image: url(/images/trash-svgrepo-com.svg);
+	background-image: url("../images/trash-svgrepo-com.svg");
 }
 
 #admin .overlays form {

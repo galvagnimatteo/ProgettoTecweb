@@ -82,7 +82,7 @@ function GeneratePage(
         $menu = $menu . "<li id=\"loginMenu\">";
         $menu =
             $menu .
-            '<a id="loginbutton" href="./area_utenti.php?action=login_page">Accedi</a>';
+            '<a id="loginbutton" href="./area_utenti.php?action=login_page">Area Utenti</a>';
         $menu = $menu . "</li>";
     }
     $menu = $menu . "</ul>";

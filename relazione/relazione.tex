@@ -42,7 +42,7 @@ Per ogni pagina sono state scelte delle keyword coerenti, che fossero presenti n
 In ogni pagina il nome del cinema è riportato nel tag \textit{h1}, essendo la ricerca per nome del cinema una delle più probabili.\\
 Keyword e tag di intestazione sono in ogni caso stati scelti in base alle parole che possano con maggiore probabilità apparire in una ricerca da parte dei clienti.
 Inoltre, tutto il codice HTML e CSS è stato validato.
-Non viene utilizzato Javascript per riempire di contenuto il sito, ma solo per alcune funzionalità di comodità dedicate agli utenti.
+Non viene utilizzato Javascript per riempire di contenuti il sito, ma solo per alcune funzionalità di comodità dedicate agli utenti.
 \newpage
 \section{Progettazione}
 Il sito web è stato progettato fin da subito per rispondere alle tre domande "Dove mi trovo?", "Dove posso andare?" e "Cosa c'è in questa pagina?": è stato utilizzato un layout "classico", con menù in testa ad ogni pagina e con subito sotto le breadcrumbs che indicano all'utente dove si trova e che percorso ha effettuato per arrivarci. Oltre un certo punto di rottura, il menù collassa ad un menù ad hamburger per meglio adattarsi ai dispositivi con schermi di piccola dimensione.\\
@@ -90,10 +90,17 @@ diminuirne la risoluzione.
 
 Il sito è stato testato nella sua interezza sia con screenreader di default di Windows sia con estensione per browser.
 In ogni pagina del sito sono presenti dei link nascosti che consentono agli utenti che navigano spostandosi tra link di saltare al contenuto interessante della pagina evitando elementi grafici o inutili.
-Il sito è stato testato su più browser per verificarne il corretto funzionamento.
 Il carosello presente in home è stato reso scorribile sia con bottoni cliccabili, sia con frecce della tastiera, sia con link a fondo carosello.
 \\\\
 Vista la quantità non indifferente di attori, registi e in generale parole inglesi sia nel titolo che nella descrizione dei film, è stato pensato di consentire all'amministratore l'inserimento di tali parole delimitato da caratteri di "escape" in modo che vengano filtrati dal codice PHP sostituendoli con appositi tag che specifichino la lingua di quel pezzo di testo (in questo caso è stato scelto di indicare le parole inglesi tra parentesi grafe, es. "\{Spiderman\}").
+\section{Note}
+\subsection{Validazione email}
+In fase di registrazione agli utenti è richiesto di inserire una email. Consci del fatto che l'unico modo sicuro al 100\% per validare un indirizzo email è tramite l'invio di una mail a tale indirizzo con un codice di controllo è stato deciso di limitare i controlli di questo input al solo check della presenza del carattere chiocciola, dato che utilizzare una qualsiasi espressione regolare per effettuare la validazione sarebbe risultato probabilmente sbagliato. L'invio del codice tramite email è stato omesso per eccessiva complessità d'implementazione a fronte di un guadagno minimo e mancanza di tempo, ma è sicuramente un'aggiunta che andrebbe fatta in un sito reale.
+\subsection{Pagine statiche}
+Pur esistendo una pagina puramente statica all'interno del sito (pagina contatti) è stato ritenuto accettabile fornire tale pagina tramite del codice PHP, perchè a fronte di un guadagno veramente minimo in termini di velocità di caricamento si sarebbe persa la divisione del codice tra template HTML base delle pagine e contenuto inserito in maniera dinamica in solamente quella pagina.
+Facendo così è possibile modificare la template del sito (per esempio, se fosse necessario cambiare il footer) tramite un solo file, con la sicurezza che la modifica sia applicata in ogni pagina. Facendo diversamente le modifiche degli elementi presenti in ogni pagina sarebbero dovute essere scritte due volte, senza garanzia di coerenza tra di loro.
+
+\newpage
 \section{Divisione del lavoro}
 \subsection{Matteo Galvagni}
 \begin{itemize}

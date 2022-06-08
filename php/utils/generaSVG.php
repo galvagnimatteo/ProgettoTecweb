@@ -32,8 +32,7 @@ function generateSVG($sala, $idproiez, $orario)
         $lastRow = "a";
         $SVG .=
             '<text class="letteraFila" x="' .
-            (int)$tx -
-            (int)$integ .
+            strval($tx - $integ) .
             '" y="' .
             $ty .
             '">A</text>';
@@ -45,8 +44,8 @@ function generateSVG($sala, $idproiez, $orario)
             if ($lastRow != strtolower($fila)) {
                 $SVG .=
                     '<text class="letteraFila" x="' .
-                    (int)$tx -
-                    (int)$intg .
+                    $tx -
+                    $intg .
                     '" y="' .
                     $ty .
                     '">' .
@@ -62,8 +61,7 @@ function generateSVG($sala, $idproiez, $orario)
                 $lx2 = 50;
                 $SVG .=
                     '<text class="letteraFila" x="' .
-                    (int)$tx -
-                    (int)$integ .
+                    strval($tx - $integ) .
                     '" y="' .
                     $ty .
                     '">' .
@@ -127,8 +125,7 @@ function generateSVG($sala, $idproiez, $orario)
 
         $SVG .=
             '<text class="letteraFila" x="' .
-            (int)$tx -
-            (int)$intg .
+            strval($tx - $intg) .
             '" y="' .
             $ty .
             '">' .

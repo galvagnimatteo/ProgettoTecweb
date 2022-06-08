@@ -26,11 +26,14 @@ function generateSVG($sala, $idproiez, $orario)
         $ly1 = 10;
         $ly2 = 50;
 
+        $integ = 40;
+        $intg = 8;
+
         $lastRow = "a";
         $SVG .=
             '<text class="letteraFila" x="' .
             $tx -
-            40 .
+            $integ .
             '" y="' .
             $ty .
             '">A</text>';
@@ -43,7 +46,7 @@ function generateSVG($sala, $idproiez, $orario)
                 $SVG .=
                     '<text class="letteraFila" x="' .
                     $tx -
-                    8 .
+                    $intg .
                     '" y="' .
                     $ty .
                     '">' .
@@ -60,7 +63,7 @@ function generateSVG($sala, $idproiez, $orario)
                 $SVG .=
                     '<text class="letteraFila" x="' .
                     $tx -
-                    40 .
+                    $integ .
                     '" y="' .
                     $ty .
                     '">' .
@@ -73,9 +76,9 @@ function generateSVG($sala, $idproiez, $orario)
             if (!$stato) {
                 $mostraLinea = " nascondilinea";
             }
-			
+
 			$statoClass = $stato ? "occupato" : "libero";
-			
+
             $SVG .=
                 '<g data-codice="' .
                 strtolower($fila) .
@@ -125,7 +128,7 @@ function generateSVG($sala, $idproiez, $orario)
         $SVG .=
             '<text class="letteraFila" x="' .
             $tx -
-            8 .
+            $intg .
             '" y="' .
             $ty .
             '">' .

@@ -44,8 +44,7 @@ function generateSVG($sala, $idproiez, $orario)
             if ($lastRow != strtolower($fila)) {
                 $SVG .=
                     '<text class="letteraFila" x="' .
-                    $tx -
-                    $intg .
+                    strval($tx - $intg) .
                     '" y="' .
                     $ty .
                     '">' .

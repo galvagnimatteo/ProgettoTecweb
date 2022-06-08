@@ -4,35 +4,35 @@
 </h2>
 <div class="div_register">
 	<form action="../php/area_utenti.php?action=register_user" method="post" id="form-register" >
-		
+
 		<label for="username" lang="en"> Username </label>
-		
+
 		<input id="username" type="text" placeholder=" Username" name="username_register"   required />
 
 		<label for="name" >Nome</label>
-		
+
 		<input id="name" type="text" placeholder=" Nome" name="name_register"  />
 
 		<label for="surname" >Cognome</label>
-				
+
 		<input id="surname" type="text" placeholder=" Cognome" name="surname_register" />
 
 		<label for="email" lang="en">Email</label>
-	
+
 		<input id="email" type="email" placeholder=" Email" name="email_register" />
-	
+
 		<label for="password" lang="en">Password</label>
-	
+
 		<input id="password" type="password" placeholder=" Password" name="password_register"  />
 
-		<label for="password_confirm">Ripeti password</label>
-	
-		<input id="password_confirm" type="password" placeholder=" Ripeti password" name="pass_register_confirm"  required />
-			
+		<label for="password_confirm">Ripeti <span lang="en"> password </span> </label>
+
+		<input id="password_confirm" type="password" placeholder=" Ripeti password" name="pass_register_confirm" required />
+
 			<p id="errorMessage"> <ERRORMESSAGE> </p>
-		
+
 			<input type="submit" value="Conferma registrazione" />
-		
+
 
 	</form>
 </div>

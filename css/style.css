@@ -1108,7 +1108,7 @@ h3{
 	padding-top: 1rem;
 }
 
-@media (min-width: 865px) {
+@media (min-width: 925px) {
 	header,
 	ul {
 		display: flex;
@@ -1128,7 +1128,7 @@ h3{
 	}
 }
 
-@media (max-width: 865px) {
+@media (max-width: 924px) {
 	#titleWrapper {
 		display: flex;
 		flex-direction: row;

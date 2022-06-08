@@ -63,7 +63,7 @@ function GeneratePage(
     }
 
     if ($page == "login" && !isset($_SESSION["a"])) {
-        $menu = $menu . "<li id=\"loginMenu\" class=\"menu_name\">Login</li>";
+        $menu = $menu . "<li id=\"loginMenu\" class=\"menu_name\">Area Utenti</li>";
     } elseif ($page == "login" && isset($_SESSION["a"])) {
         $menu =
             $menu .
@@ -82,7 +82,7 @@ function GeneratePage(
         $menu = $menu . "<li id=\"loginMenu\">";
         $menu =
             $menu .
-            '<a id="loginbutton" href="./area_utenti.php?action=login_page">Login</a>';
+            '<a id="loginbutton" href="./area_utenti.php?action=login_page">Accedi</a>';
         $menu = $menu . "</li>";
     }
     $menu = $menu . "</ul>";

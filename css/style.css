@@ -1139,7 +1139,7 @@ h3{
 		flex-direction: column;
 	}
 	.openMenu {
-		display: normal;
+		display: inline;
 	}
 	.closedMenu {
 		display: none;

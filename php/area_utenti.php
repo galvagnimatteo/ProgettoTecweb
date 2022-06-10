@@ -9,7 +9,7 @@ $home_content = file_get_contents("../html/area_utenti_registrazione.html"); //l
 $description = "Area Utenti png cinema: è possibile effettuare login o registrazione, modificare i propri dati e visualizzare lo storico degli acquisti.";
 $keywords = "Area, utenti, login, registrazione, modifica, utente, password, dati, storico, ordini, acquisti, logout";
 $breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Area Utenti';
-$jsbody = '<script type="text/javascript" src="../js/controls.js"> </script>';
+$jsbody = '<script src="../js/controls.js"> </script>';
 
 if (isset($_GET["action"])) {
     $action = $_GET["action"];

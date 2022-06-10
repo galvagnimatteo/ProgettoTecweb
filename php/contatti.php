@@ -11,9 +11,8 @@ $keywords =
 $description =
     "Pagina dei contatti di png cinema: è possibile reperire le informazioni su come contattarci nonché l'indirizzo e i social.";
 $breadcrumbs = '<a href="home.php"><span lang="en">Home</span></a> / Contatti';
-$jshead = '<script type="text/javascript" src="../js/carousel.js"> </script>';
-$jsbody = '<script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
-                            <script type="text/javascript" src="../js/quickpurchase.js"> </script>';
+$jshead = '';
+$jsbody = '';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage(
     "Contatti",

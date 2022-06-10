@@ -161,9 +161,9 @@ $description =
     "Pagina principale PNG cinema: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.";
 $breadcrumbs = '<span lang="en"> Home </span> / ';
 $jshead = '';
-$jsbody = '<script type="text/javascript" src="../js/carousel.js"> </script>
-                <script type="text/javascript" src="../js/jquery-3.6.0.min.js"> </script>
-                <script type="text/javascript" src="../js/quickpurchase.js"> </script>';
+$jsbody = '<script src="../js/carousel.js"> </script>
+                <script src="../js/jquery-3.6.0.min.js"> </script>
+                <script src="../js/quickpurchase.js"> </script>';
 //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
 echo GeneratePage(
     "Home",

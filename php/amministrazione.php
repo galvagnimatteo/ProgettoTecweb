@@ -14,7 +14,7 @@ echo GeneratePage(
     "Pagina di amministrazione di png cinema: è possibile visualizzare tutti i film e le proiezioni nonchè aggiungerne o eliminarne.",
     "admin, amministrazione, film, proiezioni, aggiungi, elimina",
     "",
-    '<script type="text/javascript" src="../js/admin.js"> </script>'
+    '<script src="../js/admin.js"> </script>'
 );
 
 ?>

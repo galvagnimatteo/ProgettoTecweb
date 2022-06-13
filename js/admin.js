@@ -351,9 +351,9 @@ function genera_entry_film(entry) {
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
         + entry.datauscita + "</td><td>" +
-        + entry.durata + "</td>aaa";
+        + entry.durata + "</td>";
     tr = document.createElement('tr');
-    tr.class = 'entry';
+    tr.className = 'entry';
     tr.innerHTML = genera_span_lingua(result);
     return tr;
 }
@@ -368,7 +368,7 @@ function genera_entry_projection(entry) {
         + entry.durata + "</td>";
 
     tr=document.createElement('tr');
-    tr.class = 'entry';
+    tr.className = 'entry';
     tr.innerHTML = genera_span_lingua(result);
     return tr;
 }

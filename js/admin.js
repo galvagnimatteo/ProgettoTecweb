@@ -313,22 +313,28 @@ function delete_projection(id) {
 //
 // Funzioni html
 //
-function aggiorna_html_projection(proiezioni) {
-    var proiezionilist = '';
+function aggiorna_html_projection(proiezioni) {    
     for (entryindex in proiezioni) {
         var entry = proiezioni[entryindex];
-        proiezionilist += genera_entry_projection(entry);
+        document.getElementById("projectionlist").append(genera_entry_projection(entry));
+        (function (id) {
+            document.getElementById("projectionlist").lastChild.onclick() = function () {
+                delete_projection(id);
+            };
+        })(entry.id);
     }
-    document.getElementById("projectionlist").innerHTML = proiezionilist;
 }
 function aggiorna_html_film(films) {
-    var filmlist = '';
     var filmoptions = "";
     for (entryindex in films) {
         var entry = films[entryindex];
-        filmlist += genera_entry_film(entry);
+        document.getElementById("filmlist").append(genera_entry_film(entry));
+        (function (id) {
+            document.getElementById("filmlist").lastChild.onclick()= function () {
+                delete_film(id);
+            };
+        })(entry.id);        
         filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
-
     }
     document.getElementById("filmlist").innerHTML = filmlist;
     if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
@@ -339,7 +345,7 @@ function genera_entry_film(entry) {
 
     result = "<tr class='entry' ><td class='entryfunctions'>" +
 
-        '<a href="#deletefilmstatus" onclick = "delete_film(' + entry.id + ');" class="deleteentry nascondiTesto" role="button">Elimina</a >' +
+        '<a href="#deletefilmstatus" id="filmentry' + entry.id +'" class="deleteentry nascondiTesto" role="button">Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -349,7 +355,7 @@ function genera_entry_film(entry) {
 }
 function genera_entry_projection(entry) {
     result = "<tr class='entry' ><td class='entryfunctions'>" +
-        '<a href="#deleteprojectionstatus" onclick = "delete_projection(' + entry.id + ');" class="deleteentry  nascondiTesto" role="button" >Elimina</a >' +
+        '<a href="#deleteprojectionstatus" id="projectionentry'+entry.id+'" class="deleteentry  nascondiTesto" role="button" >Elimina</a >' +
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"

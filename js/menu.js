@@ -1,7 +1,6 @@
 var menuon = false;
 var btnChiudiMenu = document.getElementById("menubutton-chiudi");
 var btnApriMenu = document.getElementById("menubutton-apri");
-
 function togglemenu() {
     menuon = !menuon;
     if (menuon) {
@@ -44,3 +43,7 @@ window.addEventListener("resize", function() {
 		}
 	}
 });
+
+btnChiudiMenu.onclick = function () { togglemenu(); };
+btnApriMenu.onclick = function () { togglemenu(); };
+

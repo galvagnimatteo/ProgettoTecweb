@@ -1360,8 +1360,9 @@ h3{
 	max-width: 3rem;
 }
 
-#ticketInfoGroup .labelPos span {
+#ticketInfoGroup .labelPos p {
 	font-size: 1rem;
+	
 }
 
 #ticketInfoGroup div {
@@ -1501,18 +1502,27 @@ svg .libero.selezionato .codicePosto {
 	margin: 0 1rem;
 }
 
+#confermaAcq h3 {
+	margin-bottom: 1rem;
+}
+
 #riepilogo {
-	list-style-type: none;
-	display: flex;
-	flex-direction: column;
 	margin-top: 1.5rem;
 }
 
-#riepilogo li {
-	padding-top: 0.5rem;
+#riepilogo dt {
+	font-weight: bold;
+    float: left;
+	clear: left;
+
 }
 
-#codice_acq {
+
+
+#riepilogo dt:after { content: "\00a0 "; }
+
+
+#confermaAcqCodice {
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 	text-align: center;

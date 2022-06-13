@@ -6,19 +6,23 @@
 		Se chiudi questa pagina non potrai più recuperare i tuoi dati di conferma,
 		per evitare di perderli puoi stampare questa pagina.</p>
 
-		<h3>Il riepilogo dei tuoi dati: </h3>
+		<h3>Il riepilogo dei dati della tua prenotazione: </h3>
+		
+		
+		<p><FILM-TITLE></p>
 
-		<ul id="riepilogo">
-			<li>Prenotazione per il film <FILM-TITLE></li>
-			<li> <PREN-DATA-ORA> </li>
-			<li> <NUM-BIGLIETTI> biglietti</li>
-			<li> <NUM-BIGLIETTI-INT-RID> </li>
-			<li> Sala <PREN-SALA> </li>
-			<li> Posti: <POSTI-LISTA> </li>
-			<li> Totale: <TOT-SPESO> € </li>
-			<li id="codice_acq"> Mostra questo codice all'arrivo al cinema: <COD-ACQ> </li>
-		</ul>
-
+		<dl id="riepilogo">
+			
+			<dt>Data: </dt> <dd><PREN-DATA-ORA></dd> 
+			<dt><NUM-BIGLIETTI> biglietti: </dt> <dd><NUM-BIGLIETTI-INT-RID> </dd>
+			<dt>Sala: </dt> <dd> <PREN-SALA> </dd>
+			<dt>Posti:</dt> <dd> <POSTI-LISTA> </dd>
+			<dt>Totale:</dt> <dd> <TOT-SPESO> € </dd>
+			
+		</dl>
+		
+		<p id="confermaAcqCodice">Mostra questo codice all'arrivo al cinema: <strong><COD-ACQ></strong></p>
+		
 		<a href="../php/home.php">Torna alla Home</a>
 
 	</div>

@@ -343,27 +343,33 @@ function aggiorna_html_film(films) {
 }
 function genera_entry_film(entry) {
 
-    result = "<tr class='entry' ><td class='entryfunctions'>" +
+    result = "<td class='entryfunctions'>" +
 
         '<a href="#deletefilmstatus" id="filmentry' + entry.id +'" class="deleteentry nascondiTesto" role="button">Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
         + entry.datauscita + "</td><td>" +
-        + entry.durata + "</td></tr>";
-    return genera_span_lingua(result);
+        + entry.durata + "</td>";
+    tr = document.createElement('tr');
+    tr.class = 'entry';
+    tr.innerHTML = genera_span_lingua(result);
+    return tr;
 }
 function genera_entry_projection(entry) {
-    result = "<tr class='entry' ><td class='entryfunctions'>" +
+    result = "<td class='entryfunctions'>" +
         '<a href="#deleteprojectionstatus" id="projectionentry'+entry.id+'" class="deleteentry  nascondiTesto" role="button" >Elimina</a >' +
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
         + entry.titolofilm + "</td><td>"
         + entry.orario + "</td><td>"
-        + entry.durata + "</td></tr>";
+        + entry.durata + "</td>";
 
-    return genera_span_lingua(result);
+    tr=document.createElement('tr');
+    tr.class = 'entry';
+    tr.innerHTML = genera_span_lingua(result);
+    return tr;
 }
 
 function genera_span_lingua(stringa){

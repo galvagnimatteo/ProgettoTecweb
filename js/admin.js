@@ -239,6 +239,7 @@ function api_request(api) {
     request.open('GET', api.url);
     request.send();
     request.onload = () => {
+        console.log(request.response);
         var data = JSON.parse(request.response);
         api.aggiorna_html(data);
     }
@@ -319,7 +320,7 @@ function aggiorna_html_projection(proiezioni) {
         var entry = proiezioni[entryindex];
         document.getElementById("projectionlist").append(genera_entry_projection(entry));
         (function (id) {
-            document.getElementById("projectionlist").lastChild.onclick() = function () {
+            document.getElementById("projectionlist").lastChild.onclick = function () {
                 delete_projection(id);
             };
         })(entry.id);
@@ -332,7 +333,7 @@ function aggiorna_html_film(films) {
         var entry = films[entryindex];
         document.getElementById("filmlist").append(genera_entry_film(entry));
         (function (id) {
-            document.getElementById("filmlist").lastChild.onclick()= function () {
+            document.getElementById("filmlist").lastChild.onclick= function () {
                 delete_film(id);
             };
         })(entry.id);        

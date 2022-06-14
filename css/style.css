@@ -929,6 +929,14 @@ div.ul_reservation {
 	margin-top: 1.5rem;
 }
 
+#filmPageCard h3 {
+	margin-left:1rem;
+}
+
+#filmPageCard h4 {
+	margin-top:1rem;
+}
+
 #filmDataContainer {
 	display: flex;
 	align-items: flex-start;
@@ -1021,10 +1029,10 @@ div.ul_reservation {
 	background-color: var(--secondary-color);
 }
 
-#filmPageCard .screenings h2 {
+/*#filmPageCard .screenings h2 {
 	padding: 0.3rem;
 	margin-left: 1rem;
-}
+}*/
 
 .quickPurchaseContainer div.labelqp {
 	margin-top: 1rem;

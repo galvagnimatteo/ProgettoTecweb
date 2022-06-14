@@ -1,14 +1,18 @@
 ﻿<div id="admin">
     <div class="adminsidebar">
         <ul id="areasselector">
-            <li class="activeoption" id="filmarea"><a href="#films" class="SRskip" title="salta a sezione film">salta alla sezione film</a> Film</li>
-            <li class="inactiveoption" id="projectionarea"><a href="#projections" class="SRskip" title="salta a sezione film">salta alla sezione proiezioni</a>Proiezioni</li>
+            <li class="activeoption" id="filmarea">
+			<a href="#films" class="SRskip" aria-label="salta a sezione film" title="salta a sezione film">salta alla sezione film</a> 
+			Film</li>
+            <li class="inactiveoption" id="projectionarea">
+			<a href="#projections" class="SRskip" aria-label="salta a sezione film" title="salta a sezione film">salta alla sezione proiezioni</a>
+			Proiezioni</li>
             <!--<li class="inactiveoption" id="people_cast_area"><a href="#people_cast">Cast</a></li>-->
         </ul>
     </div>
     <div class="workarea">
         <div class="lists">
-            <div id="films" class="open" aria-hidden="false">
+            <div id="films" class="open">
                 <p class="SRskip">area: film</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
                 <table>
@@ -33,7 +37,7 @@
                     <a href="#films" class="SRskip">torna a lista</a>
                 </div>
             </div>
-            <div id="projections" class="closed" aria-hidden="true">
+            <div id="projections" class="closed">
                 <p class="SRskip">area: proiezioni</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
                 <table>
@@ -61,7 +65,7 @@
             </div>
         </div>
         <div class="overlays">
-            <form id="insert_film" class="closed" method="post" aria-hidden="true">
+            <form id="insert_film" class="closed" method="post">
                 <p class="SRskip">form: film</p>
                 <a href="#films" class="formcloser nascondiTesto" id="chiudi_film" role="button">chiudi form</a>
                 <fieldset>
@@ -82,9 +86,9 @@
                 </fieldset>
                 <fieldset>
                     <legend>Cast</legend>
-                    <label for="imputdescizione">Regista</label>
+                    <label for="imputregista">Regista</label>
                     <input type="text" name="regista" required id="imputregista">
-                    <label for="imputdescizione">Attori</label>
+                    <label for="imputattori">Attori</label>
                     <input type="text" name="attori" required id="imputattori" placeholder="Attore A, Attore B, etc">
                 </fieldset>
                 <fieldset id="insert_film_immagini">
@@ -94,11 +98,11 @@
                     <label for="imputcarousel">Immagine carousel</label>
                     <input type="text" name="CarouselImg" required id="imputcarousel">
                 </fieldset>
-                <button type="submit" class="submit">Inserisci</button>
+                <button type="submit" class="submit">Inserisci film</button>
                 <p id="result_insert_film"></p>
                 <a href="#insert_film" class="SRskip">torna ad inizio form</a>
             </form>
-            <form id="insert_projection" class="closed" method="post" aria-hidden="true">
+            <form id="insert_projection" class="closed" method="post">
                 <p class="SRskip">form: proiezioni</p>
                 <a href="#projections" class="formcloser nascondiTesto" id="chiudi_proiezioni" role="button">chiudi form</a>
                 <label for="filmselector">Film</label>
@@ -114,7 +118,7 @@
                 <input type="date" name="Giorno" required id="imputgiorno" />
                 <label for="imputorario">Orario</label>
                 <input type="time" name="orario" required id="imputorario" />
-                <button type="submit" class="submit">Inserisci</button>
+                <button type="submit" class="submit">Inserisci proiezione</button>
                 <p id="result_insert_projection"></p>
                 <a href="#insert_projection" class="SRskip">torna ad inizio form</a>
             </form>

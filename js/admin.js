@@ -135,13 +135,13 @@ function cambia_contesto(contesto) {
     for (area in areas) {
         if (contesto === areas[area].nome) {
             document.getElementById(areas[area].elemento).className = 'open';
-            document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'false');
+            //document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'false');
             document.getElementById(areas[area].selettore_area).className = 'activeoption';
             //window.location.href = areas[area].elemento;
         }
         else {
             document.getElementById(areas[area].elemento).className = 'closed';
-            document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'true');
+            //document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'true');
             document.getElementById(areas[area].selettore_area).className = 'inactiveoption';
         }
     }
@@ -149,11 +149,11 @@ function cambia_contesto(contesto) {
         if ((contesto === forms[form].area) && forms[form].visible) {
             //window.location.href = forms[form].elemento
             document.getElementById(forms[form].elemento).className = 'open';
-            document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
+            //document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
         }
         else {
             document.getElementById(forms[form].elemento).className = 'closed';
-            document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
+            //document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
         }
     }
 }
@@ -165,11 +165,11 @@ function toggle_form(toggledform) {
             forms[form].visible = !forms[form].visible
             if (forms[form].visible) {
                 document.getElementById(forms[form].elemento).className = 'open';
-                document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
+                //document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
             }
             else {
                 document.getElementById(forms[form].elemento).className = 'closed';
-                document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
+                //document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
                 if (forms[form].output_stato) {
                     document.getElementById(forms[form].output_stato).innerText = '';
                 }

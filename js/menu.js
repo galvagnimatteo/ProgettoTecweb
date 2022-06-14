@@ -1,6 +1,7 @@
 var menuon = false;
 var btnChiudiMenu = document.getElementById("menubutton-chiudi");
 var btnApriMenu = document.getElementById("menubutton-apri");
+var tornaSu = document.getElementById("tornaSuLink");
 function togglemenu() {
     menuon = !menuon;
     if (menuon) {
@@ -46,4 +47,21 @@ window.addEventListener("resize", function() {
 
 btnChiudiMenu.onclick = function () { togglemenu(); };
 btnApriMenu.onclick = function () { togglemenu(); };
+
+
+
+window.addEventListener("scroll", function () {
+		if (document.body.scrollTop > 300 || 
+		document.documentElement.scrollTop > 300) {
+			
+			tornaSu.style.display = "block";
+		} 
+		else {
+			tornaSu.style.display = "none";
+		}
+	}
+);
+
+
+
 

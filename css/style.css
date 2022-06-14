@@ -167,6 +167,35 @@ a:visited:not(.carouselContainer a:visited) {
 }
 
 
+
+
+
+
+#tornaSuLink {
+	position: fixed;
+    bottom: 2em;
+    right: 3em;
+    height: 1.5em;
+    width: 1em;
+    background-color: var(--links-hover-color);
+    border-radius: 10px;
+    opacity: 0.9;
+    background-image: url("../images/torna-su.svg");
+    background-repeat: no-repeat;
+    background-size: 3em;
+    text-indent: -999999em;
+    background-position: center;
+	padding: 1rem;
+	display:none;
+}
+
+@media screen and (max-width: 760px) {
+	#tornaSuLink {
+		right: 2%;
+	}
+}
+
+
 /*codice per css con javascript abilitato*/
 
 .carouselContainer {
@@ -545,6 +574,8 @@ div.ul_reservation {
 		font-size: 0.6em;
 	}
 }*/
+
+
 
 @media screen and (max-width: 760px) {
 	.cards_users {

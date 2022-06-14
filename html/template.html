@@ -6,6 +6,7 @@
     <meta charset="utf-8"/>
     <meta name="keywords" content="<KEYWORDS/>"/>
     <meta name="description" content="<DESCRIPTION/>" />
+	<meta name="author" content="Antonio Stan, Giovanni Cristellon, Matteo Galvagni, Michele Gatto" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link type="text/css"  rel="stylesheet" href="../css/style.css" />
 	<link rel="stylesheet" media="print" href="../css/print.css" type="text/css"/>
@@ -14,15 +15,15 @@
 
 </head>
     <body>
-        <a href="#content" class="SRskip">salta al contenuto</a>
+        <a href="#content" class="SRskip" title="salta al contenuto" aria-label="salta al contenuto">salta al contenuto</a>
         <div class="headerWrapper">
             <header>
                 <div id="titleWrapper">
                     <h1> PNGCINEMA </h1>
                 </div>
                 <nav>
-                    <button type="button" class="nascondiTesto" id="menubutton-apri">Apri il menu</button>
-                    <button type="button" class="nascondiTesto" id="menubutton-chiudi">Chiudi il menu</button>
+                    <button type="button" class="nascondiTesto" id="menubutton-apri" title="Apri il burger menu">Apri il burger menu</button>
+                    <button type="button" class="nascondiTesto" id="menubutton-chiudi" title="Chiudi il burger menu">Chiudi burger il menu</button>
                         <MENU/>
                         <ADMIN/>
                 </nav>
@@ -31,8 +32,10 @@
                 <p> Ti trovi in: <BREADCRUMB/> </p>
             </div>
         </div>
+		<div id="content">
         <CONTENT/>
-
+		</div>
+		<a id="tornaSuLink" href="#" aria-label="Torna su" title="Torna su"> Torna su </a>
         <footer>
             <p> <a href="./contatti.php">Contattaci</a> | Aperti ogni giorno dalle 17:00 alle 01:00 | <span lang="en"> Copyright 2022 </span></p>
         </footer>

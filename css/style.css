@@ -104,6 +104,10 @@ header h1 {
 	font-size: 1.5rem;
 }
 
+h3 {
+	padding-top: 1rem;
+}
+
 .headerWrapper {
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 }
@@ -164,6 +168,35 @@ a:visited:not(.carouselContainer a:visited) {
 
 .slide {
 	list-style-type: none;
+}
+
+
+
+
+
+
+#tornaSuLink {
+	position: fixed;
+    bottom: 2em;
+    right: 3em;
+    height: 1.5em;
+    width: 1em;
+    background-color: var(--links-hover-color);
+    border-radius: 10px;
+    opacity: 0.9;
+    background-image: url("../images/torna-su.svg");
+    background-repeat: no-repeat;
+    background-size: 3em;
+    text-indent: -999999em;
+    background-position: center;
+	padding: 1rem;
+	display:none;
+}
+
+@media screen and (max-width: 760px) {
+	#tornaSuLink {
+		right: 2%;
+	}
 }
 
 
@@ -437,6 +470,12 @@ programmazione.html
 
 /*log/reg*/
 
+h2.subtitlelogin {
+	text-align: center;
+	margin: 2rem 0.5rem;
+	
+}
+
 .cards_reservation {
 	border:1px solid var(--secondary-color);
 	margin: 0.3em;
@@ -461,6 +500,10 @@ programmazione.html
 	font-style: italic;
 }
 
+.subtAreaPers {
+	margin: 0.5rem;
+	text-align: center;
+}
 
 
 .div_register.reservation {
@@ -469,8 +512,8 @@ programmazione.html
 }
 
 .cards_users {
-	display: flex;
-	flex-direction: column;
+	/*display: flex;
+	flex-direction: column;*/
 	padding: 2em;
 }
 
@@ -546,6 +589,8 @@ div.ul_reservation {
 	}
 }*/
 
+
+
 @media screen and (max-width: 760px) {
 	.cards_users {
 		grid-template-columns: 1fr;
@@ -612,11 +657,14 @@ div.ul_reservation {
 }
 
 
-
 .div_user.card3_users {
 	width: 100%;
+	flex-direction: column;
 }
 
+.div_user.card3_users h3 {
+	padding: 0
+}
 
 .cards_users ul {
 	list-style-type: none;
@@ -898,6 +946,14 @@ div.ul_reservation {
 	margin-top: 1.5rem;
 }
 
+#filmPageCard h3 {
+	margin-left:1rem;
+}
+
+#filmPageCard h4 {
+	margin-top:1rem;
+}
+
 #filmDataContainer {
 	display: flex;
 	align-items: flex-start;
@@ -990,10 +1046,10 @@ div.ul_reservation {
 	background-color: var(--secondary-color);
 }
 
-#filmPageCard .screenings h2 {
+/*#filmPageCard .screenings h2 {
 	padding: 0.3rem;
 	margin-left: 1rem;
-}
+}*/
 
 .quickPurchaseContainer div.labelqp {
 	margin-top: 1rem;
@@ -1091,10 +1147,6 @@ div.labelqp select {
 		font-size: 1rem;
 	}
 
-	/*h2{
-		font-size: 1.7rem;
-	}*/
-
 	h3{
 		font-size: 1.3rem;
 	}
@@ -1104,9 +1156,7 @@ div.labelqp select {
 	}
 }
 
-h3{
-	padding-top: 1rem;
-}
+
 
 @media (min-width: 925px) {
 	header,
@@ -1360,8 +1410,9 @@ h3{
 	max-width: 3rem;
 }
 
-#ticketInfoGroup .labelPos span {
+#ticketInfoGroup .labelPos p {
 	font-size: 1rem;
+	
 }
 
 #ticketInfoGroup div {
@@ -1501,18 +1552,27 @@ svg .libero.selezionato .codicePosto {
 	margin: 0 1rem;
 }
 
+#confermaAcq h3 {
+	margin-bottom: 1rem;
+}
+
 #riepilogo {
-	list-style-type: none;
-	display: flex;
-	flex-direction: column;
 	margin-top: 1.5rem;
 }
 
-#riepilogo li {
-	padding-top: 0.5rem;
+#riepilogo dt {
+	font-weight: bold;
+    float: left;
+	clear: left;
+
 }
 
-#codice_acq {
+
+
+#riepilogo dt:after { content: "\00a0 "; }
+
+
+#confermaAcqCodice {
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 	text-align: center;
@@ -1552,7 +1612,7 @@ p.aiutocompilaz strong {
 
 /*stile info e costi*/
 
-#content.infocosti ul {
+#content div.infocosti ul {
 	font-size: 1.2rem;
 	/*default*/
 	display: block;
@@ -1563,37 +1623,37 @@ p.aiutocompilaz strong {
 	padding-left: 40px;
 }
 
-#content.infocosti {
+#content div.infocosti {
 	margin-left: 1rem;
 	margin-right: 1rem;
 }
 
-#content.infocosti p {
+#content div.infocosti p {
 	font-size: 1.2rem;
 }
 
-#content.infocosti section {
+#content div.infocosti section {
 	margin-top: 2.3rem;
 	margin-bottom: 3rem;
 }
 
-#content.infocosti h3 {
+#content div.infocosti h3 {
 	margin-bottom: 1rem;
 	margin-top: 2rem;
 }
 
-#content.infocosti h4 {
+#content div.infocosti h4 {
 	margin-top: 1.2rem;
 }
 
-#content.infocosti table {
+#content div.infocosti table {
 	margin: auto;
 	border: 2px solid #f00;
 	border-collapse: collapse;
 }
 
-#content.infocosti table th,
-#content.infocosti table td {
+#content div.infocosti table th,
+#content div.infocosti table td {
 	border: 2px solid #f00;
 	padding: 0.4rem 0.8rem;
 	text-align: center;

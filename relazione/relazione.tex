@@ -69,6 +69,21 @@ Le pagine raggiungibili dal menù sono:
 Altre pagine raggiungibili dalla pagina "Programmazione" sono "Scheda Film" e successivamente "Conferma Acquisto" all'acquisto di uno o più biglietti.
 \subsection{Selezione posti}
 All'interno del sito sono presenti due modalità per acquistare i biglietti: la prima prevede la selezione grafica dei posti scelti all'interno di una sezione apposita; la seconda, più accessibile, prevede la semplice selezione dei posti come coppia fila-numero posto. In entrambe le modalità è richiesto all'utente di specificare quanti biglietti (e di che tipo) voglia acquistare.
+
+\subsection{Database}
+Di seguito lo schema concettuale del database:
+
+\begin{center}
+    \includegraphics[scale=0.5]{database}
+\end{center}
+
+In particolare, valutato il fatto che in una situazione reale, raramente vengono cambiati i layout di sale e le numerazioni dei posti, si è deciso che queste rimarranno fisse e non modificabili. Inoltre sono state applicate alcune semplificazioni in sede di progetto: 
+\begin{itemize}
+\item ogni sala ha la stessa quantità, numerazione e layout di posti;
+\item i prezzi non sono modificabili dagli amministratori (se non direttamente da un strumento come phpMyAdmin).
+\end{itemize}
+
+
 \section{Implementazione}
 È stato scelto di sviluppare il sito utilizzando HTML5, non avendo particolari esigenze di compatibilità vista l'utenza molto giovane.
 Avendo prestato particolare attenzione alla categoria di utenti "frettolosi", e dunque all'accesso del sito da mobile, fin da subito ogni unità di misura utilizzata in CSS è stata relativa per permettere la corretta responsività del sito (fatta eccezione per la massima larghezza del body, 1024px, e i bordi di alcuni elementi grafici).

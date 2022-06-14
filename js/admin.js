@@ -189,7 +189,7 @@ function controlla_campi(form) {
         var field = fields[index];
         valore = document.getElementById(field.elemento).value;
         if (!field.condizione(valore)) {
-            form.output_stato.innerText = field.messaggio_errore;
+            document.getElementById(form.output_stato).innerText = field.messaggio_errore;
             return false;
         }
         data[index] = {

@@ -104,6 +104,10 @@ header h1 {
 	font-size: 1.5rem;
 }
 
+h3 {
+	padding-top: 1rem;
+}
+
 .headerWrapper {
 	background-image: linear-gradient(var(--gradient-first-color), var(--gradient-last-color));
 }
@@ -466,6 +470,12 @@ programmazione.html
 
 /*log/reg*/
 
+h2.subtitlelogin {
+	text-align: center;
+	margin: 2rem 0.5rem;
+	
+}
+
 .cards_reservation {
 	border:1px solid var(--secondary-color);
 	margin: 0.3em;
@@ -490,6 +500,10 @@ programmazione.html
 	font-style: italic;
 }
 
+.subtAreaPers {
+	margin: 0.5rem;
+	text-align: center;
+}
 
 
 .div_register.reservation {
@@ -498,8 +512,8 @@ programmazione.html
 }
 
 .cards_users {
-	display: flex;
-	flex-direction: column;
+	/*display: flex;
+	flex-direction: column;*/
 	padding: 2em;
 }
 
@@ -643,11 +657,14 @@ div.ul_reservation {
 }
 
 
-
 .div_user.card3_users {
 	width: 100%;
+	flex-direction: column;
 }
 
+.div_user.card3_users h3 {
+	padding: 0
+}
 
 .cards_users ul {
 	list-style-type: none;
@@ -1130,10 +1147,6 @@ div.labelqp select {
 		font-size: 1rem;
 	}
 
-	/*h2{
-		font-size: 1.7rem;
-	}*/
-
 	h3{
 		font-size: 1.3rem;
 	}
@@ -1143,9 +1156,7 @@ div.labelqp select {
 	}
 }
 
-h3{
-	padding-top: 1rem;
-}
+
 
 @media (min-width: 925px) {
 	header,

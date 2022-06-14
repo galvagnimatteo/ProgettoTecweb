@@ -70,7 +70,7 @@ function CheckFilm(
         $Regista
 ) {
     $titoloRegex = "/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*/";
-    $grafferegex="/^(?|{?*})*/";
+    $grafferegex="/^(.|{.*})*/";
     if (!preg_match($grafferegex, $Titolo)) {
         if (!preg_match($titoloRegex, $Titolo)) {
 

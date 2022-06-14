@@ -22,20 +22,20 @@ var forms = [
                 nome: "Titolo",
                 elemento: "imputtitolo",
                 condizione: function (value) {
-                    return value.match("/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*/");
+                    return value.match(/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*/);
                 },
                 messaggio_errore: "titolo non valido"
             },
             {
                 nome: "Genere",
                 elemento: "imputgenere",
-                condizione: function (value) { return value.match("/^[a-zA-Z]/"); },
+                condizione: function (value) { return value.match(/^[a-zA-Z]/); },
                 messaggio_errore: "genere puo contenere solo caratteri alfanumerici"
             },
             {
                 nome: "Descrizione",
                 elemento: "imputdescizione",
-                condizione: function (value) { return value.match("/^(?|{?*})*/"); },
+                condizione: function (value) { return value.match(/^(.|{.*})*/); },
                 messaggio_errore: "errore sintassi graffe descrizione"
             },
             {
@@ -47,14 +47,14 @@ var forms = [
             {
                 nome: "SrcImg",
                 elemento: "imputimmagine",
-                condizione: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
+                condizione: function (value) { return value.match(/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/); },
                 messaggio_errore: "l'immagine deve essere un file valido"
 
             },
             {
                 nome: "CarouselImg",
                 elemento: "imputcarousel",
-                condizione: function (value) { return value.match("/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/"); },
+                condizione: function (value) { return value.match(/[^?#]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/); },
                 messaggio_errore: "l'immagine deve essere un file valido"
             },
             {
@@ -239,7 +239,6 @@ function api_request(api) {
     request.open('GET', api.url);
     request.send();
     request.onload = () => {
-        console.log(request.response);
         var data = JSON.parse(request.response);
         api.aggiorna_html(data);
     }

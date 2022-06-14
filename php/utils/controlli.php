@@ -69,8 +69,8 @@ function CheckFilm(
         $Attori,
         $Regista
 ) {
-    $titoloRegex = "/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*/";
-    $grafferegex="/^(?|{?*})*/";
+    $titoloRegex = "/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*$/";
+    $grafferegex="/^([^{}]|{[^{}]*})*$/";
     if (!preg_match($grafferegex, $Titolo)) {
         if (!preg_match($titoloRegex, $Titolo)) {
 

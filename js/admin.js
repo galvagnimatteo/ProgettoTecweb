@@ -313,7 +313,8 @@ function delete_projection(id) {
 //
 // Funzioni html
 //
-function aggiorna_html_projection(proiezioni) {    
+function aggiorna_html_projection(proiezioni) {
+    document.getElementById("projectionlist").innerHTML = "";
     for (entryindex in proiezioni) {
         var entry = proiezioni[entryindex];
         document.getElementById("projectionlist").append(genera_entry_projection(entry));
@@ -325,6 +326,7 @@ function aggiorna_html_projection(proiezioni) {
     }
 }
 function aggiorna_html_film(films) {
+    document.getElementById("filmlist").innerHTML = "";
     var filmoptions = "";
     for (entryindex in films) {
         var entry = films[entryindex];
@@ -335,8 +337,7 @@ function aggiorna_html_film(films) {
             };
         })(entry.id);        
         filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
-    }
-    document.getElementById("filmlist").innerHTML = filmlist;
+    }    
     if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
         document.getElementById("filmselector").innerHTML = filmoptions;
     }
@@ -352,7 +353,7 @@ function genera_entry_film(entry) {
         + entry.datauscita + "</td><td>" +
         + entry.durata + "</td>";
     tr = document.createElement('tr');
-    tr.class = 'entry';
+    tr.className = 'entry';
     tr.innerHTML = genera_span_lingua(result);
     return tr;
 }
@@ -367,7 +368,7 @@ function genera_entry_projection(entry) {
         + entry.durata + "</td>";
 
     tr=document.createElement('tr');
-    tr.class = 'entry';
+    tr.className = 'entry';
     tr.innerHTML = genera_span_lingua(result);
     return tr;
 }

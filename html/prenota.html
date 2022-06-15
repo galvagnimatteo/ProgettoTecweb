@@ -1,4 +1,4 @@
-<div id="content">
+
 <div id="prenota-container">
 <div id="filmData-pren">
 	<h2> Acquista i biglietti per <FILM-TITLE> </h2>
@@ -49,8 +49,9 @@
 	</div>
 
 	<div class="labelPos noBorder">
+		<p> Riduzioni disponibili per over 65, under 10 e persone con disabilità. <a href="info.php#info-riduz" 
+		title="Maggiori informazioni sulle riduzioni di prezzo" aria-label="Maggiori informazioni sulle riduzioni di prezzo"> Maggiori informazioni</a></p>
 		<label for="selectNumTicketRed">
-		<span> Riduzioni disponibili per over 65, under 10 o persone con disabilità. <a href="info.php#info-riduz" title="Maggiori informazioni sulle riduzioni di prezzo"> Maggiori informazioni</a></span> <br/>
 		Ridotto, <DISC-PRICE-FORMAT> € : </label>
 		<input type="number" id="selectNumTicketRed" name="numTicketRidotto"  data-prezzo-ridotto="<DISC-PRICE>"  value="0" min="0" step="1" />
 
@@ -100,7 +101,7 @@
 			<p role="alert" class="aiutocompilaz hide"> Hai selezionato due posti uguali </p>
 			<p role="alert" class="aiutocompilaz hide"> Attenzione, puoi inserire solo numeri interi nella quantità dei posti </p>
 
-		<button type="submit" value="acquisto" id="acquistaBtn">
+		<button type="submit" value="acquisto" id="acquistaBtn"  title="Procedi all'acquisto dei biglietti" aria-label="Procedi all'acquisto dei biglietti">
 			 <span class="noscript" >
 			 Acquista i biglietti
 			  </span>
@@ -109,7 +110,7 @@
 
 
 </div>
-</div>
+
 
 
 

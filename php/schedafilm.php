@@ -136,7 +136,7 @@ if (isset($_GET["idfilm"]) && is_numeric($_GET["idfilm"])) {
                     $hour_field =
                         '<li><a href="../php/prenotazione.php?idproiez=' .
                         $orarioRow["IDProiezione"] .
-                        '">'.
+                        '" title="Vai alla pagina di acquisto biglietti" aria-label="Vai alla pagina di acquisto biglietti" >'.
                         substr($orarioRow["Orario"], 0, -3) .
                         "</a></li>";
                     $hour_fields .= $hour_field;

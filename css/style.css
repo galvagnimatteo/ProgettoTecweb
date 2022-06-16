@@ -568,26 +568,6 @@ h2.subtitlelogin {
 
 }
 
-/*
-div.ul_reservation {
-	padding-top: 2rem;
-}
-
-.reservation_button:hover {
-	color: white !important;
-}
-
-@media screen and (max-width: 190px) {
-	.reservation_button {
-		font-size: 0.8em;
-	}
-}
-
-@media screen and (max-width: 190px) {
-	.reservation_button {
-		font-size: 0.6em;
-	}
-}*/
 
 
 
@@ -679,14 +659,7 @@ div.ul_reservation {
 	font-size: 0.8em;
 }
 
-/*.link_button_cards {
-	background: none!important;
-	border: none;
-	padding: 0!important;
-	padding-top: 1em;
-	text-decoration: underline;
-	cursor: pointer;
-}*/
+
 
 .div_login {
 	margin: auto;
@@ -795,19 +768,6 @@ div.ul_reservation {
 }
 
 
-/*.link_button {
-	background: none!important;
-	border: none;
-	padding: 0!important;
-	font-size: 1.5rem;
-	text-decoration: underline;
-	cursor: pointer;
-}*/
-
-/*.contactpage iframe {
-    width: 100%;
-    align-self: end;
-}*/
 
 .contactpage{
 	margin: 1rem;
@@ -820,14 +780,7 @@ div.ul_reservation {
 	padding-left: 0;
 }
 
-/*@keyframes materialize {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}*/
+
 
 #posizione {
     position: relative;

@@ -590,10 +590,14 @@ class Users
                         $row["IDFilm"],
                         $home_content
                     );
+					$titoloTemp = $row["Titolo"];
+
+					$titoloTemp = str_replace("{", "", $titoloTemp);
+					$titoloTemp = str_replace("}", "", $titoloTemp);
+
 					$home_content = str_replace(
                         "<ALTIMG>",
-						"Locandina " .
-                        filtraTestoInglese($row["Titolo"]),
+						"Locandina " . $titoloTemp,
                         $home_content
                     );
 					 

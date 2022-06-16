@@ -11,7 +11,6 @@
                     Proiezioni
                 </a>
             </li>
-            <!--<li class="inactiveoption" id="people_cast_area"><a href="#people_cast">Cast</a></li>-->
         </ul>
     </div>
     <div class="workarea">
@@ -19,8 +18,9 @@
             <div id="films" class="open">
                 <p class="SRskip">area: film</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
-                <a href="#insert_film" class="formopener nascondiTesto" id="apri_film" role="button">apri form</a>
+                <a href="#insert_film" class="formopener nascondiTesto" id="apri_film" role="button" aria-label="Inserisci nuovo film" title="Inserisci nuovo film">Inserisci nuovo film</a>
                 <table>
+				<caption> Film in proiezione </caption>
                     <thead>
                         <tr class="headerrow">
                             <th scope="col" class="nascondiTesto">Funzioni</th>
@@ -43,8 +43,10 @@
             <div id="projections" class="closed">
                 <p class="SRskip">area: proiezioni</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
-                <a href="#insert_projection" class="formopener nascondiTesto" id="apri_proiezioni" role="button">apri form</a>
+                <a href="#insert_projection" class="formopener nascondiTesto" id="apri_proiezioni" role="button" 
+				aria-label="Inserisci nuova proiezione" title="Inserisci nuova proiezione">Inserisci nuova proiezione</a>
                 <table>
+				<caption> Proiezioni disponibili </caption>
                     <thead>
                         <tr class="headerrow">
                             <th scope="col" class="nascondiTesto">Funzioni</th>
@@ -82,7 +84,7 @@
                 <fieldset>
                     <legend>Dettagli</legend>
                     <label for="imputdurata">Durata</label>
-                    <input type="number" name="Durata" inputmode="numeric" required min="0" placeholder="120" id="imputdurata">
+                    <input type="number" name="Durata" required min="0" placeholder="120" id="imputdurata">
                     <label for="imputdescizione">Descrizione</label>
                     <textarea id="imputdescizione" name="Descrizione" required rows="5"></textarea>
                 </fieldset>

@@ -1743,8 +1743,11 @@ p.aiutocompilaz strong {
 	background-color: var(--admin-workarea-background);
 	height: 750px;
 	overflow-y: hidden;
-	/*display:flex;
-	flex-direction:column;*/
+	
+}
+
+.workarea table caption {
+	text-align:left;
 }
 
 .overlays {

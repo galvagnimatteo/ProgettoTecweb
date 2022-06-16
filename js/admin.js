@@ -24,13 +24,13 @@ var forms = [
                 condizione: function (value) {
                     return value.match(/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*$/);
                 },
-                messaggio_errore: "titolo non valido"
+                messaggio_errore: "titolo non valido, sono presenti caratteri invalidi"
             },
             {
                 nome: "Genere",
                 elemento: "imputgenere",
                 condizione: function (value) { return value.match(/^[a-zA-Z]*$/); },
-                messaggio_errore: "genere puo contenere solo caratteri alfanumerici"
+                messaggio_errore: "genere può contenere solo caratteri alfanumerici"
             },
             {
                 nome: "Descrizione",
@@ -130,6 +130,15 @@ var api = {
 //
 // Interfaccia
 //
+
+
+function add_span_en(titolo) {
+	return titolo.replace("{", '<span lang="en">').replace("}", '</span>');
+} 
+
+function remove_par(titolo) {
+	return titolo.replace("{", "").replace("}", "");
+}
 
 function cambia_contesto(contesto) {
     for (area in areas) {
@@ -353,9 +362,9 @@ function genera_entry_film(entry) {
     result = "<td class='entryfunctions'>" +
 
         '<a href="#deletefilmstatus" id="delete_film_' + entry.id +'" class="deleteentry nascondiTesto" role="button" ' +
-		'title="Elimina film ' + entry.titolo + '" aria-label="Elimina film "' + entry.titolo +'" >Elimina film</a >' +
+		'title="Elimina film ' + remove_par(entry.titolo) + '" aria-label="Elimina film "' + remove_par(entry.titolo) +'" >Elimina film</a >' +
         '</td ><td>'
-        + entry.titolo + "</td><td>"
+        + add_span_en(entry.titolo) + "</td><td>"
         + entry.genere + "</td><td>"
         + entry.datauscita + "</td><td>" +
         + entry.durata + "</td>";
@@ -369,14 +378,14 @@ function genera_entry_film(entry) {
 function genera_entry_projection(entry) {
     result = "<td class='entryfunctions'>" +
         '<a href="#deleteprojectionstatus" id="delete_projection_'+entry.id+'" class="deleteentry  nascondiTesto" role="button" ' + 
-		'title="Elimina proiezione del '+entry.data + ', sala '+entry.numeroSala+ ', ' + entry.titolofilm +
-		'" aria-label="Elimina proiezione del '+entry.data + ', sala '+entry.numeroSala+ ', ' + entry.titolofilm +
+		'title="Elimina proiezione del '+entry.data + ', sala '+entry.numeroSala+ ', ' + remove_par(entry.titolofilm) +
+		'" aria-label="Elimina proiezione del '+entry.data + ', sala '+entry.numeroSala+ ', ' + remove_par(entry.titolofilm) +
 		'">Elimina proiezione</a >' +
 		
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
-        + entry.titolofilm + "</td><td>"
+        + add_span_en(entry.titolofilm) + "</td><td>"
         + entry.orario + "</td><td>"
         + entry.durata + "</td>";
 

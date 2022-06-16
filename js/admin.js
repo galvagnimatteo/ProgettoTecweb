@@ -351,7 +351,7 @@ function aggiorna_html_film(films) {
                 delete_film(id);
             };
         })(entry.id);        
-        filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
+        filmoptions = filmoptions + "<option value=" + entry.id + ">" + add_span_en(entry.titolo) + "</option>";
     }    
     if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
         document.getElementById("filmselector").innerHTML = filmoptions;

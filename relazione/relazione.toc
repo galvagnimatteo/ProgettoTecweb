@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Introduzione}{2}{section.1}%
+\contentsline {section}{\numberline {2}Analisi dei Requisiti}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Utenza target}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Search Engine Optimization}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Ricerche probabili}{3}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Progettazione}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Mappa sito}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Organizzazione pagine}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Acquisto rapido}{5}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Selezione posti}{5}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Database}{6}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Implementazione}{6}{section.4}%
+\contentsline {section}{\numberline {5}Accessibilità}{8}{section.5}%
+\contentsline {section}{\numberline {6}Note}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Validazione email}{9}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Pagine statiche}{9}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}CSS non minimizzato}{9}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Divisione del lavoro}{10}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Matteo Galvagni}{10}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Antonio Stan}{10}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Michele Gatto}{10}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Giovanni Cristellon}{10}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Conclusioni}{10}{section.8}%

@@ -2,11 +2,15 @@
     <div class="adminsidebar">
         <ul id="areasselector">
             <li class="activeoption" id="filmarea">
-			<a href="#films" class="SRskip" aria-label="salta a sezione film" title="salta a sezione film">salta alla sezione film</a> 
-			Film</li>
+                <a href="#films" aria-label="apri sezione film" title="apri sezione film">
+                    Film
+                </a>
+            </li>
             <li class="inactiveoption" id="projectionarea">
-			<a href="#projections" class="SRskip" aria-label="salta a sezione film" title="salta a sezione film">salta alla sezione proiezioni</a>
-			Proiezioni</li>
+                <a href="#projections" aria-label="apri sezione Proiezioni" title="apri sezione Proiezioni">
+                    Proiezioni
+                </a>
+            </li>
             <!--<li class="inactiveoption" id="people_cast_area"><a href="#people_cast">Cast</a></li>-->
         </ul>
     </div>
@@ -15,12 +19,11 @@
             <div id="films" class="open">
                 <p class="SRskip">area: film</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
+                <a href="#insert_film" class="formopener nascondiTesto" id="apri_film" role="button">apri form</a>
                 <table>
                     <thead>
                         <tr class="headerrow">
-                            <th>
-                                <a href="#insert_film" class="formopener nascondiTesto" id="apri_film" role="button">apri form</a>
-                            </th>
+                            <th scope="col" class="nascondiTesto">Funzioni</th>
                             <th scope="col">Titolo</th>
                             <th scope="col">Genere</th>
                             <th scope="col">Data Uscita</th>
@@ -40,12 +43,11 @@
             <div id="projections" class="closed">
                 <p class="SRskip">area: proiezioni</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
+                <a href="#insert_projection" class="formopener nascondiTesto" id="apri_proiezioni" role="button">apri form</a>
                 <table>
                     <thead>
                         <tr class="headerrow">
-                            <th>
-                                <a href="#insert_projection" class="formopener nascondiTesto" id="apri_proiezioni" role="button">apri form</a>
-                            </th>
+                            <th scope="col" class="nascondiTesto">Funzioni</th>
                             <th scope="col">Giorno</th>
                             <th scope="col">Sala</th>
                             <th scope="col">Film</th>

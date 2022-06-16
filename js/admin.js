@@ -248,6 +248,9 @@ function api_request(api) {
 //
 
 function delete_film(id) {
+    if (forms[0].visible) {
+        return; //blocco cancellazione a form aperta
+    }
     let url = api.film.url;
 
     let xhr = new XMLHttpRequest();
@@ -275,10 +278,13 @@ function delete_film(id) {
         setTimeout(function () {
             document.getElementById("deletefilmstatus").className = "closed";
             document.getElementById("deletefilmstatus").firstChild.textContent = "";
-        }, 3000)
+        }, 10000)
     };
 }
 function delete_projection(id) {
+    if (forms[1].visible) {
+        return; //blocco cancellazione a form aperta
+    }
     let url = api.proiezioni.url;
 
     let xhr = new XMLHttpRequest();
@@ -305,7 +311,7 @@ function delete_projection(id) {
         setTimeout(function () {
             document.getElementById("deleteprojectionstatus").className = "closed";
             document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
-        }, 3000)
+        }, 10000)
 
     };
 }
@@ -319,7 +325,7 @@ function aggiorna_html_projection(proiezioni) {
         var entry = proiezioni[entryindex];
         document.getElementById("projectionlist").append(genera_entry_projection(entry));
         (function (id) {
-            document.getElementById("projectionlist").lastChild.onclick = function () {
+            document.getElementById('delete_projection_'+id).onclick = function () {
                 delete_projection(id);
             };
         })(entry.id);
@@ -332,7 +338,7 @@ function aggiorna_html_film(films) {
         var entry = films[entryindex];
         document.getElementById("filmlist").append(genera_entry_film(entry));
         (function (id) {
-            document.getElementById("filmlist").lastChild.onclick= function () {
+            document.getElementById("delete_film_"+id).onclick= function () {
                 delete_film(id);
             };
         })(entry.id);        
@@ -346,7 +352,7 @@ function genera_entry_film(entry) {
 
     result = "<td class='entryfunctions'>" +
 
-        '<a href="#deletefilmstatus" id="filmentry' + entry.id +'" class="deleteentry nascondiTesto" role="button">Elimina</a >' +
+        '<a href="#deletefilmstatus" id="delete_film_' + entry.id +'" class="deleteentry nascondiTesto" role="button">Elimina</a >' +
         '</td ><td>'
         + entry.titolo + "</td><td>"
         + entry.genere + "</td><td>"
@@ -359,7 +365,7 @@ function genera_entry_film(entry) {
 }
 function genera_entry_projection(entry) {
     result = "<td class='entryfunctions'>" +
-        '<a href="#deleteprojectionstatus" id="projectionentry'+entry.id+'" class="deleteentry  nascondiTesto" role="button" >Elimina</a >' +
+        '<a href="#deleteprojectionstatus" id="delete_projection_'+entry.id+'" class="deleteentry  nascondiTesto" role="button" >Elimina</a >' +
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"

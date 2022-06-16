@@ -71,26 +71,8 @@ body {
 	padding: 0;
 	font-size: 1.5rem;
 	margin: auto;
-	/*supporto per firefox
-	scrollbar-width: thin; // "auto" or "thin"
-	scrollbar-color: var(--scrollbar) var(--scrollbar-background);*/
-}
-/*
-*::-webkit-scrollbar {
-	width: 15px;
 }
 
-*::-webkit-scrollbar-track {
-	background: var(--scrollbar-background);
-	border: outset var(--scrollbar-background);
-}
-
-*::-webkit-scrollbar-thumb {
-	width: 60%;
-	background-color: var(--scrollbar);
-	border-radius: 20px;
-	border: outset var(--scrollbar);
-}*/
 
 img { max-width: 100%; height: auto }
 
@@ -512,8 +494,6 @@ h2.subtitlelogin {
 }
 
 .cards_users {
-	/*display: flex;
-	flex-direction: column;*/
 	padding: 2em;
 }
 
@@ -623,10 +603,7 @@ h2.subtitlelogin {
   		margin-right: auto;
   		display: block;
 	}
-	/*.card_two_see_reservation {
-		grid-area: b;
-		padding-left: 0rem;
-	}*/
+
 }
 
 .card1_users {
@@ -976,8 +953,6 @@ h2.subtitlelogin {
 	margin-top: 1.5rem;
 	list-style: none;
 	border: 0;
-	/*border-top: 2px solid var(--secondary-color);*/
-	/*border-left: 2px solid var(--secondary-color);*/
 }
 
 #filmPageCard .screenings a {
@@ -999,10 +974,7 @@ h2.subtitlelogin {
 	background-color: var(--secondary-color);
 }
 
-/*#filmPageCard .screenings h2 {
-	padding: 0.3rem;
-	margin-left: 1rem;
-}*/
+
 
 .quickPurchaseContainer div.labelqp {
 	margin-top: 1rem;
@@ -1196,14 +1168,9 @@ div.labelqp select {
 	.div_login,
 	.div_register	{
 		width: 90%;
-		/*margin-left: 1.5rem;*/
+
 	}
 
-	/*.div_user.card3_users {
-		width: 90%;
-		margin: 0;
-		margin-left: 1.5rem;
-	}*/
 
 }
 
@@ -1234,20 +1201,10 @@ div.labelqp select {
 		margin: auto;
 		width: 100%;
 	}
-	/*.div_register,
-	.div_user,
-	.div_login {
-		width: 100%;
-	}*/
+
 }
 
-@media screen and (max-width: 320px) {
-	/*.div_register label,
-	.div_login label {
-		padding: 0rem;
-		font-size: 6.5vw;
-	}*/
-}
+
 
 #filmPageCard form legend {
 	padding: 0.3rem;
@@ -1678,6 +1635,10 @@ p.aiutocompilaz strong {
 	width: 100%;
 }
 
+#areasselector li a:hover {
+	color: var(--admin-button-text);
+}
+
 @media screen and (max-width: 49rem) {
 	.workarea {
 		width: 100%;
@@ -1721,14 +1682,9 @@ p.aiutocompilaz strong {
 
 .adminsidebar {
 	background-color: var(--admin-areaselector-background);
-	/*border: none;
-    border-radius: 15px;
-    box-sizing: border-box;*/
+
 }
 
-/*.open {
-display: block;
-}*/
 
 #admin button {
 	background: var(--admin-button-background);
@@ -1955,3 +1911,5 @@ display: block;
 	pointer-events: none;
 	display: none;
 }
+
+

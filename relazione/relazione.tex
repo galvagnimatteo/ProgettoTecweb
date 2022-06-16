@@ -77,8 +77,6 @@ Il sito web è stato progettato fin da subito per rispondere alle tre domande "D
     \includegraphics[scale=0.5]{mappasito}
 \end{center}
 
-\subsection{Acquisto rapido}
-La pagina Home contiene, fra le altre cose, un form che consente l'acquisto rapido (cioè senza passare per programmazione/scheda film/prenotazione) di biglietti per una particolare proiezione. Questa sezione è presente nella zona "above the fold", perchè pensata in particolar modo per la categoria di utenti "frettolosi" che nella stragrande maggioranza dei casi acquisterà i biglietti da dispositivo mobile (essendo probabilmente già fuori casa). In ogni caso, la possibilità di acquistare rapidamente dei biglietti direttamente dalla pagina Home risulta particolarmente comoda anche per clienti abituali o che comunque sanno già cosa vogliono.
 \subsection{Organizzazione pagine}
 Le pagine del sito sono organizzate per "argomento", raggruppando le informazioni più interessanti per i clienti.
 Le pagine raggiungibili dal menù sono:
@@ -91,9 +89,13 @@ Le pagine raggiungibili dal menù sono:
     \item Amministrazione
 \end{itemize}
 Altre pagine raggiungibili dalla pagina "Programmazione" sono "Scheda Film" e successivamente "Conferma Acquisto" all'acquisto di uno o più biglietti.
+
+\subsection{Acquisto rapido}
+La pagina Home contiene, fra le altre cose, un form che consente l'acquisto rapido (cioè senza passare per programmazione/scheda film/prenotazione) di biglietti per una particolare proiezione. Questa sezione è presente nella zona "above the fold", perchè pensata in particolar modo per la categoria di utenti "frettolosi" che nella stragrande maggioranza dei casi acquisterà i biglietti da dispositivo mobile (essendo probabilmente già fuori casa). In ogni caso, la possibilità di acquistare rapidamente dei biglietti direttamente dalla pagina Home risulta particolarmente comoda anche per clienti abituali o che comunque sanno già cosa vogliono.
 \subsection{Selezione posti}
 All'interno del sito sono presenti due modalità per acquistare i biglietti: la prima prevede la selezione grafica dei posti scelti all'interno di una sezione apposita; la seconda, più accessibile, prevede la semplice selezione dei posti come coppia fila-numero posto. In entrambe le modalità è richiesto all'utente di specificare quanti biglietti (e di che tipo) voglia acquistare.
 
+\newpage
 \subsection{Database}
 Di seguito lo schema concettuale del database:
 
@@ -116,7 +118,8 @@ Ogni input inoltre è sottoposto a controllo, lato server, dell'assenza di codic
 La connessione al database è stata effettuata implementando il design pattern Singleton.\\\\
 In alcune parti del sito abbiamo ritenuto opportuno l'utilizzo di AJAX: nella pagina Home ci consente di riempire dinamicamente i campi di selezione della sezione di acquisto rapido; nella pagina di amministrazione consente di visualizzare in modo dinamico e senza ricaricare la pagina la lista di film e proiezioni.
 Nella pagina di amministrazione, inoltre, per inserire un film o una proiezione all'interno del sito si apriranno dei popup: questa scelta è stata fatta per rendere l'esperienza utente dell'amministratore simile a quella di una webapp, contrapposta all'alternativa di aprire una nuova scheda o modificare la pagina ad ogni richiesta di inserimento, giudicate soluzioni piuttosto invasive; in ogni caso questa pagina è stata dotata di link nascosti per rendere la navigazione piacevole anche da screenreader. La visualizzazione delle tabelle di questa pagina, da mobile, è stata mantenuta con uno scorrimento orizzontale delle singole tabelle: questo, seppure non ottimale, è stato considerato migliore all'adattamento verticale di tabelle con molti film e proiezioni che ne diminuivano di molto la leggibilità e aumentavano esponenzialmente la lunghezza dello scroll necessario per arrivare a fondo pagina; è stata inoltre pensata come soluzione accettabile per via della prevalenza di utilizzo di questa pagina da desktop.\\\\
-Il sito è stato testato su tutti i browser maggiormente utilizzati (Chrome, Firefox, Opera, Safari, Brave, Edge). È stato ritenuto ragionevole, tuttavia, omettere la compatibilità del sito con il browser Internet Explorer sia per l'utenza target molto giovane sia perchè il browser in questione è stato abbandonato dall'azienda di produzione in favore di Edge (meno dello 0.5\% degli utenti utilizza IE in Italia ad aprile \\di quest'anno, fonte https://gs.statcounter.com/browser-market-share/all/italy).
+La pagina di amministrazione consente l'inserimento nel database di film e proiezioni; per inserire un film è richiesto l'inserimento di due immagini di locandina (una orizzontale per il carosello presente in Home e una in verticale per la visualizzazione nelle cards): per semplicità di implementazione tale inserimento è di tipo testuale, e richiede infatti il nome del file (con estensione, es. "sonic2-vertical.jpg") dell'immagine desiderata che deve essere caricata manualmente nella cartella /images.
+\\\\Il sito è stato testato su tutti i browser maggiormente utilizzati (Chrome, Firefox, Opera, Safari, Brave, Edge). È stato ritenuto ragionevole, tuttavia, omettere la compatibilità del sito con il browser Internet Explorer sia per l'utenza target molto giovane sia perchè il browser in questione è stato abbandonato dall'azienda di produzione in favore di Edge (meno dello 0.5\% degli utenti utilizza IE in Italia ad aprile \\di quest'anno, fonte https://gs.statcounter.com/browser-market-share/all/italy).
 \newpage
 \section{Accessibilità}
 Il codice HTML5 è stato validato utilizzando il servizio di W3C https://validator.w3.org/.

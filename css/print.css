@@ -58,9 +58,12 @@ article {
 }
 
 #menubutton-apri,
-#menubutton-chiudi {
+#menubutton-chiudi, 
+#tornaSuLink {
 	display: none;
 }
+
+
 
 
 .res_details_container a {

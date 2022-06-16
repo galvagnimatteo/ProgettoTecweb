@@ -1,7 +1,9 @@
+<h2 class="subtAreaPers">Area Personale</h2>
 <div class="cards_users">
 
 <div class="div_user card3_users">
-		<p>Inserisci la password per eliminare l'account</p>
+		<h3>Elimina <span lang="en">Account</span></h3>
+		<p>Inserisci la <span lang="en">password</span> per eliminare l'<span lang="en">account</span></p>
 </div>
 
 <div class="card1_users">
@@ -11,13 +13,13 @@
 </li>
 
 <li>
-<a href="./area_utenti.php?action=getProfilePassword">Cambio password</a>
+<a href="./area_utenti.php?action=getProfilePassword">Cambio <span lang="en">password</span></a>
 </li>
 
 
 
 <li>
-<a href="./area_utenti.php?action=getDeleteProfile">Elimina account</a>
+<a href="./area_utenti.php?action=getDeleteProfile">Elimina <span lang="en">account</span></a>
 </li>
 
 <li>
@@ -26,7 +28,7 @@
 
 
 <li>
-<a href="./area_utenti.php?action=logout">Logout</a>
+<a href="./area_utenti.php?action=logout"><span lang="en">Logout</span></a>
 </li>
 
 </ul>
@@ -36,24 +38,24 @@
 <div class="div_register profile">
 
 	<form action="../php/area_utenti.php?action=deleteProfile" method="post" id="form-modify">
-			
-				<label for="password_delete">Password</label>
-			
+
+				<label for="password_delete"><span lang="en">Password</span></label>
+
 				<input id="password_delete" type="password" placeholder=" Password" name="password_delete" />
-		
-			
-				<label for="password_delete_confirm">Conferma Password</label>
-			
+
+
+				<label for="password_delete_confirm">Conferma <span lang="en">Password</span></label>
+
 				<input id="password_delete_confirm" type="password" placeholder=" Conferma Password" name="password_delete_confirm" required />
-			
-			
+
+
 			<p id="errorMessage">
 				<ERRORMESSAGE>
 			</p>
-			
-			
+
+
 			<input type="submit" value="Elimina il tuo profilo" />
-			
+
 		</div>
 	</form>
 </div>

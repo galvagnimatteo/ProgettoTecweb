@@ -1,22 +1,29 @@
 ﻿<div id="admin">
     <div class="adminsidebar">
         <ul id="areasselector">
-            <li class="activeoption" id="filmarea" role="button"><a href="#films" class="SRskip">salta alla sezione film</a> Film</li>
-            <li class="inactiveoption" id="projectionarea" role="button"><a href="#projections" class="SRskip">salta alla sezione proiezioni</a>Proiezioni</li>
-            <!--<li class="inactiveoption" id="people_cast_area"><a href="#people_cast">Cast</a></li>-->
+            <li class="activeoption" id="filmarea">
+                <a href="#films" aria-label="apri sezione film" title="apri sezione film">
+                    Film
+                </a>
+            </li>
+            <li class="inactiveoption" id="projectionarea">
+                <a href="#projections" aria-label="apri sezione Proiezioni" title="apri sezione Proiezioni">
+                    Proiezioni
+                </a>
+            </li>
         </ul>
     </div>
     <div class="workarea">
         <div class="lists">
-            <div id="films" class="open" aria-hidden="false">
+            <div id="films" class="open">
                 <p class="SRskip">area: film</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
+                <a href="#insert_film" class="formopener nascondiTesto" id="apri_film" role="button" aria-label="Inserisci nuovo film" title="Inserisci nuovo film">Inserisci nuovo film</a>
                 <table>
+				<caption> Film in proiezione </caption>
                     <thead>
-                        <tr class=headerrow>
-                            <th>
-                                <a href="#insert_film" class="formopener nascondiTesto" id="apri_film" role="button">apri form</a>
-                            </th>
+                        <tr class="headerrow">
+                            <th scope="col" class="nascondiTesto">Eliminazione</th>
                             <th scope="col">Titolo</th>
                             <th scope="col">Genere</th>
                             <th scope="col">Data Uscita</th>
@@ -33,15 +40,16 @@
                     <a href="#films" class="SRskip">torna a lista</a>
                 </div>
             </div>
-            <div id="projections" class="closed" aria-hidden="true">
+            <div id="projections" class="closed">
                 <p class="SRskip">area: proiezioni</p>
                 <a href="#areasselector" class="SRskip">cambia area</a>
+                <a href="#insert_projection" class="formopener nascondiTesto" id="apri_proiezioni" role="button" 
+				aria-label="Inserisci nuova proiezione" title="Inserisci nuova proiezione">Inserisci nuova proiezione</a>
                 <table>
+				<caption> Proiezioni disponibili </caption>
                     <thead>
-                        <tr class='headerrow'>
-                            <th>
-                                <a href="#insert_projection" class="formopener nascondiTesto" id="apri_proiezioni" role="button">apri form</a>
-                            </th>
+                        <tr class="headerrow">
+                            <th scope="col" class="nascondiTesto">Eliminazione</th>
                             <th scope="col">Giorno</th>
                             <th scope="col">Sala</th>
                             <th scope="col">Film</th>
@@ -61,12 +69,12 @@
             </div>
         </div>
         <div class="overlays">
-            <form id="insert_film" class="closed" method="post" aria-hidden="true">
+            <form id="insert_film" class="closed" method="post">
                 <p class="SRskip">form: film</p>
                 <a href="#films" class="formcloser nascondiTesto" id="chiudi_film" role="button">chiudi form</a>
                 <fieldset>
                     <legend>Informazioni base</legend>
-                    <label for="Titolo"><span xml:lang="en">Titolo</span></label>
+                    <label for="imputtitolo"><span lang="en">Titolo</span></label>
                     <input type="text" name="Titolo" required id="imputtitolo">
                     <label for="imputgenere">Genere</label>
                     <input type="text" name="Genere" required id="imputgenere">
@@ -76,15 +84,15 @@
                 <fieldset>
                     <legend>Dettagli</legend>
                     <label for="imputdurata">Durata</label>
-                    <input type="number" name="Durata" inputmode="numeric" required min="0" placeholder="120" id="imputdurata">
+                    <input type="number" name="Durata" required min="0" placeholder="120" id="imputdurata">
                     <label for="imputdescizione">Descrizione</label>
                     <textarea id="imputdescizione" name="Descrizione" required rows="5"></textarea>
                 </fieldset>
                 <fieldset>
                     <legend>Cast</legend>
-                    <label for="imputdescizione">Regista</label>
+                    <label for="imputregista">Regista</label>
                     <input type="text" name="regista" required id="imputregista">
-                    <label for="imputdescizione">Attori</label>
+                    <label for="imputattori">Attori</label>
                     <input type="text" name="attori" required id="imputattori" placeholder="Attore A, Attore B, etc">
                 </fieldset>
                 <fieldset id="insert_film_immagini">
@@ -94,11 +102,11 @@
                     <label for="imputcarousel">Immagine carousel</label>
                     <input type="text" name="CarouselImg" required id="imputcarousel">
                 </fieldset>
-                <button type="submit" class="submit">Inserisci</button>
+                <button type="submit" class="submit">Inserisci film</button>
                 <p id="result_insert_film"></p>
                 <a href="#insert_film" class="SRskip">torna ad inizio form</a>
             </form>
-            <form id="insert_projection" class="closed" method="post" aria-hidden="true">
+            <form id="insert_projection" class="closed" method="post">
                 <p class="SRskip">form: proiezioni</p>
                 <a href="#projections" class="formcloser nascondiTesto" id="chiudi_proiezioni" role="button">chiudi form</a>
                 <label for="filmselector">Film</label>
@@ -114,7 +122,7 @@
                 <input type="date" name="Giorno" required id="imputgiorno" />
                 <label for="imputorario">Orario</label>
                 <input type="time" name="orario" required id="imputorario" />
-                <button type="submit" class="submit">Inserisci</button>
+                <button type="submit" class="submit">Inserisci proiezione</button>
                 <p id="result_insert_projection"></p>
                 <a href="#insert_projection" class="SRskip">torna ad inizio form</a>
             </form>

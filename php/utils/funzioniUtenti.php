@@ -476,7 +476,8 @@ class Users
 					$content = str_replace(
                         "<ELIMINA-PRENOTAZ>",
                         ($today < new DateTime($row["Data"])) ?
-						'<a href="../php/area_utenti.php?action=deleteReservation&codice='. $row["ID"] . '" class="reservation_link btn-storico">Annulla</a>' : '',
+						'<a href="../php/area_utenti.php?action=deleteReservation&codice='. $row["ID"] . '" class="reservation_link btn-storico" '.
+						'title="Elimina prenotazione" aria-label="Elimina prenotazione" >Elimina</a>' : '',
                         $content
                     );
 
@@ -589,6 +590,17 @@ class Users
                         $row["IDFilm"],
                         $home_content
                     );
+					$titoloTemp = $row["Titolo"];
+
+					$titoloTemp = str_replace("{", "", $titoloTemp);
+					$titoloTemp = str_replace("}", "", $titoloTemp);
+
+					$home_content = str_replace(
+                        "<ALTIMG>",
+						"Locandina " . $titoloTemp,
+                        $home_content
+                    );
+					 
 
                 }
             }

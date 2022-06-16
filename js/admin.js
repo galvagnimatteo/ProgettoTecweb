@@ -24,13 +24,13 @@ var forms = [
                 condizione: function (value) {
                     return value.match(/^(([A-Za-z0-9\s]*)|({[A-Za-z0-9\s]*}))*$/);
                 },
-                messaggio_errore: "titolo non valido"
+                messaggio_errore: "titolo non valido, sono presenti caratteri invalidi"
             },
             {
                 nome: "Genere",
                 elemento: "imputgenere",
                 condizione: function (value) { return value.match(/^[a-zA-Z]*$/); },
-                messaggio_errore: "genere puo contenere solo caratteri alfanumerici"
+                messaggio_errore: "genere può contenere solo caratteri alfanumerici"
             },
             {
                 nome: "Descrizione",
@@ -131,29 +131,38 @@ var api = {
 // Interfaccia
 //
 
+
+function add_span_en(titolo) {
+	return titolo.replace("{", '<span lang="en">').replace("}", '</span>');
+} 
+
+function remove_par(titolo) {
+	return titolo.replace("{", "").replace("}", "");
+}
+
 function cambia_contesto(contesto) {
     for (area in areas) {
         if (contesto === areas[area].nome) {
             document.getElementById(areas[area].elemento).className = 'open';
-            document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'false');
+
             document.getElementById(areas[area].selettore_area).className = 'activeoption';
-            //window.location.href = areas[area].elemento;
+
         }
         else {
             document.getElementById(areas[area].elemento).className = 'closed';
-            document.getElementById(areas[area].elemento).setAttribute('aria-hidden', 'true');
+
             document.getElementById(areas[area].selettore_area).className = 'inactiveoption';
         }
     }
     for (form in forms) {
         if ((contesto === forms[form].area) && forms[form].visible) {
-            //window.location.href = forms[form].elemento
+
             document.getElementById(forms[form].elemento).className = 'open';
-            document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
+
         }
         else {
             document.getElementById(forms[form].elemento).className = 'closed';
-            document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
+          
         }
     }
 }
@@ -165,11 +174,11 @@ function toggle_form(toggledform) {
             forms[form].visible = !forms[form].visible
             if (forms[form].visible) {
                 document.getElementById(forms[form].elemento).className = 'open';
-                document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'false');
+                
             }
             else {
                 document.getElementById(forms[form].elemento).className = 'closed';
-                document.getElementById(forms[form].elemento).setAttribute('aria-hidden', 'true');
+             
                 if (forms[form].output_stato) {
                     document.getElementById(forms[form].output_stato).innerText = '';
                 }
@@ -248,6 +257,9 @@ function api_request(api) {
 //
 
 function delete_film(id) {
+    if (forms[0].visible) {
+        return; //blocco cancellazione a form aperta
+    }
     let url = api.film.url;
 
     let xhr = new XMLHttpRequest();
@@ -275,10 +287,13 @@ function delete_film(id) {
         setTimeout(function () {
             document.getElementById("deletefilmstatus").className = "closed";
             document.getElementById("deletefilmstatus").firstChild.textContent = "";
-        }, 3000)
+        }, 10000)
     };
 }
 function delete_projection(id) {
+    if (forms[1].visible) {
+        return; //blocco cancellazione a form aperta
+    }
     let url = api.proiezioni.url;
 
     let xhr = new XMLHttpRequest();
@@ -305,7 +320,7 @@ function delete_projection(id) {
         setTimeout(function () {
             document.getElementById("deleteprojectionstatus").className = "closed";
             document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
-        }, 3000)
+        }, 10000)
 
     };
 }
@@ -319,7 +334,7 @@ function aggiorna_html_projection(proiezioni) {
         var entry = proiezioni[entryindex];
         document.getElementById("projectionlist").append(genera_entry_projection(entry));
         (function (id) {
-            document.getElementById("projectionlist").lastChild.onclick = function () {
+            document.getElementById('delete_projection_'+id).onclick = function () {
                 delete_projection(id);
             };
         })(entry.id);
@@ -332,11 +347,11 @@ function aggiorna_html_film(films) {
         var entry = films[entryindex];
         document.getElementById("filmlist").append(genera_entry_film(entry));
         (function (id) {
-            document.getElementById("filmlist").lastChild.onclick= function () {
+            document.getElementById("delete_film_"+id).onclick= function () {
                 delete_film(id);
             };
         })(entry.id);        
-        filmoptions = filmoptions + "<option value=" + entry.id + ">" + entry.titolo + "</option>";
+        filmoptions = filmoptions + "<option value=" + entry.id + ">" + add_span_en(entry.titolo) + "</option>";
     }    
     if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
         document.getElementById("filmselector").innerHTML = filmoptions;
@@ -346,9 +361,10 @@ function genera_entry_film(entry) {
 
     result = "<td class='entryfunctions'>" +
 
-        '<a href="#deletefilmstatus" id="filmentry' + entry.id +'" class="deleteentry nascondiTesto" role="button">Elimina</a >' +
+        '<a href="#deletefilmstatus" id="delete_film_' + entry.id +'" class="deleteentry nascondiTesto" role="button" ' +
+		'title="Elimina film ' + remove_par(entry.titolo) + '" aria-label="Elimina film "' + remove_par(entry.titolo) +'" >Elimina film</a >' +
         '</td ><td>'
-        + entry.titolo + "</td><td>"
+        + add_span_en(entry.titolo) + "</td><td>"
         + entry.genere + "</td><td>"
         + entry.datauscita + "</td><td>" +
         + entry.durata + "</td>";
@@ -357,13 +373,19 @@ function genera_entry_film(entry) {
     tr.innerHTML = genera_span_lingua(result);
     return tr;
 }
+
+
 function genera_entry_projection(entry) {
     result = "<td class='entryfunctions'>" +
-        '<a href="#deleteprojectionstatus" id="projectionentry'+entry.id+'" class="deleteentry  nascondiTesto" role="button" >Elimina</a >' +
+        '<a href="#deleteprojectionstatus" id="delete_projection_'+entry.id+'" class="deleteentry  nascondiTesto" role="button" ' + 
+		'title="Elimina proiezione del '+entry.data + ', sala '+entry.numeroSala+ ', ' + remove_par(entry.titolofilm) +
+		'" aria-label="Elimina proiezione del '+entry.data + ', sala '+entry.numeroSala+ ', ' + remove_par(entry.titolofilm) +
+		'">Elimina proiezione</a >' +
+		
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"
-        + entry.titolofilm + "</td><td>"
+        + add_span_en(entry.titolofilm) + "</td><td>"
         + entry.orario + "</td><td>"
         + entry.durata + "</td>";
 

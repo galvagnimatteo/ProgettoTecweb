@@ -53,12 +53,12 @@ Non viene utilizzato Javascript per riempire di contenuti il sito, ma solo per a
 \clearpage
 
 \subsection{Ricerche probabili}
-Per massimizzare la visibilità in un motore di ricerca, il sito deve rispondere a delle query eseguite da utenti che già conoscono il nostro cinema. 
+Per massimizzare la visibilità in un motore di ricerca, il sito deve rispondere a delle query eseguite da utenti che già conoscono il nostro cinema.
 Fondamentale è che risponda agli utenti interessati alla visione degli ultimi film usciti a Padova. Infine deve soddisfare le richieste di coloro che cercano una funzionalità di acquisto rapido di biglietti per i film.\\
 Di seguito vengono riportate le più probabili tra le ricerche possibili a cui dovrebbe rispondere il sito:
 
 \begin{itemize}
-\item cinema padova; 
+\item cinema padova;
 \item pngcinema;
 \item pngcinema padova;
 \item acquisto biglietto film;
@@ -101,7 +101,7 @@ Di seguito lo schema concettuale del database:
     \includegraphics[scale=0.5]{database}
 \end{center}
 
-In particolare, valutato il fatto che in una situazione reale, raramente vengono cambiati i layout di sale e le numerazioni dei posti, si è deciso che queste rimarranno fisse e non modificabili. Inoltre sono state applicate alcune semplificazioni in sede di progetto: 
+In particolare, valutato il fatto che in una situazione reale, raramente vengono cambiati i layout di sale e le numerazioni dei posti, si è deciso che queste rimarranno fisse e non modificabili. Inoltre sono state applicate alcune semplificazioni in sede di progetto:
 \begin{itemize}
 \item ogni sala ha la stessa quantità, numerazione e layout di posti;
 \item i prezzi non sono modificabili dagli amministratori (se non direttamente da un strumento come phpMyAdmin).
@@ -145,6 +145,9 @@ In fase di registrazione agli utenti è richiesto di inserire una email. Consci 
 \subsection{Pagine statiche}
 Pur esistendo una pagina puramente statica all'interno del sito (pagina contatti) è stato ritenuto accettabile fornire tale pagina tramite del codice PHP, perchè a fronte di un guadagno veramente minimo in termini di velocità di caricamento si sarebbe persa la divisione del codice tra template HTML base delle pagine e contenuto inserito in maniera dinamica in solamente quella pagina.
 Facendo così è possibile modificare la template del sito (per esempio, se fosse necessario cambiare il footer) tramite un solo file, con la sicurezza che la modifica sia applicata in ogni pagina. Facendo diversamente le modifiche degli elementi presenti in ogni pagina sarebbero dovute essere scritte due volte, senza garanzia di coerenza tra di loro.
+\subsection{CSS non minimizzato}
+È stato ritenuto opportuno per lo scopo di questo progetto non minimizzare il codice CSS per favorirne la leggibilità.
+
 
 \newpage
 \section{Divisione del lavoro}

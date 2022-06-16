@@ -590,6 +590,13 @@ class Users
                         $row["IDFilm"],
                         $home_content
                     );
+					$home_content = str_replace(
+                        "<ALTIMG>",
+						"Locandina " .
+                        filtraTestoInglese($row["Titolo"]),
+                        $home_content
+                    );
+					 
 
                 }
             }

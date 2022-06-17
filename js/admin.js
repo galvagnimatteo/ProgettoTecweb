@@ -134,13 +134,20 @@ var api = {
 
 function add_span_en(titolo) {
 	return titolo.replace("{", '<span lang="en">').replace("}", '</span>');
-} 
+}
 
 function remove_par(titolo) {
 	return titolo.replace("{", "").replace("}", "");
 }
 
 function cambia_contesto(contesto) {
+
+    if(contesto == "film"){
+        document.getElementById("deleteprojectionstatus").className = "closed";
+    }else{
+        document.getElementById("deletefilmstatus").className = "closed";
+    }
+
     for (area in areas) {
         if (contesto === areas[area].nome) {
             document.getElementById(areas[area].elemento).className = 'open';
@@ -162,7 +169,7 @@ function cambia_contesto(contesto) {
         }
         else {
             document.getElementById(forms[form].elemento).className = 'closed';
-          
+
         }
     }
 }
@@ -174,11 +181,11 @@ function toggle_form(toggledform) {
             forms[form].visible = !forms[form].visible
             if (forms[form].visible) {
                 document.getElementById(forms[form].elemento).className = 'open';
-                
+
             }
             else {
                 document.getElementById(forms[form].elemento).className = 'closed';
-             
+
                 if (forms[form].output_stato) {
                     document.getElementById(forms[form].output_stato).innerText = '';
                 }
@@ -277,17 +284,17 @@ function delete_film(id) {
         if (status === "ok") {
             var films = data.films;
             aggiorna_html_film(films);
-            document.getElementById("deletefilmstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+            document.getElementById("deletefilmstatus").textContent = "eliminazione avvenuta con successo";
 
         }
         else {
-            document.getElementById("deletefilmstatus").firstChild.textContent = status;
+            document.getElementById("deletefilmstatus").textContent = status;
         }
         document.getElementById("deletefilmstatus").className = "open";
-        setTimeout(function () {
-            document.getElementById("deletefilmstatus").className = "closed";
-            document.getElementById("deletefilmstatus").firstChild.textContent = "";
-        }, 10000)
+        //setTimeout(function () {
+        //    document.getElementById("deletefilmstatus").className = "closed";
+        //    document.getElementById("deletefilmstatus").textContent = "";
+        //}, 10000)
     };
 }
 function delete_projection(id) {
@@ -306,22 +313,23 @@ function delete_projection(id) {
 
     xhr.send('action=delete&idproiezione=' + id);
     xhr.onload = function () {
+        document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
             var proiezioni = data.proiezioni;
             aggiorna_html_projection(proiezioni);
-            document.getElementById("deleteprojectionstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+            document.getElementById("deleteprojectionstatus").textContent = "eliminazione avvenuta con successo";
         }
         else {
-            document.getElementById("deleteprojectionstatus").firstChild.textContent = status;
+            document.getElementById("deleteprojectionstatus").textContent = status;
         }
-        document.getElementById("deleteprojectionstatus").className = "open";
-        setTimeout(function () {
-            document.getElementById("deleteprojectionstatus").className = "closed";
-            document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
-        }, 10000)
 
+        document.getElementById("deleteprojectionstatus").className = "open";
+        //setTimeout(function () {
+        //    document.getElementById("deleteprojectionstatus").className = "closed";
+        //    document.getElementById("deleteprojectionstatus").textContent = "";
+        //}, 10000)
     };
 }
 
@@ -350,8 +358,8 @@ function aggiorna_html_film(films) {
             document.getElementById("delete_film_"+id).onclick= function () {
                 delete_film(id);
             };
-        })(entry.id);        
-        filmoptions = filmoptions + "<option value=" + entry.id + ">" + remove_par(entry.titolo) + "</option>"; 
+        })(entry.id);
+        filmoptions = filmoptions + "<option value=" + entry.id + ">" + remove_par(entry.titolo) + "</option>";
 	}
     if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
         document.getElementById("filmselector").innerHTML = filmoptions;
@@ -377,11 +385,11 @@ function genera_entry_film(entry) {
 
 function genera_entry_projection(entry) {
     result = "<td class='entryfunctions'>" +
-        '<a href="#deleteprojectionstatus" id="delete_projection_'+entry.id+'" class="deleteentry  nascondiTesto" role="button" ' + 
+        '<a href="#deleteprojectionstatus" id="delete_projection_'+entry.id+'" class="deleteentry  nascondiTesto" role="button" ' +
 		'title="Elimina proiezione del '+entry.data + ', sala '+entry.numeroSala+ ', ' + remove_par(entry.titolofilm) +
 		'" aria-label="Elimina proiezione del '+entry.data + ', sala '+entry.numeroSala+ ', ' + remove_par(entry.titolofilm) +
 		'">Elimina proiezione</a >' +
-		
+
         '</td ><td>'
         + entry.data + "</td><td>"
         + entry.numeroSala + "</td><td>"

@@ -210,7 +210,7 @@ function generaPaginaConferma($listaPostiFormat, $idPrenotaz, $totNumBiglietti)
 		'>Acquisto biglietti</a> / Conferma acquisto';
 
 	$jshead =
-        '<meta name="robots" content="noindex" follow /> ' . //lo attacco da qua perche non ho voglia di modificare tutto
+        '<meta name="robots" content="noindex" /> ' . 
         ' <script src="../js/promptonclose.js"></script>';
     //GeneratePage($page,$content,$breadcrumbs,$title,$description,$keywords,$jshead,$jsbody);
     echo GeneratePage(

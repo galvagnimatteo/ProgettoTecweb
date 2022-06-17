@@ -275,10 +275,10 @@ function delete_film(id) {
             document.getElementById("deletefilmstatus").firstChild.textContent = status;
         }
         document.getElementById("deletefilmstatus").className = "open";
-        setTimeout(function () {
-            document.getElementById("deletefilmstatus").className = "closed";
-            document.getElementById("deletefilmstatus").firstChild.textContent = "";
-        }, 10000)
+        //setTimeout(function () {
+        //    document.getElementById("deletefilmstatus").className = "closed";
+        //    document.getElementById("deletefilmstatus").firstChild.textContent = "";
+        //}, 10000)
     };
 }
 function delete_projection(id) {
@@ -308,10 +308,10 @@ function delete_projection(id) {
             document.getElementById("deleteprojectionstatus").firstChild.textContent = status;
         }
         document.getElementById("deleteprojectionstatus").className = "open";
-        setTimeout(function () {
-            document.getElementById("deleteprojectionstatus").className = "closed";
-            document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
-        }, 10000)
+        //setTimeout(function () {
+        //    document.getElementById("deleteprojectionstatus").className = "closed";
+        //    document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
+        //}, 10000)
 
     };
 }

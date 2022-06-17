@@ -297,6 +297,9 @@ function delete_projection(id) {
 
     xhr.send('action=delete&idproiezione=' + id);
     xhr.onload = function () {
+        //risoluzione bug in cancellazione con stato acora visibile
+        document.getElementById("deleteprojectionstatus").className = "closed";
+        document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -307,12 +310,12 @@ function delete_projection(id) {
         else {
             document.getElementById("deleteprojectionstatus").firstChild.textContent = status;
         }
+        
         document.getElementById("deleteprojectionstatus").className = "open";
         //setTimeout(function () {
         //    document.getElementById("deleteprojectionstatus").className = "closed";
         //    document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
         //}, 10000)
-
     };
 }
 

@@ -351,8 +351,8 @@ function aggiorna_html_film(films) {
                 delete_film(id);
             };
         })(entry.id);        
-        filmoptions = filmoptions + "<option value=" + entry.id + ">" + add_span_en(entry.titolo) + "</option>";
-    }    
+        filmoptions = filmoptions + "<option value=" + entry.id + ">" + remove_par(entry.titolo) + "</option>"; 
+	}
     if (!forms[1].visible) {//evita che venga modificata la selezione dell' utente mentre la form è aperta
         document.getElementById("filmselector").innerHTML = filmoptions;
     }
@@ -370,7 +370,7 @@ function genera_entry_film(entry) {
         + entry.durata + "</td>";
     tr = document.createElement('tr');
     tr.className = 'entry';
-    tr.innerHTML = genera_span_lingua(result);
+    tr.innerHTML = result;
     return tr;
 }
 
@@ -391,14 +391,9 @@ function genera_entry_projection(entry) {
 
     tr=document.createElement('tr');
     tr.className = 'entry';
-    tr.innerHTML = genera_span_lingua(result);
+    tr.innerHTML = result;
     return tr;
 }
-
-function genera_span_lingua(stringa){
-    return stringa.replace("{", "<span lang='en'>").replace("}", "</span");
-}
-
 
 //
 //Film

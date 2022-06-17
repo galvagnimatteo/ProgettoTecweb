@@ -97,8 +97,12 @@ function GeneratePage(
 
     $output = str_replace("<MENU/>", $menu, $output);
     $admin = "";
-    if (isset($_SESSION["admin"]) && $_SESSION["admin"]&&$page!="admin") {
-        $admin = "<ul><li><a href='amministrazione.php'>Amministrazione</a></li></ul>";
+    if (isset($_SESSION["admin"]) && $_SESSION["admin"]) {
+        if($page!="admin"){
+            $admin = "<ul><li><a href='amministrazione.php'>Amministrazione</a></li></ul>";
+        }else{
+            $admin = "<ul><li class=\"menu_name\">Amministrazione</li></ul>";
+        }
     }
     $output = str_replace("<ADMIN/>", $admin, $output);
     $output = str_replace("<BREADCRUMB/>", $breadcrumbs, $output);

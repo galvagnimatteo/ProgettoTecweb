@@ -185,7 +185,7 @@ a:visited:not(.carouselContainer a:visited) {
 		height: 1.3rem;
 		width: 0.8rem;
 	}
-	
+
 }
 
 
@@ -1897,6 +1897,10 @@ p.aiutocompilaz strong {
 	left: 10%;
 }
 
+#apri_proiezioni, #apri_film{
+	margin: 1rem;
+}
+
 #deletefilmstatus,
 #deleteprojectionstatus {
 	display: block;
@@ -1908,6 +1912,8 @@ p.aiutocompilaz strong {
 	width: 60%;
 	padding: 5px;
 	height: 2rem;
+	color: var(--error-color);
+	margin-bottom: 1rem;
 }
 
 .open {

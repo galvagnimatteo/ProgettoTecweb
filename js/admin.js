@@ -277,16 +277,16 @@ function delete_film(id) {
         if (status === "ok") {
             var films = data.films;
             aggiorna_html_film(films);
-            document.getElementById("deletefilmstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+            document.getElementById("deletefilmstatus").textContent = "eliminazione avvenuta con successo";
 
         }
         else {
-            document.getElementById("deletefilmstatus").firstChild.textContent = status;
+            document.getElementById("deletefilmstatus").textContent = status;
         }
         document.getElementById("deletefilmstatus").className = "open";
         //setTimeout(function () {
         //    document.getElementById("deletefilmstatus").className = "closed";
-        //    document.getElementById("deletefilmstatus").firstChild.textContent = "";
+        //    document.getElementById("deletefilmstatus").textContent = "";
         //}, 10000)
     };
 }
@@ -312,16 +312,16 @@ function delete_projection(id) {
         if (status === "ok") {
             var proiezioni = data.proiezioni;
             aggiorna_html_projection(proiezioni);
-            document.getElementById("deleteprojectionstatus").firstChild.textContent = "eliminazione avvenuta con successo";
+            document.getElementById("deleteprojectionstatus").textContent = "eliminazione avvenuta con successo";
         }
         else {
-            document.getElementById("deleteprojectionstatus").firstChild.textContent = status;
+            document.getElementById("deleteprojectionstatus").textContent = status;
         }
         
         document.getElementById("deleteprojectionstatus").className = "open";
         //setTimeout(function () {
         //    document.getElementById("deleteprojectionstatus").className = "closed";
-        //    document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
+        //    document.getElementById("deleteprojectionstatus").textContent = "";
         //}, 10000)
     };
 }

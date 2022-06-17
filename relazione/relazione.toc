@@ -15,6 +15,7 @@
 \contentsline {subsection}{\numberline {6.1}Validazione email}{9}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Pagine statiche}{9}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}CSS non minimizzato}{9}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Installazione}{9}{subsection.6.4}%
 \contentsline {section}{\numberline {7}Divisione del lavoro}{10}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Matteo Galvagni}{10}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7.2}Antonio Stan}{10}{subsection.7.2}%

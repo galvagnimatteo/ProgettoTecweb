@@ -50,11 +50,10 @@ select{
     color: var(--disabled-color);
 }
 
-.breadcrumbs a:visited span{
+a:visited span{
 	color: var(--visited-links);
 }
-
-.breadcrumbs a:hover span{
+a:hover span{
 	color: var(--links-hover-color);
 }
 
@@ -71,26 +70,8 @@ body {
 	padding: 0;
 	font-size: 1.5rem;
 	margin: auto;
-	/*supporto per firefox
-	scrollbar-width: thin; // "auto" or "thin"
-	scrollbar-color: var(--scrollbar) var(--scrollbar-background);*/
-}
-/*
-*::-webkit-scrollbar {
-	width: 15px;
 }
 
-*::-webkit-scrollbar-track {
-	background: var(--scrollbar-background);
-	border: outset var(--scrollbar-background);
-}
-
-*::-webkit-scrollbar-thumb {
-	width: 60%;
-	background-color: var(--scrollbar);
-	border-radius: 20px;
-	border: outset var(--scrollbar);
-}*/
 
 img { max-width: 100%; height: auto }
 
@@ -177,26 +158,34 @@ a:visited:not(.carouselContainer a:visited) {
 
 #tornaSuLink {
 	position: fixed;
-    bottom: 2em;
-    right: 3em;
-    height: 1.5em;
-    width: 1em;
+    bottom: 2rem;
+    right: 3rem;
+    height: 1.5rem;
+    width: 1rem;
     background-color: var(--links-hover-color);
     border-radius: 10px;
-    opacity: 0.9;
+    opacity: 0.8;
     background-image: url("../images/torna-su.svg");
     background-repeat: no-repeat;
-    background-size: 3em;
+    background-size: 3rem;
     text-indent: -999999em;
     background-position: center;
 	padding: 1rem;
 	display:none;
 }
 
+@media screen and (max-width: 1218px) {
+	#tornaSuLink {
+		right: 0.5%;
+	}
+}
+
 @media screen and (max-width: 760px) {
 	#tornaSuLink {
-		right: 2%;
+		height: 1.3rem;
+		width: 0.8rem;
 	}
+	
 }
 
 
@@ -473,7 +462,7 @@ programmazione.html
 h2.subtitlelogin {
 	text-align: center;
 	margin: 2rem 0.5rem;
-	
+
 }
 
 .cards_reservation {
@@ -512,8 +501,6 @@ h2.subtitlelogin {
 }
 
 .cards_users {
-	/*display: flex;
-	flex-direction: column;*/
 	padding: 2em;
 }
 
@@ -568,26 +555,6 @@ h2.subtitlelogin {
 
 }
 
-/*
-div.ul_reservation {
-	padding-top: 2rem;
-}
-
-.reservation_button:hover {
-	color: white !important;
-}
-
-@media screen and (max-width: 190px) {
-	.reservation_button {
-		font-size: 0.8em;
-	}
-}
-
-@media screen and (max-width: 190px) {
-	.reservation_button {
-		font-size: 0.6em;
-	}
-}*/
 
 
 
@@ -643,10 +610,7 @@ div.ul_reservation {
   		margin-right: auto;
   		display: block;
 	}
-	/*.card_two_see_reservation {
-		grid-area: b;
-		padding-left: 0rem;
-	}*/
+
 }
 
 .card1_users {
@@ -679,14 +643,7 @@ div.ul_reservation {
 	font-size: 0.8em;
 }
 
-/*.link_button_cards {
-	background: none!important;
-	border: none;
-	padding: 0!important;
-	padding-top: 1em;
-	text-decoration: underline;
-	cursor: pointer;
-}*/
+
 
 .div_login {
 	margin: auto;
@@ -795,19 +752,6 @@ div.ul_reservation {
 }
 
 
-/*.link_button {
-	background: none!important;
-	border: none;
-	padding: 0!important;
-	font-size: 1.5rem;
-	text-decoration: underline;
-	cursor: pointer;
-}*/
-
-/*.contactpage iframe {
-    width: 100%;
-    align-self: end;
-}*/
 
 .contactpage{
 	margin: 1rem;
@@ -820,14 +764,7 @@ div.ul_reservation {
 	padding-left: 0;
 }
 
-/*@keyframes materialize {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}*/
+
 
 #posizione {
     position: relative;
@@ -1023,8 +960,6 @@ div.ul_reservation {
 	margin-top: 1.5rem;
 	list-style: none;
 	border: 0;
-	/*border-top: 2px solid var(--secondary-color);*/
-	/*border-left: 2px solid var(--secondary-color);*/
 }
 
 #filmPageCard .screenings a {
@@ -1046,10 +981,7 @@ div.ul_reservation {
 	background-color: var(--secondary-color);
 }
 
-/*#filmPageCard .screenings h2 {
-	padding: 0.3rem;
-	margin-left: 1rem;
-}*/
+
 
 .quickPurchaseContainer div.labelqp {
 	margin-top: 1rem;
@@ -1243,14 +1175,9 @@ div.labelqp select {
 	.div_login,
 	.div_register	{
 		width: 90%;
-		/*margin-left: 1.5rem;*/
+
 	}
 
-	/*.div_user.card3_users {
-		width: 90%;
-		margin: 0;
-		margin-left: 1.5rem;
-	}*/
 
 }
 
@@ -1281,20 +1208,10 @@ div.labelqp select {
 		margin: auto;
 		width: 100%;
 	}
-	/*.div_register,
-	.div_user,
-	.div_login {
-		width: 100%;
-	}*/
+
 }
 
-@media screen and (max-width: 320px) {
-	/*.div_register label,
-	.div_login label {
-		padding: 0rem;
-		font-size: 6.5vw;
-	}*/
-}
+
 
 #filmPageCard form legend {
 	padding: 0.3rem;
@@ -1412,7 +1329,7 @@ div.labelqp select {
 
 #ticketInfoGroup .labelPos p {
 	font-size: 1rem;
-	
+
 }
 
 #ticketInfoGroup div {
@@ -1725,6 +1642,10 @@ p.aiutocompilaz strong {
 	width: 100%;
 }
 
+#areasselector li a:hover {
+	color: var(--admin-button-text);
+}
+
 @media screen and (max-width: 49rem) {
 	.workarea {
 		width: 100%;
@@ -1743,8 +1664,11 @@ p.aiutocompilaz strong {
 	background-color: var(--admin-workarea-background);
 	height: 750px;
 	overflow-y: hidden;
-	/*display:flex;
-	flex-direction:column;*/
+
+}
+
+.workarea table caption {
+	text-align:left;
 }
 
 .overlays {
@@ -1765,14 +1689,9 @@ p.aiutocompilaz strong {
 
 .adminsidebar {
 	background-color: var(--admin-areaselector-background);
-	/*border: none;
-    border-radius: 15px;
-    box-sizing: border-box;*/
+
 }
 
-/*.open {
-display: block;
-}*/
 
 #admin button {
 	background: var(--admin-button-background);
@@ -1999,3 +1918,5 @@ display: block;
 	pointer-events: none;
 	display: none;
 }
+
+

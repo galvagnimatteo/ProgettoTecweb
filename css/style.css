@@ -50,11 +50,10 @@ select{
     color: var(--disabled-color);
 }
 
-.breadcrumbs a:visited span{
+a:visited span{
 	color: var(--visited-links);
 }
-
-.breadcrumbs a:hover span{
+a:hover span{
 	color: var(--links-hover-color);
 }
 
@@ -463,7 +462,7 @@ programmazione.html
 h2.subtitlelogin {
 	text-align: center;
 	margin: 2rem 0.5rem;
-	
+
 }
 
 .cards_reservation {
@@ -1330,7 +1329,7 @@ div.labelqp select {
 
 #ticketInfoGroup .labelPos p {
 	font-size: 1rem;
-	
+
 }
 
 #ticketInfoGroup div {
@@ -1665,7 +1664,7 @@ p.aiutocompilaz strong {
 	background-color: var(--admin-workarea-background);
 	height: 750px;
 	overflow-y: hidden;
-	
+
 }
 
 .workarea table caption {

@@ -156,7 +156,7 @@ if(isset($_GET["error"])){
 }
 
 $title = "Home - PNG Cinema";
-$keywords = "pngcinema, film, cinema, acquisto, rapido, ultime, uscite";
+$keywords = "pngcinema, padova, film, cinema, acquisto, rapido, ultime, uscite";
 $description =
     "Pagina principale PNG cinema: è possibile consultare le ultime uscite in programmazione e acquistare rapidamente un biglietto.";
 $breadcrumbs = '<span lang="en"> Home </span> / ';

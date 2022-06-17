@@ -104,7 +104,7 @@ if (isset($_POST['action'])&&$_POST['action']=='insert')
 }
 $proiezioni=[];
 $resultproiezioni = $connection
-    ->query("SELECT Data, Proiezione.ID as ID, IDFilm, Titolo, NumeroSala, Orario, Durata FROM Proiezione INNER JOIN Film ON Film.ID=Proiezione.IDFilm WHERE Data > current_date");
+    ->query("SELECT Data, Proiezione.ID as ID, IDFilm, Titolo, NumeroSala, Orario, Durata FROM Proiezione INNER JOIN Film ON Film.ID=Proiezione.IDFilm WHERE Data >= current_date");
     $connection->commit();//la transazione assicura che la lettura avvenga dopo le modifiche
 
 $db->disconnect();

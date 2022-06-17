@@ -121,7 +121,7 @@ else{
 }
 $films=[];
 $resultFilms = $connection
-    ->query("SELECT *, Film.ID AS FilmID FROM Film LEFT OUTER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Data > current_date OR Data IS NULL GROUP BY Film.ID ORDER BY DataUscita DESC");
+    ->query("SELECT *, Film.ID AS FilmID FROM Film LEFT OUTER JOIN Proiezione ON Film.ID=Proiezione.IDFilm WHERE Data >= current_date OR Data IS NULL GROUP BY Film.ID ORDER BY DataUscita DESC");
 
     $connection->commit();//la transazione assicura che la lettura avvenga dopo gli inserimenti
 $db->disconnect();

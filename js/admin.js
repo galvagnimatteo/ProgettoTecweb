@@ -262,10 +262,7 @@ function delete_film(id) {
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
     xhr.send('action=delete&idfilm=' + id);
-    xhr.onload = function () {
-        //risoluzione bug in cancellazione con stato acora visibile
-        //document.getElementById("deletefilmstatus").className = "closed";
-        document.getElementById("deletefilmstatus").firstChild.textContent = "";
+    xhr.onload = function () {        
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
         if (status === "ok") {
@@ -277,7 +274,7 @@ function delete_film(id) {
         else {
             document.getElementById("deletefilmstatus").firstChild.textContent = status;
         }
-        //document.getElementById("deletefilmstatus").className = "open";
+        document.getElementById("deletefilmstatus").className = "open";
         //setTimeout(function () {
         //    document.getElementById("deletefilmstatus").className = "closed";
         //    document.getElementById("deletefilmstatus").firstChild.textContent = "";
@@ -299,9 +296,7 @@ function delete_projection(id) {
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
     xhr.send('action=delete&idproiezione=' + id);
-    xhr.onload = function () {
-        //risoluzione bug in cancellazione con stato acora visibile
-        //document.getElementById("deleteprojectionstatus").className = "closed";
+    xhr.onload = function () {        
         document.getElementById("deleteprojectionstatus").firstChild.textContent = "";
         var data = JSON.parse(xhr.responseText);
         var status = data.status;
@@ -314,7 +309,7 @@ function delete_projection(id) {
             document.getElementById("deleteprojectionstatus").firstChild.textContent = status;
         }
         
-        //document.getElementById("deleteprojectionstatus").className = "open";
+        document.getElementById("deleteprojectionstatus").className = "open";
         //setTimeout(function () {
         //    document.getElementById("deleteprojectionstatus").className = "closed";
         //    document.getElementById("deleteprojectionstatus").firstChild.textContent = "";

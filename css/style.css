@@ -1977,6 +1977,20 @@ display: block;
 	position: relative;
 	left: 10%;
 }
+
+#deletefilmstatus,
+#deleteprojectionstatus {
+	display: block;
+	position: relative;
+	left: 20%;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 1.5rem;
+	width: 60%;
+	padding: 5px;
+	height: 2rem;
+}
+
 .open {
 	pointer-events: initial;
 }
